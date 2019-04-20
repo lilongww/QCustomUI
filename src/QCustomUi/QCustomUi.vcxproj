@@ -1,0 +1,247 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{B12702AD-ABFB-343A-A199-8E24837244A3}</ProjectGuid>
+    <Keyword>Qt4VSv1.0</Keyword>
+    <WindowsTargetPlatformVersion>10.0.17763.0</WindowsTargetPlatformVersion>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <PlatformToolset>v141</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <PlatformToolset>v141</PlatformToolset>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <PropertyGroup Condition="'$(QtMsBuild)'=='' or !Exists('$(QtMsBuild)\qt.targets')">
+    <QtMsBuild>$(MSBuildProjectDirectory)\QtMsBuild</QtMsBuild>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <OutDir>$(SolutionDir)build\bin\$(PlatformTarget)\$(Configuration)\</OutDir>
+    <IntDir>$(SolutionDir)build\Obj\$(PlatformTarget)\$(Configuration)\$(ProjectName)\</IntDir>
+    <TargetName>$(ProjectName)d</TargetName>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <OutDir>$(SolutionDir)build\bin\$(PlatformTarget)\$(Configuration)\</OutDir>
+    <IntDir>$(SolutionDir)build\Obj\$(PlatformTarget)\$(Configuration)\$(ProjectName)\</IntDir>
+  </PropertyGroup>
+  <Target Name="QtMsBuildNotFound" BeforeTargets="CustomBuild;ClCompile" Condition="!Exists('$(QtMsBuild)\qt.targets') or !Exists('$(QtMsBuild)\qt.props')">
+    <Message Importance="High" Text="QtMsBuild: could not locate qt.targets, qt.props; project may not build correctly." />
+  </Target>
+  <ImportGroup Condition="Exists('$(QtMsBuild)\qt.props')">
+    <Import Project="$(QtMsBuild)\qt.props" />
+  </ImportGroup>
+  <ImportGroup Label="ExtensionSettings" />
+  <ImportGroup Label="Shared" />
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <ClCompile>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
+      <PreprocessorDefinitions>UNICODE;_UNICODE;WIN32;_ENABLE_EXTENDED_ALIGNED_STORAGE;WIN64;QT_DLL;QT_CORE_LIB;QT_GUI_LIB;QT_WIDGETS_LIB;QCUSTOMUI_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>.\GeneratedFiles;.;$(QTDIR)\include;.\GeneratedFiles\$(ConfigurationName);$(QTDIR)\include\QtCore;$(QTDIR)\include\QtGui;$(QTDIR)\include\QtANGLE;$(QTDIR)\include\QtWidgets;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <Optimization>Disabled</Optimization>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <TreatWChar_tAsBuiltInType>true</TreatWChar_tAsBuiltInType>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <AdditionalLibraryDirectories>$(QTDIR)\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalDependencies>qtmaind.lib;Qt5Cored.lib;Qt5Guid.lib;Qt5Widgetsd.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <ImportLibrary>$(SolutionDir)build\lib\$(PlatformTarget)\$(TargetName).lib</ImportLibrary>
+    </Link>
+    <QtMoc>
+      <Define>UNICODE;_UNICODE;WIN32;_ENABLE_EXTENDED_ALIGNED_STORAGE;WIN64;QT_DLL;QT_CORE_LIB;QT_GUI_LIB;QT_WIDGETS_LIB;QCUSTOMUI_LIB;%(PreprocessorDefinitions)</Define>
+      <IncludePath>.\GeneratedFiles;.;$(QTDIR)\include;.\GeneratedFiles\$(ConfigurationName);$(QTDIR)\include\QtCore;$(QTDIR)\include\QtGui;$(QTDIR)\include\QtANGLE;$(QTDIR)\include\QtWidgets</IncludePath>
+      <OutputFile>.\GeneratedFiles\$(ConfigurationName)\moc_%(Filename).cpp</OutputFile>
+      <ExecutionDescription>Moc'ing %(Identity)...</ExecutionDescription>
+    </QtMoc>
+    <QtUic>
+      <ExecutionDescription>Uic'ing %(Identity)...</ExecutionDescription>
+      <OutputFile>.\GeneratedFiles\ui_%(Filename).h</OutputFile>
+    </QtUic>
+    <QtRcc>
+      <ExecutionDescription>Rcc'ing %(Identity)...</ExecutionDescription>
+      <OutputFile>.\GeneratedFiles\qrc_%(Filename).cpp</OutputFile>
+    </QtRcc>
+    <PostBuildEvent>
+      <Command>xcopy /y *.h $(SolutionDir)build\include\$(ProjectName)\</Command>
+    </PostBuildEvent>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <ClCompile>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
+      <PreprocessorDefinitions>UNICODE;_UNICODE;WIN32;_ENABLE_EXTENDED_ALIGNED_STORAGE;WIN64;QT_DLL;QT_NO_DEBUG;NDEBUG;QT_CORE_LIB;QT_GUI_LIB;QT_WIDGETS_LIB;QCUSTOMUI_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>.\GeneratedFiles;.;$(QTDIR)\include;.\GeneratedFiles\$(ConfigurationName);$(QTDIR)\include\QtCore;$(QTDIR)\include\QtGui;$(QTDIR)\include\QtANGLE;$(QTDIR)\include\QtWidgets;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <DebugInformationFormat />
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <TreatWChar_tAsBuiltInType>true</TreatWChar_tAsBuiltInType>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <AdditionalLibraryDirectories>$(QTDIR)\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <GenerateDebugInformation>false</GenerateDebugInformation>
+      <AdditionalDependencies>qtmain.lib;Qt5Core.lib;Qt5Gui.lib;Qt5Widgets.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <ImportLibrary>$(SolutionDir)build\lib\$(PlatformTarget)\$(TargetName).lib</ImportLibrary>
+    </Link>
+    <QtMoc>
+      <Define>UNICODE;_UNICODE;WIN32;_ENABLE_EXTENDED_ALIGNED_STORAGE;WIN64;QT_DLL;QT_NO_DEBUG;NDEBUG;QT_CORE_LIB;QT_GUI_LIB;QT_WIDGETS_LIB;QCUSTOMUI_LIB;%(PreprocessorDefinitions)</Define>
+      <IncludePath>.\GeneratedFiles;.;$(QTDIR)\include;.\GeneratedFiles\$(ConfigurationName);$(QTDIR)\include\QtCore;$(QTDIR)\include\QtGui;$(QTDIR)\include\QtANGLE;$(QTDIR)\include\QtWidgets</IncludePath>
+      <OutputFile>.\GeneratedFiles\$(ConfigurationName)\moc_%(Filename).cpp</OutputFile>
+      <ExecutionDescription>Moc'ing %(Identity)...</ExecutionDescription>
+    </QtMoc>
+    <QtUic>
+      <ExecutionDescription>Uic'ing %(Identity)...</ExecutionDescription>
+      <OutputFile>.\GeneratedFiles\ui_%(Filename).h</OutputFile>
+    </QtUic>
+    <QtRcc>
+      <ExecutionDescription>Rcc'ing %(Identity)...</ExecutionDescription>
+      <OutputFile>.\GeneratedFiles\qrc_%(Filename).cpp</OutputFile>
+    </QtRcc>
+    <PostBuildEvent>
+      <Command>xcopy /y *.h $(SolutionDir)build\include\$(ProjectName)\</Command>
+    </PostBuildEvent>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <QtMoc Include="Private\QCtmActionGroup_p.h" />
+    <QtMoc Include="Private\QCtmFramelessDelegate_p.h" />
+    <QtMoc Include="Private\QCtmMainMenuButton_p.h" />
+    <QtMoc Include="Private\QCtmMaximumSizeButton_p.h" />
+    <QtMoc Include="Private\QCtmMessageTipHelper_p.h" />
+    <QtMoc Include="Private\QCtmMessageViewDelegate_p.h" />
+    <QtMoc Include="Private\QCtmNavigationImageButton_p.h" />
+    <QtMoc Include="Private\QCtmSeparator_p.h" />
+    <ClInclude Include="Private\QCtmStyle_p.h" />
+    <QtMoc Include="Private\QCtmToolBoxItem_p.h" />
+    <QtMoc Include="Private\QCtmToolButton_p.h" />
+    <QtMoc Include="Private\QCtmTreeItemTitle_p.h" />
+    <QtMoc Include="Private\QCtmUserButton_p.h" />
+    <ClInclude Include="Private\QCtmWidgetItemForMainMenu_p.h" />
+    <ClInclude Include="Private\QCtmWidgetItem_p.h" />
+    <ClInclude Include="Private\flowlayout_p.h" />
+    <ClInclude Include="Private\Util_p.h" />
+    <ClInclude Include="Version.h" />
+    <QtMoc Include="QCtmAbstractLogModel.h" />
+    <QtMoc Include="QCtmAbstractMessageModel.h" />
+    <QtMoc Include="QCtmAbstractMessageView.h" />
+    <QtMoc Include="QCtmColor.h" />
+    <QtMoc Include="QCtmComboBox.h" />
+    <QtMoc Include="QCtmDialog.h" />
+    <ClInclude Include="QCtmLogEvent.h" />
+    <QtMoc Include="QCtmLogFilterModel.h" />
+    <ClInclude Include="QCtmLogManager.h" />
+    <QtMoc Include="QCtmLogModel.h" />
+    <QtMoc Include="QCtmLogWidget.h" />
+    <ClInclude Include="QCustomUi.h" />
+    <QtMoc Include="QCtmMainWindow.h" />
+    <ClInclude Include="QCtmMessage.h" />
+    <QtMoc Include="QCtmMessageBox.h" />
+    <QtMoc Include="QCtmMessageModel.h" />
+    <QtMoc Include="QCtmMessageTip.h" />
+    <QtMoc Include="QCtmMessageView.h" />
+    <QtMoc Include="QCtmNavigationBackstageActionGroup.h" />
+    <QtMoc Include="QCtmNavigationBackstageMenu.h" />
+    <QtMoc Include="QCtmNavigationBar.h" />
+    <QtMoc Include="QCtmNavigationMainMenu.h" />
+    <QtMoc Include="QCtmNavigationSideBar.h" />
+    <QtMoc Include="QCtmNavigationSidePanel.h" />
+    <QtMoc Include="QCtmTableItemDelegate.h" />
+    <QtMoc Include="QCtmTableView.h" />
+    <QtMoc Include="QCtmTabPage.h" />
+    <QtMoc Include="QCtmTabWidget.h" />
+    <QtMoc Include="QCtmTitleBar.h" />
+    <QtMoc Include="QCtmToolBox.h" />
+    <QtMoc Include="QCtmTree.h" />
+    <QtMoc Include="QCtmWindow.h" />
+    <ClInclude Include="qcustomui_global.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="QCtmAbstractLogModel.cpp" />
+    <ClCompile Include="QCtmAbstractMessageModel.cpp" />
+    <ClCompile Include="QCtmAbstractMessageView.cpp" />
+    <ClCompile Include="QCtmColor.cpp" />
+    <ClCompile Include="QCtmComboBox.cpp" />
+    <ClCompile Include="QCtmDialog.cpp" />
+    <ClCompile Include="QCtmLogEvent.cpp" />
+    <ClCompile Include="QCtmLogFilterModel.cpp" />
+    <ClCompile Include="QCtmLogManager.cpp" />
+    <ClCompile Include="QCtmLogModel.cpp" />
+    <ClCompile Include="QCtmLogWidget.cpp" />
+    <ClCompile Include="QCtmMainWindow.cpp" />
+    <ClCompile Include="QCtmMessage.cpp" />
+    <ClCompile Include="QCtmMessageBox.cpp" />
+    <ClCompile Include="QCtmMessageModel.cpp" />
+    <ClCompile Include="QCtmMessageTip.cpp" />
+    <ClCompile Include="QCtmMessageView.cpp" />
+    <ClCompile Include="QCtmNavigationBackstageActionGroup.cpp" />
+    <ClCompile Include="QCtmNavigationBackstageMenu.cpp" />
+    <ClCompile Include="QCtmNavigationBar.cpp" />
+    <ClCompile Include="QCtmNavigationMainMenu.cpp" />
+    <ClCompile Include="QCtmNavigationSideBar.cpp" />
+    <ClCompile Include="QCtmNavigationSidePanel.cpp" />
+    <ClCompile Include="QCtmTableItemDelegate.cpp" />
+    <ClCompile Include="QCtmTableView.cpp" />
+    <ClCompile Include="QCtmTabPage.cpp" />
+    <ClCompile Include="QCtmTabWidget.cpp" />
+    <ClCompile Include="QCtmTitleBar.cpp" />
+    <ClCompile Include="QCtmToolBox.cpp" />
+    <ClCompile Include="QCtmTree.cpp" />
+    <ClCompile Include="QCtmWindow.cpp" />
+    <ClCompile Include="Private\QCtmActionGroup.cpp" />
+    <ClCompile Include="Private\QCtmFramelessDelegate.cpp" />
+    <ClCompile Include="Private\QCtmMainMenuButton.cpp" />
+    <ClCompile Include="Private\QCtmMaximumSizeButton.cpp" />
+    <ClCompile Include="Private\QCtmMessageTipHelper.cpp" />
+    <ClCompile Include="Private\QCtmMessageViewDelegate.cpp" />
+    <ClCompile Include="Private\QCtmNavigationImageButton.cpp" />
+    <ClCompile Include="Private\QCtmSeparator.cpp" />
+    <ClCompile Include="Private\QCtmStyle.cpp" />
+    <ClCompile Include="Private\QCtmToolBoxItem.cpp" />
+    <ClCompile Include="Private\QCtmToolButton.cpp" />
+    <ClCompile Include="Private\QCtmTreeItemTitle.cpp" />
+    <ClCompile Include="Private\QCtmUserButton.cpp" />
+    <ClCompile Include="Private\QCtmWidgetItem.cpp" />
+    <ClCompile Include="Private\QCtmWidgetItemForMainMenu.cpp" />
+    <ClCompile Include="Private\flowlayout.cpp" />
+    <ClCompile Include="Private\Util.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <QtUic Include="QCtmMainWindow.ui" />
+    <QtUic Include="QCtmTitleBar.ui" />
+    <QtUic Include="QCtmWindow.ui" />
+    <QtUic Include="Private\QCtmToolBoxItem.ui" />
+  </ItemGroup>
+  <ItemGroup>
+    <QtRcc Include="QCustomUi.qrc" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Condition="Exists('$(QtMsBuild)\qt.targets')">
+    <Import Project="$(QtMsBuild)\qt.targets" />
+  </ImportGroup>
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+  <ProjectExtensions>
+    <VisualStudio>
+      <UserProperties MocDir=".\GeneratedFiles\$(ConfigurationName)" UicDir=".\GeneratedFiles" RccDir=".\GeneratedFiles" lupdateOptions="" lupdateOnBuild="0" lreleaseOptions="" Qt5Version_x0020_x64="msvc2017_64" MocOptions="" />
+    </VisualStudio>
+  </ProjectExtensions>
+</Project>

@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>OperationTree</class>
+ <widget class="QWidget" name="OperationTree">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>400</width>
+    <height>300</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>OperationTree</string>
+  </property>
+  <layout class="QVBoxLayout" name="verticalLayout">
+   <property name="leftMargin">
+    <number>0</number>
+   </property>
+   <property name="topMargin">
+    <number>0</number>
+   </property>
+   <property name="rightMargin">
+    <number>0</number>
+   </property>
+   <property name="bottomMargin">
+    <number>0</number>
+   </property>
+   <item>
+    <widget class="QLineEdit" name="lineEdit"/>
+   </item>
+   <item>
+    <widget class="QTreeWidget" name="treeWidget">
+     <column>
+      <property name="text">
+       <string>1</string>
+      </property>
+     </column>
+     <item>
+      <property name="text">
+       <string>General</string>
+      </property>
+      <item>
+       <property name="text">
+        <string>Execute</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>Check</string>
+       </property>
+      </item>
+     </item>
+     <item>
+      <property name="text">
+       <string>Time</string>
+      </property>
+      <item>
+       <property name="text">
+        <string>Wait</string>
+       </property>
+      </item>
+     </item>
+     <item>
+      <property name="text">
+       <string>Process Control</string>
+      </property>
+      <item>
+       <property name="text">
+        <string>Pause</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>Call</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>Goto</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>While</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>If</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>If...Else...</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>IfElse</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>Switch...Case...</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>Manual...Option</string>
+       </property>
+      </item>
+     </item>
+     <item>
+      <property name="text">
+       <string>Information</string>
+      </property>
+      <item>
+       <property name="text">
+        <string>Log</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>Voice Notification</string>
+       </property>
+      </item>
+     </item>
+    </widget>
+   </item>
+  </layout>
+ </widget>
+ <layoutdefault spacing="6" margin="11"/>
+ <resources/>
+ <connections/>
+</ui>

@@ -1,0 +1,358 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{D9D6E242-F8AF-46E4-B9FD-80ECBC20BA3E}</UniqueIdentifier>
+      <Extensions>qrc;*</Extensions>
+      <ParseFiles>false</ParseFiles>
+    </Filter>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{D9D6E242-F8AF-46E4-B9FD-80ECBC20BA3E}</UniqueIdentifier>
+      <Extensions>qrc;*</Extensions>
+      <ParseFiles>false</ParseFiles>
+    </Filter>
+    <Filter Include="Generated Files">
+      <UniqueIdentifier>{71ED8ED8-ACB9-4CE9-BBE1-E00B30144E11}</UniqueIdentifier>
+      <Extensions>moc;h;cpp</Extensions>
+      <SourceControlFiles>False</SourceControlFiles>
+    </Filter>
+    <Filter Include="Form Files">
+      <UniqueIdentifier>{99349809-55BA-4b9d-BF79-8FDBB0286EB3}</UniqueIdentifier>
+      <Extensions>ui</Extensions>
+      <ParseFiles>true</ParseFiles>
+    </Filter>
+    <Filter Include="Private">
+      <UniqueIdentifier>{8fa07f5c-4cfb-4bd0-8a23-0c1634d32fc0}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="qcustomui_global.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Version.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Private\flowlayout_p.h">
+      <Filter>Private</Filter>
+    </ClInclude>
+    <ClInclude Include="Private\Util_p.h">
+      <Filter>Private</Filter>
+    </ClInclude>
+    <ClInclude Include="QCtmLogEvent.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="QCtmLogManager.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="QCtmMessage.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Private\QCtmStyle_p.h">
+      <Filter>Private</Filter>
+    </ClInclude>
+    <ClInclude Include="Private\QCtmWidgetItem_p.h">
+      <Filter>Private</Filter>
+    </ClInclude>
+    <ClInclude Include="Private\QCtmWidgetItemForMainMenu_p.h">
+      <Filter>Private</Filter>
+    </ClInclude>
+    <ClInclude Include="QCustomUi.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Private\flowlayout.cpp">
+      <Filter>Private</Filter>
+    </ClCompile>
+    <ClCompile Include="Private\Util.cpp">
+      <Filter>Private</Filter>
+    </ClCompile>
+    <ClCompile Include="Private\QCtmActionGroup.cpp">
+      <Filter>Private</Filter>
+    </ClCompile>
+    <ClCompile Include="Private\QCtmFramelessDelegate.cpp">
+      <Filter>Private</Filter>
+    </ClCompile>
+    <ClCompile Include="Private\QCtmMainMenuButton.cpp">
+      <Filter>Private</Filter>
+    </ClCompile>
+    <ClCompile Include="Private\QCtmMaximumSizeButton.cpp">
+      <Filter>Private</Filter>
+    </ClCompile>
+    <ClCompile Include="Private\QCtmMessageTipHelper.cpp">
+      <Filter>Private</Filter>
+    </ClCompile>
+    <ClCompile Include="Private\QCtmMessageViewDelegate.cpp">
+      <Filter>Private</Filter>
+    </ClCompile>
+    <ClCompile Include="Private\QCtmNavigationImageButton.cpp">
+      <Filter>Private</Filter>
+    </ClCompile>
+    <ClCompile Include="Private\QCtmSeparator.cpp">
+      <Filter>Private</Filter>
+    </ClCompile>
+    <ClCompile Include="Private\QCtmStyle.cpp">
+      <Filter>Private</Filter>
+    </ClCompile>
+    <ClCompile Include="Private\QCtmToolBoxItem.cpp">
+      <Filter>Private</Filter>
+    </ClCompile>
+    <ClCompile Include="Private\QCtmToolButton.cpp">
+      <Filter>Private</Filter>
+    </ClCompile>
+    <ClCompile Include="Private\QCtmTreeItemTitle.cpp">
+      <Filter>Private</Filter>
+    </ClCompile>
+    <ClCompile Include="Private\QCtmUserButton.cpp">
+      <Filter>Private</Filter>
+    </ClCompile>
+    <ClCompile Include="Private\QCtmWidgetItem.cpp">
+      <Filter>Private</Filter>
+    </ClCompile>
+    <ClCompile Include="Private\QCtmWidgetItemForMainMenu.cpp">
+      <Filter>Private</Filter>
+    </ClCompile>
+    <ClCompile Include="QCtmAbstractLogModel.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="QCtmAbstractMessageModel.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="QCtmAbstractMessageView.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="QCtmColor.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="QCtmComboBox.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="QCtmDialog.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="QCtmLogEvent.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="QCtmLogFilterModel.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="QCtmLogManager.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="QCtmLogModel.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="QCtmLogWidget.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="QCtmMainWindow.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="QCtmMessage.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="QCtmMessageBox.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="QCtmMessageModel.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="QCtmMessageTip.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="QCtmMessageView.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="QCtmNavigationBackstageActionGroup.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="QCtmNavigationBackstageMenu.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="QCtmNavigationBar.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="QCtmNavigationMainMenu.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="QCtmNavigationSideBar.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="QCtmNavigationSidePanel.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="QCtmTableItemDelegate.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="QCtmTableView.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="QCtmTabPage.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="QCtmTabWidget.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="QCtmTitleBar.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="QCtmToolBox.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="QCtmTree.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="QCtmWindow.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <QtMoc Include="QCtmAbstractLogModel.h">
+      <Filter>Header Files</Filter>
+    </QtMoc>
+    <QtMoc Include="QCtmAbstractMessageModel.h">
+      <Filter>Header Files</Filter>
+    </QtMoc>
+    <QtMoc Include="QCtmAbstractMessageView.h">
+      <Filter>Header Files</Filter>
+    </QtMoc>
+    <QtMoc Include="QCtmColor.h">
+      <Filter>Header Files</Filter>
+    </QtMoc>
+    <QtMoc Include="QCtmComboBox.h">
+      <Filter>Header Files</Filter>
+    </QtMoc>
+    <QtMoc Include="QCtmDialog.h">
+      <Filter>Header Files</Filter>
+    </QtMoc>
+    <QtMoc Include="QCtmLogFilterModel.h">
+      <Filter>Header Files</Filter>
+    </QtMoc>
+    <QtMoc Include="QCtmLogModel.h">
+      <Filter>Header Files</Filter>
+    </QtMoc>
+    <QtMoc Include="QCtmLogWidget.h">
+      <Filter>Header Files</Filter>
+    </QtMoc>
+    <QtMoc Include="QCtmMainWindow.h">
+      <Filter>Header Files</Filter>
+    </QtMoc>
+    <QtMoc Include="QCtmMessageBox.h">
+      <Filter>Header Files</Filter>
+    </QtMoc>
+    <QtMoc Include="QCtmMessageModel.h">
+      <Filter>Header Files</Filter>
+    </QtMoc>
+    <QtMoc Include="QCtmMessageTip.h">
+      <Filter>Header Files</Filter>
+    </QtMoc>
+    <QtMoc Include="QCtmMessageView.h">
+      <Filter>Header Files</Filter>
+    </QtMoc>
+    <QtMoc Include="QCtmNavigationBackstageActionGroup.h">
+      <Filter>Header Files</Filter>
+    </QtMoc>
+    <QtMoc Include="QCtmNavigationBackstageMenu.h">
+      <Filter>Header Files</Filter>
+    </QtMoc>
+    <QtMoc Include="QCtmNavigationBar.h">
+      <Filter>Header Files</Filter>
+    </QtMoc>
+    <QtMoc Include="QCtmNavigationMainMenu.h">
+      <Filter>Header Files</Filter>
+    </QtMoc>
+    <QtMoc Include="QCtmNavigationSideBar.h">
+      <Filter>Header Files</Filter>
+    </QtMoc>
+    <QtMoc Include="QCtmNavigationSidePanel.h">
+      <Filter>Header Files</Filter>
+    </QtMoc>
+    <QtMoc Include="QCtmTableItemDelegate.h">
+      <Filter>Header Files</Filter>
+    </QtMoc>
+    <QtMoc Include="QCtmTableView.h">
+      <Filter>Header Files</Filter>
+    </QtMoc>
+    <QtMoc Include="QCtmTabPage.h">
+      <Filter>Header Files</Filter>
+    </QtMoc>
+    <QtMoc Include="QCtmTabWidget.h">
+      <Filter>Header Files</Filter>
+    </QtMoc>
+    <QtMoc Include="QCtmTitleBar.h">
+      <Filter>Header Files</Filter>
+    </QtMoc>
+    <QtMoc Include="QCtmToolBox.h">
+      <Filter>Header Files</Filter>
+    </QtMoc>
+    <QtMoc Include="QCtmTree.h">
+      <Filter>Header Files</Filter>
+    </QtMoc>
+    <QtMoc Include="QCtmWindow.h">
+      <Filter>Header Files</Filter>
+    </QtMoc>
+    <QtMoc Include="Private\QCtmActionGroup_p.h">
+      <Filter>Private</Filter>
+    </QtMoc>
+    <QtMoc Include="Private\QCtmFramelessDelegate_p.h">
+      <Filter>Private</Filter>
+    </QtMoc>
+    <QtMoc Include="Private\QCtmMainMenuButton_p.h">
+      <Filter>Private</Filter>
+    </QtMoc>
+    <QtMoc Include="Private\QCtmMaximumSizeButton_p.h">
+      <Filter>Private</Filter>
+    </QtMoc>
+    <QtMoc Include="Private\QCtmMessageTipHelper_p.h">
+      <Filter>Private</Filter>
+    </QtMoc>
+    <QtMoc Include="Private\QCtmMessageViewDelegate_p.h">
+      <Filter>Private</Filter>
+    </QtMoc>
+    <QtMoc Include="Private\QCtmNavigationImageButton_p.h">
+      <Filter>Private</Filter>
+    </QtMoc>
+    <QtMoc Include="Private\QCtmSeparator_p.h">
+      <Filter>Private</Filter>
+    </QtMoc>
+    <QtMoc Include="Private\QCtmToolBoxItem_p.h">
+      <Filter>Private</Filter>
+    </QtMoc>
+    <QtMoc Include="Private\QCtmToolButton_p.h">
+      <Filter>Private</Filter>
+    </QtMoc>
+    <QtMoc Include="Private\QCtmTreeItemTitle_p.h">
+      <Filter>Private</Filter>
+    </QtMoc>
+    <QtMoc Include="Private\QCtmUserButton_p.h">
+      <Filter>Private</Filter>
+    </QtMoc>
+  </ItemGroup>
+  <ItemGroup>
+    <QtUic Include="Private\QCtmToolBoxItem.ui">
+      <Filter>Private</Filter>
+    </QtUic>
+    <QtUic Include="QCtmWindow.ui">
+      <Filter>Form Files</Filter>
+    </QtUic>
+    <QtUic Include="QCtmTitleBar.ui">
+      <Filter>Form Files</Filter>
+    </QtUic>
+    <QtUic Include="QCtmMainWindow.ui">
+      <Filter>Form Files</Filter>
+    </QtUic>
+  </ItemGroup>
+  <ItemGroup>
+    <QtRcc Include="QCustomUi.qrc">
+      <Filter>Resource Files</Filter>
+    </QtRcc>
+  </ItemGroup>
+</Project>

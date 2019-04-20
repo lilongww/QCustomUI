@@ -1,0 +1,14 @@
+*.suo
+/.vs
+/build
+/src/EditActivity/*.user
+/src/QCustomUi/x64/Debug/*.obj
+/src/SwitchLauncherExample/x64/Debug/*.pdb
+/src/SwitchLauncherExample/x64/Debug/*.obj
+/src/SwitchLauncher/x64/Debug/SwitchLauncher.tlog/*.tlog
+*.tlog
+*.user
+*.pdb
+*.log
+*.obj
+GeneratedFiles

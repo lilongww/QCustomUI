@@ -1,0 +1,45 @@
+<RCC>
+    <qresource prefix="/QCustomUi">
+        <file>Resources/maximize.png</file>
+        <file>Resources/maximize_max.png</file>
+        <file>Resources/minimize.png</file>
+        <file>Resources/hideButton.png</file>
+        <file>Resources/system_menu.png</file>
+        <file>Resources/messageTip.png</file>
+        <file>Resources/areaButton.png</file>
+        <file>Resources/help.png</file>
+        <file>Resources/MainMenu.png</file>
+        <file>Resources/people.png</file>
+        <file>Resources/areaButton-light.png</file>
+        <file>Resources/close-light.png</file>
+        <file>Resources/help-light.png</file>
+        <file>Resources/hideButton-light.png</file>
+        <file>Resources/MainMenu-light.png</file>
+        <file>Resources/maximize-light.png</file>
+        <file>Resources/messageTip-light.png</file>
+        <file>Resources/minimize-light.png</file>
+        <file>Resources/people-light.png</file>
+        <file>Resources/system_menu-light.png</file>
+        <file>Resources/maximize_max-light.png</file>
+        <file>Resources/close.png</file>
+        <file>Resources/tree-close.png</file>
+        <file>Resources/tree-open.png</file>
+        <file>Resources/tree-open-light.png</file>
+        <file>Resources/tree-close-light.png</file>
+        <file>Resources/Error.png</file>
+        <file>Resources/info.png</file>
+        <file>Resources/warning.png</file>
+        <file>Resources/search.png</file>
+        <file>Resources/search-light.png</file>
+        <file>Resources/copy.png</file>
+        <file>Resources/copy-light.png</file>
+        <file>Resources/clear.png</file>
+        <file>Resources/clear-light.png</file>
+        <file>Resources/drop-down.png</file>
+        <file>Resources/drop-down-light.png</file>
+        <file>Resources/messagebox-error.png</file>
+        <file>Resources/messagebox-info.png</file>
+        <file>Resources/messagebox-question.png</file>
+        <file>Resources/messagebox-warning.png</file>
+    </qresource>
+</RCC>

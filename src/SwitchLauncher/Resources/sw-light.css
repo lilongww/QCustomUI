@@ -1,0 +1,1035 @@
+*
+{
+    font-family: 'Microsoft YaHei';
+    outline: none;
+}
+
+/***************************QCtmTitleBar************************************/
+
+.QCtmTitleBar #closeBtn
+{
+    qproperty-icon: url(:/QCustomUi/Resources/close-light.png);
+}
+
+.QCtmTitleBar #minimumSizeBtn
+{
+    qproperty-icon: url(:/QCustomUi/Resources/minimize-light.png);
+}
+
+.QCtmTitleBar #maximumSizeBtn[maximumsized=true]
+{
+    qproperty-icon: url(:/QCustomUi/Resources/maximize-light.png);
+}
+
+.QCtmTitleBar #maximumSizeBtn[maximumsized=false]
+{
+    qproperty-icon: url(:/QCustomUi/Resources/maximize_max-light.png);
+}
+
+QCtmTitleBar #closeBtn, QCtmTitleBar #minimumSizeBtn, QCtmTitleBar #maximumSizeBtn
+{
+	border: none;
+	background-color: transparent;
+}
+
+QCtmTitleBar #minimumSizeBtn:hover, QCtmTitleBar #maximumSizeBtn:hover, QCtmTitleBar #closeBtn::hover
+{
+    background-color: #C6C6C6;
+}
+
+QCtmTitleBar #minimumSizeBtn:pressed, QCtmTitleBar #maximumSizeBtn:pressed, QCtmTitleBar #closeBtn::pressed
+{
+    background-color: #C6C6C6;
+}
+
+.QCtmTitleBar
+{
+	background: #D9D9D9;
+    font-size: 12px;
+    font-family: 'Microsoft YaHei';
+    font-weight: 400;
+    color: rgba(94,94,94,1);
+}
+
+.QCtmTitleBar QMenuBar
+{
+    background: #D9D9D9;
+}
+
+.QCtmTitleBar QMenuBar::item
+{
+    padding-bottom: 4px;
+    padding-top: 4px;
+    padding-right: 8px;
+    padding-left: 8px;
+    font-size: 12px;
+    font-family: 'Microsoft YaHei';
+    font-weight: 400;
+    color: rgba(94,94,94,1);
+    background-color: #D9D9D9;
+}
+
+.QCtmTitleBar QMenuBar::item:hover
+{
+    background-color: #C6C6C6;
+}
+
+.QCtmTitleBar QMenuBar::item:pressed
+{
+	background-color: #C6C6C6;
+}
+
+.QCtmTitleBar QCtmToolButton
+{
+    background: transparent;
+    color: white;
+}
+
+/*********************************************************************/
+
+/****************************QStatusBar*******************************/
+
+.QStatusBar
+{
+    max-height: 20px;
+    min-height: 20px;
+    color: white;
+    background: #68217A;
+}
+
+QStatusBar QToolButton
+{
+	color: white;
+	border: none;
+}
+
+QStatusBar QToolButton:hover
+{
+	background-color: #1F8AD2;
+}
+
+QStatusBar::item 
+{
+    border: none;
+}
+/********************************************************************/
+
+/********************QCtmNavigationBar**********************/
+QCtmNavigationBar::separator
+{
+    margin-top: 8px;
+    margin-bottom: 8px;
+    width: 1px;
+    background: #CCCCCC;
+}
+
+.QCtmNavigationBar
+{
+    max-height: 50px;
+    min-height: 50px;
+    font-size: 14px;
+    font-family: 'Microsoft YaHei';
+    font-weight: 400;
+    color: #4F4F4F;
+    background: #F3F3F3;
+    border-bottom: 1px solid #D9D9D9;
+}
+
+.QCtmNavigationBar QCtmToolButton
+{
+    padding-left: 5px;
+    padding-right: 5px;
+	font-size: 13px;
+    font-family: 'Microsoft YaHei';
+    font-weight: 400;
+    color: rgba(79,79,79,1);
+	border: 0px;
+	background-color: transparent;
+}
+
+.QCtmNavigationBar QCtmToolButton:hover
+{
+    background-color: #cbe5ff;
+}
+
+.QCtmNavigationBar QCtmToolButton:pressed
+{
+    background-color: #cbe5ff;
+}
+
+.QCtmNavigationBar QCtmToolButton:checked
+{
+    background-color: #C0C1C3;
+}
+
+.QCtmNavigationBar #help
+{
+    qproperty-icon: url(:/QCustomUi/Resources/help-light.png);
+}
+
+.QCtmNavigationBar #projectService
+{
+    qproperty-icon: url(:/QCustomUi/Resources/MainMenu-light.png);
+}
+
+.QCtmNavigationBar #projectService:checked
+{
+    qproperty-icon: url(:/QCustomUi/Resources/MainMenu-light.png);
+}
+
+.QCtmNavigationBar #Logo
+{
+    qproperty-icon: url(:/Resources/images/Logo-light.png);
+}
+
+.QCtmNavigationBar #systeMmenu
+{
+    qproperty-icon: url(:/QCustomUi/Resources/system_menu-light.png);
+}
+
+.QCtmNavigationBar #people
+{
+    qproperty-icon: url(:/QCustomUi/Resources/people-light.png);
+}
+
+.QCtmNavigationBar #test1
+{
+    qproperty-icon: url(:/Resources/images/test1-light.png);
+}
+
+.QCtmNavigationBar #test2
+{
+    qproperty-icon: url(:/Resources/images/test2-light.png);
+}
+/****************************************************************/
+
+/**************************QCtmNavigationImageButton****************************/
+QCtmNavigationImageButton
+{
+	background-color: transparent;
+	border: none;
+}
+
+QCtmNavigationImageButton:hover
+{
+	background-color: #F0F0F0;
+}
+
+QCtmNavigationImageButton:pressed
+{
+	background-color: white;
+}
+
+QCtmNavigationImageButton:checked
+{
+	background-color: white;
+}
+
+/************************************************************************/
+
+/********************************************************************/
+
+.QCtmNavigationMainMenu
+{
+    background: #C0C1C3;
+    margin-top: 20px;
+    margin-left: 23px;
+    margin-bottom: 20px;
+    margin-right: 20px;
+}
+
+.QCtmNavigationMainMenu QAbstractButton
+{
+    text-align: left bottom;
+    padding-left: 15px;
+    padding-bottom: 9px;
+    font-size: 13px;
+    font-family: 'Microsoft YaHei';
+    border: none;
+}
+
+/********************************************************************/
+
+/************************QCtmNavigationBackstageMenu************************/
+
+.QCtmNavigationBackstageMenu
+{
+    background: white;
+    qproperty-baseColor: gray;
+}
+
+/********************************************************************/
+
+/************************QCtmNavigationBackstageActionGroup***********************************/
+
+.QCtmNavigationBackstageActionGroup #title
+{
+	color: #107EE5;
+	font: bold 14pt 'Microsoft YaHei';
+}
+
+.QCtmNavigationBackstageActionGroup QToolButton
+{
+    border: none;
+	font-size: 14px;
+	font-family: 'Microsoft YaHei';
+	font-weight: 400;
+	color: #1F1F1F;
+}
+
+.QCtmNavigationBackstageActionGroup QToolButton:hover
+{
+	background: #F0F0F0;
+}
+
+.QCtmNavigationBackstageActionGroup QToolButton:pressed
+{
+	padding-top: 2px;
+	padding-left: 2px;
+	background: #007ACC;
+    color: white;
+}
+
+.QCtmNavigationBackstageActionGroup
+{
+	background: white;
+}
+
+/**************************************************************/
+
+/***********************QCtmNavigationSideBar**************************/
+.QCtmNavigationSideBar
+{
+	background: #2C2C2C;
+}
+
+QCtmNavigationSideBar QToolButton
+{
+	border: none;
+	background-color: transparent;
+}
+
+/*这里使用#sidebar1::checked 无效*/
+.QCtmNavigationSideBar #sidebar1[checked=true]
+{
+    qproperty-icon: url(:/Resources/images/sidebar-1-light.png);
+}
+
+.QCtmNavigationSideBar #sidebar2[checked=true]
+{
+    qproperty-icon: url(:/Resources/images/sidebar-2-light.png);
+}
+
+.QCtmNavigationSideBar #sidebar3[checked=true]
+{
+    qproperty-icon: url(:/Resources/images/sidebar-3-light.png);
+}
+
+.QCtmNavigationSideBar #sidebar1[checked=false]
+{
+    qproperty-icon: url(:/Resources/images/sidebar-1.png);
+}
+
+.QCtmNavigationSideBar #sidebar2[checked=false]
+{
+    qproperty-icon: url(:/Resources/images/sidebar-2.png);
+}
+
+.QCtmNavigationSideBar #sidebar3[checked=false]
+{
+    qproperty-icon: url(:/Resources/images/sidebar-3.png);
+}
+
+/************************************************************/
+
+/*************************QCtmTabWidget**********************/
+
+.QCtmTabWidget #closeButton, .QCtmTabWidget #areaButton
+{
+    width: 20px;
+    height: 20px;
+    border: none;
+}
+
+.QCtmTabWidget #closeButton
+{
+    image: url(:/QCustomUi/Resources/hideButton-light.png);
+}
+
+.QCtmTabWidget #areaButton
+{
+    qproperty-icon: url(:/QCustomUi/Resources/areaButton-light.png);
+}
+
+.QCtmTabWidget #closeButton:hover, .QCtmTabWidget #areaButton:hover
+{
+    background: #CBE5FF;
+}
+
+.QCtmTabWidget #closeButton:pressed, .QCtmTabWidget #areaButton:pressed
+{
+    image: url(:/QCustomUi/Resources/hideButton.png);
+    background: #2477CE;
+}
+
+QCtmTabWidget
+{
+    border: none;
+    border-top: 1px solid #D3D3D3;
+	background: white;
+}
+
+QCtmTabWidget::pane
+{
+	background: white;
+	border: none;
+}
+
+QCtmTabWidget QTabBar
+{
+	margin-left: 10px;
+	margin-top: 0px;
+	font-family: 'Microsoft YaHei';
+	background: white;
+	border: none;
+    border-top: 1px solid #D3D3D3;
+}
+
+QCtmTabWidget QTabBar::tab
+{
+    margin-top: 1px;
+	min-height: 30px;
+	margin-left: 10px;
+	margin-right: 10px;
+	background-color: white;
+	border: none;
+	font-family: 'Microsoft YaHei';
+}
+
+QCtmTabWidget QTabBar::tab:selected
+{
+	color: #1F1F1F;
+	border-bottom: 1px solid #C3C3C3;
+}
+
+QCtmTabWidget QTabBar::tab:!selected
+{
+	color: #4F4F4F;
+}
+
+/************************************************************/
+
+/******************QCtmTree*************************/
+
+.QCtmTreeItem #title
+{
+    min-height: 22px;
+    max-height: 22px;
+    background: #E1E0E0;
+    font-size: 12px;
+    font-family: 'Microsoft YaHei';
+    font-weight: bold;
+    color: #4F4F4F;
+    border: none;
+}
+
+.QCtmTreeItem #title::hover
+{
+    border: 1px solid #8ebded;
+}
+
+.QCtmTreeItem #title::pressed
+{
+    border: 1px solid #2477ce;
+}
+
+.QCtmTreeItem #title::branch:close
+{
+    image: url(:/QCustomUi/Resources/tree-close-light.png);
+}
+
+.QCtmTreeItem #title::branch:open
+{
+    image: url(:/QCustomUi/Resources/tree-open-light.png);
+}
+
+
+
+.QCtmTreeItem #Container
+{
+    background: #F3F3F3;
+}
+
+.QCtmTreeItem
+{
+    background: #F3F3F3;
+}
+
+/************************************************************/
+
+
+/************************************************************/
+
+QCtmNavigationSidePanel
+{
+	background-color: white;
+}
+
+QCtmNavigationSidePanel #closeBtn
+{
+    background: transparent;
+    image: url(:/QCustomUi/Resources/close-light.png);
+	border: none;
+}
+
+QCtmNavigationSidePanel #closeBtn:hover
+{
+    background: transparent;
+}
+
+QCtmNavigationSidePanel #closeBtn:pressed
+{
+    background: transparent;
+}
+
+QCtmNavigationSidePanel #title
+{
+    padding-left: 10px;
+    font-size: 12px;
+    font-family: 'Microsoft YaHei';
+    font-weight: 400;
+    color: #515151;
+}
+
+QCtmNavigationSidePanel #titleBar
+{
+    min-height: 28px;
+
+}
+
+/************************************************************/
+
+/*********************QCtmToolBox************************/
+
+.QCtmToolBox #toolBoxSplitter::handle:vertical
+{
+    height: 1px;
+    background: #D3D3D3;
+}
+
+.QCtmToolBoxItem #item_title
+{
+    min-height: 40px;
+    background: transparent;
+    color: #4F4F4F;
+    font-size: 12px;
+    font-family: 'Microsoft YaHei';
+    font-weight: 400;
+    padding-left: 20px;
+}
+
+.QCtmToolBoxItem #item_title QCtmToolButton
+{
+    border: none;
+}
+
+QCtmToolBoxItem
+{
+    background: #F3F3F3;
+}
+
+QCtmToolBoxItem QLabel
+{
+    color: black;
+}
+/************************************************************/
+
+/*********************QCtmMessageTip**************************/
+
+QCtmMessageTip
+{
+    border: none;
+    background: transparent;
+    color: white;
+    qproperty-tipcolor: #F54545;
+    qproperty-icon: url(:/QCustomUi/Resources/messageTip-light.png);
+}
+
+QCtmMessageTip:hover
+{
+    background-color: #cbe5ff;
+}
+
+QCtmMessageTip:pressed
+{
+    background-color: #cbe5ff;
+}
+
+/************************************************************/
+
+/*********************QCtmMessageView**************************/
+
+.QCtmMessageView #title
+{
+    font-size: 13px;
+    font-family: 'Microsoft YaHei';
+    font-weight: 400;
+    color: rgba(255,255,255,1);
+}
+
+.QCtmMessageView #titleBar
+{
+    background: rgba(0,122,204,1);
+}
+
+.QCtmMessageView #closeBtn
+{
+    qproperty-icon: url(:/QCustomUi/Resources/close.png);
+	border: none;
+}
+
+.QCtmMessageView QListView
+{
+    background: #F5F5F5;
+    selection-background-color: white;
+    border: none;
+}
+
+.QCtmMessageView
+{
+    qproperty-decoration: #A7A7A7;
+    qproperty-titlecolor: #303030;
+    qproperty-timecolor: #656464;
+    qproperty-closebuttonicon: url(:/QCustomUi/Resources/close-light.png);
+}
+/************************************************************/
+
+/***********************QCtmMainWindow***********************/
+.QCtmMainWindow
+{
+    background: white;
+}
+/************************************************************/
+
+/*************************QCtmLogWidget*********************/
+.QCtmLogWidget
+{
+    qproperty-infoIcon: url(:/QCustomUi/Resources/info.png);
+    qproperty-warningIcon: url(:/QCustomUi/Resources/warning.png);
+    qproperty-errorIcon: url(:/QCustomUi/Resources/Error.png);
+}
+
+.QCtmTabWidget QAbstractButton
+{
+    background: transparent;
+}
+
+.QCtmTabWidget QAbstractButton::hover
+{
+    background: #CBE5FF;
+    border: 1px solid #2477CE;
+}
+
+.QCtmTabWidget QAbstractButton::pressed
+{
+    background: #2477CE;
+    border: 1px solid #2477CE;
+}
+
+.QCtmTabWidget QAbstractButton::checked
+{
+    background: white;
+    border: 1px solid #2477CE;
+}
+
+.QCtmTabWidget #clearAction
+{
+    image: url(:/QCustomUi/Resources/clear-light.png);
+}
+
+.QCtmTabWidget #clearAction:hover
+{
+    border: none;
+}
+
+.QCtmTabWidget #clearAction:pressed
+{
+    image: url(:/QCustomUi/Resources/clear.png);
+}
+
+.QCtmTabWidget #copyAction
+{
+    image: url(:/QCustomUi/Resources/copy-light.png);
+}
+
+.QCtmTabWidget #copyAction:hover
+{
+    border: none;
+}
+
+.QCtmTabWidget #copyAction:pressed
+{
+    image: url(:/QCustomUi/Resources/copy.png);
+}
+
+.QCtmTabWidget #searchEdit
+{
+    min-height: 20px;
+    max-height: 20px;
+    min-width: 185px;
+    max-width: 185px;
+    background: white;
+    color: #717171;
+    border: 1px solid #D8D9E2;
+}
+
+.QCtmTabWidget #searchEdit:hover, .QCtmTabWidget #searchEdit:focus
+{
+    border: 1px solid #2477CE;
+}
+
+.QCtmTabWidget #searchEdit::drop-down
+{
+    border: none;
+    background: transparent;
+}
+
+.QCtmTabWidget #searchEdit::drop-down:hover
+{
+    background: #CBE5FF;
+    border-left: 1px solid #2477CE;
+}
+
+.QCtmTabWidget #searchEdit::drop-down:pressed
+{
+    background: #2477CE;
+}
+
+.QCtmTabWidget #searchEdit::down-arrow
+{
+    image: url(:/QCustomUi/Resources/drop-down-light.png);
+}
+
+.QCtmTabWidget #searchEdit::down-arrow:pressed
+{
+    image: url(:/QCustomUi/Resources/drop-down.png);
+}
+
+.QCtmComboBox #searchAction
+{
+    border: none;
+    image: url(:/QCustomUi/Resources/search-light.png);
+}
+
+.QCtmComboBox #searchAction:hover
+{
+    background: #CBE5FF;
+}
+
+.QCtmComboBox #searchAction:pressed
+{
+    image: url(:/QCustomUi/Resources/search.png);
+    background: #2477CE;
+}
+
+/************************************************************/
+/********************QCtmSplitWidget****************************/
+QCtmData--QCtmSplitArea
+{
+    background: white;
+}
+
+QCtmData--QCtmSplitSubWindow
+{
+    qproperty-horizentalSplitIcon: url(:/atd/imgs/hsplit.png);
+    qproperty-verticalSplitIcon: url(:/atd/imgs/updown.png);
+    qproperty-floatingIcon: url(:/atd/imgs/resume_click.png);
+    qproperty-fullFillIcon: url(:/atd/imgs/expand.png);
+}
+
+QCtmData--QCtmSplitSubWindow[isFloating="true"]
+{
+    qproperty-floatingIcon: url(:/atd/imgs/resume_left.png);
+}
+
+QCtmData--QCtmSplitSubWindow[isFullFill="true"]
+{
+    qproperty-fullFillIcon: url(:/atd/imgs/resume_left.png);
+}
+
+QCtmData--QCtmContainer MyTabBar::close-button
+{
+    image: url(:/atd/close_click.png);
+}
+
+QCtmData--QCtmContainer #titleBar
+{
+    background-color: #F3F3F3;
+}
+
+QCtmData--QCtmContainer QTabBar::tab
+{
+    color:rgba(103,103,103,1);
+    background: #ECEBEB;
+    height: 35px;
+    margin-right: 1px;
+    padding-left: 9px;
+    padding-right: 9px;
+}
+
+QCtmData--QCtmContainer QTabBar::tab:selected, QCtmData--QCtmContainer QTabBar::tab:hover
+{
+    background: white;
+    color:rgba(79,79,79,1);
+}
+
+QCtmData--QCtmContainer QTabBar QToolButton::right-arrow
+{
+    image: url(:/atd/right.png);
+}
+
+QCtmData--QCtmContainer QTabBar QToolButton::left-arrow
+{
+    image: url(:/atd/left.png);
+}
+
+QCtmData--QCtmContainer QTabBar::close-button
+{
+    image: url(:/atd/close_click.png);
+}
+
+.SplitterTree QSplitter::handle
+{
+	height: 1px;
+	background: white;
+}
+
+/*QCtmData--QCtmContainer QMenu
+{
+    background: rgb(35,35,36);
+}
+
+QCtmData--QCtmContainer QMenu::item
+{
+    color: rgb(255,255,255);
+    background: rgb(35,35,36);
+}*/
+
+QCtmData--QCtmContainer QToolBar
+{
+    color: black;
+    background: #F3F3F3;
+}
+
+/*QCtmData--QCtmContainer QMenu::item:selected
+{
+    background: rgb(9,71,113);
+}*/
+
+QCtmData--QCtmContainer QPushButton#MenuButton:flat
+{
+    background-color: transparent;
+    border: none;
+}
+
+QCtmData--QCtmContainer QPushButton#MenuButton:open
+{
+    background-color: white;
+}
+
+QCtmData--QCtmContainer QPushButton#MenuButton::menu-indicator
+{
+    image: none;
+}
+
+QWidget #DockMark
+{
+    background-color: #700097FB;
+}
+/************************************************************/
+
+/***********************QCtmMessageBox***********************/
+
+QCtmMessageBox #titleBar
+{
+    background: #FFFFFF;
+}
+
+QCtmMessageBox
+{
+    background: #F0F0F0F;
+}
+
+QCtmMessageBox QPushButton
+{
+    min-width: 89px;
+    min-height: 27px;
+    border: 1px solid #B3B3B3;
+    background: #E1E1E1;
+}
+
+QCtmMessageBox QPushButton:focus
+{
+    border: 2px solid #0078d7;
+}
+
+QCtmMessageBox QPushButton:hover
+{
+    border: 1px solid #0078d7;
+    background: #E5F1FB;
+}
+
+QCtmMessageBox QPushButton:pressed
+{
+    border: 1px solid #005499;
+    background: #CCE4F7;
+}
+
+/************************************************************/
+
+/**********************QCtmComboBox*************************/
+QCtmComboBox
+{
+    min-height: 22px;
+    max-height: 22px;
+    background: #FFFFFF;
+    border: 1px solid #999999;
+    color: #808080;
+}
+
+QCtmComboBox:hover
+{
+    border: 1px solid #2477CE;
+}
+
+QCtmComboBox:disabled
+{
+    background: #D2D2D2;
+    border: 1px solid #E1E1E1;
+    color: #AAAAAA;
+}
+
+QCtmComboBox::drop-down
+{
+    background: transparent;
+    border: none;
+}
+
+QCtmComboBox::drop-down:hover
+{
+    background: #CBE5FF;
+    border-left: 1px solid #2477CE;
+}
+
+QCtmComboBox::drop-down:pressed
+{
+    background: #2477CE;
+}
+
+QCtmComboBox::down-arrow
+{
+    image: url(:/QCustomUi/Resources/drop-down-light.png);
+}
+
+QCtmComboBox::down-arrow:pressed
+{
+    image: url(:/QCustomUi/Resources/drop-down.png);
+}
+
+QCtmComboBox::down-arrow:disabled
+{
+    image: url(:/QCustomUi/Resources/drop-down.png);
+}
+
+QCtmComboBox QListView
+{
+    background: #F6F6F6;
+}
+
+QCtmComboBox QListView::item
+{
+    padding-left: 5px;
+    height: 21px;
+    color: #808080;
+    background: transparent;
+}
+
+QCtmComboBox QListView::item:hover
+{
+    background: #CBE5FF;
+    color: #808080;
+}
+
+QCtmComboBox QListView::item:selected
+{
+    background: #CBE5FF;
+    color: #808080;
+}
+
+/*************************QCtmTableView************************************/
+QCtmTableView
+{
+    qproperty-alternatingRowColors: true;
+    qproperty-showGrid: false;
+    background: white;
+    alternate-background-color: #F7F7F7;
+    color: #808080;
+    font-size: 11px;
+    font-weight: 400;
+    border: none;
+}
+
+QCtmTableView::item:hover
+{
+    background: #CBE5FF;
+}
+
+QCtmTableView::item:selected
+{
+    background: #2477CE;
+    color: white;
+}
+
+QCtmTableView #hHeader
+{
+    background: transparent;
+    border: none;
+    font-size: 11px;
+    font-weight: bold;
+    color: #1E1E1E;
+}
+
+QCtmTableView #hHeader::section
+{
+    background: transparent;
+    height: 27px;
+    border: none;
+}
+
+QCtmTableView #vHeader
+{
+    background: white;
+    border: none;
+}
+
+QCtmTableView #vHeader::section
+{
+    background: white;
+    border: none;
+}
+
+QCtmTableView QTableCornerButton::section
+{
+    background: transparent;
+    border: none;
+}
+
+QCtmDialog:!active
+{
+    border: 1px solid rgba(0,0,0,0);
+}
+
+QCtmDialog:active
+{
+    border: 1px solid #2A7ACF;
+}
