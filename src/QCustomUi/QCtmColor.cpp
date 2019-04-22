@@ -4,33 +4,23 @@
 #include <QMetaEnum>
 #include <QDebug>
 
-Q_CONSTEXPR int hRange = 14;
-Q_CONSTEXPR int hMask = 359;
-
-Q_CONSTEXPR int sRange = 14;
-Q_CONSTEXPR int sMask = 255;
-
-Q_CONSTEXPR int vRange = 123;
-Q_CONSTEXPR int vMask = 255;
+bool isLight(QColor color)
+{
+	return 0.213 * color.red() + 0.715 * color.green() + 0.072 * color.blue() > 255 / 2;
+}
 
 QColor QCtmColor::generalBackgroundColor(int index)
 {
-    index = index % 20;
-    auto colorEnum = QCtmColor::staticMetaObject.enumerator(0);
-    return QColor(colorEnum.value(index));
+	index = index % 20;
+	auto colorEnum = QCtmColor::staticMetaObject.enumerator(0);
+	return QColor(colorEnum.value(index));
 }
 
 QColor QCtmColor::generalForegroundColor(QColor color)
 {
-    auto func = [](int v, int range, int mask)
-    {
-        if (v > range)
-            return v - range;
-        else
-            return v + range;
-    };
-    color.setHsv(func(color.hslHue(), hRange, hMask)
-        , func(color.hslSaturation(), sRange, sMask)
-        , func(color.value(), vRange, vMask));
-    return color;
+	int h, s, l;
+	color.toHsl().getHsl(&h, &s, &l);
+	QColor target;
+	target.setHsl(h, s, isLight(color) ? 45 : 210);
+	return target;
 }
