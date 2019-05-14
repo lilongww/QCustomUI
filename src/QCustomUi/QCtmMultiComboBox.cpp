@@ -159,3 +159,12 @@ bool QCtmMultiComboBox::eventFilter(QObject *watched, QEvent *event)
 	}
 	return QComboBox::eventFilter(watched, event);
 }
+
+void QCtmMultiComboBox::showEvent(QShowEvent *e)
+{
+	QComboBox::showEvent(e);
+	if (this->lineEdit())
+	{
+		this->lineEdit()->setText(this->checkedItems().join(";"));
+	}
+}

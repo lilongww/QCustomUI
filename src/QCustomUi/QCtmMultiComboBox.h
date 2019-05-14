@@ -23,6 +23,7 @@ public:
 
 private:
 	bool eventFilter(QObject *watched, QEvent *event) override;
+	void showEvent(QShowEvent *e) override;
 
 private:
 	struct Impl;
