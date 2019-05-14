@@ -25,3 +25,4 @@
 #include "QCtmComboBox.h"
 #include "QCtmTableView.h"
 #include "QCtmTableItemDelegate.h"
+#include "QCtmMultiComboBox.h"

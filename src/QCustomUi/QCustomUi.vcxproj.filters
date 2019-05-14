@@ -213,6 +213,9 @@
     <ClCompile Include="QCtmWindow.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="QCtmMultiComboBox.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <QtMoc Include="QCtmAbstractLogModel.h">
@@ -334,6 +337,9 @@
     </QtMoc>
     <QtMoc Include="Private\QCtmUserButton_p.h">
       <Filter>Private</Filter>
+    </QtMoc>
+    <QtMoc Include="QCtmMultiComboBox.h">
+      <Filter>Header Files</Filter>
     </QtMoc>
   </ItemGroup>
   <ItemGroup>

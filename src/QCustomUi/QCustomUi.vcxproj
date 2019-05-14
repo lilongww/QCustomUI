@@ -139,6 +139,7 @@
     <ClInclude Include="Private\QCtmWidgetItem_p.h" />
     <ClInclude Include="Private\flowlayout_p.h" />
     <ClInclude Include="Private\Util_p.h" />
+    <QtMoc Include="QCtmMultiComboBox.h" />
     <ClInclude Include="Version.h" />
     <QtMoc Include="QCtmAbstractLogModel.h" />
     <QtMoc Include="QCtmAbstractMessageModel.h" />
@@ -192,6 +193,7 @@
     <ClCompile Include="QCtmMessageModel.cpp" />
     <ClCompile Include="QCtmMessageTip.cpp" />
     <ClCompile Include="QCtmMessageView.cpp" />
+    <ClCompile Include="QCtmMultiComboBox.cpp" />
     <ClCompile Include="QCtmNavigationBackstageActionGroup.cpp" />
     <ClCompile Include="QCtmNavigationBackstageMenu.cpp" />
     <ClCompile Include="QCtmNavigationBar.cpp" />
