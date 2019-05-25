@@ -62,7 +62,7 @@ QRect QCtmUserButton::doTextRect() const
 {
 	QStyleOptionToolButton opt;
 	initStyleOption(&opt);
-	auto &&rect = opt.fontMetrics.boundingRect(QRect(), Qt::TextWordWrap, this->text());
+	auto &&rect = opt.fontMetrics.boundingRect(QRect(), Qt::TextDontClip, this->text());
 	rect.moveLeft(this->iconSize().width() + 2);
     rect.setHeight(this->height());
 	return std::move(rect);

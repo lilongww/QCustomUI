@@ -45,7 +45,6 @@ QCtmTitleBar #minimumSizeBtn:pressed, QCtmTitleBar #maximumSizeBtn:pressed, QCtm
 .QCtmTitleBar
 {
 	background: #D9D9D9;
-    font-size: 12px;
     font-family: 'Microsoft YaHei';
     font-weight: 400;
     color: rgba(94,94,94,1);
@@ -62,7 +61,6 @@ QCtmTitleBar #minimumSizeBtn:pressed, QCtmTitleBar #maximumSizeBtn:pressed, QCtm
     padding-top: 4px;
     padding-right: 8px;
     padding-left: 8px;
-    font-size: 12px;
     font-family: 'Microsoft YaHei';
     font-weight: 400;
     color: rgba(94,94,94,1);
@@ -127,7 +125,6 @@ QCtmNavigationBar::separator
 {
     max-height: 50px;
     min-height: 50px;
-    font-size: 14px;
     font-family: 'Microsoft YaHei';
     font-weight: 400;
     color: #4F4F4F;
@@ -139,7 +136,6 @@ QCtmNavigationBar::separator
 {
     padding-left: 5px;
     padding-right: 5px;
-	font-size: 13px;
     font-family: 'Microsoft YaHei';
     font-weight: 400;
     color: rgba(79,79,79,1);
@@ -243,7 +239,6 @@ QCtmNavigationImageButton:checked
     text-align: left bottom;
     padding-left: 15px;
     padding-bottom: 9px;
-    font-size: 13px;
     font-family: 'Microsoft YaHei';
     border: none;
 }
@@ -271,7 +266,6 @@ QCtmNavigationImageButton:checked
 .QCtmNavigationBackstageActionGroup QToolButton
 {
     border: none;
-	font-size: 14px;
 	font-family: 'Microsoft YaHei';
 	font-weight: 400;
 	color: #1F1F1F;
@@ -426,7 +420,6 @@ QCtmTabWidget QTabBar::tab:!selected
     min-height: 22px;
     max-height: 22px;
     background: #E1E0E0;
-    font-size: 12px;
     font-family: 'Microsoft YaHei';
     font-weight: bold;
     color: #4F4F4F;
@@ -495,7 +488,6 @@ QCtmNavigationSidePanel #closeBtn:pressed
 QCtmNavigationSidePanel #title
 {
     padding-left: 10px;
-    font-size: 12px;
     font-family: 'Microsoft YaHei';
     font-weight: 400;
     color: #515151;
@@ -522,7 +514,6 @@ QCtmNavigationSidePanel #titleBar
     min-height: 40px;
     background: transparent;
     color: #4F4F4F;
-    font-size: 12px;
     font-family: 'Microsoft YaHei';
     font-weight: 400;
     padding-left: 20px;
@@ -571,7 +562,6 @@ QCtmMessageTip:pressed
 
 .QCtmMessageView #title
 {
-    font-size: 13px;
     font-family: 'Microsoft YaHei';
     font-weight: 400;
     color: rgba(255,255,255,1);
@@ -974,7 +964,6 @@ QCtmTableView
     background: white;
     alternate-background-color: #F7F7F7;
     color: #808080;
-    font-size: 11px;
     font-weight: 400;
     border: none;
 }
@@ -994,7 +983,6 @@ QCtmTableView #hHeader
 {
     background: transparent;
     border: none;
-    font-size: 11px;
     font-weight: bold;
     color: #1E1E1E;
 }
