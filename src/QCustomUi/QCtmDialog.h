@@ -69,6 +69,7 @@ public:
 protected:
 	void showEvent(QShowEvent *) override;
 	void hideEvent(QHideEvent *event) override;
+	bool eventFilter(QObject*, QEvent*) override;
 private:
 	void normalizes(QPoint& pos);
 

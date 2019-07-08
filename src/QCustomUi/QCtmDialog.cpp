@@ -22,21 +22,22 @@ QCtmDialog::QCtmDialog(QWidget *parent)
 {
 	m_impl->title = new QCtmTitleBar(this);
     m_impl->title->setObjectName("ctmDialogTitleBar");
-	m_impl->content = new QWidget(this);
-    m_impl->content->setAutoFillBackground(true);
 
 	QVBoxLayout* layout = new QVBoxLayout(this);
 	layout->setMargin(1);
 	layout->setSpacing(0);
 
 	layout->addWidget(m_impl->title);
-	layout->addWidget(m_impl->content);
 	layout->setStretch(0, 0);
 	layout->setStretch(1, 1);
     layout->setAlignment(Qt::AlignLeft | Qt::AlignTop);
 
 	m_impl->delegate = new QCtmFramelessDelegate(this, m_impl->title);
+	auto content = new QWidget(this);
+	content->setAutoFillBackground(true);
 	setWindowFlags(this->windowFlags() | Qt::Dialog);
+
+	setContent(content);
 }
 
 QCtmDialog::~QCtmDialog()
@@ -55,6 +56,8 @@ void QCtmDialog::setContent(QWidget* widget)
 		l->setStretch(0, 0);
 		l->setStretch(1, 1);
 	}
+	setWindowTitle(widget->windowTitle());
+	m_impl->content->installEventFilter(this);
 }
 
 QWidget* QCtmDialog::content() const
@@ -124,6 +127,15 @@ void QCtmDialog::hideEvent(QHideEvent *event)
 		auto e = new QEvent(QEvent::Type::Leave);
 		qApp->sendEvent(closeBtn, e);
 	}
+}
+
+bool QCtmDialog::eventFilter(QObject* o, QEvent* e)
+{
+	if (o == m_impl->content && e->type() == QEvent::WindowTitleChange)
+	{
+		setWindowTitle(m_impl->content->windowTitle());
+	}
+	return QDialog::eventFilter(o, e);
 }
 
 void QCtmDialog::normalizes(QPoint& pos)
