@@ -41,11 +41,8 @@ QPushButton:disabled
 /************************QComboBox********************/
 QComboBox
 {
-    min-height: 22px;
-    max-height: 22px;
     background: #FFFFFF;
     border: 1px solid #999999;
-    color: #808080;
 }
 
 QComboBox:hover
@@ -101,13 +98,12 @@ QComboBox QListView::item
 {
     padding-left: 5px;
     height: 21px;
-    color: #808080;
     background: transparent;
 }
 
 QComboBox QListView::item:selected
 {
-    color: #808080;
+    color: #1E1E1E;
 }
 
 QComboBox QListView
@@ -397,8 +393,6 @@ QTableView
     qproperty-showGrid: false;
     background: white;
     alternate-background-color: #F7F7F7;
-    color: #808080;
-    font-weight: 400;
 }
 
 QTableView::item:hover
@@ -533,8 +527,6 @@ QListView
 {
     qproperty-alternatingRowColors: true;
     background: white;
-    color: #808080;
-    font-weight: 400;
     border: none;
     alternate-background-color: #F7F7F7;
 }

@@ -45,7 +45,6 @@ QCtmTitleBar #minimumSizeBtn:pressed, QCtmTitleBar #maximumSizeBtn:pressed, QCtm
 .QCtmTitleBar
 {
 	background: #D9D9D9;
-    font-family: 'Microsoft YaHei';
     font-weight: 400;
     color: rgba(94,94,94,1);
 }
@@ -963,8 +962,6 @@ QCtmTableView
     qproperty-showGrid: false;
     background: white;
     alternate-background-color: #F7F7F7;
-    color: #808080;
-    font-weight: 400;
     border: none;
 }
 
