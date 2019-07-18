@@ -1,5 +1,7 @@
 #include "StyleWidget.h"
 
+#include <QCustomUi/QCustomUi.h>
+
 #include <QStandardItemModel>
 
 StyleWidget::StyleWidget(QWidget *parent)
@@ -21,6 +23,11 @@ StyleWidget::StyleWidget(QWidget *parent)
             model->setItem(i, j, new QStandardItem("Test Item"));
         }
     }
+
+	connect(ui.pushButton, &QPushButton::clicked, this, [=]() {
+		QCtmDialog dlg(this);
+		dlg.exec();
+		});
 }
 
 StyleWidget::~StyleWidget()

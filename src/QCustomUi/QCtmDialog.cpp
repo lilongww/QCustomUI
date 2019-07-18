@@ -109,7 +109,7 @@ void QCtmDialog::showEvent(QShowEvent *e)
 		if (showInCenter())
 		{
 			auto globalPos = parent->topLevelWidget()->pos();
-			auto size = parent->size();
+			auto size = parent->topLevelWidget()->size();
 			auto center = QRect(globalPos, size).center();
 			QPoint desPos{ center.x() - this->width() / 2, center.y() - this->height() / 2 };
 			normalizes(desPos);

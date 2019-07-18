@@ -1,6 +1,8 @@
 #include "ActivityManager.h"
 #include "SWPluginInterface.h"
 
+#include <QCustomUi/QCustomUi.h>
+
 #include <QPluginLoader>
 #include <QApplication>
 #include <QMessageBox>
@@ -30,7 +32,7 @@ bool ActivityManager::loadLibarys()
             auto p = qobject_cast<SWPluginInterface *>(lib.instance());
             if (p->name().isEmpty())
             {
-                QMessageBox::warning(nullptr, QObject::tr("Warning"), QObject::tr("Activity name is empty:%1").arg(it));
+				QCtmMessageBox::warning(nullptr, QObject::tr("Warning"), QObject::tr("Activity name is empty:%1").arg(it));
                 return false;
             }
             m_impl->activities.insert(p->id(), p);
@@ -43,7 +45,7 @@ bool ActivityManager::loadLibarys()
         }
         else
         {
-            QMessageBox::warning(nullptr, QObject::tr("Warning"), lib.errorString());
+            QCtmMessageBox::warning(nullptr, QObject::tr("Warning"), lib.errorString());
             return false;
         }
     }
