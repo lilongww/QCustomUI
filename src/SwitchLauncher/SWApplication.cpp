@@ -5,6 +5,8 @@
 
 #include <QCustomUi/QCustomUi.h>
 
+static bool g_qAppInitSucceed{ true };
+
 SWApplication::SWApplication(int &argc, char **argv, const QString& theme)
     : QApplication(argc, argv)
 {
@@ -26,21 +28,33 @@ QCtmMainWindow* SWApplication::mainWindow() const
     return SWContext::instance().mainWindow();
 }
 
+int SWApplication::exec()
+{
+	if (!g_qAppInitSucceed)
+		return -1;
+	return QApplication::exec();
+}
+
 void SWApplication::init(const QString& theme)
 {
     QCtmLogManager::instance();
-    if (!ActivityManager::instance().loadLibarys())
-        return;
+	if (!ActivityManager::instance().loadLibarys())
+	{
+		g_qAppInitSucceed = false;
+		return;
+	}
 
     auto &context = SWContext::instance();
     QString qss = context.defaultStyleSheet(theme);
     setStyleSheet(qss);
-    if (!ActivityManager::instance().initActivitys(&context))
-        return;
+	if (!ActivityManager::instance().initActivitys(&context))
+	{
+		g_qAppInitSucceed = false;
+		return;
+	}
 
     context.mainWindow()->loadAlways();
 
-    //auto themeName = context.themeStyles().isEmpty() ? QString() : context.themeStyles().front();
     for (auto act : ActivityManager::instance().activites())
     {
         qss += act->styleSheet(theme);

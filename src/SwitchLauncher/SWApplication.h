@@ -26,6 +26,8 @@ public:
      * @brief       ªÒ»°mainWindowµÿ÷∑
      */
     QCtmMainWindow* mainWindow() const;
+
+	static int exec();
 private:
     void init(const QString& theme);
 };
