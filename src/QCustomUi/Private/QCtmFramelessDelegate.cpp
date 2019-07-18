@@ -13,6 +13,7 @@
 #include <QDebug>
 #include <QDesktopWidget>
 #include <QPlatformSurfaceEvent>
+#include <QElapsedTimer>
 
 #include <assert.h>
 
@@ -32,6 +33,7 @@ struct QCtmFramelessDelegate::Impl
 	QWidget* parent{ nullptr };
 	Directions direction;
 	QPoint mousePressPos;
+	QElapsedTimer moveBarElapsedTimer;
 	bool mousePressed{ false };
 	QWidgetList moveBars;
 	bool shadowless{ false };
@@ -206,6 +208,7 @@ bool QCtmFramelessDelegate::eventFilter(QObject* obj, QEvent* event)
 			{
 				m_impl->moveBarInfo.mousePressed = true;
 				m_impl->moveBarInfo.mousePosRange = QCursor::pos() - m_impl->parent->pos();
+				m_impl->moveBarElapsedTimer.restart();
 			}
 			break;
 		}
@@ -235,6 +238,8 @@ bool QCtmFramelessDelegate::eventFilter(QObject* obj, QEvent* event)
 		{
 			if (m_impl->moveBarInfo.mousePressed && m_impl->direction == NONE)
 			{
+				if (m_impl->moveBarElapsedTimer.elapsed() < 100)
+					return false;
 				if (m_impl->parent->windowState().testFlag(Qt::WindowMaximized) || m_impl->parent->windowState().testFlag(Qt::WindowFullScreen))
 				{
 					if (QCursor::pos().y() < 5)
