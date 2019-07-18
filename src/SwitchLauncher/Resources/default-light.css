@@ -38,6 +38,11 @@ QPushButton:disabled
     color: #AAAAAA;
 }
 
+QPushButton:focus
+{
+    border: 2px solid #8EBDED;
+}
+
 /************************QComboBox********************/
 QComboBox
 {
