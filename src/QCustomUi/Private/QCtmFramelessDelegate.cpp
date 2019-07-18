@@ -209,6 +209,7 @@ bool QCtmFramelessDelegate::eventFilter(QObject* obj, QEvent* event)
 				m_impl->moveBarInfo.mousePressed = true;
 				m_impl->moveBarInfo.mousePosRange = QCursor::pos() - m_impl->parent->pos();
 				m_impl->moveBarElapsedTimer.restart();
+				moveBar->grabMouse();
 			}
 			break;
 		}
@@ -219,6 +220,7 @@ bool QCtmFramelessDelegate::eventFilter(QObject* obj, QEvent* event)
 			if (e->button() == Qt::LeftButton)
 			{
 				m_impl->moveBarInfo.mousePressed = false;
+				moveBar->releaseMouse();
 			}
 			break;
 		}
@@ -238,7 +240,7 @@ bool QCtmFramelessDelegate::eventFilter(QObject* obj, QEvent* event)
 		{
 			if (m_impl->moveBarInfo.mousePressed && m_impl->direction == NONE)
 			{
-				if (m_impl->moveBarElapsedTimer.elapsed() < 100)
+				if (m_impl->moveBarElapsedTimer.elapsed() < 50)
 					return false;
 				if (m_impl->parent->windowState().testFlag(Qt::WindowMaximized) || m_impl->parent->windowState().testFlag(Qt::WindowFullScreen))
 				{
