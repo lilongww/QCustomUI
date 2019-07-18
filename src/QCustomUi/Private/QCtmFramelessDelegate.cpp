@@ -504,6 +504,7 @@ void QCtmFramelessDelegate::updateLayout()
     {
         QStyleOption opt;
         opt.initFrom(m_impl->parent);
+
         auto rect = m_impl->parent->style()->subElementRect(QStyle::SE_FrameContents, &opt, m_impl->parent);
         if (!rect.isValid())
             return;
@@ -512,6 +513,9 @@ void QCtmFramelessDelegate::updateLayout()
         top = rect.y();
         right = m_impl->parent->width() - left - rect.width();
         bottom = m_impl->parent->height() - top - rect.height();
-        m_impl->parent->layout()->setContentsMargins(left, top, right, bottom);
+		if(!m_impl->parent->isMaximized())
+			m_impl->parent->layout()->setContentsMargins(left, top, right, bottom);
+		else
+			m_impl->parent->layout()->setContentsMargins(0, 0, 0, 0);
     }
 }

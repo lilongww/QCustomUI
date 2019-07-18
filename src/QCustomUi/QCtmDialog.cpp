@@ -24,7 +24,7 @@ QCtmDialog::QCtmDialog(QWidget *parent)
     m_impl->title->setObjectName("ctmDialogTitleBar");
 
 	QVBoxLayout* layout = new QVBoxLayout(this);
-	layout->setMargin(1);
+	layout->setMargin(0);
 	layout->setSpacing(0);
 
 	layout->addWidget(m_impl->title);
