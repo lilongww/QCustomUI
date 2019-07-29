@@ -23,7 +23,7 @@ StyleWidget::StyleWidget(QWidget *parent)
             model->setItem(i, j, new QStandardItem("Test Item"));
         }
     }
-
+	ui.tabWidget->setAttribute(Qt::WA_StyledBackground);
 	connect(ui.pushButton, &QPushButton::clicked, this, [=]() {
 		QCtmDialog dlg(this);
 		dlg.exec();

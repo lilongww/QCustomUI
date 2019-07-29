@@ -14,120 +14,12 @@
    <string>StyleWidget</string>
   </property>
   <layout class="QGridLayout" name="gridLayout">
-   <item row="2" column="0">
-    <widget class="QCtmComboBox" name="comboBox">
-     <item>
-      <property name="text">
-       <string>新建项目</string>
-      </property>
-     </item>
-     <item>
-      <property name="text">
-       <string>新建项目</string>
-      </property>
-     </item>
-     <item>
-      <property name="text">
-       <string>新建项目</string>
-      </property>
-     </item>
-     <item>
-      <property name="text">
-       <string>新建项目</string>
-      </property>
-     </item>
-     <item>
-      <property name="text">
-       <string>新建项目</string>
-      </property>
-     </item>
-     <item>
-      <property name="text">
-       <string>新建项目</string>
-      </property>
-     </item>
-     <item>
-      <property name="text">
-       <string>新建项目</string>
-      </property>
-     </item>
-    </widget>
-   </item>
-   <item row="1" column="0">
-    <widget class="QLineEdit" name="lineEdit"/>
-   </item>
-   <item row="0" column="0">
-    <widget class="QPushButton" name="pushButton">
-     <property name="text">
-      <string>PushButton</string>
-     </property>
-    </widget>
-   </item>
-   <item row="1" column="1">
-    <widget class="QLineEdit" name="lineEdit_2">
+   <item row="2" column="1">
+    <widget class="QCtmComboBox" name="comboBox_2">
      <property name="enabled">
       <bool>false</bool>
      </property>
     </widget>
-   </item>
-   <item row="8" column="1">
-    <widget class="QCheckBox" name="checkBox_5">
-     <property name="enabled">
-      <bool>false</bool>
-     </property>
-     <property name="text">
-      <string>CheckBox</string>
-     </property>
-     <property name="checked">
-      <bool>false</bool>
-     </property>
-     <property name="tristate">
-      <bool>true</bool>
-     </property>
-    </widget>
-   </item>
-   <item row="5" column="1">
-    <widget class="QDoubleSpinBox" name="doubleSpinBox_2">
-     <property name="enabled">
-      <bool>false</bool>
-     </property>
-    </widget>
-   </item>
-   <item row="4" column="1">
-    <widget class="QSpinBox" name="spinBox_2">
-     <property name="enabled">
-      <bool>false</bool>
-     </property>
-    </widget>
-   </item>
-   <item row="9" column="0">
-    <widget class="QRadioButton" name="radioButton">
-     <property name="text">
-      <string>RadioButton</string>
-     </property>
-     <property name="autoExclusive">
-      <bool>false</bool>
-     </property>
-    </widget>
-   </item>
-   <item row="11" column="0">
-    <widget class="QTextEdit" name="textEdit"/>
-   </item>
-   <item row="8" column="0">
-    <widget class="QCheckBox" name="checkBox_4">
-     <property name="text">
-      <string>CheckBox</string>
-     </property>
-     <property name="checked">
-      <bool>false</bool>
-     </property>
-     <property name="tristate">
-      <bool>true</bool>
-     </property>
-    </widget>
-   </item>
-   <item row="5" column="0">
-    <widget class="QDoubleSpinBox" name="doubleSpinBox"/>
    </item>
    <item row="7" column="0">
     <widget class="QCheckBox" name="checkBox_3">
@@ -137,258 +29,6 @@
      <property name="checked">
       <bool>true</bool>
      </property>
-    </widget>
-   </item>
-   <item row="7" column="1">
-    <widget class="QCheckBox" name="checkBox_6">
-     <property name="enabled">
-      <bool>false</bool>
-     </property>
-     <property name="text">
-      <string>CheckBox</string>
-     </property>
-     <property name="checked">
-      <bool>true</bool>
-     </property>
-    </widget>
-   </item>
-   <item row="9" column="1">
-    <widget class="QRadioButton" name="radioButton_2">
-     <property name="enabled">
-      <bool>false</bool>
-     </property>
-     <property name="text">
-      <string>RadioButton</string>
-     </property>
-     <property name="autoExclusive">
-      <bool>false</bool>
-     </property>
-    </widget>
-   </item>
-   <item row="0" column="1">
-    <widget class="QPushButton" name="pushButton_2">
-     <property name="enabled">
-      <bool>false</bool>
-     </property>
-     <property name="text">
-      <string>PushButton</string>
-     </property>
-    </widget>
-   </item>
-   <item row="11" column="1">
-    <widget class="QTextEdit" name="textEdit_2">
-     <property name="enabled">
-      <bool>false</bool>
-     </property>
-    </widget>
-   </item>
-   <item row="10" column="0">
-    <widget class="QRadioButton" name="radioButton_3">
-     <property name="text">
-      <string>RadioButton</string>
-     </property>
-     <property name="checked">
-      <bool>true</bool>
-     </property>
-     <property name="autoExclusive">
-      <bool>false</bool>
-     </property>
-    </widget>
-   </item>
-   <item row="12" column="0" colspan="2">
-    <widget class="QGroupBox" name="groupBox">
-     <property name="title">
-      <string>Views</string>
-     </property>
-     <property name="flat">
-      <bool>true</bool>
-     </property>
-     <layout class="QGridLayout" name="gridLayout_2">
-      <item row="3" column="0">
-       <widget class="QListWidget" name="listWidget">
-        <item>
-         <property name="text">
-          <string>新建项目</string>
-         </property>
-        </item>
-        <item>
-         <property name="text">
-          <string>新建项目</string>
-         </property>
-        </item>
-        <item>
-         <property name="text">
-          <string>新建项目</string>
-         </property>
-        </item>
-        <item>
-         <property name="text">
-          <string>新建项目</string>
-         </property>
-        </item>
-        <item>
-         <property name="text">
-          <string>新建项目</string>
-         </property>
-        </item>
-        <item>
-         <property name="text">
-          <string>新建项目</string>
-         </property>
-        </item>
-        <item>
-         <property name="text">
-          <string>新建项目</string>
-         </property>
-        </item>
-        <item>
-         <property name="text">
-          <string>新建项目</string>
-         </property>
-        </item>
-        <item>
-         <property name="text">
-          <string>新建项目</string>
-         </property>
-        </item>
-        <item>
-         <property name="text">
-          <string>新建项目</string>
-         </property>
-        </item>
-        <item>
-         <property name="text">
-          <string>新建项目</string>
-         </property>
-        </item>
-       </widget>
-      </item>
-      <item row="0" column="0">
-       <widget class="QWidget" name="widget" native="true">
-        <layout class="QHBoxLayout" name="horizontalLayout">
-         <item>
-          <widget class="QPushButton" name="pushButton_3">
-           <property name="text">
-            <string>PushButton</string>
-           </property>
-          </widget>
-         </item>
-         <item>
-          <widget class="QPushButton" name="pushButton_4">
-           <property name="text">
-            <string/>
-           </property>
-          </widget>
-         </item>
-         <item>
-          <spacer name="horizontalSpacer">
-           <property name="orientation">
-            <enum>Qt::Horizontal</enum>
-           </property>
-           <property name="sizeHint" stdset="0">
-            <size>
-             <width>495</width>
-             <height>20</height>
-            </size>
-           </property>
-          </spacer>
-         </item>
-        </layout>
-       </widget>
-      </item>
-      <item row="2" column="0">
-       <widget class="QCtmTableView" name="tableView">
-        <property name="selectionMode">
-         <enum>QAbstractItemView::SingleSelection</enum>
-        </property>
-        <property name="selectionBehavior">
-         <enum>QAbstractItemView::SelectRows</enum>
-        </property>
-       </widget>
-      </item>
-     </layout>
-    </widget>
-   </item>
-   <item row="4" column="0">
-    <widget class="QSpinBox" name="spinBox"/>
-   </item>
-   <item row="10" column="1">
-    <widget class="QRadioButton" name="radioButton_4">
-     <property name="enabled">
-      <bool>false</bool>
-     </property>
-     <property name="text">
-      <string>RadioButton</string>
-     </property>
-     <property name="checked">
-      <bool>true</bool>
-     </property>
-     <property name="autoExclusive">
-      <bool>false</bool>
-     </property>
-    </widget>
-   </item>
-   <item row="6" column="1">
-    <widget class="QCheckBox" name="checkBox_2">
-     <property name="enabled">
-      <bool>false</bool>
-     </property>
-     <property name="text">
-      <string>CheckBox</string>
-     </property>
-    </widget>
-   </item>
-   <item row="2" column="1">
-    <widget class="QCtmComboBox" name="comboBox_2">
-     <property name="enabled">
-      <bool>false</bool>
-     </property>
-    </widget>
-   </item>
-   <item row="6" column="0">
-    <widget class="QCheckBox" name="checkBox">
-     <property name="text">
-      <string>CheckBox</string>
-     </property>
-    </widget>
-   </item>
-   <item row="3" column="0">
-    <widget class="QCtmMultiComboBox" name="comboBox_3">
-     <item>
-      <property name="text">
-       <string>新建项目</string>
-      </property>
-     </item>
-     <item>
-      <property name="text">
-       <string>新建项目</string>
-      </property>
-     </item>
-     <item>
-      <property name="text">
-       <string>新建项目</string>
-      </property>
-     </item>
-     <item>
-      <property name="text">
-       <string>新建项目</string>
-      </property>
-     </item>
-     <item>
-      <property name="text">
-       <string>新建项目</string>
-      </property>
-     </item>
-     <item>
-      <property name="text">
-       <string>新建项目</string>
-      </property>
-     </item>
-     <item>
-      <property name="text">
-       <string>新建项目</string>
-      </property>
-     </item>
     </widget>
    </item>
    <item row="3" column="1">
@@ -431,6 +71,385 @@
        <string>新建项目</string>
       </property>
      </item>
+    </widget>
+   </item>
+   <item row="4" column="1">
+    <widget class="QSpinBox" name="spinBox_2">
+     <property name="enabled">
+      <bool>false</bool>
+     </property>
+    </widget>
+   </item>
+   <item row="3" column="0">
+    <widget class="QCtmMultiComboBox" name="comboBox_3">
+     <item>
+      <property name="text">
+       <string>新建项目</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>新建项目</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>新建项目</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>新建项目</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>新建项目</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>新建项目</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>新建项目</string>
+      </property>
+     </item>
+    </widget>
+   </item>
+   <item row="0" column="0">
+    <widget class="QPushButton" name="pushButton">
+     <property name="text">
+      <string>PushButton</string>
+     </property>
+    </widget>
+   </item>
+   <item row="10" column="0">
+    <widget class="QRadioButton" name="radioButton_3">
+     <property name="text">
+      <string>RadioButton</string>
+     </property>
+     <property name="checked">
+      <bool>true</bool>
+     </property>
+     <property name="autoExclusive">
+      <bool>false</bool>
+     </property>
+    </widget>
+   </item>
+   <item row="5" column="1">
+    <widget class="QDoubleSpinBox" name="doubleSpinBox_2">
+     <property name="enabled">
+      <bool>false</bool>
+     </property>
+    </widget>
+   </item>
+   <item row="1" column="1">
+    <widget class="QLineEdit" name="lineEdit_2">
+     <property name="enabled">
+      <bool>false</bool>
+     </property>
+    </widget>
+   </item>
+   <item row="8" column="1">
+    <widget class="QCheckBox" name="checkBox_5">
+     <property name="enabled">
+      <bool>false</bool>
+     </property>
+     <property name="text">
+      <string>CheckBox</string>
+     </property>
+     <property name="checked">
+      <bool>false</bool>
+     </property>
+     <property name="tristate">
+      <bool>true</bool>
+     </property>
+    </widget>
+   </item>
+   <item row="8" column="0">
+    <widget class="QCheckBox" name="checkBox_4">
+     <property name="text">
+      <string>CheckBox</string>
+     </property>
+     <property name="checked">
+      <bool>false</bool>
+     </property>
+     <property name="tristate">
+      <bool>true</bool>
+     </property>
+    </widget>
+   </item>
+   <item row="1" column="0">
+    <widget class="QLineEdit" name="lineEdit"/>
+   </item>
+   <item row="5" column="0">
+    <widget class="QDoubleSpinBox" name="doubleSpinBox"/>
+   </item>
+   <item row="11" column="0">
+    <widget class="QTextEdit" name="textEdit"/>
+   </item>
+   <item row="6" column="0">
+    <widget class="QCheckBox" name="checkBox">
+     <property name="text">
+      <string>CheckBox</string>
+     </property>
+    </widget>
+   </item>
+   <item row="4" column="0">
+    <widget class="QSpinBox" name="spinBox"/>
+   </item>
+   <item row="9" column="0">
+    <widget class="QRadioButton" name="radioButton">
+     <property name="text">
+      <string>RadioButton</string>
+     </property>
+     <property name="autoExclusive">
+      <bool>false</bool>
+     </property>
+    </widget>
+   </item>
+   <item row="2" column="0">
+    <widget class="QCtmComboBox" name="comboBox">
+     <item>
+      <property name="text">
+       <string>新建项目</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>新建项目</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>新建项目</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>新建项目</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>新建项目</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>新建项目</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>新建项目</string>
+      </property>
+     </item>
+    </widget>
+   </item>
+   <item row="6" column="1">
+    <widget class="QCheckBox" name="checkBox_2">
+     <property name="enabled">
+      <bool>false</bool>
+     </property>
+     <property name="text">
+      <string>CheckBox</string>
+     </property>
+    </widget>
+   </item>
+   <item row="7" column="1">
+    <widget class="QCheckBox" name="checkBox_6">
+     <property name="enabled">
+      <bool>false</bool>
+     </property>
+     <property name="text">
+      <string>CheckBox</string>
+     </property>
+     <property name="checked">
+      <bool>true</bool>
+     </property>
+    </widget>
+   </item>
+   <item row="10" column="1">
+    <widget class="QRadioButton" name="radioButton_4">
+     <property name="enabled">
+      <bool>false</bool>
+     </property>
+     <property name="text">
+      <string>RadioButton</string>
+     </property>
+     <property name="checked">
+      <bool>true</bool>
+     </property>
+     <property name="autoExclusive">
+      <bool>false</bool>
+     </property>
+    </widget>
+   </item>
+   <item row="0" column="1">
+    <widget class="QPushButton" name="pushButton_2">
+     <property name="enabled">
+      <bool>false</bool>
+     </property>
+     <property name="text">
+      <string>PushButton</string>
+     </property>
+    </widget>
+   </item>
+   <item row="9" column="1">
+    <widget class="QRadioButton" name="radioButton_2">
+     <property name="enabled">
+      <bool>false</bool>
+     </property>
+     <property name="text">
+      <string>RadioButton</string>
+     </property>
+     <property name="autoExclusive">
+      <bool>false</bool>
+     </property>
+    </widget>
+   </item>
+   <item row="11" column="1">
+    <widget class="QTextEdit" name="textEdit_2">
+     <property name="enabled">
+      <bool>false</bool>
+     </property>
+    </widget>
+   </item>
+   <item row="12" column="0" colspan="2">
+    <widget class="QTabWidget" name="tabWidget">
+     <property name="tabsClosable">
+      <bool>true</bool>
+     </property>
+     <widget class="QWidget" name="tab">
+      <attribute name="title">
+       <string>Tab 1</string>
+      </attribute>
+      <layout class="QGridLayout" name="gridLayout_3">
+       <item row="0" column="0">
+        <widget class="QGroupBox" name="groupBox">
+         <property name="title">
+          <string>Views</string>
+         </property>
+         <property name="flat">
+          <bool>true</bool>
+         </property>
+         <layout class="QGridLayout" name="gridLayout_2">
+          <item row="3" column="0">
+           <widget class="QListWidget" name="listWidget">
+            <item>
+             <property name="text">
+              <string>新建项目</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>新建项目</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>新建项目</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>新建项目</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>新建项目</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>新建项目</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>新建项目</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>新建项目</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>新建项目</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>新建项目</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>新建项目</string>
+             </property>
+            </item>
+           </widget>
+          </item>
+          <item row="0" column="0">
+           <widget class="QWidget" name="widget" native="true">
+            <layout class="QHBoxLayout" name="horizontalLayout">
+             <item>
+              <widget class="QPushButton" name="pushButton_3">
+               <property name="text">
+                <string>PushButton</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QPushButton" name="pushButton_4">
+               <property name="text">
+                <string/>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <spacer name="horizontalSpacer">
+               <property name="orientation">
+                <enum>Qt::Horizontal</enum>
+               </property>
+               <property name="sizeHint" stdset="0">
+                <size>
+                 <width>495</width>
+                 <height>20</height>
+                </size>
+               </property>
+              </spacer>
+             </item>
+            </layout>
+           </widget>
+          </item>
+          <item row="2" column="0">
+           <widget class="QCtmTableView" name="tableView">
+            <property name="selectionMode">
+             <enum>QAbstractItemView::SingleSelection</enum>
+            </property>
+            <property name="selectionBehavior">
+             <enum>QAbstractItemView::SelectRows</enum>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+     <widget class="QWidget" name="tab_2">
+      <attribute name="title">
+       <string>Tab 2</string>
+      </attribute>
+     </widget>
     </widget>
    </item>
   </layout>

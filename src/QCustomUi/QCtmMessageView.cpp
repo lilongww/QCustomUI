@@ -24,6 +24,7 @@ QCtmMessageView::QCtmMessageView(QCtmNavigationBar *parent)
 	, m_impl(std::make_shared<Impl>())
 {
 	this->setTitleVisible(true);
+	setPopup(false);
 	m_impl->view = new QListView(this);
 	m_impl->view->setMouseTracking(true);
 

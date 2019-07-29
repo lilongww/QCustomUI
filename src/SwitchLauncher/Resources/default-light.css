@@ -9,7 +9,6 @@ QPushButton
     min-height: 23px;
     background: #E1E1E1;
     border: 1px solid #ADADAD;
-    color: #1A1A1A;
     font-weight: 400;
 }
 
@@ -119,7 +118,6 @@ QComboBox QListView
 QLineEdit
 {
     background: #FFFFFF;
-    color: #333333;
     border: 1px solid #999999;
 }
 
@@ -146,7 +144,6 @@ QSpinBox, QDoubleSpinBox
     qproperty-alignment: 'AlignHCenter | AlignVCenter';
     height: 21px;
     font-weight: 400;
-    color: #333333;
     background: #FFFFFF;
     border: 1px solid #999999;
 }
@@ -235,13 +232,13 @@ QMenu
 
 QMenu::item
 {
-    color: #7A7A7A;
     background: transparent;
 }
 
 QMenu::item:selected
 {
     background: #CBE5FF;
+    color: #1e1e1e;
 }
 
 QMenu::item:pressed
@@ -627,7 +624,51 @@ QTextEdit::disabled
     border: 1px solid #D2D2D2;
 }
 
+/******************************QTabWidget*************************************/
+QTabWidget
+{
+    background: #F0F0F0;
+}
+
+QTabWidget::pane
+{
+    border: none;
+    background: white;
+}
+
+QTabWidget QTabBar:tab
+{
+    padding: 5px 10px 5px 10px;
+    background: #F0F0F0;
+    border: none;
+}
+
+QTabWidget QTabBar::tab:hover
+{
+    background: #E1E1E1;
+    border: none;
+}
+
+QTabWidget QTabBar::tab:selected
+{
+    background: #FFFFFF;
+    border: none;
+}
+
+QTabBar::close-button:selected, QTabBar[hover]::close-button
+{
+    image: url(:/QCustomUi/Resources/close-light.png);
+}
+
+QTabBar::close-button:!selected
+{
+    image: none;
+}
+
+/*****************************************************************************/
+
 /*****************************QCtmToolBox-View********************************/
 .QCtmToolBox QTreeView, .QCtmToolBox QTableView, .QCtmToolBox QListView {
     background: #F0F0F0;
 }
+/*****************************************************************************/
