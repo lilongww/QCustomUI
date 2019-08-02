@@ -31,6 +31,9 @@ public:
     QString defaultStyleSheet(const QString& theme) const;
 
     QCtmLogWidget* logWidget() const;
+
+	void setAboutDialog(QCtmDialog* about);
+	QCtmDialog* aboutDialog() const;
 signals:
 	void themeChanged(const QString& theme);
 

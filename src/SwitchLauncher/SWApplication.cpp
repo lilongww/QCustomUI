@@ -28,11 +28,26 @@ QCtmMainWindow* SWApplication::mainWindow() const
     return SWContext::instance().mainWindow();
 }
 
+void SWApplication::setAboutDialog(QCtmDialog* about)
+{
+	SWContext::instance().mainWindow()->setAboutDialog(about);
+}
+
+QCtmDialog* SWApplication::aboutDialog() const
+{
+	return SWContext::instance().mainWindow()->aboutDialog();
+}
+
 int SWApplication::exec()
 {
 	if (!g_qAppInitSucceed)
 		return -1;
 	return QApplication::exec();
+}
+
+bool SWApplication::isSuccessful()
+{
+	return g_qAppInitSucceed;
 }
 
 void SWApplication::init(const QString& theme)

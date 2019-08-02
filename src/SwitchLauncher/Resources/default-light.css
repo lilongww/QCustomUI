@@ -672,3 +672,13 @@ QTabBar::close-button:!selected
     background: #F0F0F0;
 }
 /*****************************************************************************/
+
+QSplitter:handle:horizontal
+{
+    width: 0px;
+}
+
+QSplitter:handle:vertical
+{
+    height: 0px;
+}

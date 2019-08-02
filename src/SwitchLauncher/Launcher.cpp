@@ -23,6 +23,8 @@ struct Launcher::Impl
 	QMenu* help{ nullptr };
 
 	QCtmLogWidget* logWidget{ nullptr };
+
+	QCtmDialog* about{ nullptr };
 };
 
 Launcher::Launcher(QWidget *parent)
@@ -117,7 +119,11 @@ void Launcher::initUi()
 	{
 		m_impl->help = m_impl->menuBar->addMenu(tr("&Help"));
 		m_impl->help->addAction(tr("Help"));
-		m_impl->help->addAction(tr("About"));
+		auto about = m_impl->help->addAction(tr("About"));
+		connect(about, &QAction::triggered, this, [=]() {
+			if(m_impl->about)
+				m_impl->about->exec();
+			});
 	}
 	
 	{
@@ -383,6 +389,16 @@ QString Launcher::defaultStyleSheet(const QString& theme) const
 QCtmLogWidget* Launcher::logWidget() const
 {
     return m_impl->logWidget;
+}
+
+void Launcher::setAboutDialog(QCtmDialog* about)
+{
+	m_impl->about = about;
+}
+
+QCtmDialog* Launcher::aboutDialog() const
+{
+	return m_impl->about;
 }
 
 void Launcher::showEvent(QShowEvent* e)

@@ -5,6 +5,7 @@
 #include <QApplication>
 
 class QCtmMainWindow;
+class QCtmDialog;
 
 class SWITCHLAUNCHER_EXPORT SWApplication : public QApplication
 {
@@ -26,6 +27,21 @@ public:
      * @brief       获取mainWindow地址
      */
     QCtmMainWindow* mainWindow() const;
+
+	/**
+	 * @brief		设置关于窗口地址	
+	 */
+	void setAboutDialog(QCtmDialog* about);
+
+	/**
+	 * @brief		获取关于窗口地址
+	 */
+	QCtmDialog* aboutDialog() const;
+
+	/**
+	 * @brief		是否初始化成功
+	 */
+	static bool isSuccessful();
 
 	static int exec();
 private:
