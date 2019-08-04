@@ -16,6 +16,7 @@ struct QCtmIPEdit::Impl
 	bool frame{ true };
 	bool readOnly{ false };
 	int cursorPosition{ 0 };
+	int ascent{ 0 };
 
 	QTextLayout textLayouts[SECTION_COUNT];
 	QTimer timer;
@@ -29,19 +30,6 @@ QCtmIPEdit::QCtmIPEdit(QWidget *parent)
 	, m_impl(std::make_unique<Impl>())
 {
 	setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Fixed);
-	QTextOption txtOpt;
-	txtOpt.setAlignment(Qt::AlignCenter | Qt::AlignHCenter);
-	for (int i = 0;i < SECTION_COUNT; i++)
-	{
-		auto &&textLayout = m_impl->textLayouts[i];
-		textLayout.setCacheEnabled(true);
-		textLayout.setText("");
-		textLayout.setTextOption(txtOpt);
-		textLayout.setFont(this->font());
-		textLayout.beginLayout();
-		textLayout.createLine();
-		textLayout.endLayout();
-	}
 
 	m_impl->timer.setInterval(qApp->cursorFlashTime() / 2);
 	m_impl->timer.start();
@@ -51,6 +39,7 @@ QCtmIPEdit::QCtmIPEdit(QWidget *parent)
 		m_impl->cursorSwitch = !m_impl->cursorSwitch;
 		update();
 		});
+	QMetaObject::invokeMethod(this, "init", Qt::QueuedConnection);
 }
 
 QCtmIPEdit::~QCtmIPEdit()
@@ -102,21 +91,27 @@ QRect QCtmIPEdit::rectOfIpSection(int section)
 		rect = QRect(QPoint(0, 0), this->rect().size());
 
 	int ipSectionWidth = opt.fontMetrics.width("000");
-	
-return { rect.left() + (dotWidth * section) + section * ipSectionWidth , rect.top(), ipSectionWidth, rect.height() };
+	return { rect.left() + (dotWidth * section) + section * ipSectionWidth , rect.top(), ipSectionWidth, rect.height() };
+}
+
+QRect QCtmIPEdit::boundRect(int section, const QRect& rect)
+{
+	auto&& layout = m_impl->textLayouts[section];
+	auto&& txt = layout.text();
+	QStyleOptionFrame opt;
+	initStyleOption(&opt);
+	auto w = opt.fontMetrics.width(txt);
+	return { rect.x() + (rect.width() - w) / 2, rect.y(), w, rect.height() };
 }
 
 void QCtmIPEdit::setText(QTextLayout& textLayout, const QString& text)
 {
-	QTextOption txtOpt;
-	txtOpt.setAlignment(Qt::AlignCenter | Qt::AlignHCenter);
-	textLayout.clearLayout();
 	textLayout.setText(text);
-	textLayout.setFont(this->font());
-	textLayout.setTextOption(txtOpt);
-	textLayout.beginLayout();
-	textLayout.createLine();
-	textLayout.endLayout();
+
+	QStyleOptionFrame opt;
+	initStyleOption(&opt);
+
+	m_impl->ascent = redoTextLayout(textLayout) - opt.fontMetrics.ascent();
 }
 
 void QCtmIPEdit::paintEvent(QPaintEvent* event)
@@ -132,7 +127,8 @@ void QCtmIPEdit::paintEvent(QPaintEvent* event)
 	for (int i = 0; i < SECTION_COUNT; i++)
 	{
 		auto rect = rectOfIpSection(i);
-		m_impl->textLayouts[i].draw(&p, rect.topLeft(), m_impl->fr, rect);
+		auto txtRect = boundRect(i, rect);
+		m_impl->textLayouts[i].draw(&p, txtRect.topLeft(), m_impl->fr, txtRect);
 		if (i != SECTION_COUNT - 1)
 			p.drawText(QRect(rect.x() + rect.width(), rect.y(), opt.fontMetrics.width('.'), rect.height()), ".");
 	}
@@ -140,8 +136,9 @@ void QCtmIPEdit::paintEvent(QPaintEvent* event)
 	{
 		auto&& txtLayout = this->textLayout(m_impl->cursorPosition);
 		auto section = sectionOfCursorPosition(m_impl->cursorPosition);
-		auto rect = rectOfIpSection(section > 3 ? 3 : section);
-		txtLayout.drawCursor(&p, QPoint(rect.left(), redoTextLayout(m_impl->cursorPosition) - opt.fontMetrics.ascent()), m_impl->cursorPosition % 4);
+		section = section > 3 ? 3 : section;
+		auto rect = boundRect(section, rectOfIpSection(section));
+		txtLayout.drawCursor(&p, QPoint(rect.left(), m_impl->ascent), m_impl->cursorPosition % 4);
 	}
 }
 
@@ -261,14 +258,28 @@ void QCtmIPEdit::initStyleOption(QStyleOptionFrame* option) const
 	option->features = QStyleOptionFrame::None;
 }
 
-int QCtmIPEdit::redoTextLayout(int section) const
+int QCtmIPEdit::redoTextLayout(QTextLayout& textLayout) const
 {
-	auto&& textLayout = this->textLayout(section);
 	textLayout.clearLayout();
-
 	textLayout.beginLayout();
 	QTextLine l = textLayout.createLine();
 	textLayout.endLayout();
 
 	return qRound(l.ascent());
+}
+
+void QCtmIPEdit::init()
+{
+	QTextOption txtOpt;
+	txtOpt.setAlignment(Qt::AlignCenter);
+	for (int i = 0; i < SECTION_COUNT; i++)
+	{
+		auto&& textLayout = m_impl->textLayouts[i];
+		textLayout.setCacheEnabled(true);
+		textLayout.setTextOption(txtOpt);
+		textLayout.setFont(this->font());
+		textLayout.beginLayout();
+		textLayout.createLine();
+		textLayout.endLayout();
+	}
 }

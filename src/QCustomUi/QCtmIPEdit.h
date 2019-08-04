@@ -31,8 +31,11 @@ private:
 	int sectionOfCursorPosition(int position) const;
 	QTextLayout& textLayout(int pos) const;
 	QRect rectOfIpSection(int section);
+	QRect boundRect(int section, const QRect& rect);
 	void setText(QTextLayout& textLayout, const QString& text);
-	int redoTextLayout(int section) const;
+	int redoTextLayout(QTextLayout& textLayout) const;
+private slots:
+	void init();
 private:
 	struct Impl;
 	std::unique_ptr<Impl> m_impl;
