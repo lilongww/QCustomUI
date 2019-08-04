@@ -214,10 +214,19 @@ void QCtmIPEdit::keyReleaseEvent(QKeyEvent* event)
 			if (m_impl->cursorPosition % 4 == txtLayout.text().size())
 			{
 				if(section < 3)
-					m_impl->cursorPosition = m_impl->textLayouts[section + 1].text().size() + (section + 1) * SECTION_CURSOR_COUNT;
+					m_impl->cursorPosition = (section + 1) * SECTION_CURSOR_COUNT;
 			}
 			else
 				m_impl->cursorPosition++;
+		}
+	}
+	else if (event->key() == Qt::Key_Delete)
+	{
+		auto&& txtLayout = textLayout(m_impl->cursorPosition);
+		if (txtLayout.text().size() > m_impl->cursorPosition % 4)
+		{
+			auto txt = txtLayout.text().remove(m_impl->cursorPosition % 4, 1);
+			setText(txtLayout, txt);
 		}
 	}
 	update();
