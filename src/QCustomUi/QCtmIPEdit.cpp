@@ -229,6 +229,15 @@ void QCtmIPEdit::keyReleaseEvent(QKeyEvent* event)
 			setText(txtLayout, txt);
 		}
 	}
+	else if (event->text() == ".")
+	{
+		auto section = sectionOfCursorPosition(m_impl->cursorPosition);
+		auto &&txtLayout = m_impl->textLayouts[section];
+		if (!txtLayout.text().isEmpty() && section < SECTION_COUNT - 1 &&txtLayout.text().size() == m_impl->cursorPosition % 4)
+		{
+			m_impl->cursorPosition = (section + 1) * SECTION_CURSOR_COUNT;
+		}
+	}
 	update();
 }
 
