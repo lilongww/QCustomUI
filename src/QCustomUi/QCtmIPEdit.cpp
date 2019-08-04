@@ -6,29 +6,43 @@
 #include <QTextLayout>
 #include <QTimer>
 
+constexpr int SECTION_COUNT = 4;
+constexpr int SECTION_CURSOR_COUNT = 4;
+
 struct QCtmIPEdit::Impl
 {
-	QStringList ip;
 	const int verticalMargin{ 1 };
 	const int horizontalMargin{ 2 };
 	bool frame{ true };
 	bool readOnly{ false };
+	int cursorPosition{ 0 };
 
-	QTextLayout layout;
+	QTextLayout textLayouts[SECTION_COUNT];
 	QTimer timer;
 	bool cursorSwitch{ false };
+	QVector<QTextLayout::FormatRange> fr;
+
 };
 
 QCtmIPEdit::QCtmIPEdit(QWidget *parent)
 	: QWidget(parent)
 	, m_impl(std::make_unique<Impl>())
 {
-	m_impl->ip = QString("0.0.0.0").split('.');
-	m_impl->layout.setText("0.0.0.0");
-	m_impl->layout.setCacheEnabled(true);
-	m_impl->layout.beginLayout();
-	QTextLine line = m_impl->layout.createLine();
-	m_impl->layout.endLayout();
+	setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Fixed);
+	QTextOption txtOpt;
+	txtOpt.setAlignment(Qt::AlignCenter | Qt::AlignHCenter);
+	for (int i = 0;i < SECTION_COUNT; i++)
+	{
+		auto &&textLayout = m_impl->textLayouts[i];
+		textLayout.setCacheEnabled(true);
+		textLayout.setText("");
+		textLayout.setTextOption(txtOpt);
+		textLayout.setFont(this->font());
+		textLayout.beginLayout();
+		textLayout.createLine();
+		textLayout.endLayout();
+	}
+
 	m_impl->timer.setInterval(qApp->cursorFlashTime() / 2);
 	m_impl->timer.start();
 	setCursor(Qt::IBeamCursor);
@@ -48,13 +62,61 @@ void QCtmIPEdit::setIP(const QString& ip)
 	auto tmp = ip.split('.');
 	if (tmp.size() == 4)
 	{
-		m_impl->ip = tmp;
+		for (int i = 0; i < SECTION_COUNT; i++)
+		{
+			auto&& textLayout = m_impl->textLayouts[i];
+			setText(textLayout, tmp[i]);
+		}
 	}
 }
 
 QString QCtmIPEdit::ip() const
 {
-	return m_impl->ip.join('.');
+	QStringList ips;
+	for (auto&& textLayout : m_impl->textLayouts)
+	{
+		ips.append(textLayout.text().isEmpty() ? "0" : textLayout.text());
+	}
+	return ips.join(".");
+}
+
+int QCtmIPEdit::sectionOfCursorPosition(int position) const
+{
+	auto section = position / SECTION_CURSOR_COUNT;
+	return section > SECTION_COUNT - 1 ? SECTION_COUNT - 1 : section;
+}
+
+QTextLayout& QCtmIPEdit::textLayout(int pos) const
+{
+	auto section = sectionOfCursorPosition(pos);
+	return m_impl->textLayouts[section];
+}
+
+QRect QCtmIPEdit::rectOfIpSection(int section)
+{
+	QStyleOptionFrame opt;
+	initStyleOption(&opt);
+	int dotWidth = opt.fontMetrics.width('.');
+	auto rect = this->style()->subElementRect(QStyle::SE_FrameContents, &opt, this);
+	if (rect.isEmpty())
+		rect = QRect(QPoint(0, 0), this->rect().size());
+
+	int ipSectionWidth = opt.fontMetrics.width("000");
+	
+return { rect.left() + (dotWidth * section) + section * ipSectionWidth , rect.top(), ipSectionWidth, rect.height() };
+}
+
+void QCtmIPEdit::setText(QTextLayout& textLayout, const QString& text)
+{
+	QTextOption txtOpt;
+	txtOpt.setAlignment(Qt::AlignCenter | Qt::AlignHCenter);
+	textLayout.clearLayout();
+	textLayout.setText(text);
+	textLayout.setFont(this->font());
+	textLayout.setTextOption(txtOpt);
+	textLayout.beginLayout();
+	textLayout.createLine();
+	textLayout.endLayout();
 }
 
 void QCtmIPEdit::paintEvent(QPaintEvent* event)
@@ -65,16 +127,103 @@ void QCtmIPEdit::paintEvent(QPaintEvent* event)
 	if (rect.isEmpty())
 		rect = QRect(QPoint(0, 0), this->rect().size());
 	QPainter p(this);
-
 	style()->drawPrimitive(QStyle::PE_PanelLineEdit, &opt, &p, this);
 
-	QTextOption txtOpt;
-	txtOpt.setAlignment(Qt::AlignLeft | Qt::AlignVCenter);
-	p.drawText(rect, m_impl->ip.join('.'), txtOpt);
+	for (int i = 0; i < SECTION_COUNT; i++)
+	{
+		auto rect = rectOfIpSection(i);
+		m_impl->textLayouts[i].draw(&p, rect.topLeft(), m_impl->fr, rect);
+		if (i != SECTION_COUNT - 1)
+			p.drawText(QRect(rect.x() + rect.width(), rect.y(), opt.fontMetrics.width('.'), rect.height()), ".");
+	}
 	if (m_impl->cursorSwitch && hasFocus())
 	{
-		m_impl->layout.drawCursor(&p, QPointF(20, 0), 2);
+		auto&& txtLayout = this->textLayout(m_impl->cursorPosition);
+		auto section = sectionOfCursorPosition(m_impl->cursorPosition);
+		auto rect = rectOfIpSection(section > 3 ? 3 : section);
+		txtLayout.drawCursor(&p, QPoint(rect.left(), redoTextLayout(m_impl->cursorPosition) - opt.fontMetrics.ascent()), m_impl->cursorPosition % 4);
 	}
+}
+
+void QCtmIPEdit::keyReleaseEvent(QKeyEvent* event)
+{
+	if (event->key() >= Qt::Key_0 && event->key() <= Qt::Key_9)
+	{
+		auto&& layout = textLayout(m_impl->cursorPosition);
+		auto&& txt = layout.text();
+		if (txt.size() <= m_impl->cursorPosition)
+		{
+			if (txt.size() < 3)
+			{
+				txt.append(event->text());
+				m_impl->cursorPosition++;
+				if (txt.size() == 3 && sectionOfCursorPosition(m_impl->cursorPosition) != 3)
+					m_impl->cursorPosition++;
+			}
+		}
+		else if (txt.size() < 3)
+		{
+			txt.insert(m_impl->cursorPosition, event->text());
+			m_impl->cursorPosition++;
+		}
+
+		setText(layout, txt);
+	}
+	else if (event->key() == Qt::Key_Backspace)
+	{
+		auto&& layout = textLayout(m_impl->cursorPosition);
+		auto&& txt = layout.text();
+		if (m_impl->cursorPosition % SECTION_CURSOR_COUNT == 0)
+		{
+			auto section = sectionOfCursorPosition(m_impl->cursorPosition);
+			if (section != 0)
+			{
+				auto&& layout = m_impl->textLayouts[section - 1];
+				auto txt = layout.text();
+				m_impl->cursorPosition = (section - 1) * SECTION_CURSOR_COUNT + txt.size();
+				if (!txt.isEmpty())
+				{
+					txt.remove(txt.size() - 1, 1);
+					m_impl->cursorPosition--;
+				}
+				setText(layout, txt);
+			}
+		}
+		else if (txt.size())
+		{
+			txt.remove(m_impl->cursorPosition % SECTION_CURSOR_COUNT - 1, 1);
+			m_impl->cursorPosition--;
+			setText(layout, txt);
+		}
+	}
+	else if (event->key() == Qt::Key_Left || event->key() == Qt::Key_Up)
+	{
+		if (m_impl->cursorPosition > 0)
+		{
+			m_impl->cursorPosition--;
+			auto section = sectionOfCursorPosition(m_impl->cursorPosition);
+			auto&& txtLayout = m_impl->textLayouts[section];
+			auto sectionMaxCursor = txtLayout.text().size() + (section)* SECTION_CURSOR_COUNT;
+			if(m_impl->cursorPosition > sectionMaxCursor)
+			m_impl->cursorPosition = sectionMaxCursor;
+		}
+	}
+	else if (event->key() == Qt::Key_Right || event->key() == Qt::Key_Down)
+	{
+		if (m_impl->cursorPosition < SECTION_CURSOR_COUNT * SECTION_COUNT)
+		{
+			auto&& section = sectionOfCursorPosition(m_impl->cursorPosition);
+			auto&& txtLayout = m_impl->textLayouts[section];
+			if (m_impl->cursorPosition % 4 == txtLayout.text().size())
+			{
+				if(section < 3)
+					m_impl->cursorPosition = m_impl->textLayouts[section + 1].text().size() + (section + 1) * SECTION_CURSOR_COUNT;
+			}
+			else
+				m_impl->cursorPosition++;
+		}
+	}
+	update();
 }
 
 QSize QCtmIPEdit::sizeHint() const
@@ -110,4 +259,16 @@ void QCtmIPEdit::initStyleOption(QStyleOptionFrame* option) const
 	if (m_impl->readOnly)
 		option->state |= QStyle::State_ReadOnly;
 	option->features = QStyleOptionFrame::None;
+}
+
+int QCtmIPEdit::redoTextLayout(int section) const
+{
+	auto&& textLayout = this->textLayout(section);
+	textLayout.clearLayout();
+
+	textLayout.beginLayout();
+	QTextLine l = textLayout.createLine();
+	textLayout.endLayout();
+
+	return qRound(l.ascent());
 }

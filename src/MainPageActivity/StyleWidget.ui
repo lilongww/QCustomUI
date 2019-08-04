@@ -452,16 +452,11 @@
       <attribute name="title">
        <string>Tab 2</string>
       </attribute>
-      <widget class="QCtmIPEdit" name="widget_2" native="true">
-       <property name="geometry">
-        <rect>
-         <x>160</x>
-         <y>70</y>
-         <width>120</width>
-         <height>31</height>
-        </rect>
-       </property>
-      </widget>
+      <layout class="QGridLayout" name="gridLayout_4">
+       <item row="0" column="0">
+        <widget class="QCtmIPEdit" name="widget_2" native="true"/>
+       </item>
+      </layout>
      </widget>
     </widget>
    </item>

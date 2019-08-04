@@ -7,6 +7,7 @@
 #include <memory>
 
 class QStyleOptionFrame;
+class QTextLayout;
 
 class QCUSTOMUI_EXPORT QCtmIPEdit : public QWidget
 {
@@ -21,9 +22,17 @@ public:
 
 protected:
 	void paintEvent(QPaintEvent* event) override;
+	void keyReleaseEvent(QKeyEvent* event) override;
 	QSize sizeHint() const override;
 	QSize minimumSizeHint() const override;
 	void initStyleOption(QStyleOptionFrame* option) const;
+
+private:
+	int sectionOfCursorPosition(int position) const;
+	QTextLayout& textLayout(int pos) const;
+	QRect rectOfIpSection(int section);
+	void setText(QTextLayout& textLayout, const QString& text);
+	int redoTextLayout(int section) const;
 private:
 	struct Impl;
 	std::unique_ptr<Impl> m_impl;
