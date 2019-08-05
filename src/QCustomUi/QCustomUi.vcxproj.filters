@@ -216,6 +216,9 @@
     <ClCompile Include="QCtmMultiComboBox.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="QCtmIPAddressEdit.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <QtMoc Include="QCtmAbstractLogModel.h">
@@ -339,6 +342,9 @@
       <Filter>Private</Filter>
     </QtMoc>
     <QtMoc Include="QCtmMultiComboBox.h">
+      <Filter>Header Files</Filter>
+    </QtMoc>
+    <QtMoc Include="QCtmIPAddressEdit.h">
       <Filter>Header Files</Filter>
     </QtMoc>
   </ItemGroup>
