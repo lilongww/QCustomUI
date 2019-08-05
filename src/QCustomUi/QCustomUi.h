@@ -26,4 +26,4 @@
 #include "QCtmTableView.h"
 #include "QCtmTableItemDelegate.h"
 #include "QCtmMultiComboBox.h"
-#include "QCtmIPEdit.h"
+#include "QCtmIPAddressEdit.h"

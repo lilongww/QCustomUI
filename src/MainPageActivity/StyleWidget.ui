@@ -454,7 +454,14 @@
       </attribute>
       <layout class="QGridLayout" name="gridLayout_4">
        <item row="0" column="0">
-        <widget class="QCtmIPEdit" name="widget_2" native="true"/>
+        <widget class="QCtmIPAddressEdit" name="widget_2" native="true"/>
+       </item>
+       <item row="0" column="1">
+        <widget class="QCtmIPAddressEdit" name="widget_3" native="true">
+         <property name="enabled">
+          <bool>false</bool>
+         </property>
+        </widget>
        </item>
       </layout>
      </widget>
@@ -480,7 +487,7 @@
    <header>QCustomUi/QCustomUi.h</header>
   </customwidget>
   <customwidget>
-   <class>QCtmIPEdit</class>
+   <class>QCtmIPAddressEdit</class>
    <extends>QWidget</extends>
    <header>QCustomUI/QCustomUi.h</header>
    <container>1</container>
