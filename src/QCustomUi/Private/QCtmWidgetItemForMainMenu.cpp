@@ -47,7 +47,6 @@ QCtmWidgetItemForMainMenu::QCtmWidgetItemForMainMenu(QAction* action, Qt::Orient
             };
             auto btn = new QCtmMainMenuButton(parent);
             btn->setDefaultAction(action);
-            //btn->setSizePolicy(QSizePolicy::Minimum, QSizePolicy::Minimum);
             btn->setObjectName(action->objectName());
             btn->setVisible(action->isVisible());
             setToolButtonStyle(action, btn);

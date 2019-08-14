@@ -38,7 +38,8 @@ public:
 #endif
     };
 
-    Q_DECLARE_FLAGS(StandardButtons, StandardButton)
+	Q_DECLARE_FLAGS(StandardButtons, StandardButton)
+
     Q_FLAG(StandardButtons)
 
     enum Icon {
@@ -89,31 +90,6 @@ public:
         , StandardButtons buttons = Ok
         , StandardButton defaultButton = NoButton);
 
-    inline static StandardButton information(QWidget *parent, const QString &title,
-        const QString& text,
-        int button0, StandardButton button1 = NoButton)
-    {
-        return information(parent, title, text, StandardButtons(button0), button1);
-    }
-    inline static StandardButton critical(QWidget *parent, const QString &title,
-        const QString& text,
-        int button0, StandardButton button1 = NoButton)
-    {
-        return critical(parent, title, text, StandardButtons(button0), button1);
-    }
-    inline static StandardButton question(QWidget *parent, const QString &title,
-        const QString& text,
-        int button0, StandardButton button1 = NoButton)
-    {
-        return question(parent, title, text, StandardButtons(button0), button1);
-    }
-    inline static StandardButton warning(QWidget *parent, const QString &title,
-        const QString& text,
-        int button0, StandardButton button1 = NoButton)
-    {
-        return warning(parent, title, text, StandardButtons(button0), button1);
-    }
-
 protected:
     void showEvent(QShowEvent *event) override;
 
@@ -126,3 +102,5 @@ private:
     struct Impl;
     std::shared_ptr<Impl> m_impl;
 };
+
+Q_DECLARE_OPERATORS_FOR_FLAGS(QCtmMessageBox::StandardButtons)

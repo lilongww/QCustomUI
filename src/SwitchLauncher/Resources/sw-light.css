@@ -131,7 +131,7 @@ QCtmNavigationBar::separator
     border-bottom: 1px solid #D9D9D9;
 }
 
-.QCtmNavigationBar QCtmToolButton
+.QCtmNavigationBar .QCtmToolButton
 {
     padding-left: 5px;
     padding-right: 5px;
@@ -142,17 +142,17 @@ QCtmNavigationBar::separator
 	background-color: transparent;
 }
 
-.QCtmNavigationBar QCtmToolButton:hover
+.QCtmNavigationBar .QCtmToolButton:hover
 {
     background-color: #cbe5ff;
 }
 
-.QCtmNavigationBar QCtmToolButton:pressed
+.QCtmNavigationBar .QCtmToolButton:pressed
 {
     background-color: #cbe5ff;
 }
 
-.QCtmNavigationBar QCtmToolButton:checked
+.QCtmNavigationBar .QCtmToolButton:checked
 {
     background-color: #C0C1C3;
 }
@@ -187,15 +187,6 @@ QCtmNavigationBar::separator
     qproperty-icon: url(:/QCustomUi/Resources/people-light.png);
 }
 
-.QCtmNavigationBar #test1
-{
-    qproperty-icon: url(:/Resources/images/test1-light.png);
-}
-
-.QCtmNavigationBar #test2
-{
-    qproperty-icon: url(:/Resources/images/test2-light.png);
-}
 /****************************************************************/
 
 /**************************QCtmNavigationImageButton****************************/
@@ -231,15 +222,6 @@ QCtmNavigationImageButton:checked
     margin-left: 23px;
     margin-bottom: 20px;
     margin-right: 20px;
-}
-
-.QCtmNavigationMainMenu QAbstractButton
-{
-    text-align: left bottom;
-    padding-left: 15px;
-    padding-bottom: 9px;
-    font-family: 'Microsoft YaHei';
-    border: none;
 }
 
 /********************************************************************/
@@ -926,4 +908,12 @@ QCtmIPAddressEdit:disabled
     color: #AAAAAA;
     border: 1px solid #E1E1E1;
     background: #D2D2D2;
+}
+
+QCtmNavigationMainMenu QCtmMainMenuButton
+{
+    color: rgba(255,255,255,153);
+    padding: 9px;
+    text-align: left bottom;
+    font-weight: bold;
 }

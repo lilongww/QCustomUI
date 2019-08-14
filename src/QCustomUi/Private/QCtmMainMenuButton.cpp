@@ -17,7 +17,6 @@ QCtmMainMenuButton::QCtmMainMenuButton(QWidget *parent)
 	: QCtmToolButton(parent)
 	, m_impl(std::make_shared<Impl>())
 {
-    setAutoFillBackground(true);
 	setContentsMargins(QMargins(0, 0, 0, 4));
 	connect(this, &QAbstractButton::pressed, this, [=]() {
 		m_impl->pressed = true;
@@ -70,16 +69,15 @@ bool QCtmMainMenuButton::alternateEnable() const
 
 void QCtmMainMenuButton::paintEvent(QPaintEvent*)
 {
-    QPainter p(this);
+	QStyleOptionButton opt;
+	initStyleOption(&opt);
+
+    QPainter p;
     p.setRenderHint(QPainter::HighQualityAntialiasing);
-    QStyleOptionButton opt;
-    initStyleOption(&opt);
-    p.fillRect(opt.rect, Qt::white);
-    auto contentsRect = style()->subElementRect(QStyle::SE_FrameContents, &opt, this);
+	p.begin(this);
     if (m_impl->alternateEnable)
     {
         QColor bg(m_impl->alternateColor);
-        opt.palette.setColor(QPalette::Foreground, QCtmColor::generalForegroundColor(m_impl->alternateColor));
         if (opt.state.testFlag(QStyle::State_Sunken))
         {
             bg.setAlpha(255);
@@ -94,27 +92,19 @@ void QCtmMainMenuButton::paintEvent(QPaintEvent*)
         }
         opt.palette.setColor(QPalette::Background, bg);
     }
-
+	auto contentsRect = style()->subElementRect(QStyle::SE_PushButtonContents, &opt, this);
+	if (!contentsRect.isValid())
+	{
+		contentsRect = QRect(0, 0, width(), height());
+	}
     //draw background
     p.fillRect(opt.rect, opt.palette.background());
-
-    {
-        auto tempOpt = opt;
-        tempOpt.rect = contentsRect;
-        if (m_impl->alternateEnable)
-        {
-            p.save();
-            p.setPen(QPen(opt.palette.foreground().color()));
-            p.drawText(contentsRect, Qt::AlignLeft | Qt::AlignBottom, opt.text);
-            p.restore();
-        }
-        else
-            style()->drawControl(QStyle::CE_PushButtonLabel, &tempOpt, &p, this);
-    }
-
-    int left, top, right, bottom;
-    this->getContentsMargins(&left, &top, &right, &bottom);
-
+	opt.rect = contentsRect;
+	p.end();
+	p.begin(this);
+    style()->drawControl(QStyle::CE_PushButtonLabel, &opt, &p, this);
+	p.end();
+	p.begin(this);
     {//draw icon
         auto st = opt.state.testFlag(QStyle::State_Sunken) ? QIcon::On : QIcon::Off;
         auto mode = opt.state.testFlag(QStyle::State_MouseOver) ? QIcon::Active : QIcon::Normal;
@@ -133,10 +123,12 @@ void QCtmMainMenuButton::paintEvent(QPaintEvent*)
             this->style()->drawItemPixmap(&p, contentsRect, Qt::AlignRight | Qt::AlignVCenter, pixmap);
         }
     }
+	p.end();
 }
 
 void QCtmMainMenuButton::initStyleOption(QStyleOptionButton* opt)
 {
+	ensurePolished();
 	opt->initFrom(this);
 	opt->features = QStyleOptionButton::DefaultButton | QStyleOptionButton::AutoDefaultButton;;
 	if (m_impl->pressed)

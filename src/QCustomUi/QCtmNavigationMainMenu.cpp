@@ -217,16 +217,16 @@ void QCtmNavigationMainMenu::actionEvent(QActionEvent *event)
     if (event->type() == QEvent::ActionAdded)
     {
         QCtmWidgetItemForMainMenuPtr item = std::make_shared<QCtmWidgetItemForMainMenu>(event->action(), Qt::Horizontal, this);
-        if (!item->isCustomWidget())
-        {
-            auto btn = qobject_cast<QCtmMainMenuButton*>(item->widget());
-            if (btn)
-            {
-                btn->setFixedSize(m_impl->actionWidth, m_impl->actionHeight);
-                btn->setAlternateColor(QCtmColor::generalBackgroundColor(this->count()));
-                btn->setAlternateEnable(m_impl->colorAlternate);
-            }
-        }
+		if (!item->isCustomWidget())
+		{
+			auto btn = qobject_cast<QCtmMainMenuButton*>(item->widget());
+			if (btn)
+			{
+				btn->setFixedSize(m_impl->actionWidth, m_impl->actionHeight);
+				btn->setAlternateColor(QCtmColor::generalBackgroundColor(this->count()));
+				btn->setAlternateEnable(m_impl->colorAlternate);
+			}
+		}
         Util::addItem(item, m_impl->items, event->before(), m_impl->layout);
     }
     else if (event->type() == QEvent::ActionRemoved)
