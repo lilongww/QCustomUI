@@ -72,9 +72,7 @@ void QCtmMainMenuButton::paintEvent(QPaintEvent*)
 	QStyleOptionButton opt;
 	initStyleOption(&opt);
 
-    QPainter p;
-    p.setRenderHint(QPainter::HighQualityAntialiasing);
-	p.begin(this);
+	QImage image(this->size(), QImage::Format_ARGB32_Premultiplied);
     if (m_impl->alternateEnable)
     {
         QColor bg(m_impl->alternateColor);
@@ -98,13 +96,11 @@ void QCtmMainMenuButton::paintEvent(QPaintEvent*)
 		contentsRect = QRect(0, 0, width(), height());
 	}
     //draw background
-    p.fillRect(opt.rect, opt.palette.background());
+    image.fill(opt.palette.background().color());
+	QPainter p(&image);
+	auto oldRect = opt.rect;
 	opt.rect = contentsRect;
-	p.end();
-	p.begin(this);
     style()->drawControl(QStyle::CE_PushButtonLabel, &opt, &p, this);
-	p.end();
-	p.begin(this);
     {//draw icon
         auto st = opt.state.testFlag(QStyle::State_Sunken) ? QIcon::On : QIcon::Off;
         auto mode = opt.state.testFlag(QStyle::State_MouseOver) ? QIcon::Active : QIcon::Normal;
@@ -123,7 +119,10 @@ void QCtmMainMenuButton::paintEvent(QPaintEvent*)
             this->style()->drawItemPixmap(&p, contentsRect, Qt::AlignRight | Qt::AlignVCenter, pixmap);
         }
     }
-	p.end();
+	{
+		QPainter painter(this);
+		painter.drawImage(oldRect.topLeft(), image);
+	}
 }
 
 void QCtmMainMenuButton::initStyleOption(QStyleOptionButton* opt)
