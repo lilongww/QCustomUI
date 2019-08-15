@@ -19,6 +19,8 @@ public:
 	void setIPAddress(const QString& ip);
 	QString ipAddress() const;
 
+	void setReadOnly(bool ro);
+	bool isReadOnly() const;
 signals:
 	void editChanged();
 	void editFinished();

@@ -69,7 +69,7 @@ QCtmIPAddressEdit::QCtmIPAddressEdit(QWidget* parent)
 	: QWidget(parent)
 	, m_impl(std::make_unique<Impl>())
 {
-	setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Fixed);
+	setSizePolicy(QSizePolicy(QSizePolicy::Expanding, QSizePolicy::Fixed, QSizePolicy::LineEdit));
 	setContextMenuPolicy(Qt::CustomContextMenu);
 	m_impl->selections.resize(SECTION_COUNT);
 	m_impl->timer.setInterval(qApp->cursorFlashTime() / 2);
@@ -124,6 +124,16 @@ QString QCtmIPAddressEdit::ipAddress() const
 	return ips.join(".");
 }
 
+void QCtmIPAddressEdit::setReadOnly(bool ro)
+{
+	m_impl->readOnly = ro;
+}
+
+bool QCtmIPAddressEdit::isReadOnly() const
+{
+	return m_impl->readOnly;
+}
+
 int QCtmIPAddressEdit::sectionOfCursorPosition(int position) const
 {
 	auto section = position / SECTION_CURSOR_COUNT;
@@ -156,7 +166,7 @@ QRect QCtmIPAddressEdit::boundRect(int section, const QRect& rect) const
 	QStyleOptionFrame opt;
 	initStyleOption(&opt);
 	auto br = layout.boundingRect();
-	return { qRound(rect.x() + (rect.width() - br.width()) / 2), qRound(rect.y() + (rect.height() - br.height())/2), qRound(br.width()), qRound(br.height()) };
+	return { qRound(rect.x() + (rect.width() - br.width()) / 2), qRound(rect.y() + (rect.height() - br.height()) / 2), qRound(br.width()), qRound(br.height()) };
 }
 
 bool QCtmIPAddressEdit::setText(QTextLayout& textLayout, const QString& text)
@@ -196,7 +206,7 @@ void QCtmIPAddressEdit::paintEvent(QPaintEvent* event)
 		if (i != SECTION_COUNT - 1)
 			p.drawText(QRect(rect.x() + rect.width(), txtRect.y(), opt.fontMetrics.width('.'), txtRect.height()), ".");
 	}
-	if (m_impl->cursorSwitch && hasFocus())
+	if (m_impl->cursorSwitch && hasFocus() && !isReadOnly())
 	{
 		auto&& txtLayout = this->textLayout(m_impl->cursorPosition);
 		auto section = sectionOfCursorPosition(m_impl->cursorPosition);
@@ -210,6 +220,8 @@ void QCtmIPAddressEdit::keyPressEvent(QKeyEvent* event)
 {
 	if (event->key() >= Qt::Key_0 && event->key() <= Qt::Key_9)
 	{
+		if (isReadOnly())
+			return;
 		if (hasSelection())
 		{
 			deleteSelectedText();
@@ -239,6 +251,8 @@ void QCtmIPAddressEdit::keyPressEvent(QKeyEvent* event)
 	}
 	else if (event->key() == Qt::Key_Backspace)
 	{
+		if (isReadOnly())
+			return;
 		if (hasSelection())
 		{
 			deleteSelectedText();
@@ -347,6 +361,8 @@ void QCtmIPAddressEdit::keyPressEvent(QKeyEvent* event)
 	}
 	else if (event->key() == Qt::Key_Delete)
 	{
+		if (isReadOnly())
+			return;
 		if (hasSelection())
 		{
 			deleteSelectedText();
@@ -595,6 +611,8 @@ void QCtmIPAddressEdit::initActions()
 	m_impl->paste->setShortcut(QKeySequence::Paste);
 	m_impl->paste->setShortcutContext(Qt::WidgetWithChildrenShortcut);
 	connect(m_impl->paste, &QAction::triggered, this, [=]() {
+		if (isReadOnly())
+			return;
 		if (qApp->clipboard()->text().isEmpty())
 			return;
 		if (qApp->clipboard()->text().split(".").size() == 4)
@@ -679,9 +697,10 @@ void QCtmIPAddressEdit::onCustomContextMenuRequested(const QPoint& pos)
 	}
 	if (!qApp->clipboard()->text().isEmpty())
 	{
-		menu.addAction(m_impl->paste);
+		if (!isReadOnly())
+			menu.addAction(m_impl->paste);
 	}
 
-	if(!menu.isEmpty())
+	if (!menu.isEmpty())
 		menu.exec(this->mapToGlobal(pos));
 }

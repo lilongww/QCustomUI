@@ -73,7 +73,6 @@ void QCtmMainMenuButton::paintEvent(QPaintEvent*)
 	initStyleOption(&opt);
 
     QPainter p;
-    p.setRenderHint(QPainter::HighQualityAntialiasing);
 	p.begin(this);
     if (m_impl->alternateEnable)
     {

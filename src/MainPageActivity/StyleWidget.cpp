@@ -13,7 +13,8 @@ StyleWidget::StyleWidget(QWidget *parent)
 
     auto model = new QStandardItemModel(this);
     ui.tableView->setModel(model);
-
+	ui.widget_4->setReadOnly(true);
+	ui.widget_4->setIPAddress("192.168.1.1");
     model->setHorizontalHeaderLabels(QStringList() << "Test" << "Test" << "Test" << "Test" << "Test" << "Test");
     model->setRowCount(10);
     for (int i = 0;i<10;i++)
