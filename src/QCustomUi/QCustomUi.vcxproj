@@ -141,6 +141,8 @@
     <ClInclude Include="Private\Util_p.h" />
     <QtMoc Include="QCtmMultiComboBox.h" />
     <QtMoc Include="QCtmIPAddressEdit.h" />
+    <QtMoc Include="QCtmFlexWidget.h" />
+    <QtMoc Include="QCtmAbstractDockPanel.h" />
     <ClInclude Include="Version.h" />
     <QtMoc Include="QCtmAbstractLogModel.h" />
     <QtMoc Include="QCtmAbstractMessageModel.h" />
@@ -177,12 +179,14 @@
     <ClInclude Include="qcustomui_global.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="QCtmAbstractDockPanel.cpp" />
     <ClCompile Include="QCtmAbstractLogModel.cpp" />
     <ClCompile Include="QCtmAbstractMessageModel.cpp" />
     <ClCompile Include="QCtmAbstractMessageView.cpp" />
     <ClCompile Include="QCtmColor.cpp" />
     <ClCompile Include="QCtmComboBox.cpp" />
     <ClCompile Include="QCtmDialog.cpp" />
+    <ClCompile Include="QCtmFlexWidget.cpp" />
     <ClCompile Include="QCtmIPAddressEdit.cpp" />
     <ClCompile Include="QCtmLogEvent.cpp" />
     <ClCompile Include="QCtmLogFilterModel.cpp" />

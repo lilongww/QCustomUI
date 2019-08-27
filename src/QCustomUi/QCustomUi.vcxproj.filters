@@ -32,6 +32,15 @@
     <Filter Include="Private">
       <UniqueIdentifier>{8fa07f5c-4cfb-4bd0-8a23-0c1634d32fc0}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Flex">
+      <UniqueIdentifier>{3b2f167e-f1b6-46db-991e-ab38efcec7f3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Input">
+      <UniqueIdentifier>{c6c941db-8133-4b6a-84cb-c3c4e57b4855}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Log">
+      <UniqueIdentifier>{a171f229-3142-4efe-a027-44237b15d858}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="qcustomui_global.h">
@@ -45,12 +54,6 @@
     </ClInclude>
     <ClInclude Include="Private\Util_p.h">
       <Filter>Private</Filter>
-    </ClInclude>
-    <ClInclude Include="QCtmLogEvent.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="QCtmLogManager.h">
-      <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="QCtmMessage.h">
       <Filter>Header Files</Filter>
@@ -66,6 +69,12 @@
     </ClInclude>
     <ClInclude Include="QCustomUi.h">
       <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="QCtmLogEvent.h">
+      <Filter>Log</Filter>
+    </ClInclude>
+    <ClInclude Include="QCtmLogManager.h">
+      <Filter>Log</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -138,21 +147,6 @@
     <ClCompile Include="QCtmDialog.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="QCtmLogEvent.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="QCtmLogFilterModel.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="QCtmLogManager.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="QCtmLogModel.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="QCtmLogWidget.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="QCtmMainWindow.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -216,8 +210,29 @@
     <ClCompile Include="QCtmMultiComboBox.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="QCtmFlexWidget.cpp">
+      <Filter>Flex</Filter>
+    </ClCompile>
+    <ClCompile Include="QCtmAbstractDockPanel.cpp">
+      <Filter>Flex</Filter>
+    </ClCompile>
     <ClCompile Include="QCtmIPAddressEdit.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Input</Filter>
+    </ClCompile>
+    <ClCompile Include="QCtmLogWidget.cpp">
+      <Filter>Log</Filter>
+    </ClCompile>
+    <ClCompile Include="QCtmLogEvent.cpp">
+      <Filter>Log</Filter>
+    </ClCompile>
+    <ClCompile Include="QCtmLogFilterModel.cpp">
+      <Filter>Log</Filter>
+    </ClCompile>
+    <ClCompile Include="QCtmLogManager.cpp">
+      <Filter>Log</Filter>
+    </ClCompile>
+    <ClCompile Include="QCtmLogModel.cpp">
+      <Filter>Log</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -237,15 +252,6 @@
       <Filter>Header Files</Filter>
     </QtMoc>
     <QtMoc Include="QCtmDialog.h">
-      <Filter>Header Files</Filter>
-    </QtMoc>
-    <QtMoc Include="QCtmLogFilterModel.h">
-      <Filter>Header Files</Filter>
-    </QtMoc>
-    <QtMoc Include="QCtmLogModel.h">
-      <Filter>Header Files</Filter>
-    </QtMoc>
-    <QtMoc Include="QCtmLogWidget.h">
       <Filter>Header Files</Filter>
     </QtMoc>
     <QtMoc Include="QCtmMainWindow.h">
@@ -344,8 +350,23 @@
     <QtMoc Include="QCtmMultiComboBox.h">
       <Filter>Header Files</Filter>
     </QtMoc>
+    <QtMoc Include="QCtmFlexWidget.h">
+      <Filter>Flex</Filter>
+    </QtMoc>
+    <QtMoc Include="QCtmAbstractDockPanel.h">
+      <Filter>Flex</Filter>
+    </QtMoc>
     <QtMoc Include="QCtmIPAddressEdit.h">
-      <Filter>Header Files</Filter>
+      <Filter>Input</Filter>
+    </QtMoc>
+    <QtMoc Include="QCtmLogFilterModel.h">
+      <Filter>Log</Filter>
+    </QtMoc>
+    <QtMoc Include="QCtmLogModel.h">
+      <Filter>Log</Filter>
+    </QtMoc>
+    <QtMoc Include="QCtmLogWidget.h">
+      <Filter>Log</Filter>
     </QtMoc>
   </ItemGroup>
   <ItemGroup>
