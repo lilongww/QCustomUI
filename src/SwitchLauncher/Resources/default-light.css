@@ -404,7 +404,7 @@ QTableView::item:hover
 
 QTableView::item:selected
 {
-    background: #2477CE;
+    background: #55aaff;
     color: white;
 }
 
@@ -545,7 +545,7 @@ QListView::item:hover
 
 QListView::item:selected
 {
-    background: #2477CE;
+    background: #55aaff;
     color: white;
 }
 
@@ -568,7 +568,7 @@ QTreeView::item:hover, QTreeView::branch:hover
 
 QTreeView::item:selected, QTreeView::branch:selected
 { /** ЪѓБъбЁжа **/
-    background-color: rgb(36, 119, 206);
+    background-color: #55aaff;
     color: white;
 }
 
