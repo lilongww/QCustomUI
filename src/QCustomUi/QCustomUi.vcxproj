@@ -143,6 +143,7 @@
     <QtMoc Include="QCtmIPAddressEdit.h" />
     <QtMoc Include="QCtmFlexWidget.h" />
     <QtMoc Include="QCtmAbstractDockPanel.h" />
+    <QtMoc Include="QCtmDockHelper.h" />
     <ClInclude Include="Version.h" />
     <QtMoc Include="QCtmAbstractLogModel.h" />
     <QtMoc Include="QCtmAbstractMessageModel.h" />
@@ -186,6 +187,7 @@
     <ClCompile Include="QCtmColor.cpp" />
     <ClCompile Include="QCtmComboBox.cpp" />
     <ClCompile Include="QCtmDialog.cpp" />
+    <ClCompile Include="QCtmDockHelper.cpp" />
     <ClCompile Include="QCtmFlexWidget.cpp" />
     <ClCompile Include="QCtmIPAddressEdit.cpp" />
     <ClCompile Include="QCtmLogEvent.cpp" />

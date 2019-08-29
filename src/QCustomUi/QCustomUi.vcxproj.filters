@@ -234,6 +234,9 @@
     <ClCompile Include="QCtmLogModel.cpp">
       <Filter>Log</Filter>
     </ClCompile>
+    <ClCompile Include="QCtmDockHelper.cpp">
+      <Filter>Flex</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <QtMoc Include="QCtmAbstractLogModel.h">
@@ -367,6 +370,9 @@
     </QtMoc>
     <QtMoc Include="QCtmLogWidget.h">
       <Filter>Log</Filter>
+    </QtMoc>
+    <QtMoc Include="QCtmDockHelper.h">
+      <Filter>Flex</Filter>
     </QtMoc>
   </ItemGroup>
   <ItemGroup>
