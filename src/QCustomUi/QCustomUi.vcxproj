@@ -135,8 +135,8 @@
     <QtMoc Include="Private\QCtmToolButton_p.h" />
     <QtMoc Include="Private\QCtmTreeItemTitle_p.h" />
     <QtMoc Include="Private\QCtmUserButton_p.h" />
-    <ClInclude Include="Private\QCtmWidgetItemForMainMenu_p.h" />
-    <ClInclude Include="Private\QCtmWidgetItem_p.h" />
+    <QtMoc Include="Private\QCtmWidgetItemForMainMenu_p.h" />
+    <QtMoc Include="Private\QCtmWidgetItem_p.h" />
     <ClInclude Include="Private\flowlayout_p.h" />
     <ClInclude Include="Private\Util_p.h" />
     <QtMoc Include="QCtmMultiComboBox.h" />

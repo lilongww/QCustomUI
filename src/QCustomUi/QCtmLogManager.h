@@ -98,7 +98,7 @@ protected:
     static QList<QString> parseObjectNames(QString& msg);
 private:
     struct Impl;
-    std::shared_ptr<Impl> m_impl;
+    std::unique_ptr<Impl> m_impl;
 
     friend QCtmAbstractLogModel;
     friend void qtMessageHandle(QtMsgType, const QMessageLogContext&, const QString&);

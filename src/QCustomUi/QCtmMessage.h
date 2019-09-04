@@ -73,6 +73,6 @@ public:
 
 private:
 	struct Impl;
-	std::shared_ptr<Impl> m_impl;
+	std::unique_ptr<Impl> m_impl;
 };
 

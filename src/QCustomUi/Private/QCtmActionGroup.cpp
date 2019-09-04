@@ -10,7 +10,7 @@ struct QCtmActionGroup::Impl
 
 QCtmActionGroup::QCtmActionGroup(QObject *parent)
     : QObject(parent)
-    , m_impl(std::make_shared<Impl>())
+    , m_impl(std::make_unique<Impl>())
 {
 
 }

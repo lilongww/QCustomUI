@@ -22,7 +22,7 @@ struct QCtmMessageBox::Impl
 
 QCtmMessageBox::QCtmMessageBox(QWidget *parent)
     : QCtmDialog(parent)
-    , m_impl(std::make_shared<Impl>())
+    , m_impl(std::make_unique<Impl>())
 {
     this->setStyle(new QCtmStyle(this->style()));
     init();

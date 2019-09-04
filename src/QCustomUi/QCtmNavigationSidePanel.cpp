@@ -13,7 +13,7 @@
 
 #include <assert.h>
 
-Q_CONSTEXPR int margin = 8;
+constexpr int margin = 8;
 
 struct QCtmNavigationSidePanel::Impl
 {
@@ -45,7 +45,7 @@ struct QCtmNavigationSidePanel::Impl
 
 QCtmNavigationSidePanel::QCtmNavigationSidePanel(QCtmNavigationBar *parent)
 	: QWidget(parent)
-	, m_impl(std::make_shared<Impl>())
+	, m_impl(std::make_unique<Impl>())
 {
 	setMinimumSize(10, 10);
 	m_impl->navigationBar = parent;

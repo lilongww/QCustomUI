@@ -13,11 +13,11 @@ struct QCtmWidgetItem::Impl
 
 QCtmWidgetItem::QCtmWidgetItem(QAction* action, Qt::Orientation orientation, QWidget* parent)
     : QObject(parent)
-    , m_impl(std::make_shared<Impl>())
+    , m_impl(std::make_unique<Impl>())
 {
     m_impl->action = action;
 
-    auto wa = dynamic_cast<QWidgetAction*>(action);
+    auto wa = qobject_cast<QWidgetAction*>(action);
     if (wa && wa->defaultWidget())
     {
         m_impl->customWidget = true;

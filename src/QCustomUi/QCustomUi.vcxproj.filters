@@ -58,12 +58,6 @@
     <ClInclude Include="Private\QCtmStyle_p.h">
       <Filter>Private</Filter>
     </ClInclude>
-    <ClInclude Include="Private\QCtmWidgetItem_p.h">
-      <Filter>Private</Filter>
-    </ClInclude>
-    <ClInclude Include="Private\QCtmWidgetItemForMainMenu_p.h">
-      <Filter>Private</Filter>
-    </ClInclude>
     <ClInclude Include="QCustomUi.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -346,6 +340,12 @@
     </QtMoc>
     <QtMoc Include="QCtmIPAddressEdit.h">
       <Filter>Header Files</Filter>
+    </QtMoc>
+    <QtMoc Include="Private\QCtmWidgetItemForMainMenu_p.h">
+      <Filter>Private</Filter>
+    </QtMoc>
+    <QtMoc Include="Private\QCtmWidgetItem_p.h">
+      <Filter>Private</Filter>
     </QtMoc>
   </ItemGroup>
   <ItemGroup>

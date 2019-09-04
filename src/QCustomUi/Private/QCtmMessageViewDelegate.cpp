@@ -29,7 +29,7 @@ struct QCtmMessageViewDelegate::Impl
 
 QCtmMessageViewDelegate::QCtmMessageViewDelegate(QObject *parent)
 	: QItemDelegate(parent)
-	, m_impl(std::make_shared<Impl>())
+	, m_impl(std::make_unique<Impl>())
 {
 }
 

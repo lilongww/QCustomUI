@@ -14,7 +14,7 @@ struct QCtmMessage::Impl
 };
 
 QCtmMessage::QCtmMessage(const QString& title, const QString& content, const QDateTime& time)
-	:m_impl(std::make_shared<Impl>())
+	:m_impl(std::make_unique<Impl>())
 {
 	m_impl->title = title;
 	m_impl->content = content;

@@ -28,7 +28,7 @@ struct QCtmLogModel::Impl
 
 QCtmLogModel::QCtmLogModel(const QString& objectName, QObject *parent)
     : QCtmAbstractLogModel(objectName, parent)
-    , m_impl(std::make_shared<Impl>())
+    , m_impl(std::make_unique<Impl>())
 {
     m_impl->headers << tr("Lv") << tr("DateTime") << tr("Description");
 }

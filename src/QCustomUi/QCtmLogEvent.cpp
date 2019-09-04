@@ -7,7 +7,7 @@ struct QCtmLogEvent::Impl
 
 QCtmLogEvent::QCtmLogEvent(QCtmLogDataPtr log)
     : QEvent((QEvent::Type)QCtmLog)
-    , m_impl(std::make_shared<Impl>())
+    , m_impl(std::make_unique<Impl>())
 {
     m_impl->log = log;
 }

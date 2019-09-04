@@ -17,7 +17,7 @@ struct QCtmMessageTip::Impl
 
 QCtmMessageTip::QCtmMessageTip(QWidget *parent)
 	: QAbstractButton(parent)
-	, m_impl(std::make_shared<Impl>())
+	, m_impl(std::make_unique<Impl>())
 {
 	m_impl->helper = new QCtmMessageTipHelper(this);
 	connect(this, &QAbstractButton::clicked, this, &QCtmMessageTip::onClicked);

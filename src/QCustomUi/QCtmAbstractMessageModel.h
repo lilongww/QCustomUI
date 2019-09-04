@@ -66,5 +66,5 @@ public:
 	bool insertRows(int row, int count, const QModelIndex &parent  = QModelIndex()) override;
 private:
 	struct Impl;
-	std::shared_ptr<Impl> m_impl;
+	std::unique_ptr<Impl> m_impl;
 };

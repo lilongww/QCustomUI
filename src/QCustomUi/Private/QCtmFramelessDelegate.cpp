@@ -85,7 +85,7 @@ void releaseHover(QWidget* w)
 
 QCtmFramelessDelegate::QCtmFramelessDelegate(QWidget *parent, const QWidgetList& moveBars)
 	: QObject(parent)
-	, m_impl(std::make_shared<Impl>())
+	, m_impl(std::make_unique<Impl>())
 {
 	m_impl->direction |= Direction::NONE;
 	m_impl->parent = parent;

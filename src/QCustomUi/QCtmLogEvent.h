@@ -66,7 +66,7 @@ public:
     QCtmLogDataPtr log()const;
 private:
     struct Impl;
-    std::shared_ptr<Impl> m_impl;
+    std::unique_ptr<Impl> m_impl;
 };
 
 enum LogInsertMode  //»’÷æ≤Â»ÎÀ≥–Ú

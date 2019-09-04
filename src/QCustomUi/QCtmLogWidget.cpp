@@ -32,7 +32,7 @@ struct QCtmLogWidget::Impl
 
 QCtmLogWidget::QCtmLogWidget(const QString& objectName, QWidget *parent)
     : QWidget(parent)
-    , m_impl(std::make_shared<Impl>())
+    , m_impl(std::make_unique<Impl>())
 {
     this->setObjectName(objectName);
     init();

@@ -23,7 +23,7 @@ struct QCtmWindow::Impl
 
 QCtmWindow::QCtmWindow(QWidget *parent)
 	: QWidget(parent)
-	, m_impl(std::make_shared<Impl>())
+	, m_impl(std::make_unique<Impl>())
 	, ui(new Ui::QCtmWindow)
 {
 	m_impl->title = new QCtmTitleBar(this);

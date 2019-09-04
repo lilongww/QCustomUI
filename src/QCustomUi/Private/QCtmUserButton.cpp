@@ -9,7 +9,7 @@ struct QCtmUserButton::Impl
 
 QCtmUserButton::QCtmUserButton(QWidget *parent)
 	: QCtmToolButton(parent)
-	, m_impl(std::make_shared<Impl>())
+	, m_impl(std::make_unique<Impl>())
 {
 }
 

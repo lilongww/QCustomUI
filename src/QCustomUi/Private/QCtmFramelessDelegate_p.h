@@ -1,32 +1,14 @@
-/**
-  * @file   QCtmFramelessDelegate.h
-  * @brief	无边框窗口的委托实现
-  * @author LiLong
-  * @date   2018.11.16
-  * @note   
-  * @version 1.0
-  */ 
+/*!***************************************************************************
+*  Copyright (C) 2019 lilong(DLC)
+*  This file is part of the QCustomUi
+*  Contact: 634916105@qq.com
+*  License: LGPL
+*****************************************************************************/
 #pragma once
 
 #include <QWidget>
 #include <memory>
 
-/*!
- * \class QCtmFramelessDelegate
- *
- * \brief 
- *
- * 无边框窗口的委托实现
- *
- * \note 
- *
- * \author LiLong
- *
- * \version 1.0
- *
- * \date 2018.11.16
- *
- */
 class QPlatformSurfaceEvent;
 class QCtmFramelessDelegate : public QObject
 {
@@ -34,12 +16,7 @@ class QCtmFramelessDelegate : public QObject
 
 public:
 	/**
-	  *  @brief  		构造函数
-	  *  @param[in]  	parent 父窗口地址，父窗口必须为顶层窗口
-	  *  @param[in] 	moveBars 用于鼠标拖动的窗口
-	  *  @Return:   	
-	  *
-	  *  @note			
+	  *  @brief  		Constructs a widget helper with the given parent and move bars
 	  */
 	QCtmFramelessDelegate(QWidget *parent, const QWidgetList& moveBars);
 
@@ -76,5 +53,5 @@ private:
     void updateLayout();
 private:
 	struct Impl;
-	std::shared_ptr<Impl> m_impl;
+	std::unique_ptr<Impl> m_impl;
 };

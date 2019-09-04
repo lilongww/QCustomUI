@@ -100,7 +100,7 @@ private:
     void detectEscapeButton() const;
 private:
     struct Impl;
-    std::shared_ptr<Impl> m_impl;
+    std::unique_ptr<Impl> m_impl;
 };
 
 Q_DECLARE_OPERATORS_FOR_FLAGS(QCtmMessageBox::StandardButtons)

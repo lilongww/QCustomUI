@@ -52,7 +52,7 @@ struct QCtmNavigationSideBar::Impl
 
 QCtmNavigationSideBar::QCtmNavigationSideBar(QWidget *parent)
 	: QWidget(parent)
-	, m_impl(std::make_shared<Impl>())
+	, m_impl(std::make_unique<Impl>())
 {
 	m_impl->layout = new QVBoxLayout(this);
 	m_impl->layout->setContentsMargins(0, 10, 0, 10);

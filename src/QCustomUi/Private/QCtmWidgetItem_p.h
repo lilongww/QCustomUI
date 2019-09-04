@@ -6,6 +6,7 @@
 
 class QCtmWidgetItem : public QObject
 {
+	Q_OBJECT
 public:
     QCtmWidgetItem(QAction* action, Qt::Orientation orientation, QWidget* parent = nullptr);
     ~QCtmWidgetItem();
@@ -17,7 +18,7 @@ public:
     bool isCustomWidget() const;
 private:
     struct Impl;
-    std::shared_ptr<Impl> m_impl;
+    std::unique_ptr<Impl> m_impl;
 };
 
 typedef std::shared_ptr<QCtmWidgetItem> QCtmWidgetItemPtr;

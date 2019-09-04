@@ -18,7 +18,7 @@ struct QCtmNavigationBackstageActionGroup::Impl
 
 QCtmNavigationBackstageActionGroup::QCtmNavigationBackstageActionGroup(const QString& groupName, QCtmNavigationBackstageMenu  *parent)
 	: QFrame(parent)
-	, m_impl(std::make_shared<Impl>())
+	, m_impl(std::make_unique<Impl>())
 {
 	m_impl->layout = new QVBoxLayout(this);
 	m_impl->title = new QLabel(this);

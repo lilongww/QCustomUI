@@ -30,7 +30,4 @@ protected:
     bool event(QEvent* e) override;
     virtual void logEvent(QCtmLogEvent* e);
     virtual void retranslateUi() {};
-private:
-    struct Impl;
-    std::shared_ptr<Impl> m_impl;
 };

@@ -18,7 +18,7 @@ struct QCtmTree::Impl
 
 QCtmTree::QCtmTree(QWidget *parent)
 	: QWidget(parent),
-	m_impl(std::make_shared<Impl>())
+	m_impl(std::make_unique<Impl>())
 {
 	m_impl->splitter = new QSplitter(this);
 	m_impl->splitter->setHandleWidth(0);
@@ -283,7 +283,7 @@ struct QCtmTreeItem::Impl
 
 QCtmTreeItem::QCtmTreeItem(const QString& title, QCtmTree* parent)
 	: QWidget(parent)
-	, m_impl(std::make_shared<Impl>())
+	, m_impl(std::make_unique<Impl>())
 {
     m_impl->tree = parent;
 	m_impl->layout = new QVBoxLayout(this);
