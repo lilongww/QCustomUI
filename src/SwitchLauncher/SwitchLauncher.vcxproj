@@ -138,8 +138,6 @@ xcopy /y Version.h $(SolutionDir)build\include\$(ProjectName)\</Command>
     <QtRcc Include="SwitchLauncher.qrc" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\sw-light.css" />
-    <None Include="Resources\default-light.css" />
     <None Include="Resources\Launcher-light.css">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>

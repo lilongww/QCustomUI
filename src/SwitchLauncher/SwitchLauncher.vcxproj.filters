@@ -68,12 +68,6 @@
     <None Include="Resources\Launcher-light.css">
       <Filter>Resource Files</Filter>
     </None>
-    <None Include="Resources\default-light.css">
-      <Filter>Resource Files</Filter>
-    </None>
-    <None Include="Resources\sw-light.css">
-      <Filter>Resource Files</Filter>
-    </None>
   </ItemGroup>
   <ItemGroup>
     <QtRcc Include="SwitchLauncher.qrc">

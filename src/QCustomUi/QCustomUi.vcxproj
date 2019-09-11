@@ -141,6 +141,7 @@
     <ClInclude Include="Private\Util_p.h" />
     <QtMoc Include="QCtmMultiComboBox.h" />
     <QtMoc Include="QCtmIPAddressEdit.h" />
+    <ClInclude Include="QCtmStyleSheet.h" />
     <ClInclude Include="Version.h" />
     <QtMoc Include="QCtmAbstractLogModel.h" />
     <QtMoc Include="QCtmAbstractMessageModel.h" />
@@ -202,6 +203,7 @@
     <ClCompile Include="QCtmNavigationMainMenu.cpp" />
     <ClCompile Include="QCtmNavigationSideBar.cpp" />
     <ClCompile Include="QCtmNavigationSidePanel.cpp" />
+    <ClCompile Include="QCtmStyleSheet.cpp" />
     <ClCompile Include="QCtmTableItemDelegate.cpp" />
     <ClCompile Include="QCtmTableView.cpp" />
     <ClCompile Include="QCtmTabPage.cpp" />
@@ -236,6 +238,10 @@
   </ItemGroup>
   <ItemGroup>
     <QtRcc Include="QCustomUi.qrc" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\stylesheet\default-light.css" />
+    <None Include="Resources\stylesheet\sw-light.css" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Condition="Exists('$(QtMsBuild)\qt.targets')">

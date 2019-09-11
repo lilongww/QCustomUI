@@ -503,6 +503,14 @@ QCtmNavigationSidePanel #titleBar
 .QCtmToolBoxItem #item_title QCtmToolButton
 {
     border: none;
+    min-width: 16px;
+    max-width: 16px;
+    padding: 5px;
+}
+
+.QCtmToolBoxItem #item_title QCtmToolButton:hover
+{
+    background: #d9d9d9;
 }
 
 QCtmToolBoxItem
@@ -714,7 +722,7 @@ QCtmMessageBox #titleBar
 
 QCtmMessageBox
 {
-    background: #F0F0F0F;
+    background: #F0F0F0;
 }
 
 QCtmMessageBox QPushButton
