@@ -21,7 +21,7 @@ struct QCtmMessageView::Impl
 
 QCtmMessageView::QCtmMessageView(QCtmNavigationBar *parent)
 	: QCtmAbstractMessageView(parent)
-	, m_impl(std::make_shared<Impl>())
+	, m_impl(std::make_unique<Impl>())
 {
 	this->setTitleVisible(true);
 	setPopup(false);

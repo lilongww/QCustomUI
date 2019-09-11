@@ -29,7 +29,7 @@ struct QCtmMainWindow::Impl
 QCtmMainWindow::QCtmMainWindow(QWidget *parent)
 	: QCtmWindow(parent)
 	, ui(new Ui::QCtmMainWindow)
-	, m_impl(std::make_shared<Impl>())
+	, m_impl(std::make_unique<Impl>())
 {
 	ui->setupUi(this->centralWidget());
 

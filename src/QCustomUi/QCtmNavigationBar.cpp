@@ -81,7 +81,7 @@ struct QCtmNavigationBar::Impl
 
 QCtmNavigationBar::QCtmNavigationBar(QWidget *parent)
 	: QWidget(parent)
-	, m_impl(std::make_shared<Impl>())
+	, m_impl(std::make_unique<Impl>())
 {
 	setFixedHeight(50);
     QHBoxLayout* layout = new QHBoxLayout(this);

@@ -20,7 +20,7 @@ struct QCtmTreeItemTitle::Impl
 
 QCtmTreeItemTitle::QCtmTreeItemTitle(QCtmTreeItem *parent)
 	: QPushButton(parent)
-	, m_impl(std::make_shared<Impl>())
+	, m_impl(std::make_unique<Impl>())
 {
     m_impl->treeItem = parent;
     m_impl->layout = new QHBoxLayout(this);

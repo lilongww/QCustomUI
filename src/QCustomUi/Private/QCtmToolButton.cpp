@@ -11,7 +11,7 @@ struct QCtmToolButton::Impl
 
 QCtmToolButton::QCtmToolButton(QWidget *parent)
     : QToolButton(parent)
-	, m_impl(std::make_shared<Impl>())
+	, m_impl(std::make_unique<Impl>())
 {
     connect(this, &QAbstractButton::toggled, this, [=](bool) {style()->unpolish(this); style()->polish(this); });
 }

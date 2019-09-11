@@ -1,59 +1,6 @@
 <RCC>
     <qresource prefix="/qss">
-        <file>Resources/default-light.css</file>
         <file>Resources/Launcher-light.css</file>
-        <file>Resources/sw-light.css</file>
-    </qresource>
-    <qresource prefix="/QScrollBar">
-        <file>Resources/common-light/QScrollBar/addLineH.png</file>
-        <file>Resources/common-light/QScrollBar/addLineH-hover.png</file>
-        <file>Resources/common-light/QScrollBar/addLineH-pressed.png</file>
-        <file>Resources/common-light/QScrollBar/addLineV.png</file>
-        <file>Resources/common-light/QScrollBar/addLineV-hover.png</file>
-        <file>Resources/common-light/QScrollBar/addLineV-pressed.png</file>
-        <file>Resources/common-light/QScrollBar/subLineH.png</file>
-        <file>Resources/common-light/QScrollBar/subLineH-hover.png</file>
-        <file>Resources/common-light/QScrollBar/subLineH-pressed.png</file>
-        <file>Resources/common-light/QScrollBar/subLineV.png</file>
-        <file>Resources/common-light/QScrollBar/subLineV-hover.png</file>
-        <file>Resources/common-light/QScrollBar/subLineV-pressed.png</file>
-    </qresource>
-    <qresource prefix="/QSpinBox">
-        <file>Resources/common-light/QSpinBox/down-button.png</file>
-        <file>Resources/common-light/QSpinBox/down-button-disabled.png</file>
-        <file>Resources/common-light/QSpinBox/down-button-pressed.png</file>
-        <file>Resources/common-light/QSpinBox/up-button.png</file>
-        <file>Resources/common-light/QSpinBox/up-button-disabled.png</file>
-        <file>Resources/common-light/QSpinBox/up-button-pressed.png</file>
-    </qresource>
-    <qresource prefix="/QComboBox">
-        <file>Resources/common-light/QComboBox/down-arrow.png</file>
-        <file>Resources/common-light/QComboBox/down-arrow-disabled.png</file>
-        <file>Resources/common-light/QComboBox/down-arrow-pressed.png</file>
-    </qresource>
-    <qresource prefix="/QRadioButton">
-        <file>Resources/common-light/QRadioButton/radiobutton-checked.png</file>
-        <file>Resources/common-light/QRadioButton/radiobutton-checked-disabled.png</file>
-        <file>Resources/common-light/QRadioButton/radiobutton-checked-hover.png</file>
-        <file>Resources/common-light/QRadioButton/radiobutton-checked-pressed.png</file>
-        <file>Resources/common-light/QRadioButton/radiobutton-unchecked.png</file>
-        <file>Resources/common-light/QRadioButton/radiobutton-unchecked-disabled.png</file>
-        <file>Resources/common-light/QRadioButton/radiobutton-unchecked-hover.png</file>
-        <file>Resources/common-light/QRadioButton/radiobutton-unchecked-pressed.png</file>
-    </qresource>
-    <qresource prefix="/QCheckBox">
-        <file>Resources/common-light/QCheckBox/checkbox-checked.png</file>
-        <file>Resources/common-light/QCheckBox/checkbox-checked-disabled.png</file>
-        <file>Resources/common-light/QCheckBox/checkbox-checked-hover.png</file>
-        <file>Resources/common-light/QCheckBox/checkbox-checked-pressed.png</file>
-        <file>Resources/common-light/QCheckBox/checkbox-partiallychecked.png</file>
-        <file>Resources/common-light/QCheckBox/checkbox-partiallychecked-disabled.png</file>
-        <file>Resources/common-light/QCheckBox/checkbox-partiallychecked-hover.png</file>
-        <file>Resources/common-light/QCheckBox/checkbox-partiallychecked-pressed.png</file>
-        <file>Resources/common-light/QCheckBox/checkbox-unchecked.png</file>
-        <file>Resources/common-light/QCheckBox/checkbox-unchecked-disabled.png</file>
-        <file>Resources/common-light/QCheckBox/checkbox-unchecked-hover.png</file>
-        <file>Resources/common-light/QCheckBox/checkbox-unchecked-pressed.png</file>
     </qresource>
     <qresource prefix="/Images">
         <file>Resources/images/hideButton-statusbar-light.png</file>

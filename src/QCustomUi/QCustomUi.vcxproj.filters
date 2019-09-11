@@ -61,13 +61,10 @@
     <ClInclude Include="Private\QCtmStyle_p.h">
       <Filter>Private</Filter>
     </ClInclude>
-    <ClInclude Include="Private\QCtmWidgetItem_p.h">
-      <Filter>Private</Filter>
-    </ClInclude>
-    <ClInclude Include="Private\QCtmWidgetItemForMainMenu_p.h">
-      <Filter>Private</Filter>
-    </ClInclude>
     <ClInclude Include="QCustomUi.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="QCtmStyleSheet.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="QCtmLogEvent.h">
@@ -219,6 +216,9 @@
     <ClCompile Include="QCtmIPAddressEdit.cpp">
       <Filter>Input</Filter>
     </ClCompile>
+    <ClCompile Include="QCtmStyleSheet.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
     <ClCompile Include="QCtmLogWidget.cpp">
       <Filter>Log</Filter>
     </ClCompile>
@@ -362,6 +362,12 @@
     <QtMoc Include="QCtmIPAddressEdit.h">
       <Filter>Input</Filter>
     </QtMoc>
+    <QtMoc Include="Private\QCtmWidgetItemForMainMenu_p.h">
+      <Filter>Private</Filter>
+    </QtMoc>
+    <QtMoc Include="Private\QCtmWidgetItem_p.h">
+      <Filter>Private</Filter>
+    </QtMoc>
     <QtMoc Include="QCtmLogFilterModel.h">
       <Filter>Log</Filter>
     </QtMoc>
@@ -393,5 +399,13 @@
     <QtRcc Include="QCustomUi.qrc">
       <Filter>Resource Files</Filter>
     </QtRcc>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\stylesheet\default-light.css">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="Resources\stylesheet\sw-light.css">
+      <Filter>Resource Files</Filter>
+    </None>
   </ItemGroup>
 </Project>

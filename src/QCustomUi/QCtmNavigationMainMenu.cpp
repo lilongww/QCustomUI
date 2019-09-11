@@ -48,7 +48,7 @@ struct QCtmNavigationMainMenu::Impl
 
 QCtmNavigationMainMenu::QCtmNavigationMainMenu(QCtmNavigationBar *parent)
 	: QCtmNavigationSidePanel(parent)
-	, m_impl(std::make_shared<Impl>())
+	, m_impl(std::make_unique<Impl>())
 {
 	auto viewPort = new QWidget(this);
 	m_impl->layout = new FlowLayout(viewPort);

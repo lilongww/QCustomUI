@@ -15,7 +15,7 @@ struct QCtmMainMenuButton::Impl
 
 QCtmMainMenuButton::QCtmMainMenuButton(QWidget *parent)
 	: QCtmToolButton(parent)
-	, m_impl(std::make_shared<Impl>())
+	, m_impl(std::make_unique<Impl>())
 {
 	setContentsMargins(QMargins(0, 0, 0, 4));
 	connect(this, &QAbstractButton::pressed, this, [=]() {

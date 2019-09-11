@@ -66,7 +66,7 @@ struct QCtmNavigationBackstageMenu ::Impl
 
 QCtmNavigationBackstageMenu ::QCtmNavigationBackstageMenu (QCtmNavigationBar *parent)
 	: QCtmNavigationSidePanel(parent)
-	, m_impl(std::make_shared<Impl>())
+	, m_impl(std::make_unique<Impl>())
 {
 	m_impl->viewPort = new QWidget(this);
 	m_impl->viewPort->setObjectName("viewport");

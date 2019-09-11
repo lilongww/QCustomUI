@@ -116,7 +116,7 @@ private slots:
     void onItemClicked(bool expand);
 private:
 	struct Impl;
-	std::shared_ptr<Impl> m_impl;
+	std::unique_ptr<Impl> m_impl;
 };
 
 /*!***************************************************************************
@@ -248,7 +248,7 @@ private:
     void insertAction(int index, QAction* action);
 private:
 	struct Impl;
-	std::shared_ptr<Impl> m_impl;
+	std::unique_ptr<Impl> m_impl;
 
 	friend QCtmTree;
 };

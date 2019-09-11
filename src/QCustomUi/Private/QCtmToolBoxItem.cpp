@@ -19,7 +19,7 @@ struct QCtmToolBoxItem::Impl
 
 QCtmToolBoxItem::QCtmToolBoxItem(QWidget *parent)
 	: QWidget(parent)
-    , m_impl(std::make_shared<Impl>())
+    , m_impl(std::make_unique<Impl>())
 {
 	ui.setupUi(this);
 	setObjectName("item");

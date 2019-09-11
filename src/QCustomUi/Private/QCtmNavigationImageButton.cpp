@@ -10,7 +10,7 @@ struct QCtmNavigationImageButton::Impl
 
 QCtmNavigationImageButton::QCtmNavigationImageButton(QWidget *parent)
 	: QCtmToolButton(parent)
-	, m_impl(std::make_shared<Impl>())
+	, m_impl(std::make_unique<Impl>())
 {
 	this->setSizePolicy(QSizePolicy(QSizePolicy::Maximum, QSizePolicy::Preferred));
 	setContentsMargins(QMargins(5, 0, 5, 0));

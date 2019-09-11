@@ -12,7 +12,7 @@ struct QCtmToolBox::Impl
 
 QCtmToolBox::QCtmToolBox(QWidget* parent)
 	: QWidget(parent)
-	, m_impl(std::make_shared<Impl>())
+	, m_impl(std::make_unique<Impl>())
 {
 	m_impl->vSplitter = new QSplitter(this);
 	m_impl->vSplitter->setOrientation(Qt::Vertical);

@@ -32,7 +32,7 @@ struct QCtmTabWidget::Impl
 
 QCtmTabWidget::QCtmTabWidget(QWidget *parent):
 	QTabWidget(parent),
-	m_impl(std::make_shared<Impl>())
+	m_impl(std::make_unique<Impl>())
 {
 	m_impl->cornerWidget = new QWidget(this);
 	m_impl->cornerLayout = new QHBoxLayout(m_impl->cornerWidget);

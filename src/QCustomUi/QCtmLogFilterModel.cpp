@@ -9,7 +9,7 @@ struct QCtmLogFilterModel::Impl
 
 QCtmLogFilterModel::QCtmLogFilterModel(QObject *parent)
     : QSortFilterProxyModel(parent)
-    , m_impl(std::make_shared<Impl>())
+    , m_impl(std::make_unique<Impl>())
 {
 }
 

@@ -8,7 +8,7 @@ struct QCtmAbstractMessageModel::Impl
 
 QCtmAbstractMessageModel::QCtmAbstractMessageModel(QObject *parent)
 	: QAbstractTableModel(parent)
-	, m_impl(std::make_shared<Impl>())
+	, m_impl(std::make_unique<Impl>())
 {
 }
 

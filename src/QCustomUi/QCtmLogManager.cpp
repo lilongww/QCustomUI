@@ -115,10 +115,15 @@ void qtMessageHandle(QtMsgType type, const QMessageLogContext& context, const QS
 }
 
 QCtmLogManager::QCtmLogManager()
-    : m_impl(std::make_shared<Impl>())
+    : m_impl(std::make_unique<Impl>())
 {
     m_impl->datetime = QDateTime::currentDateTime();
     m_impl->logPath = qApp->applicationDirPath() + "/logs";
+	QDir dir(m_impl->logPath);
+	if (!dir.exists())
+	{
+		dir.mkpath(m_impl->logPath);
+	}
     for (int i = 0; i < sizeof(m_impl->saveLogs) / sizeof(bool); i++)
     {
         m_impl->saveLogs[i] = true;

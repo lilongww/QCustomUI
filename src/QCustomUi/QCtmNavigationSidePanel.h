@@ -110,7 +110,7 @@ private:
 	void paintShadow(int shadowWidth);
 private:
 	struct Impl;
-	std::shared_ptr<Impl> m_impl;
+	std::unique_ptr<Impl> m_impl;
 
 	friend class QCtmNavigationBar;
 };

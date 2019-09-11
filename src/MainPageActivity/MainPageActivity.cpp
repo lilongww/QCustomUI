@@ -60,7 +60,7 @@ bool MainPageActivity::initialize(SWContextInterface* context)
     {
         projTree->addTopLevelItem(new QTreeWidgetItem(QStringList()<<QString("Project%1").arg(i)));
     }
-    m_impl->subSideBar->addWidget(tr("Test Tree"), projTree);
+    m_impl->subSideBar->addWidget(tr("Test"), projTree);
 
     {
         auto action = new QAction("Main Page Action",nullptr);
@@ -81,7 +81,7 @@ bool MainPageActivity::initialize(SWContextInterface* context)
 	{
 		MenuInfo info;
 		info.alwaysShow = false;
-		info.menu = new QMenu("Main Page Menu");
+		info.menu = new QMenu("TestMenu");
 		info.menu->addAction("MainPage");
 		info.menu->addAction("Test");
 		m_impl->menus.append(info);

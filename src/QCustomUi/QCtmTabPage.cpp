@@ -120,7 +120,7 @@ void QCtmTabPage::setCentralWidget(QWidget* widget)
 
 QCtmTabPage::QCtmTabPage(QCtmTabWidget* parent)
 	: QWidget(parent)
-	, m_impl(std::make_shared<Impl>())
+	, m_impl(std::make_unique<Impl>())
 {
 	assert(parent);
 	m_impl->cornerWidget = new QWidget;

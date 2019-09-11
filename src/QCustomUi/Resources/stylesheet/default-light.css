@@ -80,17 +80,17 @@ QComboBox::drop-down:pressed
 
 QComboBox::down-arrow
 {
-    image: url(:/QComboBox/Resources/common-light/QComboBox/down-arrow.png);
+    image: url(:/QComboBox/Resources/QComboBox/down-arrow.png);
 }
 
 QComboBox::down-arrow:pressed
 {
-    image: url(:/QComboBox/Resources/common-light/QComboBox/down-arrow-pressed.png);
+    image: url(:/QComboBox/Resources/QComboBox/down-arrow-pressed.png);
 }
 
 QComboBox::down-arrow:disabled
 {
-    image: url(:/QComboBox/Resources/common-light/QComboBox/down-arrow-disabled.png);
+    image: url(:/QComboBox/Resources/QComboBox/down-arrow-disabled.png);
 }
 
 QComboBox QListView
@@ -195,32 +195,32 @@ QSpinBox::up-button:pressed, QSpinBox::down-button:pressed, QDoubleSpinBox::up-b
 
 QSpinBox::up-arrow, QDoubleSpinBox::up-arrow
 {
-    image: url(:/QSpinBox/Resources/common-light/QSpinBox/up-button.png);
+    image: url(:/QSpinBox/Resources/QSpinBox/up-button.png);
 }
 
 QSpinBox::down-arrow, QDoubleSpinBox::down-arrow
 {
-    image: url(:/QSpinBox/Resources/common-light/QSpinBox/down-button.png);
+    image: url(:/QSpinBox/Resources/QSpinBox/down-button.png);
 }
 
 QSpinBox::up-arrow:pressed, QDoubleSpinBox::up-arrow:pressed
 {
-    image: url(:/QSpinBox/Resources/common-light/QSpinBox/up-button-pressed.png);
+    image: url(:/QSpinBox/Resources/QSpinBox/up-button-pressed.png);
 }
 
 QSpinBox::down-arrow:pressed, QDoubleSpinBox::down-arrow:pressed
 {
-    image: url(:/QSpinBox/Resources/common-light/QSpinBox/down-button-pressed.png);
+    image: url(:/QSpinBox/Resources/QSpinBox/down-button-pressed.png);
 }
 
 QSpinBox::up-arrow:disabled, QDoubleSpinBox::up-arrow:disabled
 {
-    image: url(:/QSpinBox/Resources/common-light/QSpinBox/up-button-disabled.png);
+    image: url(:/QSpinBox/Resources/QSpinBox/up-button-disabled.png);
 }
 
 QSpinBox::down-arrow:disabled, QDoubleSpinBox::down-arrow:disabled
 {
-    image: url(:/QSpinBox/Resources/common-light/QSpinBox/down-button-disabled.png);
+    image: url(:/QSpinBox/Resources/QSpinBox/down-button-disabled.png);
 }
 
 /*****************************QMenu*******************************/
@@ -313,73 +313,73 @@ QScrollBar::handle:horizontal
 QScrollBar::add-line:horizontal
 {
     width: 16px;
-    image: url(:/QScrollBar/Resources/common-light/QScrollBar/addLineH.png);
+    image: url(:/QScrollBar/Resources/QScrollBar/addLineH.png);
     subcontrol-position: right;
     subcontrol-origin: margin;
 }
 
 QScrollBar::add-line:horizontal:hover
 {
-    image: url(:/QScrollBar/Resources/common-light/QScrollBar/addLineH-hover.png);
+    image: url(:/QScrollBar/Resources/QScrollBar/addLineH-hover.png);
 }
 
 QScrollBar::add-line:horizontal:pressed
 {
-    image: url(:/QScrollBar/Resources/common-light/QScrollBar/addLineH-pressed.png);
+    image: url(:/QScrollBar/Resources/QScrollBar/addLineH-pressed.png);
 }
 
 QScrollBar::sub-line:horizontal
 {
     width: 16px;
-    image: url(:/QScrollBar/Resources/common-light/QScrollBar/subLineH.png);
+    image: url(:/QScrollBar/Resources/QScrollBar/subLineH.png);
     subcontrol-position: left;
     subcontrol-origin: margin;
 }
 
 QScrollBar::sub-line:horizontal:hover
 {
-    image: url(:/QScrollBar/Resources/common-light/QScrollBar/subLineH-hover.png);
+    image: url(:/QScrollBar/Resources/QScrollBar/subLineH-hover.png);
 }
 
 QScrollBar::sub-line:horizontal:pressed
 {
-    image: url(:/QScrollBar/Resources/common-light/QScrollBar/subLineH-pressed.png);
+    image: url(:/QScrollBar/Resources/QScrollBar/subLineH-pressed.png);
 }
 
 QScrollBar::sub-line:vertical
 {
     height: 16px;
-    image: url(:/QScrollBar/Resources/common-light/QScrollBar/addLineV.png);
+    image: url(:/QScrollBar/Resources/QScrollBar/addLineV.png);
     subcontrol-position: top;
     subcontrol-origin: margin;
 }
 
 QScrollBar::sub-line:vertical:hover
 {
-    image: url(:/QScrollBar/Resources/common-light/QScrollBar/addLineV-hover.png);
+    image: url(:/QScrollBar/Resources/QScrollBar/addLineV-hover.png);
 }
 
 QScrollBar::sub-line:vertical:pressed
 {
-    image: url(:/QScrollBar/Resources/common-light/QScrollBar/addLineV-pressed.png);
+    image: url(:/QScrollBar/Resources/QScrollBar/addLineV-pressed.png);
 }
 
 QScrollBar::add-line:vertical
 {
     height: 16px;
-    image: url(:/QScrollBar/Resources/common-light/QScrollBar/subLineV.png);
+    image: url(:/QScrollBar/Resources/QScrollBar/subLineV.png);
     subcontrol-position: bottom;
     subcontrol-origin: margin;
 }
 
 QScrollBar::add-line:vertical:hover
 {
-    image: url(:/QScrollBar/Resources/common-light/QScrollBar/subLineV-hover.png);
+    image: url(:/QScrollBar/Resources/QScrollBar/subLineV-hover.png);
 }
 
 QScrollBar::add-line:vertical:pressed
 {
-    image: url(:/QScrollBar/Resources/common-light/QScrollBar/subLineV-pressed.png);
+    image: url(:/QScrollBar/Resources/QScrollBar/subLineV-pressed.png);
 }
 
 QScrollBar::add-page, QScrollBar::sub-page
@@ -418,42 +418,42 @@ QRadioButton::indicator
 
 QRadioButton::indicator::unchecked
 {
-    image: url(:/QRadioButton/Resources/common-light/QRadioButton/radiobutton-unchecked.png);
+    image: url(:/QRadioButton/Resources/QRadioButton/radiobutton-unchecked.png);
 }
 
 QRadioButton::indicator::unchecked:hover
 {
-    image: url(:/QRadioButton/Resources/common-light/QRadioButton/radiobutton-unchecked-hover.png);
+    image: url(:/QRadioButton/Resources/QRadioButton/radiobutton-unchecked-hover.png);
 }
 
 QRadioButton::indicator::unchecked:pressed
 {
-    image: url(:/QRadioButton/Resources/common-light/QRadioButton/radiobutton-unchecked-pressed.png);
+    image: url(:/QRadioButton/Resources/QRadioButton/radiobutton-unchecked-pressed.png);
 }
 
 QRadioButton::indicator::unchecked:disabled
 {
-    image: url(:/QRadioButton/Resources/common-light/QRadioButton/radiobutton-unchecked-disabled.png);
+    image: url(:/QRadioButton/Resources/QRadioButton/radiobutton-unchecked-disabled.png);
 }
 
 QRadioButton::indicator::checked
 {
-    image: url(:/QRadioButton/Resources/common-light/QRadioButton/radiobutton-checked.png);
+    image: url(:/QRadioButton/Resources/QRadioButton/radiobutton-checked.png);
 }
 
 QRadioButton::indicator::checked:hover
 {
-    image: url(:/QRadioButton/Resources/common-light/QRadioButton/radiobutton-checked-hover.png);
+    image: url(:/QRadioButton/Resources/QRadioButton/radiobutton-checked-hover.png);
 }
 
 QRadioButton::indicator::checked:pressed
 {
-    image: url(:/QRadioButton/Resources/common-light/QRadioButton/radiobutton-checked-pressed.png);
+    image: url(:/QRadioButton/Resources/QRadioButton/radiobutton-checked-pressed.png);
 }
 
 QRadioButton::indicator::checked:disabled
 {
-    image: url(:/QRadioButton/Resources/common-light/QRadioButton/radiobutton-checked-disabled.png);
+    image: url(:/QRadioButton/Resources/QRadioButton/radiobutton-checked-disabled.png);
 }
 
 /***************************************QCheckBox************************************************/
@@ -466,62 +466,62 @@ QCheckBox::indicator
 
 QCheckBox::indicator::unchecked
 {
-    image: url(:/QCheckBox/Resources/common-light/QCheckBox/checkbox-unchecked.png);
+    image: url(:/QCheckBox/Resources/QCheckBox/checkbox-unchecked.png);
 }
 
 QCheckBox::indicator::unchecked:hover
 {
-    image: url(:/QCheckBox/Resources/common-light/QCheckBox/checkbox-unchecked-hover.png);
+    image: url(:/QCheckBox/Resources/QCheckBox/checkbox-unchecked-hover.png);
 }
 
 QCheckBox::indicator::unchecked:pressed
 {
-    image: url(:/QCheckBox/Resources/common-light/QCheckBox/checkbox-unchecked-pressed.png);
+    image: url(:/QCheckBox/Resources/QCheckBox/checkbox-unchecked-pressed.png);
 }
 
 QCheckBox::indicator::unchecked:disabled
 {
-    image: url(:/QCheckBox/Resources/common-light/QCheckBox/checkbox-unchecked-disabled.png);
+    image: url(:/QCheckBox/Resources/QCheckBox/checkbox-unchecked-disabled.png);
 }
 
 QCheckBox::indicator::checked
 {
-    image: url(:/QCheckBox/Resources/common-light/QCheckBox/checkbox-checked.png);
+    image: url(:/QCheckBox/Resources/QCheckBox/checkbox-checked.png);
 }
 
 QCheckBox::indicator::checked:hover
 {
-    image: url(:/QCheckBox/Resources/common-light/QCheckBox/checkbox-checked-hover.png);
+    image: url(:/QCheckBox/Resources/QCheckBox/checkbox-checked-hover.png);
 }
 
 QCheckBox::indicator::checked:pressed
 {
-    image: url(:/QCheckBox/Resources/common-light/QCheckBox/checkbox-checked-pressed.png);
+    image: url(:/QCheckBox/Resources/QCheckBox/checkbox-checked-pressed.png);
 }
 
 QCheckBox::indicator::checked:disabled
 {
-    image: url(:/QCheckBox/Resources/common-light/QCheckBox/checkbox-checked-disabled.png);
+    image: url(:/QCheckBox/Resources/QCheckBox/checkbox-checked-disabled.png);
 }
 
 QCheckBox::indicator::indeterminate
 {
-    image: url(:/QCheckBox/Resources/common-light/QCheckBox/checkbox-partiallychecked.png);
+    image: url(:/QCheckBox/Resources/QCheckBox/checkbox-partiallychecked.png);
 }
 
 QCheckBox::indicator::indeterminate:hover
 {
-    image: url(:/QCheckBox/Resources/common-light/QCheckBox/checkbox-partiallychecked-hover.png);
+    image: url(:/QCheckBox/Resources/QCheckBox/checkbox-partiallychecked-hover.png);
 }
 
 QCheckBox::indicator::indeterminate:pressed
 {
-    image: url(:/QCheckBox/Resources/common-light/QCheckBox/checkbox-partiallychecked-pressed.png);
+    image: url(:/QCheckBox/Resources/QCheckBox/checkbox-partiallychecked-pressed.png);
 }
 
 QCheckBox::indicator::indeterminate:disabled
 {
-    image: url(:/QCheckBox/Resources/common-light/QCheckBox/checkbox-partiallychecked-disabled.png);
+    image: url(:/QCheckBox/Resources/QCheckBox/checkbox-partiallychecked-disabled.png);
 }
 
 /****************************QListView************************************/

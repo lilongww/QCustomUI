@@ -371,17 +371,13 @@ QString Launcher::defaultStyleSheet(const QString& theme) const
 {
     if (theme.isEmpty() || theme == "Light")
     {
-        QString qss;
-        QStringList files{ ":/qss/Resources/default-light.css" , ":/qss/Resources/sw-light.css", ":/qss/Resources/Launcher-light.css" };
-        for (auto path : files)
-        {
-            QFile file(path);
-            if (file.open(QFile::ReadOnly))
-            {
-                qss.append(file.readAll());
-            }
-        }
-        return qss;
+		QString qss;
+		QFile file(":/qss/Resources/Launcher-light.css");
+		if (file.open(QFile::ReadOnly))
+		{
+			qss = file.readAll();
+		}
+		return std::move(QCtmStyleSheet::defaultStyleSheet() + qss);
     }
     return QString();
 }

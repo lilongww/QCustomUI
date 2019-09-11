@@ -36,7 +36,7 @@ struct QCtmMultiComboBox::Impl
 
 QCtmMultiComboBox::QCtmMultiComboBox(QWidget *parent)
 	: QComboBox(parent)
-	, m_impl(std::make_shared<Impl>())
+	, m_impl(std::make_unique<Impl>())
 {
 	m_impl->view = new QListView(this);
 	this->setView(m_impl->view);

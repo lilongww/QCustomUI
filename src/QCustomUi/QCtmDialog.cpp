@@ -18,7 +18,7 @@ struct QCtmDialog::Impl
 
 QCtmDialog::QCtmDialog(QWidget *parent)
 	: QDialog(parent)
-	, m_impl(std::make_shared<Impl>())
+	, m_impl(std::make_unique<Impl>())
 {
 	m_impl->title = new QCtmTitleBar(this);
     m_impl->title->setObjectName("ctmDialogTitleBar");
