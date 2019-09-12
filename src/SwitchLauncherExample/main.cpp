@@ -6,8 +6,13 @@
 int main(int argc, char *argv[])
 {
 	SWApplication::initBeforeStructure();
+	SWApplication::setSingleton(true);
+	SWApplication::setSingletonKey("sw_example");
 	SWApplication a(argc, argv);
-	a.mainWindow()->resize(1000, 600);
-	a.mainWindow()->showMaximized();
+	if (a.isSuccessful())
+	{
+		a.mainWindow()->resize(1000, 600);
+		a.mainWindow()->showMaximized();
+	}
 	return a.exec();
 }
