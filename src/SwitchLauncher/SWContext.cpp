@@ -160,7 +160,7 @@ const QString& SWContext::language() const
 void SWContext::setAttributes(SWContextAttributes features)
 {
     m_impl->features = features;
-    if (features.testFlag(SWContextAttribute::LogInsertDESC))
+    if (features.testFlag(SWContextAttribute::SWCA_LogInsertDESC))
     {
         m_impl->launcher->logWidget()->setLogInsertMode(DESC);
     }

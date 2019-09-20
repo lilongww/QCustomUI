@@ -237,8 +237,8 @@ bool Launcher::setCurrentActivity(SWPluginInterface* activity, const SWUserData&
     if (!activity)
         return true;
     m_impl->currentActivity = activity;
-    if (activity->attributes().testFlag(SWPluginAttribute::DontShowPluginNameInTitle) 
-        || SWContext::instance().attributes().testFlag(SWContextAttribute::DontShowTitle))
+    if (activity->attributes().testFlag(SWPluginAttribute::SWPA_DontShowPluginNameInTitle) 
+        || SWContext::instance().attributes().testFlag(SWContextAttribute::SWCA_DontShowTitle))
         setWindowTitle("");
     else
         setWindowTitle(activity->name());
@@ -405,7 +405,7 @@ void Launcher::showEvent(QShowEvent* e)
         for (auto act : ActivityManager::instance().activites())
         {
             auto action = m_impl->mainMenu->addAction(act->icon(), act->name());
-            if (act->attributes().testFlag(SWPluginAttribute::DontShowInPluginMenu))
+            if (act->attributes().testFlag(SWPluginAttribute::SWPA_DontShowInPluginMenu))
             {
                 action->setVisible(false);
             }
