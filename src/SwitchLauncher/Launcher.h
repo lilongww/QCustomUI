@@ -14,8 +14,6 @@ public:
     Launcher(QWidget *parent = nullptr);
     ~Launcher();
 
-    QCtmNavigationMainMenu* mainMenu() const;
-
     bool setCurrentActivity(SWPluginInterface* activity, const SWUserData& data = SWUserData());
 	SWPluginInterface* currentActivity() const;
 

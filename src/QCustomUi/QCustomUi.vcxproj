@@ -240,6 +240,7 @@
     <QtRcc Include="QCustomUi.qrc" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="qcustomui_zh.ts" />
     <None Include="Resources\stylesheet\default-light.css" />
     <None Include="Resources\stylesheet\sw-light.css" />
   </ItemGroup>

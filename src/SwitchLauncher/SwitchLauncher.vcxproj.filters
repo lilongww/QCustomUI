@@ -24,6 +24,11 @@
       <Extensions>moc;h;cpp</Extensions>
       <SourceControlFiles>False</SourceControlFiles>
     </Filter>
+    <Filter Include="Translation Files">
+      <UniqueIdentifier>{639EADAA-A684-42e4-A9AD-28FC9BCB8F7C}</UniqueIdentifier>
+      <Extensions>ts</Extensions>
+      <ParseFiles>false</ParseFiles>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="switchlauncher_global.h">
@@ -67,6 +72,9 @@
   <ItemGroup>
     <None Include="Resources\Launcher-light.css">
       <Filter>Resource Files</Filter>
+    </None>
+    <None Include="switchlauncher_zh.ts">
+      <Filter>Translation Files</Filter>
     </None>
   </ItemGroup>
   <ItemGroup>

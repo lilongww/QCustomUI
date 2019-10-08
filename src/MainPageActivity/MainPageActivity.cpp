@@ -50,6 +50,7 @@ bool MainPageActivity::initialize(SWContextInterface* context)
 {
     //context->setMainWindowShadowless(true);
     m_impl->context = context;
+	m_impl->context->setLanguage("CN");
     auto qss = m_impl->context->defaultStyleSheet("light");
     m_impl->content = new StyleWidget;
     m_impl->subSideBar = new QCtmToolBox(nullptr);

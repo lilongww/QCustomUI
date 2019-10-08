@@ -34,6 +34,7 @@
         <file>Resources/clear-light.png</file>
         <file>Resources/drop-down.png</file>
         <file>Resources/drop-down-light.png</file>
+        <file>qcustomui_zh.qm</file>
     </qresource>
     <qresource prefix="/stylesheet">
         <file>Resources/stylesheet/default-light.css</file>

@@ -13,17 +13,17 @@ struct SWContext::Impl
 	Launcher* launcher;
     QMap<QString, QList<QTranslator*>> translators;
     SWContextAttributes features;
-	QString currentLanguage{ "EN" };
+	QString currentLanguage{ "CN" };
 
     void initTranslators(QObject* parent)
     {
         {//CN
             QTranslator* translator = new QTranslator(parent);
-            if (translator->load(":/QCustomUi/qcustomui_zh.qm"), qApp->applicationDirPath().toLocal8Bit().data());
+            if (translator->load(":/QCustomUi/qcustomui_zh.qm1"), qApp->applicationDirPath().toLocal8Bit().data());
                 translators["CN"].push_back(translator);
 
             translator = new QTranslator(parent);
-            if (translator->load(":/translation/launcher_zh.qm"), qApp->applicationDirPath().toLocal8Bit().data());
+            if (translator->load(":/translation/switchlauncher_zh.qm"), qApp->applicationDirPath().toLocal8Bit().data());
                 translators["CN"].push_back(translator);
         }
     }
@@ -33,7 +33,7 @@ SWContext::SWContext()
 	: m_impl(std::make_shared<Impl>())
 {
     m_impl->initTranslators(qApp);
-    this->setLanguage("EN");
+    this->setLanguage("CN");
 	m_impl->launcher = new Launcher;
 }
 

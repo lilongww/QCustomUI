@@ -32,6 +32,11 @@
     <Filter Include="Private">
       <UniqueIdentifier>{8fa07f5c-4cfb-4bd0-8a23-0c1634d32fc0}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Translation Files">
+      <UniqueIdentifier>{639EADAA-A684-42e4-A9AD-28FC9BCB8F7C}</UniqueIdentifier>
+      <Extensions>ts</Extensions>
+      <ParseFiles>false</ParseFiles>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="qcustomui_global.h">
@@ -379,6 +384,9 @@
     </None>
     <None Include="Resources\stylesheet\sw-light.css">
       <Filter>Resource Files</Filter>
+    </None>
+    <None Include="qcustomui_zh.ts">
+      <Filter>Translation Files</Filter>
     </None>
   </ItemGroup>
 </Project>

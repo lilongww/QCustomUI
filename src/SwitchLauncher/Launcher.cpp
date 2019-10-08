@@ -8,7 +8,6 @@
 
 struct Launcher::Impl
 {
-	QCtmNavigationMainMenu* mainMenu{ nullptr };
 	bool first{ true };
 	SWPluginInterface* currentActivity{ nullptr };
 	QMenuBar* menuBar{ nullptr };
@@ -58,10 +57,6 @@ void Launcher::initUi()
     tab->addActions(m_impl->logWidget->actions());
 
 	this->titleWidget()->setShowIcon(false);
-
-    m_impl->mainMenu = new QCtmNavigationMainMenu(navigationBar());
-    auto mainMenu = navigationBar()->addPane("", QCtmNavigationBar::Left, m_impl->mainMenu);
-    mainMenu->setObjectName("mainMenu");
 
 	m_impl->statusBar = new QStatusBar(this);
 	this->setStatusBar(m_impl->statusBar);
@@ -161,10 +156,6 @@ void Launcher::initUi()
 	}
 }
 
-QCtmNavigationMainMenu* Launcher::mainMenu() const
-{
-    return m_impl->mainMenu;
-}
 
 bool Launcher::setCurrentActivity(SWPluginInterface* activity, const SWUserData& data)
 {
@@ -404,12 +395,12 @@ void Launcher::showEvent(QShowEvent* e)
         m_impl->first = false;
         for (auto act : ActivityManager::instance().activites())
         {
-            auto action = m_impl->mainMenu->addAction(act->icon(), act->name());
+			auto action = navigationBar()->addAction(act->icon(), act->name(), QCtmNavigationBar::ActionPosition::Left);
             if (act->attributes().testFlag(SWPluginAttribute::SWPA_DontShowInPluginMenu))
             {
                 action->setVisible(false);
             }
-			connect(action, &QAction::triggered, this, [=](bool) {setCurrentActivity(act); m_impl->mainMenu->close(); });
+			connect(action, &QAction::triggered, this, [=](bool) {setCurrentActivity(act);});
         }
 		if (ActivityManager::instance().activites().isEmpty())
 			return;
