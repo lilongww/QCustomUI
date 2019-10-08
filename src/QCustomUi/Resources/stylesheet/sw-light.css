@@ -56,10 +56,6 @@ QCtmTitleBar #minimumSizeBtn:pressed, QCtmTitleBar #maximumSizeBtn:pressed, QCtm
 
 .QCtmTitleBar QMenuBar::item
 {
-    padding-bottom: 6px;
-    padding-top: 6px;
-    padding-right: 8px;
-    padding-left: 8px;
     font-family: 'Microsoft YaHei';
     font-weight: 400;
     color: rgba(94,94,94,1);
