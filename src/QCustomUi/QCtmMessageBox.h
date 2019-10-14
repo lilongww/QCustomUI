@@ -10,6 +10,22 @@ class QCUSTOMUI_EXPORT QCtmMessageBox : public QCtmDialog
     Q_OBJECT
 
 public:
+	enum ButtonRole {
+		// keep this in sync with QDialogButtonBox::ButtonRole and QPlatformDialogHelper::ButtonRole
+		InvalidRole = -1,
+		AcceptRole,
+		RejectRole,
+		DestructiveRole,
+		ActionRole,
+		HelpRole,
+		YesRole,
+		NoRole,
+		ResetRole,
+		ApplyRole,
+
+		NRoles
+	};
+
     enum StandardButton {
         // keep this in sync with QMessageBox::StandardButton and QPlatformDialogHelper::StandardButton
         NoButton = 0x00000000,
@@ -65,6 +81,11 @@ public:
     StandardButton defaultButton();
     QAbstractButton* clickedButton() const;
     StandardButton standardButton(QAbstractButton* button) const;
+	void addButton(QAbstractButton* button, ButtonRole role);
+	QPushButton* addButton(const QString& text, ButtonRole role);
+	QPushButton* addButton(StandardButton button);
+
+	void removeButton(QAbstractButton* button);
 
     static StandardButton critical(QWidget *parent
         , const QString &title
