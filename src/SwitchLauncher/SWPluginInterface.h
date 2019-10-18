@@ -329,4 +329,9 @@ public:
      * @Return:		样式源码
      */
     virtual QString defaultStyleSheet(const QString& theme) const = 0;
+
+	/**
+	 * @brief		获取主窗口地址
+	 */
+	virtual QCtmMainWindow* mainWindow() const = 0;
 };
