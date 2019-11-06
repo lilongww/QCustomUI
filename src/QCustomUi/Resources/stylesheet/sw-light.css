@@ -26,21 +26,23 @@
     qproperty-icon: url(:/QCustomUi/Resources/maximize_max-light.png);
 }
 
-QCtmTitleBar #closeBtn, QCtmTitleBar #minimumSizeBtn, QCtmTitleBar #maximumSizeBtn
+QCtmTitleBar QAbstractButton
 {
+    padding-left: 5px;
+    padding-right: 5px;
 	border: none;
 	background-color: transparent;
 }
 
-QCtmTitleBar #minimumSizeBtn:hover, QCtmTitleBar #maximumSizeBtn:hover, QCtmTitleBar #closeBtn::hover
-{
-    background-color: #C6C6C6;
-}
+    QCtmTitleBar QAbstractButton:hover {
+        background-color: #C6C6C6;
+        border: none;
+    }
 
-QCtmTitleBar #minimumSizeBtn:pressed, QCtmTitleBar #maximumSizeBtn:pressed, QCtmTitleBar #closeBtn::pressed
-{
-    background-color: #C6C6C6;
-}
+    QCtmTitleBar QAbstractButton:pressed {
+        background-color: #C0C0C0;
+        border: none;
+    }
 
 .QCtmTitleBar
 {
@@ -70,12 +72,6 @@ QCtmTitleBar #minimumSizeBtn:pressed, QCtmTitleBar #maximumSizeBtn:pressed, QCtm
 .QCtmTitleBar QMenuBar::item:pressed
 {
 	background-color: #C6C6C6;
-}
-
-.QCtmTitleBar QCtmToolButton
-{
-    background: transparent;
-    color: white;
 }
 
 /*********************************************************************/
