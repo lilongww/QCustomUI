@@ -224,6 +224,9 @@
     <ClCompile Include="QCtmStyleSheet.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="QCtmEditLabel.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <QtMoc Include="QCtmAbstractLogModel.h">
@@ -357,6 +360,9 @@
     </QtMoc>
     <QtMoc Include="Private\QCtmWidgetItem_p.h">
       <Filter>Private</Filter>
+    </QtMoc>
+    <QtMoc Include="QCtmEditLabel.h">
+      <Filter>Header Files</Filter>
     </QtMoc>
   </ItemGroup>
   <ItemGroup>

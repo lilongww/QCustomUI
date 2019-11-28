@@ -28,3 +28,4 @@
 #include "QCtmMultiComboBox.h"
 #include "QCtmIPAddressEdit.h"
 #include "QCtmStyleSheet.h"
+#include "QCtmEditLabel.h"

@@ -35,6 +35,9 @@
         <file>Resources/drop-down.png</file>
         <file>Resources/drop-down-light.png</file>
         <file>qcustomui_zh.qm</file>
+        <file>Resources/edit.png</file>
+        <file>Resources/cancel.png</file>
+        <file>Resources/ok.png</file>
     </qresource>
     <qresource prefix="/stylesheet">
         <file>Resources/stylesheet/default-light.css</file>

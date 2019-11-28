@@ -917,3 +917,19 @@ QCtmNavigationMainMenu QCtmMainMenuButton
     text-align: left bottom;
     font-weight: bold;
 }
+
+QCtmEditLabel QToolButton
+{
+    background: #E1E1E1;
+    border: none;
+}
+
+QCtmEditLabel QToolButton:hover
+{
+    background: #E1F0FF;
+}
+
+QCtmEditLabel QToolButton:pressed
+{
+    background: #CBE5FF;
+}
