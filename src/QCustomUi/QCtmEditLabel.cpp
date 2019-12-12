@@ -16,11 +16,17 @@ struct QCtmEditLabel::Impl
 	QToolButton* editButton{ nullptr };
 };
 
-QCtmEditLabel::QCtmEditLabel(QWidget *parent)
-	: QLabel(parent)
+QCtmEditLabel::QCtmEditLabel(QWidget *parent, Qt::WindowFlags f)
+	: QLabel(parent, f)
 	, m_impl(std::make_unique<Impl>())
 {
 	init();
+}
+
+QCtmEditLabel::QCtmEditLabel(const QString& text, QWidget* parent /*= nullptr*/, Qt::WindowFlags f)
+	: QCtmEditLabel(parent, f)
+{
+	setText(text);
 }
 
 QCtmEditLabel::~QCtmEditLabel()

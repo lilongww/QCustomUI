@@ -14,7 +14,8 @@ class QCUSTOMUI_EXPORT QCtmEditLabel : public QLabel
 	Q_PROPERTY(bool editable READ editable WRITE setEditable)
 	Q_PROPERTY(QIcon editButtonIcon READ editButtonIcon WRITE setEditButtonIcon)
 public:
-	QCtmEditLabel(QWidget *parent);
+	QCtmEditLabel(QWidget *parent = nullptr, Qt::WindowFlags f = Qt::WindowFlags());
+	QCtmEditLabel(const QString& text, QWidget* parent = nullptr, Qt::WindowFlags f = Qt::WindowFlags());
 	~QCtmEditLabel();
 
 	void setEditable(bool flag);
