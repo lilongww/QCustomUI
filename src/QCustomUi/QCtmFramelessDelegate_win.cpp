@@ -157,7 +157,6 @@ bool QCtmWinFramelessDelegate::nativeEvent(const QByteArray& eventType
 	break;
 	case WM_NCHITTEST:
 	{
-		qDebug("%x : %x", this, msg->message);
 		QPoint globalPos = QCursor::pos();
 		int x = globalPos.x();
 		int y = globalPos.y();
