@@ -357,14 +357,16 @@ void QCtmWinFramelessDelegate::setWindowLong()
 	long style;
 	if (QtWin::isCompositionEnabled())
 	{
-		if (m_impl->parent->windowFlags().testFlag(Qt::WindowMaximizeButtonHint))
+		if (m_impl->parent->maximumSize() == QSize(QWIDGETSIZE_MAX, QWIDGETSIZE_MAX)
+			&& m_impl->parent->windowFlags().testFlag(Qt::WindowMaximizeButtonHint))
 			style = AeroBorderlessFlag;
 		else
 			style = AeroBorderlessFixedFlag;
 	}
 	else
 	{
-		if (m_impl->parent->windowFlags().testFlag(Qt::WindowMaximizeButtonHint))
+		if (m_impl->parent->maximumSize() == QSize(QWIDGETSIZE_MAX, QWIDGETSIZE_MAX)
+			&& m_impl->parent->windowFlags().testFlag(Qt::WindowMaximizeButtonHint))
 			style = BasicBorderlessFlag;
 		else
 			style = BasicBorderlessFixedFlag;
