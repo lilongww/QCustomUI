@@ -35,7 +35,6 @@ QCtmWinFramelessDelegate::QCtmWinFramelessDelegate(QWidget* parent, const QWidge
 	parent->setWindowFlags(parent->windowFlags() | Qt::FramelessWindowHint | Qt::WindowMinMaxButtonsHint | Qt::WindowCloseButtonHint | Qt::WindowSystemMenuHint);
 	parent->installEventFilter(this);
 
-	//SetWindowPos(hwnd, nullptr, 0, 0, 0, 0, SWP_FRAMECHANGED | SWP_NOMOVE | SWP_NOSIZE);
 	m_impl->moveBars = moveBars;
 }
 
@@ -376,6 +375,9 @@ void QCtmWinFramelessDelegate::setWindowLong()
 	{
 		QtWin::extendFrameIntoClientArea(m_impl->parent, 1, 1, 1, 1);
 	}
+
+	SetWindowPos(hwnd, nullptr, 0, 0, 0, 0, SWP_FRAMECHANGED | SWP_NOMOVE | SWP_NOSIZE);
+
 }
 
 #endif

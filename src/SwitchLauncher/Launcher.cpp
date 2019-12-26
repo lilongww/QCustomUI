@@ -30,6 +30,7 @@ Launcher::Launcher(QWidget *parent)
     : QCtmMainWindow(parent)
     , m_impl(std::make_shared<Impl>())
 {
+	resize(1000, 600);
     initUi();
 }
 
@@ -407,6 +408,7 @@ void Launcher::showEvent(QShowEvent* e)
         setCurrentActivity(ActivityManager::instance().activites().first());
         setSubSideBarWidth(250);
     }
+	QCtmMainWindow::showEvent(e);
 }
 
 void Launcher::closeEvent(QCloseEvent* e)
