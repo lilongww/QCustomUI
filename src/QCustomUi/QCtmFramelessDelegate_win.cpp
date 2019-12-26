@@ -17,6 +17,8 @@
 
 constexpr long AeroBorderlessFlag = WS_POPUP | WS_THICKFRAME | WS_CAPTION | WS_SYSMENU | WS_MAXIMIZEBOX | WS_MINIMIZEBOX;
 constexpr long BasicBorderlessFlag = WS_POPUP | WS_THICKFRAME | WS_SYSMENU | WS_MAXIMIZEBOX | WS_MINIMIZEBOX;
+constexpr long AeroBorderlessFixedFlag = WS_POPUP | WS_CAPTION | WS_SYSMENU | WS_MAXIMIZEBOX | WS_MINIMIZEBOX;
+constexpr long BasicBorderlessFixedFlag = WS_POPUP | WS_SYSMENU | WS_MAXIMIZEBOX | WS_MINIMIZEBOX;
 
 struct QCtmWinFramelessDelegate::Impl
 {
@@ -173,6 +175,54 @@ bool QCtmWinFramelessDelegate::nativeEvent(const QByteArray& eventType
 
 		auto localPos = m_impl->parent->mapFromGlobal(globalPos);
 
+		if (x >= winrect.left && x <= winrect.left + borderX) {
+			if (y >= winrect.top && y <= winrect.top + borderY) {
+				*result = HTTOPLEFT;
+				return true;
+			}
+			if (y > winrect.top + borderY && y < winrect.bottom - borderY) {
+				*result = HTLEFT;
+				return true;
+			}
+			if (y >= winrect.bottom - borderY && y <= winrect.bottom) {
+				*result = HTBOTTOMLEFT;
+				return true;
+			}
+		}
+		else if (x > winrect.left + borderX && x < winrect.right - borderX) {
+			if (y >= winrect.top && y <= winrect.top + borderY) {
+				*result = HTTOP;
+				return true;
+			}
+			if (y > winrect.top + borderY && y < winrect.top + borderY) {
+				*result = HTCAPTION;
+				return true;
+			}
+			if (y >= winrect.bottom - borderY && y <= winrect.bottom) {
+				*result = HTBOTTOM;
+				return true;
+			}
+		}
+		else if (x >= winrect.right - borderX && x <= winrect.right) {
+			if (y >= winrect.top && y <= winrect.top + borderY) {
+				*result = HTTOPRIGHT;
+				return true;
+			}
+			if (y > winrect.top + borderY && y < winrect.bottom - borderY) {
+				*result = HTRIGHT;
+				return true;
+			}
+			if (y >= winrect.bottom - borderY && y <= winrect.bottom) {
+				*result = HTBOTTOMRIGHT;
+				return true;
+			}
+		}
+		else {
+			*result = HTNOWHERE;
+			return true;
+		}
+
+
 		for (auto w : m_impl->moveBars)
 		{
 			auto child = m_impl->parent->childAt(localPos);
@@ -214,53 +264,6 @@ bool QCtmWinFramelessDelegate::nativeEvent(const QByteArray& eventType
 					return true;
 				}
 			}
-		}
-
-		if (x >= winrect.left && x <= winrect.left + borderX) {
-			if (y >= winrect.top && y <= winrect.top + borderY) {
-				*result = HTTOPLEFT;
-				return true;
-			}
-			if (y > winrect.top + borderY && y < winrect.bottom - borderY) {
-				*result = HTLEFT;
-				return true;
-			}
-			if (y >= winrect.bottom - borderY && y <= winrect.bottom) {
-				*result = HTBOTTOMLEFT;
-				return true;
-			}
-		}
-		else if (x > winrect.left + borderX && x < winrect.right - borderX) {
-			if (y >= winrect.top && y <= winrect.top + borderY) {
-				*result = HTTOP;
-				return true;
-			}
-			if (y > winrect.top + borderY && y < winrect.top + borderY + 20) {
-				*result = HTCAPTION;
-				return true;
-			}
-			if (y >= winrect.bottom - borderY && y <= winrect.bottom) {
-				*result = HTBOTTOM;
-				return true;
-			}
-		}
-		else if (x >= winrect.right - borderX && x <= winrect.right) {
-			if (y >= winrect.top && y <= winrect.top + borderY) {
-				*result = HTTOPRIGHT;
-				return true;
-			}
-			if (y > winrect.top + borderY && y < winrect.bottom - borderY) {
-				*result = HTRIGHT;
-				return true;
-			}
-			if (y >= winrect.bottom - borderY && y <= winrect.bottom) {
-				*result = HTBOTTOMRIGHT;
-				return true;
-			}
-		}
-		else {
-			*result = HTNOWHERE;
-			return true;
 		}
 	}
 	break;
@@ -335,44 +338,43 @@ bool QCtmWinFramelessDelegate::eventFilter(QObject* watched, QEvent* event)
 			}
 			m_impl->parent->repaint();
 		}
-		//else if (event->type() == QEvent::Paint)
-		//{
-		//	QPainter painter(m_impl->parent);
-		//	painter.setRenderHint(QPainter::Antialiasing);
-
-		//	auto rect = m_impl->parent->rect();
-		//	if (m_impl->parent->isMaximized() && QtWin::isCompositionEnabled()) {
-		//		auto margin = 8 / m_impl->parent->devicePixelRatioF();
-		//		rect -= QMargins(margin, margin, margin, margin);
-		//	}
-
-		//	QPen pen;
-		//	pen.setWidth(1);
-		//	pen.setColor(QColor(0x003377));
-		//	pen.setJoinStyle(Qt::RoundJoin);
-		//	pen.setCapStyle(Qt::RoundCap);
-		//	painter.setPen(pen);
-		//	painter.setBrush(Qt::NoBrush);
-		//	painter.drawRect(rect);
-		//}
 		else if (event->type() == QEvent::Show)
 		{
 			if (m_impl->firstShow)
 			{
 				m_impl->firstShow = false;
-				auto hwnd = reinterpret_cast<HWND>(m_impl->parent->winId());
-
-				const long style = QtWin::isCompositionEnabled() ? AeroBorderlessFlag : BasicBorderlessFlag;
-				SetWindowLong(hwnd, GWL_STYLE, style);
-
-				if (QtWin::isCompositionEnabled())
-				{
-					QtWin::extendFrameIntoClientArea(m_impl->parent, 1, 1, 1, 1);
-				}
+				setWindowLong();
 			}
 		}
 	}
 	return false;
+}
+
+void QCtmWinFramelessDelegate::setWindowLong()
+{
+	auto hwnd = reinterpret_cast<HWND>(m_impl->parent->winId());
+
+	long style;
+	if (QtWin::isCompositionEnabled())
+	{
+		if (m_impl->parent->windowFlags().testFlag(Qt::WindowMaximizeButtonHint))
+			style = AeroBorderlessFlag;
+		else
+			style = AeroBorderlessFixedFlag;
+	}
+	else
+	{
+		if (m_impl->parent->windowFlags().testFlag(Qt::WindowMaximizeButtonHint))
+			style = BasicBorderlessFlag;
+		else
+			style = BasicBorderlessFixedFlag;
+	}
+	SetWindowLongPtr(hwnd, GWL_STYLE, style);
+
+	if (QtWin::isCompositionEnabled())
+	{
+		QtWin::extendFrameIntoClientArea(m_impl->parent, 1, 1, 1, 1);
+	}
 }
 
 #endif

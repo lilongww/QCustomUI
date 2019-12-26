@@ -24,6 +24,8 @@ public:
 protected:
 	bool eventFilter(QObject* watched, QEvent* event) override;
 private:
+	void setWindowLong();
+private:
 	struct Impl;
 	std::unique_ptr<Impl> m_impl;
 };
