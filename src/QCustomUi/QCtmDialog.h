@@ -56,6 +56,7 @@ public:
      */
     void removeMoveBar(QWidget* moveBar);
 
+#ifndef Q_OS_WIN
 	/**
 	 * @brief		设置窗口边框是否有阴影，如果窗口需要容纳OpenGL，则应设置为true
 	 * @param[in]	flag true:无阴影，flase:有阴影
@@ -66,10 +67,12 @@ public:
 	 * @brief		窗口是否有阴影
 	 */
 	bool shadowless() const;
+#endif
 protected:
 	void showEvent(QShowEvent *) override;
 	void hideEvent(QHideEvent *event) override;
 	bool eventFilter(QObject*, QEvent*) override;
+	bool nativeEvent(const QByteArray& eventType, void* message, long* result) override;
 private:
 	void normalizes(QPoint& pos);
 

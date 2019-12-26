@@ -3,6 +3,7 @@
 #include "QCtmNavigationBar.h"
 #include "ui_QCtmWindow.h"
 #include "Private/QCtmFramelessDelegate_p.h"
+#include "QCtmFramelessDelegate_win.h"
 
 #include <QVBoxLayout>
 #include <QEvent>
@@ -18,7 +19,11 @@ struct QCtmWindow::Impl
 	QStatusBar* statusBar{ nullptr };
 	QWidget* content{ nullptr };
 
+#ifdef Q_OS_WIN
+	QCtmWinFramelessDelegate* delegate{ nullptr };
+#else
     QCtmFramelessDelegate* delegate{ nullptr };
+#endif
 };
 
 QCtmWindow::QCtmWindow(QWidget *parent)
@@ -35,7 +40,11 @@ QCtmWindow::QCtmWindow(QWidget *parent)
 	ui->titleLayout->addWidget(m_impl->title);
 	ui->contentLayout->addWidget(m_impl->content);
 
+#ifdef Q_OS_WIN
+	m_impl->delegate = new QCtmWinFramelessDelegate(this, m_impl->title);
+#else
 	m_impl->delegate = new QCtmFramelessDelegate(this, m_impl->title);
+#endif
 }
 
 QCtmWindow::~QCtmWindow()
@@ -154,6 +163,7 @@ QWidget* QCtmWindow::centralWidget() const
 	return m_impl->content;
 }
 
+#ifndef Q_OS_WIN
 void QCtmWindow::setShadowless(bool flag)
 {
 	m_impl->delegate->setShadowless(flag);
@@ -163,6 +173,7 @@ bool QCtmWindow::shadowless() const
 {
 	return m_impl->delegate->shadowless();
 }
+#endif
 
 bool QCtmWindow::eventFilter(QObject *watched, QEvent *event)
 {
@@ -186,4 +197,16 @@ bool QCtmWindow::eventFilter(QObject *watched, QEvent *event)
         }
     }
     return false;
+}
+
+bool QCtmWindow::nativeEvent(const QByteArray& eventType, void* message, long* result)
+{
+#ifdef Q_OS_WIN
+	if (!m_impl->delegate)
+		return QWidget::nativeEvent(eventType, message, result);
+	if (!m_impl->delegate->nativeEvent(eventType, message, result))
+		return QWidget::nativeEvent(eventType, message, result);
+	else
+		return true;
+#endif
 }
