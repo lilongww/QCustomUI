@@ -159,8 +159,9 @@ bool QCtmWinFramelessDelegate::nativeEvent(const QByteArray& eventType
 		QPoint globalPos = QCursor::pos();
 		int x = globalPos.x();
 		int y = globalPos.y();
-		auto borderX = GetSystemMetrics(SM_CXFRAME) + GetSystemMetrics(SM_CXPADDEDBORDER);
-		auto borderY = GetSystemMetrics(SM_CYFRAME) + GetSystemMetrics(SM_CXPADDEDBORDER);
+
+		auto borderX = /*GetSystemMetrics(SM_CXFRAME) +*/ GetSystemMetrics(SM_CXPADDEDBORDER);
+		auto borderY = /*GetSystemMetrics(SM_CYFRAME) +*/ GetSystemMetrics(SM_CXPADDEDBORDER);
 
 		if (m_impl->parent->isMaximized())
 		{
@@ -168,49 +169,47 @@ bool QCtmWinFramelessDelegate::nativeEvent(const QByteArray& eventType
 			borderY = 0;
 		}
 
-		RECT winrect;
-		GetWindowRect((HWND)(m_impl->parent->winId()), &winrect);
-
+		auto rect = m_impl->parent->frameGeometry();
 		auto localPos = m_impl->parent->mapFromGlobal(globalPos);
 
-		if (x >= winrect.left && x <= winrect.left + borderX) {
-			if (y >= winrect.top && y <= winrect.top + borderY) {
+		if (x >= rect.left() && x <= rect.left() + borderX) {
+			if (y >= rect.top() && y <= rect.top() + borderY) {
 				*result = HTTOPLEFT;
 				return true;
 			}
-			if (y > winrect.top + borderY && y < winrect.bottom - borderY) {
+			if (y > rect.top() + borderY && y < rect.bottom() - borderY) {
 				*result = HTLEFT;
 				return true;
 			}
-			if (y >= winrect.bottom - borderY && y <= winrect.bottom) {
+			if (y >= rect.bottom() - borderY && y <= rect.bottom()) {
 				*result = HTBOTTOMLEFT;
 				return true;
 			}
 		}
-		else if (x > winrect.left + borderX && x < winrect.right - borderX) {
-			if (y >= winrect.top && y <= winrect.top + borderY) {
+		else if (x > rect.left() + borderX && x < rect.right() - borderX) {
+			if (y >= rect.top() && y <= rect.top() + borderY) {
 				*result = HTTOP;
 				return true;
 			}
-			if (y > winrect.top + borderY && y < winrect.top + borderY) {
+			if (y > rect.top() + borderY && y < rect.top() + borderY) {
 				*result = HTCAPTION;
 				return true;
 			}
-			if (y >= winrect.bottom - borderY && y <= winrect.bottom) {
+			if (y >= rect.bottom() - borderY && y <= rect.bottom()) {
 				*result = HTBOTTOM;
 				return true;
 			}
 		}
-		else if (x >= winrect.right - borderX && x <= winrect.right) {
-			if (y >= winrect.top && y <= winrect.top + borderY) {
+		else if (x >= rect.right() - borderX && x <= rect.right()) {
+			if (y >= rect.top() && y <= rect.top() + borderY) {
 				*result = HTTOPRIGHT;
 				return true;
 			}
-			if (y > winrect.top + borderY && y < winrect.bottom - borderY) {
+			if (y > rect.top() + borderY && y < rect.bottom() - borderY) {
 				*result = HTRIGHT;
 				return true;
 			}
-			if (y >= winrect.bottom - borderY && y <= winrect.bottom) {
+			if (y >= rect.bottom() - borderY && y <= rect.bottom()) {
 				*result = HTBOTTOMRIGHT;
 				return true;
 			}
