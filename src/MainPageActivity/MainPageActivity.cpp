@@ -49,6 +49,9 @@ QString MainPageActivity::name() const
 bool MainPageActivity::initialize(SWContextInterface* context)
 {
     //context->setMainWindowShadowless(true);
+	QWidgetAction* action = new QWidgetAction(nullptr);
+	action->setDefaultWidget(new QLineEdit);
+	context->mainWindow()->titleWidget()->addAction(action);
     m_impl->context = context;
 	{
 		auto msg = std::make_shared<QCtmMessage>(QStringLiteral("消息标题")
