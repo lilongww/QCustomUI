@@ -308,6 +308,14 @@ bool QCtmWinFramelessDelegate::nativeEvent(const QByteArray& eventType
 		return true;
 	}
 	break;
+	case WM_NCLBUTTONDBLCLK:
+	{
+		if (m_impl->parent->maximumSize() == QSize(QWIDGETSIZE_MAX, QWIDGETSIZE_MAX)
+			&& m_impl->parent->windowFlags().testFlag(Qt::WindowMaximizeButtonHint))
+			return false;
+		else
+			return true;
+	}
 	default:
 		break;
 	}
