@@ -86,63 +86,11 @@ bool QCtmWinFramelessDelegate::nativeEvent(const QByteArray& eventType
 	break;
 	case WM_SYSCOMMAND:
 	{
-		if (msg->wParam == SC_KEYMENU && msg->lParam == VK_SPACE) {
-
-			auto hwnd = (HWND)m_impl->parent->winId();
-			HMENU menu = GetSystemMenu(hwnd, false);
-
-			if (menu) {
-				MENUITEMINFO mii;
-				mii.cbSize = sizeof(MENUITEMINFO);
-				mii.fMask = MIIM_STATE;
-				mii.fType = 0;
-
-				mii.fState = MF_ENABLED;
-
-				SetMenuItemInfo(menu, SC_RESTORE, FALSE, &mii);
-				SetMenuItemInfo(menu, SC_MAXIMIZE, FALSE, &mii);
-				SetMenuItemInfo(menu, SC_MINIMIZE, FALSE, &mii);
-
-				// update the options
-				mii.fState = MF_DISABLED;
-				SetMenuItemInfo(menu, SC_SIZE, TRUE, &mii);
-				SetMenuItemInfo(menu, SC_MOVE, TRUE, &mii);
-
-				mii.fState = MF_GRAYED;
-
-				WINDOWPLACEMENT wp;
-				GetWindowPlacement(hwnd, &wp);
-
-				switch (wp.showCmd)
-				{
-				case SW_SHOWMAXIMIZED:
-					SetMenuItemInfo(menu, SC_MAXIMIZE, FALSE, &mii);
-					SetMenuDefaultItem(menu, SC_CLOSE, FALSE);
-					break;
-				case SW_SHOWMINIMIZED:
-					SetMenuItemInfo(menu, SC_MINIMIZE, FALSE, &mii);
-					SetMenuDefaultItem(menu, SC_RESTORE, FALSE);
-					break;
-				case SW_SHOWNORMAL:
-					SetMenuItemInfo(menu, SC_RESTORE, FALSE, &mii);
-					SetMenuDefaultItem(menu, SC_CLOSE, FALSE);
-					break;
-				}
-
-				auto devicePixelRatio = qApp->devicePixelRatio();
-				auto globalPos = m_impl->parent->pos();
-				globalPos.rx() *= devicePixelRatio;
-				globalPos.ry() *= devicePixelRatio;
-				BOOL cmd = TrackPopupMenuEx(menu, TPM_LEFTALIGN | TPM_TOPALIGN | TPM_RETURNCMD
-					, globalPos.x()
-					, globalPos.y()
-					, hwnd
-					, nullptr);
-				if (cmd) PostMessage(hwnd, WM_SYSCOMMAND, cmd, 0);
-
-				*result = 0;
-				return true;
-			}
+		if (msg->wParam == SC_KEYMENU && msg->lParam == VK_SPACE)
+		{
+			showSystemMenu(m_impl->parent->pos());
+			*result = 0;
+			return true;
 		}
 	}
 	break;
@@ -316,6 +264,12 @@ bool QCtmWinFramelessDelegate::nativeEvent(const QByteArray& eventType
 		else
 			return true;
 	}
+	case WM_NCRBUTTONUP:
+	{
+		showSystemMenu(QCursor::pos());
+		*result = 0;
+		return true;
+	}
 	default:
 		break;
 	}
@@ -385,6 +339,83 @@ void QCtmWinFramelessDelegate::setWindowLong()
 
 	SetWindowPos(hwnd, nullptr, 0, 0, 0, 0, SWP_FRAMECHANGED | SWP_NOMOVE | SWP_NOSIZE);
 
+}
+
+void QCtmWinFramelessDelegate::showSystemMenu(const QPoint& pos)
+{
+	auto hwnd = (HWND)m_impl->parent->winId();
+	HMENU menu = GetSystemMenu(hwnd, false);
+
+	if (menu)
+	{
+		MENUITEMINFO mii;
+		mii.cbSize = sizeof(MENUITEMINFO);
+		mii.fMask = MIIM_STATE;
+		mii.fType = 0;
+
+		mii.fState = MF_ENABLED;
+
+		SetMenuItemInfo(menu, SC_RESTORE, FALSE, &mii);
+		SetMenuItemInfo(menu, SC_MAXIMIZE, FALSE, &mii);
+		SetMenuItemInfo(menu, SC_MINIMIZE, FALSE, &mii);
+
+		// update the options
+		mii.fState = MF_DISABLED;
+		if(m_impl->parent->maximumSize() == m_impl->parent->minimumSize() || m_impl->parent->isMaximized())
+			SetMenuItemInfo(menu, SC_SIZE, FALSE, &mii);
+		else
+			SetMenuItemInfo(menu, SC_SIZE, TRUE, &mii);
+
+		if(!m_impl->parent->isMaximized())
+			SetMenuItemInfo(menu, SC_MOVE, TRUE, &mii);
+		else
+			SetMenuItemInfo(menu, SC_MOVE, FALSE, &mii);
+
+		mii.fState = MF_GRAYED;
+
+		WINDOWPLACEMENT wp;
+		GetWindowPlacement(hwnd, &wp);
+
+		switch (wp.showCmd)
+		{
+		case SW_SHOWMAXIMIZED:
+			SetMenuItemInfo(menu, SC_MAXIMIZE, FALSE, &mii);
+			SetMenuDefaultItem(menu, SC_CLOSE, FALSE);
+			break;
+		case SW_SHOWMINIMIZED:
+			SetMenuItemInfo(menu, SC_MINIMIZE, FALSE, &mii);
+			SetMenuDefaultItem(menu, SC_RESTORE, FALSE);
+			break;
+		case SW_SHOWNORMAL:
+		{
+			if (m_impl->parent->maximumSize() == m_impl->parent->minimumSize())
+			{
+				SetMenuItemInfo(menu, SC_MAXIMIZE, FALSE, &mii);
+			}
+
+			if (!m_impl->parent->windowFlags().testFlag(Qt::WindowMinimizeButtonHint))
+			{
+				SetMenuItemInfo(menu, SC_MINIMIZE, FALSE, &mii);
+			}
+
+			SetMenuItemInfo(menu, SC_RESTORE, FALSE, &mii);
+			SetMenuDefaultItem(menu, SC_CLOSE, FALSE);
+			break;
+		}
+		}
+
+		auto devicePixelRatio = qApp->devicePixelRatio();
+		auto globalPos = pos;
+		globalPos.rx() *= devicePixelRatio;
+		globalPos.ry() *= devicePixelRatio;
+		BOOL cmd = TrackPopupMenuEx(menu, TPM_LEFTALIGN | TPM_TOPALIGN | TPM_RETURNCMD
+			, globalPos.x()
+			, globalPos.y()
+			, hwnd
+			, nullptr);
+		if (cmd)
+			PostMessage(hwnd, WM_SYSCOMMAND, cmd, 0);
+	}
 }
 
 #endif

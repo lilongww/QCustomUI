@@ -25,6 +25,7 @@ protected:
 	bool eventFilter(QObject* watched, QEvent* event) override;
 private:
 	void setWindowLong();
+	void showSystemMenu(const QPoint& pos);
 private:
 	struct Impl;
 	std::unique_ptr<Impl> m_impl;
