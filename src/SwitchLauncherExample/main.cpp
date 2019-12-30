@@ -6,9 +6,9 @@
 int main(int argc, char *argv[])
 {
 	SWApplication::initBeforeStructure();
-	SWApplication::setSingleton(true);
-	SWApplication::setSingletonKey("sw_example");
 	SWApplication a(argc, argv);
+	if (a.checkOtherProcess("sw_example"))
+		return 0;
 	if (a.isSuccessful())
 	{
 		a.mainWindow()->resize(1000, 600);

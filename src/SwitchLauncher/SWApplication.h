@@ -2,6 +2,8 @@
 
 #include "switchlauncher_global.h"
 
+#include <QCustomUi/QCustomUi.h>
+
 #include <QApplication>
 
 #include <memory>
@@ -9,7 +11,7 @@
 class QCtmMainWindow;
 class QCtmDialog;
 
-class SWITCHLAUNCHER_EXPORT SWApplication : public QApplication
+class SWITCHLAUNCHER_EXPORT SWApplication : public QCtmApplication
 {
     Q_OBJECT
 
@@ -46,19 +48,6 @@ public:
 	static bool isSuccessful();
 
 	static int exec();
-
-	/**
-	 * @brief		是否以单例模式启动程序，确保该函数在SWApplication构造之前被调用
-	 * @param[in]	flag：默认为否
-	 */
-	static void setSingleton(bool flag);
-
-	/**
-	 * @brief		设置单例模式的关键字，设置后另一个持有该关键字的程序无法启动，确保该函数在
-		SWApplication构造之前被调用
-	 * @param[in]	key：关键字
-	 */
-	static void setSingletonKey(const QString& key);
 private:
     void init(const QString& theme);
 	

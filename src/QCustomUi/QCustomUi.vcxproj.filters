@@ -230,6 +230,9 @@
     <ClCompile Include="QCtmFramelessDelegate_win.cpp">
       <Filter>Private</Filter>
     </ClCompile>
+    <ClCompile Include="QCtmApplication.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <QtMoc Include="QCtmAbstractLogModel.h">
@@ -369,6 +372,9 @@
     </QtMoc>
     <QtMoc Include="QCtmFramelessDelegate_win.h">
       <Filter>Private</Filter>
+    </QtMoc>
+    <QtMoc Include="QCtmApplication.h">
+      <Filter>Header Files</Filter>
     </QtMoc>
   </ItemGroup>
   <ItemGroup>
