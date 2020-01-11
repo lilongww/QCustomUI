@@ -12,3 +12,5 @@
 *.log
 *.obj
 GeneratedFiles
+*.aps
+*.props

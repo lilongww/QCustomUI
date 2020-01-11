@@ -30,23 +30,25 @@ QCtmTitleBar QAbstractButton
 {
     padding-left: 5px;
     padding-right: 5px;
-	border: none;
-	background-color: transparent;
+    border: none;
+    background-color: transparent;
 }
 
-    QCtmTitleBar QAbstractButton:hover {
-        background-color: #C6C6C6;
-        border: none;
-    }
+QCtmTitleBar QAbstractButton:hover
+{
+    background-color: #C6C6C6;
+    border: none;
+}
 
-    QCtmTitleBar QAbstractButton:pressed {
-        background-color: #C0C0C0;
-        border: none;
-    }
+QCtmTitleBar QAbstractButton:pressed
+{
+    background-color: #C0C0C0;
+    border: none;
+}
 
 .QCtmTitleBar
 {
-	background: #D9D9D9;
+    background: #D9D9D9;
     font-weight: 400;
     color: rgba(94,94,94,1);
 }
@@ -71,7 +73,7 @@ QCtmTitleBar QAbstractButton
 
 .QCtmTitleBar QMenuBar::item:pressed
 {
-	background-color: #C6C6C6;
+    background-color: #C6C6C6;
 }
 
 /*********************************************************************/
@@ -88,16 +90,16 @@ QCtmTitleBar QAbstractButton
 
 QStatusBar QToolButton
 {
-	color: white;
-	border: none;
+    color: white;
+    border: none;
 }
 
 QStatusBar QToolButton:hover
 {
-	background-color: #1F8AD2;
+    background-color: #1F8AD2;
 }
 
-QStatusBar::item 
+QStatusBar::item
 {
     border: none;
 }
@@ -184,23 +186,23 @@ QCtmNavigationBar::separator
 /**************************QCtmNavigationImageButton****************************/
 QCtmNavigationImageButton
 {
-	background-color: transparent;
-	border: none;
+    background-color: transparent;
+    border: none;
 }
 
 QCtmNavigationImageButton:hover
 {
-	background-color: #F0F0F0;
+    background-color: #F0F0F0;
 }
 
 QCtmNavigationImageButton:pressed
 {
-	background-color: white;
+    background-color: white;
 }
 
 QCtmNavigationImageButton:checked
 {
-	background-color: white;
+    background-color: white;
 }
 
 /************************************************************************/
@@ -232,34 +234,34 @@ QCtmNavigationImageButton:checked
 
 .QCtmNavigationBackstageActionGroup #title
 {
-	color: #107EE5;
-	font: bold 14pt 'Microsoft YaHei';
+    color: #107EE5;
+    font: bold 14pt 'Microsoft YaHei';
 }
 
 .QCtmNavigationBackstageActionGroup QToolButton
 {
     border: none;
-	font-family: 'Microsoft YaHei';
-	font-weight: 400;
-	color: #1F1F1F;
+    font-family: 'Microsoft YaHei';
+    font-weight: 400;
+    color: #1F1F1F;
 }
 
 .QCtmNavigationBackstageActionGroup QToolButton:hover
 {
-	background: #F0F0F0;
+    background: #F0F0F0;
 }
 
 .QCtmNavigationBackstageActionGroup QToolButton:pressed
 {
-	padding-top: 2px;
-	padding-left: 2px;
-	background: #007ACC;
+    padding-top: 2px;
+    padding-left: 2px;
+    background: #007ACC;
     color: white;
 }
 
 .QCtmNavigationBackstageActionGroup
 {
-	background: white;
+    background: white;
 }
 
 /**************************************************************/
@@ -267,13 +269,13 @@ QCtmNavigationImageButton:checked
 /***********************QCtmNavigationSideBar**************************/
 .QCtmNavigationSideBar
 {
-	background: #2C2C2C;
+    background: #2C2C2C;
 }
 
 QCtmNavigationSideBar QToolButton
 {
-	border: none;
-	background-color: transparent;
+    border: none;
+    background-color: transparent;
 }
 
 /*这里使用#sidebar1::checked 无效*/
@@ -343,45 +345,45 @@ QCtmTabWidget
 {
     border: none;
     border-top: 1px solid #D3D3D3;
-	background: white;
+    background: white;
 }
 
 QCtmTabWidget::pane
 {
-	background: white;
-	border: none;
+    background: white;
+    border: none;
 }
 
 QCtmTabWidget QTabBar
 {
-	margin-left: 10px;
-	margin-top: 0px;
-	font-family: 'Microsoft YaHei';
-	background: white;
-	border: none;
+    margin-left: 10px;
+    margin-top: 0px;
+    font-family: 'Microsoft YaHei';
+    background: white;
+    border: none;
     border-top: 1px solid #D3D3D3;
 }
 
 QCtmTabWidget QTabBar::tab
 {
     margin-top: 1px;
-	min-height: 30px;
-	margin-left: 10px;
-	margin-right: 10px;
-	background-color: white;
-	border: none;
-	font-family: 'Microsoft YaHei';
+    min-height: 30px;
+    margin-left: 10px;
+    margin-right: 10px;
+    background-color: white;
+    border: none;
+    font-family: 'Microsoft YaHei';
 }
 
 QCtmTabWidget QTabBar::tab:selected
 {
-	color: #1F1F1F;
-	border-bottom: 1px solid #C3C3C3;
+    color: #1F1F1F;
+    border-bottom: 1px solid #C3C3C3;
 }
 
 QCtmTabWidget QTabBar::tab:!selected
 {
-	color: #4F4F4F;
+    color: #4F4F4F;
 }
 
 /************************************************************/
@@ -438,14 +440,14 @@ QCtmTabWidget QTabBar::tab:!selected
 
 QCtmNavigationSidePanel
 {
-	background-color: white;
+    background-color: white;
 }
 
 QCtmNavigationSidePanel #closeBtn
 {
     background: transparent;
     image: url(:/QCustomUi/Resources/close-light.png);
-	border: none;
+    border: none;
 }
 
 QCtmNavigationSidePanel #closeBtn:hover
@@ -469,7 +471,6 @@ QCtmNavigationSidePanel #title
 QCtmNavigationSidePanel #titleBar
 {
     min-height: 28px;
-
 }
 
 /************************************************************/
@@ -556,7 +557,7 @@ QCtmMessageTip:pressed
 .QCtmMessageView #closeBtn
 {
     qproperty-icon: url(:/QCustomUi/Resources/close.png);
-	border: none;
+    border: none;
 }
 
 .QCtmMessageView QListView
@@ -932,4 +933,52 @@ QCtmEditLabel QToolButton:hover
 QCtmEditLabel QToolButton:pressed
 {
     background: #CBE5FF;
+}
+
+QCtmDockTitle
+{
+    color: #808080;
+    background: #EEEEF2;
+}
+
+QCtmDockTitle::focus
+{
+    color: #FEFEFE;
+    background: #007ACC;
+}
+
+QCtmDockTitle QAbstractButton
+{
+    border: none;
+}
+
+QCtmDockTitle QAbstractButton
+{
+    background: transparent;
+}
+
+QCtmDockTitle QAbstractButton:hover
+{
+    background: rgba(255,255,255,100);
+}
+
+QCtmDockTitle QAbstractButton:pressed, QCtmDockTitle QAbstractButton:checked
+{
+    margin: 0;
+    background: #0e6198;
+}
+
+QCtmDockTitle QToolButton#qctmdocking_close_btn
+{
+    image: url(:/QCustomUi/Resources/close-light.png);
+}
+
+QCtmDockTitle QToolButton#qctmdocking_float_btn[float=false]
+{
+    image: url(:/QCtmDocking/Resources/QCtmDocking/dockTitleFixed.svg);
+}
+
+QCtmDockTitle QToolButton#qctmdocking_float_btn[float=true]
+{
+    image: url(:/QCtmDocking/Resources/QCtmDocking/dockTitleFloat.svg);
 }

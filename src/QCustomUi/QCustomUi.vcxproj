@@ -149,10 +149,15 @@
       <IncludePath Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">.\GeneratedFiles;.;$(QTDIR)\include;.\GeneratedFiles\$(ConfigurationName);$(QTDIR)\include\QtCore;$(QTDIR)\include\QtGui;$(QTDIR)\include\QtANGLE;$(QTDIR)\include\QtWidgets;$(QTDIR)\include\QtWinExtras</IncludePath>
       <IncludePath Condition="'$(Configuration)|$(Platform)'=='Release|x64'">.\GeneratedFiles;.;$(QTDIR)\include;.\GeneratedFiles\$(ConfigurationName);$(QTDIR)\include\QtCore;$(QTDIR)\include\QtGui;$(QTDIR)\include\QtANGLE;$(QTDIR)\include\QtWidgets;$(QTDIR)\include\QtWinExtras</IncludePath>
     </QtMoc>
+    <QtMoc Include="QCtmDockTitle.h">
+      <IncludePath Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">.\GeneratedFiles;.;$(QTDIR)\include;.\GeneratedFiles\$(ConfigurationName);$(QTDIR)\include\QtCore;$(QTDIR)\include\QtGui;$(QTDIR)\include\QtANGLE;$(QTDIR)\include\QtWidgets;$(QTDIR)\include\QtWinExtras;$(QTDIR)\include\QtNetwork</IncludePath>
+      <IncludePath Condition="'$(Configuration)|$(Platform)'=='Release|x64'">.\GeneratedFiles;.;$(QTDIR)\include;.\GeneratedFiles\$(ConfigurationName);$(QTDIR)\include\QtCore;$(QTDIR)\include\QtGui;$(QTDIR)\include\QtANGLE;$(QTDIR)\include\QtWidgets;$(QTDIR)\include\QtWinExtras;$(QTDIR)\include\QtNetwork</IncludePath>
+    </QtMoc>
     <ClInclude Include="QCtmStyleSheet.h" />
     <QtMoc Include="QCtmFlexWidget.h" />
     <QtMoc Include="QCtmAbstractDockPanel.h" />
     <QtMoc Include="QCtmDockHelper.h" />
+    <ClInclude Include="resource.h" />
     <ClInclude Include="Version.h" />
     <QtMoc Include="QCtmAbstractLogModel.h" />
     <QtMoc Include="QCtmAbstractMessageModel.h" />
@@ -198,6 +203,7 @@
     <ClCompile Include="QCtmComboBox.cpp" />
     <ClCompile Include="QCtmDialog.cpp" />
     <ClCompile Include="QCtmDockHelper.cpp" />
+    <ClCompile Include="QCtmDockTitle.cpp" />
     <ClCompile Include="QCtmFlexWidget.cpp" />
     <ClCompile Include="QCtmEditLabel.cpp" />
     <ClCompile Include="QCtmIPAddressEdit.cpp" />
@@ -260,6 +266,9 @@
     <None Include="qcustomui_zh.ts" />
     <None Include="Resources\stylesheet\default-light.css" />
     <None Include="Resources\stylesheet\sw-light.css" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="QCustomUi.rc" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Condition="Exists('$(QtMsBuild)\qt.targets')">

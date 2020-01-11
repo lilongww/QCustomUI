@@ -94,4 +94,8 @@
         <file>Resources/QSpinBox/up-button-disabled.png</file>
         <file>Resources/QSpinBox/up-button-pressed.png</file>
     </qresource>
+    <qresource prefix="/QCtmDocking">
+        <file>Resources/QCtmDocking/dockTitleFixed.svg</file>
+        <file>Resources/QCtmDocking/dockTitleFloat.svg</file>
+    </qresource>
 </RCC>

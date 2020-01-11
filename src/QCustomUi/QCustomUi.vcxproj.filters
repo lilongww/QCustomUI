@@ -78,6 +78,9 @@
     <ClInclude Include="QCtmLogManager.h">
       <Filter>Log</Filter>
     </ClInclude>
+    <ClInclude Include="resource.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Private\flowlayout.cpp">
@@ -251,6 +254,9 @@
     <ClCompile Include="QCtmApplication.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="QCtmDockTitle.cpp">
+      <Filter>Flex</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <QtMoc Include="QCtmAbstractLogModel.h">
@@ -403,6 +409,9 @@
     <QtMoc Include="QCtmApplication.h">
       <Filter>Header Files</Filter>
     </QtMoc>
+    <QtMoc Include="QCtmDockTitle.h">
+      <Filter>Flex</Filter>
+    </QtMoc>
   </ItemGroup>
   <ItemGroup>
     <QtUic Include="Private\QCtmToolBoxItem.ui">
@@ -433,5 +442,8 @@
     <None Include="qcustomui_zh.ts">
       <Filter>Translation Files</Filter>
     </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="QCustomUi.rc" />
   </ItemGroup>
 </Project>
