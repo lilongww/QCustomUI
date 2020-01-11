@@ -74,9 +74,9 @@ namespace SWPluginAttribute
 {
     enum SWPluginAttribute
     {
-        NoFeature,
-        DontShowInPluginMenu = 0x01,                  //不显示在插件菜单中
-        DontShowPluginNameInTitle = 0x02              //不显示插件名称到标题栏
+        SWPA_None,
+        SWPA_DontShowInPluginMenu = 0x01,                  //不显示在插件菜单中
+        SWPA_DontShowPluginNameInTitle = 0x02              //不显示插件名称到标题栏
     };
 }
 Q_DECLARE_FLAGS(SWPluginAttributes, SWPluginAttribute::SWPluginAttribute)
@@ -85,9 +85,10 @@ namespace SWContextAttribute
 {
     enum SWContextAttribute
     {
-        NoFeature,
-        DontShowTitle = 0x01,                           //不显示标题栏
-        LogInsertDESC = 0x02                            //日志倒序插入
+        SWCA_None,
+		SWCA_DontShowTitle = 0x01,                           //不显示标题栏
+		SWCA_LogInsertDESC = 0x02,                           //日志倒序插入
+		SWCA_QuitAlert = 0x04								 //主窗口退出时提示
     };
 }
 
@@ -183,7 +184,7 @@ public:
      * @brief		插件属性设置
      * @Return:		插件属性集合
      */
-    virtual SWPluginAttributes attributes() const { return SWPluginAttribute::NoFeature; }
+    virtual SWPluginAttributes attributes() const { return SWPluginAttribute::SWPA_None; }
 };
 
 //插件消息槽
@@ -328,4 +329,9 @@ public:
      * @Return:		样式源码
      */
     virtual QString defaultStyleSheet(const QString& theme) const = 0;
+
+	/**
+	 * @brief		获取主窗口地址
+	 */
+	virtual QCtmMainWindow* mainWindow() const = 0;
 };

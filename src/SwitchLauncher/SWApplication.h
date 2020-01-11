@@ -2,12 +2,16 @@
 
 #include "switchlauncher_global.h"
 
+#include <QCustomUi/QCustomUi.h>
+
 #include <QApplication>
+
+#include <memory>
 
 class QCtmMainWindow;
 class QCtmDialog;
 
-class SWITCHLAUNCHER_EXPORT SWApplication : public QApplication
+class SWITCHLAUNCHER_EXPORT SWApplication : public QCtmApplication
 {
     Q_OBJECT
 
@@ -46,4 +50,8 @@ public:
 	static int exec();
 private:
     void init(const QString& theme);
+	
+private:
+	struct Impl;
+	std::unique_ptr<Impl> m_impl;
 };

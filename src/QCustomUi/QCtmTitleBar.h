@@ -60,9 +60,15 @@ protected:
 	void showEvent(QShowEvent* event) override;
 	bool eventFilter(QObject *watched, QEvent *event)override;
 	void actionEvent(QActionEvent *event) override;
+
+private:
+	QRect doIconRect() const;
 private:
 	Ui::QCtmTitleBar* ui;
 
 	struct Impl;
 	std::unique_ptr<Impl> m_impl;
+#ifdef Q_OS_WIN
+	friend class QCtmWinFramelessDelegate;
+#endif
 };

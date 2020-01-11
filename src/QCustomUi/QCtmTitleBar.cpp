@@ -103,7 +103,7 @@ void QCtmTitleBar::paintEvent(QPaintEvent *event)
 	style()->drawPrimitive(QStyle::PE_Widget, &opt, &p, this);
 	if (!m_impl->windowIcon.isNull() && m_impl->showIcon)
 	{
-		p.drawPixmap(leftMargin, (this->height() - m_impl->windowIcon.height()) / 2, m_impl->windowIcon.width(), m_impl->windowIcon.height(), m_impl->windowIcon);
+		p.drawPixmap(doIconRect(), m_impl->windowIcon);
 	}
 
 	if (parentWidget())
@@ -217,4 +217,9 @@ void QCtmTitleBar::actionEvent(QActionEvent *event)
 	{
 		Util::removeItem(event->action(), m_impl->items, ui->actionLayout);
 	}
+}
+
+QRect QCtmTitleBar::doIconRect() const
+{
+	return { leftMargin, (this->height() - m_impl->windowIcon.height()) / 2, m_impl->windowIcon.width(), m_impl->windowIcon.height() };
 }

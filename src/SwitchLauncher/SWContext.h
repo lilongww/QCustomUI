@@ -1,17 +1,18 @@
 #pragma once
 
 #include "SWPluginInterface.h"
+#include "Launcher.h"
 
 #include <memory>
 
-class Launcher;
+//class Launcher;
 
 class SWContext : public SWContextInterface
 {
 public:
     static SWContext& instance();
 
-	Launcher* mainWindow() const;
+	Launcher* mainWindow() const override;
     
 	SWPluginInterface* plugin(const QString& name) const override;
 	QList<SWPluginInterface*> plugins() const override;
@@ -32,7 +33,6 @@ public:
 	void setMessageBarCurrentIndex(int index) override;
 	int messageBarCurrentIndex() const override;
     QString defaultStyleSheet(const QString& theme) const override;
-
 protected:
     SWContext();
     ~SWContext();

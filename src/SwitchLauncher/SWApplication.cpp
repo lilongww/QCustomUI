@@ -5,10 +5,19 @@
 
 #include <QCustomUi/QCustomUi.h>
 
+#include <QLocalSocket>
+#include <QLocalServer>
+
 static bool g_qAppInitSucceed{ true };
 
+struct SWApplication::Impl
+{
+
+};
+
 SWApplication::SWApplication(int &argc, char **argv, const QString& theme)
-    : QApplication(argc, argv)
+    : QCtmApplication(argc, argv, SWApplication::ApplicationFlags)
+	, m_impl(std::make_unique<Impl>())
 {
     init(theme);
 }
@@ -19,7 +28,8 @@ SWApplication::~SWApplication()
 
 void SWApplication::initBeforeStructure()
 {
-    QApplication::setAttribute(Qt::AA_EnableHighDpiScaling);
+	QApplication::setAttribute(Qt::AA_EnableHighDpiScaling);
+	QApplication::setHighDpiScaleFactorRoundingPolicy(Qt::HighDpiScaleFactorRoundingPolicy::Unset);
     QCtmLogManager::initBeforeApp();
 }
 

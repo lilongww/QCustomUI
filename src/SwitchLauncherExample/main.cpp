@@ -7,7 +7,12 @@ int main(int argc, char *argv[])
 {
 	SWApplication::initBeforeStructure();
 	SWApplication a(argc, argv);
-	a.mainWindow()->resize(1000, 600);
-	a.mainWindow()->showMaximized();
+	if (a.checkOtherProcess("sw_example"))
+		return 0;
+	if (a.isSuccessful())
+	{
+		a.mainWindow()->resize(1000, 600);
+		a.mainWindow()->showMaximized();
+	}
 	return a.exec();
 }

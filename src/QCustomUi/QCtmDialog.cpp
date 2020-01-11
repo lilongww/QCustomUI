@@ -1,6 +1,7 @@
 #include "QCtmDialog.h"
 #include "QCtmTitleBar.h"
 #include "Private/QCtmFramelessDelegate_p.h"
+#include "QCtmFramelessDelegate_win.h"
 
 #include <QVBoxLayout>
 #include <QDesktopWidget>
@@ -13,7 +14,11 @@ struct QCtmDialog::Impl
 	QCtmTitleBar* title{ nullptr };
 	QWidget* content{ nullptr };
 	bool showInCenter{ true };
+#ifdef Q_OS_WIN
+	QCtmWinFramelessDelegate* delegate{ nullptr };
+#else
     QCtmFramelessDelegate* delegate{nullptr};
+#endif
 };
 
 QCtmDialog::QCtmDialog(QWidget *parent)
@@ -32,11 +37,13 @@ QCtmDialog::QCtmDialog(QWidget *parent)
 	layout->setStretch(1, 1);
     layout->setAlignment(Qt::AlignLeft | Qt::AlignTop);
 
+#ifdef Q_OS_WIN
+	m_impl->delegate = new QCtmWinFramelessDelegate(this, m_impl->title);
+#else
 	m_impl->delegate = new QCtmFramelessDelegate(this, m_impl->title);
+#endif
 	auto content = new QWidget(this);
 	content->setAutoFillBackground(true);
-	setWindowFlags(this->windowFlags() | Qt::Dialog);
-
 	setContent(content);
 }
 
@@ -90,7 +97,7 @@ void QCtmDialog::removeMoveBar(QWidget* moveBar)
 {
     m_impl->delegate->removeMoveBar(moveBar);
 }
-
+#ifndef Q_OS_WIN
 void QCtmDialog::setShadowless(bool flag)
 {
 	m_impl->delegate->setShadowless(flag);
@@ -100,7 +107,7 @@ bool QCtmDialog::shadowless() const
 {
 	return m_impl->delegate->shadowless();
 }
-
+#endif
 void QCtmDialog::showEvent(QShowEvent *e)
 {
 	auto parent = this->parentWidget();
@@ -136,6 +143,18 @@ bool QCtmDialog::eventFilter(QObject* o, QEvent* e)
 		setWindowTitle(m_impl->content->windowTitle());
 	}
 	return QDialog::eventFilter(o, e);
+}
+
+bool QCtmDialog::nativeEvent(const QByteArray& eventType, void* message, long* result)
+{
+#ifdef Q_OS_WIN
+	if (!m_impl->delegate)
+		return QDialog::nativeEvent(eventType, message, result);
+	if (!m_impl->delegate->nativeEvent(eventType, message, result))
+		return QDialog::nativeEvent(eventType, message, result);
+	else
+		return true;
+#endif
 }
 
 void QCtmDialog::normalizes(QPoint& pos)

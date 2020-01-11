@@ -4,6 +4,20 @@
 
 #include <QStandardItemModel>
 
+#include <windows.h>
+
+class Dialog : public QDialog
+{
+public:
+    using QDialog::QDialog;
+    bool nativeEvent(const QByteArray& eventType, void* message, long* result) override
+    {
+        MSG* msg = (MSG*)(message);
+        qDebug("%x : %x", this, msg->message);
+        return QDialog::nativeEvent(eventType, message, result);
+    }
+};
+
 StyleWidget::StyleWidget(QWidget *parent)
     : QWidget(parent)
 {
@@ -27,6 +41,7 @@ StyleWidget::StyleWidget(QWidget *parent)
 	ui.tabWidget->setAttribute(Qt::WA_StyledBackground);
 	connect(ui.pushButton, &QPushButton::clicked, this, [=]() {
 		QCtmDialog dlg(this);
+        //Dialog dlg(this);
 		dlg.exec();
 		});
 }

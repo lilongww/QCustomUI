@@ -41,6 +41,11 @@
     <Filter Include="Log">
       <UniqueIdentifier>{a171f229-3142-4efe-a027-44237b15d858}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Translation Files">
+      <UniqueIdentifier>{639EADAA-A684-42e4-A9AD-28FC9BCB8F7C}</UniqueIdentifier>
+      <Extensions>ts</Extensions>
+      <ParseFiles>false</ParseFiles>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="qcustomui_global.h">
@@ -237,6 +242,15 @@
     <ClCompile Include="QCtmDockHelper.cpp">
       <Filter>Flex</Filter>
     </ClCompile>
+    <ClCompile Include="QCtmEditLabel.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="QCtmFramelessDelegate_win.cpp">
+      <Filter>Private</Filter>
+    </ClCompile>
+    <ClCompile Include="QCtmApplication.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <QtMoc Include="QCtmAbstractLogModel.h">
@@ -380,6 +394,15 @@
     <QtMoc Include="QCtmDockHelper.h">
       <Filter>Flex</Filter>
     </QtMoc>
+    <QtMoc Include="QCtmEditLabel.h">
+      <Filter>Header Files</Filter>
+    </QtMoc>
+    <QtMoc Include="QCtmFramelessDelegate_win.h">
+      <Filter>Private</Filter>
+    </QtMoc>
+    <QtMoc Include="QCtmApplication.h">
+      <Filter>Header Files</Filter>
+    </QtMoc>
   </ItemGroup>
   <ItemGroup>
     <QtUic Include="Private\QCtmToolBoxItem.ui">
@@ -406,6 +429,9 @@
     </None>
     <None Include="Resources\stylesheet\sw-light.css">
       <Filter>Resource Files</Filter>
+    </None>
+    <None Include="qcustomui_zh.ts">
+      <Filter>Translation Files</Filter>
     </None>
   </ItemGroup>
 </Project>

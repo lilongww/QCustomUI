@@ -49,7 +49,29 @@ QString MainPageActivity::name() const
 bool MainPageActivity::initialize(SWContextInterface* context)
 {
     //context->setMainWindowShadowless(true);
+	QWidgetAction* action = new QWidgetAction(nullptr);
+	action->setDefaultWidget(new QLineEdit);
+	context->mainWindow()->titleWidget()->addAction(action);
     m_impl->context = context;
+	{
+		auto msg = std::make_shared<QCtmMessage>(QStringLiteral("消息标题")
+			, QStringLiteral("消息内容消息内容消息内容消息内容消息内容消息内容消息内容消息内容消息内容")
+			, QDateTime::currentDateTime());
+		m_impl->context->addMessageTip(msg);
+	}
+	{
+		auto msg = std::make_shared<QCtmMessage>(QStringLiteral("消息标题")
+			, QStringLiteral("消息内容消息内容消息内容消息内容消息内容消息内容消息内容消息内容消息内容")
+			, QDateTime::currentDateTime());
+		m_impl->context->addMessageTip(msg);
+	}
+	{
+		auto msg = std::make_shared<QCtmMessage>(QStringLiteral("消息标题消息标题消息标题消息标题消息标题消息标题消息标题消息标题消息标题消息标题")
+			, QStringLiteral("消息内容消息内容消息内容消息内容消息内容消息内容消息内容消息内容消息内容")
+			, QDateTime::currentDateTime());
+		m_impl->context->addMessageTip(msg);
+	}
+	m_impl->context->setLanguage("CN");
     auto qss = m_impl->context->defaultStyleSheet("light");
     m_impl->content = new StyleWidget;
     m_impl->subSideBar = new QCtmToolBox(nullptr);

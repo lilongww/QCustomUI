@@ -92,6 +92,34 @@ QCtmMessageBox::StandardButton QCtmMessageBox::standardButton(QAbstractButton* b
     return QCtmMessageBox::StandardButton(m_impl->buttonBox->standardButton(button));
 }
 
+void QCtmMessageBox::addButton(QAbstractButton* button, ButtonRole role)
+{
+	if (!button)
+		return;
+	if (m_impl->buttonBox->buttons().contains(button))
+		return;
+	m_impl->buttonBox->addButton(button, (QDialogButtonBox::ButtonRole)role);
+}
+
+QPushButton* QCtmMessageBox::addButton(const QString& text, ButtonRole role)
+{
+	auto btn = new QPushButton(text, this);
+	addButton(btn, role);
+	return btn;
+}
+
+QPushButton* QCtmMessageBox::addButton(StandardButton button)
+{
+	return m_impl->buttonBox->addButton((QDialogButtonBox::StandardButton)button);
+}
+
+void QCtmMessageBox::removeButton(QAbstractButton* button)
+{
+	if (!button)
+		return;
+	m_impl->buttonBox->removeButton(button);
+}
+
 QCtmMessageBox::StandardButton QCtmMessageBox::critical(QWidget *parent, const QString &title, const QString &text, StandardButtons buttons /*= Ok */, StandardButton defaultButton /*= NoButton*/)
 {
     QCtmMessageBox box(Icon::Critical, title, text, buttons, parent);

@@ -322,7 +322,7 @@
    <item row="12" column="0" colspan="2">
     <widget class="QTabWidget" name="tabWidget">
      <property name="currentIndex">
-      <number>1</number>
+      <number>3</number>
      </property>
      <property name="tabsClosable">
       <bool>true</bool>
@@ -507,6 +507,46 @@
        </item>
       </layout>
      </widget>
+     <widget class="QWidget" name="tab_4">
+      <attribute name="title">
+       <string>页</string>
+      </attribute>
+      <layout class="QGridLayout" name="gridLayout_5" columnstretch="0,1">
+       <item row="1" column="0">
+        <spacer name="verticalSpacer">
+         <property name="orientation">
+          <enum>Qt::Vertical</enum>
+         </property>
+         <property name="sizeHint" stdset="0">
+          <size>
+           <width>20</width>
+           <height>40</height>
+          </size>
+         </property>
+        </spacer>
+       </item>
+       <item row="0" column="0">
+        <widget class="QCtmEditLabel" name="label">
+         <property name="text">
+          <string>TextLabel</string>
+         </property>
+        </widget>
+       </item>
+       <item row="0" column="1">
+        <spacer name="horizontalSpacer_4">
+         <property name="orientation">
+          <enum>Qt::Horizontal</enum>
+         </property>
+         <property name="sizeHint" stdset="0">
+          <size>
+           <width>40</width>
+           <height>20</height>
+          </size>
+         </property>
+        </spacer>
+       </item>
+      </layout>
+     </widget>
     </widget>
    </item>
   </layout>
@@ -533,6 +573,11 @@
    <extends>QWidget</extends>
    <header>QCustomUI/QCustomUi.h</header>
    <container>1</container>
+  </customwidget>
+  <customwidget>
+   <class>QCtmEditLabel</class>
+   <extends>QLabel</extends>
+   <header>QCustomUi/QCustomUi.h</header>
   </customwidget>
  </customwidgets>
  <resources/>

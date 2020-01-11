@@ -6,5 +6,7 @@
         <file>Resources/images/hideButton-statusbar-light.png</file>
         <file>Resources/images/hideButton-statusbar.png</file>
     </qresource>
-    <qresource prefix="/translation"/>
+    <qresource prefix="/translation">
+        <file>switchlauncher_zh.qm</file>
+    </qresource>
 </RCC>

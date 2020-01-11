@@ -26,21 +26,23 @@
     qproperty-icon: url(:/QCustomUi/Resources/maximize_max-light.png);
 }
 
-QCtmTitleBar #closeBtn, QCtmTitleBar #minimumSizeBtn, QCtmTitleBar #maximumSizeBtn
+QCtmTitleBar QAbstractButton
 {
+    padding-left: 5px;
+    padding-right: 5px;
 	border: none;
 	background-color: transparent;
 }
 
-QCtmTitleBar #minimumSizeBtn:hover, QCtmTitleBar #maximumSizeBtn:hover, QCtmTitleBar #closeBtn::hover
-{
-    background-color: #C6C6C6;
-}
+    QCtmTitleBar QAbstractButton:hover {
+        background-color: #C6C6C6;
+        border: none;
+    }
 
-QCtmTitleBar #minimumSizeBtn:pressed, QCtmTitleBar #maximumSizeBtn:pressed, QCtmTitleBar #closeBtn::pressed
-{
-    background-color: #C6C6C6;
-}
+    QCtmTitleBar QAbstractButton:pressed {
+        background-color: #C0C0C0;
+        border: none;
+    }
 
 .QCtmTitleBar
 {
@@ -56,10 +58,6 @@ QCtmTitleBar #minimumSizeBtn:pressed, QCtmTitleBar #maximumSizeBtn:pressed, QCtm
 
 .QCtmTitleBar QMenuBar::item
 {
-    padding-bottom: 6px;
-    padding-top: 6px;
-    padding-right: 8px;
-    padding-left: 8px;
     font-family: 'Microsoft YaHei';
     font-weight: 400;
     color: rgba(94,94,94,1);
@@ -74,12 +72,6 @@ QCtmTitleBar #minimumSizeBtn:pressed, QCtmTitleBar #maximumSizeBtn:pressed, QCtm
 .QCtmTitleBar QMenuBar::item:pressed
 {
 	background-color: #C6C6C6;
-}
-
-.QCtmTitleBar QCtmToolButton
-{
-    background: transparent;
-    color: white;
 }
 
 /*********************************************************************/
@@ -924,4 +916,20 @@ QCtmNavigationMainMenu QCtmMainMenuButton
     padding: 9px;
     text-align: left bottom;
     font-weight: bold;
+}
+
+QCtmEditLabel QToolButton
+{
+    background: #E1E1E1;
+    border: none;
+}
+
+QCtmEditLabel QToolButton:hover
+{
+    background: #E1F0FF;
+}
+
+QCtmEditLabel QToolButton:pressed
+{
+    background: #CBE5FF;
 }
