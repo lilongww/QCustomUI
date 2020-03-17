@@ -79,6 +79,25 @@ QVariant QCtmLogModel::data(const QModelIndex &index, int role /* = Qt::DisplayR
             }
         }
     }
+    else if (role == Qt::ToolTipRole)
+    {
+        if (index.column() == 2)
+        {
+            return msg.msg;
+        }
+    }
+ //   else if (role == Qt::ForegroundRole)
+	//{
+	//	switch (msg.type)
+	//	{
+	//	case QtMsgType::QtInfoMsg:
+ //           return QColor(Qt::green);
+	//	case QtMsgType::QtWarningMsg:
+	//		return QColor(Qt::yellow);
+	//	case QtMsgType::QtCriticalMsg:
+ //           return QColor(Qt::red);
+	//	}
+ //   }
     return QVariant();
 }
 

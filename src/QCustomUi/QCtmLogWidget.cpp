@@ -124,6 +124,8 @@ void QCtmLogWidget::init()
     m_impl->logView->setModel(m_impl->proxyModel);
     m_impl->logView->setColumnWidth(0, 25);
     m_impl->logView->setColumnWidth(1, 135);
+    m_impl->logView->setWordWrap(true);
+    m_impl->logView->verticalHeader()->setSectionResizeMode(QHeaderView::ResizeMode::ResizeToContents);
 
     connect(m_impl->infoAction, &QAction::toggled, this
         , [=](bool check)
