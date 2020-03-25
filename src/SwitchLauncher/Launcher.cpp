@@ -164,8 +164,11 @@ bool Launcher::setCurrentActivity(SWPluginInterface* activity, const SWUserData&
     {
         if (!m_impl->currentActivity->currentPluginChangeEvent(false, m_impl->currentActivity, data))
             return false;
-        if (activity&&!activity->currentPluginChangeEvent(true, m_impl->currentActivity, data))
-            return false;
+		if (activity && !activity->currentPluginChangeEvent(true, m_impl->currentActivity, data))
+		{
+			m_impl->currentActivity->currentPluginChangeEvent(true, m_impl->currentActivity, data);
+			return false;
+		}
         takeContentWidget();
         takePropertyBar();
         takeNavigationSideBar();
