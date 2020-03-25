@@ -226,6 +226,11 @@ bool Launcher::setCurrentActivity(SWPluginInterface* activity, const SWUserData&
 			}
 		}
     }
+	else
+	{
+		if (activity && !activity->currentPluginChangeEvent(true, m_impl->currentActivity, data))
+			return false;
+	}
     if (!activity)
         return true;
     m_impl->currentActivity = activity;

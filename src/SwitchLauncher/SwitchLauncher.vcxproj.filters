@@ -46,6 +46,9 @@
     <ClInclude Include="Version.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="resource.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ActivityManager.cpp">
@@ -81,5 +84,8 @@
     <QtRcc Include="SwitchLauncher.qrc">
       <Filter>Resource Files</Filter>
     </QtRcc>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="SwitchLauncher.rc" />
   </ItemGroup>
 </Project>

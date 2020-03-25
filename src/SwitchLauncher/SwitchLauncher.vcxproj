@@ -121,6 +121,7 @@ xcopy /y Version.h $(SolutionDir)build\include\$(ProjectName)\</Command>
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="ActivityManager.h" />
+    <ClInclude Include="resource.h" />
     <ClInclude Include="Version.h" />
     <QtMoc Include="SWApplication.h" />
     <ClInclude Include="SWPluginInterface.h" />
@@ -143,6 +144,9 @@ xcopy /y Version.h $(SolutionDir)build\include\$(ProjectName)\</Command>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
     </None>
     <None Include="switchlauncher_zh.ts" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="SwitchLauncher.rc" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Condition="Exists('$(QtMsBuild)\qt.targets')">
