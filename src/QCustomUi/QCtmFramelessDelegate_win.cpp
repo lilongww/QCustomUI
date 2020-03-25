@@ -32,7 +32,11 @@ QCtmWinFramelessDelegate::QCtmWinFramelessDelegate(QWidget* parent, const QWidge
 	, m_impl(std::make_unique<Impl>())
 {
 	m_impl->parent = parent;
-	parent->setWindowFlags(parent->windowFlags() | Qt::FramelessWindowHint | Qt::WindowMinMaxButtonsHint | Qt::WindowCloseButtonHint | Qt::WindowSystemMenuHint);
+	parent->setWindowFlags(parent->windowFlags()
+		| Qt::FramelessWindowHint
+		| Qt::WindowMinMaxButtonsHint
+		| Qt::WindowCloseButtonHint
+		| Qt::WindowSystemMenuHint);
 	parent->installEventFilter(this);
 
 	m_impl->moveBars = moveBars;
@@ -222,16 +226,20 @@ bool QCtmWinFramelessDelegate::nativeEvent(const QByteArray& eventType
 	break;
 	case WM_DWMCOMPOSITIONCHANGED:
 	{
-		if (m_impl->parent->isMaximized()) {
-			if (QtWin::isCompositionEnabled()) {
+		if (m_impl->parent->isMaximized())
+		{
+			if (QtWin::isCompositionEnabled())
+			{
 				auto margin = 8 / m_impl->parent->devicePixelRatioF();
 				m_impl->parent->layout()->setContentsMargins(QMargins(margin, margin, margin, margin));
 			}
-			else {
+			else
+			{
 				m_impl->parent->layout()->setContentsMargins(QMargins(0, 0, 0, 0));
 			}
 		}
-		else {
+		else
+		{
 			m_impl->parent->layout()->setContentsMargins(QMargins(0, 0, 0, 0));
 		}
 	}
@@ -282,12 +290,14 @@ bool QCtmWinFramelessDelegate::eventFilter(QObject* watched, QEvent* event)
 	{
 		if (event->type() == QEvent::WindowStateChange)
 		{
-			if (m_impl->parent->isMaximized() && QtWin::isCompositionEnabled()) {
+			if (m_impl->parent->isMaximized() && QtWin::isCompositionEnabled() && !m_impl->parent->windowFlags().testFlag(Qt::Tool))
+			{
 				auto margin = 8 / m_impl->parent->devicePixelRatioF();
 				m_impl->parent->layout()->setContentsMargins(QMargins(margin, margin, margin, margin));
 				m_impl->parent->layout()->update();
 			}
-			else {
+			else
+			{
 				m_impl->parent->layout()->setContentsMargins(QMargins(0, 0, 0, 0));
 				m_impl->parent->layout()->update();
 				if (!m_impl->parent->underMouse())
