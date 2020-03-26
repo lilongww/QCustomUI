@@ -153,6 +153,10 @@
       <IncludePath Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">.\GeneratedFiles;.;$(QTDIR)\include;.\GeneratedFiles\$(ConfigurationName);$(QTDIR)\include\QtCore;$(QTDIR)\include\QtGui;$(QTDIR)\include\QtANGLE;$(QTDIR)\include\QtWidgets;$(QTDIR)\include\QtWinExtras;$(QTDIR)\include\QtNetwork</IncludePath>
       <IncludePath Condition="'$(Configuration)|$(Platform)'=='Release|x64'">.\GeneratedFiles;.;$(QTDIR)\include;.\GeneratedFiles\$(ConfigurationName);$(QTDIR)\include\QtCore;$(QTDIR)\include\QtGui;$(QTDIR)\include\QtANGLE;$(QTDIR)\include\QtWidgets;$(QTDIR)\include\QtWinExtras;$(QTDIR)\include\QtNetwork</IncludePath>
     </QtMoc>
+    <QtMoc Include="QCtmHeaderView.h">
+      <IncludePath Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">.\GeneratedFiles;.;$(QTDIR)\include;.\GeneratedFiles\$(ConfigurationName);$(QTDIR)\include\QtCore;$(QTDIR)\include\QtGui;$(QTDIR)\include\QtANGLE;$(QTDIR)\include\QtWidgets;$(QTDIR)\include\QtWinExtras;$(QTDIR)\include\QtNetwork;.\Private</IncludePath>
+      <IncludePath Condition="'$(Configuration)|$(Platform)'=='Release|x64'">.\GeneratedFiles;.;$(QTDIR)\include;.\GeneratedFiles\$(ConfigurationName);$(QTDIR)\include\QtCore;$(QTDIR)\include\QtGui;$(QTDIR)\include\QtANGLE;$(QTDIR)\include\QtWidgets;$(QTDIR)\include\QtWinExtras;$(QTDIR)\include\QtNetwork;.\Private</IncludePath>
+    </QtMoc>
     <ClInclude Include="QCtmStyleSheet.h" />
     <QtMoc Include="QCtmFlexWidget.h" />
     <QtMoc Include="QCtmAbstractDockPanel.h" />
@@ -206,6 +210,7 @@
     <ClCompile Include="QCtmDockTitle.cpp" />
     <ClCompile Include="QCtmFlexWidget.cpp" />
     <ClCompile Include="QCtmEditLabel.cpp" />
+    <ClCompile Include="QCtmHeaderView.cpp" />
     <ClCompile Include="QCtmIPAddressEdit.cpp" />
     <ClCompile Include="QCtmLogEvent.cpp" />
     <ClCompile Include="QCtmLogFilterModel.cpp" />
@@ -263,6 +268,7 @@
     <QtRcc Include="QCustomUi.qrc" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="..\..\README.md" />
     <None Include="qcustomui_zh.ts" />
     <None Include="Resources\stylesheet\default-light.css" />
     <None Include="Resources\stylesheet\sw-light.css" />

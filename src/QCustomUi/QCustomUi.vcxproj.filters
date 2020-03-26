@@ -257,6 +257,9 @@
     <ClCompile Include="QCtmDockTitle.cpp">
       <Filter>Flex</Filter>
     </ClCompile>
+    <ClCompile Include="QCtmHeaderView.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <QtMoc Include="QCtmAbstractLogModel.h">
@@ -412,6 +415,9 @@
     <QtMoc Include="QCtmDockTitle.h">
       <Filter>Flex</Filter>
     </QtMoc>
+    <QtMoc Include="QCtmHeaderView.h">
+      <Filter>Header Files</Filter>
+    </QtMoc>
   </ItemGroup>
   <ItemGroup>
     <QtUic Include="Private\QCtmToolBoxItem.ui">
@@ -442,6 +448,7 @@
     <None Include="qcustomui_zh.ts">
       <Filter>Translation Files</Filter>
     </None>
+    <None Include="..\..\README.md" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="QCustomUi.rc" />
