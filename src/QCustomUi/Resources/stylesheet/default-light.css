@@ -682,3 +682,17 @@ QSplitter:handle:vertical
 {
     height: 0px;
 }
+
+QHeaderView::up-arrow
+{
+    subcontrol-position: center right;
+    padding-right: 8px;
+    image: url(:/QScrollBar/Resources/QScrollBar/addLineV.png);
+}
+
+QHeaderView::down-arrow
+{
+    subcontrol-position: center right;
+    padding-right: 8px;
+    image: url(:/QScrollBar/Resources/QScrollBar/subLineV.png);
+}
