@@ -111,7 +111,10 @@ QAction* SWContext::addLogo(const QIcon& icon, ActionPosition pos /*= 0*/)
 
 void SWContext::setUserInfo(const QString& user, const QString& authority)
 {
-	m_impl->launcher->setUser(user + "\n(" + authority + ")");
+    if (authority.isEmpty())
+        m_impl->launcher->setUser(user);
+    else
+	    m_impl->launcher->setUser(user + "\n(" + authority + ")");
 }
 
 void SWContext::setMessageBarVisible(bool visible)
