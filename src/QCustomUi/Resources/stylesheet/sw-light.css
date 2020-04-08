@@ -853,21 +853,6 @@ QCtmTableView #hHeader
     color: #1E1E1E;
 }
 
-QHeaderView::up-arrow
-{
-    subcontrol-position: center right;
-    padding-right: 8px;
-    image: url(:/QScrollBar/Resources/QScrollBar/addLineV.png);
-}
-
-QHeaderView::down-arrow
-{
-    subcontrol-position: center right;
-    padding-right: 8px;
-    image: url(:/QScrollBar/Resources/QScrollBar/subLineV.png);
-}
-
-
 QCtmTableView #hHeader::section
 {
     background: transparent;

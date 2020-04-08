@@ -10,6 +10,7 @@
 
 class QCtmMainWindow;
 class QCtmDialog;
+class SWContextInterface;
 
 class SWITCHLAUNCHER_EXPORT SWApplication : public QCtmApplication
 {
@@ -42,6 +43,7 @@ public:
 	 */
 	QCtmDialog* aboutDialog() const;
 
+	SWContextInterface* context() const;
 	/**
 	 * @brief		是否初始化成功
 	 */

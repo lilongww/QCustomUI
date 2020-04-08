@@ -48,6 +48,11 @@ QCtmDialog* SWApplication::aboutDialog() const
 	return SWContext::instance().mainWindow()->aboutDialog();
 }
 
+SWContextInterface* SWApplication::context() const
+{
+	return &SWContext::instance();
+}
+
 int SWApplication::exec()
 {
 	if (!g_qAppInitSucceed)
