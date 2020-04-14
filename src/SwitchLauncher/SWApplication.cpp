@@ -29,7 +29,9 @@ SWApplication::~SWApplication()
 void SWApplication::initBeforeStructure()
 {
 	QApplication::setAttribute(Qt::AA_EnableHighDpiScaling);
+#if Q_VERSION >= QT_VERSION_CHECK(5,14,0)
 	QApplication::setHighDpiScaleFactorRoundingPolicy(Qt::HighDpiScaleFactorRoundingPolicy::Unset);
+#endif
     QCtmLogManager::initBeforeApp();
 }
 

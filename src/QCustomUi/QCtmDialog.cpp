@@ -41,6 +41,7 @@ QCtmDialog::QCtmDialog(QWidget *parent)
 	m_impl->delegate = new QCtmWinFramelessDelegate(this, m_impl->title);
 #else
 	m_impl->delegate = new QCtmFramelessDelegate(this, m_impl->title);
+	setWindowFlag(Qt::Dialog);
 #endif
 	auto content = new QWidget(this);
 	content->setAutoFillBackground(true);
@@ -154,6 +155,8 @@ bool QCtmDialog::nativeEvent(const QByteArray& eventType, void* message, long* r
 		return QDialog::nativeEvent(eventType, message, result);
 	else
 		return true;
+#else
+	return QDialog::nativeEvent(eventType, message, result);
 #endif
 }
 

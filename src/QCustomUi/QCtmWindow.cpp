@@ -208,5 +208,7 @@ bool QCtmWindow::nativeEvent(const QByteArray& eventType, void* message, long* r
 		return QWidget::nativeEvent(eventType, message, result);
 	else
 		return true;
+#else
+	return QWidget::nativeEvent(eventType, message, result);
 #endif
 }
