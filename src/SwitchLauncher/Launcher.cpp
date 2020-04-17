@@ -421,6 +421,14 @@ void Launcher::showEvent(QShowEvent* e)
 
 void Launcher::closeEvent(QCloseEvent* e)
 {
+	if (SWContext::instance().attributes().testFlag(SWContextAttribute::SWCA_QuitAlert))
+	{
+		if (QCtmMessageBox::question(this, QStringLiteral("提示"), QStringLiteral("是否确认退出应用程序？")) != QCtmMessageBox::Yes)
+		{
+			e->ignore();
+			return;
+		}
+	}
     if (m_impl->currentActivity)
     {
         if (!m_impl->currentActivity->currentPluginChangeEvent(false, m_impl->currentActivity))

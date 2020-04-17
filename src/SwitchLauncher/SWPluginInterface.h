@@ -306,7 +306,7 @@ public:
 	 * @param[in]	attribute 属性
 	 * @param[in]	enable 启用/禁用
 	 */
-	virtual void setAttribute(SWContextAttribute attribute, bool enable) = 0;
+	virtual void setAttribute(SWContextAttribute attribute, bool enable = true) = 0;
 
     /**
      * @brief		获取context的特性
