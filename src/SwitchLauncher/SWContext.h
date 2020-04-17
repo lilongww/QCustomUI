@@ -28,7 +28,8 @@ public:
 	SWPluginInterface* currentPlugin() const override;
     void setLanguage(const QString& language) override;
     const QString& language() const override;
-    void setAttributes(SWContextAttributes features) override;
+    void setAttributes(SWContextAttributes attributes) override;
+	void setAttribute(SWContextAttribute attribute, bool enable) override;
     SWContextAttributes attributes() const override;
 	void setMessageBarCurrentIndex(int index) override;
 	int messageBarCurrentIndex() const override;

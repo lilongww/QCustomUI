@@ -12,7 +12,7 @@ struct SWContext::Impl
 {
 	Launcher* launcher;
     QMap<QString, QList<QTranslator*>> translators;
-    SWContextAttributes features;
+    SWContextAttributes attributes;
 	QString currentLanguage{ "CN" };
 
     void initTranslators(QObject* parent)
@@ -160,10 +160,10 @@ const QString& SWContext::language() const
     return m_impl->currentLanguage;
 }
 
-void SWContext::setAttributes(SWContextAttributes features)
+void SWContext::setAttributes(SWContextAttributes attributes)
 {
-    m_impl->features = features;
-    if (features.testFlag(SWContextAttribute::SWCA_LogInsertDESC))
+    m_impl->attributes = attributes;
+    if (attributes.testFlag(SWContextAttribute::SWCA_LogInsertDESC))
     {
         m_impl->launcher->logWidget()->setLogInsertMode(DESC);
     }
@@ -171,9 +171,14 @@ void SWContext::setAttributes(SWContextAttributes features)
         m_impl->launcher->logWidget()->setLogInsertMode(ASC);
 }
 
+void SWContext::setAttribute(SWContextAttribute attribute, bool enable)
+{
+    m_impl->attributes.setFlag(attribute, enable);
+}
+
 SWContextAttributes SWContext::attributes() const
 {
-    return m_impl->features;
+    return m_impl->attributes;
 }
 
 void SWContext::setMessageBarCurrentIndex(int index)

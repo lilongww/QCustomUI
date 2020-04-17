@@ -70,29 +70,27 @@ enum SWMessageEventType
 	Clicked
 };
 
-namespace SWPluginAttribute
-{
-    enum SWPluginAttribute
-    {
-        SWPA_None,
-        SWPA_DontShowInPluginMenu = 0x01,                  //不显示在插件菜单中
-        SWPA_DontShowPluginNameInTitle = 0x02              //不显示插件名称到标题栏
-    };
-}
-Q_DECLARE_FLAGS(SWPluginAttributes, SWPluginAttribute::SWPluginAttribute)
 
-namespace SWContextAttribute
+enum SWPluginAttribute
 {
-    enum SWContextAttribute
-    {
-        SWCA_None,
-		SWCA_DontShowTitle = 0x01,                           //不显示标题栏
-		SWCA_LogInsertDESC = 0x02,                           //日志倒序插入
-		SWCA_QuitAlert = 0x04								 //主窗口退出时提示
-    };
-}
+	SWPA_None,
+	SWPA_DontShowInPluginMenu = 0x01,                  //不显示在插件菜单中
+	SWPA_DontShowPluginNameInTitle = 0x02              //不显示插件名称到标题栏
+};
 
-Q_DECLARE_FLAGS(SWContextAttributes, SWContextAttribute::SWContextAttribute)
+Q_DECLARE_FLAGS(SWPluginAttributes, SWPluginAttribute)
+Q_DECLARE_OPERATORS_FOR_FLAGS(SWPluginAttributes)
+
+enum class SWContextAttribute
+{
+	SWCA_None,
+	SWCA_DontShowTitle = 0x01,                           //不显示标题栏
+	SWCA_LogInsertDESC = 0x02,                           //日志倒序插入
+	SWCA_QuitAlert = 0x04								 //主窗口退出时提示
+};
+
+Q_DECLARE_FLAGS(SWContextAttributes, SWContextAttribute)
+Q_DECLARE_OPERATORS_FOR_FLAGS(SWContextAttributes)
 
 //插件接口
 class SWPluginInterface
@@ -302,6 +300,13 @@ public:
      * @param[in]	features 特性集合
      */
     virtual void setAttributes(SWContextAttributes features) = 0;
+
+	/**
+	 * @brief		设置Context特性
+	 * @param[in]	attribute 属性
+	 * @param[in]	enable 启用/禁用
+	 */
+	virtual void setAttribute(SWContextAttribute attribute, bool enable) = 0;
 
     /**
      * @brief		获取context的特性
