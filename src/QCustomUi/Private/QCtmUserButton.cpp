@@ -26,7 +26,6 @@ void QCtmUserButton::paintEvent(QPaintEvent *)
 	opt.text = "";
 	opt.icon = QIcon();
 	this->style()->drawComplexControl(QStyle::CC_ToolButton, &opt, &p, this);
-	auto &&rect = this->style()->subElementRect(QStyle::SE_ToolButtonLayoutItem, &opt, this);
 
 	QIcon::State state = opt.state & QStyle::State_On ? QIcon::On : QIcon::Off;
 	QIcon::Mode mode;
@@ -39,18 +38,21 @@ void QCtmUserButton::paintEvent(QPaintEvent *)
 	auto pm = this->icon().pixmap(this->windowHandle(), opt.rect.size().boundedTo(opt.iconSize),
 		mode, state);
 
-	this->style()->drawItemPixmap(&p, doIconRect(), Qt::AlignCenter, pm);
+	this->style()->drawItemPixmap(&p, doIconRect(opt), Qt::AlignCenter, pm);
 
 	this->style()->drawItemText(&p
-		, doTextRect()
+		, doTextRect(opt)
 		, Qt::AlignCenter, opt.palette, opt.state.testFlag(QStyle::State_Enabled)
 		, this->text());
 }
 
 QSize QCtmUserButton::sizeHint() const
 {
-	auto&& rect = doTextRect();
-	return QSize(rect.width() + this->iconSize().width() + 2, rect.height());
+	QStyleOptionToolButton opt;
+	initStyleOption(&opt);
+
+	auto width = doTextRect(opt).width() + doIconRect(opt).width();
+	return QSize(width + 2, -1);
 }
 
 QSize QCtmUserButton::minimumSizeHint() const
@@ -58,17 +60,20 @@ QSize QCtmUserButton::minimumSizeHint() const
 	return sizeHint();
 }
 
-QRect QCtmUserButton::doTextRect() const
+QRect QCtmUserButton::doTextRect(const QStyleOptionToolButton& opt) const
 {
-	QStyleOptionToolButton opt;
-	initStyleOption(&opt);
-	auto &&rect = opt.fontMetrics.boundingRect(QRect(), Qt::TextDontClip, this->text());
-	rect.moveLeft(this->iconSize().width() + 2);
-    rect.setHeight(this->height());
-	return std::move(rect);
+	const auto& rect = this->style()->subElementRect(QStyle::SE_FrameContents, &opt, this);
+	auto&& boundingRect = opt.fontMetrics.boundingRect(QRect(), Qt::TextDontClip, this->text());
+	boundingRect.moveLeft(this->iconSize().width() + 2 + rect.left());
+	boundingRect.setHeight(std::min(rect.height(), boundingRect.height()));
+	boundingRect.setRight(std::min(boundingRect.right(), rect.right()));
+	boundingRect.setTop(rect.top());
+	boundingRect.setBottom(rect.bottom());
+	return boundingRect;
 }
 
-QRect QCtmUserButton::doIconRect() const
+QRect QCtmUserButton::doIconRect(const QStyleOptionToolButton& opt) const
 {
-	return std::move(QRect(0, 0, iconSize().width(), height()));
+	const auto& rect = this->style()->subElementRect(QStyle::SE_FrameContents, &opt, this);
+	return QRect(rect.left(), rect.top(), iconSize().width(), rect.height());
 }

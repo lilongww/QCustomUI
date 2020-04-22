@@ -333,6 +333,8 @@ const QStringList& Launcher::themes() const
 
 void Launcher::addMessageTip(QCtmAbstractMessagePtr msg)
 {
+	if (!m_impl->msgModel)
+		return;
 	m_impl->msgModel->addMessage(msg);
 	for (auto &&actSlot : ActivityManager::instance().activitySlots())
 	{
