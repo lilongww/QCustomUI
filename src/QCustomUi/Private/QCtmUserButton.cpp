@@ -3,6 +3,8 @@
 #include <QPainter>
 #include <QStyleOption>
 
+constexpr int Space = 5;
+
 struct QCtmUserButton::Impl
 {
 };
@@ -50,9 +52,10 @@ QSize QCtmUserButton::sizeHint() const
 {
 	QStyleOptionToolButton opt;
 	initStyleOption(&opt);
-
-	auto width = doTextRect(opt).width() + doIconRect(opt).width();
-	return QSize(width + 2, -1);
+	const auto& rect = this->style()->subElementRect(QStyle::SE_FrameContents, &opt, this);
+	auto margin = this->width() - rect.width();
+	auto width = doTextRect(opt).width() + doIconRect(opt).width() + margin + Space;
+	return QSize(width, -1);
 }
 
 QSize QCtmUserButton::minimumSizeHint() const
@@ -63,10 +66,9 @@ QSize QCtmUserButton::minimumSizeHint() const
 QRect QCtmUserButton::doTextRect(const QStyleOptionToolButton& opt) const
 {
 	const auto& rect = this->style()->subElementRect(QStyle::SE_FrameContents, &opt, this);
-	auto&& boundingRect = opt.fontMetrics.boundingRect(QRect(), Qt::TextDontClip, this->text());
-	boundingRect.moveLeft(this->iconSize().width() + 2 + rect.left());
+	auto&& boundingRect = opt.fontMetrics.boundingRect(rect, Qt::TextDontClip, this->text());
+	boundingRect.moveLeft(this->iconSize().width() + Space + rect.left());
 	boundingRect.setHeight(std::min(rect.height(), boundingRect.height()));
-	boundingRect.setRight(std::min(boundingRect.right(), rect.right()));
 	boundingRect.setTop(rect.top());
 	boundingRect.setBottom(rect.bottom());
 	return boundingRect;
