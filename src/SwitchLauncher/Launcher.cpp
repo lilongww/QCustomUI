@@ -80,7 +80,7 @@ void Launcher::initUi()
 		}
 	});
 	this->titleWidget()->setMenuBar(m_impl->menuBar);
-	
+#if 0
 	{
 		auto file = m_impl->menuBar->addMenu(QObject::tr("&File"));
 
@@ -111,6 +111,7 @@ void Launcher::initUi()
 		file->addSeparator();
 		file->addAction(tr("Quit"), [=]() { this->close(); });
 	}
+#endif
 
 	{
 		m_impl->help = m_impl->menuBar->addMenu(tr("&Help"));
@@ -121,7 +122,7 @@ void Launcher::initUi()
 				m_impl->about->exec();
 			});
 	}
-	
+#if 0
 	{
 		m_impl->msgTip = new QCtmMessageTip(this);
 		m_impl->msgView = new QCtmMessageView(navigationBar());
@@ -136,25 +137,26 @@ void Launcher::initUi()
 		navigationBar()->addAction(action, QCtmNavigationBar::Right);
 
 		connect(m_impl->msgView, &QCtmMessageView::messageClicked, this, [=](QCtmAbstractMessagePtr msg) {
-			for (auto &&actSlot : ActivityManager::instance().activitySlots())
+			for (auto&& actSlot : ActivityManager::instance().activitySlots())
 			{
 				actSlot->onMessageTip(msg, SWMessageEventType::Clicked);
 			}
-		});
+			});
 
 		connect(m_impl->msgView, &QCtmMessageView::closeButtonClicked, this, [=](const QModelIndex& index) {
-			for (auto &&actSlot : ActivityManager::instance().activitySlots())
+			for (auto&& actSlot : ActivityManager::instance().activitySlots())
 			{
 				auto msg = m_impl->msgModel->message(index.row());
 				actSlot->onMessageTip(msg, SWMessageEventType::Delete);
 			}
-		});
+			});
 	}
 
 	{
 		auto help = navigationBar()->addHelp("file:///" + qApp->applicationDirPath() + "/Doc/Help.docx", QIcon());
 		help->setObjectName("help");
 	}
+#endif
 }
 
 

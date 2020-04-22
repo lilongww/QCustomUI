@@ -568,7 +568,7 @@ QTreeView::item:hover, QTreeView::branch:hover
 
 QTreeView::item:selected, QTreeView::branch:selected
 { /** ЪѓБъбЁжа **/
-    background-color: #55aaff;
+    background-color: rgb(85, 170, 255);
     color: white;
 }
 
