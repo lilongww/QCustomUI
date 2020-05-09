@@ -32,9 +32,6 @@
     <Filter Include="Private">
       <UniqueIdentifier>{8fa07f5c-4cfb-4bd0-8a23-0c1634d32fc0}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Flex">
-      <UniqueIdentifier>{3b2f167e-f1b6-46db-991e-ab38efcec7f3}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Input">
       <UniqueIdentifier>{c6c941db-8133-4b6a-84cb-c3c4e57b4855}</UniqueIdentifier>
     </Filter>
@@ -215,12 +212,6 @@
     <ClCompile Include="QCtmMultiComboBox.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="QCtmFlexWidget.cpp">
-      <Filter>Flex</Filter>
-    </ClCompile>
-    <ClCompile Include="QCtmAbstractDockPanel.cpp">
-      <Filter>Flex</Filter>
-    </ClCompile>
     <ClCompile Include="QCtmIPAddressEdit.cpp">
       <Filter>Input</Filter>
     </ClCompile>
@@ -242,9 +233,6 @@
     <ClCompile Include="QCtmLogModel.cpp">
       <Filter>Log</Filter>
     </ClCompile>
-    <ClCompile Include="QCtmDockHelper.cpp">
-      <Filter>Flex</Filter>
-    </ClCompile>
     <ClCompile Include="QCtmEditLabel.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -253,9 +241,6 @@
     </ClCompile>
     <ClCompile Include="QCtmApplication.cpp">
       <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="QCtmDockTitle.cpp">
-      <Filter>Flex</Filter>
     </ClCompile>
     <ClCompile Include="QCtmHeaderView.cpp">
       <Filter>Source Files</Filter>
@@ -376,12 +361,6 @@
     <QtMoc Include="QCtmMultiComboBox.h">
       <Filter>Header Files</Filter>
     </QtMoc>
-    <QtMoc Include="QCtmFlexWidget.h">
-      <Filter>Flex</Filter>
-    </QtMoc>
-    <QtMoc Include="QCtmAbstractDockPanel.h">
-      <Filter>Flex</Filter>
-    </QtMoc>
     <QtMoc Include="QCtmIPAddressEdit.h">
       <Filter>Input</Filter>
     </QtMoc>
@@ -400,9 +379,6 @@
     <QtMoc Include="QCtmLogWidget.h">
       <Filter>Log</Filter>
     </QtMoc>
-    <QtMoc Include="QCtmDockHelper.h">
-      <Filter>Flex</Filter>
-    </QtMoc>
     <QtMoc Include="QCtmEditLabel.h">
       <Filter>Header Files</Filter>
     </QtMoc>
@@ -411,9 +387,6 @@
     </QtMoc>
     <QtMoc Include="QCtmApplication.h">
       <Filter>Header Files</Filter>
-    </QtMoc>
-    <QtMoc Include="QCtmDockTitle.h">
-      <Filter>Flex</Filter>
     </QtMoc>
     <QtMoc Include="QCtmHeaderView.h">
       <Filter>Header Files</Filter>

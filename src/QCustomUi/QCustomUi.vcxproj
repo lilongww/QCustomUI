@@ -149,18 +149,11 @@
       <IncludePath Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">.\GeneratedFiles;.;$(QTDIR)\include;.\GeneratedFiles\$(ConfigurationName);$(QTDIR)\include\QtCore;$(QTDIR)\include\QtGui;$(QTDIR)\include\QtANGLE;$(QTDIR)\include\QtWidgets;$(QTDIR)\include\QtWinExtras</IncludePath>
       <IncludePath Condition="'$(Configuration)|$(Platform)'=='Release|x64'">.\GeneratedFiles;.;$(QTDIR)\include;.\GeneratedFiles\$(ConfigurationName);$(QTDIR)\include\QtCore;$(QTDIR)\include\QtGui;$(QTDIR)\include\QtANGLE;$(QTDIR)\include\QtWidgets;$(QTDIR)\include\QtWinExtras</IncludePath>
     </QtMoc>
-    <QtMoc Include="QCtmDockTitle.h">
-      <IncludePath Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">.\GeneratedFiles;.;$(QTDIR)\include;.\GeneratedFiles\$(ConfigurationName);$(QTDIR)\include\QtCore;$(QTDIR)\include\QtGui;$(QTDIR)\include\QtANGLE;$(QTDIR)\include\QtWidgets;$(QTDIR)\include\QtWinExtras;$(QTDIR)\include\QtNetwork</IncludePath>
-      <IncludePath Condition="'$(Configuration)|$(Platform)'=='Release|x64'">.\GeneratedFiles;.;$(QTDIR)\include;.\GeneratedFiles\$(ConfigurationName);$(QTDIR)\include\QtCore;$(QTDIR)\include\QtGui;$(QTDIR)\include\QtANGLE;$(QTDIR)\include\QtWidgets;$(QTDIR)\include\QtWinExtras;$(QTDIR)\include\QtNetwork</IncludePath>
-    </QtMoc>
     <QtMoc Include="QCtmHeaderView.h">
       <IncludePath Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">.\GeneratedFiles;.;$(QTDIR)\include;.\GeneratedFiles\$(ConfigurationName);$(QTDIR)\include\QtCore;$(QTDIR)\include\QtGui;$(QTDIR)\include\QtANGLE;$(QTDIR)\include\QtWidgets;$(QTDIR)\include\QtWinExtras;$(QTDIR)\include\QtNetwork;.\Private</IncludePath>
       <IncludePath Condition="'$(Configuration)|$(Platform)'=='Release|x64'">.\GeneratedFiles;.;$(QTDIR)\include;.\GeneratedFiles\$(ConfigurationName);$(QTDIR)\include\QtCore;$(QTDIR)\include\QtGui;$(QTDIR)\include\QtANGLE;$(QTDIR)\include\QtWidgets;$(QTDIR)\include\QtWinExtras;$(QTDIR)\include\QtNetwork;.\Private</IncludePath>
     </QtMoc>
     <ClInclude Include="QCtmStyleSheet.h" />
-    <QtMoc Include="QCtmFlexWidget.h" />
-    <QtMoc Include="QCtmAbstractDockPanel.h" />
-    <QtMoc Include="QCtmDockHelper.h" />
     <ClInclude Include="resource.h" />
     <ClInclude Include="Version.h" />
     <QtMoc Include="QCtmAbstractLogModel.h" />
@@ -198,7 +191,6 @@
     <ClInclude Include="qcustomui_global.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="QCtmAbstractDockPanel.cpp" />
     <ClCompile Include="QCtmAbstractLogModel.cpp" />
     <ClCompile Include="QCtmAbstractMessageModel.cpp" />
     <ClCompile Include="QCtmAbstractMessageView.cpp" />
@@ -206,9 +198,6 @@
     <ClCompile Include="QCtmColor.cpp" />
     <ClCompile Include="QCtmComboBox.cpp" />
     <ClCompile Include="QCtmDialog.cpp" />
-    <ClCompile Include="QCtmDockHelper.cpp" />
-    <ClCompile Include="QCtmDockTitle.cpp" />
-    <ClCompile Include="QCtmFlexWidget.cpp" />
     <ClCompile Include="QCtmEditLabel.cpp" />
     <ClCompile Include="QCtmHeaderView.cpp" />
     <ClCompile Include="QCtmIPAddressEdit.cpp" />
