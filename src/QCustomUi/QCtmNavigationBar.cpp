@@ -19,7 +19,7 @@
 #include <QUrl>
 #include <QActionEvent>
 
-static Q_CONSTEXPR char* ActionPosProperty = "QCtm_ActionPosition";
+static Q_CONSTEXPR const char* ActionPosProperty = "QCtm_ActionPosition";
 
 struct QCtmNavigationBar::Impl
 {

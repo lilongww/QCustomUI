@@ -8,7 +8,7 @@
 #include <QVBoxLayout>
 #include <QActionEvent>
 
-static Q_CONSTEXPR char* ActionPosProperty = "QCtm-ActionPosition";
+static Q_CONSTEXPR const char* ActionPosProperty = "QCtm-ActionPosition";
 
 struct QCtmNavigationSideBar::Impl
 {

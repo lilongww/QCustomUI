@@ -21,3 +21,5 @@ include(SwitchLauncherExample.pri)
 
 unix:!macx: LIBS += -L$$DESTDIR -lSwitchLauncher
 unix:!macx: LIBS += -L$$DESTDIR -lQCustomUi
+win32: LIBS += -L$$DESTDIR -lSwitchLauncher
+win32: LIBS += -L$$DESTDIR -lQCustomUi

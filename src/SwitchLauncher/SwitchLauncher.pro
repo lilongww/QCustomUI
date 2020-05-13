@@ -21,3 +21,4 @@ RCC_DIR += ./GeneratedFiles
 include(SwitchLauncher.pri)
 TRANSLATIONS += switchlauncher_zh.ts
 win32:RC_FILE = SwitchLauncher.rc
+win32: LIBS += -L$$DESTDIR -lQCustomUi

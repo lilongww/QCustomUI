@@ -11,7 +11,7 @@
 #include <QThread>
 
 Q_CONSTEXPR int OneDay = 60 * 60 * 24;
-Q_CONSTEXPR char* objExp = "#\\w+\\b";
+Q_CONSTEXPR const char* objExp = "#\\w+\\b";
 
 void qtMessageHandle(QtMsgType type, const QMessageLogContext& context, const QString& msg);
 
