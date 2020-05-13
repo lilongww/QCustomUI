@@ -4,20 +4,6 @@
 
 #include <QStandardItemModel>
 
-#include <windows.h>
-
-class Dialog : public QDialog
-{
-public:
-    using QDialog::QDialog;
-    bool nativeEvent(const QByteArray& eventType, void* message, long* result) override
-    {
-        MSG* msg = (MSG*)(message);
-        qDebug("%x : %x", this, msg->message);
-        return QDialog::nativeEvent(eventType, message, result);
-    }
-};
-
 StyleWidget::StyleWidget(QWidget *parent)
     : QWidget(parent)
 {

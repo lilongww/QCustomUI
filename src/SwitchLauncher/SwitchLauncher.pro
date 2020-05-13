@@ -7,11 +7,12 @@ TARGET = SwitchLauncher
 DESTDIR = ../../build/bin/x64/Debug
 QT += core network gui widgets
 CONFIG += debug
-DEFINES += _UNICODE _ENABLE_EXTENDED_ALIGNED_STORAGE WIN64 QT_WIDGETS_LIB SWITCHLAUNCHER_LIB QT_NETWORK_LIB
+DEFINES += SWITCHLAUNCHER_LIB
 INCLUDEPATH += ./GeneratedFiles \
     . \
     ./GeneratedFiles/$(ConfigurationName) \
-    $(SolutionDir)build/include
+    ../
+
 DEPENDPATH += .
 MOC_DIR += ./GeneratedFiles/$(ConfigurationName)
 OBJECTS_DIR += debug

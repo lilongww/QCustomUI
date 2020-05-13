@@ -118,7 +118,7 @@ void QCtmMainMenuButton::paintEvent(QPaintEvent*)
 
         if (!sizes.isEmpty())
         {
-            QPixmap &pixmap = this->icon().pixmap(sizes.front(), mode, st);
+            const QPixmap &pixmap = this->icon().pixmap(sizes.front(), mode, st);
             this->style()->drawItemPixmap(&p, contentsRect, Qt::AlignRight | Qt::AlignVCenter, pixmap);
         }
     }

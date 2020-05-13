@@ -4,7 +4,7 @@
 #include "QCtmLogEvent.h"
 
 #include <QWidget>
-#include <QIcon >
+#include <QIcon>
 
 #include <memory>
 

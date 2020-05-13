@@ -427,7 +427,7 @@ void Launcher::closeEvent(QCloseEvent* e)
 {
 	if (SWContext::instance().attributes().testFlag(SWContextAttribute::SWCA_QuitAlert))
 	{
-		if (QCtmMessageBox::question(this, QStringLiteral("提示"), QStringLiteral("是否确认退出应用程序？")) != QCtmMessageBox::Yes)
+                if (QCtmMessageBox::question(this, tr("Tips"), tr("Are you sure you want to quit the app?")) != QCtmMessageBox::Yes)
 		{
 			e->ignore();
 			return;

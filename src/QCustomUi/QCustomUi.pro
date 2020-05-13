@@ -5,9 +5,9 @@
 TEMPLATE = lib
 TARGET = QCustomUi
 DESTDIR = ../../build/bin/x64/Debug
-QT += core network gui widgets winextras
+QT += core network gui widgets
 CONFIG += debug
-DEFINES += _UNICODE _ENABLE_EXTENDED_ALIGNED_STORAGE WIN64 QT_WIDGETS_LIB QCUSTOMUI_LIB QT_WINEXTRAS_LIB QT_NETWORK_LIB
+DEFINES += QCUSTOMUI_LIB
 INCLUDEPATH += ./GeneratedFiles \
     . \
     ./GeneratedFiles/$(ConfigurationName) \
@@ -19,4 +19,3 @@ UI_DIR += ./GeneratedFiles
 RCC_DIR += ./GeneratedFiles
 include(QCustomUi.pri)
 TRANSLATIONS += qcustomui_zh.ts
-win32:RC_FILE = QCustomUi.rc

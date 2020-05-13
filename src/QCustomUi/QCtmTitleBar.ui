@@ -155,7 +155,7 @@
   <customwidget>
    <class>QCtmMaximumSizeButton</class>
    <extends>QPushButton</extends>
-   <header>Private/QCtmmaximumsizebutton_p.h</header>
+   <header>Private/QCtmMaximumSizeButton_p.h</header>
   </customwidget>
  </customwidgets>
  <resources/>

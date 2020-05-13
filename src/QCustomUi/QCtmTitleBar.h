@@ -12,6 +12,8 @@ namespace Ui
 	class QCtmTitleBar;
 }
 
+class QMenuBar;
+
 class QCUSTOMUI_EXPORT QCtmTitleBar : public QWidget
 {
 	Q_OBJECT

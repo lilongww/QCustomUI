@@ -191,7 +191,7 @@ QList<QString> QCtmLogManager::parseObjectNames(QString& msg)
 
     QString temp = msg;
     while ((pos = rx.indexIn(msg, pos)) != -1) {
-        auto &str = rx.cap(0);
+        const auto &str = rx.cap(0);
         list << str.right(str.size() - 1);
         pos += rx.matchedLength();
         temp = msg.right(msg.size() - pos);

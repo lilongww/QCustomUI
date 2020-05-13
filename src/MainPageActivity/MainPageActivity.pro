@@ -7,11 +7,11 @@ TARGET = MainPageActivity
 DESTDIR = ../../build/bin/x64/Debug/SWPlugins
 QT += core gui widgets
 CONFIG += debug
-DEFINES += _UNICODE WIN64 MAINPAGEACTIVITY_LIB QT_WIDGETS_LIB
+DEFINES += _UNICODE MAINPAGEACTIVITY_LIB QT_WIDGETS_LIB
 INCLUDEPATH += ./GeneratedFiles \
     . \
     ./GeneratedFiles/$(ConfigurationName) \
-    $(SolutionDir)build/include
+    ../
 DEPENDPATH += .
 MOC_DIR += ./GeneratedFiles/$(ConfigurationName)
 OBJECTS_DIR += debug

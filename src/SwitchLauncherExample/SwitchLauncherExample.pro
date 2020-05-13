@@ -7,14 +7,17 @@ TARGET = SwitchLauncherExample
 DESTDIR = ../../build/bin/x64/Debug
 QT += core gui widgets
 CONFIG += debug
-DEFINES += _UNICODE _ENABLE_EXTENDED_ALIGNED_STORAGE WIN64 QT_WIDGETS_LIB
 INCLUDEPATH += ./GeneratedFiles \
     . \
     ./GeneratedFiles/$(ConfigurationName) \
-    $(SolutionDir)build/include
+    ../
 DEPENDPATH += .
 MOC_DIR += ./GeneratedFiles/$(ConfigurationName)
 OBJECTS_DIR += debug
 UI_DIR += ./GeneratedFiles
 RCC_DIR += ./GeneratedFiles
+
 include(SwitchLauncherExample.pri)
+
+unix:!macx: LIBS += -L$$DESTDIR -lSwitchLauncher
+unix:!macx: LIBS += -L$$DESTDIR -lQCustomUi

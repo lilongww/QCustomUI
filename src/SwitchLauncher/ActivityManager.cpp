@@ -24,7 +24,11 @@ bool ActivityManager::loadLibarys()
 {
     auto actDir = qApp->applicationDirPath() + "/SWPlugins";
     QDir dir(actDir);
+#ifdef Q_OS_WIN
     for (auto it : dir.entryList(QStringList() << "*.dll"))
+#else
+    for (auto it : dir.entryList(QStringList() << "*.so"))
+#endif
     {
         QPluginLoader lib(actDir + "/" + it);
         if (lib.load())

@@ -9,6 +9,9 @@ typedef std::shared_ptr<QCtmWidgetItem> QCtmWidgetItemPtr;
 
 namespace Util
 {
+    QCtmWidgetItemPtr find(QAction* action, const QList<QCtmWidgetItemPtr>& items);
+    QCtmWidgetItemPtr find(QWidget* widget, const QList<QCtmWidgetItemPtr>& items);
+
     template <class Layout, class Item>
     void addItem(Item item, QList<Item>& items, QAction* before, Layout* layout)
     {
@@ -29,7 +32,4 @@ namespace Util
         items.removeOne(item);
         layout->takeAt(layout->indexOf(item->widget()));
     }
-
-    QCtmWidgetItemPtr find(QAction* action, const QList<QCtmWidgetItemPtr>& items);
-    QCtmWidgetItemPtr find(QWidget* widget, const QList<QCtmWidgetItemPtr>& items);
 }

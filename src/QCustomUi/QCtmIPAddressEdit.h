@@ -9,6 +9,7 @@
 #include "qcustomui_global.h"
 
 #include <QWidget>
+#include <QTextLayout>
 
 #include <memory>
 

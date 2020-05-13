@@ -60,10 +60,6 @@ HEADERS += ./QCtmStyleSheet.h \
     ./Private/QCtmWidgetItemForMainMenu_p.h \
     ./Private/QCtmWidgetItem_p.h \
     ./QCtmFramelessDelegate_win.h \
-    ./QCtmDockTitle.h \
-    ./QCtmFlexWidget.h \
-    ./QCtmAbstractDockPanel.h \
-    ./QCtmDockHelper.h \
     ./QCtmIPAddressEdit.h \
     ./QCtmLogEvent.h \
     ./QCtmLogManager.h \
@@ -119,10 +115,6 @@ SOURCES += ./QCtmAbstractLogModel.cpp \
     ./Private/flowlayout.cpp \
     ./Private/Util.cpp \
     ./QCtmFramelessDelegate_win.cpp \
-    ./QCtmAbstractDockPanel.cpp \
-    ./QCtmDockHelper.cpp \
-    ./QCtmDockTitle.cpp \
-    ./QCtmFlexWidget.cpp \
     ./QCtmIPAddressEdit.cpp \
     ./QCtmLogEvent.cpp \
     ./QCtmLogFilterModel.cpp \

@@ -571,7 +571,7 @@
   <customwidget>
    <class>QCtmIPAddressEdit</class>
    <extends>QWidget</extends>
-   <header>QCustomUI/QCustomUi.h</header>
+   <header>QCustomUi/QCustomUi.h</header>
    <container>1</container>
   </customwidget>
   <customwidget>

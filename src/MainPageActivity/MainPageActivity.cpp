@@ -54,20 +54,20 @@ bool MainPageActivity::initialize(SWContextInterface* context)
 	context->mainWindow()->titleWidget()->addAction(action);
     m_impl->context = context;
 	{
-		auto msg = std::make_shared<QCtmMessage>(QStringLiteral("消息标题")
-			, QStringLiteral("消息内容消息内容消息内容消息内容消息内容消息内容消息内容消息内容消息内容")
+                auto msg = std::make_shared<QCtmMessage>(QStringLiteral("sdf")
+                        , QStringLiteral("123")
 			, QDateTime::currentDateTime());
 		m_impl->context->addMessageTip(msg);
 	}
 	{
-		auto msg = std::make_shared<QCtmMessage>(QStringLiteral("消息标题")
-			, QStringLiteral("消息内容消息内容消息内容消息内容消息内容消息内容消息内容消息内容消息内容")
+                auto msg = std::make_shared<QCtmMessage>(QStringLiteral("123")
+                        , QStringLiteral("123")
 			, QDateTime::currentDateTime());
 		m_impl->context->addMessageTip(msg);
 	}
 	{
-		auto msg = std::make_shared<QCtmMessage>(QStringLiteral("消息标题消息标题消息标题消息标题消息标题消息标题消息标题消息标题消息标题消息标题")
-			, QStringLiteral("消息内容消息内容消息内容消息内容消息内容消息内容消息内容消息内容消息内容")
+                auto msg = std::make_shared<QCtmMessage>(QStringLiteral("123")
+                        , QStringLiteral("123")
 			, QDateTime::currentDateTime());
 		m_impl->context->addMessageTip(msg);
 	}
