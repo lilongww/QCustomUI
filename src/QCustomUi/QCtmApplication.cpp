@@ -1,4 +1,5 @@
 #include "QCtmApplication.h"
+#include "QCtmStyleSheet.h"
 
 #include <QLocalServer>
 #include <QLocalSocket>
@@ -16,7 +17,7 @@ QCtmApplication::QCtmApplication(int& argc, char** argv, int f/*= ApplicationFla
 	: QApplication(argc, argv, f)
 	, m_impl(std::make_unique<Impl>())
 {
-
+	setStyleSheet(QCtmStyleSheet::defaultStyleSheet());
 }
 
 QCtmApplication::~QCtmApplication()

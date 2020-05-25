@@ -28,17 +28,6 @@ public:
 	 */
 	QWidget* content()const;
 
-	/**
-	 * @brief       设置在父窗口中央位置显示
-	 * @param[in]   showInCenter true:在中央位置显示，false:不在中央位置显示
-	 */
-	void setShowInCenter(bool showInCenter);
-
-	/**
-	 * @brief       是否在父窗口中央位置显示
-	 */
-	bool showInCenter() const;
-
     /**
      * @brief		获取标题栏地址
      */
@@ -69,8 +58,7 @@ public:
 	bool shadowless() const;
 #endif
 protected:
-	void showEvent(QShowEvent *) override;
-	void hideEvent(QHideEvent *event) override;
+	void hideEvent(QHideEvent *) override;
 	bool eventFilter(QObject*, QEvent*) override;
 	bool nativeEvent(const QByteArray& eventType, void* message, long* result) override;
 private:

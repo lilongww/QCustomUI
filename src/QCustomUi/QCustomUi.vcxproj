@@ -132,6 +132,10 @@
     <QtMoc Include="Private\QCtmMessageViewDelegate_p.h" />
     <QtMoc Include="Private\QCtmNavigationImageButton_p.h" />
     <QtMoc Include="Private\QCtmSeparator_p.h" />
+    <QtMoc Include="Private\QCtmFramelessDelegate_win.h">
+      <IncludePath Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">.\GeneratedFiles;.;$(QTDIR)\include;.\GeneratedFiles\$(ConfigurationName);$(QTDIR)\include\QtCore;$(QTDIR)\include\QtGui;$(QTDIR)\include\QtANGLE;$(QTDIR)\include\QtWidgets;$(QTDIR)\include\QtWinExtras;$(QTDIR)\include\QtNetwork;.\Private</IncludePath>
+      <IncludePath Condition="'$(Configuration)|$(Platform)'=='Release|x64'">.\GeneratedFiles;.;$(QTDIR)\include;.\GeneratedFiles\$(ConfigurationName);$(QTDIR)\include\QtCore;$(QTDIR)\include\QtGui;$(QTDIR)\include\QtANGLE;$(QTDIR)\include\QtWidgets;$(QTDIR)\include\QtWinExtras;$(QTDIR)\include\QtNetwork;.\Private</IncludePath>
+    </QtMoc>
     <ClInclude Include="Private\QCtmStyle_p.h" />
     <QtMoc Include="Private\QCtmToolBoxItem_p.h" />
     <QtMoc Include="Private\QCtmToolButton_p.h" />
@@ -144,7 +148,6 @@
     <QtMoc Include="QCtmMultiComboBox.h" />
     <QtMoc Include="QCtmIPAddressEdit.h" />
     <QtMoc Include="QCtmEditLabel.h" />
-    <QtMoc Include="QCtmFramelessDelegate_win.h" />
     <QtMoc Include="QCtmApplication.h">
       <IncludePath Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">.\GeneratedFiles;.;$(QTDIR)\include;.\GeneratedFiles\$(ConfigurationName);$(QTDIR)\include\QtCore;$(QTDIR)\include\QtGui;$(QTDIR)\include\QtANGLE;$(QTDIR)\include\QtWidgets;$(QTDIR)\include\QtWinExtras</IncludePath>
       <IncludePath Condition="'$(Configuration)|$(Platform)'=='Release|x64'">.\GeneratedFiles;.;$(QTDIR)\include;.\GeneratedFiles\$(ConfigurationName);$(QTDIR)\include\QtCore;$(QTDIR)\include\QtGui;$(QTDIR)\include\QtANGLE;$(QTDIR)\include\QtWidgets;$(QTDIR)\include\QtWinExtras</IncludePath>
@@ -168,7 +171,6 @@
     <QtMoc Include="QCtmLogModel.h" />
     <QtMoc Include="QCtmLogWidget.h" />
     <ClInclude Include="QCustomUi.h" />
-    <QtMoc Include="QCtmMainWindow.h" />
     <ClInclude Include="QCtmMessage.h" />
     <QtMoc Include="QCtmMessageBox.h" />
     <QtMoc Include="QCtmMessageModel.h" />
@@ -187,10 +189,14 @@
     <QtMoc Include="QCtmTitleBar.h" />
     <QtMoc Include="QCtmToolBox.h" />
     <QtMoc Include="QCtmTree.h" />
-    <QtMoc Include="QCtmWindow.h" />
+    <QtMoc Include="QCtmWindow.h">
+      <IncludePath Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">.\GeneratedFiles;.;$(QTDIR)\include;.\GeneratedFiles\$(ConfigurationName);$(QTDIR)\include\QtCore;$(QTDIR)\include\QtGui;$(QTDIR)\include\QtANGLE;$(QTDIR)\include\QtWidgets;$(QTDIR)\include\QtWinExtras;$(QTDIR)\include\QtNetwork;.\Private</IncludePath>
+      <IncludePath Condition="'$(Configuration)|$(Platform)'=='Release|x64'">.\GeneratedFiles;.;$(QTDIR)\include;.\GeneratedFiles\$(ConfigurationName);$(QTDIR)\include\QtCore;$(QTDIR)\include\QtGui;$(QTDIR)\include\QtANGLE;$(QTDIR)\include\QtWidgets;$(QTDIR)\include\QtWinExtras;$(QTDIR)\include\QtNetwork;.\Private</IncludePath>
+    </QtMoc>
     <ClInclude Include="qcustomui_global.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Private\QCtmFramelessDelegate_win.cpp" />
     <ClCompile Include="QCtmAbstractLogModel.cpp" />
     <ClCompile Include="QCtmAbstractMessageModel.cpp" />
     <ClCompile Include="QCtmAbstractMessageView.cpp" />
@@ -206,7 +212,6 @@
     <ClCompile Include="QCtmLogManager.cpp" />
     <ClCompile Include="QCtmLogModel.cpp" />
     <ClCompile Include="QCtmLogWidget.cpp" />
-    <ClCompile Include="QCtmMainWindow.cpp" />
     <ClCompile Include="QCtmMessage.cpp" />
     <ClCompile Include="QCtmMessageBox.cpp" />
     <ClCompile Include="QCtmMessageModel.cpp" />
@@ -245,7 +250,6 @@
     <ClCompile Include="Private\QCtmWidgetItemForMainMenu.cpp" />
     <ClCompile Include="Private\flowlayout.cpp" />
     <ClCompile Include="Private\Util.cpp" />
-    <ClCompile Include="QCtmFramelessDelegate_win.cpp" />
   </ItemGroup>
   <ItemGroup>
     <QtUic Include="QCtmMainWindow.ui" />

@@ -13,7 +13,6 @@ struct QCtmDialog::Impl
 {
 	QCtmTitleBar* title{ nullptr };
 	QWidget* content{ nullptr };
-	bool showInCenter{ true };
 #ifdef Q_OS_WIN
 	QCtmWinFramelessDelegate* delegate{ nullptr };
 #else
@@ -73,16 +72,6 @@ QWidget* QCtmDialog::content() const
 	return m_impl->content;
 }
 
-void QCtmDialog::setShowInCenter(bool showInCenter)
-{
-	m_impl->showInCenter = showInCenter;
-}
-
-bool QCtmDialog::showInCenter() const
-{
-	return m_impl->showInCenter;
-}
-
 QCtmTitleBar* QCtmDialog::titleBar() const
 {
     return m_impl->title;
@@ -109,25 +98,8 @@ bool QCtmDialog::shadowless() const
 	return m_impl->delegate->shadowless();
 }
 #endif
-void QCtmDialog::showEvent(QShowEvent *e)
-{
-	auto parent = this->parentWidget();
-	if (parent)
-	{
-		if (showInCenter())
-		{
-			auto globalPos = parent->topLevelWidget()->pos();
-			auto size = parent->topLevelWidget()->size();
-			auto center = QRect(globalPos, size).center();
-			QPoint desPos{ center.x() - this->width() / 2, center.y() - this->height() / 2 };
-			normalizes(desPos);
-			move(desPos);
-		}
-	}
-	QDialog::showEvent(e);
-}
 
-void QCtmDialog::hideEvent(QHideEvent *event)
+void QCtmDialog::hideEvent(QHideEvent *)
 {
 	auto closeBtn = m_impl->title->findChild<QWidget*>("closeBtn");
 	if (closeBtn)

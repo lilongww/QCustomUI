@@ -29,9 +29,6 @@
       <Extensions>ui</Extensions>
       <ParseFiles>true</ParseFiles>
     </Filter>
-    <Filter Include="Private">
-      <UniqueIdentifier>{8fa07f5c-4cfb-4bd0-8a23-0c1634d32fc0}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Input">
       <UniqueIdentifier>{c6c941db-8133-4b6a-84cb-c3c4e57b4855}</UniqueIdentifier>
     </Filter>
@@ -42,6 +39,12 @@
       <UniqueIdentifier>{639EADAA-A684-42e4-A9AD-28FC9BCB8F7C}</UniqueIdentifier>
       <Extensions>ts</Extensions>
       <ParseFiles>false</ParseFiles>
+    </Filter>
+    <Filter Include="Containers">
+      <UniqueIdentifier>{22e4d03a-d497-4771-9d3d-fa3217cdf015}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Private">
+      <UniqueIdentifier>{8fa07f5c-4cfb-4bd0-8a23-0c1634d32fc0}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -146,12 +149,6 @@
     <ClCompile Include="QCtmComboBox.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="QCtmDialog.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="QCtmMainWindow.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="QCtmMessage.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -206,9 +203,6 @@
     <ClCompile Include="QCtmTree.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="QCtmWindow.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="QCtmMultiComboBox.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -236,14 +230,20 @@
     <ClCompile Include="QCtmEditLabel.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="QCtmFramelessDelegate_win.cpp">
-      <Filter>Private</Filter>
-    </ClCompile>
     <ClCompile Include="QCtmApplication.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="QCtmHeaderView.cpp">
       <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="QCtmDialog.cpp">
+      <Filter>Containers</Filter>
+    </ClCompile>
+    <ClCompile Include="QCtmWindow.cpp">
+      <Filter>Containers</Filter>
+    </ClCompile>
+    <ClCompile Include="Private\QCtmFramelessDelegate_win.cpp">
+      <Filter>Private</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -260,12 +260,6 @@
       <Filter>Header Files</Filter>
     </QtMoc>
     <QtMoc Include="QCtmComboBox.h">
-      <Filter>Header Files</Filter>
-    </QtMoc>
-    <QtMoc Include="QCtmDialog.h">
-      <Filter>Header Files</Filter>
-    </QtMoc>
-    <QtMoc Include="QCtmMainWindow.h">
       <Filter>Header Files</Filter>
     </QtMoc>
     <QtMoc Include="QCtmMessageBox.h">
@@ -317,9 +311,6 @@
       <Filter>Header Files</Filter>
     </QtMoc>
     <QtMoc Include="QCtmTree.h">
-      <Filter>Header Files</Filter>
-    </QtMoc>
-    <QtMoc Include="QCtmWindow.h">
       <Filter>Header Files</Filter>
     </QtMoc>
     <QtMoc Include="Private\QCtmActionGroup_p.h">
@@ -382,14 +373,20 @@
     <QtMoc Include="QCtmEditLabel.h">
       <Filter>Header Files</Filter>
     </QtMoc>
-    <QtMoc Include="QCtmFramelessDelegate_win.h">
-      <Filter>Private</Filter>
-    </QtMoc>
     <QtMoc Include="QCtmApplication.h">
       <Filter>Header Files</Filter>
     </QtMoc>
     <QtMoc Include="QCtmHeaderView.h">
       <Filter>Header Files</Filter>
+    </QtMoc>
+    <QtMoc Include="QCtmDialog.h">
+      <Filter>Containers</Filter>
+    </QtMoc>
+    <QtMoc Include="QCtmWindow.h">
+      <Filter>Containers</Filter>
+    </QtMoc>
+    <QtMoc Include="Private\QCtmFramelessDelegate_win.h">
+      <Filter>Private</Filter>
     </QtMoc>
   </ItemGroup>
   <ItemGroup>
@@ -421,9 +418,13 @@
     <None Include="qcustomui_zh.ts">
       <Filter>Translation Files</Filter>
     </None>
-    <None Include="..\..\README.md" />
+    <None Include="..\..\README.md">
+      <Filter>Resource Files</Filter>
+    </None>
   </ItemGroup>
   <ItemGroup>
-    <ResourceCompile Include="QCustomUi.rc" />
+    <ResourceCompile Include="QCustomUi.rc">
+      <Filter>Resource Files</Filter>
+    </ResourceCompile>
   </ItemGroup>
 </Project>
