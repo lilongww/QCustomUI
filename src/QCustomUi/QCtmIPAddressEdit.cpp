@@ -532,6 +532,10 @@ int QCtmIPAddressEdit::xToCursor(int x) const
 	for (int i = 0; i < SECTION_COUNT; i++)
 	{
 		auto&& rect = rectOfIpSection(i);
+		if (i < SECTION_COUNT - 1)
+		{
+			rect.setWidth(rect.width() + fontMetrics().width('.'));
+		}
 		if (rect.contains(x, rect.y()))
 		{
 			auto bound = boundRect(i, rect);
