@@ -46,6 +46,9 @@
     <Filter Include="Private">
       <UniqueIdentifier>{8fa07f5c-4cfb-4bd0-8a23-0c1634d32fc0}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Display Widgets">
+      <UniqueIdentifier>{2cc6a0ab-9fec-4b48-a5a4-987f4e29ec55}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="qcustomui_global.h">
@@ -152,9 +155,6 @@
     <ClCompile Include="QCtmMessage.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="QCtmMessageBox.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="QCtmMessageModel.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -227,9 +227,6 @@
     <ClCompile Include="QCtmLogModel.cpp">
       <Filter>Log</Filter>
     </ClCompile>
-    <ClCompile Include="QCtmEditLabel.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="QCtmApplication.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -244,6 +241,12 @@
     </ClCompile>
     <ClCompile Include="Private\QCtmFramelessDelegate_win.cpp">
       <Filter>Private</Filter>
+    </ClCompile>
+    <ClCompile Include="QCtmEditLabel.cpp">
+      <Filter>Display Widgets</Filter>
+    </ClCompile>
+    <ClCompile Include="QCtmMessageBox.cpp">
+      <Filter>Display Widgets</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -260,9 +263,6 @@
       <Filter>Header Files</Filter>
     </QtMoc>
     <QtMoc Include="QCtmComboBox.h">
-      <Filter>Header Files</Filter>
-    </QtMoc>
-    <QtMoc Include="QCtmMessageBox.h">
       <Filter>Header Files</Filter>
     </QtMoc>
     <QtMoc Include="QCtmMessageModel.h">
@@ -370,9 +370,6 @@
     <QtMoc Include="QCtmLogWidget.h">
       <Filter>Log</Filter>
     </QtMoc>
-    <QtMoc Include="QCtmEditLabel.h">
-      <Filter>Header Files</Filter>
-    </QtMoc>
     <QtMoc Include="QCtmApplication.h">
       <Filter>Header Files</Filter>
     </QtMoc>
@@ -387,6 +384,12 @@
     </QtMoc>
     <QtMoc Include="Private\QCtmFramelessDelegate_win.h">
       <Filter>Private</Filter>
+    </QtMoc>
+    <QtMoc Include="QCtmEditLabel.h">
+      <Filter>Display Widgets</Filter>
+    </QtMoc>
+    <QtMoc Include="QCtmMessageBox.h">
+      <Filter>Display Widgets</Filter>
     </QtMoc>
   </ItemGroup>
   <ItemGroup>

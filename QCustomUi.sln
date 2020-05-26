@@ -11,6 +11,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "WindowAndDialogExamples", "
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "InputExamples", "src\Examples\InputExamples\InputExamples.vcxproj", "{35011051-6A1B-4470-AE4D-A42F284E4310}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "DisplayWidgetExamples", "src\Examples\DisplayWidgetExamples\DisplayWidgetExamples.vcxproj", "{86361836-7D2B-40A8-A571-6A6CCC248A04}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -37,6 +39,12 @@ Global
 		{35011051-6A1B-4470-AE4D-A42F284E4310}.Release|x64.ActiveCfg = Release|x64
 		{35011051-6A1B-4470-AE4D-A42F284E4310}.Release|x64.Build.0 = Release|x64
 		{35011051-6A1B-4470-AE4D-A42F284E4310}.Release|x86.ActiveCfg = Release|x64
+		{86361836-7D2B-40A8-A571-6A6CCC248A04}.Debug|x64.ActiveCfg = Debug|x64
+		{86361836-7D2B-40A8-A571-6A6CCC248A04}.Debug|x64.Build.0 = Debug|x64
+		{86361836-7D2B-40A8-A571-6A6CCC248A04}.Debug|x86.ActiveCfg = Debug|x64
+		{86361836-7D2B-40A8-A571-6A6CCC248A04}.Release|x64.ActiveCfg = Release|x64
+		{86361836-7D2B-40A8-A571-6A6CCC248A04}.Release|x64.Build.0 = Release|x64
+		{86361836-7D2B-40A8-A571-6A6CCC248A04}.Release|x86.ActiveCfg = Release|x64
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -44,9 +52,10 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{396523B4-7AF2-4F10-846A-22999D543947} = {5FB04206-6C3C-4796-86E5-CEF694F70939}
 		{35011051-6A1B-4470-AE4D-A42F284E4310} = {5FB04206-6C3C-4796-86E5-CEF694F70939}
+		{86361836-7D2B-40A8-A571-6A6CCC248A04} = {5FB04206-6C3C-4796-86E5-CEF694F70939}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		Qt5Version = msvc2017_64
 		SolutionGuid = {33AA058C-7429-4789-AA83-6E68B9103AE5}
+		Qt5Version = msvc2017_64
 	EndGlobalSection
 EndGlobal
