@@ -14,6 +14,7 @@
 #include <QDesktopWidget>
 #include <QPlatformSurfaceEvent>
 #include <QElapsedTimer>
+#include <QPainterPath>
 
 #include <assert.h>
 
