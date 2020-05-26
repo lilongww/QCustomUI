@@ -149,9 +149,6 @@
     <ClCompile Include="QCtmColor.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="QCtmComboBox.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="QCtmMessage.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -248,6 +245,9 @@
     <ClCompile Include="QCtmMultiComboBox.cpp">
       <Filter>Input</Filter>
     </ClCompile>
+    <ClCompile Include="QCtmComboBox.cpp">
+      <Filter>Input</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <QtMoc Include="QCtmAbstractLogModel.h">
@@ -260,9 +260,6 @@
       <Filter>Header Files</Filter>
     </QtMoc>
     <QtMoc Include="QCtmColor.h">
-      <Filter>Header Files</Filter>
-    </QtMoc>
-    <QtMoc Include="QCtmComboBox.h">
       <Filter>Header Files</Filter>
     </QtMoc>
     <QtMoc Include="QCtmMessageModel.h">
@@ -391,6 +388,9 @@
     <QtMoc Include="QCtmMultiComboBox.h">
       <Filter>Input</Filter>
     </QtMoc>
+    <QtMoc Include="QCtmComboBox.h">
+      <Filter>Input</Filter>
+    </QtMoc>
   </ItemGroup>
   <ItemGroup>
     <QtUic Include="Private\QCtmToolBoxItem.ui">
@@ -400,9 +400,6 @@
       <Filter>Form Files</Filter>
     </QtUic>
     <QtUic Include="QCtmTitleBar.ui">
-      <Filter>Form Files</Filter>
-    </QtUic>
-    <QtUic Include="QCtmMainWindow.ui">
       <Filter>Form Files</Filter>
     </QtUic>
   </ItemGroup>

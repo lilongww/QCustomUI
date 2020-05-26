@@ -252,7 +252,6 @@
     <ClCompile Include="Private\Util.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <QtUic Include="QCtmMainWindow.ui" />
     <QtUic Include="QCtmTitleBar.ui" />
     <QtUic Include="QCtmWindow.ui" />
     <QtUic Include="Private\QCtmToolBoxItem.ui" />
