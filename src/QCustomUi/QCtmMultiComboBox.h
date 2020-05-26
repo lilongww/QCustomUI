@@ -12,7 +12,6 @@ public:
 	QCtmMultiComboBox(QWidget *parent);
 	~QCtmMultiComboBox();
 
-	void setModel(QAbstractItemModel* model);
 	QAbstractItemModel* model() const;
 
 	QStringList checkedItems() const;
@@ -20,6 +19,8 @@ public:
 
 	void setChecked(int index, bool checked);
 	bool isChecked(int index) const;
+protected:
+	void setModel(QAbstractItemModel* model);
 
 private:
 	bool eventFilter(QObject *watched, QEvent *event) override;

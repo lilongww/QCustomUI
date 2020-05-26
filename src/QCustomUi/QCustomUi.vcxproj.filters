@@ -203,9 +203,6 @@
     <ClCompile Include="QCtmTree.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="QCtmMultiComboBox.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="QCtmIPAddressEdit.cpp">
       <Filter>Input</Filter>
     </ClCompile>
@@ -247,6 +244,9 @@
     </ClCompile>
     <ClCompile Include="QCtmMessageBox.cpp">
       <Filter>Display Widgets</Filter>
+    </ClCompile>
+    <ClCompile Include="QCtmMultiComboBox.cpp">
+      <Filter>Input</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -349,9 +349,6 @@
     <QtMoc Include="Private\QCtmUserButton_p.h">
       <Filter>Private</Filter>
     </QtMoc>
-    <QtMoc Include="QCtmMultiComboBox.h">
-      <Filter>Header Files</Filter>
-    </QtMoc>
     <QtMoc Include="QCtmIPAddressEdit.h">
       <Filter>Input</Filter>
     </QtMoc>
@@ -390,6 +387,9 @@
     </QtMoc>
     <QtMoc Include="QCtmMessageBox.h">
       <Filter>Display Widgets</Filter>
+    </QtMoc>
+    <QtMoc Include="QCtmMultiComboBox.h">
+      <Filter>Input</Filter>
     </QtMoc>
   </ItemGroup>
   <ItemGroup>
