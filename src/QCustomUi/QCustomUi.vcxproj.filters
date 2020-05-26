@@ -161,16 +161,7 @@
     <ClCompile Include="QCtmMessageView.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="QCtmNavigationBackstageActionGroup.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="QCtmNavigationBackstageMenu.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="QCtmNavigationBar.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="QCtmNavigationMainMenu.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="QCtmNavigationSideBar.cpp">
@@ -271,16 +262,7 @@
     <QtMoc Include="QCtmMessageView.h">
       <Filter>Header Files</Filter>
     </QtMoc>
-    <QtMoc Include="QCtmNavigationBackstageActionGroup.h">
-      <Filter>Header Files</Filter>
-    </QtMoc>
-    <QtMoc Include="QCtmNavigationBackstageMenu.h">
-      <Filter>Header Files</Filter>
-    </QtMoc>
     <QtMoc Include="QCtmNavigationBar.h">
-      <Filter>Header Files</Filter>
-    </QtMoc>
-    <QtMoc Include="QCtmNavigationMainMenu.h">
       <Filter>Header Files</Filter>
     </QtMoc>
     <QtMoc Include="QCtmNavigationSideBar.h">

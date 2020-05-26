@@ -16,45 +16,13 @@ public:
 	QCtmDialog(QWidget *parent = nullptr);
 	~QCtmDialog();
 
-	/**
-	 * @brief       设置客户区，如果客户区窗口已存在，前一个客户区窗口将被销毁
-	 * @param[in]   widget 客户区窗口	
-	 */
-	void setContent(QWidget* widget);
-
-	/**
-	 * @brief       获取客户区窗口地址，如果没有设置客户区窗口，默认存在一个QWidget
-	 * @Return:     客户区窗口地址	
-	 */
-	QWidget* content()const;
-
-    /**
-     * @brief		获取标题栏地址
-     */
+	void setCentralWidget(QWidget* widget);
+	QWidget* centralWidget()const;
     QCtmTitleBar* titleBar() const;
-
-    /**
-     * @brief		设置可拖动的控件
-     * @param[in]	moveBars 可拖动的控件
-     */
     void setMoveBars(const QWidgetList& moveBars);
-
-    /**
-     * @brief		移除可拖动控件
-     * @param[in]	
-     */
     void removeMoveBar(QWidget* moveBar);
-
 #ifndef Q_OS_WIN
-	/**
-	 * @brief		设置窗口边框是否有阴影，如果窗口需要容纳OpenGL，则应设置为true
-	 * @param[in]	flag true:无阴影，flase:有阴影
-	 */
 	void setShadowless(bool flag);
-
-	/**
-	 * @brief		窗口是否有阴影
-	 */
 	bool shadowless() const;
 #endif
 protected:

@@ -176,10 +176,7 @@
     <QtMoc Include="QCtmMessageModel.h" />
     <QtMoc Include="QCtmMessageTip.h" />
     <QtMoc Include="QCtmMessageView.h" />
-    <QtMoc Include="QCtmNavigationBackstageActionGroup.h" />
-    <QtMoc Include="QCtmNavigationBackstageMenu.h" />
     <QtMoc Include="QCtmNavigationBar.h" />
-    <QtMoc Include="QCtmNavigationMainMenu.h" />
     <QtMoc Include="QCtmNavigationSideBar.h" />
     <QtMoc Include="QCtmNavigationSidePanel.h" />
     <QtMoc Include="QCtmTableItemDelegate.h" />
@@ -218,10 +215,7 @@
     <ClCompile Include="QCtmMessageTip.cpp" />
     <ClCompile Include="QCtmMessageView.cpp" />
     <ClCompile Include="QCtmMultiComboBox.cpp" />
-    <ClCompile Include="QCtmNavigationBackstageActionGroup.cpp" />
-    <ClCompile Include="QCtmNavigationBackstageMenu.cpp" />
     <ClCompile Include="QCtmNavigationBar.cpp" />
-    <ClCompile Include="QCtmNavigationMainMenu.cpp" />
     <ClCompile Include="QCtmNavigationSideBar.cpp" />
     <ClCompile Include="QCtmNavigationSidePanel.cpp" />
     <ClCompile Include="QCtmStyleSheet.cpp" />

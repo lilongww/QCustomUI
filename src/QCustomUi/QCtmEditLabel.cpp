@@ -33,22 +33,36 @@ QCtmEditLabel::~QCtmEditLabel()
 {
 
 }
-
+/**
+ * @brief		设置是否可编辑
+ * @param[in]	flag true:可编辑，false:不可编辑
+ */
 void QCtmEditLabel::setEditable(bool flag)
 {
 	m_impl->editable = flag;
 }
 
+/**
+ * @brief		是否可编辑
+ * @return		true:可编辑，false:不可编辑
+ */
 bool QCtmEditLabel::editable() const
 {
 	return m_impl->editable;
 }
 
+/**
+ * @brief		设置编辑按钮的图标
+ * @param[in]	icon 图标
+ */
 void QCtmEditLabel::setEditButtonIcon(const QIcon& icon)
 {
 	m_impl->editButton->setIcon(icon);
 }
 
+/**
+ * @brief		获取编辑按钮的图标
+ */
 QIcon QCtmEditLabel::editButtonIcon() const
 {
 	return m_impl->editButton->icon();

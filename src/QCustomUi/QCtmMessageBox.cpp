@@ -163,7 +163,7 @@ void QCtmMessageBox::init()
     m_impl->message = new QLabel(this);
     m_impl->icon = new QLabel(this);
     m_impl->buttonBox = new QDialogButtonBox(this);
-    QVBoxLayout* layout = new QVBoxLayout(content());
+    QVBoxLayout* layout = new QVBoxLayout(centralWidget());
 
     QHBoxLayout* msgLayout = new QHBoxLayout;
     msgLayout->addWidget(m_impl->icon, 0);
@@ -183,8 +183,8 @@ void QCtmMessageBox::init()
 
 int QCtmMessageBox::layoutMinimumWidth()
 {
-    content()->layout()->activate();
-    return content()->layout()->totalMinimumSize().width();
+    centralWidget()->layout()->activate();
+    return centralWidget()->layout()->totalMinimumSize().width();
 }
 
 void QCtmMessageBox::updateSize()
@@ -217,15 +217,15 @@ void QCtmMessageBox::updateSize()
     if (windowTitleWidth > width)
         width = windowTitleWidth;
 
-    content()->layout()->activate();
-    int height = (content()->layout()->hasHeightForWidth())
-        ? content()->layout()->totalHeightForWidth(width)
-        : content()->layout()->totalMinimumSize().height();
+    centralWidget()->layout()->activate();
+    int height = (centralWidget()->layout()->hasHeightForWidth())
+        ? centralWidget()->layout()->totalHeightForWidth(width)
+        : centralWidget()->layout()->totalMinimumSize().height();
 
     int left, top, right, bottom;
     this->getContentsMargins(&left, &top, &right, &bottom);
-    setFixedSize(width + left + right + content()->layout()->margin()
-        , height + this->titleBar()->height() + bottom + top + content()->layout()->margin());
+    setFixedSize(width + left + right + centralWidget()->layout()->margin()
+        , height + this->titleBar()->height() + bottom + top + centralWidget()->layout()->margin());
     //QCoreApplication::removePostedEvents(this, QEvent::LayoutRequest);
 }
 

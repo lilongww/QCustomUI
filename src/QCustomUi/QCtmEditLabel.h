@@ -25,6 +25,9 @@ public:
 	QIcon editButtonIcon() const;
 
 signals:
+	/**
+	 * @brief		±à¼­ÒÑÍê³É
+	 */
 	void editFinished();
 
 protected:

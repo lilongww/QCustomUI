@@ -2,13 +2,9 @@
 
 #include "QCtmNavigationBar.h"
 #include "QCtmNavigationSidePanel.h"
-#include "QCtmNavigationMainMenu.h"
-#include "QCtmNavigationBackstageMenu.h"
-#include "QCtmNavigationBackstageActionGroup.h"
 #include "QCtmNavigationSideBar.h"
 #include "QCtmTree.h"
 #include "QCtmDialog.h"
-#include "QCtmMainWindow.h"
 #include "QCtmTabWidget.h"
 #include "QCtmTabPage.h"
 #include "QCtmToolBox.h"

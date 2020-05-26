@@ -6,9 +6,7 @@
 
 #include <memory>
 
-class QCtmAbstractMessage;
-
-typedef std::shared_ptr<QCtmAbstractMessage> QCtmAbstractMessagePtr;
+using QCtmAbstractMessagePtr = std::shared_ptr<class QCtmAbstractMessage>;
 
 class QCUSTOMUI_EXPORT QCtmAbstractMessageModel : public QAbstractTableModel
 {

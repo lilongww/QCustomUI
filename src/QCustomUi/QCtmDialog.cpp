@@ -44,14 +44,18 @@ QCtmDialog::QCtmDialog(QWidget *parent)
 #endif
 	auto content = new QWidget(this);
 	content->setAutoFillBackground(true);
-	setContent(content);
+	setCentralWidget(content);
 }
 
 QCtmDialog::~QCtmDialog()
 {
 }
 
-void QCtmDialog::setContent(QWidget* widget)
+/**
+ * @brief       设置客户区，如果客户区窗口已存在，前一个客户区窗口将被销毁
+ * @param[in]   widget 客户区窗口
+ */
+void QCtmDialog::setCentralWidget(QWidget* widget)
 {
 	delete m_impl->content;
 	m_impl->content = widget;
@@ -67,32 +71,55 @@ void QCtmDialog::setContent(QWidget* widget)
 	m_impl->content->installEventFilter(this);
 }
 
-QWidget* QCtmDialog::content() const
+/**
+ * @brief       获取客户区窗口地址，如果没有设置客户区窗口，默认存在一个QWidget
+ * @Return:     客户区窗口地址
+ */
+QWidget* QCtmDialog::centralWidget() const
 {
 	return m_impl->content;
 }
 
+/**
+ * @brief		获取标题栏地址
+ */
 QCtmTitleBar* QCtmDialog::titleBar() const
 {
     return m_impl->title;
 }
 
+/**
+ * @brief		设置可拖动的控件
+ * @param[in]	moveBars 可拖动的控件
+ */
 void QCtmDialog::setMoveBars(const QWidgetList& moveBars)
 {
     for (auto w : moveBars)
         m_impl->delegate->addMoveBar(w);
 }
 
+/**
+ * @brief		移除可拖动控件
+ * @param[in]
+ */
 void QCtmDialog::removeMoveBar(QWidget* moveBar)
 {
     m_impl->delegate->removeMoveBar(moveBar);
 }
 #ifndef Q_OS_WIN
+
+/**
+ * @brief		设置窗口边框是否有阴影，如果窗口需要容纳OpenGL，则应设置为true
+ * @param[in]	flag true:无阴影，flase:有阴影
+ */
 void QCtmDialog::setShadowless(bool flag)
 {
 	m_impl->delegate->setShadowless(flag);
 }
 
+/**
+ * @brief		窗口是否有阴影
+ */
 bool QCtmDialog::shadowless() const
 {
 	return m_impl->delegate->shadowless();
