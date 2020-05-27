@@ -4,7 +4,7 @@
 
 CONFIG += c++latest
 TEMPLATE = lib
-QT += core network gui widgets winextras
+QT += core network gui widgets
 DEFINES += QCUSTOMUI_LIB
 
 INCLUDEPATH += ./Private
@@ -22,4 +22,5 @@ include(QCustomUi.pri)
 TRANSLATIONS += qcustomui_zh.ts
 
 win32:RC_FILE = QCustomUi.rc
-win32:LIBS+= -luser32
+win32:LIBS += -luser32
+win32:QT +=winextras
