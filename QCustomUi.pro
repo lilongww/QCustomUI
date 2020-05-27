@@ -4,12 +4,18 @@
 
 # This is a reminder that you are using a generated .pro file.
 # Remove it when you are finished editing this file.
-message("You are running qmake on a generated .pro file. This may not work!")
-
 
 TEMPLATE = subdirs
-SUBDIRS += src/QCustomUi/QCustomUi.pro \
-    src/SwitchLauncher/SwitchLauncher.pro \
-    src/SwitchLauncherExample/SwitchLauncherExample.pro \
-    src/MainPageActivity/MainPageActivity.pro \
-    src/EditActivity/EditActivity.pro
+
+SUBDIRS += QCustomUi \
+    WindowAndDialogExamples \
+    InputExamples \
+    DisplayWidgetExamples
+
+QCustomUi.subdir = src/QCustomUi
+WindowAndDialogExamples.subdir = src/Examples/WindowAndDialogExamples
+InputExamples.subdir = src/Examples/InputExamples
+DisplayWidgetExamples.subdir = src/Examples/DisplayWidgetExamples
+WindowAndDialogExamples.depends = QCustomUi
+InputExamples.depends = QCustomUi
+DisplayWidgetExamples.depends = QCustomUi
