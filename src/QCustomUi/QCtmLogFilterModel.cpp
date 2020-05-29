@@ -27,7 +27,7 @@ void QCtmLogFilterModel::search(const QString& keywords)
     this->invalidate();
 }
 
-bool QCtmLogFilterModel::filterAcceptsRow(int sourceRow, const QModelIndex &sourceParent) const
+bool QCtmLogFilterModel::filterAcceptsRow(int sourceRow, [[maybe_unused]] const QModelIndex &sourceParent) const
 {
     auto type = this->sourceModel()->data(this->sourceModel()->index(sourceRow, 0), QCtmLogModel::TypeRole).toInt();
     if (!m_impl->keywords.isEmpty())

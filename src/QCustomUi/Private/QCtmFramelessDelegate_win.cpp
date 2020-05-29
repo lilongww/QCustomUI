@@ -62,7 +62,7 @@ void QCtmWinFramelessDelegate::removeMoveBar(QWidget* w)
 	m_impl->moveBars.removeOne(w);
 }
 
-bool QCtmWinFramelessDelegate::nativeEvent(const QByteArray& eventType
+bool QCtmWinFramelessDelegate::nativeEvent([[maybe_unused]] const QByteArray& eventType
 	, void* message
 	, long* &result)
 {

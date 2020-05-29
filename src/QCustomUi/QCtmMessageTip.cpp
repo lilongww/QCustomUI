@@ -93,7 +93,7 @@ const QColor& QCtmMessageTip::tipColor() const
 	return m_impl->helper->tipColor();
 }
 
-void QCtmMessageTip::paintEvent(QPaintEvent *event)
+void QCtmMessageTip::paintEvent([[maybe_unused]] QPaintEvent *event)
 {
 	QStyleOptionButton opt;
 	opt.initFrom(this);

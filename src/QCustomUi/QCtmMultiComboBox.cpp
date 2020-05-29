@@ -12,7 +12,7 @@ class QCtmMultiComboBoxModel : public QStandardItemModel
 {
 public:
 	using QStandardItemModel::QStandardItemModel;
-	Qt::ItemFlags flags(const QModelIndex &index) const override
+	Qt::ItemFlags flags([[maybe_unused]] const QModelIndex &index) const override
 	{
 		return Qt::ItemIsEnabled;
 	}

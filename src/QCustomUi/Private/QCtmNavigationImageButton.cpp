@@ -23,10 +23,10 @@ QCtmNavigationImageButton::~QCtmNavigationImageButton()
 {
 }
 
-void QCtmNavigationImageButton::paintEvent(QPaintEvent *e)
+void QCtmNavigationImageButton::paintEvent([[maybe_unused]] QPaintEvent *e)
 {
 	QPainter p(this);
-	p.setRenderHint(QPainter::HighQualityAntialiasing);
+	p.setRenderHint(QPainter::Antialiasing);
 	QStyleOptionButton opt;
 	opt.initFrom(this);
 	opt.features = QStyleOptionButton::DefaultButton | QStyleOptionButton::AutoDefaultButton;;
@@ -41,8 +41,6 @@ void QCtmNavigationImageButton::paintEvent(QPaintEvent *e)
 	}
 	opt.text = this->text();
 	style()->drawControl(QStyle::CE_PushButton, &opt, &p, this);
-	int left, top, right, bottom;
-	this->getContentsMargins(&left, &top, &right, &bottom);
 
 	{//draw icon
 		auto st = this->isChecked() ? QIcon::On : QIcon::Off;

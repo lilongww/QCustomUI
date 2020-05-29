@@ -259,7 +259,7 @@ void QCtmTree::showEvent(QShowEvent* event)
     QWidget::showEvent(event);
 }
 
-void QCtmTree::childExpandChanged(QCtmTreeItem* item, bool expand, int size)
+void QCtmTree::childExpandChanged(QCtmTreeItem* item, bool expand, [[maybe_unused]] int size)
 {
 	if (expand)
 	{
@@ -420,7 +420,7 @@ void QCtmTreeItem::onClicked()
 	    setExpand(!isExpand());
 }
 
-void QCtmTreeItem::resizeEvent(QResizeEvent *event)
+void QCtmTreeItem::resizeEvent([[maybe_unused]] QResizeEvent *event)
 {
     if (!isExpand())
     {

@@ -103,7 +103,7 @@ QCtmTabPage* QCtmTabWidget::insertTab(int index, QWidget *widget, const QString 
  *  @param[in]	label 页标签文本
  *  @Return:	插入页索引
  */
-QCtmTabPage* QCtmTabWidget::insertTab(int index, QWidget *widget, const QIcon &icon, const QString &label)
+QCtmTabPage* QCtmTabWidget::insertTab(int index, QWidget *widget, [[maybe_unused]] const QIcon &icon, const QString &label)
 {
 	auto page = new QCtmTabPage(this);
 	page->setCentralWidget(widget);
@@ -111,7 +111,7 @@ QCtmTabPage* QCtmTabWidget::insertTab(int index, QWidget *widget, const QIcon &i
 	return page;
 }
 
-void QCtmTabWidget::paintEvent(QPaintEvent *e)
+void QCtmTabWidget::paintEvent([[maybe_unused]] QPaintEvent *e)
 {
 	QPainter p(this);
 	QStyleOption opt;

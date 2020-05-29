@@ -9,6 +9,7 @@
 #include <QStyle>
 #include <QApplication>
 #include <QDesktopWidget>
+#include <QScreen>
 
 struct QCtmMessageBox::Impl
 {
@@ -191,8 +192,12 @@ void QCtmMessageBox::updateSize()
 {
     if (!isVisible())
         return;
+    
+    auto screen = qApp->screenAt(QCursor::pos());
+    if(!screen)
+        return;
+    const auto& screenSize = screen->size();
 
-    QSize screenSize = QApplication::desktop()->availableGeometry(QCursor::pos()).size();
     int hardLimit = qMin(screenSize.width() - 480, 1000); // can never get bigger than this
     // on small screens allows the messagebox be the same size as the screen
     if (screenSize.width() <= 1024)
@@ -213,7 +218,7 @@ void QCtmMessageBox::updateSize()
     }
 
     QFontMetrics fm(QApplication::font("QMdiSubWindowTitleBar"));
-    int windowTitleWidth = qMin(fm.width(windowTitle()) + 50, hardLimit);
+    int windowTitleWidth = qMin(fm.horizontalAdvance(windowTitle()) + 50, hardLimit);
     if (windowTitleWidth > width)
         width = windowTitleWidth;
 
@@ -222,11 +227,9 @@ void QCtmMessageBox::updateSize()
         ? centralWidget()->layout()->totalHeightForWidth(width)
         : centralWidget()->layout()->totalMinimumSize().height();
 
-    int left, top, right, bottom;
-    this->getContentsMargins(&left, &top, &right, &bottom);
-    setFixedSize(width + left + right + centralWidget()->layout()->margin()
-        , height + this->titleBar()->height() + bottom + top + centralWidget()->layout()->margin());
-    //QCoreApplication::removePostedEvents(this, QEvent::LayoutRequest);
+    const auto& margins = contentsMargins();
+    setFixedSize(width + margins.left() + margins.right() + centralWidget()->layout()->margin()
+        , height + this->titleBar()->height() + margins.bottom() + margins.top() + centralWidget()->layout()->margin());
 }
 
 void QCtmMessageBox::detectEscapeButton() const

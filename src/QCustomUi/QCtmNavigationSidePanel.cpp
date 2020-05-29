@@ -186,12 +186,12 @@ bool QCtmNavigationSidePanel::popup() const
     return m_impl->popup;
 }
 
-void QCtmNavigationSidePanel::paintEvent(QPaintEvent *event)
+void QCtmNavigationSidePanel::paintEvent([[maybe_unused]] QPaintEvent *event)
 {
 	paintShadow(margin);
 }
 
-void QCtmNavigationSidePanel::showEvent(QShowEvent *event)
+void QCtmNavigationSidePanel::showEvent([[maybe_unused]] QShowEvent *event)
 {
 	if (!m_impl->navigationBar)
 		return;
@@ -200,7 +200,7 @@ void QCtmNavigationSidePanel::showEvent(QShowEvent *event)
 	resize(sizeHint());
 }
 
-void QCtmNavigationSidePanel::closeEvent(QCloseEvent *event)
+void QCtmNavigationSidePanel::closeEvent([[maybe_unused]] QCloseEvent *event)
 {
 	emit paneClosed();
 }
@@ -220,21 +220,20 @@ QSize QCtmNavigationSidePanel::smartSize(DockArea area)const
 	QSize alignSize;
 	const auto& bindActionRect = m_impl->navigationBar->actionRect(m_impl->bindAction);
 	auto topWidget = m_impl->navigationBar->window();
-	int leftM, rightM, topM, bottomM;
-	topWidget->getContentsMargins(&leftM, &topM, &rightM, &bottomM);
+	const auto& margins = topWidget->contentsMargins();
 	switch (area)
 	{
 	case DockArea::Left:
 		alignSize.setWidth(oldSize.width() > bindActionRect.right() ? oldSize.width() : bindActionRect.right());
 		if (alignSize.width() > m_impl->navigationBar->width() / 2)
 			alignSize.setWidth(m_impl->navigationBar->width() / 2);
-		alignSize.setHeight(topWidget->height() - m_impl->navigationBar->y() - m_impl->navigationBar->height() - bottomM);
+		alignSize.setHeight(topWidget->height() - m_impl->navigationBar->y() - m_impl->navigationBar->height() - margins.bottom());
 		break;
 	case DockArea::Right:
 		alignSize.setWidth(oldSize.width() > m_impl->navigationBar->width() - bindActionRect.left() ? oldSize.width() : m_impl->navigationBar->width() - bindActionRect.left());
 		if (alignSize.width() > m_impl->navigationBar->width() / 2)
 			alignSize.setWidth(m_impl->navigationBar->width() / 2);
-		alignSize.setHeight(topWidget->height() - m_impl->navigationBar->y() - m_impl->navigationBar->height() - bottomM);
+		alignSize.setHeight(topWidget->height() - m_impl->navigationBar->y() - m_impl->navigationBar->height() - margins.bottom());
 		break;
 	case DockArea::Top:
 	case DockArea::Bottom:
@@ -348,7 +347,7 @@ void QCtmNavigationSidePanel::paintShadow(int shadowWidth)
 		break;
 	}
 
-	painter.fillRect(opt.rect, opt.palette.background());
+	painter.fillRect(opt.rect, opt.palette.window());
 }
 
 QPoint QCtmNavigationSidePanel::smartPosition(DockArea area) const
@@ -357,18 +356,17 @@ QPoint QCtmNavigationSidePanel::smartPosition(DockArea area) const
         return QPoint(0, 0);
 	auto topWidget = m_impl->navigationBar->window();
 	auto pos = topWidget->mapToGlobal(m_impl->navigationBar->pos());
-	int leftM, rightM, topM, bottomM;
-	topWidget->getContentsMargins(&leftM, &topM, &rightM, &bottomM);
+	const auto& margins = topWidget->contentsMargins();
 	switch (area)
 	{
 	case DockArea::Left:
 		return{ pos.x(), pos.y() + m_impl->navigationBar->height() };
 	case DockArea::Right:
-		return{ pos.x() + topWidget->width() - sizeHint().width() - leftM - rightM, pos.y() + m_impl->navigationBar->height() };
+		return{ pos.x() + topWidget->width() - sizeHint().width() - margins.left() - margins.right(), pos.y() + m_impl->navigationBar->height() };
 	case DockArea::Top:
 		return{ pos.x(), pos.y() + m_impl->navigationBar->height() };
 	case DockArea::Bottom:
-		return{ pos.x(), topWidget->y() + topWidget->height() - sizeHint().height() - bottomM };
+		return{ pos.x(), topWidget->y() + topWidget->height() - sizeHint().height() - margins.bottom() };
 	}
 	return{};
 }

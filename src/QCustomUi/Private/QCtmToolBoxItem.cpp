@@ -88,7 +88,7 @@ const QIcon& QCtmToolBoxItem::icon() const
     return m_impl->icon;
 }
 
-void QCtmToolBoxItem::paintEvent(QPaintEvent *event)
+void QCtmToolBoxItem::paintEvent([[maybe_unused]] QPaintEvent *event)
 {
 	QStyleOption opt;
 	opt.initFrom(this);

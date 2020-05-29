@@ -37,8 +37,8 @@ void QCtmHeaderView::setModel(QAbstractItemModel* model)
 	connect(model, &QAbstractItemModel::rowsRemoved, this, &QCtmHeaderView::onModelReset);
 	connect(model, &QAbstractItemModel::modelReset, this, &QCtmHeaderView::onModelReset);
 	connect(model, &QAbstractItemModel::dataChanged, this
-		, [=](const QModelIndex& topLeft
-			, const QModelIndex& bottomRight
+		, [=]([[maybe_unused]] const QModelIndex& topLeft
+			, [[maybe_unused]] const QModelIndex& bottomRight
 			, const QVector<int>& roles)
 		{
 			if (roles.contains(Qt::CheckStateRole) || roles.isEmpty())

@@ -32,14 +32,13 @@ void QCtmMessageTipHelper::drawMessageTip(int msgCount,QPainter& p, QWidget* w)
 		return;
 	if (msgCount > 99)
 		msgCount = 99;
-	auto& pal = w->palette();
-	auto rect = tipsRect(QRect(QPoint(0, 0), w->size()));
+	const auto& rect = tipsRect(QRect(QPoint(0, 0), w->size()));
 	QStyleOption opt;
 	opt.initFrom(w);
 	p.save();
 	p.setPen(Qt::NoPen);
 	p.setBrush(m_impl->tipColor);
-	p.drawRoundRect(rect, m_impl->radius, m_impl->radius);
+	p.drawRoundedRect(rect, m_impl->radius, m_impl->radius, Qt::RelativeSize);
 	p.restore();
 
 	QTextOption to;

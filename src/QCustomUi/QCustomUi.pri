@@ -42,7 +42,6 @@ HEADERS += ./QCtmStyleSheet.h \
     ./Private/Util_p.h \
     ./Private/QCtmActionGroup_p.h \
     ./Private/QCtmFramelessDelegate_p.h \
-    ./Private/QCtmMainMenuButton_p.h \
     ./Private/QCtmMaximumSizeButton_p.h \
     ./Private/QCtmMessageTipHelper_p.h \
     ./Private/QCtmMessageViewDelegate_p.h \
@@ -53,7 +52,6 @@ HEADERS += ./QCtmStyleSheet.h \
     ./Private/QCtmToolButton_p.h \
     ./Private/QCtmTreeItemTitle_p.h \
     ./Private/QCtmUserButton_p.h \
-    ./Private/QCtmWidgetItemForMainMenu_p.h \
     ./Private/QCtmWidgetItem_p.h \
     ./QCtmEditLabel.h \
     ./QCtmMessageBox.h
@@ -91,7 +89,6 @@ SOURCES += ./QCtmAbstractLogModel.cpp \
     ./Private/QCtmFramelessDelegate_win.cpp \
     ./Private/QCtmActionGroup.cpp \
     ./Private/QCtmFramelessDelegate.cpp \
-    ./Private/QCtmMainMenuButton.cpp \
     ./Private/QCtmMaximumSizeButton.cpp \
     ./Private/QCtmMessageTipHelper.cpp \
     ./Private/QCtmMessageViewDelegate.cpp \
@@ -103,7 +100,6 @@ SOURCES += ./QCtmAbstractLogModel.cpp \
     ./Private/QCtmTreeItemTitle.cpp \
     ./Private/QCtmUserButton.cpp \
     ./Private/QCtmWidgetItem.cpp \
-    ./Private/QCtmWidgetItemForMainMenu.cpp \
     ./Private/flowlayout.cpp \
     ./Private/Util.cpp \
     ./QCtmEditLabel.cpp \

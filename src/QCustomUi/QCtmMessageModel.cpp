@@ -42,7 +42,7 @@ QVariant QCtmMessageModel::data(const QModelIndex& index, int role) const
 				break;
 			}
 		}
-		else if (role == Qt::TextColorRole)
+		else if (role == Qt::ForegroundRole)
 		{
 			switch (index.column())
 			{
@@ -67,7 +67,7 @@ QVariant QCtmMessageModel::data(const QModelIndex& index, int role) const
 	return d;
 }
 
-int QCtmMessageModel::columnCount(const QModelIndex &parent /* = QModelIndex() */) const
+int QCtmMessageModel::columnCount([[maybe_unused]] const QModelIndex &parent /* = QModelIndex() */) const
 {
 	return QCtmMessage::ColumnCount;
 }

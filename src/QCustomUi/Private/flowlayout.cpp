@@ -147,7 +147,7 @@ void FlowLayout::insertItem(int index, QLayoutItem* item)
 //! [6]
 Qt::Orientations FlowLayout::expandingDirections() const
 {
-    return 0;
+    return {};
 }
 //! [6]
 

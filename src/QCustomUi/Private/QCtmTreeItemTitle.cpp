@@ -73,7 +73,7 @@ int QCtmTreeItemTitle::indexOf(QAction* action) const
     return m_impl->items.indexOf(item);
 }
 
-void QCtmTreeItemTitle::paintEvent(QPaintEvent *event)
+void QCtmTreeItemTitle::paintEvent([[maybe_unused]] QPaintEvent *event)
 {
 	QPainter p(this);
 	QStyleOptionButton opt;

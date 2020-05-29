@@ -150,7 +150,7 @@ void QCtmNavigationBar::addAction(QAction* action, ActionPosition pos)
 	insertAction(index, action, pos);
 }
 
-void QCtmNavigationBar::paintEvent(QPaintEvent* e)
+void QCtmNavigationBar::paintEvent([[maybe_unused]] QPaintEvent* e)
 {
 	QPainter p(this);
 	drawBackground(&p);

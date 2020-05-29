@@ -8,6 +8,7 @@
 #include <QApplication>
 #include <QMoveEvent>
 #include <QApplication>
+#include <QScreen>
 
 struct QCtmDialog::Impl
 {
@@ -161,7 +162,10 @@ bool QCtmDialog::nativeEvent(const QByteArray& eventType, void* message, long* r
 
 void QCtmDialog::normalizes(QPoint& pos)
 {
-	auto rect = qApp->desktop()->screenGeometry(pos);
+	auto screen = qApp->screenAt(pos);
+	if (!screen)
+		return;
+	auto rect = screen->geometry();
 	if (pos.x() < rect.left())
 	{
 		pos.setX(rect.left());

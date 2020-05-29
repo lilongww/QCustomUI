@@ -150,12 +150,12 @@ QRect QCtmIPAddressEdit::rectOfIpSection(int section) const
 {
 	QStyleOptionFrame opt;
 	initStyleOption(&opt);
-	int dotWidth = opt.fontMetrics.width('.');
+	int dotWidth = opt.fontMetrics.horizontalAdvance('.');
 	auto rect = this->style()->subElementRect(QStyle::SE_FrameContents, &opt, this);
 	if (rect.isEmpty())
 		rect = QRect(QPoint(0, 0), this->rect().size());
 
-	int ipSectionWidth = opt.fontMetrics.width(" 000 ");
+	int ipSectionWidth = opt.fontMetrics.horizontalAdvance(" 000 ");
 	return { rect.left() + (dotWidth * section) + section * ipSectionWidth , rect.top(), ipSectionWidth, rect.height() };
 }
 
@@ -187,7 +187,7 @@ bool QCtmIPAddressEdit::setText(QTextLayout& textLayout, const QString& text)
 	return true;
 }
 
-void QCtmIPAddressEdit::paintEvent(QPaintEvent* event)
+void QCtmIPAddressEdit::paintEvent([[maybe_unused]] QPaintEvent* event)
 {
 	QStyleOptionFrame opt;
 	initStyleOption(&opt);
@@ -199,18 +199,18 @@ void QCtmIPAddressEdit::paintEvent(QPaintEvent* event)
 
 	for (int i = 0; i < SECTION_COUNT; i++)
 	{
-		auto rect = rectOfIpSection(i);
-		auto txtRect = boundRect(i, rect);
+		const auto& rect = rectOfIpSection(i);
+		const auto& txtRect = boundRect(i, rect);
 		m_impl->textLayouts[i].draw(&p, txtRect.topLeft(), m_impl->selections[i], txtRect);
 		if (i != SECTION_COUNT - 1)
-			p.drawText(QRect(rect.x() + rect.width(), txtRect.y(), opt.fontMetrics.width('.'), txtRect.height()), ".");
+			p.drawText(QRect(rect.x() + rect.width(), txtRect.y(), opt.fontMetrics.horizontalAdvance('.'), txtRect.height()), ".");
 	}
 	if (m_impl->cursorSwitch && hasFocus() && !isReadOnly())
 	{
 		auto&& txtLayout = this->textLayout(m_impl->cursorPosition);
 		auto section = sectionOfCursorPosition(m_impl->cursorPosition);
 		section = section > SECTION_COUNT - 1 ? SECTION_COUNT - 1 : section;
-		auto rect = boundRect(section, rectOfIpSection(section));
+		const auto& rect = boundRect(section, rectOfIpSection(section));
 		txtLayout.drawCursor(&p, QPoint(rect.left(), rect.y() + m_impl->ascent), m_impl->cursorPosition % 4);
 	}
 }
@@ -472,7 +472,7 @@ void QCtmIPAddressEdit::mouseReleaseEvent(QMouseEvent* event)
 		m_impl->pressed = false;
 }
 
-void QCtmIPAddressEdit::focusInEvent(QFocusEvent* event)
+void QCtmIPAddressEdit::focusInEvent([[maybe_unused]] QFocusEvent* event)
 {
 	m_impl->cursorSwitch = true;
 	m_impl->timer.start();
@@ -498,11 +498,10 @@ QSize QCtmIPAddressEdit::sizeHint() const
 QSize QCtmIPAddressEdit::minimumSizeHint() const
 {
 	ensurePolished();
-	QFontMetrics fm = fontMetrics();
-	int left, top, right, bottom;
-	this->getContentsMargins(&left, &top, &right, &bottom);
-	int h = fm.height() + qMax(2 * m_impl->verticalMargin, fm.leading()) + top + bottom;
-	int w = fm.width(" 000 . 000 . 000 . 000 ") + left + right;
+	const auto& fm = fontMetrics();
+	const auto& margins = this->contentsMargins();
+	int h = fm.height() + qMax(2 * m_impl->verticalMargin, fm.leading()) + margins.top() + margins.bottom();
+	int w = fm.horizontalAdvance(" 000 . 000 . 000 . 000 ") + margins.left() + margins.right();
 	QStyleOptionFrame opt;
 	initStyleOption(&opt);
 	return (style()->sizeFromContents(QStyle::CT_LineEdit, &opt, QSize(w, h).
@@ -532,7 +531,7 @@ int QCtmIPAddressEdit::xToCursor(int x) const
 		auto&& rect = rectOfIpSection(i);
 		if (i < SECTION_COUNT - 1)
 		{
-			rect.setWidth(rect.width() + fontMetrics().width('.'));
+			rect.setWidth(rect.width() + fontMetrics().horizontalAdvance('.'));
 		}
 		if (rect.contains(x, rect.y()))
 		{

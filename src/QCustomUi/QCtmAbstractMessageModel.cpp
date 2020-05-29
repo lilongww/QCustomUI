@@ -93,7 +93,7 @@ int QCtmAbstractMessageModel::maximumCount() const
 	return m_impl->maxCount;
 }
 
-int QCtmAbstractMessageModel::rowCount(const QModelIndex &parent /*= QModelIndex()*/) const
+int QCtmAbstractMessageModel::rowCount([[maybe_unused]] const QModelIndex &parent /*= QModelIndex()*/) const
 {
 	return m_impl->messages.size();
 }

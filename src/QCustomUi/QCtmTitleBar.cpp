@@ -115,7 +115,7 @@ void QCtmTitleBar::onMinimumSizeBtn()
 	this->window()->showMinimized();
 }
 
-void QCtmTitleBar::paintEvent(QPaintEvent *event)
+void QCtmTitleBar::paintEvent([[maybe_unused]] QPaintEvent *event)
 {
 	QStyleOption opt;
 	opt.init(this);
@@ -153,7 +153,7 @@ void QCtmTitleBar::paintEvent(QPaintEvent *event)
 	}
 }
 
-void QCtmTitleBar::showEvent(QShowEvent* event)
+void QCtmTitleBar::showEvent([[maybe_unused]] QShowEvent* event)
 {
 	auto w = qobject_cast<QWidget*>(this->parent());
 	if (w)

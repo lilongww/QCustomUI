@@ -44,7 +44,7 @@ bool QCtmAbstractLogModel::removeColumns(int column, int count, const QModelInde
 
 void QCtmAbstractLogModel::logEvent(QCtmLogEvent* e)
 {
-    
+    Q_UNUSED(e)
 }
 
 bool QCtmAbstractLogModel::event(QEvent * e)

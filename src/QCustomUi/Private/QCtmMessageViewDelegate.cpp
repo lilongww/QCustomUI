@@ -108,7 +108,7 @@ void QCtmMessageViewDelegate::drawTitle(QPainter* painter, const QStyleOptionVie
 	}
 	font.setBold(true);
 	painter->setFont(font);
-	painter->setPen(model->data(model->index(index.row(), QCtmMessage::Title), Qt::TextColorRole).value<QColor>());
+	painter->setPen(model->data(model->index(index.row(), QCtmMessage::Title), Qt::ForegroundRole).value<QColor>());
 	painter->drawText(doTitleRect(option, index), title, to);
 	painter->restore();
 }
@@ -123,12 +123,12 @@ void QCtmMessageViewDelegate::drawDateTime(QPainter* painter, const QStyleOption
 	to.setAlignment(Qt::AlignLeft | Qt::AlignVCenter);
 
 	painter->save();
-	painter->setPen(model->data(model->index(index.row(), QCtmMessage::Time), Qt::TextColorRole).value<QColor>());
+	painter->setPen(model->data(model->index(index.row(), QCtmMessage::Time), Qt::ForegroundRole).value<QColor>());
 	painter->drawText(doDateTimeRect(option, index), time, to);
 	painter->restore();
 }
 
-void QCtmMessageViewDelegate::drawCloseButton(QPainter* painter, const QStyleOptionViewItem &option, const QModelIndex& index) const
+void QCtmMessageViewDelegate::drawCloseButton(QPainter* painter, const QStyleOptionViewItem &option, [[maybe_unused]] const QModelIndex& index) const
 {
 	if (!option.state.testFlag(QStyle::State_MouseOver))
 		return;
@@ -149,12 +149,12 @@ void QCtmMessageViewDelegate::drawCloseButton(QPainter* painter, const QStyleOpt
 	painter->restore();
 }
 
-void QCtmMessageViewDelegate::drawDecoration(QPainter *painter, const QStyleOptionViewItem &option, const QRect &rect, const QPixmap &pixmap) const
+void QCtmMessageViewDelegate::drawDecoration(QPainter *painter, [[maybe_unused]] const QStyleOptionViewItem &option, const QRect &rect, [[maybe_unused]] const QPixmap &pixmap) const
 {
 	painter->fillRect(rect, QBrush(m_impl->decoration));
 }
 
-void QCtmMessageViewDelegate::drawBackground(QPainter *painter, const QStyleOptionViewItem &option, const QModelIndex &index)const
+void QCtmMessageViewDelegate::drawBackground(QPainter *painter, const QStyleOptionViewItem &option, [[maybe_unused]] const QModelIndex &index)const
 {
 	QBrush background;
 	if (option.state.testFlag(QStyle::State_MouseOver))
@@ -162,7 +162,7 @@ void QCtmMessageViewDelegate::drawBackground(QPainter *painter, const QStyleOpti
 		background = option.palette.color(QPalette::Normal, QPalette::Highlight);
 	}
 	else
-		background = option.palette.color(QPalette::Normal, QPalette::Background);
+		background = option.palette.color(QPalette::Normal, QPalette::Window);
 	painter->fillRect(option.rect, background);
 }
 

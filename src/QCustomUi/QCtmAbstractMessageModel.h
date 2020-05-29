@@ -25,7 +25,7 @@ public:
 	int maximumCount() const;
 
 	int	rowCount(const QModelIndex &parent = QModelIndex()) const override;
-	bool setData(const QModelIndex &index, const QVariant &value, int role = Qt::EditRole) override { return false; }
+    bool setData([[maybe_unused]] const QModelIndex &index, [[maybe_unused]] const QVariant &value, [[maybe_unused]] int role = Qt::EditRole) override { return false; }
 	bool removeRows(int row, int count, const QModelIndex &parent = QModelIndex()) override;
 	bool insertRows(int row, int count, const QModelIndex &parent  = QModelIndex()) override;
 private:

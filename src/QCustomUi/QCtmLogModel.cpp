@@ -89,7 +89,7 @@ QVariant QCtmLogModel::data(const QModelIndex &index, int role /* = Qt::DisplayR
     return QVariant();
 }
 
-bool QCtmLogModel::setData(const QModelIndex &index, const QVariant &value, int role /* = Qt::EditRole */)
+bool QCtmLogModel::setData([[maybe_unused]] const QModelIndex &index, [[maybe_unused]] const QVariant &value, [[maybe_unused]] int role /* = Qt::EditRole */)
 {
     return false;
 }
@@ -103,12 +103,12 @@ QVariant QCtmLogModel::headerData(int section, Qt::Orientation orientation, int 
     return QVariant();
 }
 
-int QCtmLogModel::rowCount(const QModelIndex& parent /*= QModelIndex()*/) const
+int QCtmLogModel::rowCount([[maybe_unused]] const QModelIndex& parent /*= QModelIndex()*/) const
 {
     return m_impl->datas.size();
 }
 
-int QCtmLogModel::columnCount(const QModelIndex &parent /*= QModelIndex()*/) const
+int QCtmLogModel::columnCount([[maybe_unused]] const QModelIndex &parent /*= QModelIndex()*/) const
 {
     return m_impl->headers.size();
 }

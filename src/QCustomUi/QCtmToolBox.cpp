@@ -145,7 +145,7 @@ void QCtmToolBox::setDefaultStretch(int index, int stretch)
 	}
 }
 
-void QCtmToolBox::showEvent(QShowEvent *event)
+void QCtmToolBox::showEvent([[maybe_unused]] QShowEvent *event)
 {
 	if (m_impl->firstShow)
 	{

@@ -129,7 +129,7 @@ int QCtmTabPage::count() const
 	return m_impl->actions.size();
 }
 
-void QCtmTabPage::paintEvent(QPaintEvent *event)
+void QCtmTabPage::paintEvent([[maybe_unused]] QPaintEvent *event)
 {
 	QStyleOption opt;
 	opt.initFrom(this);

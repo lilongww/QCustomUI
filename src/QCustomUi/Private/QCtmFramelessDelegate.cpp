@@ -277,7 +277,7 @@ bool QCtmFramelessDelegate::eventFilter(QObject* obj, QEvent* event)
 	return false;
 }
 
-void QCtmFramelessDelegate::resizeEvent(QResizeEvent* e)
+void QCtmFramelessDelegate::resizeEvent([[maybe_unused]] QResizeEvent* e)
 {
 	if (m_impl->parent->windowState().testFlag(Qt::WindowMaximized) || m_impl->parent->windowState().testFlag(Qt::WindowFullScreen))
 		m_impl->parent->setContentsMargins(QMargins(0, 0, 0, 0));
@@ -387,12 +387,12 @@ void QCtmFramelessDelegate::mouseReleaseEvent(QMouseEvent* e)
 	}
 }
 
-void QCtmFramelessDelegate::mouseDoubleClickEvent(QMouseEvent* e)
+void QCtmFramelessDelegate::mouseDoubleClickEvent([[maybe_unused]] QMouseEvent* e)
 {
 
 }
 
-void QCtmFramelessDelegate::paintEvent(QPaintEvent* e)
+void QCtmFramelessDelegate::paintEvent([[maybe_unused]] QPaintEvent* e)
 {
     QImage image(m_impl->parent->width(), m_impl->parent->height(), QImage::Format_ARGB32_Premultiplied);
     image.fill(Qt::NoBrush);
@@ -400,7 +400,7 @@ void QCtmFramelessDelegate::paintEvent(QPaintEvent* e)
     p.begin(&image);
 	QStyleOption opt;
 	opt.initFrom(m_impl->parent);
-	auto color = opt.palette.background().color();
+	auto color = opt.palette.window().color();
 	if (m_impl->parent->windowState().testFlag(Qt::WindowMaximized) || m_impl->parent->windowState().testFlag(Qt::WindowFullScreen))
 		paintShadow(p, 0);
 	else
@@ -427,7 +427,7 @@ void QCtmFramelessDelegate::paintEvent(QPaintEvent* e)
         , m_impl->margin + top
         , m_impl->parent->width() - m_impl->margin * 2 - left - right
         , m_impl->parent->height() - m_impl->margin * 2 - top - bottom)
-        , opt.palette.background());
+        , opt.palette.window());
     painter.drawImage(0, 0, image);
 }
 
@@ -445,7 +445,7 @@ void QCtmFramelessDelegate::paintShadow(QPainter& painter,int shadowWidth)
 	{
 		QPainterPath path;
 		path.setFillRule(Qt::WindingFill);
-		path.addRoundRect(shadowWidth - i, shadowWidth - i, w->width() - (shadowWidth - i) * 2, w->height() - (shadowWidth - i) * 2, 0);
+		path.addRoundedRect(shadowWidth - i, shadowWidth - i, w->width() - (shadowWidth - i) * 2, w->height() - (shadowWidth - i) * 2, 0, Qt::RelativeSize);
 		auto v = log((i+1)/(float)shadowWidth) / log(0.5);
 		color.setAlpha(v * 20);
 		painter.setPen(color);
@@ -454,7 +454,7 @@ void QCtmFramelessDelegate::paintShadow(QPainter& painter,int shadowWidth)
 	painter.restore();
 }
 
-void QCtmFramelessDelegate::styleChangeEvent(QEvent* e)
+void QCtmFramelessDelegate::styleChangeEvent([[maybe_unused]] QEvent* e)
 {
     updateLayout();
 }

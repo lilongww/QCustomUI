@@ -61,7 +61,6 @@ void QCtmWindow::setStatusBar(QStatusBar* statusBar)
 {
 	removeStatusBar();
 	m_impl->statusBar = statusBar;
-    auto sg = statusBar->findChild<QSizeGrip*>();
 	ui->statusBarLayout->addWidget(statusBar);
 }
 
@@ -242,7 +241,7 @@ bool QCtmWindow::eventFilter(QObject *watched, QEvent *event)
 {
     if (watched == m_impl->title)
     {
-        if (event->type() == QEvent::Close|event->type() == QEvent::Hide)
+        if (event->type() == QEvent::Close || event->type() == QEvent::Hide)
         {
             m_impl->delegate->removeMoveBar(m_impl->title);
             if (m_impl->navigationMenuBar)
