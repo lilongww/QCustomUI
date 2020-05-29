@@ -1,6 +1,7 @@
 #include "WindowAndDialogExamples.h"
 
 #include <QCustomUi/QCtmApplication.h>
+#include <QDialog>
 
 int main(int argc, char *argv[])
 {

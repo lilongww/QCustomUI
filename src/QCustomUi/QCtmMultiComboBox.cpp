@@ -6,6 +6,7 @@
 #include <QFrame>
 #include <QLineEdit>
 #include <QElapsedTimer>
+#include <QDebug>
 
 class QCtmMultiComboBoxModel : public QStandardItemModel
 {
@@ -51,10 +52,10 @@ QCtmMultiComboBox::QCtmMultiComboBox(QWidget *parent)
 	{
 		if (con->metaObject()->className() == QStringLiteral("QComboBoxPrivateContainer"))
 		{
-			m_impl->contianer = con;
-			m_impl->view->viewport()->removeEventFilter(con);
-			m_impl->view->viewport()->installEventFilter(this);
-			con->installEventFilter(this);
+            m_impl->contianer = con;
+            m_impl->view->viewport()->removeEventFilter(con);
+            m_impl->view->viewport()->installEventFilter(this);
+            con->installEventFilter(this);
 		}
 	}
 	m_impl->timer.start();
@@ -146,17 +147,25 @@ bool QCtmMultiComboBox::eventFilter(QObject *watched, QEvent *event)
 		case  QEvent::MouseButtonPress:
 			if (m_impl->timer.elapsed() > 50)
 			{
-				this->showPopup();
-			}
+                showPopup();
+            }
 		}
 
 	}
-	else if (watched == m_impl->contianer 
-		&& event->type() == QEvent::Hide 
-		|| event->type() == QEvent::Close)
-	{
-		m_impl->timer.restart();
-	}
+    else if (watched == m_impl->contianer)
+    {
+        if( event->type() == QEvent::Hide || event->type() == QEvent::Close)
+        {
+            m_impl->timer.restart();
+        }
+#ifdef Q_OS_LINUX
+        else if (event->type() == QEvent::MouseButtonRelease)
+        {
+            event->ignore();
+            return true;
+        }
+#endif
+    }
 	return QComboBox::eventFilter(watched, event);
 }
 
