@@ -11,7 +11,6 @@ struct QCtmMessageTip::Impl
 {
 	QCtmAbstractMessageModel* model{ nullptr };
 	QCtmAbstractMessageView* view{ nullptr };
-
 	QCtmMessageTipHelper* helper{ nullptr };
 };
 
@@ -28,6 +27,10 @@ QCtmMessageTip::~QCtmMessageTip()
 {
 }
 
+/**
+ * @brief       设置数据来源
+ * @param[in]   model 数据源
+ */
 void QCtmMessageTip::setModel(QCtmAbstractMessageModel* model)
 {
 	if (m_impl->model == model)
@@ -44,28 +47,48 @@ void QCtmMessageTip::setModel(QCtmAbstractMessageModel* model)
 	}
 }
 
+/**
+ * @brief       获取数据源
+ * @Return:     数据源
+ */
 QCtmAbstractMessageModel* QCtmMessageTip::model() const
 {
 	return m_impl->model;
 }
 
+/**
+ * @brief       设置消息显示视图
+ * @param[in] 	view 视图地址
+ */
 void QCtmMessageTip::setView(QCtmAbstractMessageView* view)
 {
 	m_impl->view = view;
 	connectView();
 }
 
+/**
+ * @brief       获取消息显示视图
+ * @Return:   	视图地址
+ */
 QCtmAbstractMessageView* QCtmMessageTip::view() const
 {
 	return m_impl->view;
 }
 
-void QCtmMessageTip::setTipColor(QColor color)
+/**
+ * @brief       设置提示背景色
+ * @param[in]   color 背景色
+ */
+void QCtmMessageTip::setTipColor(const QColor& color)
 {
 	m_impl->helper->setTipColor(color);
 }
 
-QColor QCtmMessageTip::tipColor() const
+/**
+ * @brief       获取提示背景色
+ * @Return:   	背景色
+ */
+const QColor& QCtmMessageTip::tipColor() const
 {
 	return m_impl->helper->tipColor();
 }
@@ -88,7 +111,7 @@ void QCtmMessageTip::paintEvent(QPaintEvent *event)
 
 QSize QCtmMessageTip::sizeHint() const
 {
-	auto size = QAbstractButton::sizeHint();
+	auto&& size = QAbstractButton::sizeHint();
 	size.setWidth(this->iconSize().width() + 20);
 	return size.expandedTo(qApp->globalStrut());
 }

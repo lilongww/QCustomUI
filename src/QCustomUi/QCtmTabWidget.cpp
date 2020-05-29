@@ -60,21 +60,49 @@ QCtmTabWidget::~QCtmTabWidget()
 
 }
 
+/**
+ * @brief       添加Tab页
+ * @param[in]   widget	页窗口
+ * @param[in]   label	页标签文本
+ * @Return:     添加页的索引
+ */
 QCtmTabPage* QCtmTabWidget::addTab(QWidget *widget, const QString &label)
 {
 	return addTab(widget, QIcon(), label);
 }
 
+/**
+ * @brief		添加Tab页
+ * @param[in]	widget	页窗口
+ * @param[in]	icon	页标签图标
+ * @param[in]	label	页标签文本
+ * @Return:		添加页的索引
+ */
 QCtmTabPage* QCtmTabWidget::addTab(QWidget *widget, const QIcon &icon, const QString &label)
 {
 	return insertTab(count(), widget, icon, label);
 }
 
+/**
+ * @brief       插入Tab页
+ * @param[in]   index 插入页的index
+ * @param[in]   widget 页窗口
+ * @param[in]   label 页标签文本
+ * @Return:     插入页索引
+ */
 QCtmTabPage* QCtmTabWidget::insertTab(int index, QWidget *widget, const QString &label)
 {
 	return insertTab(index, widget, QIcon(), label);
 }
 
+/**
+ *  @brief		插入Tab页
+ *  @param[in]	index 插入页的index
+ *  @param[in]	widget 页窗口
+ *  @param[in]	icon 页标签图标
+ *  @param[in]	label 页标签文本
+ *  @Return:	插入页索引
+ */
 QCtmTabPage* QCtmTabWidget::insertTab(int index, QWidget *widget, const QIcon &icon, const QString &label)
 {
 	auto page = new QCtmTabPage(this);

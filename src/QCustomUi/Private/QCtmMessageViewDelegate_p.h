@@ -22,7 +22,6 @@ public:
 	const QPixmap& closeButtonIcon() const;
 protected:
 	bool editorEvent(QEvent *event, QAbstractItemModel *model, const QStyleOptionViewItem &option, const QModelIndex &index) override;
-	bool helpEvent(QHelpEvent *event, QAbstractItemView *view, const QStyleOptionViewItem &option, const QModelIndex &index) override;
 private:
 	void drawTitle(QPainter* painter, const QStyleOptionViewItem &option, const QModelIndex& index) const;
 	void drawDateTime(QPainter* painter, const QStyleOptionViewItem &option, const QModelIndex& index) const;

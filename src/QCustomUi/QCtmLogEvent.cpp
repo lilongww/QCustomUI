@@ -17,6 +17,9 @@ QCtmLogEvent::~QCtmLogEvent()
 
 }
 
+/**
+ * @brief		获取日志数据
+ */
 QCtmLogDataPtr QCtmLogEvent::log() const
 {
     return m_impl->log;

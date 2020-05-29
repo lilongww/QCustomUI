@@ -86,18 +86,6 @@ QVariant QCtmLogModel::data(const QModelIndex &index, int role /* = Qt::DisplayR
             return msg.msg;
         }
     }
- //   else if (role == Qt::ForegroundRole)
-	//{
-	//	switch (msg.type)
-	//	{
-	//	case QtMsgType::QtInfoMsg:
- //           return QColor(Qt::green);
-	//	case QtMsgType::QtWarningMsg:
-	//		return QColor(Qt::yellow);
-	//	case QtMsgType::QtCriticalMsg:
- //           return QColor(Qt::red);
-	//	}
- //   }
     return QVariant();
 }
 
@@ -125,21 +113,36 @@ int QCtmLogModel::columnCount(const QModelIndex &parent /*= QModelIndex()*/) con
     return m_impl->headers.size();
 }
 
+/**
+ * @brief		设置最大显示消息数量，默认1万条
+ * @param[in]	count 最大显示消息数量
+ */
 void QCtmLogModel::setMaximumCount(int count)
 {
 	m_impl->maxCount = count;
 }
 
+/**
+ * @brief		最大显示消息数量
+ */
 int QCtmLogModel::maximumCount() const
 {
 	return m_impl->maxCount;
 }
 
+/**
+ * @brief		设置日志插入顺序
+ * @param[in]	mode 插入顺序
+ */
 void QCtmLogModel::setLogInsertMode(LogInsertMode mode)
 {
     m_impl->logInsertMode = mode;
 }
 
+/**
+ * @brief		获取日志插入顺序
+ * @Return:		日志插入顺序
+ */
 LogInsertMode QCtmLogModel::logInsertMode() const
 {
     return m_impl->logInsertMode;

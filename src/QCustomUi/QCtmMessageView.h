@@ -24,53 +24,13 @@ public:
 
 	virtual void setModel(QCtmAbstractMessageModel* model);
 	virtual QCtmAbstractMessageModel* model()const;
-
-	/**
-	 * @brief       设置装饰条颜色
-	 * @param[in] 	color 颜色
-	 */
 	void setDecoration(const QColor& color);
-
-	/**
-     * @brief       获取装饰条颜色
-     * @Return:   	颜色
-     */
 	const QColor& decoration()const;
-
-	/**
-     * @brief       设置标题文字颜色
-     * @param[in]   color 颜色
-     */
 	void setTitleColor(const QColor& color);
-
-	/**
-     * @brief       获取标题文字颜色
-     * @Return:   	颜色
-     */
 	const QColor& titleColor()const;
-
-	/**
-     *  @brief      设置时间文字颜色
-     *  @param[in]  color 颜色
-     */
 	void setTimeColor(const QColor& color);
-
-	/**
-     * @brief       获取时间文字颜色
-     * @Return:   	颜色
-     */
 	const QColor& timeColor()const;
-
-	/**
-     * @brief       设置消息关闭按钮图标
-     * @param[in]   icon 图标
-     */
 	void setCloseButtonIcon(const QPixmap& icon);
-
-	/**
-     * @brief       获取关闭按钮图标
-     * @Return:   	图标
-     */
 	const QPixmap& closeButtonIcon()const;
 signals:
 	void closeButtonClicked(const QModelIndex& index);

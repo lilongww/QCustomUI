@@ -72,21 +72,37 @@ int QCtmMessageModel::columnCount(const QModelIndex &parent /* = QModelIndex() *
 	return QCtmMessage::ColumnCount;
 }
 
+/**
+ * @brief   设置标题显示颜色
+ * @param   color 颜色
+ */
 void QCtmMessageModel::setTitleColor(const QColor& color)
 {
 	m_impl->titleColor = color;
 }
 
+/**
+ * @brief	获取标题显示颜色
+ * @return	颜色
+ */
 const QColor& QCtmMessageModel::titleColor() const
 {
 	return m_impl->titleColor;
 }
 
+/**
+ * @brief	设置时间显示颜色
+ * @param	color 颜色
+ */
 void QCtmMessageModel::setTimeColor(const QColor& color)
 {
 	m_impl->timeColor = color;
 }
 
+/**
+ * @brief	获取时间显示颜色
+ * @return	颜色
+ */
 const QColor& QCtmMessageModel::timeColor() const
 {
 	return m_impl->timeColor;

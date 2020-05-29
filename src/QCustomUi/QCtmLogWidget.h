@@ -26,41 +26,16 @@ public:
     QCtmLogWidget(const QString& objectName, QWidget *parent = Q_NULLPTR);
     ~QCtmLogWidget();
 
-    /**
-     * @brief		设置日志插入顺序
-     * @param[in]	mode 日志插入顺序
-     */
     void setLogInsertMode(LogInsertMode mode);
-
-    /**
-     * @brief		获取日志插入顺序
-     * @Return:		日志插入顺序
-     */
     LogInsertMode logInsertMode() const;
-
-    /**
-     * @brief		设置日志列是否显示
-     * @param[in]	column 列
-     * @param[in]	visible 是否显示
-     */
     void setColumnVisible(QCtmLogColumn column, bool visible);
-
-    /**
-     * @brief		获取日志列是否显示
-     * @param[in]	column 列
-     * @Return:		是否显示
-     */
     bool columnVisible(QCtmLogColumn column) const;
-
     void setInfoIcon(const QIcon& icon);
     const QIcon& infoIcon() const;
-
     void setWarningIcon(const QIcon& icon);
     const QIcon& warningIcon() const;
-
     void setErrorIcon(const QIcon& icon);
     const QIcon& errorIcon() const;
-
     void setMaximumCount(int count);
     int maximumCount() const;
 private:

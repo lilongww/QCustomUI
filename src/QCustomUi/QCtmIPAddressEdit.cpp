@@ -22,7 +22,7 @@ QTextLayout::FormatRange createFormatRange(int cursor1, int cursor2, const QPale
 	range.length = qMax(local1, local2) - range.start;
 	range.format.setBackground(palette.brush(QPalette::Highlight));
 	range.format.setForeground(palette.brush(QPalette::HighlightedText));
-	return std::move(range);
+	return range;
 }
 
 void moveFormatRange(QTextLayout::FormatRange& range, int beforeCursor, int afterCursor)
@@ -161,8 +161,7 @@ QRect QCtmIPAddressEdit::rectOfIpSection(int section) const
 
 QRect QCtmIPAddressEdit::boundRect(int section, const QRect& rect) const
 {
-	auto&& layout = m_impl->textLayouts[section];
-	auto&& txt = layout.text();
+	const auto& layout = m_impl->textLayouts[section];
 	QStyleOptionFrame opt;
 	initStyleOption(&opt);
 	auto br = layout.boundingRect();
@@ -485,8 +484,7 @@ void QCtmIPAddressEdit::focusOutEvent(QFocusEvent* event)
 	m_impl->cursorSwitch = false;
 	m_impl->timer.stop();
 	Qt::FocusReason reason = event->reason();
-	if (reason != Qt::ActiveWindowFocusReason &&
-		reason != Qt::PopupFocusReason)
+	if (reason != Qt::ActiveWindowFocusReason && reason != Qt::PopupFocusReason)
 		clearSelection();
 	update();
 	emit editFinished();
@@ -684,7 +682,7 @@ void QCtmIPAddressEdit::onCustomContextMenuRequested(const QPoint& pos)
 {
 	QMenu menu(this);
 	bool selected = false;
-	for (auto selection : m_impl->selections)
+	for (const auto& selection : m_impl->selections)
 	{
 		if (!selection.isEmpty())
 		{

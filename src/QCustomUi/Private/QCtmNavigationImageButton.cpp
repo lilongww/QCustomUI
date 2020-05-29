@@ -46,10 +46,10 @@ void QCtmNavigationImageButton::paintEvent(QPaintEvent *e)
 
 	{//draw icon
 		auto st = this->isChecked() ? QIcon::On : QIcon::Off;
-		auto sizes = this->icon().availableSizes(QIcon::Mode::Normal, st);
+		const auto& sizes = this->icon().availableSizes(QIcon::Mode::Normal, st);
 		if (!sizes.isEmpty())
 		{
-			QPixmap pixmap = this->icon().pixmap(sizes.front(), QIcon::Normal, st);
+			const auto& pixmap = this->icon().pixmap(sizes.front(), QIcon::Normal, st);
 			this->style()->drawItemPixmap(&p, opt.rect, Qt::AlignCenter, pixmap);
 		}
 	}
@@ -60,10 +60,10 @@ QSize QCtmNavigationImageButton::sizeHint() const
 	QStyleOptionButton opt;
 	opt.initFrom(this);
 	auto st = this->isChecked() ? QIcon::On : QIcon::Off;
-	auto sizes = this->icon().availableSizes(QIcon::Mode::Normal, st);
+	const auto& sizes = this->icon().availableSizes(QIcon::Mode::Normal, st);
 	if (!sizes.isEmpty())
 	{
-		auto size = this->style()->sizeFromContents(QStyle::CT_PushButton, &opt, sizes.front(), this);
+		const auto& size = this->style()->sizeFromContents(QStyle::CT_PushButton, &opt, sizes.front(), this);
 		return size;
 	}
 	return QSize(-1, -1);

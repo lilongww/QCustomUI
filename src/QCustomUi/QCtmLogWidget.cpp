@@ -42,16 +42,29 @@ QCtmLogWidget::~QCtmLogWidget()
 {
 }
 
+/**
+ * @brief		设置日志插入顺序
+ * @param[in]	mode 日志插入顺序
+ */
 void QCtmLogWidget::setLogInsertMode(LogInsertMode mode)
 {
     m_impl->model->setLogInsertMode(mode);
 }
 
+/**
+ * @brief		获取日志插入顺序
+ * @Return:		日志插入顺序
+ */
 LogInsertMode QCtmLogWidget::logInsertMode() const
 {
     return m_impl->model->logInsertMode();
 }
 
+/**
+ * @brief		设置日志列是否显示
+ * @param[in]	column 列
+ * @param[in]	visible 是否显示
+ */
 void QCtmLogWidget::setColumnVisible(QCtmLogColumn column, bool visible)
 {
     if (column == QCtmLogColumn::Level)
@@ -63,6 +76,11 @@ void QCtmLogWidget::setColumnVisible(QCtmLogColumn column, bool visible)
     m_impl->logView->setColumnHidden(int(column), !visible);
 }
 
+/**
+ * @brief		获取日志列是否显示
+ * @param[in]	column 列
+ * @Return:		是否显示
+ */
 bool QCtmLogWidget::columnVisible(QCtmLogColumn column) const
 {
     return !m_impl->logView->isColumnHidden(int(column));
@@ -169,7 +187,7 @@ void QCtmLogWidget::init()
 
     connect(m_impl->searchAction, &QAction::triggered, this, [=](bool)
     {
-        auto &&text = m_impl->searchEdit->currentText();
+        const auto& text = m_impl->searchEdit->currentText();
         m_impl->proxyModel->search(text);
         m_impl->logView->horizontalHeader()->reset();
 
@@ -178,7 +196,7 @@ void QCtmLogWidget::init()
 
         for (int i = m_impl->searchEdit->count() - 1; i >= 0; i--)
         {
-            auto t = m_impl->searchEdit->itemText(i);
+            const auto& t = m_impl->searchEdit->itemText(i);
             if (t == text)
             {
                 m_impl->searchEdit->removeItem(i);
@@ -193,7 +211,7 @@ void QCtmLogWidget::init()
     });
 
     connect(m_impl->copyAction, &QAction::triggered, this, [=]() {
-        auto index = m_impl->logView->currentIndex();
+        const auto& index = m_impl->logView->currentIndex();
         if (index.isValid())
         {
             auto cb = qApp->clipboard();

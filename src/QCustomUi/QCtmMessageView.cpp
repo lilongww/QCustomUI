@@ -58,16 +58,28 @@ QCtmAbstractMessageModel* QCtmMessageView::model() const
 	return m_impl->model;
 }
 
+/**
+ * @brief       设置装饰条颜色
+ * @param[in] 	color 颜色
+ */
 void QCtmMessageView::setDecoration(const QColor& color)
 {
 	m_impl->delegate->setDecoration(color);
 }
 
+/**
+ * @brief       获取装饰条颜色
+ * @Return:   	颜色
+ */
 const QColor& QCtmMessageView::decoration() const
 {
 	return m_impl->delegate->decoration();
 }
 
+/**
+ * @brief       设置标题文字颜色
+ * @param[in]   color 颜色
+ */
 void QCtmMessageView::setTitleColor(const QColor& color)
 {
 	m_impl->titleColor = color;
@@ -75,11 +87,19 @@ void QCtmMessageView::setTitleColor(const QColor& color)
 		m_impl->model->setProperty("titlecolor", color);
 }
 
+/**
+ * @brief       获取标题文字颜色
+ * @Return:   	颜色
+ */
 const QColor& QCtmMessageView::titleColor() const
 {
 	return m_impl->titleColor;
 }
 
+/**
+ *  @brief      设置时间文字颜色
+ *  @param[in]  color 颜色
+ */
 void QCtmMessageView::setTimeColor(const QColor& color)
 {
 	m_impl->timeColor = color;
@@ -87,16 +107,28 @@ void QCtmMessageView::setTimeColor(const QColor& color)
 		m_impl->model->setProperty("timecolor", color);
 }
 
+/**
+ * @brief       获取时间文字颜色
+ * @Return:   	颜色
+ */
 const QColor& QCtmMessageView::timeColor() const
 {
 	return m_impl->timeColor;
 }
 
+/**
+ * @brief       设置消息关闭按钮图标
+ * @param[in]   icon 图标
+ */
 void QCtmMessageView::setCloseButtonIcon(const QPixmap& icon)
 {
 	m_impl->delegate->setCloseButtonIcon(icon);
 }
 
+/**
+ * @brief       获取关闭按钮图标
+ * @Return:   	图标
+ */
 const QPixmap& QCtmMessageView::closeButtonIcon() const
 {
 	return m_impl->delegate->closeButtonIcon();

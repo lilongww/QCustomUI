@@ -72,6 +72,10 @@ QCtmNavigationSidePanel::~QCtmNavigationSidePanel()
 {
 }
 
+/**
+ * @brief  		设置停靠方向
+ * @param[in]  	area 停靠方向
+ */
 void QCtmNavigationSidePanel::setDockArea(DockArea area)
 {
 	m_impl->dockArea = area;
@@ -92,52 +96,91 @@ void QCtmNavigationSidePanel::setDockArea(DockArea area)
 	}
 }
 
+/**
+ * @brief  		获取停靠方向
+ * @Return:   	停靠方向
+ */
 QCtmNavigationSidePanel::DockArea QCtmNavigationSidePanel::dockArea() const
 {
 	return m_impl->dockArea;
 }
 
+/**
+ * @brief  		设置显示窗口，在调用前，必须先设置weiget的布局，在调用后设置的布局将无效。
+ * @param[in]  	widget 显示窗口地址
+ */
 void QCtmNavigationSidePanel::setWidget(QWidget* widget)
 {
 	m_impl->area->setWidget(widget);
 }
 
+/**
+ * @brief  		获取显示窗口的地址
+ * @Return:   	显示窗口的地址
+ */
 QWidget* QCtmNavigationSidePanel::widget() const
 {
 	return m_impl->area->widget();
 }
 
+/**
+ * @brief  		视图窗口容器
+ * @Return:   	视图窗口容器地址
+ */
 QScrollArea* QCtmNavigationSidePanel::viewContainer() const
 {
 	return m_impl->area;
 }
 
+/**
+ * @brief  		设置标题栏可见
+ * @param[in]  	visbile 是否可见
+ */
 void QCtmNavigationSidePanel::setTitleVisible(bool visible)
 {
 	m_impl->titleBar->setVisible(visible);
 }
 
+/**
+ * @brief  		获取标题栏是否可见
+ * @Return:   	true 可见，false 不可见
+ */
 bool QCtmNavigationSidePanel::titleVisible() const
 {
 	return m_impl->titleBar->isVisible();
 }
 
+/**
+ * @brief  		设置标题文字
+ * @param[in]  	text 标题文字
+ */
 void QCtmNavigationSidePanel::setTitle(const QString& text)
 {
 	m_impl->title->setText(text);
 }
 
+/**
+ * @brief  		获取标题文字
+ * @Return:   	标题文字
+ */
 QString QCtmNavigationSidePanel::title() const
 {
 	return m_impl->title->text();
 }
 
+/**
+ * @brief		设为弹出式窗口
+ * @param[in]	popup 是否为弹出式窗口
+ */
 void QCtmNavigationSidePanel::setPopup(bool popup)
 {
     m_impl->popup = popup;
     setWindowFlags(Qt::FramelessWindowHint | Qt::NoDropShadowWindowHint | (popup ? Qt::Popup : Qt::Tool));
 }
 
+/**
+ * @brief		获取窗口是否为弹出式窗口
+ */
 bool QCtmNavigationSidePanel::popup() const
 {
     return m_impl->popup;
@@ -171,11 +214,11 @@ QSize QCtmNavigationSidePanel::sizeHint() const
 
 QSize QCtmNavigationSidePanel::smartSize(DockArea area)const
 {
-	QSize oldSize = QWidget::sizeHint();
+	const auto& oldSize = QWidget::sizeHint();
     if (!m_impl->navigationBar)
         return oldSize;
 	QSize alignSize;
-	auto bindActionRect = m_impl->navigationBar->actionRect(m_impl->bindAction);
+	const auto& bindActionRect = m_impl->navigationBar->actionRect(m_impl->bindAction);
 	auto topWidget = m_impl->navigationBar->window();
 	int leftM, rightM, topM, bottomM;
 	topWidget->getContentsMargins(&leftM, &topM, &rightM, &bottomM);
@@ -256,7 +299,6 @@ void QCtmNavigationSidePanel::mousePressEvent(QMouseEvent *event)
         }
         if (!rect().contains(event->pos())) {
             close();
-            //this->metaObject()->invokeMethod(this, "close", Qt::QueuedConnection);
         }
     }
 }

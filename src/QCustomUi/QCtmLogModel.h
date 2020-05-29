@@ -33,39 +33,16 @@ public:
     QVariant headerData(int section, Qt::Orientation orientation, int role /* = Qt::DisplayRole */) const override;
     int rowCount(const QModelIndex& parent = QModelIndex()) const override;
     int columnCount(const QModelIndex &parent = QModelIndex()) const override;
-
-	/**
-	 * @brief		设置最大显示消息数量，默认1万条
-	 * @param[in]	count 最大显示消息数量
-	 */
 	void setMaximumCount(int count);
-
-	/**
-	 * @brief		最大显示消息数量
-	 */
 	int maximumCount() const;
-
-    /**
-     * @brief		设置日志插入顺序
-     * @param[in]	mode 插入顺序
-     */
     void setLogInsertMode(LogInsertMode mode);
-
-    /**
-     * @brief		获取日志插入顺序
-     * @Return:		日志插入顺序
-     */
     LogInsertMode logInsertMode() const;
-
     void setInfoIcon(const QIcon& icon);
     const QIcon& infoIcon() const;
-
     void setWarningIcon(const QIcon& icon);
     const QIcon& warningIcon() const;
-
     void setErrorIcon(const QIcon& icon);
     const QIcon& errorIcon() const;
-
     int warningCount() const;
     int infoCount() const;
     int errorCount() const;

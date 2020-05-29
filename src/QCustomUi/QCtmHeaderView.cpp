@@ -105,14 +105,14 @@ void QCtmHeaderView::mousePressEvent(QMouseEvent* e)
 			return;
 		}
 
-		auto rect = doCheckBoxRect(logicalIndex);
+		const auto& rect = doCheckBoxRect(logicalIndex);
 		if (rect.contains(e->pos()))
 		{
 			auto count = orientation() == Qt::Horizontal ? model()->rowCount() : model()->columnCount();
 			model()->blockSignals(true);
 			for (int i = 0; i < count; i++)
 			{
-				auto index = Qt::Horizontal ? model()->index(i, logicalIndex) : model()->index(logicalIndex, i);
+				const auto& index = Qt::Horizontal ? model()->index(i, logicalIndex) : model()->index(logicalIndex, i);
 				if (index.isValid())
 				{
 					model()->setData(index, state == Qt::Checked ? Qt::Unchecked : Qt::Checked, Qt::CheckStateRole);
@@ -140,7 +140,7 @@ QRect QCtmHeaderView::doCheckBoxRect(int logicalIndex) const
 	}
 	else
 		opt.rect = QRect(QPoint(0, position), QSize(this->width(), size));
-	auto rect = style()->subElementRect(QStyle::SE_CheckBoxIndicator, &opt, this);
+	const auto& rect = style()->subElementRect(QStyle::SE_CheckBoxIndicator, &opt, this);
 	return QRect{ rect.x() + checkboxMargin, rect.y(), rect.width(), rect.height() };
 }
 

@@ -18,7 +18,7 @@ public:
 	}
 	QVariant data(const QModelIndex &index, int role /* = Qt::DisplayRole */) const override
 	{
-		auto d = QStandardItemModel::data(index, role);
+		const auto& d = QStandardItemModel::data(index, role);
 		if (role == Qt::CheckStateRole)
 		{
 			return d.isValid() ? d: Qt::Unchecked;
@@ -43,12 +43,12 @@ QCtmMultiComboBox::QCtmMultiComboBox(QWidget *parent)
 	this->setView(m_impl->view);
 	m_impl->model = new QCtmMultiComboBoxModel(this);
 	setModel(m_impl->model);
-	auto cons = this->findChildren<QFrame*>();
+	const auto& cons = this->findChildren<QFrame*>();
 	auto lineEdit = new QLineEdit(this);
 	setLineEdit(lineEdit);
 	lineEdit->setReadOnly(true);
 	lineEdit->installEventFilter(this);
-	for (auto con : cons)
+	for (const auto& con : cons)
 	{
 		if (con->metaObject()->className() == QStringLiteral("QComboBoxPrivateContainer"))
 		{
@@ -69,7 +69,7 @@ void QCtmMultiComboBox::setModel(QAbstractItemModel* model)
 {
 	QComboBox::setModel(model);
 	connect(model, &QAbstractItemModel::dataChanged, this, [=]() {
-		auto &&items = this->checkedItems();
+		const auto& items = this->checkedItems();
 		this->lineEdit()->setText(items.join(";"));
 	});
 }
@@ -88,7 +88,7 @@ QStringList QCtmMultiComboBox::checkedItems() const
 		if(index.data(Qt::CheckStateRole).toInt() == Qt::Checked)
 			items.push_back(index.data(Qt::DisplayRole).toString());
 	}
-	return std::move(items);
+	return items;
 }
 
 QVariantList QCtmMultiComboBox::checkedDatas() const
@@ -100,7 +100,7 @@ QVariantList QCtmMultiComboBox::checkedDatas() const
 		if (index.data(Qt::CheckStateRole).toInt() == Qt::Checked)
 			datas.push_back(index.data(Qt::UserRole));
 	}
-	return std::move(datas);
+	return datas;
 }
 
 void QCtmMultiComboBox::setChecked(int index, bool checked)

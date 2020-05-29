@@ -37,11 +37,9 @@ void QCtmUserButton::paintEvent(QPaintEvent *)
 		mode = QIcon::Active;
 	else
 		mode = QIcon::Normal;
-	auto pm = this->icon().pixmap(this->windowHandle(), opt.rect.size().boundedTo(opt.iconSize),
-		mode, state);
 
+	const auto& pm = this->icon().pixmap(this->windowHandle(), opt.rect.size().boundedTo(opt.iconSize), mode, state);
 	this->style()->drawItemPixmap(&p, doIconRect(opt), Qt::AlignCenter, pm);
-
 	this->style()->drawItemText(&p
 		, doTextRect(opt)
 		, Qt::AlignCenter, opt.palette, opt.state.testFlag(QStyle::State_Enabled)

@@ -31,52 +31,91 @@ struct QCtmLogManager::Impl
 
 decltype(&qtMessageHandle) QCtmLogManager::Impl::oldHandle;
 
+/**
+ * @brief
+ * @param[in]
+ * @param[in]
+ * @Return:
+ */
 void QCtmLogManager::initBeforeApp()
 {
     Impl::oldHandle = qInstallMessageHandler(&qtMessageHandle);
 }
 
+/**
+ * @brief		获取日志管理器实例，不要在qApp实例化之前调用该函数
+ */
 QCtmLogManager& QCtmLogManager::instance()
 {
     static QCtmLogManager ins;
     return ins;
 }
 
+/**
+ * @brief		设置日志路径
+ * @param[in]	path 日志路径
+ */
 void QCtmLogManager::setLogFilePath(const QString& path)
 {
     m_impl->logPath = path;
 }
 
+/**
+ * @brief		获取日志路径
+ */
 const QString& QCtmLogManager::logFilePath() const
 {
     return m_impl->logPath;
 }
 
+/**
+ * @brief		设置日志保存类型
+ * @param[in]	日志保存类型
+ */
 void QCtmLogManager::setLogSaveType(LogSaveType type)
 {
     m_impl->type = type;
 }
 
+/**
+ * @brief		获取日志保存类型
+ */
 QCtmLogManager::LogSaveType QCtmLogManager::logSaveType() const
 {
     return m_impl->type;
 }
 
+/**
+ * @brief		设置哪些日志需要保存
+ * @param[in]	type 日志登记
+ * @param[in]	save true:保存，false:不保存
+ */
 void QCtmLogManager::setLogTypeEnable(QtMsgType type, bool save)
 {
     m_impl->saveLogs[type] = save;
 }
 
+/**
+ * @brief		获取某日志类型是否保存
+ * @param[in]	type 日志类型
+ */
 bool QCtmLogManager::logTypeEnable(QtMsgType type) const
 {
     return m_impl->saveLogs[type];
 }
 
+/**
+ * @brief		设置文件大小限制，只有在LogSaveType::Size模式下有效
+ * @param[in]	size 日志文件超过该大小，新建一个日志文件
+ */
 void QCtmLogManager::setLogSizeLimit(qint64 size)
 {
     m_impl->logSize = size;
 }
 
+/**
+ * @brief		获取日志文件大小限制
+ */
 qint64 QCtmLogManager::logSizeLimit() const
 {
     return m_impl->logSize;
@@ -85,7 +124,7 @@ qint64 QCtmLogManager::logSizeLimit() const
 void qtMessageHandle(QtMsgType type, const QMessageLogContext& context, const QString& msg)
 {
     QString message = msg;
-    QStringList objList = QCtmLogManager::parseObjectNames(message);
+    const auto objList = QCtmLogManager::parseObjectNames(message);
     auto data = std::make_shared<QCtmLogData>(type, context, message);
 
     for (auto model : QCtmLogManager::instance().m_impl->models)
@@ -94,12 +133,12 @@ void qtMessageHandle(QtMsgType type, const QMessageLogContext& context, const QS
         {
             if (QThread::currentThread() == qApp->thread())
             {
-                QCtmLogEvent* evt = new QCtmLogEvent(data);
+                auto evt = new QCtmLogEvent(data);
                 qApp->sendEvent(model, evt);
             }
             else
             {
-                QCtmLogEvent* evt = new QCtmLogEvent(data);
+                auto evt = new QCtmLogEvent(data);
                 qApp->postEvent(model, evt);
             }
         }
@@ -135,6 +174,10 @@ QCtmLogManager::~QCtmLogManager()
 {
 }
 
+/**
+ * @brief		将日志写入日志文件
+ * @param[in]	data 日志信息
+ */
 void QCtmLogManager::writeLog(QCtmLogDataPtr data)
 {
     QString level;
@@ -212,6 +255,9 @@ QList<QString> QCtmLogManager::parseObjectNames(QString& msg)
     return list;
 }
 
+/**
+ * @brief		检查log文件，并按照一定规则建立log文件
+ */
 bool QCtmLogManager::checkFile()
 {
     switch (QCtmLogManager::instance().m_impl->type)
@@ -231,7 +277,7 @@ bool QCtmLogManager::checkFile()
         {
             if (m_impl->logFile.isOpen())
                 m_impl->logFile.close();
-            auto file = m_impl->logPath + "/" + QDateTime::currentDateTime().toString("yyyy-MM-dd hh.mm.ss.zzz") + ".log";
+            const auto& file = m_impl->logPath + "/" + QDateTime::currentDateTime().toString("yyyy-MM-dd hh.mm.ss.zzz") + ".log";
             m_impl->logFile.setFileName(file);
             return m_impl->logFile.open(QFile::WriteOnly | QFile::Append);
         }

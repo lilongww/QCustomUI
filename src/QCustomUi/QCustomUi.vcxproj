@@ -40,7 +40,6 @@
   <Target Name="QtMsBuildNotFound" BeforeTargets="CustomBuild;ClCompile" Condition="!Exists('$(QtMsBuild)\qt.targets') or !Exists('$(QtMsBuild)\qt.props')">
     <Message Importance="High" Text="QtMsBuild: could not locate qt.targets, qt.props; project may not build correctly." />
   </Target>
-  
   <ImportGroup Label="ExtensionSettings" />
   <ImportGroup Label="Shared" />
   <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -49,7 +48,21 @@
   <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
   </ImportGroup>
-  <PropertyGroup Label="UserMacros" /><ImportGroup Condition="Exists('$(QtMsBuild)\qt_defaults.props')"><Import Project="$(QtMsBuild)\qt_defaults.props" /></ImportGroup><PropertyGroup Label="QtSettings" Condition="'$(Configuration)|$(Platform)'=='Release|x64'"><QtInstall>$(DefaultQtVersion)</QtInstall><QtModules>core;network;gui;widgets;winextras</QtModules></PropertyGroup><PropertyGroup Label="QtSettings" Condition="'$(Configuration)|$(Platform)'=='Debug|x64'"><QtInstall>$(DefaultQtVersion)</QtInstall><QtModules>core;network;gui;widgets;winextras</QtModules></PropertyGroup><ImportGroup Condition="Exists('$(QtMsBuild)\qt.props')"><Import Project="$(QtMsBuild)\qt.props" /></ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <ImportGroup Condition="Exists('$(QtMsBuild)\qt_defaults.props')">
+    <Import Project="$(QtMsBuild)\qt_defaults.props" />
+  </ImportGroup>
+  <PropertyGroup Label="QtSettings" Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <QtInstall>$(DefaultQtVersion)</QtInstall>
+    <QtModules>core;network;gui;widgets;winextras</QtModules>
+  </PropertyGroup>
+  <PropertyGroup Label="QtSettings" Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <QtInstall>$(DefaultQtVersion)</QtInstall>
+    <QtModules>core;network;gui;widgets;winextras</QtModules>
+  </PropertyGroup>
+  <ImportGroup Condition="Exists('$(QtMsBuild)\qt.props')">
+    <Import Project="$(QtMsBuild)\qt.props" />
+  </ImportGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
@@ -60,7 +73,8 @@
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
       <TreatWChar_tAsBuiltInType>true</TreatWChar_tAsBuiltInType>
       <LanguageStandard>stdcpplatest</LanguageStandard>
-    <MultiProcessorCompilation>true</MultiProcessorCompilation></ClCompile>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
+    </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
       <AdditionalLibraryDirectories>%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
@@ -69,19 +83,20 @@
       <ImportLibrary>$(SolutionDir)build\lib\$(PlatformTarget)\$(TargetName).lib</ImportLibrary>
     </Link>
     <QtMoc>
-      
-      
-      
       <ExecutionDescription>Moc'ing %(Identity)...</ExecutionDescription>
-    <QtMocDir>.\GeneratedFiles\$(ConfigurationName)</QtMocDir><QtMocFileName>moc_%(Filename).cpp</QtMocFileName></QtMoc>
+      <QtMocDir>.\GeneratedFiles\$(ConfigurationName)</QtMocDir>
+      <QtMocFileName>moc_%(Filename).cpp</QtMocFileName>
+    </QtMoc>
     <QtUic>
       <ExecutionDescription>Uic'ing %(Identity)...</ExecutionDescription>
-      
-    <QtUicDir>.\GeneratedFiles</QtUicDir><QtUicFileName>ui_%(Filename).h</QtUicFileName></QtUic>
+      <QtUicDir>.\GeneratedFiles</QtUicDir>
+      <QtUicFileName>ui_%(Filename).h</QtUicFileName>
+    </QtUic>
     <QtRcc>
       <ExecutionDescription>Rcc'ing %(Identity)...</ExecutionDescription>
-      
-    <QtRccDir>.\GeneratedFiles</QtRccDir><QtRccFileName>qrc_%(Filename).cpp</QtRccFileName></QtRcc>
+      <QtRccDir>.\GeneratedFiles</QtRccDir>
+      <QtRccFileName>qrc_%(Filename).cpp</QtRccFileName>
+    </QtRcc>
     <PostBuildEvent>
       <Command>xcopy /y *.h $(SolutionDir)build\include\$(ProjectName)\</Command>
     </PostBuildEvent>
@@ -95,7 +110,8 @@
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
       <TreatWChar_tAsBuiltInType>true</TreatWChar_tAsBuiltInType>
       <LanguageStandard>stdcpplatest</LanguageStandard>
-    <MultiProcessorCompilation>true</MultiProcessorCompilation></ClCompile>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
+    </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
       <AdditionalLibraryDirectories>%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
@@ -104,19 +120,20 @@
       <ImportLibrary>$(SolutionDir)build\lib\$(PlatformTarget)\$(TargetName).lib</ImportLibrary>
     </Link>
     <QtMoc>
-      
-      
-      
       <ExecutionDescription>Moc'ing %(Identity)...</ExecutionDescription>
-    <QtMocDir>.\GeneratedFiles\$(ConfigurationName)</QtMocDir><QtMocFileName>moc_%(Filename).cpp</QtMocFileName></QtMoc>
+      <QtMocDir>.\GeneratedFiles\$(ConfigurationName)</QtMocDir>
+      <QtMocFileName>moc_%(Filename).cpp</QtMocFileName>
+    </QtMoc>
     <QtUic>
       <ExecutionDescription>Uic'ing %(Identity)...</ExecutionDescription>
-      
-    <QtUicDir>.\GeneratedFiles</QtUicDir><QtUicFileName>ui_%(Filename).h</QtUicFileName></QtUic>
+      <QtUicDir>.\GeneratedFiles</QtUicDir>
+      <QtUicFileName>ui_%(Filename).h</QtUicFileName>
+    </QtUic>
     <QtRcc>
       <ExecutionDescription>Rcc'ing %(Identity)...</ExecutionDescription>
-      
-    <QtRccDir>.\GeneratedFiles</QtRccDir><QtRccFileName>qrc_%(Filename).cpp</QtRccFileName></QtRcc>
+      <QtRccDir>.\GeneratedFiles</QtRccDir>
+      <QtRccFileName>qrc_%(Filename).cpp</QtRccFileName>
+    </QtRcc>
     <PostBuildEvent>
       <Command>xcopy /y *.h $(SolutionDir)build\include\$(ProjectName)\</Command>
     </PostBuildEvent>
@@ -124,22 +141,18 @@
   <ItemGroup>
     <QtMoc Include="Private\QCtmActionGroup_p.h" />
     <QtMoc Include="Private\QCtmFramelessDelegate_p.h" />
-    <QtMoc Include="Private\QCtmMainMenuButton_p.h" />
     <QtMoc Include="Private\QCtmMaximumSizeButton_p.h" />
     <QtMoc Include="Private\QCtmMessageTipHelper_p.h" />
     <QtMoc Include="Private\QCtmMessageViewDelegate_p.h" />
     <QtMoc Include="Private\QCtmNavigationImageButton_p.h" />
     <QtMoc Include="Private\QCtmSeparator_p.h" />
     <QtMoc Include="Private\QCtmFramelessDelegate_win.h">
-      
-      
     </QtMoc>
     <ClInclude Include="Private\QCtmStyle_p.h" />
     <QtMoc Include="Private\QCtmToolBoxItem_p.h" />
     <QtMoc Include="Private\QCtmToolButton_p.h" />
     <QtMoc Include="Private\QCtmTreeItemTitle_p.h" />
     <QtMoc Include="Private\QCtmUserButton_p.h" />
-    <QtMoc Include="Private\QCtmWidgetItemForMainMenu_p.h" />
     <QtMoc Include="Private\QCtmWidgetItem_p.h" />
     <ClInclude Include="Private\flowlayout_p.h" />
     <ClInclude Include="Private\Util_p.h" />
@@ -147,12 +160,8 @@
     <QtMoc Include="QCtmIPAddressEdit.h" />
     <QtMoc Include="QCtmEditLabel.h" />
     <QtMoc Include="QCtmApplication.h">
-      
-      
     </QtMoc>
     <QtMoc Include="QCtmHeaderView.h">
-      
-      
     </QtMoc>
     <ClInclude Include="QCtmStyleSheet.h" />
     <ClInclude Include="resource.h" />
@@ -185,8 +194,6 @@
     <QtMoc Include="QCtmToolBox.h" />
     <QtMoc Include="QCtmTree.h" />
     <QtMoc Include="QCtmWindow.h">
-      
-      
     </QtMoc>
     <ClInclude Include="qcustomui_global.h" />
   </ItemGroup>
@@ -227,7 +234,6 @@
     <ClCompile Include="QCtmWindow.cpp" />
     <ClCompile Include="Private\QCtmActionGroup.cpp" />
     <ClCompile Include="Private\QCtmFramelessDelegate.cpp" />
-    <ClCompile Include="Private\QCtmMainMenuButton.cpp" />
     <ClCompile Include="Private\QCtmMaximumSizeButton.cpp" />
     <ClCompile Include="Private\QCtmMessageTipHelper.cpp" />
     <ClCompile Include="Private\QCtmMessageViewDelegate.cpp" />
@@ -239,7 +245,6 @@
     <ClCompile Include="Private\QCtmTreeItemTitle.cpp" />
     <ClCompile Include="Private\QCtmUserButton.cpp" />
     <ClCompile Include="Private\QCtmWidgetItem.cpp" />
-    <ClCompile Include="Private\QCtmWidgetItemForMainMenu.cpp" />
     <ClCompile Include="Private\flowlayout.cpp" />
     <ClCompile Include="Private\Util.cpp" />
   </ItemGroup>

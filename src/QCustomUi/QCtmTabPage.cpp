@@ -20,17 +20,34 @@ struct QCtmTabPage::Impl
 	QWidget* centralWidget{ nullptr };
 };
 
+/**
+ * @brief  		右上角添加一个action
+ * @param[in]  	icon 图标
+ * @param[in] 	text 文字
+ * @Return:   	action 地址
+ */
 QAction* QCtmTabPage::addAction(const QIcon& icon, const QString& text)
 {
 	return insertAction(count(), icon, text);
 }
 
+/**
+ * @brief  		右上角添加一个action
+ * @param[in]  	text 文字
+ * @Return:   	action 地址
+ */
 QAction* QCtmTabPage::addAction(const QString& text)
 {
 	return addAction(QIcon(), text);
 }
 
-
+/**
+ * @brief  		右上角插入一个action
+ * @param[in]  	index 插入位置
+ * @param[in] 	icon 图标
+ * @param[in] 	text 文字
+ * @Return:   	action 地址
+ */
 QAction* QCtmTabPage::insertAction(int index, const QIcon& icon, const QString& text)
 {
     auto action = new QAction(icon, text, m_impl->cornerWidget);
@@ -38,17 +55,33 @@ QAction* QCtmTabPage::insertAction(int index, const QIcon& icon, const QString& 
 	return action;
 }
 
+/**
+ * @brief		插入action
+ * @param[in]	index 要插入的位置
+ * @param[in]	action 要插入的action
+ */
 void QCtmTabPage::insertAction(int index, QAction* action)
 {
     auto before = actionAt(index);
     QWidget::insertAction(before, action);
 }
 
+/**
+ * @brief  		右上角插入一个action
+ * @param[in]  	index 插入位置
+ * @param[in] 	text 文字
+ * @Return:   	action 地址
+ */
 QAction* QCtmTabPage::insertAction(int index, const QString& text)
 {
 	return insertAction(index, QIcon(), text);
 }
 
+/**
+ * @brief		获取指定位置的action
+ * @param[in]	index 指定位置
+ * @Return:		action地址
+ */
 QAction* QCtmTabPage::actionAt(int index) const
 {
     if (index < 0)
@@ -60,6 +93,10 @@ QAction* QCtmTabPage::actionAt(int index) const
     return nullptr;
 }
 
+/**
+ * @brief		释放当前中央窗口
+ * @Return:		当前中央窗口地址
+ */
 QWidget* QCtmTabPage::takeCentralWidget() const
 {
 	if (m_impl->layout->count() > 0)
@@ -75,11 +112,18 @@ QWidget* QCtmTabPage::takeCentralWidget() const
 	return nullptr;
 }
 
+/**
+ * @brief		中央窗口地址
+ */
 QWidget* QCtmTabPage::centralWidget() const
 {
 	return m_impl->centralWidget;
 }
 
+/**
+ * @brief      获取action数量
+ * @Return:    action数量
+ */
 int QCtmTabPage::count() const
 {
 	return m_impl->actions.size();

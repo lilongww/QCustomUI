@@ -26,70 +26,15 @@ public:
 	QCtmTree(QWidget *parent = nullptr);
 	~QCtmTree();
 
-	/** 
-	 * @brief	    添加一个子窗口
-	 * @param[in]	title 标题
-     * @param[in]	widget 子窗口地址
-     * @return:     item地址
-	 */
     QCtmTreeItem* addWidget(const QString& title, QWidget* widget);
-
-    /**
-     * @brief	    插入一个子窗口
-     * @param[in]	index 要插入的位置
-     * @param[in]	title 标题
-     * @param[in]	widget 子窗口地址
-     * @return:     item地址
-     */
     QCtmTreeItem* insertWidget(int index, const QString& title, QWidget* widget);
-
-	/** 
-	 * @brief	    移除一项
-	 * @param[in]	item 要移除的项	
-	 */
 	void removeItem(QCtmTreeItem* item);
-
-	/** 
-	 * @brief	    获取项所在位置
-	 * @param[in]	item 要获取位置的项
-	 * @return: 	位置
-	 */
 	int indexOf(QCtmTreeItem* item) const;
-
-	/** 
-	 * @brief	    获取指定位置的项
-	 * @param[in]	index 指定位置
-	 * @return:	    项地址	
-	 */
 	QCtmTreeItem* item(int index) const;
-
-	/** 
-	 * @brief	    设置所有项的展开状态
-	 * @param[in]	expand true:展开，false:收拢	
-	 */
 	void setAllExpand(bool expand) const;
-
-	/** 
-     * @brief	    获取项总数
-     * @return: 	项总数
-     */
 	int count() const;
-
-    /**
-     * @brief		设置子项展开互斥，即只能有一项展开
-     * @param[in]	
-     */
     void setExclusive(bool exclusive);
-
-    /**
-     * @brief		子项是否展开互斥
-     */
     bool exclusive() const;
-
-    /**
-     * @brief		设置每一个item的高度
-     * @param[in]	sizes 每个item的高度
-     */
     void setSizes(const QList<int>& sizes);
 signals:
     /**

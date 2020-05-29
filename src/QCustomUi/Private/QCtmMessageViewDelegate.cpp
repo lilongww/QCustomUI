@@ -62,8 +62,8 @@ QSize QCtmMessageViewDelegate::sizeHint(const QStyleOptionViewItem &option, cons
 	font.setUnderline(true);
 	QFontMetrics fm(font);
 	auto model = index.model();
-	auto title = model->data(model->index(index.row(), QCtmMessage::Title), Qt::DisplayRole).toString();
-	auto time = model->data(model->index(index.row(), QCtmMessage::Time), Qt::DisplayRole).toString();
+	const auto& title = model->data(model->index(index.row(), QCtmMessage::Title), Qt::DisplayRole).toString();
+	const auto& time = model->data(model->index(index.row(), QCtmMessage::Time), Qt::DisplayRole).toString();
 	auto rect = fm.boundingRect(QRect(0, 0, w->viewport()->size().width() - margin * 2 - m_impl->closeButtonIcon.width() - space * 2 - decorate - padding * 2, 0)
 		, Qt::TextWordWrap | Qt::AlignJustify, title + "\n" + time);
 	rect.setHeight(rect.height() + margin * 2 + padding * 2);
@@ -93,7 +93,7 @@ const QPixmap& QCtmMessageViewDelegate::closeButtonIcon() const
 void QCtmMessageViewDelegate::drawTitle(QPainter* painter, const QStyleOptionViewItem &option, const QModelIndex& index) const
 {
 	auto model = index.model();
-	auto title = model->data(model->index(index.row(), QCtmMessage::Title), Qt::DisplayRole).toString();
+	const auto& title = model->data(model->index(index.row(), QCtmMessage::Title), Qt::DisplayRole).toString();
 
 	QTextOption to;
 	to.setWrapMode(QTextOption::WordWrap);
@@ -116,7 +116,7 @@ void QCtmMessageViewDelegate::drawTitle(QPainter* painter, const QStyleOptionVie
 void QCtmMessageViewDelegate::drawDateTime(QPainter* painter, const QStyleOptionViewItem &option, const QModelIndex& index) const
 {
 	auto model = index.model();
-	auto time = model->data(model->index(index.row(), QCtmMessage::Time), Qt::DisplayRole).toString();
+	const auto& time = model->data(model->index(index.row(), QCtmMessage::Time), Qt::DisplayRole).toString();
 
 	QTextOption to;
 	to.setWrapMode(QTextOption::WordWrap);
@@ -132,7 +132,7 @@ void QCtmMessageViewDelegate::drawCloseButton(QPainter* painter, const QStyleOpt
 {
 	if (!option.state.testFlag(QStyle::State_MouseOver))
 		return;
-	auto rect = doCloseBtnRect(option);
+	const auto& rect = doCloseBtnRect(option);
 
 	QIcon::State state = QIcon::Off;
 	QIcon::Mode mode = QIcon::Normal;
@@ -168,14 +168,14 @@ void QCtmMessageViewDelegate::drawBackground(QPainter *painter, const QStyleOpti
 
 QRect QCtmMessageViewDelegate::doDateTimeRect(const QStyleOptionViewItem& option, const QModelIndex& index) const
 {
-	auto titleRect = doTitleRect(option, index);
-	auto rect = option.rect - QMargins(margin + space + decorate + padding, margin + padding, margin + space + m_impl->closeButtonIcon.width() + padding, margin + padding);
+	const auto& titleRect = doTitleRect(option, index);
+	const auto& rect = option.rect - QMargins(margin + space + decorate + padding, margin + padding, margin + space + m_impl->closeButtonIcon.width() + padding, margin + padding);
 	return QRect(titleRect.left(), titleRect.bottom(), rect.width(), rect.height() - titleRect.height());
 }
 
 QRect QCtmMessageViewDelegate::doTitleRect(const QStyleOptionViewItem& option, const QModelIndex& index) const
 {
-	auto title = index.model()->data(index.model()->index(index.row(), QCtmMessage::Title), Qt::DisplayRole).toString();
+	const auto& title = index.model()->data(index.model()->index(index.row(), QCtmMessage::Title), Qt::DisplayRole).toString();
 	auto rect = option.rect - QMargins(margin + space + decorate + padding, margin + padding, margin + space + m_impl->closeButtonIcon.width() + padding, margin + padding);
 	auto font = option.font;
 	font.setBold(true);
@@ -187,7 +187,7 @@ QRect QCtmMessageViewDelegate::doTitleRect(const QStyleOptionViewItem& option, c
 
 QRect QCtmMessageViewDelegate::doCloseBtnRect(const QStyleOptionViewItem& option) const
 {
-	auto rect = option.rect - QMargins(margin, margin, margin, margin);
+	const auto& rect = option.rect - QMargins(margin, margin, margin, margin);
 	return QRect(rect.right() - margin - m_impl->closeButtonIcon.width(), rect.top() + margin, m_impl->closeButtonIcon.width(), m_impl->closeButtonIcon.height());
 }
 
@@ -211,15 +211,15 @@ bool QCtmMessageViewDelegate::editorEvent(QEvent *event, QAbstractItemModel *mod
 			}
 			else
 				m_impl->closeBtnHoverd = false;
-			auto list = dynamic_cast<const QListView*>(option.widget);
-			if (list)
+			auto listView = dynamic_cast<const QListView*>(option.widget);
+			if (listView)
 			{
 				if (doTitleRect(option, index).contains(evt->pos()))
 				{
-					list->viewport()->setCursor(Qt::PointingHandCursor);
+					listView->viewport()->setCursor(Qt::PointingHandCursor);
 				}
 				else
-					list->viewport()->setCursor(Qt::ArrowCursor);
+					listView->viewport()->setCursor(Qt::ArrowCursor);
 			}
 
 			break;
@@ -264,21 +264,4 @@ bool QCtmMessageViewDelegate::editorEvent(QEvent *event, QAbstractItemModel *mod
 		}
 	}
 	return false;
-}
-
-bool QCtmMessageViewDelegate::helpEvent(QHelpEvent *event, QAbstractItemView *view, const QStyleOptionViewItem &option, const QModelIndex &index)
-{
-	return QItemDelegate::helpEvent(event, view, option, index);
-	//auto msg = index.data(Qt::ToolTipRole).toString();
-	//auto rect = option.rect;
-	//auto model = index.model();
-	//auto title = index.model()->data(index.model()->index(index.row(), QCtmMessage::Title), Qt::DisplayRole).toString();
-	//auto content = index.model()->data(index.model()->index(index.row(), QCtmMessage::Content), Qt::DisplayRole).toString();
-	//auto time = index.model()->data(index.model()->index(index.row(), QCtmMessage::Time), Qt::DisplayRole).toString();
-	////QFontMetrics fm(QToolTip::font());
-	//QLabel lb(msg);
-	//auto size = lb.minimumSizeHint();//fm.boundingRect(QRect(0, 0, 250, 0), Qt::TextWordWrap, title + "\n" + content + "\n" + time);
-	//QPoint p = view->mapToGlobal(QPoint(rect.left() - size.width(), rect.top()));
-	//QToolTip::showText(p, msg, view);
-	return true;
 }

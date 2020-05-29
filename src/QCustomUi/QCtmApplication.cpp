@@ -24,16 +24,21 @@ QCtmApplication::~QCtmApplication()
 {
 }
 
+/**
+ * @brief		检测是否有其他进程已启动
+ * @param[in]	key 程序识别码
+ * @return		true 有其他进程已启动
+ */
 bool QCtmApplication::checkOtherProcess(const QString& key)
 {
 	if (key.isEmpty())
 		return false;
 
 	connect(&m_impl->server, &QLocalServer::newConnection, this, [this]() {
-		auto ws = this->topLevelWindows();
+		const auto& ws = this->topLevelWindows();
 		if (!ws.isEmpty())
 		{
-			for (auto w : ws)
+			for (const auto& w : ws)
 			{
 				if (w->isVisible())
 				{

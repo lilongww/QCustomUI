@@ -325,10 +325,10 @@ void QCtmFramelessDelegate::mouseMoveEvent(QMouseEvent*)
 	}
 	else
 	{
-		QPoint gloPoint = QCursor::pos();
-		QRect rect = m_impl->parent->rect();
-		QPoint tl = m_impl->parent->mapToGlobal(rect.topLeft());
-		QPoint rb = m_impl->parent->mapToGlobal(rect.bottomRight());
+		const auto& gloPoint = QCursor::pos();
+		const auto& rect = m_impl->parent->rect();
+		const auto& tl = m_impl->parent->mapToGlobal(rect.topLeft());
+		const auto& rb = m_impl->parent->mapToGlobal(rect.bottomRight());
 		if (m_impl->direction != NONE)
 		{
 			QRect rMove(tl, rb);
@@ -415,7 +415,6 @@ void QCtmFramelessDelegate::paintEvent(QPaintEvent* e)
 		paintShadow(p, m_impl->margin + lm);
 		opt.rect = QRect(m_impl->margin, m_impl->margin, m_impl->parent->width() - 2 * m_impl->margin, m_impl->parent->height() - 2 * m_impl->margin);
 	}
-	//qDrawPlainRect(&p, opt.rect, opt.palette.midlight().color(), 1, &opt.palette.background());
     p.end();
     p.begin(&image);
     m_impl->parent->style()->drawPrimitive(QStyle::PE_Widget, &opt, &p, m_impl->parent);
@@ -474,9 +473,9 @@ void QCtmFramelessDelegate::platformSurfaceEvent(QPlatformSurfaceEvent* e)
 void QCtmFramelessDelegate::region(const QPoint &cursorGlobalPoint)
 {
 	// 获取窗体在屏幕上的位置区域，tl为topleft点，rb为rightbottom点
-	QRect rect = m_impl->parent->rect();
-	QPoint tl = m_impl->parent->mapToGlobal(rect.topLeft());
-	QPoint rb = m_impl->parent->mapToGlobal(rect.bottomRight());
+	const auto& rect = m_impl->parent->rect();
+	const auto& tl = m_impl->parent->mapToGlobal(rect.topLeft());
+	const auto& rb = m_impl->parent->mapToGlobal(rect.bottomRight());
 
 	int x = cursorGlobalPoint.x();
 	int y = cursorGlobalPoint.y();

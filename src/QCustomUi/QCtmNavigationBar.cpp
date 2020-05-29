@@ -37,7 +37,7 @@ struct QCtmNavigationBar::Impl
 
     QCtmWidgetItemPtr find(QAction* action, const QList<QCtmWidgetItemPtr>& items)
     {
-        for (auto &item : items)
+        for (const auto &item : items)
         {
             if (item->action() == action)
                 return item;
@@ -59,7 +59,7 @@ struct QCtmNavigationBar::Impl
 
     QCtmWidgetItemPtr find(QWidget* widget, const QList<QCtmWidgetItemPtr>& items)
     {
-        for (auto &item : items)
+        for (const auto &item : items)
         {
             if (item->widget() == widget)
                 return item;
@@ -103,16 +103,35 @@ QCtmNavigationBar::~QCtmNavigationBar()
 {
 }
 
+/**
+ * @brief       添加一个菜单项
+ * @param[in]   text 描述
+ * @param[in]   pos 停靠方向
+ * @return:     菜单项地址
+ */
 QAction* QCtmNavigationBar::addAction(const QString& text, ActionPosition pos)
 {
 	return addAction(QIcon(), text, pos);
 }
 
+/**
+ * @brief  	    添加一个菜单项
+ * @param[in]   icon 菜单项图标
+ * @param[in] 	text 菜单描述
+ * @param[in]   pos 停靠方向
+ * @Return:   	菜单项地址
+ */
 QAction* QCtmNavigationBar::addAction(const QIcon& icon, const QString& text, ActionPosition pos)
 {
     return insertAction(count(pos), icon, text, pos);
 }
 
+/**
+ * @brief		在指定位置插入一个action
+ * @param[in]	index 要插入的位置
+ * @param[in]	action 要插入的action地址
+ * @param[in]   pos action停靠方向
+ */
 void QCtmNavigationBar::insertAction(int index, QAction* action, ActionPosition pos)
 {
     auto before = actionAt(index, pos);
@@ -120,6 +139,11 @@ void QCtmNavigationBar::insertAction(int index, QAction* action, ActionPosition 
     QWidget::insertAction(before, action);
 }
 
+/**
+ * @brief		添加一个action
+ * @param[in]	action 要添加的action
+ * @param[in]	pos action停靠方向
+ */
 void QCtmNavigationBar::addAction(QAction* action, ActionPosition pos)
 {
 	int index = pos == ActionPosition::Right ? m_impl->rightItems.size() : m_impl->leftItems.size();
@@ -137,7 +161,7 @@ void QCtmNavigationBar::actionEvent(QActionEvent *event)
     ActionPosition pos = Left;
     if (event->action()->property(ActionPosProperty).isValid())
     {
-        pos = (ActionPosition)event->action()->property(ActionPosProperty).toInt();
+        pos = static_cast<ActionPosition>(event->action()->property(ActionPosProperty).toInt());
     }
 
     if (event->type() == QEvent::ActionAdded)
@@ -182,11 +206,22 @@ void QCtmNavigationBar::drawBackground(QPainter *p)
 	style()->drawPrimitive(QStyle::PE_Widget, &opt, p, this);
 }
 
+/**
+ * @brief       添加菜单分隔项
+ * @param[in]   index 要插入的位置
+ * @Return:   	分隔项的地址
+ */
 QAction* QCtmNavigationBar::addSeparator(ActionPosition pos)
 {
 	return insertSeparator(count(pos), pos);
 }
 
+/**
+ * @brief  	    添加菜单分隔项
+ * @param[in]   index 要插入的位置
+ * @param[in] 	pos 停靠方向
+ * @Return:
+ */
 QAction* QCtmNavigationBar::insertSeparator(int index, ActionPosition pos)
 {
     auto action = new QAction(nullptr);
@@ -195,6 +230,14 @@ QAction* QCtmNavigationBar::insertSeparator(int index, ActionPosition pos)
 	return action;
 }
 
+/**
+ * @brief  	    添加自定义弹出面板
+ * @param[in]   icon 菜单图标
+ * @param[in] 	text 菜单名称
+ * @param[in] 	pos 停靠方向
+ * @param[in] 	pane 自定义面板
+ * @Return:   	菜单项地址
+ */
 QAction* QCtmNavigationBar::addPane(const QIcon& icon, const QString& text, ActionPosition pos, QCtmNavigationSidePanel* pane)
 {
 	auto count = this->count(pos);
@@ -202,16 +245,37 @@ QAction* QCtmNavigationBar::addPane(const QIcon& icon, const QString& text, Acti
 	return action;
 }
 
+/**
+ * @brief  	    添加自定义弹出面板
+ * @param[in] 	text 菜单名称
+ * @param[in] 	pos 停靠方向
+ * @param[in] 	pane 自定义面板
+ * @Return:   	菜单项地址
+ */
 QAction* QCtmNavigationBar::addPane(const QString& text, ActionPosition pos, QCtmNavigationSidePanel* pane)
 {
 	return addPane(QIcon(), text, pos, pane);
 }
 
+/**
+ * @brief		添加自定义弹出面板
+ * @param[in]	action 与面板相绑定的按钮
+ * @param[in]	pos 停靠方向
+ * @Return:
+ */
 void QCtmNavigationBar::addPane(QAction* action, ActionPosition pos, QCtmNavigationSidePanel* pane)
 {
     insertPane(count(pos), action, pos, pane);
 }
 
+/**
+ * @brief  	    插入菜单项
+ * @param[in]   index 菜单项位置
+ * @param[in] 	icon 菜单项图标
+ * @param[in] 	text 菜单项名称
+ * @param[in] 	pos 停靠方向
+ * @Return:
+ */
 QAction* QCtmNavigationBar::insertAction(int index, const QIcon& icon, const QString& text, ActionPosition pos)
 {
     auto action = new QAction(icon, text, nullptr);
@@ -219,11 +283,27 @@ QAction* QCtmNavigationBar::insertAction(int index, const QIcon& icon, const QSt
 	return action;
 }
 
+/**
+ * @brief  	    插入菜单项
+ * @param[in]   index 菜单项位置
+ * @param[in] 	text 菜单项名称
+ * @param[in] 	pos 停靠方向
+ * @Return:
+ */
 QAction* QCtmNavigationBar::insertAction(int index, const QString& text, ActionPosition pos)
 {
 	return insertAction(index, QIcon(), text, pos);
 }
 
+/**
+ * @brief  	    插入自定义弹出面板
+ * @param[in]   index 菜单项位置
+ * @param[in] 	icon 菜单项图标
+ * @param[in] 	text 菜单项名称
+ * @param[in] 	pos 停靠方向
+ * @param[in] 	pane 弹出面板地址
+ * @Return:
+ */
 QAction* QCtmNavigationBar::insertPane(int index, const QIcon& icon, const QString& text, ActionPosition pos, QCtmNavigationSidePanel* pane)
 {
 	auto action = insertAction(index, icon, text, pos);
@@ -231,11 +311,26 @@ QAction* QCtmNavigationBar::insertPane(int index, const QIcon& icon, const QStri
 	return action;
 }
 
+/**
+ * @brief  	    插入自定义弹出面板
+ * @param[in]   index 菜单项位置
+ * @param[in] 	text 菜单项名称
+ * @param[in] 	pos 停靠方向
+ * @param[in] 	pane 弹出面板地址
+ * @Return:
+ */
 QAction* QCtmNavigationBar::insertPane(int index, const QString& text, ActionPosition pos, QCtmNavigationSidePanel* pane)
 {
 	return insertPane(index, QIcon(), text, pos, pane);
 }
 
+/**
+ * @brief  	    插入自定义弹出面板
+ * @param[in]   index 菜单项位置
+ * @param[in] 	action 与弹出面板绑定的按钮
+ * @param[in] 	pos 停靠方向
+ * @param[in] 	pane 弹出面板地址
+ */
 void QCtmNavigationBar::insertPane(int index, QAction* action, ActionPosition pos, QCtmNavigationSidePanel* pane)
 {
     if (!this->actions().contains(action))
@@ -259,6 +354,11 @@ void QCtmNavigationBar::insertPane(int index, QAction* action, ActionPosition po
     connect(pane, &QCtmNavigationSidePanel::paneClosed, this, [=]() { action->setChecked(false); }, Qt::QueuedConnection);
 }
 
+/**
+ * @brief  	    获取菜单项位置
+ * @param[in]   action 菜单项地址
+ * @Return:   	菜单项位置
+ */
 int QCtmNavigationBar::indexOf(QAction* action) const
 {
     auto item = m_impl->find(action, Left);
@@ -273,6 +373,11 @@ int QCtmNavigationBar::indexOf(QAction* action) const
 	return -1;
 }
 
+/**
+ * @brief  	    获取菜单项数量
+ * @param[in]   pos 停靠方向
+ * @Return:   	菜单项数量
+ */
 int QCtmNavigationBar::count(ActionPosition pos) const
 {
 	switch (pos)
@@ -285,6 +390,11 @@ int QCtmNavigationBar::count(ActionPosition pos) const
 	return 0;
 }
 
+/**
+ * @brief  	    获取action的rect
+ * @param[in]   action action地址
+ * @Return:   	action的rect
+ */
 QRect QCtmNavigationBar::actionRect(QAction* action)
 {
     auto item = m_impl->find(action);
@@ -293,12 +403,25 @@ QRect QCtmNavigationBar::actionRect(QAction* action)
 	return item->widget()->geometry();
 }
 
+/**
+ * @brief  	    添加帮助文档
+ * @param[in]   filePath 文件路径
+ * @param[in]   icon 帮助按钮图标
+ * @param[in]   pos 帮助按钮位置
+ */
 QAction* QCtmNavigationBar::addHelp(const QUrl& filePath, const QIcon& icon, ActionPosition pos)
 {
 	auto index = count(pos);
 	return insertHelp(index, filePath, icon, pos);
 }
 
+/**
+ * @brief  	    添加帮助文档
+ * @param[in]   index 插入位置
+ * @param[in]   filePath 文件路径
+ * @param[in]   icon 帮助按钮图标
+ * @param[in]   pos 帮助按钮位置
+ */
 QAction* QCtmNavigationBar::insertHelp(int index, const QUrl& filePath, const QIcon& icon, ActionPosition pos /*= Right*/)
 {
 	auto help = new QAction(icon, "", this);
@@ -309,12 +432,25 @@ QAction* QCtmNavigationBar::insertHelp(int index, const QUrl& filePath, const QI
 	return help;
 }
 
+/**
+ * @brief		添加一个Logo按钮
+ * @param[in]	icon logo图标
+ * @param[in]	pos 图标停靠方向
+ * @return
+ */
 QAction* QCtmNavigationBar::addLogo(const QIcon& icon, ActionPosition pos)
 {
 	auto index = count(pos);
 	return insertLogo(index, icon, pos);
 }
 
+/**
+ * @brief		插入一个Logo按钮
+ * @param[in]	index 插入位置
+ * @param[in]	icon logo图标
+ * @param[in]	pos 图标停靠方向
+ * @return
+ */
 QAction* QCtmNavigationBar::insertLogo(int index, const QIcon& icon, ActionPosition pos /*= Left*/)
 {
 	QWidgetAction* action = new QWidgetAction(this);
@@ -351,6 +487,12 @@ QAction* QCtmNavigationBar::insertUser(int index, const QIcon& icon, const QStri
 	return action;
 }
 
+/**
+ * @brief		获取指定位置的action
+ * @param[in]	index action的序号
+ * @param[in]	pos action的停靠方向
+ * @Return:		action地址
+ */
 QAction* QCtmNavigationBar::actionAt(int index, ActionPosition pos) const
 {
     if (index < 0)

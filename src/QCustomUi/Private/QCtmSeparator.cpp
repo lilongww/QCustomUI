@@ -39,7 +39,7 @@ void QCtmSeparator::initStyleOption(QStyleOption* opt) const
 	opt->initFrom(this);
 	if (orientation() == Qt::Horizontal)
 		opt->state |= QStyle::State_Horizontal;
-    auto rect = style()->subElementRect(QStyle::SE_FrameContents, opt, this);
+    const auto& rect = style()->subElementRect(QStyle::SE_FrameContents, opt, this);
     if (rect.isValid())
     {
         opt->rect = rect;

@@ -60,9 +60,6 @@ public:
     QCtmLogEvent(QCtmLogDataPtr log);
     ~QCtmLogEvent();
 
-    /**
-     * @brief		获取日志数据
-     */
     QCtmLogDataPtr log()const;
 private:
     struct Impl;

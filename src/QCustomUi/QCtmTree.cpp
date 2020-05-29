@@ -35,11 +35,24 @@ QCtmTree::~QCtmTree()
 {
 }
 
+/**
+ * @brief	    添加一个子窗口
+ * @param[in]	title 标题
+ * @param[in]	widget 子窗口地址
+ * @return:     item地址
+ */
 QCtmTreeItem* QCtmTree::addWidget(const QString& title, QWidget* widget)
 {
 	return insertWidget(count(), title, widget);
 }
 
+/**
+ * @brief	    插入一个子窗口
+ * @param[in]	index 要插入的位置
+ * @param[in]	title 标题
+ * @param[in]	widget 子窗口地址
+ * @return:     item地址
+ */
 QCtmTreeItem* QCtmTree::insertWidget(int index, const QString& title, QWidget* widget)
 {
     auto item = new QCtmTreeItem(title, this);
@@ -53,21 +66,39 @@ QCtmTreeItem* QCtmTree::insertWidget(int index, const QString& title, QWidget* w
     return item;
 }
 
+/**
+ * @brief	    移除一项
+ * @param[in]	item 要移除的项
+ */
 void QCtmTree::removeItem(QCtmTreeItem* item)
 {
 	delete item;
 }
 
+/**
+ * @brief	    获取项所在位置
+ * @param[in]	item 要获取位置的项
+ * @return: 	位置
+ */
 int QCtmTree::indexOf(QCtmTreeItem* item) const
 {
 	return m_impl->splitter->indexOf(item);
 }
 
+/**
+ * @brief	    获取指定位置的项
+ * @param[in]	index 指定位置
+ * @return:	    项地址
+ */
 QCtmTreeItem* QCtmTree::item(int index) const
 {
 	return qobject_cast<QCtmTreeItem*>(m_impl->splitter->widget(index));
 }
 
+/**
+ * @brief	    设置所有项的展开状态
+ * @param[in]	expand true:展开，false:收拢
+ */
 void QCtmTree::setAllExpand(bool expand) const
 {
 	for (int i = 0; i<count();i++)
@@ -76,21 +107,36 @@ void QCtmTree::setAllExpand(bool expand) const
 	}
 }
 
+/**
+ * @brief	    获取项总数
+ * @return: 	项总数
+ */
 int QCtmTree::count() const
 {
 	return m_impl->splitter->count();
 }
 
+/**
+ * @brief		设置子项展开互斥，即只能有一项展开
+ * @param[in]
+ */
 void QCtmTree::setExclusive(bool exclusive)
 {
     m_impl->exclusive = exclusive;
 }
 
+/**
+ * @brief		子项是否展开互斥
+ */
 bool QCtmTree::exclusive() const
 {
     return m_impl->exclusive;
 }
 
+/**
+ * @brief		设置每一个item的高度
+ * @param[in]	sizes 每个item的高度
+ */
 void QCtmTree::setSizes(const QList<int>& sizes)
 {
     m_impl->sizes = sizes;
@@ -184,7 +230,7 @@ void QCtmTree::onItemClicked(bool expand)
 
 bool QCtmTree::allClosed() const
 {
-	for (int i =0; i<m_impl->splitter->count();i++)
+	for (int i = 0; i<m_impl->splitter->count();i++)
 	{
 		auto w = qobject_cast<QCtmTreeItem*>(m_impl->splitter->widget(i));
 		if (w->isExpand())

@@ -98,9 +98,6 @@
     <ClCompile Include="Private\QCtmFramelessDelegate.cpp">
       <Filter>Private</Filter>
     </ClCompile>
-    <ClCompile Include="Private\QCtmMainMenuButton.cpp">
-      <Filter>Private</Filter>
-    </ClCompile>
     <ClCompile Include="Private\QCtmMaximumSizeButton.cpp">
       <Filter>Private</Filter>
     </ClCompile>
@@ -132,9 +129,6 @@
       <Filter>Private</Filter>
     </ClCompile>
     <ClCompile Include="Private\QCtmWidgetItem.cpp">
-      <Filter>Private</Filter>
-    </ClCompile>
-    <ClCompile Include="Private\QCtmWidgetItemForMainMenu.cpp">
       <Filter>Private</Filter>
     </ClCompile>
     <ClCompile Include="QCtmAbstractLogModel.cpp">
@@ -298,9 +292,6 @@
     <QtMoc Include="Private\QCtmFramelessDelegate_p.h">
       <Filter>Private</Filter>
     </QtMoc>
-    <QtMoc Include="Private\QCtmMainMenuButton_p.h">
-      <Filter>Private</Filter>
-    </QtMoc>
     <QtMoc Include="Private\QCtmMaximumSizeButton_p.h">
       <Filter>Private</Filter>
     </QtMoc>
@@ -330,9 +321,6 @@
     </QtMoc>
     <QtMoc Include="QCtmIPAddressEdit.h">
       <Filter>Input</Filter>
-    </QtMoc>
-    <QtMoc Include="Private\QCtmWidgetItemForMainMenu_p.h">
-      <Filter>Private</Filter>
     </QtMoc>
     <QtMoc Include="Private\QCtmWidgetItem_p.h">
       <Filter>Private</Filter>

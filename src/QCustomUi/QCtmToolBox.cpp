@@ -28,11 +28,22 @@ QCtmToolBox::~QCtmToolBox()
 
 }
 
+/**
+ * @brief      添加一个子窗口
+ * @param[in]  title 标题
+ * @param[in] 	widget 子窗口地址
+ */
 void QCtmToolBox::addWidget(const QString& title, QWidget* widget)
 {
 	insertWidget(m_impl->vSplitter->count(), title, widget);
 }
 
+/**
+ * @brief      插入一个子窗口
+ * @param[in]  index 插入位置
+ * @param[in] 	title 标题
+ * @param[in] 	widget 子窗口地址
+ */
 void QCtmToolBox::insertWidget(int index, const QString& title, QWidget* widget)
 {
 	auto item = new QCtmToolBoxItem(this);
@@ -41,6 +52,10 @@ void QCtmToolBox::insertWidget(int index, const QString& title, QWidget* widget)
 	m_impl->vSplitter->insertWidget(index, item);
 }
 
+/**
+ * @brief  		移除子窗口
+ * @param[in]  	widget 子窗口地址
+ */
 void QCtmToolBox::removeWidget(QWidget* widget)
 {
 	for (int i = 0; i < m_impl->vSplitter->count(); i++)
@@ -53,6 +68,10 @@ void QCtmToolBox::removeWidget(QWidget* widget)
 	}
 }
 
+/**
+ * @brief  		移除子窗口
+ * @param[in]  	index 子窗口位置
+ */
 void QCtmToolBox::removeWidget(int index)
 {
 	auto w = m_impl->vSplitter->widget(index);
@@ -60,6 +79,11 @@ void QCtmToolBox::removeWidget(int index)
 		delete w;
 }
 
+/**
+ * @brief  		查询子窗口位置
+ * @param[in]  	widget 子窗口地址
+ * @Return:   	子窗口位置
+ */
 int QCtmToolBox::indexOf(QWidget* widget) const
 {
 	for (int i = 0; i < m_impl->vSplitter->count(); i++)
@@ -73,6 +97,11 @@ int QCtmToolBox::indexOf(QWidget* widget) const
 	return -1;
 }
 
+/**
+ * @brief  		查询指定位置的子窗口
+ * @param[in]  	index 指定位置
+ * @Return:   	子窗口地址
+ */
 QWidget* QCtmToolBox::widget(int index) const
 {
 	auto item = qobject_cast<QCtmToolBoxItem*>(m_impl->vSplitter->widget(index));
@@ -83,16 +112,30 @@ QWidget* QCtmToolBox::widget(int index) const
 	return nullptr;
 }
 
+/**
+ * @brief  		设置子窗口间默认显示比例
+ * @param[in]  	index 子窗口位置
+ * @param[in] 	stretch 子窗口显示比重
+ */
 void QCtmToolBox::setStretchFactor(int index, int stretch)
 {
 	m_impl->vSplitter->setStretchFactor(index, stretch);
 }
 
+/**
+ * @brief  		设置各子窗口的显示大小(高度)
+ * @param[in]  	sizes 从上到下的大小集合
+ */
 void QCtmToolBox::setSizes(const QList<int>& sizes)
 {
 	m_impl->vSplitter->setSizes(sizes);
 }
 
+/**
+ *  @brief      设置窗口第一次显示时的比例
+ *  @param[in]  index 窗口序号
+ *  @param[in] 	stretch 比例
+ */
 void QCtmToolBox::setDefaultStretch(int index, int stretch)
 {
 	auto item = qobject_cast<QCtmToolBoxItem*>(m_impl->vSplitter->widget(index));
