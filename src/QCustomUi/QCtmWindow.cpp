@@ -39,6 +39,7 @@ QCtmWindow::QCtmWindow(QWidget *parent)
     m_impl->content->setAutoFillBackground(true);
 	ui->titleLayout->addWidget(m_impl->title);
 	ui->contentLayout->addWidget(m_impl->content);
+	m_impl->content->installEventFilter(this);
 
 #ifdef Q_OS_WIN
 	m_impl->delegate = new QCtmWinFramelessDelegate(this, m_impl->title);
@@ -205,6 +206,7 @@ void QCtmWindow::setCentralWidget(QWidget *widget)
 	m_impl->content = widget;
     widget->setAutoFillBackground(true);
 	ui->contentLayout->addWidget(widget);
+	setWindowTitle(widget->windowTitle());
 }
 
 /**
@@ -257,7 +259,11 @@ bool QCtmWindow::eventFilter(QObject *watched, QEvent *event)
             }
         }
     }
-    return false;
+	else if (watched == m_impl->content && event->type() == QEvent::WindowTitleChange)
+	{
+		setWindowTitle(m_impl->content->windowTitle());
+	}
+    return QWidget::eventFilter(watched, event);
 }
 
 bool QCtmWindow::nativeEvent(const QByteArray& eventType, void* message, long* result)
