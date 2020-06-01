@@ -167,6 +167,7 @@
     </QtMoc>
     <QtMoc Include="QCtmHeaderView.h">
     </QtMoc>
+    <QtMoc Include="QCtmStageProgressBar.h" />
     <ClInclude Include="QCtmStyleSheet.h" />
     <ClInclude Include="resource.h" />
     <ClInclude Include="Version.h" />
@@ -227,6 +228,7 @@
     <ClCompile Include="QCtmNavigationBar.cpp" />
     <ClCompile Include="QCtmNavigationSideBar.cpp" />
     <ClCompile Include="QCtmNavigationSidePanel.cpp" />
+    <ClCompile Include="QCtmStageProgressBar.cpp" />
     <ClCompile Include="QCtmStyleSheet.cpp" />
     <ClCompile Include="QCtmTableItemDelegate.cpp" />
     <ClCompile Include="QCtmTableView.cpp" />
