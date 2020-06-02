@@ -982,3 +982,8 @@ QCtmDockTitle QToolButton#qctmdocking_float_btn[float=true]
 {
     image: url(:/QCtmDocking/Resources/QCtmDocking/dockTitleFloat.svg);
 }
+
+QCtmStageProgressBar
+{
+    background: #E6E6E6;
+}

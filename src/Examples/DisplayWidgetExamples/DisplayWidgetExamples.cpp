@@ -2,10 +2,12 @@
 
 #include <QCustomUi/QCtmMessageBox.h>
 #include <QCustomUi/QCtmEditLabel.h>
+#include <QCustomUi/QCtmStageProgressBar.h>
 
 #include <QGridLayout>
 #include <QPushButton>
 #include <QSpacerItem>
+#include <QSlider>
 
 DisplayWidgetExamples::DisplayWidgetExamples(QWidget *parent)
     : QCtmWindow(parent)
@@ -36,6 +38,26 @@ DisplayWidgetExamples::DisplayWidgetExamples(QWidget *parent)
 		auto label = new QCtmEditLabel(this);
 		label->setText("QCtmEditLabel Display Text");
 		layout->addWidget(label, row++, 0);
+	}
+	{
+		auto progressBar = new QCtmStageProgressBar(this);
+		int i = 0;
+		progressBar->setStageCount(7);
+		progressBar->setText(i++, "one");
+		progressBar->setText(i++, "two");
+		progressBar->setText(i++, "three");
+		progressBar->setText(i++, "four");
+		progressBar->setText(i++, "five");
+		progressBar->setText(i++, "six");
+		progressBar->setText(i++, "seven");
+		progressBar->setTextVisible(true);
+		layout->addWidget(progressBar, row++, 0);
+
+		auto slider = new QSlider(this);
+		slider->setOrientation(Qt::Horizontal);
+		layout->addWidget(slider, row++, 0);
+		connect(slider, &QSlider::valueChanged, this, [=](double value) {progressBar->setValue(value); });
+		slider->setValue(20);
 	}
 	layout->addItem(new QSpacerItem(40, 20, QSizePolicy::Minimum, QSizePolicy::Expanding), row, 0);
 	layout->setRowStretch(row, 1);

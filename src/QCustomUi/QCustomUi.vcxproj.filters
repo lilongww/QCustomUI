@@ -233,6 +233,9 @@
     <ClCompile Include="QCtmComboBox.cpp">
       <Filter>Input</Filter>
     </ClCompile>
+    <ClCompile Include="QCtmStageProgressBar.cpp">
+      <Filter>Display Widgets</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <QtMoc Include="QCtmAbstractLogModel.h">
@@ -360,6 +363,9 @@
     </QtMoc>
     <QtMoc Include="QCtmComboBox.h">
       <Filter>Input</Filter>
+    </QtMoc>
+    <QtMoc Include="QCtmStageProgressBar.h">
+      <Filter>Display Widgets</Filter>
     </QtMoc>
   </ItemGroup>
   <ItemGroup>
