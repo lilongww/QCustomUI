@@ -23,10 +23,25 @@ QCtmStageProgressBar::QCtmStageProgressBar(QWidget *parent)
 	: QWidget(parent)
 	, m_impl(std::make_unique<Impl>())
 {
+	setSizePolicy(QSizePolicy(QSizePolicy::Expanding, QSizePolicy::Fixed));
+	resize(0, 0);
 }
 
 QCtmStageProgressBar::~QCtmStageProgressBar()
 {
+}
+
+void QCtmStageProgressBar::setOrientation(Qt::Orientation orientation)
+{
+	if (m_impl->orientation == orientation)
+		return;
+	m_impl->orientation = orientation;
+	updateGeometry();
+}
+
+Qt::Orientation QCtmStageProgressBar::orientation() const
+{
+	return m_impl->orientation;
 }
 
 void QCtmStageProgressBar::setStageCount(int count)
@@ -150,32 +165,53 @@ const QBrush& QCtmStageProgressBar::rateBackground() const
 
 void QCtmStageProgressBar::paintEvent([[maybe_unused]] QPaintEvent* event)
 {
-	QPainter p(this);
-	p.setRenderHint(QPainter::Antialiasing);
 	QRect channel;
 	QPainterPath path;
+	path.setFillRule(Qt::FillRule::WindingFill);
+
 	for (int index = 0; index < m_impl->stageCount; index++)
 	{
 		const auto& rect = doStageRect(index);
 		path.addEllipse(rect);
-		if (index == 0)
+		if (m_impl->orientation == Qt::Horizontal)
 		{
-			channel.setLeft(rect.center().x());
-			channel.setTop(rect.center().y() - m_impl->stageCricleRadius / 4);
-			channel.setBottom(rect.center().y() + m_impl->stageCricleRadius / 4);
+			if (index == 0)
+			{
+				channel.setLeft(rect.center().x());
+				channel.setTop(rect.center().y() - m_impl->stageCricleRadius / 4);
+				channel.setBottom(rect.center().y() + m_impl->stageCricleRadius / 4);
+			}
+			else if (index == m_impl->stageCount - 1)
+			{
+				channel.setRight(rect.center().x());
+			}
 		}
-		else if (index == m_impl->stageCount - 1)
+		else
 		{
-			channel.setRight(rect.center().x());
+			if (index == 0)
+			{
+				channel.setLeft(rect.center().x() - m_impl->stageCricleRadius / 4);
+				channel.setRight(rect.center().x() + m_impl->stageCricleRadius / 4);
+				channel.setBottom(rect.center().y());
+			}
+			else if (index == m_impl->stageCount - 1)
+			{
+				channel.setTop(rect.center().y());
+			}
 		}
 	}
 	path.addRect(channel);
-	path.setFillRule(Qt::FillRule::WindingFill);
+
+	QPainter p(this);
+	p.setRenderHint(QPainter::Antialiasing);
 	p.fillPath(path, this->palette().window());
 
 	auto&& boundRect = path.boundingRect();
 	auto v = static_cast<double>(m_impl->value) / m_impl->maximum;
-	boundRect.setWidth(boundRect.width() * v);
+	if (m_impl->orientation == Qt::Horizontal)
+		boundRect.setWidth(boundRect.width() * v);
+	else
+		boundRect.setTop(boundRect.height() * (1 - v) + boundRect.top());
 	p.save();
 	p.setClipRect(boundRect);
 	p.fillPath(path, m_impl->rateBrush);
@@ -199,7 +235,7 @@ void QCtmStageProgressBar::drawStage([[maybe_unused]] QPainter* p, [[maybe_unuse
 void QCtmStageProgressBar::drawText(QPainter* p, [[maybe_unused]] int index, const QRectF& rect, const QString& text) const
 {
 	p->save();
-	p->drawText(rect, text, QTextOption(Qt::AlignCenter));
+	p->drawText(rect, text, QTextOption(m_impl->orientation == Qt::Horizontal ? Qt::AlignCenter : Qt::AlignVCenter | Qt::AlignLeft));
 	p->restore();
 }
 
@@ -214,9 +250,7 @@ QSize QCtmStageProgressBar::minimumSizeHint() const
 	QFontMetrics fm = fontMetrics();
 	QStyleOptionProgressBar opt;
 	initStyleOption(&opt);
-	QSize size = QSize(doMiniumWidth(), fm.height() + (m_impl->textVisible ? fm.height() + fm.leading() : 0));
-	if (opt.orientation == Qt::Vertical)
-		size = size.transposed();
+	QSize size = QSize(doMinimumWidth(), doMinimumHeigh());
 	return style()->sizeFromContents(QStyle::CT_ProgressBar, &opt, size, this);
 }
 
@@ -236,32 +270,70 @@ void QCtmStageProgressBar::initStyleOption(QStyleOptionProgressBar* opt) const
 	opt->orientation = m_impl->orientation;
 }
 
-int QCtmStageProgressBar::doMiniumWidth() const
+int QCtmStageProgressBar::doMinimumWidth() const
 {
-	auto step = (m_impl->stageCricleRadius * 2 * m_impl->stageCount + m_impl->stageCricleRadius * 3 * (m_impl->stageCount - 1) - m_impl->stageCricleRadius) / m_impl->stageCount;
-	if (m_impl->textVisible)
+	if (Qt::Horizontal == m_impl->orientation)
 	{
-		int w{ 0 };
-		auto beginLen{ 0 };
-		auto endLen{ 0 };
-		for (int i = 0; i < m_impl->texts.size(); i++)
+		auto step = (m_impl->stageCricleRadius * 2 * m_impl->stageCount + m_impl->stageCricleRadius * 3 * (m_impl->stageCount - 1) - m_impl->stageCricleRadius) / m_impl->stageCount;
+		if (m_impl->textVisible)
 		{
-			const auto& text = m_impl->texts[i];
-			auto len = fontMetrics().horizontalAdvance(text);
-			if (w < len)
-				w = len;
-			if (i == 0)
-				beginLen = len / 2 > m_impl->stageCricleRadius ? len / 2 - m_impl->stageCricleRadius : 0;
-			if (i == m_impl->texts.size() - 1)
-				endLen = len / 2 > m_impl->stageCricleRadius ? len / 2 - m_impl->stageCricleRadius : 0;
+			int w{ 0 };
+			auto beginLen{ 0 };
+			auto endLen{ 0 };
+			for (int i = 0; i < m_impl->texts.size(); i++)
+			{
+				const auto& text = m_impl->texts[i];
+				auto len = fontMetrics().horizontalAdvance(text);
+				if (w < len)
+					w = len;
+				if (i == 0)
+					beginLen = len / 2 > m_impl->stageCricleRadius ? len / 2 - m_impl->stageCricleRadius : 0;
+				if (i == m_impl->texts.size() - 1)
+					endLen = len / 2 > m_impl->stageCricleRadius ? len / 2 - m_impl->stageCricleRadius : 0;
+			}
+			auto progressPadding = std::max(beginLen, endLen);
+			constexpr int space = 10;
+			step = step > w + space ? step : (w + space);
+			return step * (m_impl->stageCount - 2) + progressPadding * 2 + space;
 		}
-		auto progressPadding = std::max(beginLen, endLen);
-		constexpr int space = 10;
-		step = step > w + space ? step : (w + space);
-		return step * (m_impl->stageCount - 2) + progressPadding * 2 + space;
+		else
+			return step * m_impl->stageCount;
 	}
 	else
-		return step * m_impl->stageCount;
+	{
+		if (m_impl->textVisible)
+		{
+			int len = 0;
+			for (const auto& text : m_impl->texts)
+				len = qMax(len, fontMetrics().size(0, text).width());
+			return len + m_impl->stageCricleRadius * 2 + 10;
+		}
+		else
+		{
+			return m_impl->stageCricleRadius * 2;
+		}
+	}
+}
+
+int QCtmStageProgressBar::doMinimumHeigh() const
+{
+	if (Qt::Horizontal == m_impl->orientation)
+		return fontMetrics().height() + (m_impl->textVisible ? fontMetrics().height() + fontMetrics().leading() : 0);
+	else
+	{
+		auto step = (m_impl->stageCricleRadius * 2 * m_impl->stageCount + m_impl->stageCricleRadius * 2 * (m_impl->stageCount - 1) - m_impl->stageCricleRadius) / m_impl->stageCount;
+
+		int endLen = 0;
+		int len = 0;
+		for (int i = 0; i < m_impl->texts.size(); i++)
+		{
+			len = qMax(len, fontMetrics().size(0, m_impl->texts[i]).height());
+			if (i == 0)
+				endLen = len;
+		}
+		step = step < len + fontMetrics().leading() * 2 ? len + fontMetrics().leading() * 2 : step;
+		return step * m_impl->stageCount + (endLen > m_impl->stageCricleRadius ? endLen - m_impl->stageCricleRadius : 0);
+	}
 }
 
 QRectF QCtmStageProgressBar::doStageRect(int index) const
@@ -271,29 +343,53 @@ QRectF QCtmStageProgressBar::doStageRect(int index) const
 
 	auto rect = style()->subElementRect(QStyle::SE_ProgressBarContents, &opt, this);
 
-	if (!m_impl->textVisible)
+	if (m_impl->orientation == Qt::Horizontal)
 	{
-		auto step = (rect.width() - m_impl->stageCricleRadius * 2) / static_cast<double>(m_impl->stageCount - 1);
-		return QRectF(index * step + rect.x(), rect.top() + rect.height() /2 - m_impl->stageCricleRadius, m_impl->stageCricleRadius * 2, m_impl->stageCricleRadius * 2);
+		if (!m_impl->textVisible)
+		{
+			auto step = (rect.width() - m_impl->stageCricleRadius * 2) / static_cast<double>(m_impl->stageCount - 1);
+			return QRectF(index * step + rect.x(), rect.top() + rect.height() / 2 - m_impl->stageCricleRadius, m_impl->stageCricleRadius * 2, m_impl->stageCricleRadius * 2);
+		}
+		else
+		{
+			auto firstTextLen = fontMetrics().horizontalAdvance(*m_impl->texts.begin());
+			auto beginLen = firstTextLen / 2 > m_impl->stageCricleRadius ? firstTextLen / 2 - m_impl->stageCricleRadius : 0;
+			auto endTextLen = fontMetrics().horizontalAdvance(*m_impl->texts.rbegin());
+			auto endLen = endTextLen / 2 > m_impl->stageCricleRadius ? endTextLen / 2 - m_impl->stageCricleRadius : 0;
+			auto progressPadding = std::max(beginLen, endLen);
+			auto step = (rect.width() - m_impl->stageCricleRadius * 2 - progressPadding * 2) / static_cast<double>(m_impl->stageCount - 1);
+			return QRectF(index * step + rect.x() + progressPadding, rect.top() + rect.height() / 2 - minimumSizeHint().height() / 2, m_impl->stageCricleRadius * 2, m_impl->stageCricleRadius * 2);
+		}
 	}
 	else
 	{
-		auto firstTextLen = fontMetrics().horizontalAdvance(*m_impl->texts.begin());
-		auto beginLen = firstTextLen / 2 > m_impl->stageCricleRadius ? firstTextLen / 2 - m_impl->stageCricleRadius : 0;
-		auto endTextLen = fontMetrics().horizontalAdvance(*m_impl->texts.rbegin());
-		auto endLen = endTextLen / 2 > m_impl->stageCricleRadius ? endTextLen / 2 - m_impl->stageCricleRadius : 0;
-		auto progressPadding = std::max(beginLen, endLen);
-		auto step = (rect.width() - m_impl->stageCricleRadius * 2 - progressPadding * 2) / static_cast<double>(m_impl->stageCount - 1);
-		return QRectF(index * step + rect.x() + progressPadding, rect.top() + rect.height() / 2 - minimumSizeHint().height() / 2, m_impl->stageCricleRadius * 2, m_impl->stageCricleRadius * 2);
+		if (!m_impl->textVisible)
+		{
+			auto step = (rect.height() - m_impl->stageCricleRadius * 2) / static_cast<double>(m_impl->stageCount - 1);
+			return QRectF(rect.x() + rect.width() / 2 - m_impl->stageCricleRadius, index * step + rect.x(), m_impl->stageCricleRadius * 2, m_impl->stageCricleRadius * 2);
+		}
+		else
+		{
+			auto endLen = fontMetrics().size(0, *m_impl->texts.begin()).height();
+			auto step = (rect.height() - qMax(endLen, m_impl->stageCricleRadius) - m_impl->stageCricleRadius) / static_cast<double>(m_impl->stageCount - 1);
+			return QRectF(rect.x(), rect.top() + step * (m_impl->stageCount - 1 - index), m_impl->stageCricleRadius * 2, m_impl->stageCricleRadius * 2);
+		}
 	}
 }
 
 QRectF QCtmStageProgressBar::doTextRect(int index) const
 {
-	const auto& boundRect = fontMetrics().boundingRect(m_impl->texts[index]);
+	const auto& size = fontMetrics().size(0, m_impl->texts[index]);
 	const auto& stageRect = doStageRect(index);
-	return QRectF{ stageRect.center().x() - boundRect.width() / 2
-		, stageRect.bottom() + fontMetrics().leading()
-		, static_cast<qreal>(boundRect.width())
-		, static_cast<qreal>(boundRect.height()) };
+	if (m_impl->orientation == Qt::Horizontal)
+	{
+		return QRectF(stageRect.center().x() - size.width() / 2
+			, stageRect.bottom() + fontMetrics().leading()
+			, size.width()
+			, size.height());
+	}
+	else
+	{
+		return QRectF(stageRect.right() + 10, stageRect.top(), size.width(), qMax(size.height(), m_impl->stageCricleRadius * 2));
+	}
 }

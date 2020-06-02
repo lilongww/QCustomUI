@@ -16,6 +16,9 @@ public:
 	QCtmStageProgressBar(QWidget *parent);
 	~QCtmStageProgressBar();
 
+	void setOrientation(Qt::Orientation orientation);
+	Qt::Orientation orientation() const;
+
 	void setStageCount(int count);
 	int stageCount() const;
 
@@ -49,7 +52,8 @@ protected:
 	QSize sizeHint() const override;
 	QSize minimumSizeHint() const override;
 	virtual void initStyleOption(QStyleOptionProgressBar* opt) const;
-	int doMiniumWidth() const;
+	int doMinimumWidth() const;
+	int doMinimumHeigh() const;
 	QRectF doStageRect(int index) const;
 	QRectF doTextRect(int index) const;
 private:

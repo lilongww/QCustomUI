@@ -54,7 +54,8 @@ HEADERS += ./QCtmStyleSheet.h \
     ./Private/QCtmUserButton_p.h \
     ./Private/QCtmWidgetItem_p.h \
     ./QCtmEditLabel.h \
-    ./QCtmMessageBox.h
+    ./QCtmMessageBox.h \
+	./QCtmStageProgressBar.h
 SOURCES += ./QCtmAbstractLogModel.cpp \
     ./QCtmAbstractMessageModel.cpp \
     ./QCtmAbstractMessageView.cpp \
@@ -103,7 +104,8 @@ SOURCES += ./QCtmAbstractLogModel.cpp \
     ./Private/flowlayout.cpp \
     ./Private/Util.cpp \
     ./QCtmEditLabel.cpp \
-    ./QCtmMessageBox.cpp
+    ./QCtmMessageBox.cpp \
+	./QCtmStageProgressBar.cpp
 FORMS += ./QCtmTitleBar.ui \
     ./QCtmWindow.ui \
     ./Private/QCtmToolBoxItem.ui
