@@ -41,6 +41,16 @@ DisplayWidgetExamples::DisplayWidgetExamples(QWidget *parent)
 	}
 	{
 		auto progressBar = new QCtmStageProgressBar(this);
+		int i = 0;
+		progressBar->setStageCount(7);
+		progressBar->setText(i++, "one");
+		progressBar->setText(i++, "two");
+		progressBar->setText(i++, "three");
+		progressBar->setText(i++, "four");
+		progressBar->setText(i++, "five");
+		progressBar->setText(i++, "six");
+		progressBar->setText(i++, "seven");
+		progressBar->setTextVisible(true);
 		layout->addWidget(progressBar, row++, 0);
 
 		auto slider = new QSlider(this);
