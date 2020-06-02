@@ -53,7 +53,7 @@ DisplayWidgetExamples::DisplayWidgetExamples(QWidget *parent)
 		progressBar1->setTextVisible(true);
 		progressBar1->setOrientation(Qt::Vertical);
 		//progressBar1->setStageCricleRadius(20);
-		layout->addWidget(progressBar1, row++, 0);
+		layout->addWidget(progressBar1, row, 0);
 
 		auto progressBar2 = new QCtmStageProgressBar(this);
 		i = 0;
@@ -66,7 +66,7 @@ DisplayWidgetExamples::DisplayWidgetExamples(QWidget *parent)
 		progressBar2->setText(i++, "six");
 		progressBar2->setText(i++, "seven");
 		progressBar2->setTextVisible(true);
-		layout->addWidget(progressBar2, row, 1);
+		layout->addWidget(progressBar2, row++, 1);
 
 		auto slider = new QSlider(this);
 		slider->setOrientation(Qt::Horizontal);

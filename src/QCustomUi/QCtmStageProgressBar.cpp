@@ -235,6 +235,7 @@ void QCtmStageProgressBar::drawStage([[maybe_unused]] QPainter* p, [[maybe_unuse
 void QCtmStageProgressBar::drawText(QPainter* p, [[maybe_unused]] int index, const QRectF& rect, const QString& text) const
 {
 	p->save();
+	p->setPen(QPen(this->palette().windowText().color()));
 	p->drawText(rect, text, QTextOption(m_impl->orientation == Qt::Horizontal ? Qt::AlignCenter : Qt::AlignVCenter | Qt::AlignLeft));
 	p->restore();
 }
