@@ -3,6 +3,7 @@
 #include "qcustomui_global.h"
 
 #include <QWidget>
+#include <QPen>
 
 #include <memory>
 
@@ -11,7 +12,10 @@ class QStyleOptionProgressBar;
 class QCUSTOMUI_EXPORT QCtmStageProgressBar : public QWidget
 {
 	Q_OBJECT
-
+		Q_PROPERTY(int stageCount READ stageCount WRITE setStageCount)
+		Q_PROPERTY(bool textVisible READ textVisible WRITE setTextVisible)
+		Q_PROPERTY(QPen stageIndexTextColor READ stageIndexTextColor WRITE setStageIndexTextColor)
+		Q_PROPERTY(QBrush rateBackground READ rateBackground WRITE setRateBackground)
 public:
 	QCtmStageProgressBar(QWidget *parent);
 	~QCtmStageProgressBar();

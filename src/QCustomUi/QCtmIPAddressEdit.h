@@ -18,7 +18,7 @@ class QStyleOptionFrame;
 class QCUSTOMUI_EXPORT QCtmIPAddressEdit : public QWidget
 {
 	Q_OBJECT
-
+		Q_PROPERTY(bool readOnly READ isReadOnly WRITE setReadOnly)
 public:
 	QCtmIPAddressEdit(QWidget *parent);
 	~QCtmIPAddressEdit();
