@@ -80,6 +80,8 @@ bool QCtmEditLabel::event(QEvent* e)
 		if(m_impl->editable || m_impl->editButton->isVisible())
 			m_impl->editButton->setVisible(false);
 		break;
+	default:
+		break;
 	}
 	return QLabel::event(e);
 }

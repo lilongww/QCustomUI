@@ -38,6 +38,8 @@ bool QCtmTableView::viewportEvent(QEvent *event)
     case QEvent::Wheel:
         setHoverIndex(QModelIndex());
         break;
+    default:
+        break;
     }
     return QTableView::viewportEvent(event);
 }

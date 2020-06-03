@@ -21,10 +21,12 @@ void QCtmTableItemDelegate::paint(QPainter *painter, const QStyleOptionViewItem 
         opt.state |= QStyle::State_MouseOver;
     }
     else
+    {
         opt.state &= int(~QStyle::State_MouseOver);
-	if (opt.features.testFlag(QStyleOptionViewItem::WrapText))
-	{
-		opt.features &= ~QStyleOptionViewItem::WrapText;
-	}
+    }
+    if (opt.features.testFlag(QStyleOptionViewItem::WrapText))
+    {
+        opt.features &= ~QStyleOptionViewItem::WrapText;
+    }
     QStyledItemDelegate::paint(painter, opt, index);
 }

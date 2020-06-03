@@ -21,8 +21,8 @@ struct QCtmTitleBar::Impl
 
 QCtmTitleBar::QCtmTitleBar(QWidget *parent)
 	: QWidget(parent)
+    , ui(new Ui::QCtmTitleBar)
 	, m_impl(std::make_unique<Impl>())
-	, ui(new Ui::QCtmTitleBar)
 {
 	ui->setupUi(this);
 	setFocusPolicy(Qt::StrongFocus);

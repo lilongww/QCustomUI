@@ -14,7 +14,7 @@ struct QCtmStageProgressBar::Impl
 	int value{ 0 };
 	bool textVisible{ false };
 	int stageCricleRadius{ 10 };
-	std::vector<QString> texts{ stageCount };
+	std::vector<QString> texts{ static_cast<size_t>(stageCount) };
 	QPen stageTextIndexColor{ Qt::white };
 	QBrush rateBrush{ QColor{0x3580ce} };
 };

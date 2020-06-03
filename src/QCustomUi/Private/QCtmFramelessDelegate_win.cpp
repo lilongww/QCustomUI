@@ -10,7 +10,7 @@
 
 #ifdef Q_OS_WIN
 
-#include <QWinFunctions.h>
+#include <qwinfunctions.h>
 
 #include <windows.h>
 #include <windowsx.h>
@@ -206,8 +206,8 @@ bool QCtmWinFramelessDelegate::nativeEvent([[maybe_unused]] const QByteArray& ev
 					});
 
 				if (it != w->children().end()
-					&& w->metaObject()->className() != "QWidget"
-					&& w->metaObject()->className() != "QLabel")
+                    && w->metaObject()->className() != QString("QWidget")
+                    && w->metaObject()->className() != QString("QLabel"))
 				{
 					*result = HTCLIENT;
 					return true;

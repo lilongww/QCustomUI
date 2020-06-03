@@ -6,14 +6,13 @@ CONFIG += c++latest
 TEMPLATE = lib
 QT += core network gui widgets
 DEFINES += QCUSTOMUI_LIB
+VERSION = 1.0.2
+TARGET = QCustomUi
 
 INCLUDEPATH += ./Private
 
 CONFIG(debug, debug|release) {
-TARGET = QCustomUid
-}
-else {
-TARGET = QCustomUi
+TARGET = $$join(TARGET,,,d)
 }
 
 DESTDIR = ../../build/bin
@@ -21,6 +20,17 @@ DESTDIR = ../../build/bin
 include(QCustomUi.pri)
 TRANSLATIONS += qcustomui_zh.ts
 
-win32:RC_FILE = QCustomUi.rc
-win32:LIBS += -luser32
-win32:QT +=winextras
+QMAKE_TARGET_COMPANY = "QCustomUi"
+QMAKE_TARGET_PRODUCT = "QCustomUi"
+QMAKE_TARGET_DESCRIPTION = "QCustomUi.dll"
+QMAKE_TARGET_COPYRIGHT = "QCustomUi"
+
+win32{
+LIBS += -luser32
+QT += winextras
+DEFINES += _WIN32_WINNT=0x600
+CONFIG += skip_target_version_ext
+}
+QMAKE_CXXFLAGS += -Wno-enum-compare
+QMAKE_CXXFLAGS += -Wno-sign-compare
+QMAKE_CXXFLAGS += -Wno-misleading-indentation

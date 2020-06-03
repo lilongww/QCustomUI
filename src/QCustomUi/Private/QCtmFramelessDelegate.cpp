@@ -188,6 +188,8 @@ bool QCtmFramelessDelegate::eventFilter(QObject* obj, QEvent* event)
         case QEvent::PlatformSurface:
             platformSurfaceEvent((QPlatformSurfaceEvent*)event);
             break;
+        default:
+            break;
 		}
 	}
 
@@ -272,6 +274,8 @@ bool QCtmFramelessDelegate::eventFilter(QObject* obj, QEvent* event)
             }
             break;
         }
+        default:
+            break;
 		}
 	}
 	return false;
@@ -350,6 +354,8 @@ void QCtmFramelessDelegate::mouseMoveEvent(QMouseEvent*)
                 case DOWN:
                     rMove.setHeight(std::min(maxSize.height(), std::max(gloPoint.y() - tl.y() + m_impl->margin, minSize.height())));
                     break;
+                default:
+                    break;
                 }
 				m_impl->parent->setGeometry(rMove);
 			};
@@ -400,7 +406,7 @@ void QCtmFramelessDelegate::paintEvent([[maybe_unused]] QPaintEvent* e)
     p.begin(&image);
 	QStyleOption opt;
 	opt.initFrom(m_impl->parent);
-	auto color = opt.palette.window().color();
+
 	if (m_impl->parent->windowState().testFlag(Qt::WindowMaximized) || m_impl->parent->windowState().testFlag(Qt::WindowFullScreen))
 		paintShadow(p, 0);
 	else

@@ -56,6 +56,8 @@ QCtmMessageBox::QCtmMessageBox(Icon icon
     case Warning:
         m_impl->icon->setPixmap(this->style()->proxy()->standardPixmap(QStyle::SP_MessageBoxWarning));
         break;
+    default:
+        break;
     }
 }
 

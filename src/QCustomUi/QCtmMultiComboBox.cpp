@@ -138,6 +138,8 @@ bool QCtmMultiComboBox::eventFilter(QObject *watched, QEvent *event)
 			}
 			return false;
 		}
+                default:
+                    break;
 		}
 	}
 	else if (watched == this->lineEdit())
@@ -149,6 +151,9 @@ bool QCtmMultiComboBox::eventFilter(QObject *watched, QEvent *event)
 			{
                 showPopup();
             }
+            break;
+        default:
+            break;
 		}
 
 	}

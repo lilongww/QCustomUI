@@ -279,6 +279,8 @@ bool QCtmNavigationSidePanel::eventFilter(QObject* o, QEvent* e)
 		case QEvent::Resize:
 			resize(sizeHint());
 			break;
+                default:
+                    break;
 		}
 		
 	}

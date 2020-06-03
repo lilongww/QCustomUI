@@ -3,7 +3,6 @@
 # ------------------------------------------------------
 
 HEADERS += ./QCtmStyleSheet.h \
-    ./resource.h \
     ./Version.h \
     ./QCustomUi.h \
     ./QCtmMessage.h \

@@ -58,6 +58,8 @@ QVariant QCtmLogModel::data(const QModelIndex &index, int role /* = Qt::DisplayR
             return msg.dateTime.toString("yyyy-MM-dd hh:mm:ss");
         case Column::Message:
             return msg.msg;
+        default:
+            break;
         }
     }
     else if (role == TypeRole)
@@ -76,6 +78,8 @@ QVariant QCtmLogModel::data(const QModelIndex &index, int role /* = Qt::DisplayR
                 return m_impl->warningIcon;
             case QtMsgType::QtCriticalMsg:
                 return m_impl->errorIcon;
+            default:
+                break;
             }
         }
     }
@@ -209,6 +213,8 @@ void QCtmLogModel::logEvent(QCtmLogEvent* e)
         case QtMsgType::QtCriticalMsg:
             m_impl->errorCount--;
             break;
+        default:
+            continue;
         }
         beginRemoveRows(QModelIndex(), 0, 0);
         if (m_impl->logInsertMode == ASC)
@@ -235,6 +241,8 @@ void QCtmLogModel::logEvent(QCtmLogEvent* e)
         break;
     case QtMsgType::QtCriticalMsg:
         m_impl->errorCount++;
+        break;
+    default:
         break;
     }
     beginInsertRows(QModelIndex(), m_impl->datas.size(), m_impl->datas.size());

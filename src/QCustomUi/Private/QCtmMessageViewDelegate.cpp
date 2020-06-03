@@ -134,16 +134,6 @@ void QCtmMessageViewDelegate::drawCloseButton(QPainter* painter, const QStyleOpt
 		return;
 	const auto& rect = doCloseBtnRect(option);
 
-	QIcon::State state = QIcon::Off;
-	QIcon::Mode mode = QIcon::Normal;
-	if (m_impl->closeBtnHoverd)
-	{
-		mode = QIcon::Active;
-	}
-	if (m_impl->closeBtnPressed)
-	{
-		state = QIcon::On;
-	}
 	painter->save();
 	painter->drawPixmap(rect, m_impl->closeButtonIcon);
 	painter->restore();
@@ -261,6 +251,9 @@ bool QCtmMessageViewDelegate::editorEvent(QEvent *event, QAbstractItemModel *mod
 
 			m_impl->titlePressed = false;
 			m_impl->closeBtnPressed = false;
+            break;
+        default:
+            break;
 		}
 	}
 	return false;
