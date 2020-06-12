@@ -73,8 +73,7 @@ QCtmWindow::~QCtmWindow()
 }
 
 /**
- * @brief  		设置状态栏，如果已存在statusbar，旧的statusbar将被销毁
- * @param[in]  	statusBar 状态栏窗口
+ * @brief  		Sets the given status bar.
  */
 void QCtmWindow::setStatusBar(QStatusBar* statusBar)
 {
@@ -84,8 +83,7 @@ void QCtmWindow::setStatusBar(QStatusBar* statusBar)
 }
 
 /**
- * @brief  		获取状态栏地址，如果没有设置statusbar则返回空
- * @Return:   	状态栏地址
+ * @brief  		Returns the status bar.
  */
 QStatusBar* QCtmWindow::statusBar() const
 {
@@ -93,7 +91,7 @@ QStatusBar* QCtmWindow::statusBar() const
 }
 
 /**
- * @brief  		移除状态栏，如果没有设置statusbar则不会产生任何效果。
+ * @brief  		Remove the status bar.
  */
 void QCtmWindow::removeStatusBar()
 {
@@ -105,8 +103,7 @@ void QCtmWindow::removeStatusBar()
 }
 
 /**
- * @brief  		设置传统菜单栏
- * @param[in]  	menuBar 菜单栏地址
+ * @brief  		Sets the given menu bar.
  */
 void QCtmWindow::setMenuBar(QMenuBar* menuBar)
 {
@@ -117,8 +114,7 @@ void QCtmWindow::setMenuBar(QMenuBar* menuBar)
 }
 
 /**
- * @brief  		获取传统菜单栏地址
- * @Return:   	菜单栏地址
+ * @brief  		Returns the menu bar.
  */
 QMenuBar* QCtmWindow::menuBar() const
 {
@@ -128,8 +124,7 @@ QMenuBar* QCtmWindow::menuBar() const
 }
 
 /**
- * @brief  		移除传统菜单栏
- * @note
+ * @brief  		Remove the menu bar.
  */
 void QCtmWindow::removeMenuBar()
 {
@@ -140,23 +135,21 @@ void QCtmWindow::removeMenuBar()
 }
 
 /**
- * @brief  		设置导航菜单栏
- * @param[in]  	menuBar 菜单栏地址
+ * @brief  		Sets the given navigation bar.
  */
-void QCtmWindow::setNavigationBar(QCtmNavigationBar* menuBar)
+void QCtmWindow::setNavigationBar(QCtmNavigationBar* bar)
 {
 	removeNavigationBar();
-	m_impl->navigationMenuBar = menuBar;
-	ui->menuBarLayout->addWidget(menuBar);
+	m_impl->navigationMenuBar = bar;
+	ui->menuBarLayout->addWidget(bar);
     if (!m_impl->title)
-        m_impl->delegate->addMoveBar(menuBar);
+        m_impl->delegate->addMoveBar(bar);
     else if(!m_impl->title->isVisible())
-        m_impl->delegate->addMoveBar(menuBar);
+        m_impl->delegate->addMoveBar(bar);
 }
 
 /**
- * @brief  		获取导航菜单栏地址
- * @Return:   	菜单栏地址
+ * @brief  		Returns the navigation bar.
  */
 QCtmNavigationBar* QCtmWindow::navigationBar() const
 {
@@ -164,7 +157,7 @@ QCtmNavigationBar* QCtmWindow::navigationBar() const
 }
 
 /**
- * @brief  		移除导航菜单栏
+ * @brief  		Remove the navigation bar.
  */
 void QCtmWindow::removeNavigationBar()
 {
@@ -177,8 +170,7 @@ void QCtmWindow::removeNavigationBar()
 }
 
 /**
- * @brief  		设置标题栏
- * @param[in]  	titleBar 标题栏地址
+ * @brief  		Sets the given title bar.
  */
 void QCtmWindow::setTitleBar(QCtmTitleBar* titleBar)
 {
@@ -193,16 +185,15 @@ void QCtmWindow::setTitleBar(QCtmTitleBar* titleBar)
 }
 
 /**
- * @brief  		返回标题栏地址
- * @Return:   	标题栏地址
+ * @brief  		Returns the title bar.
  */
-QCtmTitleBar* QCtmWindow::titleWidget() const
+QCtmTitleBar* QCtmWindow::titleBar() const
 {
 	return m_impl->title;
 }
 
 /**
- * @brief  		移除标题栏
+ * @brief  		Remove the title bar.
  */
 void QCtmWindow::removeTitleBar()
 {
@@ -215,8 +206,7 @@ void QCtmWindow::removeTitleBar()
 }
 
 /**
- * @brief  		设置中心窗口
- * @param[in]  	widget 中心窗口指针
+ * @brief  		Sets the given central widget.
  */
 void QCtmWindow::setCentralWidget(QWidget *widget)
 {
@@ -228,8 +218,7 @@ void QCtmWindow::setCentralWidget(QWidget *widget)
 }
 
 /**
- * @brief  		获取中心窗口指针
- * @Return:   	中心窗口指针
+ * @brief  		Returns the central widget.
  */
 QWidget* QCtmWindow::centralWidget() const
 {
@@ -239,8 +228,7 @@ QWidget* QCtmWindow::centralWidget() const
 #ifndef Q_OS_WIN
 
 /**
- * @brief		设置窗口边框是否有阴影，如果窗口需要容纳OpenGL，则应设置为true
- * @param[in]	flag true:无阴影，flase:有阴影
+ * @brief		Set the window is shadowless.
  */
 void QCtmWindow::setShadowless(bool flag)
 {
@@ -248,7 +236,7 @@ void QCtmWindow::setShadowless(bool flag)
 }
 
 /**
- * @brief		窗口是否有阴影
+ * @brief		Get the window is shadowless.
  */
 bool QCtmWindow::shadowless() const
 {

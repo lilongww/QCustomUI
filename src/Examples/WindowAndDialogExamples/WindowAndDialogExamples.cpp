@@ -18,10 +18,10 @@ WindowAndDialogExamples::WindowAndDialogExamples(QWidget *parent)
             QCtmDialog dlg(this);
             dlg.exec();
         });
-    this->titleWidget()->addAction(new QAction(tr("Test Button")));
+    this->titleBar()->addAction(new QAction(tr("Test Button")));
     auto action = new QWidgetAction(this);
     action->setDefaultWidget(new QLineEdit(this));
-    this->titleWidget()->addAction(action);
+    this->titleBar()->addAction(action);
     auto menuBar = new QMenuBar(this);
     this->setMenuBar(menuBar);
     menuBar->addMenu(tr("&File"))->addAction(tr("&Open"));

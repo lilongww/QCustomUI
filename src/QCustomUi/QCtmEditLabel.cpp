@@ -31,7 +31,7 @@ constexpr int extentedWidth() { return (EditButtonSpace + EditButtonSize)*2; }
 
 struct QCtmEditLabel::Impl
 {
-	bool editable{ true };
+	bool readOnly{ false };
 	QToolButton* editButton{ nullptr };
 };
 
@@ -53,26 +53,23 @@ QCtmEditLabel::~QCtmEditLabel()
 
 }
 /**
- * @brief		设置是否可编辑
- * @param[in]	flag true:可编辑，false:不可编辑
+ * @brief		Set the label is read only
  */
-void QCtmEditLabel::setEditable(bool flag)
+void QCtmEditLabel::setReadOnly(bool flag)
 {
-	m_impl->editable = flag;
+	m_impl->readOnly = flag;
 }
 
 /**
- * @brief		是否可编辑
- * @return		true:可编辑，false:不可编辑
+ * @brief		The label is read only
  */
-bool QCtmEditLabel::editable() const
+bool QCtmEditLabel::isReadOnly() const
 {
-	return m_impl->editable;
+	return m_impl->readOnly;
 }
 
 /**
- * @brief		设置编辑按钮的图标
- * @param[in]	icon 图标
+ * @brief		Set the edit button's icon
  */
 void QCtmEditLabel::setEditButtonIcon(const QIcon& icon)
 {
@@ -80,7 +77,7 @@ void QCtmEditLabel::setEditButtonIcon(const QIcon& icon)
 }
 
 /**
- * @brief		获取编辑按钮的图标
+ * @brief		The edit button's icon
  */
 QIcon QCtmEditLabel::editButtonIcon() const
 {
@@ -92,11 +89,11 @@ bool QCtmEditLabel::event(QEvent* e)
 	switch (e->type())
 	{
 	case QEvent::HoverEnter:
-		if(m_impl->editable)
+		if(m_impl->readOnly)
 			m_impl->editButton->setVisible(true);
 		break;
 	case QEvent::HoverLeave:
-		if(m_impl->editable || m_impl->editButton->isVisible())
+		if(m_impl->readOnly || m_impl->editButton->isVisible())
 			m_impl->editButton->setVisible(false);
 		break;
 	default:

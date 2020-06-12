@@ -37,8 +37,7 @@ QCtmLogFilterModel::~QCtmLogFilterModel()
 }
 
 /**
- * @brief		查找日志中含有关键字的消息
- * @param[in]	keywords 关键字
+ * @brief		Find the given keywords in the logs.
  */
 void QCtmLogFilterModel::search(const QString& keywords)
 {
@@ -46,6 +45,9 @@ void QCtmLogFilterModel::search(const QString& keywords)
     this->invalidate();
 }
 
+/**
+ * @brief		Override function.
+ */
 bool QCtmLogFilterModel::filterAcceptsRow(int sourceRow, [[maybe_unused]] const QModelIndex &sourceParent) const
 {
     auto type = this->sourceModel()->data(this->sourceModel()->index(sourceRow, 0), QCtmLogModel::TypeRole).toInt();

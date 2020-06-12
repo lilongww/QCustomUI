@@ -45,7 +45,7 @@ public:
 	void setStageCount(int count);
 	int stageCount() const;
 
-	void setStageCricleRadius(int radius);
+	void setStageCircleRadius(int radius);
 	int stageCricleRadius() const;
 
 	void setText(int stage, const QString& text);

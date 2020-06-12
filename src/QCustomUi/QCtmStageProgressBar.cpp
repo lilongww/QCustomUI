@@ -50,6 +50,9 @@ QCtmStageProgressBar::~QCtmStageProgressBar()
 {
 }
 
+/**
+ * @brief		Set the progress bar orientation.
+ */
 void QCtmStageProgressBar::setOrientation(Qt::Orientation orientation)
 {
 	if (m_impl->orientation == orientation)
@@ -58,11 +61,17 @@ void QCtmStageProgressBar::setOrientation(Qt::Orientation orientation)
 	updateGeometry();
 }
 
+/**
+ * @brief		The progress bar orientation.
+ */
 Qt::Orientation QCtmStageProgressBar::orientation() const
 {
 	return m_impl->orientation;
 }
 
+/**
+ * @brief		Set the stage count.
+ */
 void QCtmStageProgressBar::setStageCount(int count)
 {
 	if (count < 2)
@@ -77,12 +86,18 @@ void QCtmStageProgressBar::setStageCount(int count)
 	updateGeometry();
 }
 
+/**
+ * @brief		Get current stage count;
+ */
 int QCtmStageProgressBar::stageCount() const
 {
 	return m_impl->stageCount;
 }
 
-void QCtmStageProgressBar::setStageCricleRadius(int radius)
+/**
+ * @brief		Set the stage circle radius pixel count.
+ */
+void QCtmStageProgressBar::setStageCircleRadius(int radius)
 {
 	if (m_impl->stageCricleRadius == radius)
 		return;
@@ -90,11 +105,17 @@ void QCtmStageProgressBar::setStageCricleRadius(int radius)
 	updateGeometry();
 }
 
+/**
+ * @brief		The stage circle radius pixel count.
+ */
 int QCtmStageProgressBar::stageCricleRadius() const
 {
 	return m_impl->stageCricleRadius;
 }
 
+/**
+ * @brief		Set the stage text.
+ */
 void QCtmStageProgressBar::setText(int stage, const QString& text)
 {
 	if (stage >= m_impl->stageCount)
@@ -106,6 +127,9 @@ void QCtmStageProgressBar::setText(int stage, const QString& text)
 	updateGeometry();
 }
 
+/**
+ * @brief		The stage text.
+ */
 QString QCtmStageProgressBar::text(int stage) const
 {
 	if (stage >= m_impl->stageCount)
@@ -116,67 +140,103 @@ QString QCtmStageProgressBar::text(int stage) const
 	return m_impl->texts[stage];
 }
 
+/**
+ * @brief		Set the text is visible.
+ */
 void QCtmStageProgressBar::setTextVisible(bool flag)
 {
 	m_impl->textVisible = flag;
 	updateGeometry();
 }
 
+/**
+ * @brief		Get current stage text is visible.
+ */
 bool QCtmStageProgressBar::textVisible() const
 {
 	return m_impl->textVisible;
 }
 
+/**
+ * @brief		Set the progress bar value.
+ */
 void QCtmStageProgressBar::setValue(int value)
 {
 	m_impl->value = value;
 	update();
 }
 
+/**
+ * @brief		Get the progress bar value.
+ */
 int QCtmStageProgressBar::value() const
 {
 	return m_impl->value;
 }
 
+/**
+ * @brief		Set the progress bar maximum value.
+ */
 void QCtmStageProgressBar::setMaximum(int max)
 {
 	m_impl->maximum = max;
 	update();
 }
 
+/**
+ * @brief		Get the progress bar maximum value.
+ */
 int QCtmStageProgressBar::maximum() const
 {
 	return m_impl->maximum;
 }
 
+/**
+ * @brief		Set the progress bar minimum value.
+ */
 void QCtmStageProgressBar::setMinimum(int min)
 {
 	m_impl->minimum = min;
 	update();
 }
 
+/**
+ * @brief		Get the progress bar minimum value.
+ */
 int QCtmStageProgressBar::minimum() const
 {
 	return m_impl->minimum;
 }
 
+/**
+ * @brief		Set the text in stage circle color.
+ */
 void QCtmStageProgressBar::setStageIndexTextColor(const QPen& color)
 {
 	m_impl->stageTextIndexColor = color;
 	update();
 }
 
+/**
+ * @brief		Get the text in stage circle color.
+ */
 const QPen& QCtmStageProgressBar::stageIndexTextColor() const
 {
 	return m_impl->stageTextIndexColor;
 }
 
+/**
+ * @brief		Set the progress bar rate background color.
+ */
 void QCtmStageProgressBar::setRateBackground(const QBrush& brush)
 {
 	m_impl->rateBrush = brush;
 	update();
 }
 
+/**
+ * @brief		Get the progress bar rate background color.
+ */
 const QBrush& QCtmStageProgressBar::rateBackground() const
 {
 	return m_impl->rateBrush;

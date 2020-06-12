@@ -93,11 +93,17 @@ void QCtmMultiComboBox::setModel(QAbstractItemModel* model)
 	});
 }
 
+/**
+ * @brief		This is overload function. Returns the model.
+ */
 QAbstractItemModel* QCtmMultiComboBox::model() const
 {
 	return QComboBox::model();
 }
 
+/**
+ * @brief		Returns the checked items.
+ */
 QStringList QCtmMultiComboBox::checkedItems() const
 {
 	QStringList items;
@@ -110,6 +116,9 @@ QStringList QCtmMultiComboBox::checkedItems() const
 	return items;
 }
 
+/**
+ * @brief		Returns the checked items datas.
+ */
 QVariantList QCtmMultiComboBox::checkedDatas() const
 {
 	QVariantList datas;
@@ -122,12 +131,18 @@ QVariantList QCtmMultiComboBox::checkedDatas() const
 	return datas;
 }
 
+/**
+ * @brief		Set the index check state.
+ */
 void QCtmMultiComboBox::setChecked(int index, bool checked)
 {
 	auto in = m_impl->model->index(index, 0);
 	m_impl->model->setData(in, checked ? Qt::Checked : Qt::Unchecked, Qt::CheckStateRole);
 }
 
+/**
+ * @brief		Get the index is checked.
+ */
 bool QCtmMultiComboBox::isChecked(int index) const
 {
 	auto in = m_impl->model->index(index, 0);

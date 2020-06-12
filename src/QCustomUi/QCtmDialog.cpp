@@ -72,8 +72,7 @@ QCtmDialog::~QCtmDialog()
 }
 
 /**
- * @brief       设置客户区，如果客户区窗口已存在，前一个客户区窗口将被销毁
- * @param[in]   widget 客户区窗口
+ * @brief		Sets the given widget to be the main window's central widget.
  */
 void QCtmDialog::setCentralWidget(QWidget* widget)
 {
@@ -92,8 +91,7 @@ void QCtmDialog::setCentralWidget(QWidget* widget)
 }
 
 /**
- * @brief       获取客户区窗口地址，如果没有设置客户区窗口，默认存在一个QWidget
- * @Return:     客户区窗口地址
+ * @brief       Returns the central widget for the main window.
  */
 QWidget* QCtmDialog::centralWidget() const
 {
@@ -101,7 +99,7 @@ QWidget* QCtmDialog::centralWidget() const
 }
 
 /**
- * @brief		获取标题栏地址
+ * @brief		Returns the title bar widget.
  */
 QCtmTitleBar* QCtmDialog::titleBar() const
 {
@@ -109,8 +107,7 @@ QCtmTitleBar* QCtmDialog::titleBar() const
 }
 
 /**
- * @brief		设置可拖动的控件
- * @param[in]	moveBars 可拖动的控件
+ * @brief		Sets the given move bars, they can be drag move by mouse.
  */
 void QCtmDialog::setMoveBars(const QWidgetList& moveBars)
 {
@@ -119,8 +116,7 @@ void QCtmDialog::setMoveBars(const QWidgetList& moveBars)
 }
 
 /**
- * @brief		移除可拖动控件
- * @param[in]
+ * @brief		Remove the give move bar.
  */
 void QCtmDialog::removeMoveBar(QWidget* moveBar)
 {
@@ -129,8 +125,7 @@ void QCtmDialog::removeMoveBar(QWidget* moveBar)
 #ifndef Q_OS_WIN
 
 /**
- * @brief		设置窗口边框是否有阴影，如果窗口需要容纳OpenGL，则应设置为true
- * @param[in]	flag true:无阴影，flase:有阴影
+ * @brief		Set the window is shadowless.
  */
 void QCtmDialog::setShadowless(bool flag)
 {
@@ -138,7 +133,7 @@ void QCtmDialog::setShadowless(bool flag)
 }
 
 /**
- * @brief		窗口是否有阴影
+ * @brief		Get the window is shadowless.
  */
 bool QCtmDialog::shadowless() const
 {

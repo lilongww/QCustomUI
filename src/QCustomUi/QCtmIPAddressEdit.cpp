@@ -107,6 +107,9 @@ QCtmIPAddressEdit::~QCtmIPAddressEdit()
 {
 }
 
+/**
+ * @brief		Set and show ip, the ip format must be legal.
+ */
 void QCtmIPAddressEdit::setIPAddress(const QString& ip)
 {
 	auto tmp = ip.split('.');
@@ -133,6 +136,9 @@ void QCtmIPAddressEdit::setIPAddress(const QString& ip)
 	}
 }
 
+/**
+ * @brief		Get current ip string.
+ */
 QString QCtmIPAddressEdit::ipAddress() const
 {
 	QStringList ips;
@@ -143,11 +149,17 @@ QString QCtmIPAddressEdit::ipAddress() const
 	return ips.join(".");
 }
 
+/**
+ * @brief		Set the edit control is read only.
+ */
 void QCtmIPAddressEdit::setReadOnly(bool ro)
 {
 	m_impl->readOnly = ro;
 }
 
+/**
+ * @brief		Get the edit control is read only.
+ */
 bool QCtmIPAddressEdit::isReadOnly() const
 {
 	return m_impl->readOnly;

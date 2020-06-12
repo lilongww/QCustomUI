@@ -53,7 +53,7 @@ public:
 	QCtmNavigationBar* navigationBar()const;
 	void removeNavigationBar();
 	void setTitleBar(QCtmTitleBar* titleBar);
-	QCtmTitleBar* titleWidget()const;
+	QCtmTitleBar* titleBar()const;
 	void removeTitleBar();
 	void setCentralWidget(QWidget *widget);
 	QWidget* centralWidget()const;

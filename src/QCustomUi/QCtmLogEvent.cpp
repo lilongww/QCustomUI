@@ -37,7 +37,7 @@ QCtmLogEvent::~QCtmLogEvent()
 }
 
 /**
- * @brief		获取日志数据
+ * @brief		Get the log data.
  */
 QCtmLogDataPtr QCtmLogEvent::log() const
 {

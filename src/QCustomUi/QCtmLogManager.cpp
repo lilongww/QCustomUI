@@ -51,10 +51,8 @@ struct QCtmLogManager::Impl
 decltype(&qtMessageHandle) QCtmLogManager::Impl::oldHandle;
 
 /**
- * @brief
- * @param[in]
- * @param[in]
- * @Return:
+ * @brief       Call the function before the QApplication is instantiated. If this function is not be called, the 
+ *              debug message will not be handle.
  */
 void QCtmLogManager::initBeforeApp()
 {
@@ -62,7 +60,7 @@ void QCtmLogManager::initBeforeApp()
 }
 
 /**
- * @brief		获取日志管理器实例，不要在qApp实例化之前调用该函数
+ * @brief		Returns the log manager singleton instance.
  */
 QCtmLogManager& QCtmLogManager::instance()
 {
@@ -71,8 +69,7 @@ QCtmLogManager& QCtmLogManager::instance()
 }
 
 /**
- * @brief		设置日志路径
- * @param[in]	path 日志路径
+ * @brief		Set the log file path.
  */
 void QCtmLogManager::setLogFilePath(const QString& path)
 {
@@ -80,7 +77,7 @@ void QCtmLogManager::setLogFilePath(const QString& path)
 }
 
 /**
- * @brief		获取日志路径
+ * @brief		Get the log file path.
  */
 const QString& QCtmLogManager::logFilePath() const
 {
@@ -88,8 +85,7 @@ const QString& QCtmLogManager::logFilePath() const
 }
 
 /**
- * @brief		设置日志保存类型
- * @param[in]	日志保存类型
+ * @brief		Set the log save policy
  */
 void QCtmLogManager::setLogSaveType(LogSaveType type)
 {

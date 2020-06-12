@@ -42,22 +42,22 @@ struct QCUSTOMUI_EXPORT QCtmLogData
     ~QCtmLogData(){}
 
     /**
-     * @brief		获取日志等级
+     * @brief		Get the log type.
      */
     QtMsgType type() const { return m_type; }
     
     /**
-     * @brief		获取日志上下文
+     * @brief		Get the log context.
      */
     const QMessageLogContext& context() const { return m_context; }
 
     /**
-     * @brief		获取日志内容
+     * @brief		Get the log message.
      */
     const QString& msg() const { return m_msg; }
 
     /**
-     * @brief		获取日志生成时间
+     * @brief		Get the log date time.
      */
     const QDateTime& dateTime() const { return m_dateTime; }
 private:
@@ -66,12 +66,8 @@ private:
     QString m_msg;
     QDateTime m_dateTime;
 };
-typedef std::shared_ptr<QCtmLogData> QCtmLogDataPtr;
+using QCtmLogDataPtr = std::shared_ptr<QCtmLogData>;
 
- /*!***************************************************************************
- * @class QCtmLogEvent
- * @brief 日志事件定义
- *****************************************************************************/
 class QCUSTOMUI_EXPORT QCtmLogEvent : public QEvent
 {
 public:
@@ -85,8 +81,11 @@ private:
     std::unique_ptr<Impl> m_impl;
 };
 
-enum LogInsertMode  //日志插入顺序
+/**
+ * @brief		The log insert order.
+ */
+enum LogInsertMode
 {
-    ASC,            //正序
-    DESC            //倒序
+    ASC,            //Ascending order.
+    DESC            //Descending order.
 };
