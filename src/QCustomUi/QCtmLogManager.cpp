@@ -85,7 +85,7 @@ const QString& QCtmLogManager::logFilePath() const
 }
 
 /**
- * @brief		Set the log save policy
+ * @brief		Set the log save policy.
  */
 void QCtmLogManager::setLogSaveType(LogSaveType type)
 {
@@ -93,7 +93,7 @@ void QCtmLogManager::setLogSaveType(LogSaveType type)
 }
 
 /**
- * @brief		获取日志保存类型
+ * @brief		Get the log save policy.
  */
 QCtmLogManager::LogSaveType QCtmLogManager::logSaveType() const
 {
@@ -101,9 +101,7 @@ QCtmLogManager::LogSaveType QCtmLogManager::logSaveType() const
 }
 
 /**
- * @brief		设置哪些日志需要保存
- * @param[in]	type 日志登记
- * @param[in]	save true:保存，false:不保存
+ * @brief		Sets whether the log type should be saved
  */
 void QCtmLogManager::setLogTypeEnable(QtMsgType type, bool save)
 {
@@ -111,8 +109,7 @@ void QCtmLogManager::setLogTypeEnable(QtMsgType type, bool save)
 }
 
 /**
- * @brief		获取某日志类型是否保存
- * @param[in]	type 日志类型
+ * @brief		Get whether the log type should be saved
  */
 bool QCtmLogManager::logTypeEnable(QtMsgType type) const
 {
@@ -120,8 +117,7 @@ bool QCtmLogManager::logTypeEnable(QtMsgType type) const
 }
 
 /**
- * @brief		设置文件大小限制，只有在LogSaveType::Size模式下有效
- * @param[in]	size 日志文件超过该大小，新建一个日志文件
+ * @brief		Set the log file limit size, if the save policy is LogSaveType::Size.
  */
 void QCtmLogManager::setLogSizeLimit(qint64 size)
 {
@@ -129,7 +125,7 @@ void QCtmLogManager::setLogSizeLimit(qint64 size)
 }
 
 /**
- * @brief		获取日志文件大小限制
+ * @brief		Get the log file limit size.
  */
 qint64 QCtmLogManager::logSizeLimit() const
 {
@@ -190,8 +186,7 @@ QCtmLogManager::~QCtmLogManager()
 }
 
 /**
- * @brief		将日志写入日志文件
- * @param[in]	data 日志信息
+ * @brief		Write the log to file.
  */
 void QCtmLogManager::writeLog(QCtmLogDataPtr data)
 {
@@ -271,7 +266,7 @@ QList<QString> QCtmLogManager::parseObjectNames(QString& msg)
 }
 
 /**
- * @brief		检查log文件，并按照一定规则建立log文件
+ * @brief		Check the log file, and create a new log file by save policy.
  */
 bool QCtmLogManager::checkFile()
 {

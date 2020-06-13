@@ -137,8 +137,7 @@ int QCtmLogModel::columnCount([[maybe_unused]] const QModelIndex &parent /*= QMo
 }
 
 /**
- * @brief		设置最大显示消息数量，默认1万条
- * @param[in]	count 最大显示消息数量
+ * @brief		Sets the maximum log message count.
  */
 void QCtmLogModel::setMaximumCount(int count)
 {
@@ -146,7 +145,7 @@ void QCtmLogModel::setMaximumCount(int count)
 }
 
 /**
- * @brief		最大显示消息数量
+ * @brief		Gets the maximum log message count.
  */
 int QCtmLogModel::maximumCount() const
 {
@@ -154,8 +153,7 @@ int QCtmLogModel::maximumCount() const
 }
 
 /**
- * @brief		设置日志插入顺序
- * @param[in]	mode 插入顺序
+ * @brief		Sets the log insert policy.
  */
 void QCtmLogModel::setLogInsertMode(LogInsertMode mode)
 {
@@ -163,54 +161,80 @@ void QCtmLogModel::setLogInsertMode(LogInsertMode mode)
 }
 
 /**
- * @brief		获取日志插入顺序
- * @Return:		日志插入顺序
+ * @brief		Gets the log insert policy.
  */
 LogInsertMode QCtmLogModel::logInsertMode() const
 {
     return m_impl->logInsertMode;
 }
 
+/**
+ * @brief		Sets the icon for information log message type.
+ */
 void QCtmLogModel::setInfoIcon(const QIcon& icon)
 {
     m_impl->infoIcon = icon;
 }
 
+/**
+ * @brief		Gets the icon for information log message.
+ */
 const QIcon& QCtmLogModel::infoIcon() const
 {
     return m_impl->infoIcon;
 }
 
+/**
+ * @brief		Sets the icon for warning log message type.
+ */
 void QCtmLogModel::setWarningIcon(const QIcon& icon)
 {
     m_impl->warningIcon = icon;
 }
 
+/**
+ * @brief		Gets the icon for warning log message type.
+ */
 const QIcon& QCtmLogModel::warningIcon() const
 {
     return m_impl->warningIcon;
 }
 
+/**
+ * @brief		Sets the icon for error log message type.
+ */
 void QCtmLogModel::setErrorIcon(const QIcon& icon)
 {
     m_impl->errorIcon = icon;
 }
 
+/**
+ * @brief		Gets the icon for error log message type.
+ */
 const QIcon& QCtmLogModel::errorIcon() const
 {
     return m_impl->errorIcon;
 }
 
+/**
+ * @brief		Get the count for warning log message type.
+ */
 int QCtmLogModel::warningCount() const
 {
     return m_impl->warningCount;
 }
 
+/**
+ * @brief		Get the count for information log message type.
+ */
 int QCtmLogModel::infoCount() const
 {
     return m_impl->infoCount;
 }
 
+/**
+ * @brief		Get the count for error log message type.
+ */
 int QCtmLogModel::errorCount() const
 {
     return m_impl->errorCount;
