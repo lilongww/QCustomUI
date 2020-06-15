@@ -31,6 +31,13 @@
 #include <QSizeGrip>
 #include <QResizeEvent>
 
+/*!
+         \class QCtmWindow
+         \brief This window is a base widget.
+         \ingroup QCustomUi Project
+         \inmodule QCustomUi Project
+*/
+
 struct QCtmWindow::Impl
 {
 	QCtmTitleBar *title{ nullptr };

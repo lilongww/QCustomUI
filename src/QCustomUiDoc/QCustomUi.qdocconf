@@ -1,0 +1,36 @@
+include(compat.qdocconf)
+include(qt-cpp-defines.qdocconf)
+
+defines += BUILD_STATIC
+
+project = QCustomUi
+description = QCustomUi Document
+
+headerdirs = ../QCustomUi
+sourcedirs = ../QCustomUi
+
+sources.fileextensions = "*.cpp *.qdoc *.mm *.qml"
+headers.fileextensions = "*.h *.ch *.h++ *.hh *.hpp *.hxx"
+examples.fileextensions = "*.cpp *.h *.js *.xq *.svg *.xml *.ui *.qhp *.qhcp *.qml"
+examples.imageextensions = "*.png *.jpeg *.jpg *.gif *.mng"
+
+outputdir  =    ../../build/doc/QCustomUi
+outputformats = HTML
+
+qhp.projects = QCustomUi
+
+qhp.QCustomUi.file                = qcustomui.qhp
+qhp.QCustomUi.namespace           = com.qcustomui.1.0.0
+qhp.QCustomUi.virtualFolder       = qcustomui
+qhp.QCustomUi.indexTitle          = QCustomUi
+qhp.QCustomUi.indexRoot           = 
+
+qhp.QCustomUi.subprojects = classes
+qhp.QCustomUi.subprojects.classes.title = C++ Classes
+qhp.QCustomUi.subprojects.classes.indexTitle = C++ Classes
+qhp.QCustomUi.subprojects.classes.selectors = class fake:headerfile
+qhp.QCustomUi.subprojects.classes.sortPages = true
+
+qhp.QCustomUi.filterAttributes    = qcustomui
+qhp.QCustomUi.customFilters.Qt.name = QCustomUi
+qhp.QCustomUi.customFilters.Qt.filterAttributes = qcustomui
