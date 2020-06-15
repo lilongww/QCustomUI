@@ -161,9 +161,6 @@
     <ClCompile Include="QCtmNavigationSideBar.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="QCtmNavigationSidePanel.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="QCtmTableItemDelegate.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -236,6 +233,9 @@
     <ClCompile Include="QCtmStageProgressBar.cpp">
       <Filter>Display Widgets</Filter>
     </ClCompile>
+    <ClCompile Include="QCtmNavigationSidePane.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <QtMoc Include="QCtmAbstractLogModel.h">
@@ -263,9 +263,6 @@
       <Filter>Header Files</Filter>
     </QtMoc>
     <QtMoc Include="QCtmNavigationSideBar.h">
-      <Filter>Header Files</Filter>
-    </QtMoc>
-    <QtMoc Include="QCtmNavigationSidePanel.h">
       <Filter>Header Files</Filter>
     </QtMoc>
     <QtMoc Include="QCtmTableItemDelegate.h">
@@ -366,6 +363,9 @@
     </QtMoc>
     <QtMoc Include="QCtmStageProgressBar.h">
       <Filter>Display Widgets</Filter>
+    </QtMoc>
+    <QtMoc Include="QCtmNavigationSidePane.h">
+      <Filter>Header Files</Filter>
     </QtMoc>
   </ItemGroup>
   <ItemGroup>

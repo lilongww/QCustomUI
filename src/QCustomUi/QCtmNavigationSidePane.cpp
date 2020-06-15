@@ -17,7 +17,7 @@
 **  along with QCustomUi.  If not, see <https://www.gnu.org/licenses/>.         **
 **********************************************************************************/
 
-#include "QCtmNavigationSidePanel.h"
+#include "QCtmNavigationSidePane.h"
 #include "QCtmNavigationBar.h"
 
 #include <QEvent>
@@ -34,7 +34,7 @@
 
 constexpr int margin = 8;
 
-struct QCtmNavigationSidePanel::Impl
+struct QCtmNavigationSidePane::Impl
 {
 	DockArea dockArea{ DockArea::Left };
 	QAction* bindAction{ nullptr };
@@ -62,7 +62,7 @@ struct QCtmNavigationSidePanel::Impl
 	}
 };
 
-QCtmNavigationSidePanel::QCtmNavigationSidePanel(QCtmNavigationBar *parent)
+QCtmNavigationSidePane::QCtmNavigationSidePane(QCtmNavigationBar *parent)
 	: QWidget(parent)
 	, m_impl(std::make_unique<Impl>())
 {
@@ -87,15 +87,14 @@ QCtmNavigationSidePanel::QCtmNavigationSidePanel(QCtmNavigationBar *parent)
     setPopup(true);
 }
 
-QCtmNavigationSidePanel::~QCtmNavigationSidePanel()
+QCtmNavigationSidePane::~QCtmNavigationSidePane()
 {
 }
 
 /**
- * @brief  		设置停靠方向
- * @param[in]  	area 停靠方向
+ * @brief  		Sets the pane dock area.
  */
-void QCtmNavigationSidePanel::setDockArea(DockArea area)
+void QCtmNavigationSidePane::setDockArea(DockArea area)
 {
 	m_impl->dockArea = area;
 	switch (area)
@@ -116,10 +115,9 @@ void QCtmNavigationSidePanel::setDockArea(DockArea area)
 }
 
 /**
- * @brief  		获取停靠方向
- * @Return:   	停靠方向
+ * @brief  		Get the panel dock area.
  */
-QCtmNavigationSidePanel::DockArea QCtmNavigationSidePanel::dockArea() const
+QCtmNavigationSidePane::DockArea QCtmNavigationSidePane::dockArea() const
 {
 	return m_impl->dockArea;
 }
@@ -128,7 +126,7 @@ QCtmNavigationSidePanel::DockArea QCtmNavigationSidePanel::dockArea() const
  * @brief  		设置显示窗口，在调用前，必须先设置weiget的布局，在调用后设置的布局将无效。
  * @param[in]  	widget 显示窗口地址
  */
-void QCtmNavigationSidePanel::setWidget(QWidget* widget)
+void QCtmNavigationSidePane::setWidget(QWidget* widget)
 {
 	m_impl->area->setWidget(widget);
 }
@@ -137,7 +135,7 @@ void QCtmNavigationSidePanel::setWidget(QWidget* widget)
  * @brief  		获取显示窗口的地址
  * @Return:   	显示窗口的地址
  */
-QWidget* QCtmNavigationSidePanel::widget() const
+QWidget* QCtmNavigationSidePane::widget() const
 {
 	return m_impl->area->widget();
 }
@@ -146,7 +144,7 @@ QWidget* QCtmNavigationSidePanel::widget() const
  * @brief  		视图窗口容器
  * @Return:   	视图窗口容器地址
  */
-QScrollArea* QCtmNavigationSidePanel::viewContainer() const
+QScrollArea* QCtmNavigationSidePane::viewContainer() const
 {
 	return m_impl->area;
 }
@@ -155,7 +153,7 @@ QScrollArea* QCtmNavigationSidePanel::viewContainer() const
  * @brief  		设置标题栏可见
  * @param[in]  	visbile 是否可见
  */
-void QCtmNavigationSidePanel::setTitleVisible(bool visible)
+void QCtmNavigationSidePane::setTitleVisible(bool visible)
 {
 	m_impl->titleBar->setVisible(visible);
 }
@@ -164,7 +162,7 @@ void QCtmNavigationSidePanel::setTitleVisible(bool visible)
  * @brief  		获取标题栏是否可见
  * @Return:   	true 可见，false 不可见
  */
-bool QCtmNavigationSidePanel::titleVisible() const
+bool QCtmNavigationSidePane::titleVisible() const
 {
 	return m_impl->titleBar->isVisible();
 }
@@ -173,7 +171,7 @@ bool QCtmNavigationSidePanel::titleVisible() const
  * @brief  		设置标题文字
  * @param[in]  	text 标题文字
  */
-void QCtmNavigationSidePanel::setTitle(const QString& text)
+void QCtmNavigationSidePane::setTitle(const QString& text)
 {
 	m_impl->title->setText(text);
 }
@@ -182,7 +180,7 @@ void QCtmNavigationSidePanel::setTitle(const QString& text)
  * @brief  		获取标题文字
  * @Return:   	标题文字
  */
-QString QCtmNavigationSidePanel::title() const
+QString QCtmNavigationSidePane::title() const
 {
 	return m_impl->title->text();
 }
@@ -191,7 +189,7 @@ QString QCtmNavigationSidePanel::title() const
  * @brief		设为弹出式窗口
  * @param[in]	popup 是否为弹出式窗口
  */
-void QCtmNavigationSidePanel::setPopup(bool popup)
+void QCtmNavigationSidePane::setPopup(bool popup)
 {
     m_impl->popup = popup;
     setWindowFlags(Qt::FramelessWindowHint | Qt::NoDropShadowWindowHint | (popup ? Qt::Popup : Qt::Tool));
@@ -200,17 +198,17 @@ void QCtmNavigationSidePanel::setPopup(bool popup)
 /**
  * @brief		获取窗口是否为弹出式窗口
  */
-bool QCtmNavigationSidePanel::popup() const
+bool QCtmNavigationSidePane::popup() const
 {
     return m_impl->popup;
 }
 
-void QCtmNavigationSidePanel::paintEvent([[maybe_unused]] QPaintEvent *event)
+void QCtmNavigationSidePane::paintEvent([[maybe_unused]] QPaintEvent *event)
 {
 	paintShadow(margin);
 }
 
-void QCtmNavigationSidePanel::showEvent([[maybe_unused]] QShowEvent *event)
+void QCtmNavigationSidePane::showEvent([[maybe_unused]] QShowEvent *event)
 {
 	if (!m_impl->navigationBar)
 		return;
@@ -219,19 +217,19 @@ void QCtmNavigationSidePanel::showEvent([[maybe_unused]] QShowEvent *event)
 	resize(sizeHint());
 }
 
-void QCtmNavigationSidePanel::closeEvent([[maybe_unused]] QCloseEvent *event)
+void QCtmNavigationSidePane::closeEvent([[maybe_unused]] QCloseEvent *event)
 {
 	emit paneClosed();
 }
 
-QSize QCtmNavigationSidePanel::sizeHint() const
+QSize QCtmNavigationSidePane::sizeHint() const
 {
 	if (!m_impl->navigationBar)
 		return QWidget::sizeHint();
 	return smartSize(m_impl->dockArea);
 }
 
-QSize QCtmNavigationSidePanel::smartSize(DockArea area)const
+QSize QCtmNavigationSidePane::smartSize(DockArea area)const
 {
 	const auto& oldSize = QWidget::sizeHint();
     if (!m_impl->navigationBar)
@@ -266,7 +264,7 @@ QSize QCtmNavigationSidePanel::smartSize(DockArea area)const
 	return alignSize.boundedTo(maximumSize());
 }
 
-void QCtmNavigationSidePanel::setNavigationBar(QCtmNavigationBar* bar)
+void QCtmNavigationSidePane::setNavigationBar(QCtmNavigationBar* bar)
 {
     if (m_impl->navigationBar)
     {
@@ -278,12 +276,12 @@ void QCtmNavigationSidePanel::setNavigationBar(QCtmNavigationBar* bar)
     bar->window()->installEventFilter(this);
 }
 
-QCtmNavigationBar* QCtmNavigationSidePanel::navigationBar() const
+QCtmNavigationBar* QCtmNavigationSidePane::navigationBar() const
 {
     return m_impl->navigationBar;
 }
 
-bool QCtmNavigationSidePanel::eventFilter(QObject* o, QEvent* e)
+bool QCtmNavigationSidePane::eventFilter(QObject* o, QEvent* e)
 {
 	if (m_impl->navigationBar && o == m_impl->navigationBar->window())
 	{
@@ -306,7 +304,7 @@ bool QCtmNavigationSidePanel::eventFilter(QObject* o, QEvent* e)
 	return false;
 }
 
-void QCtmNavigationSidePanel::mousePressEvent(QMouseEvent *event)
+void QCtmNavigationSidePane::mousePressEvent(QMouseEvent *event)
 {
     event->ignore();
     if ((windowType() == Qt::Popup)) {
@@ -323,12 +321,12 @@ void QCtmNavigationSidePanel::mousePressEvent(QMouseEvent *event)
     }
 }
 
-void QCtmNavigationSidePanel::bindAction(QAction* action)
+void QCtmNavigationSidePane::bindAction(QAction* action)
 {
 	m_impl->bindAction = action;
 }
 
-void QCtmNavigationSidePanel::paintShadow(int shadowWidth)
+void QCtmNavigationSidePane::paintShadow(int shadowWidth)
 {
 	QPainter painter(this);
 
@@ -371,7 +369,7 @@ void QCtmNavigationSidePanel::paintShadow(int shadowWidth)
 	painter.fillRect(opt.rect, opt.palette.window());
 }
 
-QPoint QCtmNavigationSidePanel::smartPosition(DockArea area) const
+QPoint QCtmNavigationSidePane::smartPosition(DockArea area) const
 {
     if (!m_impl->navigationBar)
         return QPoint(0, 0);

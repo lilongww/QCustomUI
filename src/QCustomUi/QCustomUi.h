@@ -20,7 +20,7 @@
 #pragma once
 
 #include "QCtmNavigationBar.h"
-#include "QCtmNavigationSidePanel.h"
+#include "QCtmNavigationSidePane.h"
 #include "QCtmNavigationSideBar.h"
 #include "QCtmTree.h"
 #include "QCtmDialog.h"

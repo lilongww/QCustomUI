@@ -30,3 +30,11 @@
 #else
 # define QCUSTOMUI_EXPORT
 #endif
+
+#ifdef QCUSTOMUI_USE_NAMESPACE
+#define QCUSTOMUI_BEGIN_NAMESPACE namespace QCustomUi {
+#define QCUSTOMUI_END_NAMESPACE }
+#else
+#define QCUSTOMUI_BEGIN_NAMESPACE
+#define QCUSTOMUI_END_NAMESPACE
+#endif

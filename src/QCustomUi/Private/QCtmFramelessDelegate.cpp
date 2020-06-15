@@ -478,7 +478,6 @@ void QCtmFramelessDelegate::platformSurfaceEvent(QPlatformSurfaceEvent* e)
 
 void QCtmFramelessDelegate::region(const QPoint &cursorGlobalPoint)
 {
-	// 获取窗体在屏幕上的位置区域，tl为topleft点，rb为rightbottom点
 	const auto& rect = m_impl->parent->rect();
 	const auto& tl = m_impl->parent->mapToGlobal(rect.topLeft());
 	const auto& rb = m_impl->parent->mapToGlobal(rect.bottomRight());
@@ -488,23 +487,23 @@ void QCtmFramelessDelegate::region(const QPoint &cursorGlobalPoint)
 
 	m_impl->direction = NONE;
 
-	if (x <= tl.x() + m_impl->margin + m_impl->framelessMouseHandleWidth && x >= tl.x()) {
-		// 左边
+	if (x <= tl.x() + m_impl->margin + m_impl->framelessMouseHandleWidth && x >= tl.x())
+	{
 		if (m_impl->parent->minimumWidth() != m_impl->parent->maximumWidth())
 			m_impl->direction |= LEFT;
 	}
-	if (x <= rb.x() && x >= rb.x() - m_impl->margin - m_impl->framelessMouseHandleWidth) {
-		// 右边
+	if (x <= rb.x() && x >= rb.x() - m_impl->margin - m_impl->framelessMouseHandleWidth)
+	{
 		if (m_impl->parent->minimumWidth() != m_impl->parent->maximumWidth())
 			m_impl->direction |= RIGHT;
 	}
-	if (y >= tl.y() && y <= tl.y() + m_impl->margin + m_impl->framelessMouseHandleWidth) {
-		// 上边
+	if (y >= tl.y() && y <= tl.y() + m_impl->margin + m_impl->framelessMouseHandleWidth)
+	{
 		if (m_impl->parent->minimumHeight() != m_impl->parent->maximumHeight())
 			m_impl->direction |= UP;
 	}
-	if (y <= rb.y() && y >= rb.y() - m_impl->margin - m_impl->framelessMouseHandleWidth) {
-		// 下边
+	if (y <= rb.y() && y >= rb.y() - m_impl->margin - m_impl->framelessMouseHandleWidth)
+	{
 		if (m_impl->parent->minimumHeight() != m_impl->parent->maximumHeight())
 			m_impl->direction |= DOWN;
 	}

@@ -20,12 +20,12 @@
 #pragma once
 
 #include "qcustomui_global.h"
-#include "QCtmNavigationSidePanel.h"
+#include "QCtmNavigationSidePane.h"
 
 class QCtmAbstractMessageModel;
 class QCtmNavigationBar;
 
-class QCUSTOMUI_EXPORT QCtmAbstractMessageView : public QCtmNavigationSidePanel
+class QCUSTOMUI_EXPORT QCtmAbstractMessageView : public QCtmNavigationSidePane
 {
 	Q_OBJECT
 

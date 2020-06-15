@@ -44,9 +44,7 @@ QCtmApplication::~QCtmApplication()
 }
 
 /**
- * @brief		检测是否有其他进程已启动
- * @param[in]	key 程序识别码
- * @return		true 有其他进程已启动
+ * @brief		Check to see if any other processes start using the same key.
  */
 bool QCtmApplication::checkOtherProcess(const QString& key)
 {

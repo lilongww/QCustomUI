@@ -24,9 +24,9 @@
 
 
 QCtmAbstractMessageView::QCtmAbstractMessageView(QCtmNavigationBar *parent)
-	: QCtmNavigationSidePanel(parent)
+	: QCtmNavigationSidePane(parent)
 {
-	this->setDockArea(QCtmNavigationSidePanel::DockArea::Right);
+	this->setDockArea(QCtmNavigationSidePane::DockArea::Right);
 }
 
 QCtmAbstractMessageView::~QCtmAbstractMessageView()

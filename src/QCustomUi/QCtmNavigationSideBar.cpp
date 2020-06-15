@@ -94,11 +94,7 @@ QCtmNavigationSideBar::~QCtmNavigationSideBar()
 }
 
 /**
- * @brief       添加一个侧边栏按钮
- * @param[in]   icon 按钮图标
- * @param[in]   text 按钮文字，用于显示tooltip
- * @param[in]   pos 停靠方向
- * @Return:     侧边栏按钮地址
+ * @brief       Add a action.
  */
 QAction* QCtmNavigationSideBar::addAction(const QIcon& icon, const QString& text, ActionPosition pos)
 {
@@ -107,9 +103,7 @@ QAction* QCtmNavigationSideBar::addAction(const QIcon& icon, const QString& text
 }
 
 /**
- * @brief		添加一个action
- * @param[in]	action 要添加的action
- * @param[in]	pos action停靠方向
+ * @brief		Add a action.
  */
 void QCtmNavigationSideBar::addAction(QAction* action, ActionPosition pos)
 {
@@ -122,9 +116,7 @@ void QCtmNavigationSideBar::addAction(QAction* action, ActionPosition pos)
 }
 
 /**
- * @brief       获取按钮数量
- * @param[in]   pos 停靠方向
- * @Return:     按钮数量
+ * @brief       Get the count of align.
  */
 int QCtmNavigationSideBar::count(ActionPosition align) const
 {
@@ -132,8 +124,7 @@ int QCtmNavigationSideBar::count(ActionPosition align) const
 }
 
 /**
- * @brief       设置图标显示大小
- * @param[in]   size 图标的大小
+ * @brief       Sets the icon size.
  */
 void QCtmNavigationSideBar::setIconSize(const QSize& size)
 {
@@ -141,8 +132,7 @@ void QCtmNavigationSideBar::setIconSize(const QSize& size)
 }
 
 /**
- * @brief       获取图标显示大小
- * @Return:     图标显示大小
+ * @brief       Gets the icon size.
  */
 const QSize& QCtmNavigationSideBar::iconSize() const
 {
@@ -150,10 +140,7 @@ const QSize& QCtmNavigationSideBar::iconSize() const
 }
 
 /**
- * @brief		查找指定位置的action
- * @param[in]	index 指定位置
- * @param[in]	pos action停靠方向
- * @Return:		action action地址
+ * @brief		Get the action at index of pos.
  */
 QAction* QCtmNavigationSideBar::actionAt(int index, ActionPosition pos) const
 {
@@ -248,10 +235,7 @@ void QCtmNavigationSideBar::actionEvent(QActionEvent *event)
 }
 
 /**
- * @brief		插入一个action
- * @param[in]	index 插入位置
- * @param[in]	action 要插入的action
- * @param[in]   pos action停靠方向
+ * @brief		Insert a action.
  */
 void QCtmNavigationSideBar::insertAction(int index, QAction* action, ActionPosition pos)
 {
@@ -261,11 +245,7 @@ void QCtmNavigationSideBar::insertAction(int index, QAction* action, ActionPosit
 }
 
 /**
- * @brief       插入一个侧边栏按钮
- * @param[in]   index 侧边栏按钮位置
- * @param[in]   icon 按钮图标
- * @param[in]   text 按钮文字，用于显示tooltip
- * @param[in]   pos 停靠方向
+ * @brief       Insert a action.
  */
 QAction* QCtmNavigationSideBar::insertAction(int index, const QIcon& icon, const QString& text, ActionPosition pos)
 {
@@ -276,9 +256,7 @@ QAction* QCtmNavigationSideBar::insertAction(int index, const QIcon& icon, const
 }
 
 /**
- * @brief       获取侧边栏按钮位置，如果action不存在则返回-1
- * @param[in]   action 侧边栏按钮
- * @Return:     侧边栏按钮位置
+ * @brief       Get the index of the action, returns -1 if action does not exist.
  */
 int QCtmNavigationSideBar::indexOf(QAction* action) const
 {

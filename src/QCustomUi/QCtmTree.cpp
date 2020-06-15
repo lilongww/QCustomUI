@@ -55,10 +55,7 @@ QCtmTree::~QCtmTree()
 }
 
 /**
- * @brief	    添加一个子窗口
- * @param[in]	title 标题
- * @param[in]	widget 子窗口地址
- * @return:     item地址
+ * @brief	    Add a widget.
  */
 QCtmTreeItem* QCtmTree::addWidget(const QString& title, QWidget* widget)
 {
@@ -66,11 +63,7 @@ QCtmTreeItem* QCtmTree::addWidget(const QString& title, QWidget* widget)
 }
 
 /**
- * @brief	    插入一个子窗口
- * @param[in]	index 要插入的位置
- * @param[in]	title 标题
- * @param[in]	widget 子窗口地址
- * @return:     item地址
+ * @brief	    Insert a widget.
  */
 QCtmTreeItem* QCtmTree::insertWidget(int index, const QString& title, QWidget* widget)
 {
@@ -86,8 +79,7 @@ QCtmTreeItem* QCtmTree::insertWidget(int index, const QString& title, QWidget* w
 }
 
 /**
- * @brief	    移除一项
- * @param[in]	item 要移除的项
+ * @brief	    Remove a container item.
  */
 void QCtmTree::removeItem(QCtmTreeItem* item)
 {
@@ -95,9 +87,7 @@ void QCtmTree::removeItem(QCtmTreeItem* item)
 }
 
 /**
- * @brief	    获取项所在位置
- * @param[in]	item 要获取位置的项
- * @return: 	位置
+ * @brief	    Get the index of the item.
  */
 int QCtmTree::indexOf(QCtmTreeItem* item) const
 {
@@ -105,9 +95,7 @@ int QCtmTree::indexOf(QCtmTreeItem* item) const
 }
 
 /**
- * @brief	    获取指定位置的项
- * @param[in]	index 指定位置
- * @return:	    项地址
+ * @brief	    Get the item of the index.
  */
 QCtmTreeItem* QCtmTree::item(int index) const
 {
@@ -115,8 +103,7 @@ QCtmTreeItem* QCtmTree::item(int index) const
 }
 
 /**
- * @brief	    设置所有项的展开状态
- * @param[in]	expand true:展开，false:收拢
+ * @brief	    Sets the expand state of all items.
  */
 void QCtmTree::setAllExpand(bool expand) const
 {
@@ -127,8 +114,7 @@ void QCtmTree::setAllExpand(bool expand) const
 }
 
 /**
- * @brief	    获取项总数
- * @return: 	项总数
+ * @brief	    Get the items count.
  */
 int QCtmTree::count() const
 {
@@ -136,8 +122,7 @@ int QCtmTree::count() const
 }
 
 /**
- * @brief		设置子项展开互斥，即只能有一项展开
- * @param[in]
+ * @brief		Sets the expand state whether to be exclusive.
  */
 void QCtmTree::setExclusive(bool exclusive)
 {
@@ -145,7 +130,7 @@ void QCtmTree::setExclusive(bool exclusive)
 }
 
 /**
- * @brief		子项是否展开互斥
+ * @brief		Gets the expand state whether to be exclusive.
  */
 bool QCtmTree::exclusive() const
 {
@@ -153,8 +138,7 @@ bool QCtmTree::exclusive() const
 }
 
 /**
- * @brief		设置每一个item的高度
- * @param[in]	sizes 每个item的高度
+ * @brief		Sets the size of items.
  */
 void QCtmTree::setSizes(const QList<int>& sizes)
 {
@@ -379,6 +363,9 @@ QCtmTreeItem::~QCtmTreeItem()
 
 }
 
+/**
+ * @brief  		Sets the given widget.
+ */
 void QCtmTreeItem::setWidget(QWidget* widget)
 {
 	if (m_impl->widget)
@@ -390,26 +377,41 @@ void QCtmTreeItem::setWidget(QWidget* widget)
         setExpand(false);
 }
 
+/**
+ * @brief  		Returns the widget.
+ */
 QWidget* QCtmTreeItem::widget() const
 {
 	return m_impl->widget;
 }
 
+/**
+ * @brief  		Sets the title.
+ */
 void QCtmTreeItem::setTitle(const QString& title)
 {
 	m_impl->title->setText(title);
 }
 
+/**
+ * @brief  		Returns the title.
+ */
 QString QCtmTreeItem::title() const
 {
 	return m_impl->title->text();
 }
 
+/**
+ * @brief  		Gets the expand state of the item.
+ */
 bool QCtmTreeItem::isExpand() const
 {
 	return m_impl->title->isExpand();
 }
 
+/**
+ * @brief  		Sets the expand state of the item.
+ */
 void QCtmTreeItem::setExpand(bool expand)
 {
     if (isExpand() == expand)
@@ -460,26 +462,41 @@ void QCtmTreeItem::setSuggestSize(int size)
     m_impl->size = size;
 }
 
+/**
+ * @brief		Add a action.
+ */
 QAction* QCtmTreeItem::addAction(const QString& text)
 {
     return insertAction(count(), text);
 }
 
+/**
+ * @brief		Add a action.
+ */
 QAction* QCtmTreeItem::addAction(const QIcon& icon, const QString& text)
 {
     return insertAction(count(), icon, text);
 }
 
+/**
+ * @brief		Insert a action.
+ */
 void QCtmTreeItem::insertAction(int index, QAction* action)
 {
     m_impl->title->insertAction(index, action);
 }
 
+/**
+ * @brief		Insert a action.
+ */
 QAction* QCtmTreeItem::insertAction(int index, const QString& text)
 {
     return insertAction(index, QIcon(), text);
 }
 
+/**
+ * @brief		Insert a action.
+ */
 QAction* QCtmTreeItem::insertAction(int index, const QIcon& icon, const QString& text)
 {
     auto action = new QAction(icon, text, m_impl->title);
@@ -487,16 +504,33 @@ QAction* QCtmTreeItem::insertAction(int index, const QIcon& icon, const QString&
     return action;
 }
 
+/**
+ * @brief		Remove the given action.
+ */
+void QCtmTreeItem::removeAction(QAction* action)
+{
+    m_impl->title->removeAction(action);
+}
+
+/**
+ * @brief		Get the count of actions.
+ */
 int QCtmTreeItem::count() const
 {
     return m_impl->title->actions().size();
 }
 
+/**
+ * @brief		Get the index of the given action.
+ */
 int QCtmTreeItem::indexOf(QAction* action)
 {
     return m_impl->title->indexOf(action);
 }
 
+/**
+ * @brief		Get the action of the given index.
+ */
 QAction* QCtmTreeItem::actionAt(int index)
 {
     return m_impl->title->actionAt(index);

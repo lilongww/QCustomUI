@@ -27,7 +27,7 @@
 
 class QCtmNavigationBar;
 
-class QCUSTOMUI_EXPORT QCtmNavigationSidePanel : public QWidget
+class QCUSTOMUI_EXPORT QCtmNavigationSidePane : public QWidget
 {
 	Q_OBJECT
 
@@ -39,8 +39,8 @@ public:
 		Right,
 		Bottom
 	};
-	explicit QCtmNavigationSidePanel(QCtmNavigationBar *parent = nullptr);
-	~QCtmNavigationSidePanel();
+	explicit QCtmNavigationSidePane(QCtmNavigationBar *parent = nullptr);
+	~QCtmNavigationSidePane();
 
 	void setDockArea(DockArea area);
 	DockArea dockArea() const;
@@ -55,7 +55,7 @@ public:
     bool popup() const;
 signals:
 	/**
-	 * @brief  		面板关闭时发送该信号		
+	 * @brief  		emit the signal when the pane is closed.		
 	 */
 	void paneClosed();
 protected:

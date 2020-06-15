@@ -78,8 +78,7 @@ QCtmAbstractMessageModel* QCtmMessageView::model() const
 }
 
 /**
- * @brief       设置装饰条颜色
- * @param[in] 	color 颜色
+ * @brief       Set the color of the decoration.
  */
 void QCtmMessageView::setDecoration(const QColor& color)
 {
@@ -87,8 +86,7 @@ void QCtmMessageView::setDecoration(const QColor& color)
 }
 
 /**
- * @brief       获取装饰条颜色
- * @Return:   	颜色
+ * @brief       Get the color of the decoration.
  */
 const QColor& QCtmMessageView::decoration() const
 {
@@ -96,8 +94,7 @@ const QColor& QCtmMessageView::decoration() const
 }
 
 /**
- * @brief       设置标题文字颜色
- * @param[in]   color 颜色
+ * @brief       Set the color of the title.
  */
 void QCtmMessageView::setTitleColor(const QColor& color)
 {
@@ -107,8 +104,7 @@ void QCtmMessageView::setTitleColor(const QColor& color)
 }
 
 /**
- * @brief       获取标题文字颜色
- * @Return:   	颜色
+ * @brief       Get the color of the title.
  */
 const QColor& QCtmMessageView::titleColor() const
 {
@@ -116,8 +112,7 @@ const QColor& QCtmMessageView::titleColor() const
 }
 
 /**
- *  @brief      设置时间文字颜色
- *  @param[in]  color 颜色
+ *  @brief      Set the color of the time.
  */
 void QCtmMessageView::setTimeColor(const QColor& color)
 {
@@ -127,8 +122,7 @@ void QCtmMessageView::setTimeColor(const QColor& color)
 }
 
 /**
- * @brief       获取时间文字颜色
- * @Return:   	颜色
+ * @brief       Get the color of the time.
  */
 const QColor& QCtmMessageView::timeColor() const
 {
@@ -136,8 +130,7 @@ const QColor& QCtmMessageView::timeColor() const
 }
 
 /**
- * @brief       设置消息关闭按钮图标
- * @param[in]   icon 图标
+ * @brief       Set the icon of the close button.
  */
 void QCtmMessageView::setCloseButtonIcon(const QPixmap& icon)
 {
@@ -145,8 +138,7 @@ void QCtmMessageView::setCloseButtonIcon(const QPixmap& icon)
 }
 
 /**
- * @brief       获取关闭按钮图标
- * @Return:   	图标
+ * @brief       Get the icon of the close button.
  */
 const QPixmap& QCtmMessageView::closeButtonIcon() const
 {
@@ -171,7 +163,7 @@ bool QCtmMessageView::eventFilter(QObject* o, QEvent* e)
 		if (e->type() == QEvent::Show || e->type() == QEvent::Hide)
 			m_impl->view->reset();
 	}
-	return QCtmNavigationSidePanel::eventFilter(o, e);
+	return QCtmNavigationSidePane::eventFilter(o, e);
 }
 
 void QCtmMessageView::onCloseButtonClicked(const QModelIndex& index)

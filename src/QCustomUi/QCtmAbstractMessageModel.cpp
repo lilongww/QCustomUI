@@ -36,8 +36,7 @@ QCtmAbstractMessageModel::~QCtmAbstractMessageModel()
 }
 
 /**
- * @brief  添加一条消息
- * @param  msg 消息内容
+ * @brief  Add a message.
  */
 void QCtmAbstractMessageModel::addMessage(QCtmAbstractMessagePtr msg)
 {
@@ -54,9 +53,7 @@ void QCtmAbstractMessageModel::addMessage(QCtmAbstractMessagePtr msg)
 }
 
 /**
- * @brief  插入一条消息
- * @param  index 要插入的位置
- * @param  msg 消息内容
+ * @brief  Insert a message.
  */
 void QCtmAbstractMessageModel::insertMessage(int index, QCtmAbstractMessagePtr msg)
 {
@@ -65,8 +62,7 @@ void QCtmAbstractMessageModel::insertMessage(int index, QCtmAbstractMessagePtr m
 }
 
 /**
- * @brief  移除一条消息
- * @param  msg 消息内容
+ * @brief  Remove a message.
  */
 void QCtmAbstractMessageModel::removeMessage(QCtmAbstractMessagePtr msg)
 {
@@ -76,9 +72,7 @@ void QCtmAbstractMessageModel::removeMessage(QCtmAbstractMessagePtr msg)
 }
 
 /**
- * @brief  获取指定行对应的消息内容
- * @param  row 指定行
- * @return 指定行对应的消息内容
+ * @brief  Get the message of row.
  */
 QCtmAbstractMessagePtr QCtmAbstractMessageModel::message(int row) const
 {
@@ -86,7 +80,7 @@ QCtmAbstractMessagePtr QCtmAbstractMessageModel::message(int row) const
 }
 
 /**
- * @brief    清除所有消息
+ * @brief    Remove all messages.
  */
 void QCtmAbstractMessageModel::clear()
 {
@@ -96,8 +90,7 @@ void QCtmAbstractMessageModel::clear()
 }
 
 /**
- * @brief		设置最大保存消息数量，默认1万条
- * @param[in]	count 消息数量
+ * @brief		Sets the maximum count of messages.
  */
 void QCtmAbstractMessageModel::setMaximumCount(int count)
 {
@@ -105,7 +98,7 @@ void QCtmAbstractMessageModel::setMaximumCount(int count)
 }
 
 /**
- * @brief		最大保存消息数量
+ * @brief		Gets the maximum count of messages.
  */
 int QCtmAbstractMessageModel::maximumCount() const
 {

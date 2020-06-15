@@ -47,8 +47,7 @@ QCtmMessageTip::~QCtmMessageTip()
 }
 
 /**
- * @brief       设置数据来源
- * @param[in]   model 数据源
+ * @brief		Set the message model.
  */
 void QCtmMessageTip::setModel(QCtmAbstractMessageModel* model)
 {
@@ -67,8 +66,7 @@ void QCtmMessageTip::setModel(QCtmAbstractMessageModel* model)
 }
 
 /**
- * @brief       获取数据源
- * @Return:     数据源
+ * @brief       Get the message model.
  */
 QCtmAbstractMessageModel* QCtmMessageTip::model() const
 {
@@ -76,8 +74,7 @@ QCtmAbstractMessageModel* QCtmMessageTip::model() const
 }
 
 /**
- * @brief       设置消息显示视图
- * @param[in] 	view 视图地址
+ * @brief       Set the message view.
  */
 void QCtmMessageTip::setView(QCtmAbstractMessageView* view)
 {
@@ -86,8 +83,7 @@ void QCtmMessageTip::setView(QCtmAbstractMessageView* view)
 }
 
 /**
- * @brief       获取消息显示视图
- * @Return:   	视图地址
+ * @brief       Get the message view.
  */
 QCtmAbstractMessageView* QCtmMessageTip::view() const
 {
@@ -95,8 +91,7 @@ QCtmAbstractMessageView* QCtmMessageTip::view() const
 }
 
 /**
- * @brief       设置提示背景色
- * @param[in]   color 背景色
+ * @brief       Set the color of the tool tip.
  */
 void QCtmMessageTip::setTipColor(const QColor& color)
 {
@@ -104,8 +99,7 @@ void QCtmMessageTip::setTipColor(const QColor& color)
 }
 
 /**
- * @brief       获取提示背景色
- * @Return:   	背景色
+ * @brief       Get the color of the tool tip.
  */
 const QColor& QCtmMessageTip::tipColor() const
 {

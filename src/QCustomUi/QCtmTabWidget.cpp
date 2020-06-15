@@ -80,10 +80,7 @@ QCtmTabWidget::~QCtmTabWidget()
 }
 
 /**
- * @brief       添加Tab页
- * @param[in]   widget	页窗口
- * @param[in]   label	页标签文本
- * @Return:     添加页的索引
+ * @brief       Add a tab widget.
  */
 QCtmTabPage* QCtmTabWidget::addTab(QWidget *widget, const QString &label)
 {
@@ -91,11 +88,7 @@ QCtmTabPage* QCtmTabWidget::addTab(QWidget *widget, const QString &label)
 }
 
 /**
- * @brief		添加Tab页
- * @param[in]	widget	页窗口
- * @param[in]	icon	页标签图标
- * @param[in]	label	页标签文本
- * @Return:		添加页的索引
+ * @brief       Add a tab widget.
  */
 QCtmTabPage* QCtmTabWidget::addTab(QWidget *widget, const QIcon &icon, const QString &label)
 {
@@ -103,11 +96,7 @@ QCtmTabPage* QCtmTabWidget::addTab(QWidget *widget, const QIcon &icon, const QSt
 }
 
 /**
- * @brief       插入Tab页
- * @param[in]   index 插入页的index
- * @param[in]   widget 页窗口
- * @param[in]   label 页标签文本
- * @Return:     插入页索引
+ * @brief       Insert a tab widget.
  */
 QCtmTabPage* QCtmTabWidget::insertTab(int index, QWidget *widget, const QString &label)
 {
@@ -115,12 +104,7 @@ QCtmTabPage* QCtmTabWidget::insertTab(int index, QWidget *widget, const QString 
 }
 
 /**
- *  @brief		插入Tab页
- *  @param[in]	index 插入页的index
- *  @param[in]	widget 页窗口
- *  @param[in]	icon 页标签图标
- *  @param[in]	label 页标签文本
- *  @Return:	插入页索引
+ * @brief       Insert a tab widget.
  */
 QCtmTabPage* QCtmTabWidget::insertTab(int index, QWidget *widget, [[maybe_unused]] const QIcon &icon, const QString &label)
 {

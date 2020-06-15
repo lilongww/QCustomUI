@@ -190,7 +190,7 @@
     <QtMoc Include="QCtmMessageView.h" />
     <QtMoc Include="QCtmNavigationBar.h" />
     <QtMoc Include="QCtmNavigationSideBar.h" />
-    <QtMoc Include="QCtmNavigationSidePanel.h" />
+    <QtMoc Include="QCtmNavigationSidePane.h" />
     <QtMoc Include="QCtmTableItemDelegate.h" />
     <QtMoc Include="QCtmTableView.h" />
     <QtMoc Include="QCtmTabPage.h" />
@@ -227,7 +227,7 @@
     <ClCompile Include="QCtmMultiComboBox.cpp" />
     <ClCompile Include="QCtmNavigationBar.cpp" />
     <ClCompile Include="QCtmNavigationSideBar.cpp" />
-    <ClCompile Include="QCtmNavigationSidePanel.cpp" />
+    <ClCompile Include="QCtmNavigationSidePane.cpp" />
     <ClCompile Include="QCtmStageProgressBar.cpp" />
     <ClCompile Include="QCtmStyleSheet.cpp" />
     <ClCompile Include="QCtmTableItemDelegate.cpp" />

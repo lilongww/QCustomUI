@@ -32,12 +32,6 @@ struct QCtmMessage::Impl
 	QDateTime time;
 };
 
-/**
- * @brief       构造函数
- * @param[in]   title 消息标题
- * @param[in] 	content 消息内容
- * @param[in]	time 消息时间
- */
 QCtmMessage::QCtmMessage(const QString& title, const QString& content, const QDateTime& time)
 	:m_impl(std::make_unique<Impl>())
 {
@@ -51,8 +45,7 @@ QCtmMessage::~QCtmMessage()
 }
 
 /**
- * @brief       设置消息标题
- * @param[in]   title 标题信息
+ * @brief       Set the message title.
  */
 void QCtmMessage::setTitle(const QString& title)
 {
@@ -60,8 +53,7 @@ void QCtmMessage::setTitle(const QString& title)
 }
 
 /**
- * @brief       获取标题信息
- * @Return:     标题
+ * @brief       Get the message title.
  */
 const QString& QCtmMessage::title() const
 {
@@ -69,8 +61,7 @@ const QString& QCtmMessage::title() const
 }
 
 /**
- * @brief       设置消息内容
- * @param[in]   content 消息内容
+ * @brief       Set the message content.
  */
 void QCtmMessage::setContent(const QString& content)
 {
@@ -78,8 +69,7 @@ void QCtmMessage::setContent(const QString& content)
 }
 
 /**
- * @brief       获取消息内容
- * @Return:     消息内容
+ * @brief       Get the message content.
  */
 const QString& QCtmMessage::content() const
 {
@@ -87,8 +77,7 @@ const QString& QCtmMessage::content() const
 }
 
 /**
- * @brief       设置消息时间
- * @param[in]   time 消息时间
+ * @brief       Set the message date time.
  */
 void QCtmMessage::setDateTime(const QDateTime& time)
 {
@@ -96,8 +85,7 @@ void QCtmMessage::setDateTime(const QDateTime& time)
 }
 
 /**
- * @brief       获取消息时间
- * @Return:     时间
+ * @brief       Get the message date time.
  */
 const QDateTime& QCtmMessage::dateTime() const
 {

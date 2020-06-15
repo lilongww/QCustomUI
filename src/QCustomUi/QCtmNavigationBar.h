@@ -27,7 +27,7 @@
 #include <memory>
 
 class QCtmMessageTip;
-class QCtmNavigationSidePanel;
+class QCtmNavigationSidePane;
 
 class QCUSTOMUI_EXPORT QCtmNavigationBar : public QWidget
 {
@@ -46,14 +46,14 @@ public:
 	QAction* addAction(const QIcon& icon, const QString& text, ActionPosition pos);
 	QAction* addSeparator(ActionPosition pos);
 	QAction* insertSeparator(int index, ActionPosition pos);
-	QAction* addPane(const QIcon& icon, const QString& text, ActionPosition pos, QCtmNavigationSidePanel* pane);
-	QAction* addPane(const QString& text, ActionPosition pos, QCtmNavigationSidePanel* pane);
-    void addPane(QAction* action, ActionPosition pos, QCtmNavigationSidePanel* pane);
+	QAction* addPane(const QIcon& icon, const QString& text, ActionPosition pos, QCtmNavigationSidePane* pane);
+	QAction* addPane(const QString& text, ActionPosition pos, QCtmNavigationSidePane* pane);
+    void addPane(QAction* action, ActionPosition pos, QCtmNavigationSidePane* pane);
 	QAction* insertAction(int index, const QIcon& icon, const QString& text, ActionPosition pos);
 	QAction* insertAction(int index, const QString& text, ActionPosition pos);
-	QAction* insertPane(int index, const QIcon& icon, const QString& text, ActionPosition pos, QCtmNavigationSidePanel* pane);
-	QAction* insertPane(int index, const QString& text, ActionPosition pos,  QCtmNavigationSidePanel* pane);
-    void insertPane(int index, QAction* action, ActionPosition pos, QCtmNavigationSidePanel* pane);
+	QAction* insertPane(int index, const QIcon& icon, const QString& text, ActionPosition pos, QCtmNavigationSidePane* pane);
+	QAction* insertPane(int index, const QString& text, ActionPosition pos,  QCtmNavigationSidePane* pane);
+    void insertPane(int index, QAction* action, ActionPosition pos, QCtmNavigationSidePane* pane);
 	int indexOf(QAction* action)const;
 	int count(ActionPosition pos)const;
 	QRect actionRect(QAction* action);

@@ -48,9 +48,7 @@ QCtmToolBox::~QCtmToolBox()
 }
 
 /**
- * @brief      添加一个子窗口
- * @param[in]  title 标题
- * @param[in] 	widget 子窗口地址
+ * @brief      Add a widget.
  */
 void QCtmToolBox::addWidget(const QString& title, QWidget* widget)
 {
@@ -58,10 +56,7 @@ void QCtmToolBox::addWidget(const QString& title, QWidget* widget)
 }
 
 /**
- * @brief      插入一个子窗口
- * @param[in]  index 插入位置
- * @param[in] 	title 标题
- * @param[in] 	widget 子窗口地址
+ * @brief      Insert a widget.
  */
 void QCtmToolBox::insertWidget(int index, const QString& title, QWidget* widget)
 {
@@ -72,8 +67,7 @@ void QCtmToolBox::insertWidget(int index, const QString& title, QWidget* widget)
 }
 
 /**
- * @brief  		移除子窗口
- * @param[in]  	widget 子窗口地址
+ * @brief  		Remove the widget.
  */
 void QCtmToolBox::removeWidget(QWidget* widget)
 {
@@ -88,8 +82,7 @@ void QCtmToolBox::removeWidget(QWidget* widget)
 }
 
 /**
- * @brief  		移除子窗口
- * @param[in]  	index 子窗口位置
+ * @brief  		Remove the widget.
  */
 void QCtmToolBox::removeWidget(int index)
 {
@@ -99,9 +92,7 @@ void QCtmToolBox::removeWidget(int index)
 }
 
 /**
- * @brief  		查询子窗口位置
- * @param[in]  	widget 子窗口地址
- * @Return:   	子窗口位置
+ * @brief  		Get the index of the given widget.
  */
 int QCtmToolBox::indexOf(QWidget* widget) const
 {
@@ -117,9 +108,7 @@ int QCtmToolBox::indexOf(QWidget* widget) const
 }
 
 /**
- * @brief  		查询指定位置的子窗口
- * @param[in]  	index 指定位置
- * @Return:   	子窗口地址
+ * @brief  		Get the widget of index.
  */
 QWidget* QCtmToolBox::widget(int index) const
 {
@@ -132,9 +121,7 @@ QWidget* QCtmToolBox::widget(int index) const
 }
 
 /**
- * @brief  		设置子窗口间默认显示比例
- * @param[in]  	index 子窗口位置
- * @param[in] 	stretch 子窗口显示比重
+ * @brief  		Set the stretch factor of widgets.
  */
 void QCtmToolBox::setStretchFactor(int index, int stretch)
 {
@@ -142,8 +129,7 @@ void QCtmToolBox::setStretchFactor(int index, int stretch)
 }
 
 /**
- * @brief  		设置各子窗口的显示大小(高度)
- * @param[in]  	sizes 从上到下的大小集合
+ * @brief  		Sets the sizes of widgets.
  */
 void QCtmToolBox::setSizes(const QList<int>& sizes)
 {
@@ -151,9 +137,7 @@ void QCtmToolBox::setSizes(const QList<int>& sizes)
 }
 
 /**
- *  @brief      设置窗口第一次显示时的比例
- *  @param[in]  index 窗口序号
- *  @param[in] 	stretch 比例
+ *  @brief      Set default stretch factor of widgets.
  */
 void QCtmToolBox::setDefaultStretch(int index, int stretch)
 {

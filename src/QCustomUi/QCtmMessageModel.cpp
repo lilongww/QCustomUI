@@ -92,8 +92,7 @@ int QCtmMessageModel::columnCount([[maybe_unused]] const QModelIndex &parent /* 
 }
 
 /**
- * @brief   设置标题显示颜色
- * @param   color 颜色
+ * @brief   Set the color of the message title.
  */
 void QCtmMessageModel::setTitleColor(const QColor& color)
 {
@@ -101,8 +100,7 @@ void QCtmMessageModel::setTitleColor(const QColor& color)
 }
 
 /**
- * @brief	获取标题显示颜色
- * @return	颜色
+ * @brief	Get the color of the message title.
  */
 const QColor& QCtmMessageModel::titleColor() const
 {
@@ -110,8 +108,7 @@ const QColor& QCtmMessageModel::titleColor() const
 }
 
 /**
- * @brief	设置时间显示颜色
- * @param	color 颜色
+ * @brief	Set the color of the message time.
  */
 void QCtmMessageModel::setTimeColor(const QColor& color)
 {
@@ -119,8 +116,7 @@ void QCtmMessageModel::setTimeColor(const QColor& color)
 }
 
 /**
- * @brief	获取时间显示颜色
- * @return	颜色
+ * @brief	Get the color of the message time.
  */
 const QColor& QCtmMessageModel::timeColor() const
 {

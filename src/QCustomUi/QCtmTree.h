@@ -57,16 +57,12 @@ public:
     void setSizes(const QList<int>& sizes);
 signals:
     /**
-     * @brief		子项展开变化
-     * @param[in]   item 展开状态发生变化的项
-     * @param[in]	expand true:展开，false:关闭
+     * @brief		emit this signal when the item's expand state is changed.
      */
     void itemExpandChanged(QCtmTreeItem* item, bool expand);
 
     /**
-     * @brief		标题栏点击事件
-     * @param[in]	item 子项地址
-     * @param[in]	expand true:展开，false:关闭
+     * @brief		emit this signal when the title bar of the item has being clicked.
      */
     void itemTitleClicked(QCtmTreeItem* item, bool expand);
 protected:
@@ -83,119 +79,34 @@ private:
 	std::unique_ptr<Impl> m_impl;
 };
 
-/*!***************************************************************************
-* @class QCtmTreeItem
-* @brief QCtmTree的子节点实现
-*****************************************************************************/
 class QCUSTOMUI_EXPORT QCtmTreeItem:public QWidget
 {
 	Q_OBJECT
 public:
 
-	/**
-     * @brief  		设置显示窗口
-     * @param[in]  	widget 窗口地址
-	 */
 	void setWidget(QWidget* widget);
-
-	/**
-	 * @brief  		获取显示窗口地址
-	 * @Return:   	窗口地址
-	 */
 	QWidget* widget() const;
-
-	/**
-     * @brief  		设置叶子节点标题
-     * @param[in]  	title 标题
-     */
 	void setTitle(const QString& title);
-
-	/**
-     * @brief  		获取叶子节点标题
-     * @Return:   	标题
-     */
 	QString title() const;
-
-	/**
-     * @brief  		获取当前叶子节点是否展开
-     * @Return:   	true:展开，false:关闭
-     */
 	bool isExpand()const;
-
-	/**
-	 * @brief  		设置当前叶子节点是否展开
-	 * @param[in]  	expend true:展开，false:关闭
-	 */
 	void setExpand(bool expand);
-
-    /**
-     * @brief		在标题栏添加一个按钮
-     * @param[in]	icon 按钮图标
-     * @param[in]	text 按钮文字
-     * @Return:		
-     */
     QAction* addAction(const QIcon& icon, const QString& text);
-
-    /**
-    * @brief		在标题栏添加一个按钮
-    * @param[in]	text 按钮文字
-    * @Return:
-    */
     QAction* addAction(const QString& text);
-
-    /**
-     * @brief		在标题栏插入一个按钮
-     * @param[in]	index 要插入的位置
-     * @param[in]   icon 按钮图标
-     * @param[in]	text 按钮文字
-     * @Return:		
-     */
     QAction* insertAction(int index, const QIcon& icon, const QString& text);
-
-    /**
-     * @brief		在标题栏插入一个按钮
-     * @param[in]	index 要插入的位置
-     * @param[in]	text 按钮文字
-     * @Return:
-     */
     QAction* insertAction(int index, const QString& text);
-
-    /**
-     * @brief		从标题栏移除按钮
-     * @param[in]	action 要移除的按钮
-     */
     void removeAction(QAction *action);
-
-    /**
-     * @brief		标题按钮数量
-     * @Return:		数量
-     */
     int count() const;
-
-    /**
-     * @brief		获取action的位置
-     * @param[in]	action 要获取位置的action
-     * @Return:		位置
-     */
     int indexOf(QAction* action);
-
-    /**
-     * @brief		获取指定位置的action
-     * @param[in]	index 指定位置
-     * @Return:		action地址
-     */
     QAction* actionAt(int index);
 
 signals:
     /**
-     * @brief		展开状态改变
-     * @param[in]	expand true:展开，false:关闭
+     * @brief		emit this signal when the item's expand state is changed.
      */
     void expandChanged(bool expand);
 
     /**
-     * @brief		标题栏点击信号
-     * @param[in]	expand true:展开，false:关闭
+     * @brief		emit this signal when the title bar of the item has being clicked.
      */
     void titleClicked(bool expand);
 protected:

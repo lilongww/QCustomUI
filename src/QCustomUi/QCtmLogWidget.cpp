@@ -62,8 +62,7 @@ QCtmLogWidget::~QCtmLogWidget()
 }
 
 /**
- * @brief		设置日志插入顺序
- * @param[in]	mode 日志插入顺序
+ * @brief		Set the log insertion policy.
  */
 void QCtmLogWidget::setLogInsertMode(LogInsertMode mode)
 {
@@ -71,8 +70,7 @@ void QCtmLogWidget::setLogInsertMode(LogInsertMode mode)
 }
 
 /**
- * @brief		获取日志插入顺序
- * @Return:		日志插入顺序
+ * @brief		Get the log insertion policy.
  */
 LogInsertMode QCtmLogWidget::logInsertMode() const
 {
@@ -80,9 +78,7 @@ LogInsertMode QCtmLogWidget::logInsertMode() const
 }
 
 /**
- * @brief		设置日志列是否显示
- * @param[in]	column 列
- * @param[in]	visible 是否显示
+ * @brief		Sets whether the column is visible.
  */
 void QCtmLogWidget::setColumnVisible(QCtmLogColumn column, bool visible)
 {
@@ -96,9 +92,7 @@ void QCtmLogWidget::setColumnVisible(QCtmLogColumn column, bool visible)
 }
 
 /**
- * @brief		获取日志列是否显示
- * @param[in]	column 列
- * @Return:		是否显示
+ * @brief		Gets whether the column is visible.
  */
 bool QCtmLogWidget::columnVisible(QCtmLogColumn column) const
 {
@@ -262,44 +256,68 @@ void QCtmLogWidget::updateLogCount()
     m_impl->infoAction->setText(tr("Info %1").arg(m_impl->model->infoCount()));
 }
 
+/**
+ * @brief		Sets the icon for information message type.
+ */
 void QCtmLogWidget::setInfoIcon(const QIcon& icon)
 {
     m_impl->model->setInfoIcon(icon);
     m_impl->infoAction->setIcon(icon);
 }
 
+/**
+ * @brief		Gets the icon for information message type.
+ */
 const QIcon& QCtmLogWidget::infoIcon() const
 {
     return m_impl->model->infoIcon();
 }
 
+/**
+ * @brief		Sets the icon for warning message type.
+ */
 void QCtmLogWidget::setWarningIcon(const QIcon& icon)
 {
     m_impl->model->setWarningIcon(icon);
     m_impl->warningAction->setIcon(icon);
 }
 
+/**
+ * @brief		Gets the icon for warning message type.
+ */
 const QIcon& QCtmLogWidget::warningIcon() const
 {
     return m_impl->model->warningIcon();
 }
 
+/**
+ * @brief		Sets the icon for error message type.
+ */
 void QCtmLogWidget::setErrorIcon(const QIcon& icon)
 {
     m_impl->model->setErrorIcon(icon);
     m_impl->errorAction->setIcon(icon);
 }
 
+/**
+ * @brief		Gets the icon for error message type.
+ */
 const QIcon& QCtmLogWidget::errorIcon() const
 {
     return m_impl->model->errorIcon();
 }
 
+/**
+ * @brief		Sets the maximum count of log message.
+ */
 void QCtmLogWidget::setMaximumCount(int count)
 {
     m_impl->model->setMaximumCount(count);
 }
 
+/**
+ * @brief		Gets the maximum count of log message.
+ */
 int QCtmLogWidget::maximumCount() const
 {
     return m_impl->model->maximumCount();
