@@ -126,10 +126,9 @@
       <GenerateDebugInformation>true</GenerateDebugInformation>
     </Link>
     <PostBuildEvent>
-      <Command>$(QtDir)\bin\qdoc.exe QCustomUi.qdocconf
+      <Command>$(QtDir)\bin\qdoc.exe QCustomUi.qdocconf -indexdir $(QtDir)\..\..\Docs\Qt-5.15.0
 $(QtDir)\bin\qhelpgenerator.exe $(SolutionDir)build\doc\QCustomUi\qcustomui.qhp -o $(SolutionDir)build\doc\QCustomUi\qcustomui.qch
-$(QtDir)\bin\assistant.exe -collectionFile $(SolutionDir)build\doc\QCustomUi\qcustomui.qch
-</Command>
+$(QtDir)\bin\assistant.exe</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">

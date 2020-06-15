@@ -45,8 +45,15 @@ struct QCtmDialog::Impl
 
 		 \brief This class is the base class of top level widgets that can have a custom title bar.
 
-		 \ingroup C++ Classes
-		 \inmodule C++ Classes
+		 \inherits QDialog
+
+		 \ingroup QCustomUi
+		 \inmodule QCustomUi
+*/
+
+/*!
+		\fn QCtmDialog::QCtmDialog(QWidget *parent)
+		\brief Constructs a dialog which is a child of parent.
 */
 QCtmDialog::QCtmDialog(QWidget *parent)
 	: QDialog(parent)
@@ -79,8 +86,9 @@ QCtmDialog::~QCtmDialog()
 {
 }
 
-/**
- * @brief		Sets the given widget to be the main window's central widget.
+/*!
+		\fn void QCtmDialog::setCentralWidget(QWidget* widget)
+  		\brief Sets the given widget to be the main window's central widget.
  */
 void QCtmDialog::setCentralWidget(QWidget* widget)
 {

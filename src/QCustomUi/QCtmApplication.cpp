@@ -25,6 +25,16 @@
 #include <QWidget>
 #include <QWindow>
 
+/*!
+\module QCustomUi
+
+\title QCustomUi Module
+
+\brief Contains classes for QCustomUi
+
+The QCustomUi provide more custom controls.
+*/
+
 struct QCtmApplication::Impl
 {
 	QLocalServer server;

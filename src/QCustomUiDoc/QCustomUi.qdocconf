@@ -6,7 +6,10 @@ defines += BUILD_STATIC
 project = QCustomUi
 description = QCustomUi Document
 
-headerdirs = ../QCustomUi
+headerdirs = ../QCustomUi \
+			$QtDir/include/QtWidgets \
+			$QtDir/include/QtGui \
+			$QtDir/include/QtCore
 sourcedirs = ../QCustomUi
 
 sources.fileextensions = "*.cpp *.qdoc *.mm *.qml"
@@ -34,3 +37,5 @@ qhp.QCustomUi.subprojects.classes.sortPages = true
 qhp.QCustomUi.filterAttributes    = qcustomui
 qhp.QCustomUi.customFilters.Qt.name = QCustomUi
 qhp.QCustomUi.customFilters.Qt.filterAttributes = qcustomui
+
+depends = *
