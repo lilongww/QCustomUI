@@ -26,13 +26,12 @@
 #include <QWindow>
 
 /*!
-\module QCustomUi
+    \module        QCustomUi
 
-\title QCustomUi Module
+    \title         QCustomUi Module
 
-\brief Contains classes for QCustomUi
-
-The QCustomUi provide more custom controls.
+    \brief         Contains classes for QCustomUi
+                   The QCustomUi provide more custom controls.
 */
 
 struct QCtmApplication::Impl

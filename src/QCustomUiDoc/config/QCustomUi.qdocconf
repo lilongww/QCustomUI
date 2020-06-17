@@ -1,23 +1,26 @@
-include(compat.qdocconf)
-include(qt-cpp-defines.qdocconf)
+include($$QTDIR/doc/global/qt-module-defaults-offline.qdocconf)
+include($$QTDIR/doc/global/fileextensions.qdocconf)
+include($$QTDIR/doc/global/qt-html-templates-offline.qdocconf)
 
 defines += BUILD_STATIC
+
+depends += qtcore qtwidgets qtgui
 
 project = QCustomUi
 description = QCustomUi Document
 
-headerdirs = ../QCustomUi \
-			$QtDir/include/QtWidgets \
-			$QtDir/include/QtGui \
-			$QtDir/include/QtCore
-sourcedirs = ../QCustomUi
+headers += $$QTDIR/include/QtWidgets/QWidget.h
+
+headerdirs += ../../QCustomUi
+sourcedirs += ../../QCustomUi \
+				../src
 
 sources.fileextensions = "*.cpp *.qdoc *.mm *.qml"
 headers.fileextensions = "*.h *.ch *.h++ *.hh *.hpp *.hxx"
 examples.fileextensions = "*.cpp *.h *.js *.xq *.svg *.xml *.ui *.qhp *.qhcp *.qml"
 examples.imageextensions = "*.png *.jpeg *.jpg *.gif *.mng"
 
-outputdir  =    ../../build/doc/QCustomUi
+outputdir  =    ../../../build/doc/QCustomUi
 outputformats = HTML
 
 qhp.projects = QCustomUi
@@ -37,5 +40,3 @@ qhp.QCustomUi.subprojects.classes.sortPages = true
 qhp.QCustomUi.filterAttributes    = qcustomui
 qhp.QCustomUi.customFilters.Qt.name = QCustomUi
 qhp.QCustomUi.customFilters.Qt.filterAttributes = qcustomui
-
-depends = *
