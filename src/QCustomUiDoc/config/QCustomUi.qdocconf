@@ -4,18 +4,22 @@ include($$QTDIR/doc/global/qt-html-templates-offline.qdocconf)
 
 defines += BUILD_STATIC
 
+indexes = $QT_INSTALL_DOCS/qtcore/qtcore.index \
+          $QT_INSTALL_DOCS/qtwidgets/qtwidgets.index \
+          $QT_INSTALL_DOCS/qtgui/qtgui.index
 depends += qtcore qtwidgets qtgui
 
 project = QCustomUi
 description = QCustomUi Document
 
-headers += $$QTDIR/include/QtWidgets/QWidget.h
+headers += $$QTDIR/include/QtWidgets/QWidget.h \
+           $$QTDIR/include/QtCore/QSortFilterProxyModel.h
 
 headerdirs += ../../QCustomUi
 sourcedirs += ../../QCustomUi \
 				../src
 
-sources.fileextensions = "*.cpp *.qdoc *.mm *.qml"
+sources.fileextensions = "*.cpp *.qdoc"
 headers.fileextensions = "*.h *.ch *.h++ *.hh *.hpp *.hxx"
 examples.fileextensions = "*.cpp *.h *.js *.xq *.svg *.xml *.ui *.qhp *.qhcp *.qml"
 examples.imageextensions = "*.png *.jpeg *.jpg *.gif *.mng"

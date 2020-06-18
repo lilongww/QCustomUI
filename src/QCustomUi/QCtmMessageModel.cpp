@@ -29,7 +29,7 @@ struct QCtmMessageModel::Impl
 };
 
 QCtmMessageModel::QCtmMessageModel(QObject *parent)
-	: QCtmAbstractMessageModel(parent)
+	: QCtmAbstractMessageTipModel(parent)
 	, m_impl(std::make_unique<Impl>())
 {
 }

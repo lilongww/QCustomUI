@@ -17,50 +17,43 @@
 **  along with QCustomUi.  If not, see <https://www.gnu.org/licenses/>.         **
 **********************************************************************************/
 
-#pragma once
-
-#include "qcustomui_global.h"
-
 #include "QCtmAbstractMessageTipView.h"
+#include "QCtmAbstractMessageTipModel.h"
 
-#include <memory>
+#include <QEvent>
 
-class QCtmNavigationBar;
-using QCtmAbstractMessagePtr = std::shared_ptr<class QCtmAbstractMessage>;
+/*!
+    \class      QCtmAbstractMessageTipView
+    \brief      QCtmAbstractMessageTipView provide abstract interface for message tip view.
+    \inherits   QCtmNavigationSidePane
+    \ingroup    QCustomUi
+    \inmodule   QCustomUi
+*/
 
-class QCUSTOMUI_EXPORT QCtmMessageView : public QCtmAbstractMessageTipView
+/*!
+    \brief      Constructs a message tip view with \a parent.
+*/
+QCtmAbstractMessageTipView::QCtmAbstractMessageTipView(QCtmNavigationBar *parent)
+	: QCtmNavigationSidePane(parent)
 {
-	Q_OBJECT
-		Q_PROPERTY(QColor decoration READ decoration WRITE setDecoration)
-		Q_PROPERTY(QColor titlecolor READ titleColor WRITE setTitleColor)
-		Q_PROPERTY(QColor timecolor READ timeColor WRITE setTimeColor)
-		Q_PROPERTY(QPixmap closebuttonicon READ closeButtonIcon WRITE setCloseButtonIcon)
-public:
-	QCtmMessageView(QCtmNavigationBar *parent);
-	~QCtmMessageView();
+	this->setDockArea(QCtmNavigationSidePane::DockArea::Right);
+}
 
-	virtual void setModel(QCtmAbstractMessageTipModel* model);
-	virtual QCtmAbstractMessageTipModel* model()const;
-	void setDecoration(const QColor& color);
-	const QColor& decoration()const;
-	void setTitleColor(const QColor& color);
-	const QColor& titleColor()const;
-	void setTimeColor(const QColor& color);
-	const QColor& timeColor()const;
-	void setCloseButtonIcon(const QPixmap& icon);
-	const QPixmap& closeButtonIcon()const;
-signals:
-	void closeButtonClicked(const QModelIndex& index);
-	void messageClicked(QCtmAbstractMessagePtr message);
-protected:
-	void resizeEvent(QResizeEvent*) override;
-	void showEvent(QShowEvent*) override;
-	bool eventFilter(QObject* o, QEvent* e) override;
+/*!
+    \brief      Destroys the message tip view.
+*/
+QCtmAbstractMessageTipView::~QCtmAbstractMessageTipView()
+{
+}
 
-	private slots:
-	void onCloseButtonClicked(const QModelIndex& index);
-	void onTitleClicked(const QModelIndex& index);
-private:
-	struct Impl;
-	std::unique_ptr<Impl> m_impl;
-};
+/*!
+    \fn         void QCtmAbstractMessageTipView::setModel(QCtmAbstractMessageTipModel* model)
+    \brief      Sets the message tip \a model.
+    \sa         model()
+*/
+
+/*!
+    \fn         QCtmAbstractMessageTipModel* QCtmAbstractMessageTipView::model() const 
+    \brief      Returns the message tip model.
+    \sa         setModel
+*/

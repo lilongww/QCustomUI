@@ -18,8 +18,8 @@
 **********************************************************************************/
 
 #include "QCtmMessageTip.h"
-#include "QCtmAbstractMessageModel.h"
-#include "QCtmAbstractMessageView.h"
+#include "QCtmAbstractMessageTipModel.h"
+#include "QCtmAbstractMessageTipView.h"
 #include "Private/QCtmMessageTipHelper_p.h"
 
 #include <QPainter>
@@ -28,8 +28,8 @@
 
 struct QCtmMessageTip::Impl
 {
-	QCtmAbstractMessageModel* model{ nullptr };
-	QCtmAbstractMessageView* view{ nullptr };
+	QCtmAbstractMessageTipModel* model{ nullptr };
+	QCtmAbstractMessageTipView* view{ nullptr };
 	QCtmMessageTipHelper* helper{ nullptr };
 };
 
@@ -49,7 +49,7 @@ QCtmMessageTip::~QCtmMessageTip()
 /**
  * @brief		Set the message model.
  */
-void QCtmMessageTip::setModel(QCtmAbstractMessageModel* model)
+void QCtmMessageTip::setModel(QCtmAbstractMessageTipModel* model)
 {
 	if (m_impl->model == model)
 		return;
@@ -68,7 +68,7 @@ void QCtmMessageTip::setModel(QCtmAbstractMessageModel* model)
 /**
  * @brief       Get the message model.
  */
-QCtmAbstractMessageModel* QCtmMessageTip::model() const
+QCtmAbstractMessageTipModel* QCtmMessageTip::model() const
 {
 	return m_impl->model;
 }
@@ -76,7 +76,7 @@ QCtmAbstractMessageModel* QCtmMessageTip::model() const
 /**
  * @brief       Set the message view.
  */
-void QCtmMessageTip::setView(QCtmAbstractMessageView* view)
+void QCtmMessageTip::setView(QCtmAbstractMessageTipView* view)
 {
 	m_impl->view = view;
 	connectView();
@@ -85,7 +85,7 @@ void QCtmMessageTip::setView(QCtmAbstractMessageView* view)
 /**
  * @brief       Get the message view.
  */
-QCtmAbstractMessageView* QCtmMessageTip::view() const
+QCtmAbstractMessageTipView* QCtmMessageTip::view() const
 {
 	return m_impl->view;
 }

@@ -31,7 +31,7 @@ public:
     QCtmLogFilterModel(QObject *parent);
     ~QCtmLogFilterModel();
 
-    void search(const QString& keywords);
+    void search(const QString& keyword);
     bool filterAcceptsRow(int sourceRow, const QModelIndex &sourceParent) const override;
 public slots:
     void showLog(QtMsgType type, bool show);

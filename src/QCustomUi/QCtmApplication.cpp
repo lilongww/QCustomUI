@@ -25,15 +25,6 @@
 #include <QWidget>
 #include <QWindow>
 
-/*!
-    \module        QCustomUi
-
-    \title         QCustomUi Module
-
-    \brief         Contains classes for QCustomUi
-                   The QCustomUi provide more custom controls.
-*/
-
 struct QCtmApplication::Impl
 {
 	QLocalServer server;
@@ -41,6 +32,17 @@ struct QCtmApplication::Impl
 	QString serverName;
 };
 
+/*!
+    \class      QCtmApplication
+    \brief      QCtmApplication provide a function to set the application singleton run, and set the default style sheet.
+    \inherits   QApplication
+    \ingroup    QCustomUi
+    \inmodule   QCustomUi
+*/
+
+/*!
+    \brief      Constructs a application with \a argc, \a argv and \a f.
+*/
 QCtmApplication::QCtmApplication(int& argc, char** argv, int f/*= ApplicationFlags*/)
 	: QApplication(argc, argv, f)
 	, m_impl(std::make_unique<Impl>())
@@ -48,13 +50,17 @@ QCtmApplication::QCtmApplication(int& argc, char** argv, int f/*= ApplicationFla
 	setStyleSheet(QCtmStyleSheet::defaultStyleSheet());
 }
 
+/*!
+    \brief      Destroys the application.
+*/
 QCtmApplication::~QCtmApplication()
 {
 }
 
-/**
- * @brief		Check to see if any other processes start using the same key.
- */
+/*!
+    \brief      Check to see if any other processes start using the same \a key.
+                Returns true if other processes start with the \a key.
+*/
 bool QCtmApplication::checkOtherProcess(const QString& key)
 {
 	if (key.isEmpty())

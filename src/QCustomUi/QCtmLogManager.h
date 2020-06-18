@@ -26,13 +26,12 @@
 #include <memory>
 
 class QCtmAbstractLogModel;
-struct QCtmLogData;
-typedef std::shared_ptr<QCtmLogData> QCtmLogDataPtr;
+using QCtmLogDataPtr = std::shared_ptr<class QCtmLogData>;
 
 class QCUSTOMUI_EXPORT QCtmLogManager
 {
 public:
-    enum LogSaveType
+    enum LogSavePolicy
     {
         Date,
         Size
@@ -42,8 +41,8 @@ public:
     static QCtmLogManager& instance();
     void setLogFilePath(const QString& path);
     const QString& logFilePath() const;
-    void setLogSaveType(LogSaveType type);
-    LogSaveType logSaveType() const;
+    void setLogSavePolicy(LogSavePolicy policy);
+    LogSavePolicy logSavePolicy() const;
     void setLogTypeEnable(QtMsgType type, bool save);
     bool logTypeEnable(QtMsgType type) const;
     void setLogSizeLimit(qint64 size);

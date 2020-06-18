@@ -23,45 +23,59 @@
 struct QCtmLogFilterModel::Impl
 {
     bool showLogs[QtMsgType::QtInfoMsg + 1];
-    QString keywords;
+    QString keyword;
 };
 
+/*!
+    \class      QCtmLogFilterModel
+    \brief      QCtmLogFilterModel provide a filter to filter the log messages.
+    \inherits   QSortFilterProxyModel
+    \ingroup    QCustomUi
+    \inmodule   QCustomUi
+*/
+
+/*!
+    \brief      Constructs a log message filter with \a parent.
+*/
 QCtmLogFilterModel::QCtmLogFilterModel(QObject *parent)
     : QSortFilterProxyModel(parent)
     , m_impl(std::make_unique<Impl>())
 {
 }
 
+/*!
+    \brief      Destroys the filter.
+*/
 QCtmLogFilterModel::~QCtmLogFilterModel()
 {
 }
 
-/**
- * @brief		Find the given keywords in the logs.
- */
-void QCtmLogFilterModel::search(const QString& keywords)
+/*!
+    \brief      Search logs that contains the given \a keyword
+*/
+void QCtmLogFilterModel::search(const QString& keyword)
 {
-    m_impl->keywords = keywords;
+    m_impl->keyword = keyword;
     this->invalidate();
 }
 
-/**
- * @brief		Override function.
- */
+/*!
+    \reimp
+*/
 bool QCtmLogFilterModel::filterAcceptsRow(int sourceRow, [[maybe_unused]] const QModelIndex &sourceParent) const
 {
     auto type = this->sourceModel()->data(this->sourceModel()->index(sourceRow, 0), QCtmLogModel::TypeRole).toInt();
-    if (!m_impl->keywords.isEmpty())
+    if (!m_impl->keyword.isEmpty())
     {
         const auto& desc = this->sourceModel()->data(this->sourceModel()->index(sourceRow, 1), Qt::DisplayRole).toString();
-        return m_impl->showLogs[type] && desc.contains(m_impl->keywords, Qt::CaseInsensitive);
+        return m_impl->showLogs[type] && desc.contains(m_impl->keyword, Qt::CaseInsensitive);
     }
     return m_impl->showLogs[type];
 }
 
-/**
- * @brief		Sets whether the message type is displayed.
- */
+/*!
+    \brief      Sets whether the message \a type will to \a show.
+*/
 void QCtmLogFilterModel::showLog(QtMsgType type, bool show)
 {
     m_impl->showLogs[type] = show;

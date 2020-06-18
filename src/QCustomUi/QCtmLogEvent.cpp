@@ -18,12 +18,24 @@
 **********************************************************************************/
 
 #include "QCtmLogEvent.h"
+#include "QCtmLogData.h"
 
 struct QCtmLogEvent::Impl
 {
     QCtmLogDataPtr log;
 };
 
+/*!
+    \class      QCtmLogEvent
+    \brief      QCtmLogEvent provide a custom event to transfer log message datas.
+    \inherits   QEvent
+    \ingroup    QCustomUi
+    \inmodule   QCustomUi
+*/
+
+/*!
+    \brief      Constructs a log event with \a log message data.
+*/
 QCtmLogEvent::QCtmLogEvent(QCtmLogDataPtr log)
     : QEvent((QEvent::Type)QCtmLog)
     , m_impl(std::make_unique<Impl>())
@@ -31,14 +43,17 @@ QCtmLogEvent::QCtmLogEvent(QCtmLogDataPtr log)
     m_impl->log = log;
 }
 
+/*!
+    \brief      Destroys the log event.
+*/
 QCtmLogEvent::~QCtmLogEvent()
 {
 
 }
 
-/**
- * @brief		Get the log data.
- */
+/*!
+    \brief      Returns the log message data.
+*/
 QCtmLogDataPtr QCtmLogEvent::log() const
 {
     return m_impl->log;

@@ -168,12 +168,13 @@
     <QtMoc Include="QCtmHeaderView.h">
     </QtMoc>
     <QtMoc Include="QCtmStageProgressBar.h" />
+    <ClInclude Include="QCtmLogData.h" />
     <ClInclude Include="QCtmStyleSheet.h" />
     <ClInclude Include="resource.h" />
     <ClInclude Include="Version.h" />
     <QtMoc Include="QCtmAbstractLogModel.h" />
-    <QtMoc Include="QCtmAbstractMessageModel.h" />
-    <QtMoc Include="QCtmAbstractMessageView.h" />
+    <QtMoc Include="QCtmAbstractMessageTipModel.h" />
+    <QtMoc Include="QCtmAbstractMessageTipView.h" />
     <QtMoc Include="QCtmColor.h" />
     <QtMoc Include="QCtmComboBox.h" />
     <QtMoc Include="QCtmDialog.h" />
@@ -205,8 +206,8 @@
   <ItemGroup>
     <ClCompile Include="Private\QCtmFramelessDelegate_win.cpp" />
     <ClCompile Include="QCtmAbstractLogModel.cpp" />
-    <ClCompile Include="QCtmAbstractMessageModel.cpp" />
-    <ClCompile Include="QCtmAbstractMessageView.cpp" />
+    <ClCompile Include="QCtmAbstractMessageTipModel.cpp" />
+    <ClCompile Include="QCtmAbstractMessageTipView.cpp" />
     <ClCompile Include="QCtmApplication.cpp" />
     <ClCompile Include="QCtmColor.cpp" />
     <ClCompile Include="QCtmComboBox.cpp" />
@@ -214,6 +215,7 @@
     <ClCompile Include="QCtmEditLabel.cpp" />
     <ClCompile Include="QCtmHeaderView.cpp" />
     <ClCompile Include="QCtmIPAddressEdit.cpp" />
+    <ClCompile Include="QCtmLogData.cpp" />
     <ClCompile Include="QCtmLogEvent.cpp" />
     <ClCompile Include="QCtmLogFilterModel.cpp" />
     <ClCompile Include="QCtmLogManager.cpp" />

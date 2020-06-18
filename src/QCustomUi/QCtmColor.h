@@ -54,6 +54,6 @@ public:
     };
     Q_ENUM(Colors);
 
-    static QColor generalBackgroundColor(int index);
-    static QColor generalForegroundColor(QColor color);
+    static QColor generateBackgroundColor(int index);
+    static QColor generateForegroundColor(QColor color);
 };

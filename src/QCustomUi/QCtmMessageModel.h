@@ -21,11 +21,11 @@
 
 #include "qcustomui_global.h"
 
-#include "QCtmAbstractMessageModel.h"
+#include "QCtmAbstractMessageTipModel.h"
 
 #include <QColor>
 
-class QCUSTOMUI_EXPORT QCtmMessageModel : public QCtmAbstractMessageModel
+class QCUSTOMUI_EXPORT QCtmMessageModel : public QCtmAbstractMessageTipModel
 {
 	Q_OBJECT
 		Q_PROPERTY(QColor titlecolor READ titleColor WRITE setTitleColor)

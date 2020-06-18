@@ -45,8 +45,8 @@ public:
     QCtmLogWidget(const QString& objectName, QWidget *parent = Q_NULLPTR);
     ~QCtmLogWidget();
 
-    void setLogInsertMode(LogInsertMode mode);
-    LogInsertMode logInsertMode() const;
+    void setLogInsertPolicy(QCtmLogData::LogInsertPolicy policy);
+    QCtmLogData::LogInsertPolicy logInsertPolicy() const;
     void setColumnVisible(QCtmLogColumn column, bool visible);
     bool columnVisible(QCtmLogColumn column) const;
     void setInfoIcon(const QIcon& icon);

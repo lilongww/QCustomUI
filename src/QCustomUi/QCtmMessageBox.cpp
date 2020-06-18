@@ -40,6 +40,18 @@ struct QCtmMessageBox::Impl
     QAbstractButton* escapeButton{ nullptr };
 };
 
+/*!
+    \class      QCtmMessageBox
+    \brief      QCtmMessageBox provide a custom looking message box, The usage is similar to \l QMessageBox.
+    \inherits   QCtmDialog
+    \ingroup    QCustomUi
+    \inmodule   QCustomUi
+    \sa         QMessageBox
+*/
+
+/*!
+    \brief      Constructs a message box with the given \a parent.
+*/
 QCtmMessageBox::QCtmMessageBox(QWidget *parent)
     : QCtmDialog(parent)
     , m_impl(std::make_unique<Impl>())
@@ -48,6 +60,9 @@ QCtmMessageBox::QCtmMessageBox(QWidget *parent)
     init();
 }
 
+/*!
+    \brief      Constructs a message box with the given \a icon, \a title, \a text, \a buttons, \a parent, \a f.
+*/
 QCtmMessageBox::QCtmMessageBox(Icon icon
     , const QString &title
     , const QString &text
@@ -80,10 +95,17 @@ QCtmMessageBox::QCtmMessageBox(Icon icon
     }
 }
 
+/*!
+    \brief      Destorys the message box.
+*/
 QCtmMessageBox::~QCtmMessageBox()
 {
 }
 
+/*!
+    \brief      Sets the message box's default button to \a button.
+    \sa         defaultButton
+*/
 void QCtmMessageBox::setDefaultButton(StandardButton button)
 {
     auto btn = m_impl->buttonBox->button(QDialogButtonBox::StandardButton(button));
@@ -94,16 +116,27 @@ void QCtmMessageBox::setDefaultButton(StandardButton button)
     }
 }
 
+/*!
+    \brief      Returns the message box's default button.
+    \sa         setDefaultButton
+*/
 QCtmMessageBox::StandardButton QCtmMessageBox::defaultButton()
 {
     return QCtmMessageBox::StandardButton(m_impl->buttonBox->standardButton(m_impl->defaultButton));
 }
 
+/*!
+    \brief      Returns the button that was clicked by the user, or nullptr if the user hit the Esc key and no escape button was set.
+                If exec() hasn't been called yet, returns nullptr.
+*/
 QAbstractButton* QCtmMessageBox::clickedButton() const
 {
     return m_impl->clickedButton;
 }
 
+/*!
+    \brief      Returns the standard button enum value corresponding to the given \a button, or NoButton if the given button isn't a standard button.
+*/
 QCtmMessageBox::StandardButton QCtmMessageBox::standardButton(QAbstractButton* button) const
 {
     if (!button)
@@ -114,6 +147,10 @@ QCtmMessageBox::StandardButton QCtmMessageBox::standardButton(QAbstractButton* b
     return QCtmMessageBox::StandardButton(m_impl->buttonBox->standardButton(button));
 }
 
+/*!
+    \brief      Adds the given \a button to the message box with the specified \a role.
+    \sa         removeButton
+*/
 void QCtmMessageBox::addButton(QAbstractButton* button, ButtonRole role)
 {
 	if (!button)
@@ -123,6 +160,11 @@ void QCtmMessageBox::addButton(QAbstractButton* button, ButtonRole role)
 	m_impl->buttonBox->addButton(button, (QDialogButtonBox::ButtonRole)role);
 }
 
+/*!
+    \brief      Creates a button with the given \a text, adds it to the message box for the specified \a role, and returns it.
+    \overload   addButton
+    \sa         removeButton
+*/
 QPushButton* QCtmMessageBox::addButton(const QString& text, ButtonRole role)
 {
 	auto btn = new QPushButton(text, this);
@@ -130,11 +172,20 @@ QPushButton* QCtmMessageBox::addButton(const QString& text, ButtonRole role)
 	return btn;
 }
 
+/*!
+    \brief      Adds a standard button to the message box if it is valid to do so, and returns the push \a button.
+    \overload   addButton
+    \sa         removeButton
+*/
 QPushButton* QCtmMessageBox::addButton(StandardButton button)
 {
 	return m_impl->buttonBox->addButton((QDialogButtonBox::StandardButton)button);
 }
 
+/*!
+    \brief      Removes button from the \a button box without deleting it.
+    \sa         addButton
+*/
 void QCtmMessageBox::removeButton(QAbstractButton* button)
 {
 	if (!button)
@@ -142,6 +193,10 @@ void QCtmMessageBox::removeButton(QAbstractButton* button)
 	m_impl->buttonBox->removeButton(button);
 }
 
+/*!
+    \brief      Constructs and show a message box by given \a parent, \a title, \a text, \a buttons, \a defaultButton.
+    \sa         QMessageBox::critical
+*/
 QCtmMessageBox::StandardButton QCtmMessageBox::critical(QWidget *parent, const QString &title, const QString &text, StandardButtons buttons /*= Ok */, StandardButton defaultButton /*= NoButton*/)
 {
     QCtmMessageBox box(Icon::Critical, title, text, buttons, parent);
@@ -150,6 +205,10 @@ QCtmMessageBox::StandardButton QCtmMessageBox::critical(QWidget *parent, const Q
     return box.standardButton(box.clickedButton());
 }
 
+/*!
+    \brief      Constructs and show a message box by given \a parent, \a title, \a text, \a buttons, \a defaultButton.
+    \sa         QMessageBox::information
+*/
 QCtmMessageBox::StandardButton QCtmMessageBox::information(QWidget *parent, const QString &title, const QString &text, StandardButtons buttons /*= Ok */, StandardButton defaultButton /*= NoButton*/)
 {
     QCtmMessageBox box(Icon::Information, title, text, buttons, parent);
@@ -158,6 +217,10 @@ QCtmMessageBox::StandardButton QCtmMessageBox::information(QWidget *parent, cons
     return box.standardButton(box.clickedButton());
 }
 
+/*!
+    \brief      Constructs and show a message box by given \a parent, \a title, \a text, \a buttons, \a defaultButton.
+    \sa         QMessageBox::question
+*/
 QCtmMessageBox::StandardButton QCtmMessageBox::question(QWidget *parent, const QString &title, const QString &text, StandardButtons buttons /*= StandardButtons(Yes | No) */, StandardButton defaultButton /*= NoButton*/)
 {
     QCtmMessageBox box(Icon::Question, title, text, buttons, parent);
@@ -166,6 +229,10 @@ QCtmMessageBox::StandardButton QCtmMessageBox::question(QWidget *parent, const Q
     return box.standardButton(box.clickedButton());
 }
 
+/*!
+    \brief      Constructs and show a message box by given \a parent, \a title, \a text, \a buttons, \a defaultButton.
+    \sa         QMessageBox::warning
+*/
 QCtmMessageBox::StandardButton QCtmMessageBox::warning(QWidget *parent, const QString &title, const QString &text, StandardButtons buttons /*= Ok */, StandardButton defaultButton /*= NoButton*/)
 {
     QCtmMessageBox box(Icon::Warning, title, text, buttons, parent);
@@ -174,12 +241,18 @@ QCtmMessageBox::StandardButton QCtmMessageBox::warning(QWidget *parent, const QS
     return box.standardButton(box.clickedButton());
 }
 
+/*!
+    \reimp
+*/
 void QCtmMessageBox::showEvent(QShowEvent *event)
 {
     updateSize();
     QCtmDialog::showEvent(event);
 }
 
+/*!
+    \brief      Initialization
+*/
 void QCtmMessageBox::init()
 {
     m_impl->message = new QLabel(this);
@@ -203,12 +276,20 @@ void QCtmMessageBox::init()
     connect(m_impl->buttonBox, &QDialogButtonBox::rejected, this, &QDialog::reject);
 }
 
+/*!
+    \brief      Calculate the minimum width of the message box.
+    \sa         updateSize
+*/
 int QCtmMessageBox::layoutMinimumWidth()
 {
     centralWidget()->layout()->activate();
     return centralWidget()->layout()->totalMinimumSize().width();
 }
 
+/*!
+    \brief      Calculate the size of the message box.
+    \sa         layoutMinimumWidth
+*/
 void QCtmMessageBox::updateSize()
 {
     if (!isVisible())
@@ -253,6 +334,9 @@ void QCtmMessageBox::updateSize()
         , height + this->titleBar()->height() + margins.bottom() + margins.top() + centralWidget()->layout()->margin());
 }
 
+/*!
+    \brief      Calculate the escape button.
+*/
 void QCtmMessageBox::detectEscapeButton() const
 {
     if (m_impl->escapeButton) { // escape button explicitly set

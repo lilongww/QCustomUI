@@ -21,12 +21,28 @@
 
 #include <QListView>
 
+/*!
+    \class      QCtmComboBox
+    \brief      QCtmComboBox provide a combobox, the pop list view can be set style sheet.
+    \inherits   QComboBox
+    \ingroup    QCustomUi
+    \inmodule   QCustomUi
+    \sa         QComboBox
+*/
+
+/*!
+    \brief      Constructs a combobox with given \a parent.
+*/
+
 QCtmComboBox::QCtmComboBox(QWidget *parent)
     : QComboBox(parent)
 {
     setView(new QListView(this));
 }
 
+/*!
+    \brief      Destroys the combobox.
+*/
 QCtmComboBox::~QCtmComboBox()
 {
 }

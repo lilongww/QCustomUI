@@ -19,6 +19,7 @@
 
 #include "QCtmLogModel.h"
 #include "QCtmLogEvent.h"
+#include "QCtmLogData.h"
 
 #include <QDebug>
 
@@ -42,9 +43,21 @@ struct QCtmLogModel::Impl
     int warningCount{ 0 };
     int infoCount{ 0 };
 
-    LogInsertMode logInsertMode{ ASC };
+    QCtmLogData::LogInsertPolicy logInsertPolicy{ QCtmLogData::LogInsertPolicy::ASC };
 };
 
+/*!
+    \class      QCtmLogModel
+    \brief      QCtmLogModel provide a log message model to show log message datas in view.
+    \inherits   QCtmAbstractLogModel
+    \ingroup    QCustomUi
+    \inmodule   QCustomUi
+*/
+
+/*!
+    \brief      Constructs a model with \a objectName and \a parent.
+    \sa         QObject::setObjectName
+*/
 QCtmLogModel::QCtmLogModel(const QString& objectName, QObject *parent)
     : QCtmAbstractLogModel(objectName, parent)
     , m_impl(std::make_unique<Impl>())
@@ -52,10 +65,16 @@ QCtmLogModel::QCtmLogModel(const QString& objectName, QObject *parent)
     m_impl->headers << tr("Lv") << tr("DateTime") << tr("Description");
 }
 
+/*!
+    \brief      Destroys the model.
+*/
 QCtmLogModel::~QCtmLogModel()
 {
 }
 
+/*!
+    \brief      Clear all log messages.
+*/
 void QCtmLogModel::clear()
 {
     beginResetModel();
@@ -66,6 +85,9 @@ void QCtmLogModel::clear()
     endResetModel();
 }
 
+/*!
+    \reimp
+*/
 QVariant QCtmLogModel::data(const QModelIndex &index, int role /* = Qt::DisplayRole */) const
 {
     auto &msg = m_impl->datas[index.row()];
@@ -112,11 +134,17 @@ QVariant QCtmLogModel::data(const QModelIndex &index, int role /* = Qt::DisplayR
     return QVariant();
 }
 
+/*!
+    \reimp
+*/
 bool QCtmLogModel::setData([[maybe_unused]] const QModelIndex &index, [[maybe_unused]] const QVariant &value, [[maybe_unused]] int role /* = Qt::EditRole */)
 {
     return false;
 }
 
+/*!
+    \reimp
+*/
 QVariant QCtmLogModel::headerData(int section, Qt::Orientation orientation, int role /* = Qt::DisplayRole */) const
 {
     if (role == Qt::DisplayRole&&orientation == Qt::Horizontal)
@@ -126,120 +154,139 @@ QVariant QCtmLogModel::headerData(int section, Qt::Orientation orientation, int 
     return QVariant();
 }
 
+/*!
+    \reimp
+*/
 int QCtmLogModel::rowCount([[maybe_unused]] const QModelIndex& parent /*= QModelIndex()*/) const
 {
     return m_impl->datas.size();
 }
 
+/*!
+    \reimp
+*/
 int QCtmLogModel::columnCount([[maybe_unused]] const QModelIndex &parent /*= QModelIndex()*/) const
 {
     return m_impl->headers.size();
 }
 
-/**
- * @brief		Sets the maximum log message count.
- */
+/*!
+    \brief      Sets maximum message \a count of the log.
+    \sa         maximumCount()
+*/
 void QCtmLogModel::setMaximumCount(int count)
 {
 	m_impl->maxCount = count;
 }
 
-/**
- * @brief		Gets the maximum log message count.
- */
+/*!
+    \brief      Returns maximum message count of the log.
+    \sa         setMaximumCount
+*/
 int QCtmLogModel::maximumCount() const
 {
 	return m_impl->maxCount;
 }
 
-/**
- * @brief		Sets the log insert policy.
- */
-void QCtmLogModel::setLogInsertMode(LogInsertMode mode)
+/*!
+    \brief      Sets insert \a policy of the log.
+    \sa         logInsertPolicy()
+*/
+void QCtmLogModel::setLogInsertPolicy(QCtmLogData::LogInsertPolicy policy)
 {
-    m_impl->logInsertMode = mode;
+    m_impl->logInsertPolicy = policy;
 }
 
-/**
- * @brief		Gets the log insert policy.
- */
-LogInsertMode QCtmLogModel::logInsertMode() const
+/*!
+    \brief      Returns insert policy of the log.
+    \sa         setLogInsertPolicy
+*/
+QCtmLogData::LogInsertPolicy QCtmLogModel::logInsertPolicy() const
 {
-    return m_impl->logInsertMode;
+    return m_impl->logInsertPolicy;
 }
 
-/**
- * @brief		Sets the icon for information log message type.
- */
+/*!
+    \brief      Sets the \a icon for information log message type.
+    \sa         infoIcon()
+*/
 void QCtmLogModel::setInfoIcon(const QIcon& icon)
 {
     m_impl->infoIcon = icon;
 }
 
-/**
- * @brief		Gets the icon for information log message.
- */
+/*!
+    \brief      Returns the icon for information log message.
+    \sa         setInfoIcon
+*/
 const QIcon& QCtmLogModel::infoIcon() const
 {
     return m_impl->infoIcon;
 }
 
-/**
- * @brief		Sets the icon for warning log message type.
- */
+/*!
+    \brief      Sets the \a icon for warning log message type.
+    \sa         warningIcon()
+*/
 void QCtmLogModel::setWarningIcon(const QIcon& icon)
 {
     m_impl->warningIcon = icon;
 }
 
-/**
- * @brief		Gets the icon for warning log message type.
- */
+/*!
+    \brief      Returns the icon for warning log message type.
+    \sa         setWarningIcon
+*/
 const QIcon& QCtmLogModel::warningIcon() const
 {
     return m_impl->warningIcon;
 }
 
-/**
- * @brief		Sets the icon for error log message type.
- */
+/*!
+    \brief      Sets the \a icon for error log message type.
+    \sa         errorIcon()
+*/
 void QCtmLogModel::setErrorIcon(const QIcon& icon)
 {
     m_impl->errorIcon = icon;
 }
 
-/**
- * @brief		Gets the icon for error log message type.
- */
+/*!
+    \brief      Returns the icon for error log message type.
+    \sa         setErrorIcon
+*/
 const QIcon& QCtmLogModel::errorIcon() const
 {
     return m_impl->errorIcon;
 }
 
-/**
- * @brief		Get the count for warning log message type.
- */
+/*!
+    \brief      Returns the count for warning log message type.
+*/
 int QCtmLogModel::warningCount() const
 {
     return m_impl->warningCount;
 }
 
-/**
- * @brief		Get the count for information log message type.
- */
+/*!
+    \brief      Returns the count for information log message type.
+*/
 int QCtmLogModel::infoCount() const
 {
     return m_impl->infoCount;
 }
 
-/**
- * @brief		Get the count for error log message type.
- */
+/*!
+    \brief      Returns the count for error log message type.
+*/
 int QCtmLogModel::errorCount() const
 {
     return m_impl->errorCount;
 }
 
+/*!
+    \reimp
+*/
 void QCtmLogModel::logEvent(QCtmLogEvent* e)
 {
 	while (m_impl->datas.size() >= m_impl->maxCount && !m_impl->datas.isEmpty())
@@ -260,7 +307,7 @@ void QCtmLogModel::logEvent(QCtmLogEvent* e)
             continue;
         }
         beginRemoveRows(QModelIndex(), 0, 0);
-        if (m_impl->logInsertMode == ASC)
+        if (m_impl->logInsertPolicy == QCtmLogData::LogInsertPolicy::ASC)
             m_impl->datas.removeFirst();
         else
             m_impl->datas.removeLast();
@@ -289,13 +336,16 @@ void QCtmLogModel::logEvent(QCtmLogEvent* e)
         break;
     }
     beginInsertRows(QModelIndex(), m_impl->datas.size(), m_impl->datas.size());
-    if (m_impl->logInsertMode == ASC)
+    if (m_impl->logInsertPolicy == QCtmLogData::LogInsertPolicy::ASC)
         m_impl->datas.push_back(msg);
     else
         m_impl->datas.push_front(msg);
     endInsertRows();
 }
 
+/*!
+    \brief      Update the header texts when the language has been changed.
+*/
 void QCtmLogModel::retranslateUi()
 {
     m_impl->headers.clear();

@@ -25,8 +25,8 @@
 
 #include <memory>
 
-class QCtmAbstractMessageModel;
-class QCtmAbstractMessageView;
+class QCtmAbstractMessageTipModel;
+class QCtmAbstractMessageTipView;
 class QStyleOptionButton;
 
 class QCUSTOMUI_EXPORT QCtmMessageTip : public QAbstractButton
@@ -37,10 +37,10 @@ public:
 	QCtmMessageTip(QWidget *parent);
 	~QCtmMessageTip();
 
-	void setModel(QCtmAbstractMessageModel* model);
-	QCtmAbstractMessageModel* model()const;
-	void setView(QCtmAbstractMessageView* view);
-	QCtmAbstractMessageView* view()const;
+	void setModel(QCtmAbstractMessageTipModel* model);
+	QCtmAbstractMessageTipModel* model()const;
+	void setView(QCtmAbstractMessageTipView* view);
+	QCtmAbstractMessageTipView* view()const;
 	void setTipColor(const QColor& color);
 	const QColor& tipColor()const;
 private:

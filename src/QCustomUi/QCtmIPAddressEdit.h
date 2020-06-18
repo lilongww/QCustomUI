@@ -42,13 +42,7 @@ public:
     void setReadOnly(bool ro);
     bool isReadOnly() const;
 signals:
-    /**
-     * @brief		When the text is changed, the signal will be emit.
-     */
     void editChanged();
-    /**
-     * @brief		When the edit operation is finished, the signal will be emit.
-     */
     void editFinished();
 
 protected:

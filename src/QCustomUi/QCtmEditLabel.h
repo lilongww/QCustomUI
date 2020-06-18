@@ -30,7 +30,7 @@ class QCUSTOMUI_EXPORT QCtmEditLabel : public QLabel
 {
 	Q_OBJECT
 
-	Q_PROPERTY(bool isReadOnly READ isReadOnly WRITE setReadOnly)
+	Q_PROPERTY(bool readOnly READ isReadOnly WRITE setReadOnly)
 	Q_PROPERTY(QIcon editButtonIcon READ editButtonIcon WRITE setEditButtonIcon)
 public:
 	QCtmEditLabel(QWidget *parent = nullptr, Qt::WindowFlags f = Qt::WindowFlags());

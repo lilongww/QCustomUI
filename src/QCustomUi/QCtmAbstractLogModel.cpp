@@ -21,6 +21,17 @@
 #include "QCtmLogEvent.h"
 #include "QCtmLogManager.h"
 
+/*!
+    \class      QCtmAbstractLogModel
+    \brief      QCtmAbstractLogModel provide a abstract log model interface.
+    \inherits   QAbstractTableModel
+    \ingroup    QCustomUi
+    \inmodule   QCustomUi
+*/
+
+/*!
+    \brief      Constructs a model with \a objectName and \a parent.
+*/
 QCtmAbstractLogModel::QCtmAbstractLogModel(const QString& objectName, QObject *parent)
     : QAbstractTableModel(parent)
 {
@@ -28,11 +39,22 @@ QCtmAbstractLogModel::QCtmAbstractLogModel(const QString& objectName, QObject *p
     QCtmLogManager::instance().registerModel(this);
 }
 
+/*!
+    \brief      Destroys the model.
+*/
 QCtmAbstractLogModel::~QCtmAbstractLogModel()
 {
     QCtmLogManager::instance().unRegisterModel(this);
 }
 
+/*!
+    \fn         void QCtmAbstractLogModel::clear()
+    \brief      Clear the model.
+*/
+
+/*!
+    \reimp
+*/
 bool QCtmAbstractLogModel::insertRows(int row, int count, const QModelIndex &parent /* = QModelIndex() */)
 {
     beginInsertRows(parent, row, row + count - 1);
@@ -40,6 +62,9 @@ bool QCtmAbstractLogModel::insertRows(int row, int count, const QModelIndex &par
     return true;
 }
 
+/*!
+    \reimp
+*/
 bool QCtmAbstractLogModel::insertColumns(int column, int count, const QModelIndex &parent /* = QModelIndex() */)
 {
     beginInsertColumns(parent, column, column + count - 1);
@@ -47,6 +72,9 @@ bool QCtmAbstractLogModel::insertColumns(int column, int count, const QModelInde
     return true;
 }
 
+/*!
+    \reimp
+*/
 bool QCtmAbstractLogModel::removeRows(int row, int count, const QModelIndex &parent /* = QModelIndex() */)
 {
     beginRemoveRows(parent, row, count + count - 1);
@@ -54,6 +82,9 @@ bool QCtmAbstractLogModel::removeRows(int row, int count, const QModelIndex &par
     return true;
 }
 
+/*!
+    \reimp
+*/
 bool QCtmAbstractLogModel::removeColumns(int column, int count, const QModelIndex &parent /* = QModelIndex() */)
 {
     beginRemoveColumns(parent, column, column + count - 1);
@@ -61,11 +92,17 @@ bool QCtmAbstractLogModel::removeColumns(int column, int count, const QModelInde
     return true;
 }
 
+/*!
+    \brief      Answer the log event, \a e.
+*/
 void QCtmAbstractLogModel::logEvent(QCtmLogEvent* e)
 {
     Q_UNUSED(e)
 }
 
+/*!
+    \reimp
+*/
 bool QCtmAbstractLogModel::event(QEvent * e)
 {
     if (e->type() == QCtmLogEvent::QCtmLog)

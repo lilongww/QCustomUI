@@ -84,6 +84,9 @@
     <ClInclude Include="resource.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="QCtmLogData.h">
+      <Filter>Log</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Private\flowlayout.cpp">
@@ -132,12 +135,6 @@
       <Filter>Private</Filter>
     </ClCompile>
     <ClCompile Include="QCtmAbstractLogModel.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="QCtmAbstractMessageModel.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="QCtmAbstractMessageView.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="QCtmColor.cpp">
@@ -236,15 +233,18 @@
     <ClCompile Include="QCtmNavigationSidePane.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="QCtmLogData.cpp">
+      <Filter>Log</Filter>
+    </ClCompile>
+    <ClCompile Include="QCtmAbstractMessageTipModel.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="QCtmAbstractMessageTipView.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <QtMoc Include="QCtmAbstractLogModel.h">
-      <Filter>Header Files</Filter>
-    </QtMoc>
-    <QtMoc Include="QCtmAbstractMessageModel.h">
-      <Filter>Header Files</Filter>
-    </QtMoc>
-    <QtMoc Include="QCtmAbstractMessageView.h">
       <Filter>Header Files</Filter>
     </QtMoc>
     <QtMoc Include="QCtmColor.h">
@@ -365,6 +365,12 @@
       <Filter>Display Widgets</Filter>
     </QtMoc>
     <QtMoc Include="QCtmNavigationSidePane.h">
+      <Filter>Header Files</Filter>
+    </QtMoc>
+    <QtMoc Include="QCtmAbstractMessageTipModel.h">
+      <Filter>Header Files</Filter>
+    </QtMoc>
+    <QtMoc Include="QCtmAbstractMessageTipView.h">
       <Filter>Header Files</Filter>
     </QtMoc>
   </ItemGroup>

@@ -17,28 +17,43 @@
 **  along with QCustomUi.  If not, see <https://www.gnu.org/licenses/>.         **
 **********************************************************************************/
 
-#include "QCtmAbstractMessageModel.h"
+#include "QCtmAbstractMessageTipModel.h"
 
-struct QCtmAbstractMessageModel::Impl
+struct QCtmAbstractMessageTipModel::Impl
 {
 	QList<QCtmAbstractMessagePtr> messages;
 	int maxCount{ 10000 };
 };
 
-QCtmAbstractMessageModel::QCtmAbstractMessageModel(QObject *parent)
+/*!
+    \class      QCtmAbstractMessageTipModel
+    \brief      QCtmAbstractMessageTipModel provide abstract interface of message tip model.
+    \inherits   QAbstractTableModel
+    \ingroup    QCustomUi
+    \inmodule   QCustomUi
+*/
+
+/*!
+    \brief      Constructs a message tip model with \a parent.
+*/
+QCtmAbstractMessageTipModel::QCtmAbstractMessageTipModel(QObject *parent)
 	: QAbstractTableModel(parent)
 	, m_impl(std::make_unique<Impl>())
 {
 }
 
-QCtmAbstractMessageModel::~QCtmAbstractMessageModel()
+/*!
+    \brief      Destroys the model.
+*/
+QCtmAbstractMessageTipModel::~QCtmAbstractMessageTipModel()
 {
 }
 
-/**
- * @brief  Add a message.
- */
-void QCtmAbstractMessageModel::addMessage(QCtmAbstractMessagePtr msg)
+/*!
+    \brief      Add a message tip, \a msg.
+    \sa         insertMessage, removeMessage
+*/
+void QCtmAbstractMessageTipModel::addMessage(QCtmAbstractMessagePtr msg)
 {
 	while (m_impl->messages.size() >= m_impl->maxCount && !m_impl->messages.isEmpty())
 	{
@@ -52,72 +67,85 @@ void QCtmAbstractMessageModel::addMessage(QCtmAbstractMessagePtr msg)
 	insertRow(rowCount());
 }
 
-/**
- * @brief  Insert a message.
- */
-void QCtmAbstractMessageModel::insertMessage(int index, QCtmAbstractMessagePtr msg)
+/*!
+    \brief      Insert a message tip with \a index and \a msg.
+    \sa         addMessage, removeMessage
+*/
+void QCtmAbstractMessageTipModel::insertMessage(int index, QCtmAbstractMessagePtr msg)
 {
 	m_impl->messages.insert(index, msg);
 	insertRow(index);
 }
 
-/**
- * @brief  Remove a message.
- */
-void QCtmAbstractMessageModel::removeMessage(QCtmAbstractMessagePtr msg)
+/*!
+    \brief      Remove a message tip, \a msg.
+    \sa         addMessage, insertMessage
+*/
+void QCtmAbstractMessageTipModel::removeMessage(QCtmAbstractMessagePtr msg)
 {
 	const auto& index = m_impl->messages.indexOf(msg);
 	removeRow(index);
 	m_impl->messages.removeOne(msg);
 }
 
-/**
- * @brief  Get the message of row.
- */
-QCtmAbstractMessagePtr QCtmAbstractMessageModel::message(int row) const
+/*!
+    \brief      Return the message tip by \a row.
+*/
+QCtmAbstractMessagePtr QCtmAbstractMessageTipModel::message(int row) const
 {
 	return m_impl->messages.at(row);
 }
 
-/**
- * @brief    Remove all messages.
- */
-void QCtmAbstractMessageModel::clear()
+/*!
+    \brief      Remove all message tips.
+*/
+void QCtmAbstractMessageTipModel::clear()
 {
 	beginResetModel();
 	m_impl->messages.clear();
 	endResetModel();
 }
 
-/**
- * @brief		Sets the maximum count of messages.
- */
-void QCtmAbstractMessageModel::setMaximumCount(int count)
+/*!
+    \brief      Sets the maximum \a count of message tips.
+    \sa         maximumCount()
+*/
+void QCtmAbstractMessageTipModel::setMaximumCount(int count)
 {
 	m_impl->maxCount = count;
 }
 
-/**
- * @brief		Gets the maximum count of messages.
- */
-int QCtmAbstractMessageModel::maximumCount() const
+/*!
+    \brief      Returns the maximum count of message tips.
+    \sa         setMaximumCount
+*/
+int QCtmAbstractMessageTipModel::maximumCount() const
 {
 	return m_impl->maxCount;
 }
 
-int QCtmAbstractMessageModel::rowCount([[maybe_unused]] const QModelIndex &parent /*= QModelIndex()*/) const
+/*!
+    \reimp
+*/
+int QCtmAbstractMessageTipModel::rowCount([[maybe_unused]] const QModelIndex &parent /*= QModelIndex()*/) const
 {
 	return m_impl->messages.size();
 }
 
-bool QCtmAbstractMessageModel::removeRows(int row, int count, const QModelIndex &parent /*= QModelIndex()*/)
+/*!
+    \reimp
+*/
+bool QCtmAbstractMessageTipModel::removeRows(int row, int count, const QModelIndex &parent /*= QModelIndex()*/)
 {
 	beginRemoveRows(parent, row, row + count - 1);
 	endRemoveRows();
 	return true;
 }
 
-bool QCtmAbstractMessageModel::insertRows(int row, int count, const QModelIndex &parent /*= QModelIndex()*/)
+/*!
+    \reimp
+*/
+bool QCtmAbstractMessageTipModel::insertRows(int row, int count, const QModelIndex &parent /*= QModelIndex()*/)
 {
 	beginInsertRows(parent, row, row + count - 1);
 	endInsertRows();

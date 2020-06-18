@@ -18,7 +18,7 @@
 **********************************************************************************/
 
 #include "QCtmMessageView.h"
-#include "QCtmAbstractMessageModel.h"
+#include "QCtmAbstractMessageTipModel.h"
 #include "Private/QCtmMessageViewDelegate_p.h"
 
 #include <QListView>
@@ -31,7 +31,7 @@
 struct QCtmMessageView::Impl
 {
 	QListView *view{ nullptr };
-	QCtmAbstractMessageModel* model{ nullptr };
+	QCtmAbstractMessageTipModel* model{ nullptr };
 	QCtmMessageViewDelegate* delegate{nullptr};
 
 	QColor titleColor;
@@ -39,7 +39,7 @@ struct QCtmMessageView::Impl
 };
 
 QCtmMessageView::QCtmMessageView(QCtmNavigationBar *parent)
-	: QCtmAbstractMessageView(parent)
+	: QCtmAbstractMessageTipView(parent)
 	, m_impl(std::make_unique<Impl>())
 {
 	this->setTitleVisible(true);
@@ -64,7 +64,7 @@ QCtmMessageView::~QCtmMessageView()
 {
 }
 
-void QCtmMessageView::setModel(QCtmAbstractMessageModel* model)
+void QCtmMessageView::setModel(QCtmAbstractMessageTipModel* model)
 {
 	m_impl->model = model;
 	setTimeColor(m_impl->timeColor);
@@ -72,7 +72,7 @@ void QCtmMessageView::setModel(QCtmAbstractMessageModel* model)
 	m_impl->view->setModel(model);
 }
 
-QCtmAbstractMessageModel* QCtmMessageView::model() const
+QCtmAbstractMessageTipModel* QCtmMessageView::model() const
 {
 	return m_impl->model;
 }
@@ -147,13 +147,13 @@ const QPixmap& QCtmMessageView::closeButtonIcon() const
 
 void QCtmMessageView::resizeEvent(QResizeEvent* e)
 {
-	QCtmAbstractMessageView::resizeEvent(e);
+	QCtmAbstractMessageTipView::resizeEvent(e);
 	m_impl->view->reset();
 }
 
 void QCtmMessageView::showEvent(QShowEvent* e)
 {
-	QCtmAbstractMessageView::showEvent(e);
+	QCtmAbstractMessageTipView::showEvent(e);
 }
 
 bool QCtmMessageView::eventFilter(QObject* o, QEvent* e)

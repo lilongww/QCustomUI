@@ -16,38 +16,34 @@
 **  You should have received a copy of the GNU Lesser General Public License    **
 **  along with QCustomUi.  If not, see <https://www.gnu.org/licenses/>.         **
 **********************************************************************************/
-
 #pragma once
 
 #include "qcustomui_global.h"
 
-#include <QAbstractTableModel>
+#include <QDateTime>
+#include <qlogging.h>
 
 #include <memory>
 
-using QCtmAbstractMessagePtr = std::shared_ptr<class QCtmAbstractMessage>;
-
-class QCUSTOMUI_EXPORT QCtmAbstractMessageModel : public QAbstractTableModel
+class QCUSTOMUI_EXPORT QCtmLogData
 {
-	Q_OBJECT
-
 public:
-	QCtmAbstractMessageModel(QObject *parent);
-	~QCtmAbstractMessageModel();
-
-	void addMessage(QCtmAbstractMessagePtr msg);
-	void insertMessage(int index, QCtmAbstractMessagePtr msg);
-	void removeMessage(QCtmAbstractMessagePtr msg);
-	QCtmAbstractMessagePtr message(int row)const;
-	void clear();
-	void setMaximumCount(int count);
-	int maximumCount() const;
-
-	int	rowCount(const QModelIndex &parent = QModelIndex()) const override;
-    bool setData([[maybe_unused]] const QModelIndex &index, [[maybe_unused]] const QVariant &value, [[maybe_unused]] int role = Qt::EditRole) override { return false; }
-	bool removeRows(int row, int count, const QModelIndex &parent = QModelIndex()) override;
-	bool insertRows(int row, int count, const QModelIndex &parent  = QModelIndex()) override;
+    enum LogInsertPolicy
+    {
+        ASC,
+        DESC
+    };
+    QCtmLogData(QtMsgType type, const QMessageLogContext& context, const QString& msg);
+    ~QCtmLogData();
+    QtMsgType type() const;
+    const QMessageLogContext& context() const;
+    const QString& msg() const;
+    const QDateTime& dateTime() const;
 private:
-	struct Impl;
-	std::unique_ptr<Impl> m_impl;
+    QtMsgType m_type;
+    QMessageLogContext m_context;
+    QString m_msg;
+    QDateTime m_dateTime;
 };
+
+using QCtmLogDataPtr = std::shared_ptr<QCtmLogData>;

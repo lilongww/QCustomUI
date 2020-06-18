@@ -49,6 +49,32 @@ struct QCtmLogWidget::Impl
     QAction* copyAction{ nullptr };
 };
 
+/*!
+    \class      QCtmLogWidget
+    \brief      QCtmLogWidget provide a log message view widget to show log message datas.
+    \inherits   QWidget
+    \ingroup    QCustomUi
+    \inmodule   QCustomUi
+*/
+
+/*!
+    \property   QCtmLogWidget::infoIcon
+    \brief      Holds icon of the information log.
+*/
+
+/*!
+    \property   QCtmLogWidget::warningIcon
+    \brief      Holds icon of the warning log.
+*/
+
+/*!
+    \property   QCtmLogWidget::errorIcon
+    \brief      Holds icon of the error log.
+*/
+
+/*!
+    \brief      Constructs a log view widget with \a objectName and \a parent.
+*/
 QCtmLogWidget::QCtmLogWidget(const QString& objectName, QWidget *parent)
     : QWidget(parent)
     , m_impl(std::make_unique<Impl>())
@@ -57,29 +83,35 @@ QCtmLogWidget::QCtmLogWidget(const QString& objectName, QWidget *parent)
     init();
 }
 
+/*!
+    \brief      Destroys the log view widget.
+*/
 QCtmLogWidget::~QCtmLogWidget()
 {
 }
 
-/**
- * @brief		Set the log insertion policy.
- */
-void QCtmLogWidget::setLogInsertMode(LogInsertMode mode)
+/*!
+    \brief      Set insert \a policy of the log.
+    \sa         logInsertPolicy()
+*/
+void QCtmLogWidget::setLogInsertPolicy(QCtmLogData::LogInsertPolicy policy)
 {
-    m_impl->model->setLogInsertMode(mode);
+    m_impl->model->setLogInsertPolicy(policy);
 }
 
-/**
- * @brief		Get the log insertion policy.
- */
-LogInsertMode QCtmLogWidget::logInsertMode() const
+/*!
+    \brief      Returns insert policy of the log.
+    \sa         setLogInsertPolicy
+*/
+QCtmLogData::LogInsertPolicy QCtmLogWidget::logInsertPolicy() const
 {
-    return m_impl->model->logInsertMode();
+    return m_impl->model->logInsertPolicy();
 }
 
-/**
- * @brief		Sets whether the column is visible.
- */
+/*!
+    \brief      Sets whether the \a column is \a visible.
+    \sa         columnVisible
+*/
 void QCtmLogWidget::setColumnVisible(QCtmLogColumn column, bool visible)
 {
     if (column == QCtmLogColumn::Level)
@@ -91,14 +123,18 @@ void QCtmLogWidget::setColumnVisible(QCtmLogColumn column, bool visible)
     m_impl->logView->setColumnHidden(int(column), !visible);
 }
 
-/**
- * @brief		Gets whether the column is visible.
- */
+/*!
+    \brief      Returns whether the \a column is visible.
+    \sa         setColumnVisible
+*/
 bool QCtmLogWidget::columnVisible(QCtmLogColumn column) const
 {
     return !m_impl->logView->isColumnHidden(int(column));
 }
 
+/*!
+    \brief      Initialization
+*/
 void QCtmLogWidget::init()
 {
     m_impl->errorAction = new QAction(tr("Error %1").arg(0), this);
@@ -240,7 +276,9 @@ void QCtmLogWidget::init()
     connect(m_impl->model, &QAbstractItemModel::modelReset, this, &QCtmLogWidget::updateLogCount);
 }
 
-
+/*!
+    \reimp
+*/
 void QCtmLogWidget::changeEvent(QEvent* e)
 {
     if (e->type() == QEvent::LanguageChange)
@@ -249,6 +287,9 @@ void QCtmLogWidget::changeEvent(QEvent* e)
     }
 }
 
+/*!
+    \brief      Update the log message counts.
+*/
 void QCtmLogWidget::updateLogCount()
 {
     m_impl->errorAction->setText(tr("Error %1").arg(m_impl->model->errorCount()));
@@ -256,68 +297,76 @@ void QCtmLogWidget::updateLogCount()
     m_impl->infoAction->setText(tr("Info %1").arg(m_impl->model->infoCount()));
 }
 
-/**
- * @brief		Sets the icon for information message type.
- */
+/*!
+    \brief      Sets the \a icon for information message type.
+    \sa         infoIcon()
+*/
 void QCtmLogWidget::setInfoIcon(const QIcon& icon)
 {
     m_impl->model->setInfoIcon(icon);
     m_impl->infoAction->setIcon(icon);
 }
 
-/**
- * @brief		Gets the icon for information message type.
- */
+/*!
+    \brief      Returns the icon for information message type.
+    \sa         setInfoIcon
+*/
 const QIcon& QCtmLogWidget::infoIcon() const
 {
     return m_impl->model->infoIcon();
 }
 
-/**
- * @brief		Sets the icon for warning message type.
- */
+/*!
+    \brief      Sets the \a icon for warning message type.
+    \sa         warningIcon()
+*/
 void QCtmLogWidget::setWarningIcon(const QIcon& icon)
 {
     m_impl->model->setWarningIcon(icon);
     m_impl->warningAction->setIcon(icon);
 }
 
-/**
- * @brief		Gets the icon for warning message type.
- */
+/*!
+    \brief      Returns the icon for warning message type.
+    \sa         setWarningIcon
+*/
 const QIcon& QCtmLogWidget::warningIcon() const
 {
     return m_impl->model->warningIcon();
 }
 
-/**
- * @brief		Sets the icon for error message type.
- */
+/*!
+    \brief      Sets the \a icon for error message type.
+    \sa         errorIcon()
+*/
 void QCtmLogWidget::setErrorIcon(const QIcon& icon)
 {
     m_impl->model->setErrorIcon(icon);
     m_impl->errorAction->setIcon(icon);
 }
 
-/**
- * @brief		Gets the icon for error message type.
- */
+/*!
+    \brief      Returns the icon for error message type.
+    \sa         setErrorIcon
+*/
 const QIcon& QCtmLogWidget::errorIcon() const
 {
     return m_impl->model->errorIcon();
 }
 
-/**
- * @brief		Sets the maximum count of log message.
- */
+/*!
+    \brief      Sets the maximum \a count of log message.
+    \sa         maximumCount()
+*/
 void QCtmLogWidget::setMaximumCount(int count)
 {
     m_impl->model->setMaximumCount(count);
 }
 
-/**
- * @brief		Gets the maximum count of log message.
- */
+/*!
+    \brief      Returns the maximum count of log message.
+    \sa         setMaximumCount
+*/
 int QCtmLogWidget::maximumCount() const
 {
     return m_impl->model->maximumCount();

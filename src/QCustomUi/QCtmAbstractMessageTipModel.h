@@ -21,45 +21,32 @@
 
 #include "qcustomui_global.h"
 
-#include "QCtmAbstractMessageTipView.h"
+#include <QAbstractTableModel>
 
 #include <memory>
 
-class QCtmNavigationBar;
 using QCtmAbstractMessagePtr = std::shared_ptr<class QCtmAbstractMessage>;
 
-class QCUSTOMUI_EXPORT QCtmMessageView : public QCtmAbstractMessageTipView
+class QCUSTOMUI_EXPORT QCtmAbstractMessageTipModel : public QAbstractTableModel
 {
 	Q_OBJECT
-		Q_PROPERTY(QColor decoration READ decoration WRITE setDecoration)
-		Q_PROPERTY(QColor titlecolor READ titleColor WRITE setTitleColor)
-		Q_PROPERTY(QColor timecolor READ timeColor WRITE setTimeColor)
-		Q_PROPERTY(QPixmap closebuttonicon READ closeButtonIcon WRITE setCloseButtonIcon)
+
 public:
-	QCtmMessageView(QCtmNavigationBar *parent);
-	~QCtmMessageView();
+	QCtmAbstractMessageTipModel(QObject *parent);
+	~QCtmAbstractMessageTipModel();
 
-	virtual void setModel(QCtmAbstractMessageTipModel* model);
-	virtual QCtmAbstractMessageTipModel* model()const;
-	void setDecoration(const QColor& color);
-	const QColor& decoration()const;
-	void setTitleColor(const QColor& color);
-	const QColor& titleColor()const;
-	void setTimeColor(const QColor& color);
-	const QColor& timeColor()const;
-	void setCloseButtonIcon(const QPixmap& icon);
-	const QPixmap& closeButtonIcon()const;
-signals:
-	void closeButtonClicked(const QModelIndex& index);
-	void messageClicked(QCtmAbstractMessagePtr message);
-protected:
-	void resizeEvent(QResizeEvent*) override;
-	void showEvent(QShowEvent*) override;
-	bool eventFilter(QObject* o, QEvent* e) override;
+	void addMessage(QCtmAbstractMessagePtr msg);
+	void insertMessage(int index, QCtmAbstractMessagePtr msg);
+	void removeMessage(QCtmAbstractMessagePtr msg);
+	QCtmAbstractMessagePtr message(int row)const;
+	void clear();
+	void setMaximumCount(int count);
+	int maximumCount() const;
 
-	private slots:
-	void onCloseButtonClicked(const QModelIndex& index);
-	void onTitleClicked(const QModelIndex& index);
+	int	rowCount(const QModelIndex &parent = QModelIndex()) const override;
+    bool setData([[maybe_unused]] const QModelIndex &index, [[maybe_unused]] const QVariant &value, [[maybe_unused]] int role = Qt::EditRole) override { return false; }
+	bool removeRows(int row, int count, const QModelIndex &parent = QModelIndex()) override;
+	bool insertRows(int row, int count, const QModelIndex &parent  = QModelIndex()) override;
 private:
 	struct Impl;
 	std::unique_ptr<Impl> m_impl;

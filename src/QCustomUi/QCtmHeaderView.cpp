@@ -34,6 +34,14 @@ struct QCtmHeaderView::Impl
 	std::map<int, bool> readOnlyState;
 };
 
+/*!
+    \class      QCtmHeaderView
+    \brief      QCtmHeaderView 
+    \inherits   
+    \ingroup    
+    \inmodule   
+*/
+
 QCtmHeaderView::QCtmHeaderView(Qt::Orientation orientation, QWidget *parent)
 	: QHeaderView(orientation, parent)
 	, m_impl(std::make_unique<Impl>())

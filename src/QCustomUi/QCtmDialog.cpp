@@ -179,6 +179,9 @@ void QCtmDialog::hideEvent(QHideEvent*)
     }
 }
 
+/*!
+    \reimp
+*/
 bool QCtmDialog::eventFilter(QObject* o, QEvent* e)
 {
     if (o == m_impl->content && e->type() == QEvent::WindowTitleChange)
@@ -188,6 +191,9 @@ bool QCtmDialog::eventFilter(QObject* o, QEvent* e)
     return QDialog::eventFilter(o, e);
 }
 
+/*!
+    \reimp
+*/
 bool QCtmDialog::nativeEvent(const QByteArray& eventType, void* message, long* result)
 {
 #ifdef Q_OS_WIN

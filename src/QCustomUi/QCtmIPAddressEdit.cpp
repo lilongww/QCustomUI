@@ -84,6 +84,32 @@ struct QCtmIPAddressEdit::Impl
 	QAction* copy, * paste;
 };
 
+/*!
+    \class      QCtmIPAddressEdit
+    \brief      QCtmIPAddressEdit provide a IPv4 format input control.
+    \inherits   QWidget
+    \ingroup    QCustomUi
+    \inmodule   QCustomUi
+*/
+
+/*!
+    \property   QCtmIPAddressEdit::readOnly
+    \brief      This property holds whether the ip address edit is read only.
+*/
+
+/*!
+    \fn         void QCtmIPAddressEdit::editChanged()
+    \brief      When the text is changed, the signal will be emit.
+*/
+
+/*!
+    \fn         void QCtmIPAddressEdit::editFinished()
+    \brief      When the edit operation is finished, the signal will be emit.
+*/
+
+/*!
+    \brief      Constructs a QCtmIPAddressEdit with \a parent.
+*/
 QCtmIPAddressEdit::QCtmIPAddressEdit(QWidget* parent)
 	: QWidget(parent)
 	, m_impl(std::make_unique<Impl>())
@@ -103,13 +129,17 @@ QCtmIPAddressEdit::QCtmIPAddressEdit(QWidget* parent)
 	initActions();
 }
 
+/*!
+    \brief      Destroys the QCtmIPAddressEdit.
+*/
 QCtmIPAddressEdit::~QCtmIPAddressEdit()
 {
 }
 
-/**
- * @brief		Set and show ip, the ip format must be legal.
- */
+/*!
+    \brief      Set and show \a ip, the ip format must be legal.
+    \sa         ipAddress()
+*/
 void QCtmIPAddressEdit::setIPAddress(const QString& ip)
 {
 	auto tmp = ip.split('.');
@@ -136,9 +166,10 @@ void QCtmIPAddressEdit::setIPAddress(const QString& ip)
 	}
 }
 
-/**
- * @brief		Get current ip string.
- */
+/*!
+    \brief      Returns the ip string.
+    \sa         setIPAddress
+*/
 QString QCtmIPAddressEdit::ipAddress() const
 {
 	QStringList ips;
@@ -149,34 +180,47 @@ QString QCtmIPAddressEdit::ipAddress() const
 	return ips.join(".");
 }
 
-/**
- * @brief		Set the edit control is read only.
- */
+/*!
+    \brief      Set the ip edit control is read only, \a ro.
+    \sa         isReadOnly()
+*/
 void QCtmIPAddressEdit::setReadOnly(bool ro)
 {
 	m_impl->readOnly = ro;
 }
 
-/**
- * @brief		Get the edit control is read only.
- */
+/*!
+    \brief      Returns the edit control is read only.
+    \sa         setReadOnly
+*/
 bool QCtmIPAddressEdit::isReadOnly() const
 {
 	return m_impl->readOnly;
 }
 
+/*!
+    \brief      Returns the section of the given \a position.
+    \sa         rectOfIpSection, boundRect
+*/
 int QCtmIPAddressEdit::sectionOfCursorPosition(int position) const
 {
 	auto section = position / SECTION_CURSOR_COUNT;
 	return section > SECTION_COUNT - 1 ? SECTION_COUNT - 1 : section;
 }
 
+/*!
+    \brief      Returns the text layout of the given \a pos.
+*/
 QTextLayout& QCtmIPAddressEdit::textLayout(int pos) const
 {
 	auto section = sectionOfCursorPosition(pos);
 	return m_impl->textLayouts[section];
 }
 
+/*!
+    \brief      Returns the rect of the given \a section.
+    \sa         boundRect
+*/
 QRect QCtmIPAddressEdit::rectOfIpSection(int section) const
 {
 	QStyleOptionFrame opt;
@@ -190,6 +234,10 @@ QRect QCtmIPAddressEdit::rectOfIpSection(int section) const
 	return { rect.left() + (dotWidth * section) + section * ipSectionWidth , rect.top(), ipSectionWidth, rect.height() };
 }
 
+/*!
+    \brief      Returns the bound rect of the given \a section and \a rect.
+    \sa         rectOfIpSection
+*/
 QRect QCtmIPAddressEdit::boundRect(int section, const QRect& rect) const
 {
 	const auto& layout = m_impl->textLayouts[section];
@@ -199,6 +247,11 @@ QRect QCtmIPAddressEdit::boundRect(int section, const QRect& rect) const
 	return { qRound(rect.x() + (rect.width() - br.width()) / 2), qRound(rect.y() + (rect.height() - br.height()) / 2), qRound(br.width()), qRound(br.height()) };
 }
 
+/*!
+    \brief      Set the \a text to the \a textLayout.
+                Returns true if the text number is between 0 and 255.
+    \sa         setIPAddress, ipAddress
+*/
 bool QCtmIPAddressEdit::setText(QTextLayout& textLayout, const QString& text)
 {
 	if (!text.isEmpty())
@@ -218,6 +271,9 @@ bool QCtmIPAddressEdit::setText(QTextLayout& textLayout, const QString& text)
 	return true;
 }
 
+/*!
+    \reimp
+*/
 void QCtmIPAddressEdit::paintEvent([[maybe_unused]] QPaintEvent* event)
 {
 	QStyleOptionFrame opt;
@@ -246,6 +302,9 @@ void QCtmIPAddressEdit::paintEvent([[maybe_unused]] QPaintEvent* event)
 	}
 }
 
+/*!
+    \reimp
+*/
 void QCtmIPAddressEdit::keyPressEvent(QKeyEvent* event)
 {
 	if (event->key() >= Qt::Key_0 && event->key() <= Qt::Key_9)
@@ -422,6 +481,9 @@ void QCtmIPAddressEdit::keyPressEvent(QKeyEvent* event)
 	update();
 }
 
+/*!
+    \reimp
+*/
 void QCtmIPAddressEdit::mouseDoubleClickEvent(QMouseEvent* event)
 {
 	if (event->button() == Qt::LeftButton && event->modifiers().testFlag(Qt::NoModifier))
@@ -440,6 +502,9 @@ void QCtmIPAddressEdit::mouseDoubleClickEvent(QMouseEvent* event)
 	}
 }
 
+/*!
+    \reimp
+*/
 void QCtmIPAddressEdit::mousePressEvent(QMouseEvent* event)
 {
 	if (event->button() == Qt::LeftButton && event->modifiers().testFlag(Qt::NoModifier))
@@ -473,6 +538,9 @@ void QCtmIPAddressEdit::mousePressEvent(QMouseEvent* event)
 	}
 }
 
+/*!
+    \reimp
+*/
 void QCtmIPAddressEdit::mouseMoveEvent(QMouseEvent* event)
 {
 	if (event->modifiers().testFlag(Qt::NoModifier) && m_impl->pressed)
@@ -497,12 +565,18 @@ void QCtmIPAddressEdit::mouseMoveEvent(QMouseEvent* event)
 	}
 }
 
+/*!
+    \reimp
+*/
 void QCtmIPAddressEdit::mouseReleaseEvent(QMouseEvent* event)
 {
 	if (event->button() == Qt::LeftButton && event->modifiers().testFlag(Qt::NoModifier))
 		m_impl->pressed = false;
 }
 
+/*!
+    \reimp
+*/
 void QCtmIPAddressEdit::focusInEvent([[maybe_unused]] QFocusEvent* event)
 {
 	m_impl->cursorSwitch = true;
@@ -510,6 +584,9 @@ void QCtmIPAddressEdit::focusInEvent([[maybe_unused]] QFocusEvent* event)
 	update();
 }
 
+/*!
+    \reimp
+*/
 void QCtmIPAddressEdit::focusOutEvent(QFocusEvent* event)
 {
 	m_impl->cursorSwitch = false;
@@ -521,11 +598,17 @@ void QCtmIPAddressEdit::focusOutEvent(QFocusEvent* event)
 	emit editFinished();
 }
 
+/*!
+    \reimp
+*/
 QSize QCtmIPAddressEdit::sizeHint() const
 {
 	return minimumSizeHint();
 }
 
+/*!
+    \reimp
+*/
 QSize QCtmIPAddressEdit::minimumSizeHint() const
 {
 	ensurePolished();
@@ -539,6 +622,9 @@ QSize QCtmIPAddressEdit::minimumSizeHint() const
 		expandedTo(QApplication::globalStrut()), this));
 }
 
+/*!
+    \brief      Initialize the style option.
+*/
 void QCtmIPAddressEdit::initStyleOption(QStyleOptionFrame* option) const
 {
 	if (!option)
@@ -555,6 +641,9 @@ void QCtmIPAddressEdit::initStyleOption(QStyleOptionFrame* option) const
 	option->features = QStyleOptionFrame::None;
 }
 
+/*!
+    \brief      Return the cursor position with given x pixel.
+*/
 int QCtmIPAddressEdit::xToCursor(int x) const
 {
 	for (int i = 0; i < SECTION_COUNT; i++)
@@ -585,6 +674,9 @@ int QCtmIPAddressEdit::xToCursor(int x) const
 	return 0;
 }
 
+/*!
+    \brief      Clear the selections.
+*/
 void QCtmIPAddressEdit::clearSelection()
 {
 	for (auto&& fr : m_impl->selections)
@@ -593,6 +685,9 @@ void QCtmIPAddressEdit::clearSelection()
 	}
 }
 
+/*!
+    \brief      Delete the selected texts.
+*/
 void QCtmIPAddressEdit::deleteSelectedText()
 {
 	for (int section = 0; section != SECTION_COUNT; section++)
@@ -609,6 +704,10 @@ void QCtmIPAddressEdit::deleteSelectedText()
 	clearSelection();
 }
 
+/*!
+    \brief      Returns true if has selection.
+    \sa         clearSelection, deleteSelectedText
+*/
 bool QCtmIPAddressEdit::hasSelection() const
 {
 	for (auto fr : m_impl->selections)
@@ -621,6 +720,10 @@ bool QCtmIPAddressEdit::hasSelection() const
 	return false;
 }
 
+/*!
+    \brief      Initialize actions.
+    \sa         init
+*/
 void QCtmIPAddressEdit::initActions()
 {
 	m_impl->copy = new QAction(tr("Copy"), this);
@@ -682,6 +785,9 @@ void QCtmIPAddressEdit::initActions()
 	addAction(m_impl->paste);
 }
 
+/*!
+    \brief      redo the \a textLayout.
+*/
 int QCtmIPAddressEdit::redoTextLayout(QTextLayout& textLayout) const
 {
 	textLayout.clearLayout();
@@ -692,6 +798,10 @@ int QCtmIPAddressEdit::redoTextLayout(QTextLayout& textLayout) const
 	return qRound(l.ascent());
 }
 
+/*!
+    \brief      Initialization
+    \sa         
+*/
 void QCtmIPAddressEdit::init()
 {
 	QTextOption txtOpt;
@@ -708,6 +818,10 @@ void QCtmIPAddressEdit::init()
 	}
 }
 
+/*!
+    \brief      Pops the context menu at \a pos
+    \sa         initActions
+*/
 void QCtmIPAddressEdit::onCustomContextMenuRequested(const QPoint& pos)
 {
 	QMenu menu(this);

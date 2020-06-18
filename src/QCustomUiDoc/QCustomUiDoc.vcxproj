@@ -116,7 +116,7 @@ set QT_VERSION=5.15.0
 set QT_VER=5.15
 set QT_VERSION_TAG=5150
 set BUILDDIR=./
-$(QtDllPath)\qdoc.exe config/%(Filename).qdocconf -indexdir $(QMake_QT_INSTALL_DOCS_)
+$(QtDllPath)\qdoc.exe config/%(Filename).qdocconf -D Q_OS_WIN
 </Command>
       <Message>qdoc %(Filename).qdocconf</Message>
       <Outputs>$(SolutionDir)build\doc\QCustomUi\qcustomui.qhp;%(Outputs)</Outputs>
@@ -166,7 +166,7 @@ set QT_VERSION=5.15.0
 set QT_VER=5.15
 set QT_VERSION_TAG=5150
 set BUILDDIR=./
-$(QtDllPath)\qdoc.exe config/%(Filename).qdocconf -indexdir $(QMake_QT_INSTALL_DOCS_)
+$(QtDllPath)\qdoc.exe config/%(Filename).qdocconf -D Q_OS_WIN
 </Command>
       <Message>qdoc %(Filename).qdocconf</Message>
       <Outputs>$(SolutionDir)build\doc\QCustomUi\qcustomui.qhp;%(Outputs)</Outputs>

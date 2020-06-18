@@ -35,6 +35,29 @@ struct QCtmEditLabel::Impl
 	QToolButton* editButton{ nullptr };
 };
 
+/*!
+    \class      QCtmEditLabel
+    \brief      QCtmEditLabel is used for displaying text and edit the text.
+    \inherits   QLabel
+    \ingroup    QCustomUi
+    \inmodule   QCustomUi
+*/
+
+/*!
+    \property   QCtmEditLabel::readOnly
+    \brief      This property holds whether the line edit is read only.
+                By default, this property is false.
+*/
+
+/*!
+    \property   QCtmEditLabel::editButtonIcon
+    \brief      This property holds edit button' icon.
+*/
+
+/*!
+    \brief      Constructs an empty label.
+                The \a parent and widget flag \a f, arguments are passed to the QFrame constructor.
+*/
 QCtmEditLabel::QCtmEditLabel(QWidget *parent, Qt::WindowFlags f)
 	: QLabel(parent, f)
 	, m_impl(std::make_unique<Impl>())
@@ -42,48 +65,62 @@ QCtmEditLabel::QCtmEditLabel(QWidget *parent, Qt::WindowFlags f)
 	init();
 }
 
+/*!
+    \brief      Constructs a label that displays the text,\a text.
+                The \a parent and widget flag \a f, arguments are passed to the QLabel constructor.
+*/
 QCtmEditLabel::QCtmEditLabel(const QString& text, QWidget* parent /*= nullptr*/, Qt::WindowFlags f)
 	: QCtmEditLabel(parent, f)
 {
 	setText(text);
 }
 
+/*!
+    \brief      Destroys the label.
+*/
 QCtmEditLabel::~QCtmEditLabel()
 {
 
 }
-/**
- * @brief		Set the label is read only
- */
+
+/*!
+    \brief      Set the label is read only, \a flag.
+    \sa         isReadOnly
+*/
 void QCtmEditLabel::setReadOnly(bool flag)
 {
 	m_impl->readOnly = flag;
 }
 
-/**
- * @brief		The label is read only
- */
+/*!
+    \brief      Returns whether the label is read-only
+    \sa         setReadOnly
+*/
 bool QCtmEditLabel::isReadOnly() const
 {
 	return m_impl->readOnly;
 }
 
-/**
- * @brief		Set the edit button's icon
- */
+/*!
+    \brief      Set the edit button's \a icon
+    \sa         editButtonIcon
+*/
 void QCtmEditLabel::setEditButtonIcon(const QIcon& icon)
 {
 	m_impl->editButton->setIcon(icon);
 }
 
-/**
- * @brief		The edit button's icon
- */
+/*!
+    \brief      Returns the edit button's icon
+*/
 QIcon QCtmEditLabel::editButtonIcon() const
 {
 	return m_impl->editButton->icon();
 }
 
+/*!
+    \reimp
+*/
 bool QCtmEditLabel::event(QEvent* e)
 {
 	switch (e->type())
@@ -102,12 +139,18 @@ bool QCtmEditLabel::event(QEvent* e)
 	return QLabel::event(e);
 }
 
+/*!
+    \reimp
+*/
 QSize QCtmEditLabel::minimumSizeHint() const
 {
 	auto size = QLabel::minimumSizeHint();
 	return { size.width() + extentedWidth(), size.height() };
 }
 
+/*!
+    \brief      initialization
+*/
 void QCtmEditLabel::init()
 {
 	setAttribute(Qt::WA_Hover);
@@ -124,6 +167,9 @@ void QCtmEditLabel::init()
 	connect(m_impl->editButton, &QToolButton::clicked, this, &QCtmEditLabel::onEditButtonClicked);
 }
 
+/*!
+    \brief      Edit button click operation.
+*/
 void QCtmEditLabel::onEditButtonClicked()
 {
 	m_impl->editButton->hide();

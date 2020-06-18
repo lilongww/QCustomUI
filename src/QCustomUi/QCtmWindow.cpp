@@ -34,8 +34,9 @@
 /*!
          \class QCtmWindow
          \brief This window is a base widget.
-         \ingroup QCustomUi Project
-         \inmodule QCustomUi Project
+         \inherits QWidget
+         \ingroup QCustomUi
+         \inmodule QCustomUi
 */
 
 struct QCtmWindow::Impl
@@ -52,6 +53,9 @@ struct QCtmWindow::Impl
 #endif
 };
 
+/*!
+    \brief      Constructs a dialog which is a child of \a parent.
+*/
 QCtmWindow::QCtmWindow(QWidget *parent)
 	: QWidget(parent)
 	, m_impl(std::make_unique<Impl>())
@@ -74,14 +78,18 @@ QCtmWindow::QCtmWindow(QWidget *parent)
 #endif
 }
 
+/*!
+    \brief      Destroys the widget.
+*/
 QCtmWindow::~QCtmWindow()
 {
 	delete ui;
 }
 
-/**
- * @brief  		Sets the given status bar.
- */
+/*!
+    \brief      Sets the given \a statusBar.
+    \sa         statusBar, removeStatusBar
+*/
 void QCtmWindow::setStatusBar(QStatusBar* statusBar)
 {
 	removeStatusBar();
@@ -89,17 +97,19 @@ void QCtmWindow::setStatusBar(QStatusBar* statusBar)
 	ui->statusBarLayout->addWidget(statusBar);
 }
 
-/**
- * @brief  		Returns the status bar.
- */
+/*!
+    \brief      Returns the status bar.
+    \sa         setStatusBar, removeStatusBar
+*/
 QStatusBar* QCtmWindow::statusBar() const
 {
 	return m_impl->statusBar;
 }
 
-/**
- * @brief  		Remove the status bar.
- */
+/*!
+    \brief      Remove the status bar.
+    \sa         setStatusBar, statusBar
+*/
 void QCtmWindow::removeStatusBar()
 {
 	if (m_impl->statusBar)
@@ -109,9 +119,10 @@ void QCtmWindow::removeStatusBar()
 	}
 }
 
-/**
- * @brief  		Sets the given menu bar.
- */
+/*!
+    \brief      Sets the given \a menuBar.
+    \sa         menuBar, removeMenuBar
+*/
 void QCtmWindow::setMenuBar(QMenuBar* menuBar)
 {
 	if (m_impl->title)
@@ -120,9 +131,10 @@ void QCtmWindow::setMenuBar(QMenuBar* menuBar)
 	}
 }
 
-/**
- * @brief  		Returns the menu bar.
- */
+/*!
+    \brief      Returns the menu bar.
+    \sa         setMenuBar, removeMenuBar
+*/
 QMenuBar* QCtmWindow::menuBar() const
 {
 	if(m_impl->title)
@@ -130,9 +142,10 @@ QMenuBar* QCtmWindow::menuBar() const
 	return nullptr;
 }
 
-/**
- * @brief  		Remove the menu bar.
- */
+/*!
+    \brief      Remove the menu bar.
+    \sa         setMenuBar, menuBar
+*/
 void QCtmWindow::removeMenuBar()
 {
 	if (m_impl->title)
@@ -141,9 +154,10 @@ void QCtmWindow::removeMenuBar()
 	}
 }
 
-/**
- * @brief  		Sets the given navigation bar.
- */
+/*!
+    \brief      Sets the given navigation \a bar.
+    \sa         navigationBar, removeNavigationBar
+*/
 void QCtmWindow::setNavigationBar(QCtmNavigationBar* bar)
 {
 	removeNavigationBar();
@@ -155,17 +169,19 @@ void QCtmWindow::setNavigationBar(QCtmNavigationBar* bar)
         m_impl->delegate->addMoveBar(bar);
 }
 
-/**
- * @brief  		Returns the navigation bar.
- */
+/*!
+    \brief      Returns the navigation bar.
+    \sa         setNavigationBar, removeNavigationBar
+*/
 QCtmNavigationBar* QCtmWindow::navigationBar() const
 {
 	return m_impl->navigationMenuBar;
 }
 
-/**
- * @brief  		Remove the navigation bar.
- */
+/*!
+    \brief      Remove the navigation bar.
+    \sa         setNavigationBar, navigationBar
+*/
 void QCtmWindow::removeNavigationBar()
 {
 	if (m_impl->navigationMenuBar)
@@ -176,9 +192,10 @@ void QCtmWindow::removeNavigationBar()
 	}
 }
 
-/**
- * @brief  		Sets the given title bar.
- */
+/*!
+    \brief      Sets the given \a titleBar.
+    \sa         titleBar, removeTitleBar
+*/
 void QCtmWindow::setTitleBar(QCtmTitleBar* titleBar)
 {
 	removeTitleBar();
@@ -191,17 +208,19 @@ void QCtmWindow::setTitleBar(QCtmTitleBar* titleBar)
     }
 }
 
-/**
- * @brief  		Returns the title bar.
- */
+/*!
+    \brief      Returns the title bar.
+    \sa         setTitleBar, removeTitleBar
+*/
 QCtmTitleBar* QCtmWindow::titleBar() const
 {
 	return m_impl->title;
 }
 
-/**
- * @brief  		Remove the title bar.
- */
+/*!
+    \brief      Remove the title bar.
+    \sa         setTitleBar, titleBar
+*/
 void QCtmWindow::removeTitleBar()
 {
 	if (m_impl->title)
@@ -212,9 +231,10 @@ void QCtmWindow::removeTitleBar()
 	}
 }
 
-/**
- * @brief  		Sets the given central widget.
- */
+/*!
+    \brief      Sets the given central \a widget.
+    \sa         centralWidget
+*/
 void QCtmWindow::setCentralWidget(QWidget *widget)
 {
 	delete m_impl->content;
@@ -224,9 +244,10 @@ void QCtmWindow::setCentralWidget(QWidget *widget)
 	setWindowTitle(widget->windowTitle());
 }
 
-/**
- * @brief  		Returns the central widget.
- */
+/*!
+    \brief      Returns the central widget.
+    \sa         setCentralWidget
+*/
 QWidget* QCtmWindow::centralWidget() const
 {
 	return m_impl->content;
@@ -234,23 +255,38 @@ QWidget* QCtmWindow::centralWidget() const
 
 #ifndef Q_OS_WIN
 
-/**
- * @brief		Set the window is shadowless.
- */
+/*!
+    \if         !defined(Q_OS_WIN)
+    \fn         void QCtmWindow::setShadowless(bool flag)
+    \brief      Set the window is shadowless by \a flag.
+    \sa         shadowless
+    \else
+    \internal
+    \endif
+*/
 void QCtmWindow::setShadowless(bool flag)
 {
 	m_impl->delegate->setShadowless(flag);
 }
 
-/**
- * @brief		Get the window is shadowless.
- */
+/*!
+    \if         !defined(Q_OS_WIN)
+    \fn         bool QCtmWindow::shadowless() const
+    \brief      Get the window is shadowless.
+    \sa         setShadowless
+    \else
+    \internal
+    \endif
+*/
 bool QCtmWindow::shadowless() const
 {
 	return m_impl->delegate->shadowless();
 }
 #endif
 
+/*!
+    \reimp
+*/
 bool QCtmWindow::eventFilter(QObject *watched, QEvent *event)
 {
     if (watched == m_impl->title)
@@ -279,6 +315,9 @@ bool QCtmWindow::eventFilter(QObject *watched, QEvent *event)
     return QWidget::eventFilter(watched, event);
 }
 
+/*!
+    \reimp
+*/
 bool QCtmWindow::nativeEvent(const QByteArray& eventType, void* message, long* result)
 {
 #ifdef Q_OS_WIN

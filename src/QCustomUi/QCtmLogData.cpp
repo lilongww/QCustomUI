@@ -17,19 +17,75 @@
 **  along with QCustomUi.  If not, see <https://www.gnu.org/licenses/>.         **
 **********************************************************************************/
 
-#include "QCtmAbstractMessageView.h"
-#include "QCtmAbstractMessageModel.h"
+#include "QCtmLogData.h"
 
-#include <QEvent>
+/*!
+    \class      QCtmLogData
+    \brief      Log message data definition.
+    \ingroup    QCustomUi
+    \inmodule   QCustomUi
+*/
 
 
-QCtmAbstractMessageView::QCtmAbstractMessageView(QCtmNavigationBar *parent)
-	: QCtmNavigationSidePane(parent)
+/*!
+    \enum       QCtmLogData::LogInsertPolicy
+                Log inert policy
+    \value      ASC
+                Ascending order.
+    \value      DESC
+                Descending order.
+*/
+
+/*!
+    \brief      Constructs a log message data with \a type, \a context, \a msg.
+*/
+QCtmLogData::QCtmLogData(QtMsgType type, const QMessageLogContext& context, const QString& msg)
+    : m_type(type)
+    , m_msg(msg)
+    , m_dateTime(QDateTime::currentDateTime())
 {
-	this->setDockArea(QCtmNavigationSidePane::DockArea::Right);
+    m_context.category = context.category;
+    m_context.file = context.file;
+    m_context.line = context.line;
+    m_context.function = context.function;
 }
 
-QCtmAbstractMessageView::~QCtmAbstractMessageView()
+/*!
+    \brief      Destroys the log message data.
+*/
+QCtmLogData::~QCtmLogData()
 {
+
 }
 
+/*!
+    \brief      Returns type of the log message data.
+*/
+QtMsgType QCtmLogData::type() const
+{
+    return m_type;
+}
+
+/*!
+    \brief      Returns context of the log message data.
+*/
+const QMessageLogContext& QCtmLogData::context() const
+{
+    return m_context;
+}
+
+/*!
+    \brief      Returns message content of the log message data.
+*/
+const QString& QCtmLogData::msg() const
+{
+    return m_msg;
+}
+
+/*!
+    \brief      Returns date time of the log message data.
+*/
+const QDateTime& QCtmLogData::dateTime() const
+{
+    return m_dateTime;
+}

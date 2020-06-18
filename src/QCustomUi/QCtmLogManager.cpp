@@ -20,6 +20,7 @@
 #include "QCtmLogManager.h"
 #include "QCtmLogEvent.h"
 #include "QCtmAbstractLogModel.h"
+#include "QCtmLogData.h"
 
 #include <QDateTime>
 #include <QFile>
@@ -37,7 +38,7 @@ void qtMessageHandle(QtMsgType type, const QMessageLogContext& context, const QS
 struct QCtmLogManager::Impl
 {
     QString logPath;
-    LogSaveType type{ Size };
+    LogSavePolicy policy{ Size };
     QVector<QCtmAbstractLogModel*> models;
     bool saveLogs[QtMsgType::QtInfoMsg + 1];
     QDateTime datetime;
@@ -50,83 +51,107 @@ struct QCtmLogManager::Impl
 
 decltype(&qtMessageHandle) QCtmLogManager::Impl::oldHandle;
 
-/**
- * @brief       Call the function before the QApplication is instantiated. If this function is not be called, the 
- *              debug message will not be handle.
- */
+/*!
+    \class      QCtmLogManager
+    \brief      QCtmLogManager hook the qt debug frame and manager the debug messages.
+    \ingroup    QCustomUi
+    \inmodule   QCustomUi
+*/
+
+/*!
+    \enum       QCtmLogManager::LogSavePolicy
+                Describe save policy of log.
+    \value      Date
+                Segmentation the log file by date.
+    \value      Size
+                Segmentation the log file by size.
+*/
+
+/*!
+    \brief      Call the function before the QApplication is instantiated. If this function is not be called, the
+                debug message will not be handle.
+*/
 void QCtmLogManager::initBeforeApp()
 {
     Impl::oldHandle = qInstallMessageHandler(&qtMessageHandle);
 }
 
-/**
- * @brief		Returns the log manager singleton instance.
- */
+/*!
+    \brief      Returns the log manager singleton instance.
+*/
 QCtmLogManager& QCtmLogManager::instance()
 {
     static QCtmLogManager ins;
     return ins;
 }
 
-/**
- * @brief		Set the log file path.
- */
+/*!
+    \brief      Set the log file \a path.
+    \sa         logFilePath
+*/
 void QCtmLogManager::setLogFilePath(const QString& path)
 {
     m_impl->logPath = path;
 }
 
-/**
- * @brief		Get the log file path.
- */
+/*!
+    \brief      Returns the log file path.
+    \sa         setLogFilePath
+*/
 const QString& QCtmLogManager::logFilePath() const
 {
     return m_impl->logPath;
 }
 
-/**
- * @brief		Set the log save policy.
- */
-void QCtmLogManager::setLogSaveType(LogSaveType type)
+/*!
+    \brief      Sets save \a policy of log.
+    \sa         logSavePolicy
+*/
+void QCtmLogManager::setLogSavePolicy(LogSavePolicy policy)
 {
-    m_impl->type = type;
+    m_impl->policy = policy;
 }
 
-/**
- * @brief		Get the log save policy.
- */
-QCtmLogManager::LogSaveType QCtmLogManager::logSaveType() const
+/*!
+    \brief      Returns the save policy of log.
+    \sa         setLogSavePolicy
+*/
+QCtmLogManager::LogSavePolicy QCtmLogManager::logSavePolicy() const
 {
-    return m_impl->type;
+    return m_impl->policy;
 }
 
-/**
- * @brief		Sets whether the log type should be saved
- */
+/*!
+    \brief      Sets whether the log message \a type should be \a save.
+    \sa         logTypeEnable
+*/
 void QCtmLogManager::setLogTypeEnable(QtMsgType type, bool save)
 {
     m_impl->saveLogs[type] = save;
 }
 
-/**
- * @brief		Get whether the log type should be saved
- */
+/*!
+    \brief      Returns whether the log message \a type should be save.
+    \sa         setLogTypeEnable
+*/
 bool QCtmLogManager::logTypeEnable(QtMsgType type) const
 {
     return m_impl->saveLogs[type];
 }
 
-/**
- * @brief		Set the log file limit size, if the save policy is LogSaveType::Size.
- */
+/*!
+    \brief      Set the log file limit \a size, if the save policy is LogSaveType::Size.
+    \sa         logSizeLimit
+*/
 void QCtmLogManager::setLogSizeLimit(qint64 size)
 {
     m_impl->logSize = size;
 }
 
-/**
- * @brief		Get the log file limit size.
- */
+/*!
+    \brief      Returns limit size of the log file.
+    \sa         setLogSizeLimit
+*/
 qint64 QCtmLogManager::logSizeLimit() const
 {
     return m_impl->logSize;
@@ -164,6 +189,9 @@ void qtMessageHandle(QtMsgType type, const QMessageLogContext& context, const QS
     }
 }
 
+/*!
+    \brief      Constructs a log manager.
+*/
 QCtmLogManager::QCtmLogManager()
     : m_impl(std::make_unique<Impl>())
 {
@@ -180,14 +208,16 @@ QCtmLogManager::QCtmLogManager()
     }
 }
 
-
+/*!
+    \brief      Destorys the log manager.
+*/
 QCtmLogManager::~QCtmLogManager()
 {
 }
 
-/**
- * @brief		Write the log to file.
- */
+/*!
+    \brief      Write the log message \a data to file.
+*/
 void QCtmLogManager::writeLog(QCtmLogDataPtr data)
 {
     QString level;
@@ -226,16 +256,27 @@ void QCtmLogManager::writeLog(QCtmLogDataPtr data)
     }
 }
 
+/*!
+    \brief      Register the log message \a model to show log message on views.
+    \sa         unRegisterModel
+*/
 void QCtmLogManager::registerModel(QCtmAbstractLogModel* model)
 {
     m_impl->models.push_back(model);
 }
 
+/*!
+    \brief      Unregister the log message \a model.
+    \sa         registerModel
+*/
 void QCtmLogManager::unRegisterModel(QCtmAbstractLogModel* model)
 {
     m_impl->models.removeOne(model);
 }
 
+/*!
+    \brief      Parse object names in the \a msg.
+*/
 QList<QString> QCtmLogManager::parseObjectNames(QString& msg)
 {
     QRegExp rx(objExp);
@@ -265,12 +306,13 @@ QList<QString> QCtmLogManager::parseObjectNames(QString& msg)
     return list;
 }
 
-/**
- * @brief		Check the log file, and create a new log file by save policy.
- */
+/*!
+    \brief      Check the log file, and create a new log file by save policy.
+                Returns true if current log file is legal.
+*/
 bool QCtmLogManager::checkFile()
 {
-    switch (QCtmLogManager::instance().m_impl->type)
+    switch (QCtmLogManager::instance().m_impl->policy)
     {
     case Date:
         if (m_impl->datetime.daysTo(QDateTime::currentDateTime()) >= 1 || !m_impl->logFile.isOpen())

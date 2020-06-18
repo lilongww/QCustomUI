@@ -54,8 +54,8 @@ public:
     int columnCount(const QModelIndex &parent = QModelIndex()) const override;
 	void setMaximumCount(int count);
 	int maximumCount() const;
-    void setLogInsertMode(LogInsertMode mode);
-    LogInsertMode logInsertMode() const;
+    void setLogInsertPolicy(QCtmLogData::LogInsertPolicy policy);
+    QCtmLogData::LogInsertPolicy logInsertPolicy() const;
     void setInfoIcon(const QIcon& icon);
     const QIcon& infoIcon() const;
     void setWarningIcon(const QIcon& icon);

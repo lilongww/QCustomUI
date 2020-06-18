@@ -57,7 +57,7 @@ public:
 	void setValue(int value);
 	int value() const;
 
-	void setMaximum(int max);
+	void setMaximum(int maximum);
 	int maximum() const;
 
 	void setMinimum(int min);
@@ -76,7 +76,7 @@ protected:
 	QSize minimumSizeHint() const override;
 	virtual void initStyleOption(QStyleOptionProgressBar* opt) const;
 	int doMinimumWidth() const;
-	int doMinimumHeigh() const;
+	int doMinimumHeight() const;
 	QRectF doStageRect(int index) const;
 	QRectF doTextRect(int index) const;
 private:
