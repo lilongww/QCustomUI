@@ -17,7 +17,7 @@
 **  along with QCustomUi.  If not, see <https://www.gnu.org/licenses/>.         **
 **********************************************************************************/
 
-#include "QCtmMessageTip.h"
+#include "QCtmMessageTipButton.h"
 #include "QCtmAbstractMessageTipModel.h"
 #include "QCtmAbstractMessageTipView.h"
 #include "Private/QCtmMessageTipHelper_p.h"
@@ -26,38 +26,58 @@
 #include <QStyleOption>
 #include <QApplication>
 
-struct QCtmMessageTip::Impl
+struct QCtmMessageTipButton::Impl
 {
 	QCtmAbstractMessageTipModel* model{ nullptr };
 	QCtmAbstractMessageTipView* view{ nullptr };
 	QCtmMessageTipHelper* helper{ nullptr };
 };
 
-QCtmMessageTip::QCtmMessageTip(QWidget *parent)
+/*!
+    \class      QCtmMessageTipButton
+    \brief      QCtmMessageTipButton provide a button to show count of the message tip data.
+    \inherits   QAbstractButton
+    \ingroup    QCustomUi
+    \inmodule   QCustomUi
+*/
+
+/*!
+    \property   QCtmMessageTipButton::tipColor
+    \brief      Holds color for the tip of the button
+*/
+
+/*!
+    \brief      Constructs a message tip button with \a parent.
+*/
+QCtmMessageTipButton::QCtmMessageTipButton(QWidget *parent)
 	: QAbstractButton(parent)
 	, m_impl(std::make_unique<Impl>())
 {
 	m_impl->helper = new QCtmMessageTipHelper(this);
-	connect(this, &QAbstractButton::clicked, this, &QCtmMessageTip::onClicked);
+	connect(this, &QAbstractButton::clicked, this, &QCtmMessageTipButton::onClicked);
 	setSizePolicy(QSizePolicy::Minimum, QSizePolicy::Expanding);
 }
 
-QCtmMessageTip::~QCtmMessageTip()
+/*!
+    \brief      Destroys the button.
+*/
+QCtmMessageTipButton::~QCtmMessageTipButton()
 {
 }
 
-/**
- * @brief		Set the message model.
- */
-void QCtmMessageTip::setModel(QCtmAbstractMessageTipModel* model)
+/*!
+    \brief      Sets the message tip \a model.
+    \sa         model()
+*/
+void QCtmMessageTipButton::setModel(QCtmAbstractMessageTipModel* model)
 {
 	if (m_impl->model == model)
 		return;
 	if (m_impl->model)
 		m_impl->model->deleteLater();
 	m_impl->model = model;
-	connect(m_impl->model, &QAbstractItemModel::rowsRemoved, this, &QCtmMessageTip::onModelDataChanged);
-	connect(m_impl->model, &QAbstractItemModel::rowsInserted, this, &QCtmMessageTip::onModelDataChanged);
+	connect(m_impl->model, &QAbstractItemModel::rowsRemoved, this, &QCtmMessageTipButton::onModelDataChanged);
+	connect(m_impl->model, &QAbstractItemModel::rowsInserted, this, &QCtmMessageTipButton::onModelDataChanged);
 	connectView();
 	if (this->isVisible())
 	{
@@ -65,48 +85,56 @@ void QCtmMessageTip::setModel(QCtmAbstractMessageTipModel* model)
 	}
 }
 
-/**
- * @brief       Get the message model.
- */
-QCtmAbstractMessageTipModel* QCtmMessageTip::model() const
+/*!
+    \brief      Returns the message tip model.
+    \sa         setModel
+*/
+QCtmAbstractMessageTipModel* QCtmMessageTipButton::model() const
 {
 	return m_impl->model;
 }
 
-/**
- * @brief       Set the message view.
- */
-void QCtmMessageTip::setView(QCtmAbstractMessageTipView* view)
+/*!
+    \brief      Sets the message tip \a view.
+    \sa         view()
+*/
+void QCtmMessageTipButton::setView(QCtmAbstractMessageTipView* view)
 {
 	m_impl->view = view;
 	connectView();
 }
 
-/**
- * @brief       Get the message view.
- */
-QCtmAbstractMessageTipView* QCtmMessageTip::view() const
+/*!
+    \brief      Returns the message tip view.
+    \sa         setView
+*/
+QCtmAbstractMessageTipView* QCtmMessageTipButton::view() const
 {
 	return m_impl->view;
 }
 
-/**
- * @brief       Set the color of the tool tip.
- */
-void QCtmMessageTip::setTipColor(const QColor& color)
+/*!
+    \brief      Set the \a color of the tool tip.
+    \sa         tipColor()
+*/
+void QCtmMessageTipButton::setTipColor(const QColor& color)
 {
 	m_impl->helper->setTipColor(color);
 }
 
-/**
- * @brief       Get the color of the tool tip.
- */
-const QColor& QCtmMessageTip::tipColor() const
+/*!
+    \brief      Returns the color of the tool tip.
+    \sa         setTipColor
+*/
+const QColor& QCtmMessageTipButton::tipColor() const
 {
 	return m_impl->helper->tipColor();
 }
 
-void QCtmMessageTip::paintEvent([[maybe_unused]] QPaintEvent *event)
+/*!
+    \reimp
+*/
+void QCtmMessageTipButton::paintEvent([[maybe_unused]] QPaintEvent *event)
 {
 	QStyleOptionButton opt;
 	opt.initFrom(this);
@@ -122,20 +150,29 @@ void QCtmMessageTip::paintEvent([[maybe_unused]] QPaintEvent *event)
 	}
 }
 
-QSize QCtmMessageTip::sizeHint() const
+/*!
+    \reimp
+*/
+QSize QCtmMessageTipButton::sizeHint() const
 {
 	auto&& size = QAbstractButton::sizeHint();
 	size.setWidth(this->iconSize().width() + 20);
 	return size.expandedTo(qApp->globalStrut());
 }
 
-void QCtmMessageTip::connectView()
+/*!
+    \brief      Sets the model to view.
+*/
+void QCtmMessageTipButton::connectView()
 {
 	if (m_impl->view&&m_impl->model)
 		m_impl->view->setModel(m_impl->model);
 }
 
-void QCtmMessageTip::initStyleOption(QStyleOptionButton* opt)
+/*!
+    \brief      Set arguments for the style option, \a opt.
+*/
+void QCtmMessageTipButton::initStyleOption(QStyleOptionButton* opt)
 {
 	opt->icon = this->icon();
 	opt->iconSize = this->iconSize();
@@ -149,7 +186,10 @@ void QCtmMessageTip::initStyleOption(QStyleOptionButton* opt)
 		opt->state = QStyle::State_On;
 }
 
-void QCtmMessageTip::onClicked(bool)
+/*!
+    \brief      Pop the message tip view when the button is clicked.
+*/
+void QCtmMessageTipButton::onClicked(bool)
 {
 	if (this->view())
 	{
@@ -160,7 +200,10 @@ void QCtmMessageTip::onClicked(bool)
 	}
 }
 
-void QCtmMessageTip::onModelDataChanged()
+/*!
+    \brief      Update the button when the message tip model is changed.
+*/
+void QCtmMessageTipButton::onModelDataChanged()
 {
 	update();
 }

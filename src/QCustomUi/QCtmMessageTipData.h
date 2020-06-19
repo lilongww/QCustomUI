@@ -21,46 +21,41 @@
 
 #include "qcustomui_global.h"
 
-#include "QCtmAbstractMessageTipView.h"
+#include <QString>
+#include <QDateTime>
 
 #include <memory>
 
-class QCtmNavigationBar;
-using QCtmAbstractMessagePtr = std::shared_ptr<class QCtmAbstractMessage>;
-
-class QCUSTOMUI_EXPORT QCtmMessageView : public QCtmAbstractMessageTipView
+class QCUSTOMUI_EXPORT QCtmAbstractMessageTipData
 {
-	Q_OBJECT
-		Q_PROPERTY(QColor decoration READ decoration WRITE setDecoration)
-		Q_PROPERTY(QColor titlecolor READ titleColor WRITE setTitleColor)
-		Q_PROPERTY(QColor timecolor READ timeColor WRITE setTimeColor)
-		Q_PROPERTY(QPixmap closebuttonicon READ closeButtonIcon WRITE setCloseButtonIcon)
 public:
-	QCtmMessageView(QCtmNavigationBar *parent);
-	~QCtmMessageView();
+	QCtmAbstractMessageTipData();
+	virtual ~QCtmAbstractMessageTipData();
 
-	virtual void setModel(QCtmAbstractMessageTipModel* model);
-	virtual QCtmAbstractMessageTipModel* model()const;
-	void setDecoration(const QColor& color);
-	const QColor& decoration()const;
-	void setTitleColor(const QColor& color);
-	const QColor& titleColor()const;
-	void setTimeColor(const QColor& color);
-	const QColor& timeColor()const;
-	void setCloseButtonIcon(const QPixmap& icon);
-	const QPixmap& closeButtonIcon()const;
-signals:
-	void closeButtonClicked(const QModelIndex& index);
-	void messageClicked(QCtmAbstractMessagePtr message);
-protected:
-	void resizeEvent(QResizeEvent*) override;
-	void showEvent(QShowEvent*) override;
-	bool eventFilter(QObject* o, QEvent* e) override;
+};
 
-	private slots:
-	void onCloseButtonClicked(const QModelIndex& index);
-	void onTitleClicked(const QModelIndex& index);
+class QCUSTOMUI_EXPORT QCtmMessageTipData :public QCtmAbstractMessageTipData
+{
+public:
+	enum Column
+	{
+		Title,
+		Content,
+		Time,
+		ColumnCount
+	};
+
+	QCtmMessageTipData(const QString& title, const QString& content, const QDateTime& time);
+	~QCtmMessageTipData();
+
+	void setTitle(const QString& title);
+	const QString& title()const;
+	void setContent(const QString& content);
+	const QString& content()const;
+	void setDateTime(const QDateTime& time);
+	const QDateTime& dateTime()const;
 private:
 	struct Impl;
 	std::unique_ptr<Impl> m_impl;
 };
+

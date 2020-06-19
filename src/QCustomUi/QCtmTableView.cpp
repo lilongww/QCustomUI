@@ -24,6 +24,17 @@
 #include <QHoverEvent>
 #include <QPersistentModelIndex>
 
+/*!
+    \class      QCtmTableView
+    \brief      QCtmTableView provide a custom looking table view.
+    \inherits   QTableView
+    \ingroup    QCustomUi
+    \inmodule   QCustomUi
+*/
+
+/*!
+    \brief      Constructs a table view with \a parent.
+*/
 QCtmTableView::QCtmTableView(QWidget *parent)
     : QTableView(parent)
 {
@@ -38,10 +49,16 @@ QCtmTableView::QCtmTableView(QWidget *parent)
     setItemDelegate(m_delegate);
 }
 
+/*!
+    \brief      Destroys the table view.
+*/
 QCtmTableView::~QCtmTableView()
 {
 }
 
+/*!
+    \reimp
+*/
 bool QCtmTableView::viewportEvent(QEvent *event)
 {
     switch (event->type()) 
@@ -63,6 +80,9 @@ bool QCtmTableView::viewportEvent(QEvent *event)
     return QTableView::viewportEvent(event);
 }
 
+/*!
+    \brief      Sets the hover \a index.
+*/
 void QCtmTableView::setHoverIndex(const QModelIndex& index)
 {
     if (!model())

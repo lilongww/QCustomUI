@@ -19,7 +19,7 @@
 
 #include "QCtmNavigationBar.h"
 #include "QCtmNavigationSidePane.h"
-#include "QCtmMessageTip.h"
+#include "QCtmMessageTipButton.h"
 #include "Private/QCtmNavigationImageButton_p.h"
 #include "Private/QCtmWidgetItem_p.h"
 #include "Private/Util_p.h"
@@ -98,6 +98,26 @@ struct QCtmNavigationBar::Impl
     }
 };
 
+/*!
+    \class      QCtmNavigationBar
+    \brief      QCtmNavigationBar look like a tool bar, but it can be used with QCtmWindow, QCtmNavigationPane and more.
+    \inherits   QWidget
+    \ingroup    QCustomUi
+    \inmodule   QCustomUi
+*/
+
+/*!
+    \enum       QCtmNavigationBar::ActionPosition
+                Describe the direction of the navigation bar.
+    \value      Left
+                The left of the navigation bar.
+    \value      Right
+                The right of the navigation bar.
+*/
+
+/*!
+    \brief      Constructs a navigation bar with \a parent.
+*/
 QCtmNavigationBar::QCtmNavigationBar(QWidget *parent)
 	: QWidget(parent)
 	, m_impl(std::make_unique<Impl>())
@@ -118,29 +138,40 @@ QCtmNavigationBar::QCtmNavigationBar(QWidget *parent)
     layout->addLayout(m_impl->rightLayout);
 }
 
+/*!
+    \brief      Destroys the navigation bar.
+*/
 QCtmNavigationBar::~QCtmNavigationBar()
 {
 }
 
-/**
- * @brief       Add a action.
- */
+/*!
+    \overload   addAction
+                This convenience function creates a new action with \a text and \a pos.
+                The Function adds the newly created action to the navigation bar and returns it.
+    \sa         QWidget::addAction
+*/
 QAction* QCtmNavigationBar::addAction(const QString& text, ActionPosition pos)
 {
 	return addAction(QIcon(), text, pos);
 }
 
-/**
- * @brief  	    Add a action.
- */
+/*!
+    \overload   addAction
+                This convenience function creates a new action with an \a icon, \a text and \a pos.
+                The Function adds the newly created action to the navigation bar and returns it.
+    \sa         QWidget::addAction
+*/
 QAction* QCtmNavigationBar::addAction(const QIcon& icon, const QString& text, ActionPosition pos)
 {
     return insertAction(count(pos), icon, text, pos);
 }
 
-/**
- * @brief		Insert a action.
- */
+/*!
+    \overload   insertAction
+                This convenience function insert the given \a action to the navigation bar with the \a index and \a pos.
+    \sa         QWidget::insertAction
+*/
 void QCtmNavigationBar::insertAction(int index, QAction* action, ActionPosition pos)
 {
     auto before = actionAt(index, pos);
@@ -148,21 +179,29 @@ void QCtmNavigationBar::insertAction(int index, QAction* action, ActionPosition 
     QWidget::insertAction(before, action);
 }
 
-/**
- * @brief		Add a action.
- */
+/*!
+    \overload   addAction
+                This function add the given \a action to the navigation bar with the \a pos.
+    \sa         QWidget::addAction
+*/
 void QCtmNavigationBar::addAction(QAction* action, ActionPosition pos)
 {
 	int index = pos == ActionPosition::Right ? m_impl->rightItems.size() : m_impl->leftItems.size();
 	insertAction(index, action, pos);
 }
 
+/*!
+    \reimp
+*/
 void QCtmNavigationBar::paintEvent([[maybe_unused]] QPaintEvent* e)
 {
 	QPainter p(this);
 	drawBackground(&p);
 }
 
+/*!
+    \reimp
+*/
 void QCtmNavigationBar::actionEvent(QActionEvent *event)
 {
     ActionPosition pos = Left;
@@ -206,6 +245,10 @@ void QCtmNavigationBar::actionEvent(QActionEvent *event)
     }
 }
 
+/*!
+    \brief      This function draw the background of the navigation bar, \a p.
+    \sa         paintEvent
+*/
 void QCtmNavigationBar::drawBackground(QPainter *p)
 {
 	QStyleOption opt;
@@ -213,17 +256,19 @@ void QCtmNavigationBar::drawBackground(QPainter *p)
 	style()->drawPrimitive(QStyle::PE_Widget, &opt, p, this);
 }
 
-/**
- * @brief       Add a separator.
- */
+/*!
+    \brief      Add a separator to the navigation bar with the given \a pos.
+    \sa         insertSeparator
+*/
 QAction* QCtmNavigationBar::addSeparator(ActionPosition pos)
 {
 	return insertSeparator(count(pos), pos);
 }
 
-/**
- * @brief  	    Insert a separator.
- */
+/*!
+    \brief      Insert a separator to the navigation bar with the given \a index and \a pos.
+    \sa         addSeparator
+*/
 QAction* QCtmNavigationBar::insertSeparator(int index, ActionPosition pos)
 {
     auto action = new QAction(nullptr);
@@ -232,9 +277,11 @@ QAction* QCtmNavigationBar::insertSeparator(int index, ActionPosition pos)
 	return action;
 }
 
-/**
- * @brief  	    Add a pane.
- */
+/*!
+    \brief      Add a \a pane to the navigation bar. And creates a binded action with the given \a icon, \a text, \a pos.
+                And returns the newly created action.
+    \sa         insertPane
+*/
 QAction* QCtmNavigationBar::addPane(const QIcon& icon, const QString& text, ActionPosition pos, QCtmNavigationSidePane* pane)
 {
 	auto count = this->count(pos);
@@ -242,25 +289,33 @@ QAction* QCtmNavigationBar::addPane(const QIcon& icon, const QString& text, Acti
 	return action;
 }
 
-/**
- * @brief  	    Add a pane.
- */
+/*!
+    \overload   addPane
+                This function add the given \a pane to the navigation bar.
+                And creates a binded action with the given \a text and \a pos.
+                And returns the newly created action.
+    \sa         QCtmNavigationBar::addPane
+*/
 QAction* QCtmNavigationBar::addPane(const QString& text, ActionPosition pos, QCtmNavigationSidePane* pane)
 {
 	return addPane(QIcon(), text, pos, pane);
 }
 
-/**
- * @brief		Add a pane.
- */
+/*!
+    \brief      This function add the given \a action and \a pane to the navigation bar with \a pos.
+                And bind the \a action and \a pane.
+    \sa         insertPane
+*/
 void QCtmNavigationBar::addPane(QAction* action, ActionPosition pos, QCtmNavigationSidePane* pane)
 {
     insertPane(count(pos), action, pos, pane);
 }
 
-/**
- * @brief  	    Insert a action.
- */
+/*!
+    \brief      This function creates and add a action to the navigation bar with the given \a index, \a icon, \a text and \a pos.
+                And returns the newly created action.
+    \sa         addAction
+*/
 QAction* QCtmNavigationBar::insertAction(int index, const QIcon& icon, const QString& text, ActionPosition pos)
 {
     auto action = new QAction(icon, text, nullptr);
@@ -268,17 +323,24 @@ QAction* QCtmNavigationBar::insertAction(int index, const QIcon& icon, const QSt
 	return action;
 }
 
-/**
- * @brief  	    Add a action.
- */
+/*!
+    \overload   insertAction
+                This function creates and add a action to the navigation bar with the given \a index, \a text and pos.
+                And return the newly created action.
+    \sa         QCtmNavigationBar::insertAction
+*/
 QAction* QCtmNavigationBar::insertAction(int index, const QString& text, ActionPosition pos)
 {
 	return insertAction(index, QIcon(), text, pos);
 }
 
-/**
- * @brief  	    Insert a pane.
- */
+/*!
+    \overload   insertPane
+                This function insert the given pane to the navigation bar.
+                And creates and inserts a action to the navigation bar with the given \a index, \a icon, \a text and \a pos.
+                And returns the newly created action.
+    \sa         QCtmNavigationBar::insertPane
+*/
 QAction* QCtmNavigationBar::insertPane(int index, const QIcon& icon, const QString& text, ActionPosition pos, QCtmNavigationSidePane* pane)
 {
 	auto action = insertAction(index, icon, text, pos);
@@ -286,17 +348,23 @@ QAction* QCtmNavigationBar::insertPane(int index, const QIcon& icon, const QStri
 	return action;
 }
 
-/**
- * @brief  	    Insert a pane.
- */
+/*!
+    \overload   insertPane
+                This function insert the given pane to the navigation bar.
+                And creates and inserts a action to the navigation bar with the given \a index, \a text and \a pos.
+                And returns the newly created action.
+    \sa         QCtmNavigationBar::insertPane
+*/
 QAction* QCtmNavigationBar::insertPane(int index, const QString& text, ActionPosition pos, QCtmNavigationSidePane* pane)
 {
 	return insertPane(index, QIcon(), text, pos, pane);
 }
 
-/**
- * @brief  	    Insert a pane.
- */
+/*!
+    \brief      This function insert the given \a pane and \a action to the navigation bar with \a index and \a pos.
+                And bind the \a action and \a pane.
+    \sa         insertAction
+*/
 void QCtmNavigationBar::insertPane(int index, QAction* action, ActionPosition pos, QCtmNavigationSidePane* pane)
 {
     if (!this->actions().contains(action))
@@ -320,9 +388,9 @@ void QCtmNavigationBar::insertPane(int index, QAction* action, ActionPosition po
     connect(pane, &QCtmNavigationSidePane::paneClosed, this, [=]() { action->setChecked(false); }, Qt::QueuedConnection);
 }
 
-/**
- * @brief  	    Get the index of the action.
- */
+/*!
+    \brief      Returns the index of the \a action.
+*/
 int QCtmNavigationBar::indexOf(QAction* action) const
 {
     auto item = m_impl->find(action, Left);
@@ -337,9 +405,9 @@ int QCtmNavigationBar::indexOf(QAction* action) const
 	return -1;
 }
 
-/**
- * @brief  	    Get the count of the pos.
- */
+/*!
+    \brief      Returns the action count with \a pos.
+*/
 int QCtmNavigationBar::count(ActionPosition pos) const
 {
 	switch (pos)
@@ -352,9 +420,9 @@ int QCtmNavigationBar::count(ActionPosition pos) const
 	return 0;
 }
 
-/**
- * @brief  	    Get the rect of the action.
- */
+/*!
+    \brief      Returns rect of the \a action.
+*/
 QRect QCtmNavigationBar::actionRect(QAction* action)
 {
     auto item = m_impl->find(action);
@@ -363,18 +431,22 @@ QRect QCtmNavigationBar::actionRect(QAction* action)
 	return item->widget()->geometry();
 }
 
-/**
- * @brief  	    Add a help action.
- */
+/*!
+    \brief      Add a help action to the navigation bar with the given \a filePath, \a icon and \a pos.
+                And returns the newly created action.
+    \sa         insertHelp
+*/
 QAction* QCtmNavigationBar::addHelp(const QUrl& filePath, const QIcon& icon, ActionPosition pos)
 {
 	auto index = count(pos);
 	return insertHelp(index, filePath, icon, pos);
 }
 
-/**
- * @brief  	    Insert a help action.
- */
+/*!
+    \brief      Insert a help action to the navigation bar with the given \a index, \a filePath, \a icon and \a pos.
+                And returns the newly created action.
+    \sa         addHelp
+*/
 QAction* QCtmNavigationBar::insertHelp(int index, const QUrl& filePath, const QIcon& icon, ActionPosition pos /*= Right*/)
 {
 	auto help = new QAction(icon, "", this);
@@ -385,18 +457,22 @@ QAction* QCtmNavigationBar::insertHelp(int index, const QUrl& filePath, const QI
 	return help;
 }
 
-/**
- * @brief		Add a logo action.
- */
+/*!
+    \brief      Add a logo action to the navigation bar with the given \a icon and \a pos.
+                And returns the newly created action.
+    \sa         insertLogo
+*/
 QAction* QCtmNavigationBar::addLogo(const QIcon& icon, ActionPosition pos)
 {
 	auto index = count(pos);
 	return insertLogo(index, icon, pos);
 }
 
-/**
- * @brief		Insert a logo action.
- */
+/*!
+    \brief      Insert a logo action to the navigation bar with the given \a index, \a icon and \a pos.
+                And returns the newly created action.
+    \sa         addLogo
+*/
 QAction* QCtmNavigationBar::insertLogo(int index, const QIcon& icon, ActionPosition pos /*= Left*/)
 {
 	QWidgetAction* action = new QWidgetAction(this);
@@ -412,17 +488,21 @@ QAction* QCtmNavigationBar::insertLogo(int index, const QIcon& icon, ActionPosit
 	return action;
 }
 
-/**
- * @brief		Add a user action.
- */
+/*!
+    \brief      Add a user action to the navigation bar with the given \a icon, \a text and \a pos.
+                And returns the newly created action.
+    \sa         insertUser
+*/
 QAction* QCtmNavigationBar::addUser(const QIcon& icon, const QString& text, ActionPosition pos)
 {
 	return insertUser(count(pos), icon, text, pos);
 }
 
-/**
- * @brief		Insert a user action.
- */
+/*!
+    \brief      Insert a user action to the navigation bar with the given \a index, \a icon, \a text and \a pos.
+                And returns the newly created action.
+    \sa         addUser
+*/
 QAction* QCtmNavigationBar::insertUser(int index, const QIcon& icon, const QString& text, ActionPosition pos)
 {
 	QWidgetAction *action = new QWidgetAction(this);
@@ -439,9 +519,10 @@ QAction* QCtmNavigationBar::insertUser(int index, const QIcon& icon, const QStri
 	return action;
 }
 
-/**
- * @brief		Get the action at index and pos.
- */
+/*!
+    \brief      Returns the action at the given \a index and \a pos.
+    \sa         addAction, insertAction
+*/
 QAction* QCtmNavigationBar::actionAt(int index, ActionPosition pos) const
 {
     if (index < 0)

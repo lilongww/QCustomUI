@@ -1,5 +1,5 @@
 #include "QCtmMessageViewDelegate_p.h"
-#include "QCtmMessage.h"
+#include "QCtmMessageTipData.h"
 
 #include <QStyleOption>
 #include <QColor>
@@ -62,8 +62,8 @@ QSize QCtmMessageViewDelegate::sizeHint(const QStyleOptionViewItem &option, cons
 	font.setUnderline(true);
 	QFontMetrics fm(font);
 	auto model = index.model();
-	const auto& title = model->data(model->index(index.row(), QCtmMessage::Title), Qt::DisplayRole).toString();
-	const auto& time = model->data(model->index(index.row(), QCtmMessage::Time), Qt::DisplayRole).toString();
+	const auto& title = model->data(model->index(index.row(), QCtmMessageTipData::Title), Qt::DisplayRole).toString();
+	const auto& time = model->data(model->index(index.row(), QCtmMessageTipData::Time), Qt::DisplayRole).toString();
 	auto rect = fm.boundingRect(QRect(0, 0, w->viewport()->size().width() - margin * 2 - m_impl->closeButtonIcon.width() - space * 2 - decorate - padding * 2, 0)
 		, Qt::TextWordWrap | Qt::AlignJustify, title + "\n" + time);
 	rect.setHeight(rect.height() + margin * 2 + padding * 2);
@@ -93,7 +93,7 @@ const QPixmap& QCtmMessageViewDelegate::closeButtonIcon() const
 void QCtmMessageViewDelegate::drawTitle(QPainter* painter, const QStyleOptionViewItem &option, const QModelIndex& index) const
 {
 	auto model = index.model();
-	const auto& title = model->data(model->index(index.row(), QCtmMessage::Title), Qt::DisplayRole).toString();
+	const auto& title = model->data(model->index(index.row(), QCtmMessageTipData::Title), Qt::DisplayRole).toString();
 
 	QTextOption to;
 	to.setWrapMode(QTextOption::WordWrap);
@@ -108,7 +108,7 @@ void QCtmMessageViewDelegate::drawTitle(QPainter* painter, const QStyleOptionVie
 	}
 	font.setBold(true);
 	painter->setFont(font);
-	painter->setPen(model->data(model->index(index.row(), QCtmMessage::Title), Qt::ForegroundRole).value<QColor>());
+	painter->setPen(model->data(model->index(index.row(), QCtmMessageTipData::Title), Qt::ForegroundRole).value<QColor>());
 	painter->drawText(doTitleRect(option, index), title, to);
 	painter->restore();
 }
@@ -116,14 +116,14 @@ void QCtmMessageViewDelegate::drawTitle(QPainter* painter, const QStyleOptionVie
 void QCtmMessageViewDelegate::drawDateTime(QPainter* painter, const QStyleOptionViewItem &option, const QModelIndex& index) const
 {
 	auto model = index.model();
-	const auto& time = model->data(model->index(index.row(), QCtmMessage::Time), Qt::DisplayRole).toString();
+	const auto& time = model->data(model->index(index.row(), QCtmMessageTipData::Time), Qt::DisplayRole).toString();
 
 	QTextOption to;
 	to.setWrapMode(QTextOption::WordWrap);
 	to.setAlignment(Qt::AlignLeft | Qt::AlignVCenter);
 
 	painter->save();
-	painter->setPen(model->data(model->index(index.row(), QCtmMessage::Time), Qt::ForegroundRole).value<QColor>());
+	painter->setPen(model->data(model->index(index.row(), QCtmMessageTipData::Time), Qt::ForegroundRole).value<QColor>());
 	painter->drawText(doDateTimeRect(option, index), time, to);
 	painter->restore();
 }
@@ -165,7 +165,7 @@ QRect QCtmMessageViewDelegate::doDateTimeRect(const QStyleOptionViewItem& option
 
 QRect QCtmMessageViewDelegate::doTitleRect(const QStyleOptionViewItem& option, const QModelIndex& index) const
 {
-	const auto& title = index.model()->data(index.model()->index(index.row(), QCtmMessage::Title), Qt::DisplayRole).toString();
+	const auto& title = index.model()->data(index.model()->index(index.row(), QCtmMessageTipData::Title), Qt::DisplayRole).toString();
 	auto rect = option.rect - QMargins(margin + space + decorate + padding, margin + padding, margin + space + m_impl->closeButtonIcon.width() + padding, margin + padding);
 	auto font = option.font;
 	font.setBold(true);

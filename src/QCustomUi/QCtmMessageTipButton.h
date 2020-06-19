@@ -21,41 +21,38 @@
 
 #include "qcustomui_global.h"
 
-#include <QString>
-#include <QDateTime>
+#include <QAbstractButton>
 
 #include <memory>
 
-class QCUSTOMUI_EXPORT QCtmAbstractMessage
+class QCtmAbstractMessageTipModel;
+class QCtmAbstractMessageTipView;
+class QStyleOptionButton;
+
+class QCUSTOMUI_EXPORT QCtmMessageTipButton : public QAbstractButton
 {
+	Q_OBJECT
+		Q_PROPERTY(QColor tipColor READ tipColor WRITE setTipColor)
 public:
-	QCtmAbstractMessage();
-	virtual ~QCtmAbstractMessage() {}
+	QCtmMessageTipButton(QWidget *parent);
+	~QCtmMessageTipButton();
 
-};
+	void setModel(QCtmAbstractMessageTipModel* model);
+	QCtmAbstractMessageTipModel* model()const;
+	void setView(QCtmAbstractMessageTipView* view);
+	QCtmAbstractMessageTipView* view()const;
+	void setTipColor(const QColor& color);
+	const QColor& tipColor()const;
+private:
+	void paintEvent(QPaintEvent *event) override;
+	QSize sizeHint()const override;
+	void connectView();
+	void initStyleOption(QStyleOptionButton* opt);
 
-class QCUSTOMUI_EXPORT QCtmMessage :public QCtmAbstractMessage
-{
-public:
-	enum Column
-	{
-		Title,
-		Content,
-		Time,
-		ColumnCount
-	};
-
-	QCtmMessage(const QString& title, const QString& content, const QDateTime& time);
-	~QCtmMessage();
-
-	void setTitle(const QString& title);
-	const QString& title()const;
-	void setContent(const QString& content);
-	const QString& content()const;
-	void setDateTime(const QDateTime& time);
-	const QDateTime& dateTime()const;
+	private slots:
+	void onClicked(bool);
+	void onModelDataChanged();
 private:
 	struct Impl;
 	std::unique_ptr<Impl> m_impl;
 };
-

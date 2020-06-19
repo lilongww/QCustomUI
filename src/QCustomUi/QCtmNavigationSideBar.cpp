@@ -69,6 +69,31 @@ struct QCtmNavigationSideBar::Impl
     }
 };
 
+/*!
+    \class      QCtmNavigationSideBar
+    \brief      QCtmNavigationSideBar provide a side bar widget. It look like a vertical tool bar.
+    \inherits   QWidget
+    \ingroup    QCustomUi
+    \inmodule   QCustomUi
+*/
+
+/*!
+    \property   QCtmNavigationSideBar::iconSize
+    \brief      The iconSize holds size of the icon.
+*/
+
+/*!
+    \enum       QCtmNavigationSideBar::ActionPosition
+                Describe the direction of the navigation side bar.
+    \value      Top
+                Top of the navigation side bar.
+    \value      Bottom
+                Bottom of the navigation side bar.
+*/
+
+/*!
+    \brief      Constructs a navigation side bar with the given \a parent.
+*/
 QCtmNavigationSideBar::QCtmNavigationSideBar(QWidget *parent)
 	: QWidget(parent)
 	, m_impl(std::make_unique<Impl>())
@@ -89,22 +114,30 @@ QCtmNavigationSideBar::QCtmNavigationSideBar(QWidget *parent)
 	setFixedWidth(50);
 }
 
+/*!
+    \brief      Destroys the navigation side bar.
+*/
 QCtmNavigationSideBar::~QCtmNavigationSideBar()
 {
 }
 
-/**
- * @brief       Add a action.
- */
+/*!
+    \overload   addAction
+                This function creates and add a action to the navigation side bar with the given \a icon, \a text and \a pos.
+                And returns the newly created action.
+    \sa         QWidget::addAction
+*/
 QAction* QCtmNavigationSideBar::addAction(const QIcon& icon, const QString& text, ActionPosition pos)
 {
 	auto count = this->count(pos);
 	return insertAction(count, icon, text, pos);
 }
 
-/**
- * @brief		Add a action.
- */
+/*!
+    \overload   addAction
+                This function add the given \a action to the navigation side bar with \a pos.
+    \sa         QWidget::addAction
+*/
 void QCtmNavigationSideBar::addAction(QAction* action, ActionPosition pos)
 {
 	int index = 0;
@@ -115,33 +148,37 @@ void QCtmNavigationSideBar::addAction(QAction* action, ActionPosition pos)
 	insertAction(index, action, pos);
 }
 
-/**
- * @brief       Get the count of align.
- */
-int QCtmNavigationSideBar::count(ActionPosition align) const
+/*!
+    \brief      Returns the action count with the given \a pos.
+    \sa         addAction, insertAction
+*/
+int QCtmNavigationSideBar::count(ActionPosition pos) const
 {
-	return align == ActionPosition::Top ? m_impl->topActions.size() : m_impl->bottomActions.size();
+	return pos == ActionPosition::Top ? m_impl->topActions.size() : m_impl->bottomActions.size();
 }
 
-/**
- * @brief       Sets the icon size.
- */
+/*!
+    \brief      Sets the \a size of the icon.
+    \sa         iconSize
+*/
 void QCtmNavigationSideBar::setIconSize(const QSize& size)
 {
 	m_impl->iconSize = size;
 }
 
-/**
- * @brief       Gets the icon size.
- */
+/*!
+    \brief      Returns size of the icon.
+    \sa         setIconSize
+*/
 const QSize& QCtmNavigationSideBar::iconSize() const
 {
 	return m_impl->iconSize;
 }
 
-/**
- * @brief		Get the action at index of pos.
- */
+/*!
+    \brief      Returns the action at the given \a index and \a pos.
+    \sa         addAction, insertAction, indexOf
+*/
 QAction* QCtmNavigationSideBar::actionAt(int index, ActionPosition pos) const
 {
     if (index < 0)
@@ -164,6 +201,9 @@ QAction* QCtmNavigationSideBar::actionAt(int index, ActionPosition pos) const
     return nullptr;
 }
 
+/*!
+    \reimp
+*/
 void QCtmNavigationSideBar::paintEvent(QPaintEvent *)
 {
 	QStyleOption opt;
@@ -172,6 +212,9 @@ void QCtmNavigationSideBar::paintEvent(QPaintEvent *)
 	style()->drawPrimitive(QStyle::PE_Widget, &opt, &p, this);
 }
 
+/*!
+    \reimp
+*/
 void QCtmNavigationSideBar::actionEvent(QActionEvent *event)
 {
     ActionPosition pos = Top;
@@ -234,9 +277,11 @@ void QCtmNavigationSideBar::actionEvent(QActionEvent *event)
     }
 }
 
-/**
- * @brief		Insert a action.
- */
+/*!
+    \overload   insertAction
+                Insert the given \a action with \a index and \a pos.
+    \sa         QWidget::insertAction
+*/
 void QCtmNavigationSideBar::insertAction(int index, QAction* action, ActionPosition pos)
 {
     auto before = actionAt(index, pos);
@@ -244,9 +289,12 @@ void QCtmNavigationSideBar::insertAction(int index, QAction* action, ActionPosit
     QWidget::insertAction(before, action);
 }
 
-/**
- * @brief       Insert a action.
- */
+/*!
+    \overload   insertAction
+                Create and insert a action with the given \a index, \a icon, \a text and \a pos.
+                And returns the newly created action.
+    \sa         QWidget::insertAction
+*/
 QAction* QCtmNavigationSideBar::insertAction(int index, const QIcon& icon, const QString& text, ActionPosition pos)
 {
     auto action = new QAction(icon, "", nullptr);
@@ -255,9 +303,10 @@ QAction* QCtmNavigationSideBar::insertAction(int index, const QIcon& icon, const
 	return action;
 }
 
-/**
- * @brief       Get the index of the action, returns -1 if action does not exist.
- */
+/*!
+    \brief      Returns index of the given \a action.
+    \sa         count, actionAt
+*/
 int QCtmNavigationSideBar::indexOf(QAction* action) const
 {
 	if (m_impl->bottomActions.contains(m_impl->find(action)))

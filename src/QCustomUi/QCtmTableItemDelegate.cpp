@@ -21,16 +21,34 @@
 
 #include <QDebug>
 
+/*!
+    \class      QCtmTableItemDelegate
+    \brief      QCtmTableItemDelegate provide a delegate for QCtmTableView to show hover row.
+    \inherits   QStyledItemDelegate
+    \ingroup    QCustomUi
+    \inmodule   QCustomUi
+    \sa         QCtmTableView
+*/
+
+/*!
+    \brief      Constructs a delegate with \a parent.
+*/
 QCtmTableItemDelegate::QCtmTableItemDelegate(QTableView *parent)
     : QStyledItemDelegate(parent)
     , m_parent(parent)
 {
 }
 
+/*!
+    \brief      Destroys the delegate.
+*/
 QCtmTableItemDelegate::~QCtmTableItemDelegate()
 {
 }
 
+/*!
+    \reimp
+*/
 void QCtmTableItemDelegate::paint(QPainter *painter, const QStyleOptionViewItem &option, const QModelIndex &index) const
 {
     QStyleOptionViewItem opt = option;

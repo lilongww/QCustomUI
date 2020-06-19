@@ -17,37 +17,10 @@
 **  along with QCustomUi.  If not, see <https://www.gnu.org/licenses/>.         **
 **********************************************************************************/
 
-#pragma once
+/*!
+    \module QCustomUi
+    \title QCustomUi Classes
+    \brief Contains classes for QCustomUi controls and other classes.
 
-#include "qcustomui_global.h"
-
-#include <QAbstractTableModel>
-
-#include <memory>
-
-using QCtmAbstractMessageTipDataPtr = std::shared_ptr<class QCtmAbstractMessageTipData>;
-
-class QCUSTOMUI_EXPORT QCtmAbstractMessageTipModel : public QAbstractTableModel
-{
-	Q_OBJECT
-
-public:
-	QCtmAbstractMessageTipModel(QObject *parent);
-	~QCtmAbstractMessageTipModel();
-
-	void addMessage(QCtmAbstractMessageTipDataPtr msg);
-	void insertMessage(int index, QCtmAbstractMessageTipDataPtr msg);
-	void removeMessage(QCtmAbstractMessageTipDataPtr msg);
-	QCtmAbstractMessageTipDataPtr message(int row)const;
-	void clear();
-	void setMaximumCount(int count);
-	int maximumCount() const;
-
-	int	rowCount(const QModelIndex &parent = QModelIndex()) const override;
-    bool setData([[maybe_unused]] const QModelIndex &index, [[maybe_unused]] const QVariant &value, [[maybe_unused]] int role = Qt::EditRole) override { return false; }
-	bool removeRows(int row, int count, const QModelIndex &parent = QModelIndex()) override;
-	bool insertRows(int row, int count, const QModelIndex &parent  = QModelIndex()) override;
-private:
-	struct Impl;
-	std::unique_ptr<Impl> m_impl;
-};
+    QCustomUi module provides more custom controls.
+*/

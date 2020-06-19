@@ -29,4 +29,12 @@
       <Filter>源文件</Filter>
     </CustomBuild>
   </ItemGroup>
+  <ItemGroup>
+    <None Include="src\index.qdoc">
+      <Filter>源文件</Filter>
+    </None>
+    <None Include="src\classes.qdoc">
+      <Filter>源文件</Filter>
+    </None>
+  </ItemGroup>
 </Project>

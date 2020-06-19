@@ -36,12 +36,15 @@ struct QCtmHeaderView::Impl
 
 /*!
     \class      QCtmHeaderView
-    \brief      QCtmHeaderView 
-    \inherits   
-    \ingroup    
-    \inmodule   
+    \brief      QCtmHeaderView provide a check box to sets the items check state.
+    \inherits   QHeaderView
+    \ingroup    QCustomUi
+    \inmodule   QCustomUi
 */
 
+/*!
+    \brief      Constructs a header view with \a orientation and \a parent.
+*/
 QCtmHeaderView::QCtmHeaderView(Qt::Orientation orientation, QWidget *parent)
 	: QHeaderView(orientation, parent)
 	, m_impl(std::make_unique<Impl>())
@@ -49,10 +52,16 @@ QCtmHeaderView::QCtmHeaderView(Qt::Orientation orientation, QWidget *parent)
 
 }
 
+/*!
+    \brief      Destorys the header view.
+*/
 QCtmHeaderView::~QCtmHeaderView()
 {
 }
 
+/*!
+    \reimp
+*/
 void QCtmHeaderView::setModel(QAbstractItemModel* model)
 {
 	QHeaderView::setModel(model);
@@ -76,6 +85,9 @@ void QCtmHeaderView::setModel(QAbstractItemModel* model)
 	onModelReset();
 }
 
+/*!
+    \brief      Sets the check box of the \a logicIndex is read-only, \a enable.
+*/
 void QCtmHeaderView::setReadOnly(int logicIndex, bool enable)
 {
 	if (logicIndex >= m_impl->state.size())
@@ -83,6 +95,9 @@ void QCtmHeaderView::setReadOnly(int logicIndex, bool enable)
 	m_impl->readOnlyState[logicIndex] = enable;
 }
 
+/*!
+    \reimp
+*/
 void QCtmHeaderView::paintSection(QPainter* painter, const QRect& rect, int logicalIndex) const
 {
 	painter->save();
@@ -107,6 +122,9 @@ void QCtmHeaderView::paintSection(QPainter* painter, const QRect& rect, int logi
 	style()->drawPrimitive(QStyle::PE_IndicatorCheckBox, &opt, painter, this);
 }
 
+/*!
+    \reimp
+*/
 void QCtmHeaderView::mousePressEvent(QMouseEvent* e)
 {
 	if (e->button() == Qt::LeftButton)
@@ -156,6 +174,9 @@ void QCtmHeaderView::mousePressEvent(QMouseEvent* e)
 	QHeaderView::mousePressEvent(e);
 }
 
+/*!
+    \brief      Returns rect of check box from \a logicalIndex.
+*/
 QRect QCtmHeaderView::doCheckBoxRect(int logicalIndex) const
 {
 	auto position = sectionPosition(logicalIndex);
@@ -171,6 +192,9 @@ QRect QCtmHeaderView::doCheckBoxRect(int logicalIndex) const
 	return QRect{ rect.x() + checkboxMargin, rect.y(), rect.width(), rect.height() };
 }
 
+/*!
+    \brief      Update check state of header view on model reseted.
+*/
 void QCtmHeaderView::onModelReset()
 {
 	m_impl->state.resize(model()->columnCount());

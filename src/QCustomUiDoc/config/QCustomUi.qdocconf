@@ -2,6 +2,8 @@ include($$QTDIR/doc/global/qt-module-defaults-offline.qdocconf)
 include($$QTDIR/doc/global/fileextensions.qdocconf)
 include($$QTDIR/doc/global/qt-html-templates-offline.qdocconf)
 
+buildversion = "QCustomUi 1.0.0 Reference Documentation"
+
 defines += BUILD_STATIC
 
 indexes = $QT_INSTALL_DOCS/qtcore/qtcore.index \
@@ -36,11 +38,13 @@ qhp.QCustomUi.indexTitle          = QCustomUi
 qhp.QCustomUi.indexRoot           = 
 
 qhp.QCustomUi.subprojects = classes
-qhp.QCustomUi.subprojects.classes.title = C++ Classes
-qhp.QCustomUi.subprojects.classes.indexTitle = C++ Classes
+qhp.QCustomUi.subprojects.classes.title = QCustomUi Classes
+qhp.QCustomUi.subprojects.classes.indexTitle = QCustomUi Classes
 qhp.QCustomUi.subprojects.classes.selectors = class fake:headerfile
 qhp.QCustomUi.subprojects.classes.sortPages = true
 
 qhp.QCustomUi.filterAttributes    = qcustomui
 qhp.QCustomUi.customFilters.Qt.name = QCustomUi
 qhp.QCustomUi.customFilters.Qt.filterAttributes = qcustomui
+
+navigation.hometitle = "QCustomUi 1.0.0"

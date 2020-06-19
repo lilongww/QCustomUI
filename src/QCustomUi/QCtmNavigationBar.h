@@ -26,7 +26,7 @@
 
 #include <memory>
 
-class QCtmMessageTip;
+class QCtmMessageTipButton;
 class QCtmNavigationSidePane;
 
 class QCUSTOMUI_EXPORT QCtmNavigationBar : public QWidget

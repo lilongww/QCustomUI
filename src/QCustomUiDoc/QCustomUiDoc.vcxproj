@@ -18,6 +18,10 @@
       <FileType>Document</FileType>
     </CustomBuild>
   </ItemGroup>
+  <ItemGroup>
+    <None Include="src\classes.qdoc" />
+    <None Include="src\index.qdoc" />
+  </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{2DABF0C6-E7BB-47D3-8030-7160C94698B9}</ProjectGuid>
     <Keyword>QtVS_v302</Keyword>

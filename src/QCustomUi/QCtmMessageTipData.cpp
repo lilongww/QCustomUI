@@ -17,22 +17,38 @@
 **  along with QCustomUi.  If not, see <https://www.gnu.org/licenses/>.         **
 **********************************************************************************/
 
-#include "QCtmMessage.h"
+#include "QCtmMessageTipData.h"
 
-QCtmAbstractMessage::QCtmAbstractMessage()
+QCtmAbstractMessageTipData::QCtmAbstractMessageTipData()
 {
 
 }
 
 
-struct QCtmMessage::Impl
+QCtmAbstractMessageTipData::~QCtmAbstractMessageTipData()
+{
+
+}
+
+struct QCtmMessageTipData::Impl
 {
 	QString title;
 	QString content;
 	QDateTime time;
 };
 
-QCtmMessage::QCtmMessage(const QString& title, const QString& content, const QDateTime& time)
+/*!
+    \class      QCtmMessageTipData
+    \brief      QCtmMessageTipData provide a common message tip function.
+    \inherits   QCtmAbstractMessageTipData
+    \ingroup    QCustomUi
+    \inmodule   QCustomUi
+*/
+
+/*!
+    \brief      Constructs a message tip data with \a title, \a content and \a time.
+*/
+QCtmMessageTipData::QCtmMessageTipData(const QString& title, const QString& content, const QDateTime& time)
 	:m_impl(std::make_unique<Impl>())
 {
 	m_impl->title = title;
@@ -40,54 +56,63 @@ QCtmMessage::QCtmMessage(const QString& title, const QString& content, const QDa
 	m_impl->time = time;
 }
 
-QCtmMessage::~QCtmMessage()
+/*!
+    \brief      Destroys the message tip data.
+*/
+QCtmMessageTipData::~QCtmMessageTipData()
 {
 }
 
-/**
- * @brief       Set the message title.
- */
-void QCtmMessage::setTitle(const QString& title)
+/*!
+    \brief      Sets \a title of the message tip data.
+    \sa         title()
+*/
+void QCtmMessageTipData::setTitle(const QString& title)
 {
 	m_impl->title = title;
 }
 
-/**
- * @brief       Get the message title.
- */
-const QString& QCtmMessage::title() const
+/*!
+    \brief      Returns title of the message tip data.
+    \sa         setTitle
+*/
+const QString& QCtmMessageTipData::title() const
 {
 	return m_impl->title;
 }
 
-/**
- * @brief       Set the message content.
- */
-void QCtmMessage::setContent(const QString& content)
+/*!
+    \brief      Sets \a content of the message tip data.
+    \sa         content
+*/
+void QCtmMessageTipData::setContent(const QString& content)
 {
 	m_impl->content = content;
 }
 
-/**
- * @brief       Get the message content.
- */
-const QString& QCtmMessage::content() const
+/*!
+    \brief      Returns content of the message tip data.
+    \sa         setContent
+*/
+const QString& QCtmMessageTipData::content() const
 {
 	return m_impl->content;
 }
 
-/**
- * @brief       Set the message date time.
- */
-void QCtmMessage::setDateTime(const QDateTime& time)
+/*!
+    \brief      Sets date \a time of the message tip data.
+    \sa         dateTime()
+*/
+void QCtmMessageTipData::setDateTime(const QDateTime& time)
 {
 	m_impl->time = time;
 }
 
-/**
- * @brief       Get the message date time.
- */
-const QDateTime& QCtmMessage::dateTime() const
+/*!
+    \brief      Returns date time of the message tip data.
+    \sa         setDateTime
+*/
+const QDateTime& QCtmMessageTipData::dateTime() const
 {
 	return m_impl->time;
 }

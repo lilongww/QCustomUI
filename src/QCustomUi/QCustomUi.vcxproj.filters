@@ -49,6 +49,12 @@
     <Filter Include="Display Widgets">
       <UniqueIdentifier>{2cc6a0ab-9fec-4b48-a5a4-987f4e29ec55}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Doc">
+      <UniqueIdentifier>{74e7be88-9c24-4b6b-ba40-a69badad33bc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="MessageTip">
+      <UniqueIdentifier>{5b2dcb19-a518-481b-8e2b-9e0e37749904}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="qcustomui_global.h">
@@ -62,9 +68,6 @@
     </ClInclude>
     <ClInclude Include="Private\Util_p.h">
       <Filter>Private</Filter>
-    </ClInclude>
-    <ClInclude Include="QCtmMessage.h">
-      <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Private\QCtmStyle_p.h">
       <Filter>Private</Filter>
@@ -86,6 +89,9 @@
     </ClInclude>
     <ClInclude Include="QCtmLogData.h">
       <Filter>Log</Filter>
+    </ClInclude>
+    <ClInclude Include="QCtmMessageTipData.h">
+      <Filter>MessageTip</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -138,18 +144,6 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="QCtmColor.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="QCtmMessage.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="QCtmMessageModel.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="QCtmMessageTip.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="QCtmMessageView.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="QCtmNavigationBar.cpp">
@@ -236,11 +230,23 @@
     <ClCompile Include="QCtmLogData.cpp">
       <Filter>Log</Filter>
     </ClCompile>
+    <ClCompile Include="QCtmMessageTipView.cpp">
+      <Filter>MessageTip</Filter>
+    </ClCompile>
+    <ClCompile Include="QCtmMessageTipData.cpp">
+      <Filter>MessageTip</Filter>
+    </ClCompile>
+    <ClCompile Include="QCtmMessageTipModel.cpp">
+      <Filter>MessageTip</Filter>
+    </ClCompile>
+    <ClCompile Include="QCtmMessageTipButton.cpp">
+      <Filter>MessageTip</Filter>
+    </ClCompile>
     <ClCompile Include="QCtmAbstractMessageTipModel.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>MessageTip</Filter>
     </ClCompile>
     <ClCompile Include="QCtmAbstractMessageTipView.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>MessageTip</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -248,15 +254,6 @@
       <Filter>Header Files</Filter>
     </QtMoc>
     <QtMoc Include="QCtmColor.h">
-      <Filter>Header Files</Filter>
-    </QtMoc>
-    <QtMoc Include="QCtmMessageModel.h">
-      <Filter>Header Files</Filter>
-    </QtMoc>
-    <QtMoc Include="QCtmMessageTip.h">
-      <Filter>Header Files</Filter>
-    </QtMoc>
-    <QtMoc Include="QCtmMessageView.h">
       <Filter>Header Files</Filter>
     </QtMoc>
     <QtMoc Include="QCtmNavigationBar.h">
@@ -367,11 +364,20 @@
     <QtMoc Include="QCtmNavigationSidePane.h">
       <Filter>Header Files</Filter>
     </QtMoc>
+    <QtMoc Include="QCtmMessageTipModel.h">
+      <Filter>MessageTip</Filter>
+    </QtMoc>
+    <QtMoc Include="QCtmMessageTipButton.h">
+      <Filter>MessageTip</Filter>
+    </QtMoc>
+    <QtMoc Include="QCtmMessageTipView.h">
+      <Filter>MessageTip</Filter>
+    </QtMoc>
     <QtMoc Include="QCtmAbstractMessageTipModel.h">
-      <Filter>Header Files</Filter>
+      <Filter>MessageTip</Filter>
     </QtMoc>
     <QtMoc Include="QCtmAbstractMessageTipView.h">
-      <Filter>Header Files</Filter>
+      <Filter>MessageTip</Filter>
     </QtMoc>
   </ItemGroup>
   <ItemGroup>
@@ -402,6 +408,9 @@
     </None>
     <None Include="..\..\README.md">
       <Filter>Resource Files</Filter>
+    </None>
+    <None Include="Docs\QCtmAbstractMessageTipData.qdoc">
+      <Filter>Doc</Filter>
     </None>
   </ItemGroup>
   <ItemGroup>

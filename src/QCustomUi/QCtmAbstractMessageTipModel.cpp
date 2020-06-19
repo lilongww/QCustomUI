@@ -21,7 +21,7 @@
 
 struct QCtmAbstractMessageTipModel::Impl
 {
-	QList<QCtmAbstractMessagePtr> messages;
+	QList<QCtmAbstractMessageTipDataPtr> messages;
 	int maxCount{ 10000 };
 };
 
@@ -53,7 +53,7 @@ QCtmAbstractMessageTipModel::~QCtmAbstractMessageTipModel()
     \brief      Add a message tip, \a msg.
     \sa         insertMessage, removeMessage
 */
-void QCtmAbstractMessageTipModel::addMessage(QCtmAbstractMessagePtr msg)
+void QCtmAbstractMessageTipModel::addMessage(QCtmAbstractMessageTipDataPtr msg)
 {
 	while (m_impl->messages.size() >= m_impl->maxCount && !m_impl->messages.isEmpty())
 	{
@@ -71,7 +71,7 @@ void QCtmAbstractMessageTipModel::addMessage(QCtmAbstractMessagePtr msg)
     \brief      Insert a message tip with \a index and \a msg.
     \sa         addMessage, removeMessage
 */
-void QCtmAbstractMessageTipModel::insertMessage(int index, QCtmAbstractMessagePtr msg)
+void QCtmAbstractMessageTipModel::insertMessage(int index, QCtmAbstractMessageTipDataPtr msg)
 {
 	m_impl->messages.insert(index, msg);
 	insertRow(index);
@@ -81,7 +81,7 @@ void QCtmAbstractMessageTipModel::insertMessage(int index, QCtmAbstractMessagePt
     \brief      Remove a message tip, \a msg.
     \sa         addMessage, insertMessage
 */
-void QCtmAbstractMessageTipModel::removeMessage(QCtmAbstractMessagePtr msg)
+void QCtmAbstractMessageTipModel::removeMessage(QCtmAbstractMessageTipDataPtr msg)
 {
 	const auto& index = m_impl->messages.indexOf(msg);
 	removeRow(index);
@@ -91,7 +91,7 @@ void QCtmAbstractMessageTipModel::removeMessage(QCtmAbstractMessagePtr msg)
 /*!
     \brief      Return the message tip by \a row.
 */
-QCtmAbstractMessagePtr QCtmAbstractMessageTipModel::message(int row) const
+QCtmAbstractMessageTipDataPtr QCtmAbstractMessageTipModel::message(int row) const
 {
 	return m_impl->messages.at(row);
 }

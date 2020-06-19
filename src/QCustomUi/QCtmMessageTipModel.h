@@ -20,38 +20,25 @@
 #pragma once
 
 #include "qcustomui_global.h"
+#include "QCtmAbstractMessageTipModel.h"
 
-#include <QAbstractButton>
+#include <QColor>
 
-#include <memory>
-
-class QCtmAbstractMessageTipModel;
-class QCtmAbstractMessageTipView;
-class QStyleOptionButton;
-
-class QCUSTOMUI_EXPORT QCtmMessageTip : public QAbstractButton
+class QCUSTOMUI_EXPORT QCtmMessageTipModel : public QCtmAbstractMessageTipModel
 {
 	Q_OBJECT
-		Q_PROPERTY(QColor tipcolor READ tipColor WRITE setTipColor)
+		Q_PROPERTY(QColor titleColor READ titleColor WRITE setTitleColor)
+		Q_PROPERTY(QColor timeColor READ timeColor WRITE setTimeColor)
 public:
-	QCtmMessageTip(QWidget *parent);
-	~QCtmMessageTip();
+	QCtmMessageTipModel(QObject *parent);
+	~QCtmMessageTipModel();
 
-	void setModel(QCtmAbstractMessageTipModel* model);
-	QCtmAbstractMessageTipModel* model()const;
-	void setView(QCtmAbstractMessageTipView* view);
-	QCtmAbstractMessageTipView* view()const;
-	void setTipColor(const QColor& color);
-	const QColor& tipColor()const;
-private:
-	void paintEvent(QPaintEvent *event) override;
-	QSize sizeHint()const override;
-	void connectView();
-	void initStyleOption(QStyleOptionButton* opt);
-
-	private slots:
-	void onClicked(bool);
-	void onModelDataChanged();
+	QVariant data(const QModelIndex& index, int role)const override;
+	int columnCount(const QModelIndex &parent /* = QModelIndex() */)const override;
+	void setTitleColor(const QColor& color);
+	const QColor& titleColor()const;
+	void setTimeColor(const QColor& color);
+	const QColor& timeColor()const;
 private:
 	struct Impl;
 	std::unique_ptr<Impl> m_impl;

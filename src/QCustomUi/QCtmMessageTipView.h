@@ -21,59 +21,46 @@
 
 #include "qcustomui_global.h"
 
-#include <QScrollArea>
+#include "QCtmAbstractMessageTipView.h"
 
 #include <memory>
 
 class QCtmNavigationBar;
+using QCtmAbstractMessageTipDataPtr = std::shared_ptr<class QCtmAbstractMessageTipData>;
 
-class QCUSTOMUI_EXPORT QCtmNavigationSidePane : public QWidget
+class QCUSTOMUI_EXPORT QCtmMessageTipView : public QCtmAbstractMessageTipView
 {
-    Q_OBJECT
-
+	Q_OBJECT
+		Q_PROPERTY(QColor decoration READ decoration WRITE setDecoration)
+		Q_PROPERTY(QColor titleColor READ titleColor WRITE setTitleColor)
+		Q_PROPERTY(QColor timeColor READ timeColor WRITE setTimeColor)
+		Q_PROPERTY(QPixmap closeButtonIcon READ closeButtonIcon WRITE setCloseButtonIcon)
 public:
-    enum class DockArea
-    {
-        Left,
-        Top,
-        Right,
-        Bottom
-    };
-    explicit QCtmNavigationSidePane(QCtmNavigationBar* parent = nullptr);
-    ~QCtmNavigationSidePane();
+	QCtmMessageTipView(QCtmNavigationBar *parent);
+	~QCtmMessageTipView();
 
-    void setDockArea(DockArea area);
-    DockArea dockArea() const;
-    void setWidget(QWidget* widget);
-    QWidget* widget() const;
-    QScrollArea* viewContainer() const;
-    void setTitleBarVisible(bool visible);
-    bool titleBarIsVisible()const;
-    void setTitle(const QString& text);
-    QString title() const;
-    void setPopup(bool popup);
-    bool popup() const;
+	virtual void setModel(QCtmAbstractMessageTipModel* model);
+	virtual QCtmAbstractMessageTipModel* model()const;
+	void setDecoration(const QColor& color);
+	const QColor& decoration()const;
+	void setTitleColor(const QColor& color);
+	const QColor& titleColor()const;
+	void setTimeColor(const QColor& color);
+	const QColor& timeColor()const;
+	void setCloseButtonIcon(const QPixmap& icon);
+	const QPixmap& closeButtonIcon()const;
 signals:
-    void paneClosed();
+	void closeButtonClicked(const QModelIndex& index);
+	void messageClicked(QCtmAbstractMessageTipDataPtr message);
 protected:
-    void paintEvent(QPaintEvent* event) override;
-    void showEvent(QShowEvent* event) override;
-    void closeEvent(QCloseEvent* event) override;
-    QSize sizeHint() const override;
-    bool eventFilter(QObject* o, QEvent* e) override;
-    void mousePressEvent(QMouseEvent* event) override;
+	void resizeEvent(QResizeEvent*) override;
+	void showEvent(QShowEvent*) override;
+	bool eventFilter(QObject* o, QEvent* e) override;
 
-    virtual QPoint smartPosition(DockArea area) const;
-    virtual QSize smartSize(DockArea area) const;
-
-    void setNavigationBar(QCtmNavigationBar* bar);
-    QCtmNavigationBar* navigationBar() const;
+	private slots:
+	void onCloseButtonClicked(const QModelIndex& index);
+	void onTitleClicked(const QModelIndex& index);
 private:
-    void bindAction(QAction* action);
-    void paintShadow(int shadowWidth);
-private:
-    struct Impl;
-    std::unique_ptr<Impl> m_impl;
-
-    friend class QCtmNavigationBar;
+	struct Impl;
+	std::unique_ptr<Impl> m_impl;
 };

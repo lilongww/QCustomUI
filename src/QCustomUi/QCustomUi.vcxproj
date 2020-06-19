@@ -184,11 +184,11 @@
     <QtMoc Include="QCtmLogModel.h" />
     <QtMoc Include="QCtmLogWidget.h" />
     <ClInclude Include="QCustomUi.h" />
-    <ClInclude Include="QCtmMessage.h" />
+    <ClInclude Include="QCtmMessageTipData.h" />
     <QtMoc Include="QCtmMessageBox.h" />
-    <QtMoc Include="QCtmMessageModel.h" />
-    <QtMoc Include="QCtmMessageTip.h" />
-    <QtMoc Include="QCtmMessageView.h" />
+    <QtMoc Include="QCtmMessageTipModel.h" />
+    <QtMoc Include="QCtmMessageTipButton.h" />
+    <QtMoc Include="QCtmMessageTipView.h" />
     <QtMoc Include="QCtmNavigationBar.h" />
     <QtMoc Include="QCtmNavigationSideBar.h" />
     <QtMoc Include="QCtmNavigationSidePane.h" />
@@ -221,11 +221,11 @@
     <ClCompile Include="QCtmLogManager.cpp" />
     <ClCompile Include="QCtmLogModel.cpp" />
     <ClCompile Include="QCtmLogWidget.cpp" />
-    <ClCompile Include="QCtmMessage.cpp" />
+    <ClCompile Include="QCtmMessageTipData.cpp" />
     <ClCompile Include="QCtmMessageBox.cpp" />
-    <ClCompile Include="QCtmMessageModel.cpp" />
-    <ClCompile Include="QCtmMessageTip.cpp" />
-    <ClCompile Include="QCtmMessageView.cpp" />
+    <ClCompile Include="QCtmMessageTipModel.cpp" />
+    <ClCompile Include="QCtmMessageTipButton.cpp" />
+    <ClCompile Include="QCtmMessageTipView.cpp" />
     <ClCompile Include="QCtmMultiComboBox.cpp" />
     <ClCompile Include="QCtmNavigationBar.cpp" />
     <ClCompile Include="QCtmNavigationSideBar.cpp" />
@@ -266,6 +266,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="..\..\README.md" />
+    <None Include="Docs\QCtmAbstractMessageTipData.qdoc">
+      <FileType>Document</FileType>
+    </None>
     <None Include="qcustomui_zh.ts" />
     <None Include="Resources\stylesheet\default-light.css" />
     <None Include="Resources\stylesheet\sw-light.css" />
