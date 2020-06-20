@@ -72,9 +72,6 @@
     <ClInclude Include="Private\QCtmStyle_p.h">
       <Filter>Private</Filter>
     </ClInclude>
-    <ClInclude Include="QCustomUi.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="QCtmStyleSheet.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -125,13 +122,7 @@
     <ClCompile Include="Private\QCtmStyle.cpp">
       <Filter>Private</Filter>
     </ClCompile>
-    <ClCompile Include="Private\QCtmToolBoxItem.cpp">
-      <Filter>Private</Filter>
-    </ClCompile>
     <ClCompile Include="Private\QCtmToolButton.cpp">
-      <Filter>Private</Filter>
-    </ClCompile>
-    <ClCompile Include="Private\QCtmTreeItemTitle.cpp">
       <Filter>Private</Filter>
     </ClCompile>
     <ClCompile Include="Private\QCtmUserButton.cpp">
@@ -165,12 +156,6 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="QCtmTitleBar.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="QCtmToolBox.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="QCtmTree.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="QCtmIPAddressEdit.cpp">
@@ -248,6 +233,15 @@
     <ClCompile Include="QCtmAbstractMessageTipView.cpp">
       <Filter>MessageTip</Filter>
     </ClCompile>
+    <ClCompile Include="QCtmDrawerWidget.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Private\QCtmDrawerItemTitle.cpp">
+      <Filter>Private</Filter>
+    </ClCompile>
+    <ClCompile Include="QCtmDrawerItemWidget.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <QtMoc Include="QCtmAbstractLogModel.h">
@@ -277,12 +271,6 @@
     <QtMoc Include="QCtmTitleBar.h">
       <Filter>Header Files</Filter>
     </QtMoc>
-    <QtMoc Include="QCtmToolBox.h">
-      <Filter>Header Files</Filter>
-    </QtMoc>
-    <QtMoc Include="QCtmTree.h">
-      <Filter>Header Files</Filter>
-    </QtMoc>
     <QtMoc Include="Private\QCtmActionGroup_p.h">
       <Filter>Private</Filter>
     </QtMoc>
@@ -304,13 +292,7 @@
     <QtMoc Include="Private\QCtmSeparator_p.h">
       <Filter>Private</Filter>
     </QtMoc>
-    <QtMoc Include="Private\QCtmToolBoxItem_p.h">
-      <Filter>Private</Filter>
-    </QtMoc>
     <QtMoc Include="Private\QCtmToolButton_p.h">
-      <Filter>Private</Filter>
-    </QtMoc>
-    <QtMoc Include="Private\QCtmTreeItemTitle_p.h">
       <Filter>Private</Filter>
     </QtMoc>
     <QtMoc Include="Private\QCtmUserButton_p.h">
@@ -379,11 +361,17 @@
     <QtMoc Include="QCtmAbstractMessageTipView.h">
       <Filter>MessageTip</Filter>
     </QtMoc>
+    <QtMoc Include="QCtmDrawerWidget.h">
+      <Filter>Header Files</Filter>
+    </QtMoc>
+    <QtMoc Include="Private\QCtmDrawerItemTitle_p.h">
+      <Filter>Private</Filter>
+    </QtMoc>
+    <QtMoc Include="QCtmDrawerItemWidget.h">
+      <Filter>Header Files</Filter>
+    </QtMoc>
   </ItemGroup>
   <ItemGroup>
-    <QtUic Include="Private\QCtmToolBoxItem.ui">
-      <Filter>Private</Filter>
-    </QtUic>
     <QtUic Include="QCtmWindow.ui">
       <Filter>Form Files</Filter>
     </QtUic>

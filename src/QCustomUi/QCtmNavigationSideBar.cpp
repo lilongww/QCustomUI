@@ -92,6 +92,11 @@ struct QCtmNavigationSideBar::Impl
 */
 
 /*!
+    \fn         void QCtmNavigationSideBar::iconSizeChanged(const QSize& size)
+    \brief      Emit this signal when the \a size of icon has been changed.
+*/
+
+/*!
     \brief      Constructs a navigation side bar with the given \a parent.
 */
 QCtmNavigationSideBar::QCtmNavigationSideBar(QWidget *parent)

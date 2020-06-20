@@ -73,6 +73,17 @@ struct QCtmLogWidget::Impl
 */
 
 /*!
+    \enum       QCtmLogWidget::QCtmLogColumn
+                Describe column of the log view.
+    \value      Level
+                The level of log.
+    \value      Time
+                The time of log.
+    \value      Description
+                The description of log.
+*/
+
+/*!
     \brief      Constructs a log view widget with \a objectName and \a parent.
 */
 QCtmLogWidget::QCtmLogWidget(const QString& objectName, QWidget *parent)

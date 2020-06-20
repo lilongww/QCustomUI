@@ -153,9 +153,8 @@
     <QtMoc Include="Private\QCtmFramelessDelegate_win.h">
     </QtMoc>
     <ClInclude Include="Private\QCtmStyle_p.h" />
-    <QtMoc Include="Private\QCtmToolBoxItem_p.h" />
     <QtMoc Include="Private\QCtmToolButton_p.h" />
-    <QtMoc Include="Private\QCtmTreeItemTitle_p.h" />
+    <QtMoc Include="Private\QCtmDrawerItemTitle_p.h" />
     <QtMoc Include="Private\QCtmUserButton_p.h" />
     <QtMoc Include="Private\QCtmWidgetItem_p.h" />
     <ClInclude Include="Private\flowlayout_p.h" />
@@ -168,6 +167,7 @@
     <QtMoc Include="QCtmHeaderView.h">
     </QtMoc>
     <QtMoc Include="QCtmStageProgressBar.h" />
+    <QtMoc Include="QCtmDrawerItemWidget.h" />
     <ClInclude Include="QCtmLogData.h" />
     <ClInclude Include="QCtmStyleSheet.h" />
     <ClInclude Include="resource.h" />
@@ -183,7 +183,6 @@
     <ClInclude Include="QCtmLogManager.h" />
     <QtMoc Include="QCtmLogModel.h" />
     <QtMoc Include="QCtmLogWidget.h" />
-    <ClInclude Include="QCustomUi.h" />
     <ClInclude Include="QCtmMessageTipData.h" />
     <QtMoc Include="QCtmMessageBox.h" />
     <QtMoc Include="QCtmMessageTipModel.h" />
@@ -197,8 +196,7 @@
     <QtMoc Include="QCtmTabPage.h" />
     <QtMoc Include="QCtmTabWidget.h" />
     <QtMoc Include="QCtmTitleBar.h" />
-    <QtMoc Include="QCtmToolBox.h" />
-    <QtMoc Include="QCtmTree.h" />
+    <QtMoc Include="QCtmDrawerWidget.h" />
     <QtMoc Include="QCtmWindow.h">
     </QtMoc>
     <ClInclude Include="qcustomui_global.h" />
@@ -212,6 +210,7 @@
     <ClCompile Include="QCtmColor.cpp" />
     <ClCompile Include="QCtmComboBox.cpp" />
     <ClCompile Include="QCtmDialog.cpp" />
+    <ClCompile Include="QCtmDrawerItemWidget.cpp" />
     <ClCompile Include="QCtmEditLabel.cpp" />
     <ClCompile Include="QCtmHeaderView.cpp" />
     <ClCompile Include="QCtmIPAddressEdit.cpp" />
@@ -237,8 +236,7 @@
     <ClCompile Include="QCtmTabPage.cpp" />
     <ClCompile Include="QCtmTabWidget.cpp" />
     <ClCompile Include="QCtmTitleBar.cpp" />
-    <ClCompile Include="QCtmToolBox.cpp" />
-    <ClCompile Include="QCtmTree.cpp" />
+    <ClCompile Include="QCtmDrawerWidget.cpp" />
     <ClCompile Include="QCtmWindow.cpp" />
     <ClCompile Include="Private\QCtmActionGroup.cpp" />
     <ClCompile Include="Private\QCtmFramelessDelegate.cpp" />
@@ -248,9 +246,8 @@
     <ClCompile Include="Private\QCtmNavigationImageButton.cpp" />
     <ClCompile Include="Private\QCtmSeparator.cpp" />
     <ClCompile Include="Private\QCtmStyle.cpp" />
-    <ClCompile Include="Private\QCtmToolBoxItem.cpp" />
     <ClCompile Include="Private\QCtmToolButton.cpp" />
-    <ClCompile Include="Private\QCtmTreeItemTitle.cpp" />
+    <ClCompile Include="Private\QCtmDrawerItemTitle.cpp" />
     <ClCompile Include="Private\QCtmUserButton.cpp" />
     <ClCompile Include="Private\QCtmWidgetItem.cpp" />
     <ClCompile Include="Private\flowlayout.cpp" />
@@ -259,7 +256,6 @@
   <ItemGroup>
     <QtUic Include="QCtmTitleBar.ui" />
     <QtUic Include="QCtmWindow.ui" />
-    <QtUic Include="Private\QCtmToolBoxItem.ui" />
   </ItemGroup>
   <ItemGroup>
     <QtRcc Include="QCustomUi.qrc" />

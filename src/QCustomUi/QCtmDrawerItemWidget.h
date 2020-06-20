@@ -22,50 +22,47 @@
 #include "qcustomui_global.h"
 
 #include <QWidget>
-#include <QMenu>
 
-#include <memory>
+class QCtmDrawerWidget;
 
-namespace Ui
+class QCUSTOMUI_EXPORT QCtmDrawerItemWidget : public QWidget
 {
-	class QCtmTitleBar;
-}
-
-class QMenuBar;
-
-class QCUSTOMUI_EXPORT QCtmTitleBar : public QWidget
-{
-	Q_OBJECT
-		Q_PROPERTY(bool showIcon READ showIcon WRITE setShowIcon)
+    Q_OBJECT
 public:
-	QCtmTitleBar(QWidget *parent = Q_NULLPTR);
-	~QCtmTitleBar();
 
-	void setMenuBar(QMenuBar* menu);
-	QMenuBar* menuBar()const;
-	void removeMenuBar();
-	void setShowIcon(bool show);
-	bool showIcon()const;
+    void setWidget(QWidget* widget);
+    QWidget* widget() const;
+    void setTitle(const QString& title);
+    QString title() const;
+    bool isExpand()const;
+    void setExpand(bool expand);
+    QAction* addAction(const QIcon& icon, const QString& text);
+    QAction* addAction(const QString& text);
+    QAction* insertAction(int index, const QIcon& icon, const QString& text);
+    QAction* insertAction(int index, const QString& text);
+    void removeAction(QAction* action);
+    int count() const;
+    int indexOf(QAction* action);
+    QAction* actionAt(int index);
 
-	private slots:
-	void onCloseBtn();
-	void onMaximumSizeBtn();
-	void onMinimumSizeBtn();
-
+signals:
+    void expandChanged(bool expand);
+    void titleClicked(bool expand);
 protected:
-	void paintEvent(QPaintEvent *event) override;
-	void showEvent(QShowEvent* event) override;
-	bool eventFilter(QObject *watched, QEvent *event)override;
-	void actionEvent(QActionEvent *event) override;
+    QCtmDrawerItemWidget(const QString& title, QCtmDrawerWidget* parent);
+    ~QCtmDrawerItemWidget();
+
+private slots:
+    void onClicked();
+    void resizeEvent(QResizeEvent* event);
 
 private:
-	QRect doIconRect() const;
+    int suggestSize()const;
+    void setSuggestSize(int size);
+    void insertAction(int index, QAction* action);
 private:
-	Ui::QCtmTitleBar* ui;
+    struct Impl;
+    std::unique_ptr<Impl> m_impl;
 
-	struct Impl;
-	std::unique_ptr<Impl> m_impl;
-#ifdef Q_OS_WIN
-	friend class QCtmWinFramelessDelegate;
-#endif
+    friend class QCtmDrawerWidget;
 };

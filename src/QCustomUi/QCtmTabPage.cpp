@@ -31,43 +31,61 @@
 
 struct QCtmTabPage::Impl
 {
-	QList<QCtmWidgetItemPtr> actions;
-	QCtmTabWidget* parent{ nullptr };
-	QWidget* cornerWidget{ nullptr };
-	QHBoxLayout* cornerLayout{ nullptr };
-	QHBoxLayout* layout{ nullptr };
-	QWidget* centralWidget{ nullptr };
+    QList<QCtmWidgetItemPtr> actions;
+    QCtmTabWidget* parent{ nullptr };
+    QWidget* cornerWidget{ nullptr };
+    QHBoxLayout* cornerLayout{ nullptr };
+    QHBoxLayout* layout{ nullptr };
+    QWidget* centralWidget{ nullptr };
 };
 
-/**
- * @brief  		Add a action.
- */
+/*!
+    \class      QCtmTabPage
+    \brief      QCtmTabPage is the QCtmTabWidget page handle.
+    \inherits   QWidget
+    \ingroup    QCustomUi
+    \inmodule   QCustomUi
+*/
+
+/*!
+    \brief      Create a action with the given \a icon and \a text.
+                And the action to the corner widget.
+    \sa         insertAction
+*/
 QAction* QCtmTabPage::addAction(const QIcon& icon, const QString& text)
 {
-	return insertAction(count(), icon, text);
+    return insertAction(count(), icon, text);
 }
 
-/**
- * @brief  		Add a action.
- */
+/*!
+    \overload   addAction
+                Create a action with the given \a text. And the action to the corner widget.
+    \sa         QCtmTabPage::addAction
+*/
 QAction* QCtmTabPage::addAction(const QString& text)
 {
-	return addAction(QIcon(), text);
+    return addAction(QIcon(), text);
 }
 
-/**
- * @brief  		Insert a action.
- */
+/*!
+    \overload   insertAction
+                This function creates a action with the given \a icon and \a text.
+                And inserts the action to \a index.
+                And returns the action.
+    \sa         QCtmTabPage::insertAction
+*/
 QAction* QCtmTabPage::insertAction(int index, const QIcon& icon, const QString& text)
 {
     auto action = new QAction(icon, text, m_impl->cornerWidget);
-	insertAction(index, action);
-	return action;
+    insertAction(index, action);
+    return action;
 }
 
-/**
- * @brief  		Insert a action.
- */
+/*!
+    \overload   insertAction
+                This function insert the given \a action to the index.
+    \sa         QWidget::insertAction
+*/
 void QCtmTabPage::insertAction(int index, QAction* action)
 {
     auto before = actionAt(index);
@@ -79,12 +97,13 @@ void QCtmTabPage::insertAction(int index, QAction* action)
  */
 QAction* QCtmTabPage::insertAction(int index, const QString& text)
 {
-	return insertAction(index, QIcon(), text);
+    return insertAction(index, QIcon(), text);
 }
 
-/**
- * @brief  		Get the action of the index.
- */
+/*!
+    \brief      Returns the action of the \a index.
+    \sa         addAction, insertAction
+*/
 QAction* QCtmTabPage::actionAt(int index) const
 {
     if (index < 0)
@@ -96,48 +115,57 @@ QAction* QCtmTabPage::actionAt(int index) const
     return nullptr;
 }
 
-/**
- * @brief		Take and returns the central widget.
- */
+/*!
+    \brief      Take and returns the central widget.
+    \sa         setCentralWidget, centralWidget()
+*/
 QWidget* QCtmTabPage::takeCentralWidget() const
 {
-	if (m_impl->layout->count() > 0)
-	{
-		auto item = m_impl->layout->takeAt(0);
-		if (item->widget())
-		{
-			item->widget()->setParent(0);
-			item->widget()->hide();
-			return item->widget();
-		}
-	}
-	return nullptr;
+    if (m_impl->layout->count() > 0)
+    {
+        auto item = m_impl->layout->takeAt(0);
+        if (item->widget())
+        {
+            item->widget()->setParent(0);
+            item->widget()->hide();
+            return item->widget();
+        }
+    }
+    return nullptr;
 }
 
-/**
- * @brief		Returns the central widget.
- */
+/*!
+    \brief      Returns the central widget.
+    \sa         setCentralWidget
+*/
 QWidget* QCtmTabPage::centralWidget() const
 {
-	return m_impl->centralWidget;
+    return m_impl->centralWidget;
 }
 
-/**
- * @brief      Get the action count.
- */
+/*!
+    \brief      Returns count of the action.
+    \sa         addAction, insertAction
+*/
 int QCtmTabPage::count() const
 {
-	return m_impl->actions.size();
+    return m_impl->actions.size();
 }
 
-void QCtmTabPage::paintEvent([[maybe_unused]] QPaintEvent *event)
+/*!
+    \reimp
+*/
+void QCtmTabPage::paintEvent([[maybe_unused]] QPaintEvent* event)
 {
-	QStyleOption opt;
-	opt.initFrom(this);
-	QPainter p(this);
-	this->style()->drawPrimitive(QStyle::PE_Widget, &opt, &p, this);
+    QStyleOption opt;
+    opt.initFrom(this);
+    QPainter p(this);
+    this->style()->drawPrimitive(QStyle::PE_Widget, &opt, &p, this);
 }
 
+/*!
+    \reimp
+*/
 void QCtmTabPage::actionEvent(QActionEvent* event)
 {
     if (event->type() == QActionEvent::ActionAdded)
@@ -151,32 +179,45 @@ void QCtmTabPage::actionEvent(QActionEvent* event)
     }
 }
 
+/*!
+    \brief      Returns the corner widget.
+*/
 QWidget* QCtmTabPage::cornerWidget() const
 {
-	return m_impl->cornerWidget;
+    return m_impl->cornerWidget;
 }
 
+/*!
+    \brief      Sets the given central \a widget.
+    \sa         centralWidget
+*/
 void QCtmTabPage::setCentralWidget(QWidget* widget)
 {
-	m_impl->centralWidget = widget;
-	m_impl->layout->addWidget(widget);
-	widget->show();
+    m_impl->centralWidget = widget;
+    m_impl->layout->addWidget(widget);
+    widget->show();
 }
 
+/*!
+    \brief      Constructs a page widget with the given \a parent.
+*/
 QCtmTabPage::QCtmTabPage(QCtmTabWidget* parent)
-	: QWidget(parent)
-	, m_impl(std::make_unique<Impl>())
+    : QWidget(parent)
+    , m_impl(std::make_unique<Impl>())
 {
-	assert(parent);
-	m_impl->cornerWidget = new QWidget;
-	m_impl->cornerLayout = new QHBoxLayout(m_impl->cornerWidget);
-	m_impl->cornerLayout->setMargin(0);
+    assert(parent);
+    m_impl->cornerWidget = new QWidget;
+    m_impl->cornerLayout = new QHBoxLayout(m_impl->cornerWidget);
+    m_impl->cornerLayout->setMargin(0);
 
-	m_impl->layout = new QHBoxLayout(this);
+    m_impl->layout = new QHBoxLayout(this);
 }
 
+/*!
+    \brief      Destroys the page.
+*/
 QCtmTabPage::~QCtmTabPage()
 {
-	m_impl->actions.clear();
-	delete m_impl->cornerWidget;
+    m_impl->actions.clear();
+    delete m_impl->cornerWidget;
 }

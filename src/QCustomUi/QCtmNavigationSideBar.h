@@ -49,10 +49,6 @@ public:
 	const QSize& iconSize()const;
     QAction* actionAt(int index, ActionPosition pos) const;
 signals:
-    /**
-     * @brief		图标大小改变
-     * @param[in]	size 图标大小
-     */
     void iconSizeChanged(const QSize& size);
 protected:
 	void paintEvent(QPaintEvent *) override;

@@ -1,24 +1,24 @@
-#include "QCtmTreeItemTitle_p.h"
+#include "QCtmDrawerItemTitle_p.h"
 #include "Util_p.h"
 #include "QCtmWidgetItem_p.h"
-#include "QCtmTree.h"
+#include "QCtmDrawerItemWidget.h"
 
 #include <QPainter>
 #include <QStyleOption>
 #include <QMouseEvent>
 #include <QHBoxLayout>
 
-struct QCtmTreeItemTitle::Impl
+struct QCtmDrawerItemTitle::Impl
 {
 	bool expand{ false };
     bool pressed{ false };
     QHBoxLayout* layout{ nullptr };
     QHBoxLayout* widgetLayout{ nullptr };
     QList<QCtmWidgetItemPtr> items;
-    QCtmTreeItem* treeItem{ nullptr };
+    QCtmDrawerItemWidget* treeItem{ nullptr };
 };
 
-QCtmTreeItemTitle::QCtmTreeItemTitle(QCtmTreeItem *parent)
+QCtmDrawerItemTitle::QCtmDrawerItemTitle(QCtmDrawerItemWidget *parent)
 	: QPushButton(parent)
 	, m_impl(std::make_unique<Impl>())
 {
@@ -34,29 +34,29 @@ QCtmTreeItemTitle::QCtmTreeItemTitle(QCtmTreeItem *parent)
     m_impl->widgetLayout->setAlignment(Qt::AlignRight);
 }
 
-QCtmTreeItemTitle::~QCtmTreeItemTitle()
+QCtmDrawerItemTitle::~QCtmDrawerItemTitle()
 {
 }
 
-void QCtmTreeItemTitle::setExpand(bool expand)
+void QCtmDrawerItemTitle::setExpand(bool expand)
 {
 	m_impl->expand = expand;
 	if (isVisible())
 		update();
 }
 
-bool QCtmTreeItemTitle::isExpand() const
+bool QCtmDrawerItemTitle::isExpand() const
 {
 	return m_impl->expand;
 }
 
-void QCtmTreeItemTitle::insertAction(int index, QAction* action)
+void QCtmDrawerItemTitle::insertAction(int index, QAction* action)
 {
     auto before = actionAt(index);
     QWidget::insertAction(before, action);
 }
 
-QAction* QCtmTreeItemTitle::actionAt(int index) const
+QAction* QCtmDrawerItemTitle::actionAt(int index) const
 {
     if (index < 0)
         return nullptr;
@@ -67,13 +67,13 @@ QAction* QCtmTreeItemTitle::actionAt(int index) const
     return nullptr;
 }
 
-int QCtmTreeItemTitle::indexOf(QAction* action) const
+int QCtmDrawerItemTitle::indexOf(QAction* action) const
 {
     auto item = Util::find(action, m_impl->items);
     return m_impl->items.indexOf(item);
 }
 
-void QCtmTreeItemTitle::paintEvent([[maybe_unused]] QPaintEvent *event)
+void QCtmDrawerItemTitle::paintEvent([[maybe_unused]] QPaintEvent *event)
 {
 	QPainter p(this);
 	QStyleOptionButton opt;
@@ -106,7 +106,7 @@ void QCtmTreeItemTitle::paintEvent([[maybe_unused]] QPaintEvent *event)
 	}
 }
 
-void QCtmTreeItemTitle::actionEvent(QActionEvent *event)
+void QCtmDrawerItemTitle::actionEvent(QActionEvent *event)
 {
     if (event->type() == QEvent::ActionAdded)
     {

@@ -22,30 +22,53 @@
 #include "qcustomui_global.h"
 
 #include <QWidget>
+#include <QVBoxLayout>
+#include <QHBoxLayout>
+#include <QPushButton>
+#include <QLabel>
+#include <QAction>
+#include <QList>
+#include <QMouseEvent>
+#include <QMap>
+#include <QScrollArea>
+#include <QSplitter>
 
 #include <memory>
 
-class QCUSTOMUI_EXPORT QCtmToolBox :public QWidget
+class QCtmDrawerItemWidget;
+
+class QCUSTOMUI_EXPORT QCtmDrawerWidget : public QWidget
 {
 	Q_OBJECT
-
+        Q_PROPERTY(bool exclusive READ exclusive WRITE setExclusive)
 public:
-	QCtmToolBox(QWidget* parent);
-	~QCtmToolBox();
+	QCtmDrawerWidget(QWidget *parent = nullptr);
+	~QCtmDrawerWidget();
 
-	void addWidget(const QString& title, QWidget* widget);
-	void insertWidget(int index, const QString& title, QWidget* widget);
-	void removeWidget(QWidget* widget);
-	void removeWidget(int index);
-	int indexOf(QWidget* widget) const;
-	QWidget* widget(int index) const;
-	void setStretchFactor(int index, int stretch);
-	void setSizes(const QList<int>& sizes);
-	void setDefaultStretch(int index, int stretch);
+    QCtmDrawerItemWidget* addWidget(const QString& title, QWidget* widget);
+    QCtmDrawerItemWidget* insertWidget(int index, const QString& title, QWidget* widget);
+	void removeItem(QCtmDrawerItemWidget* item);
+	int indexOf(QCtmDrawerItemWidget* item) const;
+	QCtmDrawerItemWidget* item(int index) const;
+	void setAllExpand(bool expand) const;
+	int count() const;
+    void setExclusive(bool exclusive);
+    bool exclusive() const;
+    void setSizes(const QList<int>& sizes);
+signals:
+    void itemExpandChanged(QCtmDrawerItemWidget* item, bool expand);
+    void itemTitleClicked(QCtmDrawerItemWidget* item, bool expand);
 protected:
-	void showEvent(QShowEvent *event) override;
-
+	bool allClosed()const;
+	int total(const QList<int>& sizes) const;
+    void showEvent(QShowEvent* event) override;
+private slots:
+	void childExpandChanged(QCtmDrawerItemWidget* item, bool expand);
+    void doResize();
+    void onItemExpand(bool expand);
+    void onItemClicked(bool expand);
 private:
 	struct Impl;
 	std::unique_ptr<Impl> m_impl;
 };
+

@@ -35,11 +35,11 @@ class QCUSTOMUI_EXPORT QCtmLogWidget : public QWidget
         Q_PROPERTY(QIcon errorIcon READ errorIcon WRITE setErrorIcon)
 public:
 
-    enum class QCtmLogColumn    //日志列枚举
+    enum class QCtmLogColumn
     {
-        Level,                  //日志等级
-        Time,                   //日志时间
-        Description             //日志内容
+        Level,
+        Time,
+        Description
     };
 
     QCtmLogWidget(const QString& objectName, QWidget *parent = Q_NULLPTR);

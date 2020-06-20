@@ -41,16 +41,6 @@ public:
 	QCtmTabPage* addTab(QWidget *widget, const QIcon &icon, const QString &label);
 	QCtmTabPage* insertTab(int index, QWidget *widget, const QString &label);
 	QCtmTabPage* insertTab(int index, QWidget *widget, const QIcon &icon, const QString &label);
-
-signals:
-    /**
-     * @brief		隐藏按钮被点击
-     */
-	void closeButtonClicked();
-    /**
-     * @brief		位置调整按钮被点击
-     */
-	void areaButtonClicked();
 protected:
 	void paintEvent(QPaintEvent *e);
 

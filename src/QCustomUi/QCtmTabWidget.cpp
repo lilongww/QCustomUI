@@ -29,109 +29,131 @@
 
 struct QCtmTabWidget::Impl
 {
-	QWidget* cornerWidget{ nullptr };
-	QHBoxLayout* cornerLayout{ nullptr };
-	QToolButton* closeBtn{ nullptr };
-	QToolButton* areaBtn{ nullptr };
+    QWidget* cornerWidget{ nullptr };
+    QHBoxLayout* cornerLayout{ nullptr };
+    QToolButton* closeBtn{ nullptr };
 
-	void setPageCornerWidget(QWidget* widget)
-	{
-		if (cornerLayout->itemAt(0))
-		{
-			if (cornerLayout->itemAt(0)->widget() != areaBtn)
-			{
-				auto item = cornerLayout->takeAt(0);
-				if (item->widget())
-					item->widget()->hide();
-			}
-		}
-		cornerLayout->insertWidget(0, widget);
-	}
-}; 
+    void setPageCornerWidget(QWidget* widget)
+    {
+        if (cornerLayout->itemAt(0))
+        {
+            if (cornerLayout->itemAt(0)->widget() != closeBtn)
+            {
+                auto item = cornerLayout->takeAt(0);
+                if (item->widget())
+                    item->widget()->hide();
+            }
+        }
+        cornerLayout->insertWidget(0, widget);
+    }
+};
 
-QCtmTabWidget::QCtmTabWidget(QWidget *parent):
-	QTabWidget(parent),
-	m_impl(std::make_unique<Impl>())
+/*!
+    \class      QCtmTabWidget
+    \brief      QCtmTabWidget provide a tab widget, that can add action to the top right area.
+    \inherits   QTabWidget
+    \ingroup    QCustomUi
+    \inmodule   QCustomUi
+*/
+
+/*!
+    \brief      Constructs a tab widget with the given \a parent.
+*/
+QCtmTabWidget::QCtmTabWidget(QWidget* parent) :
+    QTabWidget(parent),
+    m_impl(std::make_unique<Impl>())
 {
-	m_impl->cornerWidget = new QWidget(this);
-	m_impl->cornerLayout = new QHBoxLayout(m_impl->cornerWidget);
-	m_impl->cornerLayout->setMargin(0);
+    m_impl->cornerWidget = new QWidget(this);
+    m_impl->cornerLayout = new QHBoxLayout(m_impl->cornerWidget);
+    m_impl->cornerLayout->setMargin(0);
 
-	m_impl->closeBtn = new QToolButton(this);
-	m_impl->closeBtn->setObjectName("closeButton");
-    m_impl->areaBtn = new QToolButton(this);
-    m_impl->areaBtn->setObjectName("areaButton");
-    m_impl->areaBtn->hide();
+    m_impl->closeBtn = new QToolButton(this);
+    m_impl->closeBtn->setObjectName("closeButton");
+    m_impl->cornerLayout->addWidget(m_impl->closeBtn);
 
-    m_impl->cornerLayout->addWidget(m_impl->areaBtn);
-	m_impl->cornerLayout->addWidget(m_impl->closeBtn);
-
-	setCornerWidget(m_impl->cornerWidget);
-	connect(this, &QTabWidget::currentChanged, this, &QCtmTabWidget::onCurrentChanged);
-	connect(m_impl->closeBtn, &QToolButton::clicked, this, &QWidget::hide);
-	connect(m_impl->areaBtn, &QToolButton::clicked, this, &QCtmTabWidget::areaButtonClicked);
-
+    setCornerWidget(m_impl->cornerWidget);
+    connect(this, &QTabWidget::currentChanged, this, &QCtmTabWidget::onCurrentChanged);
+    connect(m_impl->closeBtn, &QToolButton::clicked, this, &QWidget::hide);
 }
 
-
+/*!
+    \brief      Destroys the tab widget.
+*/
 QCtmTabWidget::~QCtmTabWidget()
 {
 
 }
 
-/**
- * @brief       Add a tab widget.
- */
-QCtmTabPage* QCtmTabWidget::addTab(QWidget *widget, const QString &label)
+/*!
+    \overload   addTab
+                Add a tab to the tab widget with the given \a widget and \a label.
+                And returns the page.
+    \sa         QCtmTabWidget::addTab
+*/
+QCtmTabPage* QCtmTabWidget::addTab(QWidget* widget, const QString& label)
 {
-	return addTab(widget, QIcon(), label);
+    return addTab(widget, QIcon(), label);
 }
 
-/**
- * @brief       Add a tab widget.
- */
-QCtmTabPage* QCtmTabWidget::addTab(QWidget *widget, const QIcon &icon, const QString &label)
+/*!
+    \brief      Add a tab to the tab widget with the given \a widget, \a icon and \a label.
+                And returns the page.
+    \sa         QCtmTabWidget::insertTab
+*/
+QCtmTabPage* QCtmTabWidget::addTab(QWidget* widget, const QIcon& icon, const QString& label)
 {
-	return insertTab(count(), widget, icon, label);
+    return insertTab(count(), widget, icon, label);
 }
 
-/**
- * @brief       Insert a tab widget.
- */
-QCtmTabPage* QCtmTabWidget::insertTab(int index, QWidget *widget, const QString &label)
+/*!
+    \overload   insertTab
+                Insert a tab to the tab widget with the given \a index, \a widget and \a label.
+                And returns the page.
+    \sa         QCtmTabWidget::insertTab
+*/
+QCtmTabPage* QCtmTabWidget::insertTab(int index, QWidget* widget, const QString& label)
 {
-	return insertTab(index, widget, QIcon(), label);
+    return insertTab(index, widget, QIcon(), label);
 }
 
-/**
- * @brief       Insert a tab widget.
- */
-QCtmTabPage* QCtmTabWidget::insertTab(int index, QWidget *widget, [[maybe_unused]] const QIcon &icon, const QString &label)
+/*!
+    \overload   insertTab
+                Insert a tab to the tab widget with the given \a index, \a widget, \a icon and \a label.
+                And returns the page.
+    \sa         QTabWidget::insertTab
+*/
+QCtmTabPage* QCtmTabWidget::insertTab(int index, QWidget* widget, [[maybe_unused]] const QIcon& icon, const QString& label)
 {
-	auto page = new QCtmTabPage(this);
-	page->setCentralWidget(widget);
-	QTabWidget::insertTab(index, page, label);
-	return page;
+    auto page = new QCtmTabPage(this);
+    page->setCentralWidget(widget);
+    QTabWidget::insertTab(index, page, label);
+    return page;
 }
 
-void QCtmTabWidget::paintEvent([[maybe_unused]] QPaintEvent *e)
+/*!
+    \reimp
+*/
+void QCtmTabWidget::paintEvent([[maybe_unused]] QPaintEvent* e)
 {
-	QPainter p(this);
-	QStyleOption opt;
-	opt.initFrom(this);
-	style()->drawPrimitive(QStyle::PE_Widget, &opt, &p, this);
+    QPainter p(this);
+    QStyleOption opt;
+    opt.initFrom(this);
+    style()->drawPrimitive(QStyle::PE_Widget, &opt, &p, this);
 }
 
+/*!
+    \brief      Change the corner widget when the current \a index changed.
+*/
 void QCtmTabWidget::onCurrentChanged(int index)
 {
-	auto w = this->widget(index);
-	auto page = qobject_cast<QCtmTabPage*>(w);
-	if (page)
-	{
-		m_impl->setPageCornerWidget(page->cornerWidget());
-		page->cornerWidget()->show();
-	}
-	else
-		this->setCornerWidget(nullptr);
+    auto w = this->widget(index);
+    auto page = qobject_cast<QCtmTabPage*>(w);
+    if (page)
+    {
+        m_impl->setPageCornerWidget(page->cornerWidget());
+        page->cornerWidget()->show();
+    }
+    else
+        this->setCornerWidget(nullptr);
 }
 

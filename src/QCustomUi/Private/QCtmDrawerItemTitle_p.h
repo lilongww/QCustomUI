@@ -5,15 +5,15 @@
 
 #include <memory>
 
-class QCtmTreeItem;
+class QCtmDrawerItemWidget;
 
-class QCtmTreeItemTitle : public QPushButton
+class QCtmDrawerItemTitle : public QPushButton
 {
 	Q_OBJECT
 		Q_PROPERTY(QString text READ text WRITE setText)
 public:
-	QCtmTreeItemTitle(QCtmTreeItem *parent);
-	~QCtmTreeItemTitle();
+	QCtmDrawerItemTitle(QCtmDrawerItemWidget *parent);
+	~QCtmDrawerItemTitle();
 
 	void setExpand(bool expand);
 	bool isExpand() const;
