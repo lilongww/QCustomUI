@@ -24,10 +24,10 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <QtMoc Include="DrawerExample.h">
+    <QtMoc Include="EditLabelExample.h">
       <Filter>Header Files</Filter>
     </QtMoc>
-    <ClCompile Include="DrawerExample.cpp">
+    <ClCompile Include="EditLabelExample.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -37,7 +37,7 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <QtRcc Include="DrawerExample.qrc">
+    <QtRcc Include="EditLabelExample.qrc">
       <Filter>Resource Files</Filter>
     </QtRcc>
   </ItemGroup>

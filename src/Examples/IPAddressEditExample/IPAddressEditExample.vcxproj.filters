@@ -24,9 +24,6 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <QtUic Include="IPAddressEditExample.ui">
-      <Filter>Resource Files</Filter>
-    </QtUic>
     <QtMoc Include="IPAddressEditExample.h">
       <Filter>Header Files</Filter>
     </QtMoc>
@@ -40,6 +37,8 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <QtRcc Include="IPAddressEditExample.qrc" />
+    <QtRcc Include="IPAddressEditExample.qrc">
+      <Filter>Resource Files</Filter>
+    </QtRcc>
   </ItemGroup>
 </Project>

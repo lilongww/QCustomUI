@@ -112,7 +112,6 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <QtRcc Include="IPAddressEditExample.qrc" />
-    <QtUic Include="IPAddressEditExample.ui" />
     <QtMoc Include="IPAddressEditExample.h" />
     <ClCompile Include="IPAddressEditExample.cpp" />
     <ClCompile Include="main.cpp" />

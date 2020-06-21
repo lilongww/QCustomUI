@@ -37,6 +37,8 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <QtRcc Include="MultiComboBoxExample.qrc" />
+    <QtRcc Include="MultiComboBoxExample.qrc">
+      <Filter>Resource Files</Filter>
+    </QtRcc>
   </ItemGroup>
 </Project>

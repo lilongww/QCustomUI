@@ -24,9 +24,6 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <QtUic Include="StageProgressBarExample.ui">
-      <Filter>Resource Files</Filter>
-    </QtUic>
     <QtMoc Include="StageProgressBarExample.h">
       <Filter>Header Files</Filter>
     </QtMoc>
@@ -40,6 +37,8 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <QtRcc Include="StageProgressBarExample.qrc" />
+    <QtRcc Include="StageProgressBarExample.qrc">
+      <Filter>Resource Files</Filter>
+    </QtRcc>
   </ItemGroup>
 </Project>

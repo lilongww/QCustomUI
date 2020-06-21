@@ -37,11 +37,13 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <QtRcc Include="WindowAndDialogExamples.qrc" />
-  </ItemGroup>
-  <ItemGroup>
     <QtUic Include="WindowAndDialogExamples.ui">
       <Filter>Form Files</Filter>
     </QtUic>
+  </ItemGroup>
+  <ItemGroup>
+    <QtRcc Include="WindowAndDialogExamples.qrc">
+      <Filter>Resource Files</Filter>
+    </QtRcc>
   </ItemGroup>
 </Project>
