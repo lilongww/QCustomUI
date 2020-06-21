@@ -214,6 +214,17 @@ QAction* QCtmDrawerItemWidget::addAction(const QIcon& icon, const QString& text)
 }
 
 /*!
+    \overload   addAction
+                Creates a action with the given \a icon.
+                And adds and returns the action to the title bar.
+    \sa         insertAction, removeAction
+*/
+QAction* QCtmDrawerItemWidget::addAction(const QIcon& icon)
+{
+    return addAction(icon, QString());
+}
+
+/*!
     \brief      Insert the given \a action to the position of \a index.
     \sa         addAction, removeAction
 */

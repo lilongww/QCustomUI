@@ -24,10 +24,13 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <QtMoc Include="InputExamples.h">
+    <QtUic Include="IPAddressEditExample.ui">
+      <Filter>Resource Files</Filter>
+    </QtUic>
+    <QtMoc Include="IPAddressEditExample.h">
       <Filter>Header Files</Filter>
     </QtMoc>
-    <ClCompile Include="InputExamples.cpp">
+    <ClCompile Include="IPAddressEditExample.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -37,6 +40,6 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <QtRcc Include="InputExamples.qrc" />
+    <QtRcc Include="IPAddressEditExample.qrc" />
   </ItemGroup>
 </Project>

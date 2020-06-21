@@ -37,6 +37,7 @@ public:
     bool isExpand()const;
     void setExpand(bool expand);
     QAction* addAction(const QIcon& icon, const QString& text);
+    QAction* addAction(const QIcon& icon);
     QAction* addAction(const QString& text);
     QAction* insertAction(int index, const QIcon& icon, const QString& text);
     QAction* insertAction(int index, const QString& text);

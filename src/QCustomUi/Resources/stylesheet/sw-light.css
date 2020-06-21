@@ -407,9 +407,9 @@ QCtmTabWidget QTabBar::tab:!selected
 
 /************************************************************/
 
-/******************QCtmTree*************************/
+/******************QCtmDrawerWidget*************************/
 
-.QCtmTreeItem #title
+.QCtmDrawerItemWidget #title
 {
     min-height: 22px;
     max-height: 22px;
@@ -420,34 +420,48 @@ QCtmTabWidget QTabBar::tab:!selected
     border: none;
 }
 
-.QCtmTreeItem #title::hover
+.QCtmDrawerItemWidget #title::hover
 {
     border: 1px solid #8ebded;
 }
 
-.QCtmTreeItem #title::pressed
+.QCtmDrawerItemWidget #title::pressed
 {
     border: 1px solid #2477ce;
 }
 
-.QCtmTreeItem #title::branch:close
+.QCtmDrawerItemWidget #title::branch:close
 {
     image: url(:/QCustomUi/Resources/tree-close-light.png);
 }
 
-.QCtmTreeItem #title::branch:open
+.QCtmDrawerItemWidget #title::branch:open
 {
     image: url(:/QCustomUi/Resources/tree-open-light.png);
 }
 
+.QCtmDrawerItemWidget #title QToolButton
+{
+    margin: 1px;
+    border: none;
+}
 
+.QCtmDrawerItemWidget #title QToolButton:hover
+{
+    background: #E5F3FF;
+}
 
-.QCtmTreeItem #Container
+.QCtmDrawerItemWidget #title QToolButton:pressed, .QCtmDrawerItemWidget #title QToolButton:checked
+{
+    background: #CDE8FF;
+}
+
+.QCtmDrawerItemWidget #Container
 {
     background: #F3F3F3;
 }
 
-.QCtmTreeItem
+.QCtmDrawerItemWidget
 {
     background: #F3F3F3;
 }
