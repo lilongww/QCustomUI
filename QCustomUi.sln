@@ -21,6 +21,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "DrawerExample", "src\Exampl
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "IPAddressEditExample", "src\Examples\IPAddressEditExample\IPAddressEditExample.vcxproj", "{7BFE0297-717F-462E-A1B0-1EEDF7E64BC7}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "MultiComboBoxExample", "src\Examples\MultiComboBoxExample\MultiComboBoxExample.vcxproj", "{69BFE0BB-89AE-435F-84EF-7880D5BB0603}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -59,6 +61,12 @@ Global
 		{7BFE0297-717F-462E-A1B0-1EEDF7E64BC7}.Release|x64.ActiveCfg = Release|x64
 		{7BFE0297-717F-462E-A1B0-1EEDF7E64BC7}.Release|x64.Build.0 = Release|x64
 		{7BFE0297-717F-462E-A1B0-1EEDF7E64BC7}.Release|x86.ActiveCfg = Release|x64
+		{69BFE0BB-89AE-435F-84EF-7880D5BB0603}.Debug|x64.ActiveCfg = Debug|x64
+		{69BFE0BB-89AE-435F-84EF-7880D5BB0603}.Debug|x64.Build.0 = Debug|x64
+		{69BFE0BB-89AE-435F-84EF-7880D5BB0603}.Debug|x86.ActiveCfg = Debug|x64
+		{69BFE0BB-89AE-435F-84EF-7880D5BB0603}.Release|x64.ActiveCfg = Release|x64
+		{69BFE0BB-89AE-435F-84EF-7880D5BB0603}.Release|x64.Build.0 = Release|x64
+		{69BFE0BB-89AE-435F-84EF-7880D5BB0603}.Release|x86.ActiveCfg = Release|x64
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -67,6 +75,7 @@ Global
 		{396523B4-7AF2-4F10-846A-22999D543947} = {5FB04206-6C3C-4796-86E5-CEF694F70939}
 		{B454CA6C-95CE-475D-9DE4-81C266CE6A4C} = {5FB04206-6C3C-4796-86E5-CEF694F70939}
 		{7BFE0297-717F-462E-A1B0-1EEDF7E64BC7} = {5FB04206-6C3C-4796-86E5-CEF694F70939}
+		{69BFE0BB-89AE-435F-84EF-7880D5BB0603} = {5FB04206-6C3C-4796-86E5-CEF694F70939}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		Qt5Version = $(DefaultQtVersion)
