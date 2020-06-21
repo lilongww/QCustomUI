@@ -39,6 +39,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "EditLabelExample", "src\Exa
 		{B12702AD-ABFB-343A-A199-8E24837244A3} = {B12702AD-ABFB-343A-A199-8E24837244A3}
 	EndProjectSection
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "MessageBoxExample", "src\Examples\MessageBoxExample\MessageBoxExample.vcxproj", "{622CEF09-6812-4B2C-84B0-62B758258401}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -95,6 +97,12 @@ Global
 		{8B53F213-D3DD-4627-9936-B611F006F691}.Release|x64.ActiveCfg = Release|x64
 		{8B53F213-D3DD-4627-9936-B611F006F691}.Release|x64.Build.0 = Release|x64
 		{8B53F213-D3DD-4627-9936-B611F006F691}.Release|x86.ActiveCfg = Release|x64
+		{622CEF09-6812-4B2C-84B0-62B758258401}.Debug|x64.ActiveCfg = Debug|x64
+		{622CEF09-6812-4B2C-84B0-62B758258401}.Debug|x64.Build.0 = Debug|x64
+		{622CEF09-6812-4B2C-84B0-62B758258401}.Debug|x86.ActiveCfg = Debug|x64
+		{622CEF09-6812-4B2C-84B0-62B758258401}.Release|x64.ActiveCfg = Release|x64
+		{622CEF09-6812-4B2C-84B0-62B758258401}.Release|x64.Build.0 = Release|x64
+		{622CEF09-6812-4B2C-84B0-62B758258401}.Release|x86.ActiveCfg = Release|x64
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -106,6 +114,7 @@ Global
 		{69BFE0BB-89AE-435F-84EF-7880D5BB0603} = {5FB04206-6C3C-4796-86E5-CEF694F70939}
 		{63D71258-FBD4-4E6C-B32F-FA178BE26B8A} = {5FB04206-6C3C-4796-86E5-CEF694F70939}
 		{8B53F213-D3DD-4627-9936-B611F006F691} = {5FB04206-6C3C-4796-86E5-CEF694F70939}
+		{622CEF09-6812-4B2C-84B0-62B758258401} = {5FB04206-6C3C-4796-86E5-CEF694F70939}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		Qt5Version = $(DefaultQtVersion)

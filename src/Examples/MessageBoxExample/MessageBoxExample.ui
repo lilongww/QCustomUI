@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MessageBoxExampleClass</class>
+ <widget class="QWidget" name="MessageBoxExampleClass">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>600</width>
+    <height>400</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>MessageBoxExample</string>
+  </property>
+  <layout class="QHBoxLayout" name="horizontalLayout">
+   <item>
+    <widget class="QPushButton" name="infoBtn">
+     <property name="text">
+      <string>Information</string>
+     </property>
+    </widget>
+   </item>
+   <item>
+    <widget class="QPushButton" name="warningBtn">
+     <property name="text">
+      <string>Warning</string>
+     </property>
+    </widget>
+   </item>
+   <item>
+    <widget class="QPushButton" name="criticalBtn">
+     <property name="text">
+      <string>critical</string>
+     </property>
+    </widget>
+   </item>
+   <item>
+    <widget class="QPushButton" name="questionBtn">
+     <property name="text">
+      <string>question</string>
+     </property>
+    </widget>
+   </item>
+  </layout>
+ </widget>
+ <layoutdefault spacing="6" margin="11"/>
+ <resources>
+  <include location="MessageBoxExample.qrc"/>
+ </resources>
+ <connections/>
+</ui>
