@@ -1,9 +1,22 @@
-/*!***************************************************************************
-*  Copyright (C) 2019 lilong(DLC)
-*  This file is part of the QCustomUi
-*  Contact: 634916105@qq.com
-*  License: LGPL
-*****************************************************************************/
+/*********************************************************************************
+**                                                                              **
+**  Copyright (C) 2019-2020 LiLong                                              **
+**  This file is part of QCustomUi.                                             **
+**                                                                              **
+**  QCustomUi is free software: you can redistribute it and/or modify           **
+**  it under the terms of the GNU Lesser General Public License as published by **
+**  the Free Software Foundation, either version 3 of the License, or           **
+**  (at your option) any later version.                                         **
+**                                                                              **
+**  QCustomUi is distributed in the hope that it will be useful,                **
+**  but WITHOUT ANY WARRANTY; without even the implied warranty of              **
+**  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the               **
+**  GNU Lesser General Public License for more details.                         **
+**                                                                              **
+**  You should have received a copy of the GNU Lesser General Public License    **
+**  along with QCustomUi.  If not, see <https://www.gnu.org/licenses/>.         **
+**********************************************************************************/
+
 #pragma once
 
 #include <QWidget>
@@ -15,26 +28,12 @@ class QCtmFramelessDelegate : public QObject
     Q_OBJECT
 
 public:
-    /**
-      *  @brief  		Constructs a widget helper with the given parent and move bars
-      */
     QCtmFramelessDelegate(QWidget* parent, const QWidgetList& moveBars);
-
-    /**
-      *  @brief  		构造函数重载
-      *  @param[in]  	parent 父窗口地址，父窗口必须为顶层窗口
-      *  @param[in] 	title 标题栏，用于鼠标拖拽移动
-      *  @Return:
-      *
-      *  @note
-      */
     QCtmFramelessDelegate(QWidget* parent, QWidget* title);
     ~QCtmFramelessDelegate();
 
     void addMoveBar(QWidget* widget);
-
     void removeMoveBar(QWidget* widget);
-
     void setShadowless(bool flag);
     bool shadowless() const;
 protected:
