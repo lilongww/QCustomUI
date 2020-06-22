@@ -10,7 +10,7 @@
 
 struct QCtmDrawerItemTitle::Impl
 {
-	bool expand{ false };
+    bool expand{ false };
     bool pressed{ false };
     QHBoxLayout* layout{ nullptr };
     QHBoxLayout* widgetLayout{ nullptr };
@@ -18,9 +18,9 @@ struct QCtmDrawerItemTitle::Impl
     QCtmDrawerItemWidget* treeItem{ nullptr };
 };
 
-QCtmDrawerItemTitle::QCtmDrawerItemTitle(QCtmDrawerItemWidget *parent)
-	: QPushButton(parent)
-	, m_impl(std::make_unique<Impl>())
+QCtmDrawerItemTitle::QCtmDrawerItemTitle(QCtmDrawerItemWidget* parent)
+    : QPushButton(parent)
+    , m_impl(std::make_unique<Impl>())
 {
     m_impl->treeItem = parent;
     m_impl->layout = new QHBoxLayout(this);
@@ -40,14 +40,14 @@ QCtmDrawerItemTitle::~QCtmDrawerItemTitle()
 
 void QCtmDrawerItemTitle::setExpand(bool expand)
 {
-	m_impl->expand = expand;
-	if (isVisible())
-		update();
+    m_impl->expand = expand;
+    if (isVisible())
+        update();
 }
 
 bool QCtmDrawerItemTitle::isExpand() const
 {
-	return m_impl->expand;
+    return m_impl->expand;
 }
 
 void QCtmDrawerItemTitle::insertAction(int index, QAction* action)
@@ -60,7 +60,7 @@ QAction* QCtmDrawerItemTitle::actionAt(int index) const
 {
     if (index < 0)
         return nullptr;
-    if (m_impl->items.size()>index)
+    if (m_impl->items.size() > index)
     {
         return m_impl->items.at(index)->action();
     }
@@ -73,40 +73,40 @@ int QCtmDrawerItemTitle::indexOf(QAction* action) const
     return m_impl->items.indexOf(item);
 }
 
-void QCtmDrawerItemTitle::paintEvent([[maybe_unused]] QPaintEvent *event)
+void QCtmDrawerItemTitle::paintEvent([[maybe_unused]] QPaintEvent* event)
 {
-	QPainter p(this);
-	QStyleOptionButton opt;
+    QPainter p(this);
+    QStyleOptionButton opt;
     this->initStyleOption(&opt);
     opt.text.clear();
     style()->drawControl(QStyle::CE_PushButton, &opt, &p, this);
 
-	QStyleOptionViewItem itemOpt;
-	itemOpt.initFrom(this);
-	auto indent = style()->pixelMetric(QStyle::PM_TreeViewIndentation, &itemOpt, this);
+    QStyleOptionViewItem itemOpt;
+    itemOpt.initFrom(this);
+    auto indent = style()->pixelMetric(QStyle::PM_TreeViewIndentation, &itemOpt, this);
     do
-	{
+    {
         if (!m_impl->treeItem->widget())
             break;
-		itemOpt.rect = QRect(0, 0, indent, height());
-		itemOpt.viewItemPosition = QStyleOptionViewItem::Beginning;
+        itemOpt.rect = QRect(0, 0, indent, height());
+        itemOpt.viewItemPosition = QStyleOptionViewItem::Beginning;
         itemOpt.state = QStyle::State_Children;
-		if(m_impl->expand)
-			itemOpt.state |= QStyle::State_Open;
-		style()->drawPrimitive(QStyle::PE_IndicatorBranch, &itemOpt, &p, this);
+        if (m_impl->expand)
+            itemOpt.state |= QStyle::State_Open;
+        style()->drawPrimitive(QStyle::PE_IndicatorBranch, &itemOpt, &p, this);
     } while (false);
-	{
-		auto rect = QRect(opt.rect.left() + indent, opt.rect.top(), opt.rect.width() - 40, opt.rect.height());
-		QTextOption to;
-		to.setAlignment(Qt::AlignLeft | Qt::AlignVCenter);
-		p.save();
-		p.setPen(opt.palette.windowText().color());
-		p.drawText(rect, text(), to);
-		p.restore();
-	}
+    {
+        auto rect = QRect(opt.rect.left() + indent, opt.rect.top(), opt.rect.width() - 40, opt.rect.height());
+        QTextOption to;
+        to.setAlignment(Qt::AlignLeft | Qt::AlignVCenter);
+        p.save();
+        p.setPen(opt.palette.windowText().color());
+        p.drawText(rect, text(), to);
+        p.restore();
+    }
 }
 
-void QCtmDrawerItemTitle::actionEvent(QActionEvent *event)
+void QCtmDrawerItemTitle::actionEvent(QActionEvent* event)
 {
     if (event->type() == QEvent::ActionAdded)
     {

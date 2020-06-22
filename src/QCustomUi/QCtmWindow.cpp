@@ -41,13 +41,13 @@
 
 struct QCtmWindow::Impl
 {
-	QCtmTitleBar *title{ nullptr };
-	QCtmNavigationBar* navigationMenuBar{ nullptr };
-	QStatusBar* statusBar{ nullptr };
-	QWidget* content{ nullptr };
+    QCtmTitleBar* title{ nullptr };
+    QCtmNavigationBar* navigationMenuBar{ nullptr };
+    QStatusBar* statusBar{ nullptr };
+    QWidget* content{ nullptr };
 
 #ifdef Q_OS_WIN
-	QCtmWinFramelessDelegate* delegate{ nullptr };
+    QCtmWinFramelessDelegate* delegate{ nullptr };
 #else
     QCtmFramelessDelegate* delegate{ nullptr };
 #endif
@@ -56,25 +56,25 @@ struct QCtmWindow::Impl
 /*!
     \brief      Constructs a dialog which is a child of \a parent.
 */
-QCtmWindow::QCtmWindow(QWidget *parent)
-	: QWidget(parent)
-	, m_impl(std::make_unique<Impl>())
-	, ui(new Ui::QCtmWindow)
+QCtmWindow::QCtmWindow(QWidget* parent)
+    : QWidget(parent)
+    , m_impl(std::make_unique<Impl>())
+    , ui(new Ui::QCtmWindow)
 {
-	m_impl->title = new QCtmTitleBar(this);
+    m_impl->title = new QCtmTitleBar(this);
     m_impl->title->installEventFilter(this);
-	ui->setupUi(this);
+    ui->setupUi(this);
     ui->verticalLayout->setAlignment(Qt::AlignTop | Qt::AlignLeft);
-	m_impl->content = new QWidget(this);
+    m_impl->content = new QWidget(this);
     m_impl->content->setAutoFillBackground(true);
-	ui->titleLayout->addWidget(m_impl->title);
-	ui->contentLayout->addWidget(m_impl->content);
-	m_impl->content->installEventFilter(this);
+    ui->titleLayout->addWidget(m_impl->title);
+    ui->contentLayout->addWidget(m_impl->content);
+    m_impl->content->installEventFilter(this);
 
 #ifdef Q_OS_WIN
-	m_impl->delegate = new QCtmWinFramelessDelegate(this, m_impl->title);
+    m_impl->delegate = new QCtmWinFramelessDelegate(this, m_impl->title);
 #else
-	m_impl->delegate = new QCtmFramelessDelegate(this, m_impl->title);
+    m_impl->delegate = new QCtmFramelessDelegate(this, m_impl->title);
 #endif
 }
 
@@ -83,7 +83,7 @@ QCtmWindow::QCtmWindow(QWidget *parent)
 */
 QCtmWindow::~QCtmWindow()
 {
-	delete ui;
+    delete ui;
 }
 
 /*!
@@ -92,9 +92,9 @@ QCtmWindow::~QCtmWindow()
 */
 void QCtmWindow::setStatusBar(QStatusBar* statusBar)
 {
-	removeStatusBar();
-	m_impl->statusBar = statusBar;
-	ui->statusBarLayout->addWidget(statusBar);
+    removeStatusBar();
+    m_impl->statusBar = statusBar;
+    ui->statusBarLayout->addWidget(statusBar);
 }
 
 /*!
@@ -103,7 +103,7 @@ void QCtmWindow::setStatusBar(QStatusBar* statusBar)
 */
 QStatusBar* QCtmWindow::statusBar() const
 {
-	return m_impl->statusBar;
+    return m_impl->statusBar;
 }
 
 /*!
@@ -112,11 +112,11 @@ QStatusBar* QCtmWindow::statusBar() const
 */
 void QCtmWindow::removeStatusBar()
 {
-	if (m_impl->statusBar)
-	{
-		delete m_impl->statusBar;
-		m_impl->statusBar = nullptr;
-	}
+    if (m_impl->statusBar)
+    {
+        delete m_impl->statusBar;
+        m_impl->statusBar = nullptr;
+    }
 }
 
 /*!
@@ -125,10 +125,10 @@ void QCtmWindow::removeStatusBar()
 */
 void QCtmWindow::setMenuBar(QMenuBar* menuBar)
 {
-	if (m_impl->title)
-	{
-		m_impl->title->setMenuBar(menuBar);
-	}
+    if (m_impl->title)
+    {
+        m_impl->title->setMenuBar(menuBar);
+    }
 }
 
 /*!
@@ -137,9 +137,9 @@ void QCtmWindow::setMenuBar(QMenuBar* menuBar)
 */
 QMenuBar* QCtmWindow::menuBar() const
 {
-	if(m_impl->title)
-		return m_impl->title->menuBar();
-	return nullptr;
+    if (m_impl->title)
+        return m_impl->title->menuBar();
+    return nullptr;
 }
 
 /*!
@@ -148,10 +148,10 @@ QMenuBar* QCtmWindow::menuBar() const
 */
 void QCtmWindow::removeMenuBar()
 {
-	if (m_impl->title)
-	{
-		m_impl->title->removeMenuBar();
-	}
+    if (m_impl->title)
+    {
+        m_impl->title->removeMenuBar();
+    }
 }
 
 /*!
@@ -160,12 +160,12 @@ void QCtmWindow::removeMenuBar()
 */
 void QCtmWindow::setNavigationBar(QCtmNavigationBar* bar)
 {
-	removeNavigationBar();
-	m_impl->navigationMenuBar = bar;
-	ui->menuBarLayout->addWidget(bar);
+    removeNavigationBar();
+    m_impl->navigationMenuBar = bar;
+    ui->menuBarLayout->addWidget(bar);
     if (!m_impl->title)
         m_impl->delegate->addMoveBar(bar);
-    else if(!m_impl->title->isVisible())
+    else if (!m_impl->title->isVisible())
         m_impl->delegate->addMoveBar(bar);
 }
 
@@ -175,7 +175,7 @@ void QCtmWindow::setNavigationBar(QCtmNavigationBar* bar)
 */
 QCtmNavigationBar* QCtmWindow::navigationBar() const
 {
-	return m_impl->navigationMenuBar;
+    return m_impl->navigationMenuBar;
 }
 
 /*!
@@ -184,23 +184,23 @@ QCtmNavigationBar* QCtmWindow::navigationBar() const
 */
 void QCtmWindow::removeNavigationBar()
 {
-	if (m_impl->navigationMenuBar)
-	{
+    if (m_impl->navigationMenuBar)
+    {
         m_impl->delegate->removeMoveBar(m_impl->navigationMenuBar);
-		delete m_impl->navigationMenuBar;
-		m_impl->navigationMenuBar = nullptr;
-	}
+        delete m_impl->navigationMenuBar;
+        m_impl->navigationMenuBar = nullptr;
+    }
 }
 
 /*!
     \brief      Sets the given \a titleBar.
-    \sa         titleBar, removeTitleBar
+    \sa         titleBar(), removeTitleBar()
 */
 void QCtmWindow::setTitleBar(QCtmTitleBar* titleBar)
 {
-	removeTitleBar();
-	m_impl->title = titleBar;
-	ui->titleLayout->addWidget(titleBar);
+    removeTitleBar();
+    m_impl->title = titleBar;
+    ui->titleLayout->addWidget(titleBar);
     titleBar->installEventFilter(this);
     if (m_impl->navigationMenuBar)
     {
@@ -210,11 +210,11 @@ void QCtmWindow::setTitleBar(QCtmTitleBar* titleBar)
 
 /*!
     \brief      Returns the title bar.
-    \sa         setTitleBar, removeTitleBar
+    \sa         setTitleBar, removeTitleBar()
 */
 QCtmTitleBar* QCtmWindow::titleBar() const
 {
-	return m_impl->title;
+    return m_impl->title;
 }
 
 /*!
@@ -223,25 +223,25 @@ QCtmTitleBar* QCtmWindow::titleBar() const
 */
 void QCtmWindow::removeTitleBar()
 {
-	if (m_impl->title)
-	{
+    if (m_impl->title)
+    {
         m_impl->delegate->removeMoveBar(m_impl->title);
-		delete m_impl->title;
-		m_impl->title = nullptr;
-	}
+        delete m_impl->title;
+        m_impl->title = nullptr;
+    }
 }
 
 /*!
     \brief      Sets the given central \a widget.
     \sa         centralWidget
 */
-void QCtmWindow::setCentralWidget(QWidget *widget)
+void QCtmWindow::setCentralWidget(QWidget* widget)
 {
-	delete m_impl->content;
-	m_impl->content = widget;
+    delete m_impl->content;
+    m_impl->content = widget;
     widget->setAutoFillBackground(true);
-	ui->contentLayout->addWidget(widget);
-	setWindowTitle(widget->windowTitle());
+    ui->contentLayout->addWidget(widget);
+    setWindowTitle(widget->windowTitle());
 }
 
 /*!
@@ -250,7 +250,7 @@ void QCtmWindow::setCentralWidget(QWidget *widget)
 */
 QWidget* QCtmWindow::centralWidget() const
 {
-	return m_impl->content;
+    return m_impl->content;
 }
 
 #ifndef Q_OS_WIN
@@ -266,7 +266,7 @@ QWidget* QCtmWindow::centralWidget() const
 */
 void QCtmWindow::setShadowless(bool flag)
 {
-	m_impl->delegate->setShadowless(flag);
+    m_impl->delegate->setShadowless(flag);
 }
 
 /*!
@@ -280,14 +280,14 @@ void QCtmWindow::setShadowless(bool flag)
 */
 bool QCtmWindow::shadowless() const
 {
-	return m_impl->delegate->shadowless();
+    return m_impl->delegate->shadowless();
 }
 #endif
 
 /*!
     \reimp
 */
-bool QCtmWindow::eventFilter(QObject *watched, QEvent *event)
+bool QCtmWindow::eventFilter(QObject* watched, QEvent* event)
 {
     if (watched == m_impl->title)
     {
@@ -308,10 +308,10 @@ bool QCtmWindow::eventFilter(QObject *watched, QEvent *event)
             }
         }
     }
-	else if (watched == m_impl->content && event->type() == QEvent::WindowTitleChange)
-	{
-		setWindowTitle(m_impl->content->windowTitle());
-	}
+    else if (watched == m_impl->content && event->type() == QEvent::WindowTitleChange)
+    {
+        setWindowTitle(m_impl->content->windowTitle());
+    }
     return QWidget::eventFilter(watched, event);
 }
 
@@ -321,13 +321,13 @@ bool QCtmWindow::eventFilter(QObject *watched, QEvent *event)
 bool QCtmWindow::nativeEvent(const QByteArray& eventType, void* message, long* result)
 {
 #ifdef Q_OS_WIN
-	if (!m_impl->delegate)
-		return QWidget::nativeEvent(eventType, message, result);
-	if (!m_impl->delegate->nativeEvent(eventType, message, result))
-		return QWidget::nativeEvent(eventType, message, result);
-	else
-		return true;
+    if (!m_impl->delegate)
+        return QWidget::nativeEvent(eventType, message, result);
+    if (!m_impl->delegate->nativeEvent(eventType, message, result))
+        return QWidget::nativeEvent(eventType, message, result);
+    else
+        return true;
 #else
-	return QWidget::nativeEvent(eventType, message, result);
+    return QWidget::nativeEvent(eventType, message, result);
 #endif
 }

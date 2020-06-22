@@ -29,7 +29,7 @@
 
 struct QCtmDrawerWidget::Impl
 {
-	QSplitter *splitter{ nullptr };
+    QSplitter* splitter{ nullptr };
     bool exclusive{ false };
     bool resizeLator{ false };
     QList<int> sizes;
@@ -63,19 +63,19 @@ struct QCtmDrawerWidget::Impl
 /*!
     \brief      Constructs a drawer widget with the \a parent.
 */
-QCtmDrawerWidget::QCtmDrawerWidget(QWidget *parent)
-	: QWidget(parent),
-	m_impl(std::make_unique<Impl>())
+QCtmDrawerWidget::QCtmDrawerWidget(QWidget* parent)
+    : QWidget(parent),
+    m_impl(std::make_unique<Impl>())
 {
-	m_impl->splitter = new QSplitter(this);
-	m_impl->splitter->setHandleWidth(0);
-	m_impl->splitter->setOrientation(Qt::Vertical);
-	m_impl->splitter->setChildrenCollapsible(false);
-	m_impl->splitter->setContentsMargins(0, 0, 0, 0);
+    m_impl->splitter = new QSplitter(this);
+    m_impl->splitter->setHandleWidth(0);
+    m_impl->splitter->setOrientation(Qt::Vertical);
+    m_impl->splitter->setChildrenCollapsible(false);
+    m_impl->splitter->setContentsMargins(0, 0, 0, 0);
 
-	QHBoxLayout *layout = new QHBoxLayout(this);
-	layout->addWidget(m_impl->splitter);
-	layout->setMargin(0);
+    QHBoxLayout* layout = new QHBoxLayout(this);
+    layout->addWidget(m_impl->splitter);
+    layout->setMargin(0);
     qRegisterMetaType<QCtmDrawerItemWidget*>("QCtmDrawerItemWidget*");
 }
 
@@ -93,7 +93,7 @@ QCtmDrawerWidget::~QCtmDrawerWidget()
 */
 QCtmDrawerItemWidget* QCtmDrawerWidget::addWidget(const QString& title, QWidget* widget)
 {
-	return insertWidget(count(), title, widget);
+    return insertWidget(count(), title, widget);
 }
 
 /*!
@@ -107,10 +107,10 @@ QCtmDrawerItemWidget* QCtmDrawerWidget::insertWidget(int index, const QString& t
     connect(item, &QCtmDrawerItemWidget::expandChanged, this, &QCtmDrawerWidget::onItemExpand);
     connect(item, &QCtmDrawerItemWidget::titleClicked, this, &QCtmDrawerWidget::onItemClicked);
     item->setWidget(widget);
-	m_impl->splitter->insertWidget(index, item);
+    m_impl->splitter->insertWidget(index, item);
     m_impl->sizes = m_impl->splitter->sizes();
-	item->installEventFilter(this);
-	doResize();
+    item->installEventFilter(this);
+    doResize();
     return item;
 }
 
@@ -120,7 +120,7 @@ QCtmDrawerItemWidget* QCtmDrawerWidget::insertWidget(int index, const QString& t
 */
 void QCtmDrawerWidget::removeItem(QCtmDrawerItemWidget* item)
 {
-	delete item;
+    delete item;
 }
 
 /*!
@@ -129,7 +129,7 @@ void QCtmDrawerWidget::removeItem(QCtmDrawerItemWidget* item)
 */
 int QCtmDrawerWidget::indexOf(QCtmDrawerItemWidget* item) const
 {
-	return m_impl->splitter->indexOf(item);
+    return m_impl->splitter->indexOf(item);
 }
 
 /*!
@@ -138,7 +138,7 @@ int QCtmDrawerWidget::indexOf(QCtmDrawerItemWidget* item) const
 */
 QCtmDrawerItemWidget* QCtmDrawerWidget::item(int index) const
 {
-	return qobject_cast<QCtmDrawerItemWidget*>(m_impl->splitter->widget(index));
+    return qobject_cast<QCtmDrawerItemWidget*>(m_impl->splitter->widget(index));
 }
 
 /*!
@@ -146,10 +146,10 @@ QCtmDrawerItemWidget* QCtmDrawerWidget::item(int index) const
 */
 void QCtmDrawerWidget::setAllExpand(bool expand) const
 {
-	for (int i = 0; i<count();i++)
-	{
-		item(i)->setExpand(expand);
-	}
+    for (int i = 0; i < count(); i++)
+    {
+        item(i)->setExpand(expand);
+    }
 }
 
 /*!
@@ -157,7 +157,7 @@ void QCtmDrawerWidget::setAllExpand(bool expand) const
 */
 int QCtmDrawerWidget::count() const
 {
-	return m_impl->splitter->count();
+    return m_impl->splitter->count();
 }
 
 /*!
@@ -203,46 +203,46 @@ void QCtmDrawerWidget::setSizes(const QList<int>& sizes)
 */
 void QCtmDrawerWidget::doResize()
 {
-	auto sizes = m_impl->splitter->sizes();
+    auto sizes = m_impl->splitter->sizes();
 
-	if (allClosed())
-	{
-		for (int i = 0;i<sizes.size();i++)
-		{
-			auto w = qobject_cast<QCtmDrawerItemWidget*>(m_impl->splitter->widget(i));
-			sizes[i] = w->minimumSizeHint().height();
-		}
-		sizes.last() = this->height();
-		m_impl->splitter->setSizes(sizes);
-		return;
-	}
-	
-	for (int i = 0; i < sizes.size(); i++)
-	{
-		auto w = qobject_cast<QCtmDrawerItemWidget*>(m_impl->splitter->widget(i));
-		if (w)
-		{
-			if (!w->isExpand())
-			{
-				auto h = w->minimumSizeHint().height();
-				sizes[i] = h;
-			}
-		}
-	}
-	for (int i = sizes.size() - 1; i >= 0; i--)
-	{
-		auto w = qobject_cast<QCtmDrawerItemWidget*>(m_impl->splitter->widget(i));
-		if (w)
-		{
-			if (w->isExpand())
-			{
-				sizes[i] += m_impl->splitter->height() - this->total(sizes);
-				break;
-			}
-		}
-	}
-	
-	m_impl->splitter->setSizes(sizes);
+    if (allClosed())
+    {
+        for (int i = 0; i < sizes.size(); i++)
+        {
+            auto w = qobject_cast<QCtmDrawerItemWidget*>(m_impl->splitter->widget(i));
+            sizes[i] = w->minimumSizeHint().height();
+        }
+        sizes.last() = this->height();
+        m_impl->splitter->setSizes(sizes);
+        return;
+    }
+
+    for (int i = 0; i < sizes.size(); i++)
+    {
+        auto w = qobject_cast<QCtmDrawerItemWidget*>(m_impl->splitter->widget(i));
+        if (w)
+        {
+            if (!w->isExpand())
+            {
+                auto h = w->minimumSizeHint().height();
+                sizes[i] = h;
+            }
+        }
+    }
+    for (int i = sizes.size() - 1; i >= 0; i--)
+    {
+        auto w = qobject_cast<QCtmDrawerItemWidget*>(m_impl->splitter->widget(i));
+        if (w)
+        {
+            if (w->isExpand())
+            {
+                sizes[i] += m_impl->splitter->height() - this->total(sizes);
+                break;
+            }
+        }
+    }
+
+    m_impl->splitter->setSizes(sizes);
 }
 
 /*!
@@ -288,13 +288,13 @@ void QCtmDrawerWidget::onItemClicked(bool expand)
 */
 bool QCtmDrawerWidget::allClosed() const
 {
-	for (int i = 0; i<m_impl->splitter->count();i++)
-	{
-		auto w = qobject_cast<QCtmDrawerItemWidget*>(m_impl->splitter->widget(i));
-		if (w->isExpand())
-			return false;
-	}
-	return true;
+    for (int i = 0; i < m_impl->splitter->count(); i++)
+    {
+        auto w = qobject_cast<QCtmDrawerItemWidget*>(m_impl->splitter->widget(i));
+        if (w->isExpand())
+            return false;
+    }
+    return true;
 }
 
 /*!
@@ -302,12 +302,12 @@ bool QCtmDrawerWidget::allClosed() const
 */
 int QCtmDrawerWidget::total(const QList<int>& sizes) const
 {
-	int total = 0;
-	for (auto size : sizes)
-	{
-		total += size;
-	}
-	return total;
+    int total = 0;
+    for (auto size : sizes)
+    {
+        total += size;
+    }
+    return total;
 }
 
 /*!
@@ -328,13 +328,13 @@ void QCtmDrawerWidget::showEvent(QShowEvent* event)
 */
 void QCtmDrawerWidget::childExpandChanged(QCtmDrawerItemWidget* item, bool expand)
 {
-	if (expand)
-	{
-		if (item)
-		{
-			int index = m_impl->splitter->indexOf(item);
-			if (index != -1)
-			{
+    if (expand)
+    {
+        if (item)
+        {
+            int index = m_impl->splitter->indexOf(item);
+            if (index != -1)
+            {
                 QList<int> sizes = m_impl->sizes;
                 {
                     int i = sizes.size();
@@ -349,7 +349,7 @@ void QCtmDrawerWidget::childExpandChanged(QCtmDrawerItemWidget* item, bool expan
                 sizes[index] = item->suggestSize();
                 auto total2 = total(sizes);
                 int s = total2 - total1;
-                for (int i = index+1; i < sizes.size(); i++)
+                for (int i = index + 1; i < sizes.size(); i++)
                 {
                     if (s <= 0)
                         break;
@@ -378,8 +378,8 @@ void QCtmDrawerWidget::childExpandChanged(QCtmDrawerItemWidget* item, bool expan
                 }
 
                 m_impl->splitter->setSizes(sizes);
-			}
-		}
-	}
-	doResize();
+            }
+        }
+    }
+    doResize();
 }

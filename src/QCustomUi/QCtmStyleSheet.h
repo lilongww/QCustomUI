@@ -26,6 +26,6 @@
 class QCUSTOMUI_EXPORT QCtmStyleSheet
 {
 public:
-	static QString defaultStyleSheet();
+    static QString defaultStyleSheet();
 };
 

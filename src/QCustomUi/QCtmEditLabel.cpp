@@ -126,7 +126,7 @@ QIcon QCtmEditLabel::editButtonIcon() const
 }
 
 /*!
-    \brief      Sets icon for the finish button.
+    \brief      Sets \a icon for the finish button.
     \sa         finishButtonIcon()
 */
 void QCtmEditLabel::setFinishButtonIcon(const QIcon& icon)
@@ -144,7 +144,7 @@ QIcon QCtmEditLabel::finishButtonIcon() const
 }
 
 /*!
-    \brief      Sets icon for the revert button.
+    \brief      Sets \a icon for the revert button.
     \sa         revertButtonIcon()
 */
 void QCtmEditLabel::setRevertButtonIcon(const QIcon& icon)

@@ -37,7 +37,7 @@ struct QCtmLogFilterModel::Impl
 /*!
     \brief      Constructs a log message filter with \a parent.
 */
-QCtmLogFilterModel::QCtmLogFilterModel(QObject *parent)
+QCtmLogFilterModel::QCtmLogFilterModel(QObject* parent)
     : QSortFilterProxyModel(parent)
     , m_impl(std::make_unique<Impl>())
 {
@@ -62,7 +62,7 @@ void QCtmLogFilterModel::search(const QString& keyword)
 /*!
     \reimp
 */
-bool QCtmLogFilterModel::filterAcceptsRow(int sourceRow, [[maybe_unused]] const QModelIndex &sourceParent) const
+bool QCtmLogFilterModel::filterAcceptsRow(int sourceRow, [[maybe_unused]] const QModelIndex& sourceParent) const
 {
     auto type = this->sourceModel()->data(this->sourceModel()->index(sourceRow, 0), QCtmLogModel::TypeRole).toInt();
     if (!m_impl->keyword.isEmpty())

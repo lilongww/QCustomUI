@@ -31,12 +31,12 @@ static Q_CONSTEXPR const char* ActionPosProperty = "QCtm-ActionPosition";
 
 struct QCtmNavigationSideBar::Impl
 {
-	QVBoxLayout* layout{ nullptr };
-	QVBoxLayout* topLayout{ nullptr };
-	QVBoxLayout* bottomLayout{ nullptr };
-	QSize iconSize{ 25,25 };
-	QList<QCtmWidgetItemPtr> topActions;
-	QList<QCtmWidgetItemPtr> bottomActions;
+    QVBoxLayout* layout{ nullptr };
+    QVBoxLayout* topLayout{ nullptr };
+    QVBoxLayout* bottomLayout{ nullptr };
+    QSize iconSize{ 25,25 };
+    QList<QCtmWidgetItemPtr> topActions;
+    QList<QCtmWidgetItemPtr> bottomActions;
 
     QCtmActionGroup* actionGroup;
 
@@ -48,7 +48,7 @@ struct QCtmNavigationSideBar::Impl
 
     QCtmWidgetItemPtr find(QAction* action, const QList<QCtmWidgetItemPtr>& items)
     {
-        for (auto &item : items)
+        for (auto& item : items)
         {
             if (item->action() == action)
                 return item;
@@ -99,24 +99,24 @@ struct QCtmNavigationSideBar::Impl
 /*!
     \brief      Constructs a navigation side bar with the given \a parent.
 */
-QCtmNavigationSideBar::QCtmNavigationSideBar(QWidget *parent)
-	: QWidget(parent)
-	, m_impl(std::make_unique<Impl>())
+QCtmNavigationSideBar::QCtmNavigationSideBar(QWidget* parent)
+    : QWidget(parent)
+    , m_impl(std::make_unique<Impl>())
 {
-	m_impl->layout = new QVBoxLayout(this);
-	m_impl->layout->setContentsMargins(0, 10, 0, 10);
-	m_impl->topLayout = new QVBoxLayout;
-	m_impl->layout->addLayout(m_impl->topLayout);
-	m_impl->topLayout->setMargin(0);
-	m_impl->topLayout->setSpacing(25);
-	m_impl->bottomLayout = new QVBoxLayout;
-	m_impl->bottomLayout->setMargin(0);
-	m_impl->bottomLayout->setSpacing(25);
-	m_impl->layout->addStretch(1);
-	m_impl->layout->addLayout(m_impl->bottomLayout);
+    m_impl->layout = new QVBoxLayout(this);
+    m_impl->layout->setContentsMargins(0, 10, 0, 10);
+    m_impl->topLayout = new QVBoxLayout;
+    m_impl->layout->addLayout(m_impl->topLayout);
+    m_impl->topLayout->setMargin(0);
+    m_impl->topLayout->setSpacing(25);
+    m_impl->bottomLayout = new QVBoxLayout;
+    m_impl->bottomLayout->setMargin(0);
+    m_impl->bottomLayout->setSpacing(25);
+    m_impl->layout->addStretch(1);
+    m_impl->layout->addLayout(m_impl->bottomLayout);
 
-	m_impl->actionGroup = new QCtmActionGroup(this);
-	setFixedWidth(50);
+    m_impl->actionGroup = new QCtmActionGroup(this);
+    setFixedWidth(50);
 }
 
 /*!
@@ -134,8 +134,8 @@ QCtmNavigationSideBar::~QCtmNavigationSideBar()
 */
 QAction* QCtmNavigationSideBar::addAction(const QIcon& icon, const QString& text, ActionPosition pos)
 {
-	auto count = this->count(pos);
-	return insertAction(count, icon, text, pos);
+    auto count = this->count(pos);
+    return insertAction(count, icon, text, pos);
 }
 
 /*!
@@ -145,12 +145,12 @@ QAction* QCtmNavigationSideBar::addAction(const QIcon& icon, const QString& text
 */
 void QCtmNavigationSideBar::addAction(QAction* action, ActionPosition pos)
 {
-	int index = 0;
-	if (pos == ActionPosition::Bottom)
-		index = m_impl->bottomActions.size();
-	else
-		index = m_impl->topActions.size();
-	insertAction(index, action, pos);
+    int index = 0;
+    if (pos == ActionPosition::Bottom)
+        index = m_impl->bottomActions.size();
+    else
+        index = m_impl->topActions.size();
+    insertAction(index, action, pos);
 }
 
 /*!
@@ -159,7 +159,7 @@ void QCtmNavigationSideBar::addAction(QAction* action, ActionPosition pos)
 */
 int QCtmNavigationSideBar::count(ActionPosition pos) const
 {
-	return pos == ActionPosition::Top ? m_impl->topActions.size() : m_impl->bottomActions.size();
+    return pos == ActionPosition::Top ? m_impl->topActions.size() : m_impl->bottomActions.size();
 }
 
 /*!
@@ -168,7 +168,7 @@ int QCtmNavigationSideBar::count(ActionPosition pos) const
 */
 void QCtmNavigationSideBar::setIconSize(const QSize& size)
 {
-	m_impl->iconSize = size;
+    m_impl->iconSize = size;
 }
 
 /*!
@@ -177,7 +177,7 @@ void QCtmNavigationSideBar::setIconSize(const QSize& size)
 */
 const QSize& QCtmNavigationSideBar::iconSize() const
 {
-	return m_impl->iconSize;
+    return m_impl->iconSize;
 }
 
 /*!
@@ -209,18 +209,18 @@ QAction* QCtmNavigationSideBar::actionAt(int index, ActionPosition pos) const
 /*!
     \reimp
 */
-void QCtmNavigationSideBar::paintEvent(QPaintEvent *)
+void QCtmNavigationSideBar::paintEvent(QPaintEvent*)
 {
-	QStyleOption opt;
-	opt.init(this);
-	QPainter p(this);
-	style()->drawPrimitive(QStyle::PE_Widget, &opt, &p, this);
+    QStyleOption opt;
+    opt.init(this);
+    QPainter p(this);
+    style()->drawPrimitive(QStyle::PE_Widget, &opt, &p, this);
 }
 
 /*!
     \reimp
 */
-void QCtmNavigationSideBar::actionEvent(QActionEvent *event)
+void QCtmNavigationSideBar::actionEvent(QActionEvent* event)
 {
     ActionPosition pos = Top;
     if (event->action()->property(ActionPosProperty).isValid())
@@ -303,9 +303,9 @@ void QCtmNavigationSideBar::insertAction(int index, QAction* action, ActionPosit
 QAction* QCtmNavigationSideBar::insertAction(int index, const QIcon& icon, const QString& text, ActionPosition pos)
 {
     auto action = new QAction(icon, "", nullptr);
-	action->setToolTip(text);
-	insertAction(index, action, pos);
-	return action;
+    action->setToolTip(text);
+    insertAction(index, action, pos);
+    return action;
 }
 
 /*!
@@ -314,10 +314,10 @@ QAction* QCtmNavigationSideBar::insertAction(int index, const QIcon& icon, const
 */
 int QCtmNavigationSideBar::indexOf(QAction* action) const
 {
-	if (m_impl->bottomActions.contains(m_impl->find(action)))
-		return m_impl->bottomActions.indexOf(m_impl->find(action));
-	else if (m_impl->topActions.contains(m_impl->find(action)))
-		return m_impl->topActions.contains(m_impl->find(action));
-	return -1;
+    if (m_impl->bottomActions.contains(m_impl->find(action)))
+        return m_impl->bottomActions.indexOf(m_impl->find(action));
+    else if (m_impl->topActions.contains(m_impl->find(action)))
+        return m_impl->topActions.contains(m_impl->find(action));
+    return -1;
 }
 

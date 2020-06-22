@@ -45,7 +45,7 @@ struct QCtmLogManager::Impl
     qint64 logSize{ 4 * 1024 * 1024 };
     QFile logFile;
     QMutex mutex;
-    
+
     static decltype(&qtMessageHandle) oldHandle;
 };
 
@@ -197,11 +197,11 @@ QCtmLogManager::QCtmLogManager()
 {
     m_impl->datetime = QDateTime::currentDateTime();
     m_impl->logPath = qApp->applicationDirPath() + "/logs";
-	QDir dir(m_impl->logPath);
-	if (!dir.exists())
-	{
-		dir.mkpath(m_impl->logPath);
-	}
+    QDir dir(m_impl->logPath);
+    if (!dir.exists())
+    {
+        dir.mkpath(m_impl->logPath);
+    }
     for (int i = 0; i < sizeof(m_impl->saveLogs) / sizeof(bool); i++)
     {
         m_impl->saveLogs[i] = true;
@@ -285,7 +285,7 @@ QList<QString> QCtmLogManager::parseObjectNames(QString& msg)
 
     QString temp = msg;
     while ((pos = rx.indexIn(msg, pos)) != -1) {
-        const auto &str = rx.cap(0);
+        const auto& str = rx.cap(0);
         list << str.right(str.size() - 1);
         pos += rx.matchedLength();
         temp = msg.right(msg.size() - pos);

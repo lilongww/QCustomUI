@@ -33,7 +33,7 @@
 /*!
     \brief      Constructs a delegate with \a parent.
 */
-QCtmTableItemDelegate::QCtmTableItemDelegate(QTableView *parent)
+QCtmTableItemDelegate::QCtmTableItemDelegate(QTableView* parent)
     : QStyledItemDelegate(parent)
     , m_parent(parent)
 {
@@ -49,7 +49,7 @@ QCtmTableItemDelegate::~QCtmTableItemDelegate()
 /*!
     \reimp
 */
-void QCtmTableItemDelegate::paint(QPainter *painter, const QStyleOptionViewItem &option, const QModelIndex &index) const
+void QCtmTableItemDelegate::paint(QPainter* painter, const QStyleOptionViewItem& option, const QModelIndex& index) const
 {
     QStyleOptionViewItem opt = option;
     opt.state &= int(~QStyle::State_HasFocus);

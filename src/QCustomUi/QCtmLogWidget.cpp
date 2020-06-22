@@ -86,7 +86,7 @@ struct QCtmLogWidget::Impl
 /*!
     \brief      Constructs a log view widget with \a objectName and \a parent.
 */
-QCtmLogWidget::QCtmLogWidget(const QString& objectName, QWidget *parent)
+QCtmLogWidget::QCtmLogWidget(const QString& objectName, QWidget* parent)
     : QWidget(parent)
     , m_impl(std::make_unique<Impl>())
 {
@@ -176,7 +176,7 @@ void QCtmLogWidget::init()
     m_impl->logView->setSelectionBehavior(QTableView::SelectRows);
     m_impl->logView->setSelectionMode(QTableView::SingleSelection);
 
-    QHBoxLayout *layout = new QHBoxLayout(this);
+    QHBoxLayout* layout = new QHBoxLayout(this);
     layout->setMargin(0);
     layout->addWidget(m_impl->logView);
 
@@ -207,31 +207,31 @@ void QCtmLogWidget::init()
 
     connect(m_impl->infoAction, &QAction::toggled, this
         , [=](bool check)
-    {
-        m_impl->proxyModel->showLog(QtMsgType::QtInfoMsg, check);
-        m_impl->proxyModel->invalidate();
-        m_impl->logView->horizontalHeader()->reset();
-    });
+        {
+            m_impl->proxyModel->showLog(QtMsgType::QtInfoMsg, check);
+            m_impl->proxyModel->invalidate();
+            m_impl->logView->horizontalHeader()->reset();
+        });
     connect(m_impl->warningAction, &QAction::toggled, this
         , [=](bool check)
-    {
-        m_impl->proxyModel->showLog(QtMsgType::QtWarningMsg, check);
-        m_impl->proxyModel->invalidate();
-        m_impl->logView->horizontalHeader()->reset();
-    });
+        {
+            m_impl->proxyModel->showLog(QtMsgType::QtWarningMsg, check);
+            m_impl->proxyModel->invalidate();
+            m_impl->logView->horizontalHeader()->reset();
+        });
     connect(m_impl->errorAction, &QAction::toggled, this
         , [=](bool check)
-    {
-        m_impl->proxyModel->showLog(QtMsgType::QtCriticalMsg, check);
-        m_impl->proxyModel->invalidate();
-        m_impl->logView->horizontalHeader()->reset();
-    });
+        {
+            m_impl->proxyModel->showLog(QtMsgType::QtCriticalMsg, check);
+            m_impl->proxyModel->invalidate();
+            m_impl->logView->horizontalHeader()->reset();
+        });
 
     connect(m_impl->clearAction, &QAction::triggered, this
         , [=]()
-    {
-        m_impl->model->clear();
-    });
+        {
+            m_impl->model->clear();
+        });
 
     m_impl->searchAction = new QWidgetAction(this);
     m_impl->searchButton = new QCtmToolButton(m_impl->searchEdit);
@@ -243,32 +243,32 @@ void QCtmLogWidget::init()
 
     connect(m_impl->searchEdit->lineEdit(), &QLineEdit::returnPressed, this, [=]() {
         emit m_impl->searchAction->triggered(false);
-    });
+        });
 
     connect(m_impl->searchAction, &QAction::triggered, this, [=](bool)
-    {
-        const auto& text = m_impl->searchEdit->currentText();
-        m_impl->proxyModel->search(text);
-        m_impl->logView->horizontalHeader()->reset();
-
-        if (text.isEmpty())
-            return;
-
-        for (int i = m_impl->searchEdit->count() - 1; i >= 0; i--)
         {
-            const auto& t = m_impl->searchEdit->itemText(i);
-            if (t == text)
+            const auto& text = m_impl->searchEdit->currentText();
+            m_impl->proxyModel->search(text);
+            m_impl->logView->horizontalHeader()->reset();
+
+            if (text.isEmpty())
+                return;
+
+            for (int i = m_impl->searchEdit->count() - 1; i >= 0; i--)
             {
-                m_impl->searchEdit->removeItem(i);
+                const auto& t = m_impl->searchEdit->itemText(i);
+                if (t == text)
+                {
+                    m_impl->searchEdit->removeItem(i);
+                }
             }
-        }
-        m_impl->searchEdit->insertItem(0, text);
-        m_impl->searchEdit->setCurrentIndex(0);
-        if (m_impl->searchEdit->count() > 10)
-        {
-            m_impl->searchEdit->removeItem(m_impl->searchEdit->count() - 1);
-        }
-    });
+            m_impl->searchEdit->insertItem(0, text);
+            m_impl->searchEdit->setCurrentIndex(0);
+            if (m_impl->searchEdit->count() > 10)
+            {
+                m_impl->searchEdit->removeItem(m_impl->searchEdit->count() - 1);
+            }
+        });
 
     connect(m_impl->copyAction, &QAction::triggered, this, [=]() {
         const auto& index = m_impl->logView->currentIndex();
@@ -280,7 +280,7 @@ void QCtmLogWidget::init()
                 + m_impl->model->data(m_impl->model->index(index.row(), 2), Qt::DisplayRole).toString();
             cb->setText(text);
         }
-    });
+        });
 
     connect(m_impl->model, &QAbstractItemModel::rowsInserted, this, &QCtmLogWidget::updateLogCount);
     connect(m_impl->model, &QAbstractItemModel::rowsRemoved, this, &QCtmLogWidget::updateLogCount);

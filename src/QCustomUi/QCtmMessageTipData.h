@@ -29,33 +29,33 @@
 class QCUSTOMUI_EXPORT QCtmAbstractMessageTipData
 {
 public:
-	QCtmAbstractMessageTipData();
-	virtual ~QCtmAbstractMessageTipData();
+    QCtmAbstractMessageTipData();
+    virtual ~QCtmAbstractMessageTipData();
 
 };
 
 class QCUSTOMUI_EXPORT QCtmMessageTipData :public QCtmAbstractMessageTipData
 {
 public:
-	enum Column
-	{
-		Title,
-		Content,
-		Time,
-		ColumnCount
-	};
+    enum Column
+    {
+        Title,
+        Content,
+        Time,
+        ColumnCount
+    };
 
-	QCtmMessageTipData(const QString& title, const QString& content, const QDateTime& time);
-	~QCtmMessageTipData();
+    QCtmMessageTipData(const QString& title, const QString& content, const QDateTime& time);
+    ~QCtmMessageTipData();
 
-	void setTitle(const QString& title);
-	const QString& title()const;
-	void setContent(const QString& content);
-	const QString& content()const;
-	void setDateTime(const QDateTime& time);
-	const QDateTime& dateTime()const;
+    void setTitle(const QString& title);
+    const QString& title()const;
+    void setContent(const QString& content);
+    const QString& content()const;
+    void setDateTime(const QDateTime& time);
+    const QDateTime& dateTime()const;
 private:
-	struct Impl;
-	std::unique_ptr<Impl> m_impl;
+    struct Impl;
+    std::unique_ptr<Impl> m_impl;
 };
 

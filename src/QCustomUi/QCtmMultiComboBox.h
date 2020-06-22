@@ -25,27 +25,27 @@
 
 class QCUSTOMUI_EXPORT QCtmMultiComboBox : public QComboBox
 {
-	Q_OBJECT
+    Q_OBJECT
 
 public:
-	QCtmMultiComboBox(QWidget *parent);
-	~QCtmMultiComboBox();
+    QCtmMultiComboBox(QWidget* parent);
+    ~QCtmMultiComboBox();
 
-	QAbstractItemModel* model() const;
+    QAbstractItemModel* model() const;
 
-	QStringList checkedItems() const;
-	QVariantList checkedDatas() const;
+    QStringList checkedItems() const;
+    QVariantList checkedDatas() const;
 
-	void setChecked(int index, bool checked);
-	bool isChecked(int index) const;
+    void setChecked(int index, bool checked);
+    bool isChecked(int index) const;
 protected:
-	void setModel(QAbstractItemModel* model);
+    void setModel(QAbstractItemModel* model);
 
 private:
-	bool eventFilter(QObject *watched, QEvent *event) override;
-	void showEvent(QShowEvent *e) override;
+    bool eventFilter(QObject* watched, QEvent* event) override;
+    void showEvent(QShowEvent* e) override;
 
 private:
-	struct Impl;
-	std::unique_ptr<Impl> m_impl;
+    struct Impl;
+    std::unique_ptr<Impl> m_impl;
 };

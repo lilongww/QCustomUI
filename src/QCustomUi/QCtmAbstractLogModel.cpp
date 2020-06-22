@@ -32,7 +32,7 @@
 /*!
     \brief      Constructs a model with \a objectName and \a parent.
 */
-QCtmAbstractLogModel::QCtmAbstractLogModel(const QString& objectName, QObject *parent)
+QCtmAbstractLogModel::QCtmAbstractLogModel(const QString& objectName, QObject* parent)
     : QAbstractTableModel(parent)
 {
     setObjectName(objectName);
@@ -55,7 +55,7 @@ QCtmAbstractLogModel::~QCtmAbstractLogModel()
 /*!
     \reimp
 */
-bool QCtmAbstractLogModel::insertRows(int row, int count, const QModelIndex &parent /* = QModelIndex() */)
+bool QCtmAbstractLogModel::insertRows(int row, int count, const QModelIndex& parent /* = QModelIndex() */)
 {
     beginInsertRows(parent, row, row + count - 1);
     endInsertRows();
@@ -65,7 +65,7 @@ bool QCtmAbstractLogModel::insertRows(int row, int count, const QModelIndex &par
 /*!
     \reimp
 */
-bool QCtmAbstractLogModel::insertColumns(int column, int count, const QModelIndex &parent /* = QModelIndex() */)
+bool QCtmAbstractLogModel::insertColumns(int column, int count, const QModelIndex& parent /* = QModelIndex() */)
 {
     beginInsertColumns(parent, column, column + count - 1);
     endInsertColumns();
@@ -75,7 +75,7 @@ bool QCtmAbstractLogModel::insertColumns(int column, int count, const QModelInde
 /*!
     \reimp
 */
-bool QCtmAbstractLogModel::removeRows(int row, int count, const QModelIndex &parent /* = QModelIndex() */)
+bool QCtmAbstractLogModel::removeRows(int row, int count, const QModelIndex& parent /* = QModelIndex() */)
 {
     beginRemoveRows(parent, row, count + count - 1);
     endRemoveRows();
@@ -85,7 +85,7 @@ bool QCtmAbstractLogModel::removeRows(int row, int count, const QModelIndex &par
 /*!
     \reimp
 */
-bool QCtmAbstractLogModel::removeColumns(int column, int count, const QModelIndex &parent /* = QModelIndex() */)
+bool QCtmAbstractLogModel::removeColumns(int column, int count, const QModelIndex& parent /* = QModelIndex() */)
 {
     beginRemoveColumns(parent, column, column + count - 1);
     endRemoveColumns();
@@ -101,9 +101,17 @@ void QCtmAbstractLogModel::logEvent(QCtmLogEvent* e)
 }
 
 /*!
+    \brief      This will be call when the language has been changed.
+*/
+void QCtmAbstractLogModel::retranslateUi()
+{
+
+}
+
+/*!
     \reimp
 */
-bool QCtmAbstractLogModel::event(QEvent * e)
+bool QCtmAbstractLogModel::event(QEvent* e)
 {
     if (e->type() == QCtmLogEvent::QCtmLog)
     {

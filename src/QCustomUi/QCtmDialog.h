@@ -29,29 +29,30 @@ class QCtmTitleBar;
 
 class QCUSTOMUI_EXPORT QCtmDialog : public QDialog
 {
-	Q_OBJECT
+    Q_OBJECT
 
 public:
-	QCtmDialog(QWidget *parent = nullptr);
-	~QCtmDialog();
+    QCtmDialog(QWidget* parent = nullptr);
+    ~QCtmDialog();
 
-	void setCentralWidget(QWidget* widget);
-	QWidget* centralWidget()const;
+    void setCentralWidget(QWidget* widget);
+    QWidget* centralWidget()const;
+    void setTitleBar(QCtmTitleBar* titleBar);
     QCtmTitleBar* titleBar() const;
+    void removeTitleBar();
     void setMoveBars(const QWidgetList& moveBars);
     void removeMoveBar(QWidget* moveBar);
 #ifndef Q_OS_WIN
-	void setShadowless(bool flag);
-	bool shadowless() const;
+    void setShadowless(bool flag);
+    bool shadowless() const;
 #endif
 protected:
-	void hideEvent(QHideEvent *) override;
-	bool eventFilter(QObject*, QEvent*) override;
-	bool nativeEvent(const QByteArray& eventType, void* message, long* result) override;
+    void hideEvent(QHideEvent*) override;
+    bool eventFilter(QObject*, QEvent*) override;
+    bool nativeEvent(const QByteArray& eventType, void* message, long* result) override;
 private:
-	void normalizes(QPoint& pos);
-
+    void normalizes(QPoint& pos);
 private:
-	struct Impl;
-	std::unique_ptr<Impl> m_impl;
+    struct Impl;
+    std::unique_ptr<Impl> m_impl;
 };

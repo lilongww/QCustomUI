@@ -6,7 +6,7 @@
 
 class QCtmWidgetItem : public QObject
 {
-	Q_OBJECT
+    Q_OBJECT
 public:
     QCtmWidgetItem(QAction* action, Qt::Orientation orientation, QWidget* parent = nullptr);
     ~QCtmWidgetItem();

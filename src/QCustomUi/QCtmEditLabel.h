@@ -29,10 +29,10 @@ class QStyleOptionToolButton;
 class QCUSTOMUI_EXPORT QCtmEditLabel : public QLabel
 {
     Q_OBJECT
-    Q_PROPERTY(bool readOnly READ isReadOnly WRITE setReadOnly)
-    Q_PROPERTY(QIcon editButtonIcon READ editButtonIcon WRITE setEditButtonIcon)
-    Q_PROPERTY(QIcon finishButtonIcon READ finishButtonIcon WRITE setFinishButtonIcon)
-    Q_PROPERTY(QIcon revertButtonIcon READ revertButtonIcon WRITE setRevertButtonIcon)
+        Q_PROPERTY(bool readOnly READ isReadOnly WRITE setReadOnly)
+        Q_PROPERTY(QIcon editButtonIcon READ editButtonIcon WRITE setEditButtonIcon)
+        Q_PROPERTY(QIcon finishButtonIcon READ finishButtonIcon WRITE setFinishButtonIcon)
+        Q_PROPERTY(QIcon revertButtonIcon READ revertButtonIcon WRITE setRevertButtonIcon)
 public:
     QCtmEditLabel(QWidget* parent = nullptr, Qt::WindowFlags f = Qt::WindowFlags());
     QCtmEditLabel(const QString& text, QWidget* parent = nullptr, Qt::WindowFlags f = Qt::WindowFlags());
@@ -52,7 +52,6 @@ protected:
     QSize minimumSizeHint() const override;
 private:
     void init();
-
 private slots:
     void onEditButtonClicked();
 private:

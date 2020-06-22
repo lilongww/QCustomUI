@@ -30,8 +30,8 @@ QCtmWidgetItem::QCtmWidgetItem(QAction* action, Qt::Orientation orientation, QWi
             m_impl->widget = new QCtmSeparator(orientation, parent);
             m_impl->widget->setObjectName(action->objectName());
             QObject::connect(action, &QObject::objectNameChanged, m_impl->widget, [=](const QString& name) {
-                m_impl->widget->setObjectName(name); 
-            });
+                m_impl->widget->setObjectName(name);
+                });
         }
         else
         {
@@ -53,8 +53,8 @@ QCtmWidgetItem::QCtmWidgetItem(QAction* action, Qt::Orientation orientation, QWi
             QObject::connect(action, &QAction::changed, btn, [=]() {
                 setToolButtonStyle(action, btn);
                 btn->setVisible(action->isVisible());
-            });
-            QObject::connect(action, &QObject::objectNameChanged, btn, [=](const QString& name) {btn->setObjectName(name);});
+                });
+            QObject::connect(action, &QObject::objectNameChanged, btn, [=](const QString& name) {btn->setObjectName(name); });
             m_impl->widget = btn;
         }
     }
@@ -62,8 +62,8 @@ QCtmWidgetItem::QCtmWidgetItem(QAction* action, Qt::Orientation orientation, QWi
 
 QCtmWidgetItem::~QCtmWidgetItem()
 {
-	if (!m_impl->customWidget&&m_impl->widget)
-		delete m_impl->widget;
+    if (!m_impl->customWidget && m_impl->widget)
+        delete m_impl->widget;
 }
 
 void QCtmWidgetItem::release()

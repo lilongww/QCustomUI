@@ -28,9 +28,9 @@
 
 struct QCtmMessageTipButton::Impl
 {
-	QCtmAbstractMessageTipModel* model{ nullptr };
-	QCtmAbstractMessageTipView* view{ nullptr };
-	QCtmMessageTipHelper* helper{ nullptr };
+    QCtmAbstractMessageTipModel* model{ nullptr };
+    QCtmAbstractMessageTipView* view{ nullptr };
+    QCtmMessageTipHelper* helper{ nullptr };
 };
 
 /*!
@@ -49,13 +49,13 @@ struct QCtmMessageTipButton::Impl
 /*!
     \brief      Constructs a message tip button with \a parent.
 */
-QCtmMessageTipButton::QCtmMessageTipButton(QWidget *parent)
-	: QAbstractButton(parent)
-	, m_impl(std::make_unique<Impl>())
+QCtmMessageTipButton::QCtmMessageTipButton(QWidget* parent)
+    : QAbstractButton(parent)
+    , m_impl(std::make_unique<Impl>())
 {
-	m_impl->helper = new QCtmMessageTipHelper(this);
-	connect(this, &QAbstractButton::clicked, this, &QCtmMessageTipButton::onClicked);
-	setSizePolicy(QSizePolicy::Minimum, QSizePolicy::Expanding);
+    m_impl->helper = new QCtmMessageTipHelper(this);
+    connect(this, &QAbstractButton::clicked, this, &QCtmMessageTipButton::onClicked);
+    setSizePolicy(QSizePolicy::Minimum, QSizePolicy::Expanding);
 }
 
 /*!
@@ -71,18 +71,18 @@ QCtmMessageTipButton::~QCtmMessageTipButton()
 */
 void QCtmMessageTipButton::setModel(QCtmAbstractMessageTipModel* model)
 {
-	if (m_impl->model == model)
-		return;
-	if (m_impl->model)
-		m_impl->model->deleteLater();
-	m_impl->model = model;
-	connect(m_impl->model, &QAbstractItemModel::rowsRemoved, this, &QCtmMessageTipButton::onModelDataChanged);
-	connect(m_impl->model, &QAbstractItemModel::rowsInserted, this, &QCtmMessageTipButton::onModelDataChanged);
-	connectView();
-	if (this->isVisible())
-	{
-		update();
-	}
+    if (m_impl->model == model)
+        return;
+    if (m_impl->model)
+        m_impl->model->deleteLater();
+    m_impl->model = model;
+    connect(m_impl->model, &QAbstractItemModel::rowsRemoved, this, &QCtmMessageTipButton::onModelDataChanged);
+    connect(m_impl->model, &QAbstractItemModel::rowsInserted, this, &QCtmMessageTipButton::onModelDataChanged);
+    connectView();
+    if (this->isVisible())
+    {
+        update();
+    }
 }
 
 /*!
@@ -91,7 +91,7 @@ void QCtmMessageTipButton::setModel(QCtmAbstractMessageTipModel* model)
 */
 QCtmAbstractMessageTipModel* QCtmMessageTipButton::model() const
 {
-	return m_impl->model;
+    return m_impl->model;
 }
 
 /*!
@@ -100,8 +100,8 @@ QCtmAbstractMessageTipModel* QCtmMessageTipButton::model() const
 */
 void QCtmMessageTipButton::setView(QCtmAbstractMessageTipView* view)
 {
-	m_impl->view = view;
-	connectView();
+    m_impl->view = view;
+    connectView();
 }
 
 /*!
@@ -110,7 +110,7 @@ void QCtmMessageTipButton::setView(QCtmAbstractMessageTipView* view)
 */
 QCtmAbstractMessageTipView* QCtmMessageTipButton::view() const
 {
-	return m_impl->view;
+    return m_impl->view;
 }
 
 /*!
@@ -119,7 +119,7 @@ QCtmAbstractMessageTipView* QCtmMessageTipButton::view() const
 */
 void QCtmMessageTipButton::setTipColor(const QColor& color)
 {
-	m_impl->helper->setTipColor(color);
+    m_impl->helper->setTipColor(color);
 }
 
 /*!
@@ -128,26 +128,26 @@ void QCtmMessageTipButton::setTipColor(const QColor& color)
 */
 const QColor& QCtmMessageTipButton::tipColor() const
 {
-	return m_impl->helper->tipColor();
+    return m_impl->helper->tipColor();
 }
 
 /*!
     \reimp
 */
-void QCtmMessageTipButton::paintEvent([[maybe_unused]] QPaintEvent *event)
+void QCtmMessageTipButton::paintEvent([[maybe_unused]] QPaintEvent* event)
 {
-	QStyleOptionButton opt;
-	opt.initFrom(this);
-	initStyleOption(&opt);
+    QStyleOptionButton opt;
+    opt.initFrom(this);
+    initStyleOption(&opt);
 
-	QPainter p(this);
+    QPainter p(this);
 
-	this->style()->drawControl(QStyle::CE_PushButton, &opt, &p, this);
+    this->style()->drawControl(QStyle::CE_PushButton, &opt, &p, this);
 
-	if (m_impl->model)
-	{
-		m_impl->helper->drawMessageTip(m_impl->model->rowCount(), p, this);
-	}
+    if (m_impl->model)
+    {
+        m_impl->helper->drawMessageTip(m_impl->model->rowCount(), p, this);
+    }
 }
 
 /*!
@@ -155,9 +155,9 @@ void QCtmMessageTipButton::paintEvent([[maybe_unused]] QPaintEvent *event)
 */
 QSize QCtmMessageTipButton::sizeHint() const
 {
-	auto&& size = QAbstractButton::sizeHint();
-	size.setWidth(this->iconSize().width() + 20);
-	return size.expandedTo(qApp->globalStrut());
+    auto&& size = QAbstractButton::sizeHint();
+    size.setWidth(this->iconSize().width() + 20);
+    return size.expandedTo(qApp->globalStrut());
 }
 
 /*!
@@ -165,8 +165,8 @@ QSize QCtmMessageTipButton::sizeHint() const
 */
 void QCtmMessageTipButton::connectView()
 {
-	if (m_impl->view&&m_impl->model)
-		m_impl->view->setModel(m_impl->model);
+    if (m_impl->view && m_impl->model)
+        m_impl->view->setModel(m_impl->model);
 }
 
 /*!
@@ -174,16 +174,16 @@ void QCtmMessageTipButton::connectView()
 */
 void QCtmMessageTipButton::initStyleOption(QStyleOptionButton* opt)
 {
-	opt->icon = this->icon();
-	opt->iconSize = this->iconSize();
-	opt->features = QStyleOptionButton::DefaultButton;
+    opt->icon = this->icon();
+    opt->iconSize = this->iconSize();
+    opt->features = QStyleOptionButton::DefaultButton;
 
-	if (this->isDown())
-	{
-		opt->state = QStyle::State_Raised | QStyle::State_Sunken;
-	}
-	if (this->isChecked())
-		opt->state = QStyle::State_On;
+    if (this->isDown())
+    {
+        opt->state = QStyle::State_Raised | QStyle::State_Sunken;
+    }
+    if (this->isChecked())
+        opt->state = QStyle::State_On;
 }
 
 /*!
@@ -191,13 +191,13 @@ void QCtmMessageTipButton::initStyleOption(QStyleOptionButton* opt)
 */
 void QCtmMessageTipButton::onClicked(bool)
 {
-	if (this->view())
-	{
-		if (this->view()->isVisible())
-			this->view()->close();
-		else
-			this->view()->show();
-	}
+    if (this->view())
+    {
+        if (this->view()->isVisible())
+            this->view()->close();
+        else
+            this->view()->show();
+    }
 }
 
 /*!
@@ -205,6 +205,6 @@ void QCtmMessageTipButton::onClicked(bool)
 */
 void QCtmMessageTipButton::onModelDataChanged()
 {
-	update();
+    update();
 }
 

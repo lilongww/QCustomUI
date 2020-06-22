@@ -27,11 +27,11 @@ class QCtmNavigationBar;
 
 class QCUSTOMUI_EXPORT QCtmAbstractMessageTipView : public QCtmNavigationSidePane
 {
-	Q_OBJECT
+    Q_OBJECT
 
 public:
-	QCtmAbstractMessageTipView(QCtmNavigationBar *parent);
-	~QCtmAbstractMessageTipView();
-	virtual void setModel(QCtmAbstractMessageTipModel* model) = 0;
-	virtual QCtmAbstractMessageTipModel* model() const = 0;
+    QCtmAbstractMessageTipView(QCtmNavigationBar* parent);
+    ~QCtmAbstractMessageTipView();
+    virtual void setModel(QCtmAbstractMessageTipModel* model) = 0;
+    virtual QCtmAbstractMessageTipModel* model() const = 0;
 };

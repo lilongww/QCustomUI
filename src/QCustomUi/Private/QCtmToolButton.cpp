@@ -6,12 +6,12 @@
 
 struct QCtmToolButton::Impl
 {
-	bool showToolTip{ true };
+    bool showToolTip{ true };
 };
 
-QCtmToolButton::QCtmToolButton(QWidget *parent)
+QCtmToolButton::QCtmToolButton(QWidget* parent)
     : QToolButton(parent)
-	, m_impl(std::make_unique<Impl>())
+    , m_impl(std::make_unique<Impl>())
 {
     connect(this, &QAbstractButton::toggled, this, [=](bool) {style()->unpolish(this); style()->polish(this); });
 }
@@ -32,19 +32,19 @@ void QCtmToolButton::setIcon(const QIcon& icon)
 
 void QCtmToolButton::setShowToolTips(bool show)
 {
-	m_impl->showToolTip = show;
+    m_impl->showToolTip = show;
 }
 
 bool QCtmToolButton::showToolTips() const
 {
-	return m_impl->showToolTip;
+    return m_impl->showToolTip;
 }
 
-bool QCtmToolButton::event(QEvent * e)
+bool QCtmToolButton::event(QEvent* e)
 {
-	if (e->type() == QEvent::ToolTip)
-	{
-		return m_impl->showToolTip ? QToolButton::event(e) : true;
-	}
-	return QToolButton::event(e);
+    if (e->type() == QEvent::ToolTip)
+    {
+        return m_impl->showToolTip ? QToolButton::event(e) : true;
+    }
+    return QToolButton::event(e);
 }

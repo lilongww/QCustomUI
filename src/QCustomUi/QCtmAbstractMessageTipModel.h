@@ -29,25 +29,25 @@ using QCtmAbstractMessageTipDataPtr = std::shared_ptr<class QCtmAbstractMessageT
 
 class QCUSTOMUI_EXPORT QCtmAbstractMessageTipModel : public QAbstractTableModel
 {
-	Q_OBJECT
+    Q_OBJECT
 
 public:
-	QCtmAbstractMessageTipModel(QObject *parent);
-	~QCtmAbstractMessageTipModel();
+    QCtmAbstractMessageTipModel(QObject* parent);
+    ~QCtmAbstractMessageTipModel();
 
-	void addMessage(QCtmAbstractMessageTipDataPtr msg);
-	void insertMessage(int index, QCtmAbstractMessageTipDataPtr msg);
-	void removeMessage(QCtmAbstractMessageTipDataPtr msg);
-	QCtmAbstractMessageTipDataPtr message(int row)const;
-	void clear();
-	void setMaximumCount(int count);
-	int maximumCount() const;
+    void addMessage(QCtmAbstractMessageTipDataPtr msg);
+    void insertMessage(int index, QCtmAbstractMessageTipDataPtr msg);
+    void removeMessage(QCtmAbstractMessageTipDataPtr msg);
+    QCtmAbstractMessageTipDataPtr message(int row)const;
+    void clear();
+    void setMaximumCount(int count);
+    int maximumCount() const;
 
-	int	rowCount(const QModelIndex &parent = QModelIndex()) const override;
-    bool setData([[maybe_unused]] const QModelIndex &index, [[maybe_unused]] const QVariant &value, [[maybe_unused]] int role = Qt::EditRole) override { return false; }
-	bool removeRows(int row, int count, const QModelIndex &parent = QModelIndex()) override;
-	bool insertRows(int row, int count, const QModelIndex &parent  = QModelIndex()) override;
+    int	rowCount(const QModelIndex& parent = QModelIndex()) const override;
+    bool setData([[maybe_unused]] const QModelIndex& index, [[maybe_unused]] const QVariant& value, [[maybe_unused]] int role = Qt::EditRole) override { return false; }
+    bool removeRows(int row, int count, const QModelIndex& parent = QModelIndex()) override;
+    bool insertRows(int row, int count, const QModelIndex& parent = QModelIndex()) override;
 private:
-	struct Impl;
-	std::unique_ptr<Impl> m_impl;
+    struct Impl;
+    std::unique_ptr<Impl> m_impl;
 };

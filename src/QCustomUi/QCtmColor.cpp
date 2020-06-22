@@ -25,7 +25,7 @@
 
 bool isLight(QColor color)
 {
-	return 0.213 * color.red() + 0.715 * color.green() + 0.072 * color.blue() > 255 / 2;
+    return 0.213 * color.red() + 0.715 * color.green() + 0.072 * color.blue() > 255 / 2;
 }
 
 /*!
@@ -63,26 +63,26 @@ bool isLight(QColor color)
     \endraw
 
     \enum       QCtmColor::Colors
-                
+
     \value      Color0
                 \tt {\span {id="color-0"} {-------------}}
     \value      Color1
                 \tt {\span {id="color-1"} {-------------}}
     \value      Color2
                 \tt {\span {id="color-2"} {-------------}}
-    \value      Color3 
+    \value      Color3
                 \tt {\span {id="color-3"} {-------------}}
-    \value      Color4 
+    \value      Color4
                 \tt {\span {id="color-4"} {-------------}}
-    \value      Color5 
+    \value      Color5
                 \tt {\span {id="color-5"} {-------------}}
-    \value      Color6 
+    \value      Color6
                 \tt {\span {id="color-6"} {-------------}}
-    \value      Color7 
+    \value      Color7
                 \tt {\span {id="color-7"} {-------------}}
-    \value      Color8 
+    \value      Color8
                 \tt {\span {id="color-8"} {-------------}}
-    \value      Color9 
+    \value      Color9
                 \tt {\span {id="color-9"} {-------------}}
     \value      Color10
                 \tt {\span {id="color-10"} {-------------}}
@@ -112,9 +112,9 @@ bool isLight(QColor color)
 */
 QColor QCtmColor::generateBackgroundColor(int index)
 {
-	index = index % 20;
-	auto colorEnum = QCtmColor::staticMetaObject.enumerator(0);
-	return QColor(colorEnum.value(index));
+    index = index % 20;
+    auto colorEnum = QCtmColor::staticMetaObject.enumerator(0);
+    return QColor(colorEnum.value(index));
 }
 
 /*!
@@ -123,9 +123,9 @@ QColor QCtmColor::generateBackgroundColor(int index)
 */
 QColor QCtmColor::generateForegroundColor(QColor color)
 {
-	int h, s, l;
-	color.toHsl().getHsl(&h, &s, &l);
-	QColor target;
-	target.setHsl(h, s, isLight(color) ? 45 : 210);
-	return target;
+    int h, s, l;
+    color.toHsl().getHsl(&h, &s, &l);
+    QColor target;
+    target.setHsl(h, s, isLight(color) ? 45 : 210);
+    return target;
 }

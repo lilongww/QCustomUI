@@ -21,8 +21,8 @@
 
 struct QCtmAbstractMessageTipModel::Impl
 {
-	QList<QCtmAbstractMessageTipDataPtr> messages;
-	int maxCount{ 10000 };
+    QList<QCtmAbstractMessageTipDataPtr> messages;
+    int maxCount{ 10000 };
 };
 
 /*!
@@ -36,9 +36,9 @@ struct QCtmAbstractMessageTipModel::Impl
 /*!
     \brief      Constructs a message tip model with \a parent.
 */
-QCtmAbstractMessageTipModel::QCtmAbstractMessageTipModel(QObject *parent)
-	: QAbstractTableModel(parent)
-	, m_impl(std::make_unique<Impl>())
+QCtmAbstractMessageTipModel::QCtmAbstractMessageTipModel(QObject* parent)
+    : QAbstractTableModel(parent)
+    , m_impl(std::make_unique<Impl>())
 {
 }
 
@@ -55,16 +55,16 @@ QCtmAbstractMessageTipModel::~QCtmAbstractMessageTipModel()
 */
 void QCtmAbstractMessageTipModel::addMessage(QCtmAbstractMessageTipDataPtr msg)
 {
-	while (m_impl->messages.size() >= m_impl->maxCount && !m_impl->messages.isEmpty())
-	{
-		removeMessage(m_impl->messages.front());
-	}
+    while (m_impl->messages.size() >= m_impl->maxCount && !m_impl->messages.isEmpty())
+    {
+        removeMessage(m_impl->messages.front());
+    }
 
-	if (m_impl->maxCount <= 0)
-		return;
+    if (m_impl->maxCount <= 0)
+        return;
 
-	m_impl->messages.push_back(msg);
-	insertRow(rowCount());
+    m_impl->messages.push_back(msg);
+    insertRow(rowCount());
 }
 
 /*!
@@ -73,8 +73,8 @@ void QCtmAbstractMessageTipModel::addMessage(QCtmAbstractMessageTipDataPtr msg)
 */
 void QCtmAbstractMessageTipModel::insertMessage(int index, QCtmAbstractMessageTipDataPtr msg)
 {
-	m_impl->messages.insert(index, msg);
-	insertRow(index);
+    m_impl->messages.insert(index, msg);
+    insertRow(index);
 }
 
 /*!
@@ -83,9 +83,9 @@ void QCtmAbstractMessageTipModel::insertMessage(int index, QCtmAbstractMessageTi
 */
 void QCtmAbstractMessageTipModel::removeMessage(QCtmAbstractMessageTipDataPtr msg)
 {
-	const auto& index = m_impl->messages.indexOf(msg);
-	removeRow(index);
-	m_impl->messages.removeOne(msg);
+    const auto& index = m_impl->messages.indexOf(msg);
+    removeRow(index);
+    m_impl->messages.removeOne(msg);
 }
 
 /*!
@@ -93,7 +93,7 @@ void QCtmAbstractMessageTipModel::removeMessage(QCtmAbstractMessageTipDataPtr ms
 */
 QCtmAbstractMessageTipDataPtr QCtmAbstractMessageTipModel::message(int row) const
 {
-	return m_impl->messages.at(row);
+    return m_impl->messages.at(row);
 }
 
 /*!
@@ -101,9 +101,9 @@ QCtmAbstractMessageTipDataPtr QCtmAbstractMessageTipModel::message(int row) cons
 */
 void QCtmAbstractMessageTipModel::clear()
 {
-	beginResetModel();
-	m_impl->messages.clear();
-	endResetModel();
+    beginResetModel();
+    m_impl->messages.clear();
+    endResetModel();
 }
 
 /*!
@@ -112,7 +112,7 @@ void QCtmAbstractMessageTipModel::clear()
 */
 void QCtmAbstractMessageTipModel::setMaximumCount(int count)
 {
-	m_impl->maxCount = count;
+    m_impl->maxCount = count;
 }
 
 /*!
@@ -121,33 +121,33 @@ void QCtmAbstractMessageTipModel::setMaximumCount(int count)
 */
 int QCtmAbstractMessageTipModel::maximumCount() const
 {
-	return m_impl->maxCount;
+    return m_impl->maxCount;
 }
 
 /*!
     \reimp
 */
-int QCtmAbstractMessageTipModel::rowCount([[maybe_unused]] const QModelIndex &parent /*= QModelIndex()*/) const
+int QCtmAbstractMessageTipModel::rowCount([[maybe_unused]] const QModelIndex& parent /*= QModelIndex()*/) const
 {
-	return m_impl->messages.size();
+    return m_impl->messages.size();
 }
 
 /*!
     \reimp
 */
-bool QCtmAbstractMessageTipModel::removeRows(int row, int count, const QModelIndex &parent /*= QModelIndex()*/)
+bool QCtmAbstractMessageTipModel::removeRows(int row, int count, const QModelIndex& parent /*= QModelIndex()*/)
 {
-	beginRemoveRows(parent, row, row + count - 1);
-	endRemoveRows();
-	return true;
+    beginRemoveRows(parent, row, row + count - 1);
+    endRemoveRows();
+    return true;
 }
 
 /*!
     \reimp
 */
-bool QCtmAbstractMessageTipModel::insertRows(int row, int count, const QModelIndex &parent /*= QModelIndex()*/)
+bool QCtmAbstractMessageTipModel::insertRows(int row, int count, const QModelIndex& parent /*= QModelIndex()*/)
 {
-	beginInsertRows(parent, row, row + count - 1);
-	endInsertRows();
-	return true;
+    beginInsertRows(parent, row, row + count - 1);
+    endInsertRows();
+    return true;
 }

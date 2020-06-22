@@ -33,6 +33,7 @@ struct QCtmDialog::Impl
 {
     QCtmTitleBar* title{ nullptr };
     QWidget* content{ nullptr };
+    QVBoxLayout* layout{ nullptr };
 #ifdef Q_OS_WIN
     QCtmWinFramelessDelegate* delegate{ nullptr };
 #else
@@ -59,14 +60,14 @@ QCtmDialog::QCtmDialog(QWidget* parent)
     m_impl->title = new QCtmTitleBar(this);
     m_impl->title->setObjectName("ctmDialogTitleBar");
 
-    QVBoxLayout* layout = new QVBoxLayout(this);
-    layout->setMargin(0);
-    layout->setSpacing(0);
+    m_impl->layout = new QVBoxLayout(this);
+    m_impl->layout->setMargin(0);
+    m_impl->layout->setSpacing(0);
 
-    layout->addWidget(m_impl->title);
-    layout->setStretch(0, 0);
-    layout->setStretch(1, 1);
-    layout->setAlignment(Qt::AlignLeft | Qt::AlignTop);
+    m_impl->layout->addWidget(m_impl->title);
+    m_impl->layout->setStretch(0, 0);
+    m_impl->layout->setStretch(1, 1);
+    m_impl->layout->setAlignment(Qt::AlignLeft | Qt::AlignTop);
 
 #ifdef Q_OS_WIN
     m_impl->delegate = new QCtmWinFramelessDelegate(this, m_impl->title);
@@ -118,8 +119,27 @@ QWidget* QCtmDialog::centralWidget() const
 }
 
 /*!
-    \fn         QCtmTitleBar* QCtmDialog::titleBar() const
+    \brief      Sets the given \a titleBar, the old title bar will be delete.
+    \sa         titleBar(), removeTitleBar()
+*/
+void QCtmDialog::setTitleBar(QCtmTitleBar* titleBar)
+{
+    if (m_impl->title)
+    {
+        m_impl->layout->replaceWidget(m_impl->title, titleBar);
+        delete m_impl->title;
+    }
+    else
+    {
+        m_impl->layout->insertWidget(0, titleBar);
+    }
+    m_impl->delegate->addMoveBar(titleBar);
+    m_impl->title = titleBar;
+}
+
+/*!
     \brief      Returns the title bar widget.
+    \sa         setTitleBar, removeTitleBar()
 */
 QCtmTitleBar* QCtmDialog::titleBar() const
 {
@@ -127,7 +147,19 @@ QCtmTitleBar* QCtmDialog::titleBar() const
 }
 
 /*!
-    \fn         void QCtmDialog::setMoveBars(const QWidgetList& moveBars)
+    \brief      Remove the title bar, the title bar will be delete.
+    \sa         setTitleBar, titleBar()
+*/
+void QCtmDialog::removeTitleBar()
+{
+    if (m_impl->title)
+    {
+        delete m_impl->title;
+        m_impl->title = nullptr;
+    }
+}
+
+/*!
     \brief      Sets the given \a moveBars, they can be drag move by mouse.
     \sa         removeMoveBar
 */
@@ -138,7 +170,6 @@ void QCtmDialog::setMoveBars(const QWidgetList& moveBars)
 }
 
 /*!
-    \fn         void QCtmDialog::removeMoveBar(QWidget* moveBar)
     \brief      Remove the give \a moveBar.
     \sa         setMoveBars
 */
@@ -148,17 +179,27 @@ void QCtmDialog::removeMoveBar(QWidget* moveBar)
 }
 #ifndef Q_OS_WIN
 
-/**
- * @brief		Set the window is shadowless.
- */
+/*!
+    \if         !defined(Q_OS_WIN)
+    \brief      Sets the window being shadowless, \a flag.
+    \sa         shadowless()
+    \else
+    \internal
+    \endif
+*/
 void QCtmDialog::setShadowless(bool flag)
 {
     m_impl->delegate->setShadowless(flag);
 }
 
-/**
- * @brief		Get the window is shadowless.
- */
+/*!
+    \if         !defined(Q_OS_WIN)
+    \brief      Returns the window is shadowless.
+    \sa         setShadowless
+    \else
+    \internal
+    \endif
+*/
 bool QCtmDialog::shadowless() const
 {
     return m_impl->delegate->shadowless();
@@ -166,8 +207,7 @@ bool QCtmDialog::shadowless() const
 #endif
 
 /*!
-    \fn         void QCtmDialog::hideEvent(QHideEvent*)
-    \brief      Override function.
+    \reimp
 */
 void QCtmDialog::hideEvent(QHideEvent*)
 {

@@ -23,13 +23,13 @@ void MessageBoxExample::init()
     connect(ui.warningBtn
         , &QPushButton::clicked
         , this
-        , [=] {QCtmMessageBox::information(this, tr("Warning"), tr("Warning content")); });
+        , [=] {QCtmMessageBox::warning(this, tr("Warning"), tr("Warning content")); });
     connect(ui.criticalBtn
         , &QPushButton::clicked
         , this
-        , [=] {QCtmMessageBox::information(this, tr("Critical"), tr("Critical content")); });
+        , [=] {QCtmMessageBox::critical(this, tr("Critical"), tr("Critical content")); });
     connect(ui.questionBtn
         , &QPushButton::clicked
         , this
-        , [=] {QCtmMessageBox::information(this, tr("Question"), tr("Question content")); });
+        , [=] {QCtmMessageBox::question(this, tr("Question"), tr("Question content")); });
 }

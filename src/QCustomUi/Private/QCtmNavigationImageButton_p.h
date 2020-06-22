@@ -8,16 +8,16 @@
 
 class QCtmNavigationImageButton : public QCtmToolButton
 {
-	Q_OBJECT
+    Q_OBJECT
 
 public:
-	QCtmNavigationImageButton(QWidget *parent);
-	~QCtmNavigationImageButton();
-	
+    QCtmNavigationImageButton(QWidget* parent);
+    ~QCtmNavigationImageButton();
+
 protected:
-	void paintEvent(QPaintEvent *e)override;
-	QSize sizeHint()const override;
+    void paintEvent(QPaintEvent* e)override;
+    QSize sizeHint()const override;
 private:
-	struct Impl;
-	std::unique_ptr<Impl> m_impl;
+    struct Impl;
+    std::unique_ptr<Impl> m_impl;
 };

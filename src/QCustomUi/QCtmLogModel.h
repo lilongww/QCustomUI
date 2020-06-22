@@ -43,17 +43,17 @@ class QCUSTOMUI_EXPORT QCtmLogModel : public QCtmAbstractLogModel
 public:
     enum { TypeRole = Qt::UserRole + 1 };
 
-    QCtmLogModel(const QString& objectName, QObject *parent);
+    QCtmLogModel(const QString& objectName, QObject* parent);
     ~QCtmLogModel();
 
     void clear() override;
-    QVariant data(const QModelIndex &index, int role /* = Qt::DisplayRole */) const override;
-    bool setData(const QModelIndex &index, const QVariant &value, int role /* = Qt::EditRole */) override;
+    QVariant data(const QModelIndex& index, int role /* = Qt::DisplayRole */) const override;
+    bool setData(const QModelIndex& index, const QVariant& value, int role /* = Qt::EditRole */) override;
     QVariant headerData(int section, Qt::Orientation orientation, int role /* = Qt::DisplayRole */) const override;
     int rowCount(const QModelIndex& parent = QModelIndex()) const override;
-    int columnCount(const QModelIndex &parent = QModelIndex()) const override;
-	void setMaximumCount(int count);
-	int maximumCount() const;
+    int columnCount(const QModelIndex& parent = QModelIndex()) const override;
+    void setMaximumCount(int count);
+    int maximumCount() const;
     void setLogInsertPolicy(QCtmLogData::LogInsertPolicy policy);
     QCtmLogData::LogInsertPolicy logInsertPolicy() const;
     void setInfoIcon(const QIcon& icon);

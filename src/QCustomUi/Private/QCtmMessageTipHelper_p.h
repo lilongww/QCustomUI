@@ -6,20 +6,20 @@
 
 class QCtmMessageTipHelper : public QObject
 {
-	Q_OBJECT
+    Q_OBJECT
 
 public:
-	QCtmMessageTipHelper(QWidget *parent);
-	~QCtmMessageTipHelper();
+    QCtmMessageTipHelper(QWidget* parent);
+    ~QCtmMessageTipHelper();
 
-	void drawMessageTip(int msgCount, QPainter& p, QWidget* w);
+    void drawMessageTip(int msgCount, QPainter& p, QWidget* w);
 
-	void setTipColor(const QColor& color);
-	const QColor& tipColor()const;
+    void setTipColor(const QColor& color);
+    const QColor& tipColor()const;
 protected:
-	QRect tipsRect(const QRect& rect);
+    QRect tipsRect(const QRect& rect);
 
 private:
-	struct Impl;
-	std::unique_ptr<Impl> m_impl;
+    struct Impl;
+    std::unique_ptr<Impl> m_impl;
 };

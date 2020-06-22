@@ -43,5 +43,5 @@ public:
 protected:
     bool event(QEvent* e) override;
     virtual void logEvent(QCtmLogEvent* e);
-    virtual void retranslateUi() {};
+    virtual void retranslateUi();
 };

@@ -31,24 +31,24 @@ class QCtmTabPage;
 
 class QCUSTOMUI_EXPORT QCtmTabWidget :public QTabWidget
 {
-	Q_OBJECT
+    Q_OBJECT
 public:
-	QCtmTabWidget(QWidget *parent = nullptr);
-	~QCtmTabWidget();
+    QCtmTabWidget(QWidget* parent = nullptr);
+    ~QCtmTabWidget();
 
 public:
-	QCtmTabPage* addTab(QWidget *widget, const QString &label);
-	QCtmTabPage* addTab(QWidget *widget, const QIcon &icon, const QString &label);
-	QCtmTabPage* insertTab(int index, QWidget *widget, const QString &label);
-	QCtmTabPage* insertTab(int index, QWidget *widget, const QIcon &icon, const QString &label);
+    QCtmTabPage* addTab(QWidget* widget, const QString& label);
+    QCtmTabPage* addTab(QWidget* widget, const QIcon& icon, const QString& label);
+    QCtmTabPage* insertTab(int index, QWidget* widget, const QString& label);
+    QCtmTabPage* insertTab(int index, QWidget* widget, const QIcon& icon, const QString& label);
 protected:
-	void paintEvent(QPaintEvent *e);
+    void paintEvent(QPaintEvent* e);
 
 private slots:
-	void onCurrentChanged(int index);
+    void onCurrentChanged(int index);
 
 private:
-	struct Impl;
-	std::unique_ptr<Impl> m_impl;
+    struct Impl;
+    std::unique_ptr<Impl> m_impl;
 };
 

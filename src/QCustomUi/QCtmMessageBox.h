@@ -19,7 +19,6 @@
 
 #pragma once
 
-#include "qcustomui_global.h"
 #include "QCtmDialog.h"
 
 class QAbstractButton;
@@ -28,24 +27,31 @@ class QCUSTOMUI_EXPORT QCtmMessageBox : public QCtmDialog
 {
     Q_OBJECT
 
+        Q_PROPERTY(QString text READ text WRITE setText)
+        Q_PROPERTY(Icon icon READ icon WRITE setIcon)
+        Q_PROPERTY(QPixmap iconPixmap READ iconPixmap WRITE setIconPixmap)
+        Q_PROPERTY(Qt::TextFormat textFormat READ textFormat WRITE setTextFormat)
+        Q_PROPERTY(StandardButtons standardButtons READ standardButtons WRITE setStandardButtons)
+        Q_PROPERTY(Qt::TextInteractionFlags textInteractionFlags READ textInteractionFlags WRITE setTextInteractionFlags)
 public:
-	enum ButtonRole {
-		// keep this in sync with QDialogButtonBox::ButtonRole and QPlatformDialogHelper::ButtonRole
-		InvalidRole = -1,
-		AcceptRole,
-		RejectRole,
-		DestructiveRole,
-		ActionRole,
-		HelpRole,
-		YesRole,
-		NoRole,
-		ResetRole,
-		ApplyRole,
+    enum ButtonRole
+    {
+        // keep this in sync with QDialogButtonBox::ButtonRole and QPlatformDialogHelper::ButtonRole
+        InvalidRole = -1,
+        AcceptRole,
+        RejectRole,
+        DestructiveRole,
+        ActionRole,
+        HelpRole,
+        YesRole,
+        NoRole,
+        ResetRole,
+        ApplyRole,
+        NRoles
+    };
 
-		NRoles
-	};
-
-    enum StandardButton {
+    enum StandardButton
+    {
         // keep this in sync with QMessageBox::StandardButton and QPlatformDialogHelper::StandardButton
         NoButton = 0x00000000,
         Ok = 0x00000400,
@@ -66,18 +72,16 @@ public:
         Apply = 0x02000000,
         Reset = 0x04000000,
         RestoreDefaults = 0x08000000,
-
 #ifndef Q_MOC_RUN
         FirstButton = Ok,
         LastButton = RestoreDefaults
 #endif
     };
+    Q_DECLARE_FLAGS(StandardButtons, StandardButton)
+        Q_FLAG(StandardButtons)
 
-	Q_DECLARE_FLAGS(StandardButtons, StandardButton)
-
-    Q_FLAG(StandardButtons)
-
-    enum Icon {
+        enum Icon
+    {
         // keep this in sync with QMessageDialogOptions::Icon
         NoIcon = 0,
         Information = 1,
@@ -87,51 +91,67 @@ public:
     };
     Q_ENUM(Icon)
 
-    QCtmMessageBox(QWidget *parent = Q_NULLPTR);
+        QCtmMessageBox(QWidget* parent = Q_NULLPTR);
     QCtmMessageBox(Icon icon
-        , const QString &title
-        , const QString &text
+        , const QString& title
+        , const QString& text
         , StandardButtons buttons = NoButton
-        , QWidget *parent = Q_NULLPTR
+        , QWidget* parent = Q_NULLPTR
         , Qt::WindowFlags f = Qt::Dialog | Qt::MSWindowsFixedSizeDialogHint);
     ~QCtmMessageBox();
 
+    void setStandardButtons(StandardButtons buttons);
+    StandardButtons standardButtons() const;
     void setDefaultButton(StandardButton button);
     StandardButton defaultButton();
     QAbstractButton* clickedButton() const;
     StandardButton standardButton(QAbstractButton* button) const;
-	void addButton(QAbstractButton* button, ButtonRole role);
-	QPushButton* addButton(const QString& text, ButtonRole role);
-	QPushButton* addButton(StandardButton button);
+    void addButton(QAbstractButton* button, ButtonRole role);
+    QPushButton* addButton(const QString& text, ButtonRole role);
+    QPushButton* addButton(StandardButton button);
+    void removeButton(QAbstractButton* button);
 
-	void removeButton(QAbstractButton* button);
+    void setText(const QString& text);
+    QString text() const;
 
-    static StandardButton critical(QWidget *parent
-        , const QString &title
-        , const QString &text
+    Icon icon() const;
+    void setIcon(Icon icon);
+
+    QPixmap iconPixmap() const;
+    void setIconPixmap(const QPixmap& pixmap);
+
+    Qt::TextFormat textFormat() const;
+    void setTextFormat(Qt::TextFormat format);
+
+    void setTextInteractionFlags(Qt::TextInteractionFlags flags);
+    Qt::TextInteractionFlags textInteractionFlags() const;
+
+    static StandardButton critical(QWidget* parent
+        , const QString& title
+        , const QString& text
         , StandardButtons buttons = Ok
         , StandardButton defaultButton = NoButton);
 
-    static StandardButton information(QWidget *parent
-        , const QString &title
-        , const QString &text
+    static StandardButton information(QWidget* parent
+        , const QString& title
+        , const QString& text
         , StandardButtons buttons = Ok
         , StandardButton defaultButton = NoButton);
 
-    static StandardButton question(QWidget *parent
-        , const QString &title
-        , const QString &text
+    static StandardButton question(QWidget* parent
+        , const QString& title
+        , const QString& text
         , StandardButtons buttons = StandardButtons(Yes | No)
         , StandardButton defaultButton = NoButton);
 
-    static StandardButton warning(QWidget *parent
-        , const QString &title
-        , const QString &text
+    static StandardButton warning(QWidget* parent
+        , const QString& title
+        , const QString& text
         , StandardButtons buttons = Ok
         , StandardButton defaultButton = NoButton);
 
 protected:
-    void showEvent(QShowEvent *event) override;
+    void showEvent(QShowEvent* event) override;
 
 private:
     void init();

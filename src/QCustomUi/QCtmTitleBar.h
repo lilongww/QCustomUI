@@ -28,44 +28,44 @@
 
 namespace Ui
 {
-	class QCtmTitleBar;
+    class QCtmTitleBar;
 }
 
 class QMenuBar;
 
 class QCUSTOMUI_EXPORT QCtmTitleBar : public QWidget
 {
-	Q_OBJECT
-		Q_PROPERTY(bool showIcon READ showIcon WRITE setShowIcon)
+    Q_OBJECT
+        Q_PROPERTY(bool showIcon READ showIcon WRITE setShowIcon)
 public:
-	QCtmTitleBar(QWidget *parent = Q_NULLPTR);
-	~QCtmTitleBar();
+    QCtmTitleBar(QWidget* parent = Q_NULLPTR);
+    ~QCtmTitleBar();
 
-	void setMenuBar(QMenuBar* menu);
-	QMenuBar* menuBar()const;
-	void removeMenuBar();
-	void setShowIcon(bool show);
-	bool showIcon()const;
+    void setMenuBar(QMenuBar* menu);
+    QMenuBar* menuBar()const;
+    void removeMenuBar();
+    void setShowIcon(bool show);
+    bool showIcon()const;
 
-	private slots:
-	void onCloseBtn();
-	void onMaximumSizeBtn();
-	void onMinimumSizeBtn();
+private slots:
+    void onCloseBtn();
+    void onMaximumSizeBtn();
+    void onMinimumSizeBtn();
 
 protected:
-	void paintEvent(QPaintEvent *event) override;
-	void showEvent(QShowEvent* event) override;
-	bool eventFilter(QObject *watched, QEvent *event)override;
-	void actionEvent(QActionEvent *event) override;
+    void paintEvent(QPaintEvent* event) override;
+    void showEvent(QShowEvent* event) override;
+    bool eventFilter(QObject* watched, QEvent* event)override;
+    void actionEvent(QActionEvent* event) override;
 
 private:
-	QRect doIconRect() const;
+    QRect doIconRect() const;
 private:
-	Ui::QCtmTitleBar* ui;
+    Ui::QCtmTitleBar* ui;
 
-	struct Impl;
-	std::unique_ptr<Impl> m_impl;
+    struct Impl;
+    std::unique_ptr<Impl> m_impl;
 #ifdef Q_OS_WIN
-	friend class QCtmWinFramelessDelegate;
+    friend class QCtmWinFramelessDelegate;
 #endif
 };

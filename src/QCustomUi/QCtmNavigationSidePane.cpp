@@ -72,7 +72,7 @@ struct QCtmNavigationSidePane::Impl
 
 /*!
     \enum       QCtmNavigationSidePane::DockArea
-                
+
     \value      Left
                 Left of the window.
     \value      Top

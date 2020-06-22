@@ -3,8 +3,8 @@
 #include <QIcon>
 
 QPixmap QCtmStyle::standardPixmap(StandardPixmap standardIcon
-    , const QStyleOption *option
-    , const QWidget *widget) const
+    , const QStyleOption* option
+    , const QWidget* widget) const
 {
     //switch (standardIcon)
     //{

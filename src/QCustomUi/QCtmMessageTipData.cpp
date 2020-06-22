@@ -32,9 +32,9 @@ QCtmAbstractMessageTipData::~QCtmAbstractMessageTipData()
 
 struct QCtmMessageTipData::Impl
 {
-	QString title;
-	QString content;
-	QDateTime time;
+    QString title;
+    QString content;
+    QDateTime time;
 };
 
 /*!
@@ -49,11 +49,11 @@ struct QCtmMessageTipData::Impl
     \brief      Constructs a message tip data with \a title, \a content and \a time.
 */
 QCtmMessageTipData::QCtmMessageTipData(const QString& title, const QString& content, const QDateTime& time)
-	:m_impl(std::make_unique<Impl>())
+    :m_impl(std::make_unique<Impl>())
 {
-	m_impl->title = title;
-	m_impl->content = content;
-	m_impl->time = time;
+    m_impl->title = title;
+    m_impl->content = content;
+    m_impl->time = time;
 }
 
 /*!
@@ -69,7 +69,7 @@ QCtmMessageTipData::~QCtmMessageTipData()
 */
 void QCtmMessageTipData::setTitle(const QString& title)
 {
-	m_impl->title = title;
+    m_impl->title = title;
 }
 
 /*!
@@ -78,7 +78,7 @@ void QCtmMessageTipData::setTitle(const QString& title)
 */
 const QString& QCtmMessageTipData::title() const
 {
-	return m_impl->title;
+    return m_impl->title;
 }
 
 /*!
@@ -87,7 +87,7 @@ const QString& QCtmMessageTipData::title() const
 */
 void QCtmMessageTipData::setContent(const QString& content)
 {
-	m_impl->content = content;
+    m_impl->content = content;
 }
 
 /*!
@@ -96,7 +96,7 @@ void QCtmMessageTipData::setContent(const QString& content)
 */
 const QString& QCtmMessageTipData::content() const
 {
-	return m_impl->content;
+    return m_impl->content;
 }
 
 /*!
@@ -105,7 +105,7 @@ const QString& QCtmMessageTipData::content() const
 */
 void QCtmMessageTipData::setDateTime(const QDateTime& time)
 {
-	m_impl->time = time;
+    m_impl->time = time;
 }
 
 /*!
@@ -114,5 +114,5 @@ void QCtmMessageTipData::setDateTime(const QDateTime& time)
 */
 const QDateTime& QCtmMessageTipData::dateTime() const
 {
-	return m_impl->time;
+    return m_impl->time;
 }

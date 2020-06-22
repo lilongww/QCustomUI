@@ -37,7 +37,7 @@ struct QCtmLogModel::Impl
     QIcon infoIcon;
     QIcon warningIcon;
     QIcon errorIcon;
-	int maxCount{ 10000 };
+    int maxCount{ 10000 };
 
     int errorCount{ 0 };
     int warningCount{ 0 };
@@ -58,7 +58,7 @@ struct QCtmLogModel::Impl
     \brief      Constructs a model with \a objectName and \a parent.
     \sa         QObject::setObjectName
 */
-QCtmLogModel::QCtmLogModel(const QString& objectName, QObject *parent)
+QCtmLogModel::QCtmLogModel(const QString& objectName, QObject* parent)
     : QCtmAbstractLogModel(objectName, parent)
     , m_impl(std::make_unique<Impl>())
 {
@@ -88,9 +88,9 @@ void QCtmLogModel::clear()
 /*!
     \reimp
 */
-QVariant QCtmLogModel::data(const QModelIndex &index, int role /* = Qt::DisplayRole */) const
+QVariant QCtmLogModel::data(const QModelIndex& index, int role /* = Qt::DisplayRole */) const
 {
-    auto &msg = m_impl->datas[index.row()];
+    auto& msg = m_impl->datas[index.row()];
     if (role == Qt::DisplayRole)
     {
         switch ((Column)index.column())
@@ -137,7 +137,7 @@ QVariant QCtmLogModel::data(const QModelIndex &index, int role /* = Qt::DisplayR
 /*!
     \reimp
 */
-bool QCtmLogModel::setData([[maybe_unused]] const QModelIndex &index, [[maybe_unused]] const QVariant &value, [[maybe_unused]] int role /* = Qt::EditRole */)
+bool QCtmLogModel::setData([[maybe_unused]] const QModelIndex& index, [[maybe_unused]] const QVariant& value, [[maybe_unused]] int role /* = Qt::EditRole */)
 {
     return false;
 }
@@ -147,7 +147,7 @@ bool QCtmLogModel::setData([[maybe_unused]] const QModelIndex &index, [[maybe_un
 */
 QVariant QCtmLogModel::headerData(int section, Qt::Orientation orientation, int role /* = Qt::DisplayRole */) const
 {
-    if (role == Qt::DisplayRole&&orientation == Qt::Horizontal)
+    if (role == Qt::DisplayRole && orientation == Qt::Horizontal)
     {
         return m_impl->headers[section];
     }
@@ -165,7 +165,7 @@ int QCtmLogModel::rowCount([[maybe_unused]] const QModelIndex& parent /*= QModel
 /*!
     \reimp
 */
-int QCtmLogModel::columnCount([[maybe_unused]] const QModelIndex &parent /*= QModelIndex()*/) const
+int QCtmLogModel::columnCount([[maybe_unused]] const QModelIndex& parent /*= QModelIndex()*/) const
 {
     return m_impl->headers.size();
 }
@@ -176,7 +176,7 @@ int QCtmLogModel::columnCount([[maybe_unused]] const QModelIndex &parent /*= QMo
 */
 void QCtmLogModel::setMaximumCount(int count)
 {
-	m_impl->maxCount = count;
+    m_impl->maxCount = count;
 }
 
 /*!
@@ -185,7 +185,7 @@ void QCtmLogModel::setMaximumCount(int count)
 */
 int QCtmLogModel::maximumCount() const
 {
-	return m_impl->maxCount;
+    return m_impl->maxCount;
 }
 
 /*!
@@ -289,8 +289,8 @@ int QCtmLogModel::errorCount() const
 */
 void QCtmLogModel::logEvent(QCtmLogEvent* e)
 {
-	while (m_impl->datas.size() >= m_impl->maxCount && !m_impl->datas.isEmpty())
-	{
+    while (m_impl->datas.size() >= m_impl->maxCount && !m_impl->datas.isEmpty())
+    {
         auto msg = m_impl->datas.front();
         switch (msg.type)
         {
@@ -312,10 +312,10 @@ void QCtmLogModel::logEvent(QCtmLogEvent* e)
         else
             m_impl->datas.removeLast();
         endRemoveRows();
-	}
+    }
 
-	if (m_impl->maxCount <= 0)
-		return;
+    if (m_impl->maxCount <= 0)
+        return;
 
     QCtmLogMessage msg;
     msg.dateTime = e->log()->dateTime();
