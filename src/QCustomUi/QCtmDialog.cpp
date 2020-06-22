@@ -160,18 +160,18 @@ void QCtmDialog::removeTitleBar()
 }
 
 /*!
-    \brief      Sets the given \a moveBars, they can be drag move by mouse.
+    \brief      Add the given \a moveBar.
+                The move bar provide a function that user can drag the move bar to move the dialog.
     \sa         removeMoveBar
 */
-void QCtmDialog::setMoveBars(const QWidgetList& moveBars)
+void QCtmDialog::addMoveBar(QWidget* moveBar)
 {
-    for (auto w : moveBars)
-        m_impl->delegate->addMoveBar(w);
+    m_impl->delegate->addMoveBar(moveBar);
 }
 
 /*!
     \brief      Remove the give \a moveBar.
-    \sa         setMoveBars
+    \sa         addMoveBar
 */
 void QCtmDialog::removeMoveBar(QWidget* moveBar)
 {

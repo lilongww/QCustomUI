@@ -40,7 +40,7 @@ public:
     void setTitleBar(QCtmTitleBar* titleBar);
     QCtmTitleBar* titleBar() const;
     void removeTitleBar();
-    void setMoveBars(const QWidgetList& moveBars);
+    void addMoveBar(QWidget* moveBar);
     void removeMoveBar(QWidget* moveBar);
 #ifndef Q_OS_WIN
     void setShadowless(bool flag);

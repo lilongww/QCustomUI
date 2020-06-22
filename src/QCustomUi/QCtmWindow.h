@@ -53,6 +53,8 @@ public:
     void removeTitleBar();
     void setCentralWidget(QWidget* widget);
     QWidget* centralWidget() const;
+    void addMoveBar(QWidget* moveBar);
+    void removeMoveBar(QWidget* moveBar);
 #ifndef Q_OS_WIN
     void setShadowless(bool flag);
     bool shadowless() const;

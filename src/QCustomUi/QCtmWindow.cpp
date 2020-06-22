@@ -253,6 +253,25 @@ QWidget* QCtmWindow::centralWidget() const
     return m_impl->content;
 }
 
+/*!
+    \brief      Add the given \a moveBar.
+                The move bar provide a function that user can drag the move bar to move the window.
+    \sa         removeMoveBar
+*/
+void QCtmWindow::addMoveBar(QWidget* moveBar)
+{
+    m_impl->delegate->addMoveBar(moveBar);
+}
+
+/*!
+    \brief      Remove the given \a moveBar.
+    \sa         addMoveBar
+*/
+void QCtmWindow::removeMoveBar(QWidget* moveBar)
+{
+    m_impl->delegate->removeMoveBar(moveBar);
+}
+
 #ifndef Q_OS_WIN
 
 /*!
