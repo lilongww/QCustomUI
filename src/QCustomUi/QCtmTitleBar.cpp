@@ -115,7 +115,7 @@ void QCtmTitleBar::removeMenuBar()
 
 /*!
     \brief      Sets the icon whether to \a show.
-    \sa         showIcon()
+    \sa         iconIsVisible()
 */
 void QCtmTitleBar::setIconVisible(bool show)
 {
@@ -128,7 +128,7 @@ void QCtmTitleBar::setIconVisible(bool show)
 
 /*!
     \brief      Returns the icon whether to show.
-    \sa         setShowIcon
+    \sa         setIconVisible
 */
 bool QCtmTitleBar::iconIsVisible() const
 {

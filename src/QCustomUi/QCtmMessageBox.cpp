@@ -157,7 +157,7 @@ struct QCtmMessageBox::Impl
     The default is QCtmMessageBox::NoIcon.
 
     The pixmap used to display the actual icon depends on the current
-    \l{QWidget::style()} {GUI style}. You can also set a custom pixmap
+    \l{QWidget::style} {GUI style}. You can also set a custom pixmap
     for the icon by setting the \l{QCtmMessageBox::iconPixmap} {icon
     pixmap} property.
 
@@ -426,7 +426,7 @@ QPixmap QCtmMessageBox::iconPixmap() const
 }
 
 /*!
-    \brief      Sets the given pixmap, the \l icon will be set to be Icon::NoIcon.
+    \brief      Sets the given \a pixmap, the \l icon will be set to be Icon::NoIcon.
     \sa         iconPixmap
 */
 void QCtmMessageBox::setIconPixmap(const QPixmap& pixmap)
@@ -454,7 +454,7 @@ void QCtmMessageBox::setTextFormat(Qt::TextFormat format)
 }
 
 /*!
-    \brief      Sets the given \a text interaction flags.
+    \brief      Sets the given text interaction \a flags.
     \sa         textInteractionFlags()
 */
 void QCtmMessageBox::setTextInteractionFlags(Qt::TextInteractionFlags flags)
