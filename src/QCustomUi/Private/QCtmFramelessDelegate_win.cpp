@@ -204,7 +204,7 @@ bool QCtmWinFramelessDelegate::nativeEvent([[maybe_unused]] const QByteArray& ev
                 auto title = qobject_cast<QCtmTitleBar*>(w);
                 if (title)
                 {
-                    if (title->showIcon() && title->doIconRect().contains(pos))
+                    if (title->iconIsVisible() && title->doIconRect().contains(pos))
                     {
                         *result = HTSYSMENU;
                         return true;

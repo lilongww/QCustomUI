@@ -39,10 +39,13 @@ public:
     ~QCtmEditLabel();
     void setReadOnly(bool flag);
     bool isReadOnly() const;
+
     void setEditButtonIcon(const QIcon& icon);
     QIcon editButtonIcon() const;
+
     void setFinishButtonIcon(const QIcon& icon);
     QIcon finishButtonIcon() const;
+
     void setRevertButtonIcon(const QIcon& icon);
     QIcon revertButtonIcon() const;
 signals:

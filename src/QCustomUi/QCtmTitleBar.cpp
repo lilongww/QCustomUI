@@ -47,7 +47,7 @@ struct QCtmTitleBar::Impl
 */
 
 /*!
-    \property   QCtmTitleBar::showIcon
+    \property   QCtmTitleBar::iconIsVisible
     \brief      The showIcon holds the icon whether to show.
 */
 
@@ -117,7 +117,7 @@ void QCtmTitleBar::removeMenuBar()
     \brief      Sets the icon whether to \a show.
     \sa         showIcon()
 */
-void QCtmTitleBar::setShowIcon(bool show)
+void QCtmTitleBar::setIconVisible(bool show)
 {
     m_impl->showIcon = show;
     if (show)
@@ -130,7 +130,7 @@ void QCtmTitleBar::setShowIcon(bool show)
     \brief      Returns the icon whether to show.
     \sa         setShowIcon
 */
-bool QCtmTitleBar::showIcon() const
+bool QCtmTitleBar::iconIsVisible() const
 {
     return m_impl->showIcon;
 }

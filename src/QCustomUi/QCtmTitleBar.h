@@ -36,7 +36,7 @@ class QMenuBar;
 class QCUSTOMUI_EXPORT QCtmTitleBar : public QWidget
 {
     Q_OBJECT
-        Q_PROPERTY(bool showIcon READ showIcon WRITE setShowIcon)
+        Q_PROPERTY(bool iconIsVisible READ iconIsVisible WRITE setIconVisible)
 public:
     QCtmTitleBar(QWidget* parent = Q_NULLPTR);
     ~QCtmTitleBar();
@@ -44,9 +44,9 @@ public:
     void setMenuBar(QMenuBar* menu);
     QMenuBar* menuBar()const;
     void removeMenuBar();
-    void setShowIcon(bool show);
-    bool showIcon()const;
 
+    void setIconVisible(bool show);
+    bool iconIsVisible()const;
 private slots:
     void onCloseBtn();
     void onMaximumSizeBtn();
