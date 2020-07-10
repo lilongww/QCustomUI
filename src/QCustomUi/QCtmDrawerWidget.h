@@ -1,4 +1,4 @@
-/*********************************************************************************
+﻿/*********************************************************************************
 **                                                                              **
 **  Copyright (C) 2019-2020 LiLong                                              **
 **  This file is part of QCustomUi.                                             **
@@ -58,6 +58,10 @@ public:
 signals:
     void itemExpandChanged(QCtmDrawerItemWidget* item, bool expand);
     void itemTitleClicked(QCtmDrawerItemWidget* item, bool expand);
+
+public slots:
+    void expandAll();
+    void collapseAll();
 protected:
     bool allClosed()const;
     int total(const QList<int>& sizes) const;
@@ -71,4 +75,3 @@ private:
     struct Impl;
     std::unique_ptr<Impl> m_impl;
 };
-

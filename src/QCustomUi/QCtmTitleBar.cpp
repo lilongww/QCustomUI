@@ -1,4 +1,4 @@
-/*********************************************************************************
+﻿/*********************************************************************************
 **                                                                              **
 **  Copyright (C) 2019-2020 LiLong                                              **
 **  This file is part of QCustomUi.                                             **
@@ -44,6 +44,9 @@ struct QCtmTitleBar::Impl
     \inherits   QWidget
     \ingroup    QCustomUi
     \inmodule   QCustomUi
+
+    \b          {The title bar screenshot:}
+    \image      QCtmTitleBarDetail.png
 */
 
 /*!
@@ -265,8 +268,8 @@ bool QCtmTitleBar::eventFilter(QObject* watched, QEvent* event)
                 }
                 if (m_impl->showIcon)
                     ui->horizontalLayout->setContentsMargins(leftMargin + titleSpacing + m_impl->windowIcon.width(), 0, 0, 0);
-            }
         }
+    }
         else if (event->type() == QEvent::WindowTitleChange)
         {
             update();
@@ -281,7 +284,7 @@ bool QCtmTitleBar::eventFilter(QObject* watched, QEvent* event)
                     ui->maximumSizeBtn->show();
             }
         }
-    }
+}
     return false;
 }
 

@@ -1,4 +1,4 @@
-/*********************************************************************************
+﻿/*********************************************************************************
 **                                                                              **
 **  Copyright (C) 2019-2020 LiLong                                              **
 **  This file is part of QCustomUi.                                             **
@@ -41,6 +41,9 @@ struct QCtmDrawerWidget::Impl
     \inherits   QWidget
     \ingroup    QCustomUi
     \inmodule   QCustomUi
+
+    \b          {The drawer widget screenshot:}
+    \image      QCtmDrawerWidgetDetail.png
 */
 
 /*!
@@ -139,17 +142,6 @@ int QCtmDrawerWidget::indexOf(QCtmDrawerItemWidget* item) const
 QCtmDrawerItemWidget* QCtmDrawerWidget::item(int index) const
 {
     return qobject_cast<QCtmDrawerItemWidget*>(m_impl->splitter->widget(index));
-}
-
-/*!
-    \brief      Sets all of the items whether to \a expand.
-*/
-void QCtmDrawerWidget::setAllExpand(bool expand) const
-{
-    for (int i = 0; i < count(); i++)
-    {
-        item(i)->setExpand(expand);
-    }
 }
 
 /*!
@@ -280,6 +272,30 @@ void QCtmDrawerWidget::onItemClicked(bool expand)
     {
         m_impl->sizes = this->m_impl->splitter->sizes();
         emit itemTitleClicked(item, expand);
+    }
+}
+
+/*!
+    \brief      Expands all expandable items.
+    \sa         collapseAll()
+*/
+void QCtmDrawerWidget::expandAll()
+{
+    for (int i = 0; i < count(); i++)
+    {
+        item(i)->setExpand(true);
+    }
+}
+
+/*!
+    \brief      Collapses all expanded items.
+    \sa         expandAll()
+*/
+void QCtmDrawerWidget::collapseAll()
+{
+    for (int i = 0; i < count(); i++)
+    {
+        item(i)->setExpand(false);
     }
 }
 

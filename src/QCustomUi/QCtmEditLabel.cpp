@@ -1,4 +1,4 @@
-/*********************************************************************************
+﻿/*********************************************************************************
 **                                                                              **
 **  Copyright (C) 2019-2020 LiLong                                              **
 **  This file is part of QCustomUi.                                             **
@@ -43,6 +43,9 @@ struct QCtmEditLabel::Impl
     \inherits   QLabel
     \ingroup    QCustomUi
     \inmodule   QCustomUi
+
+    \b          {The edit label screenshot:}
+    \image      QCtmEditLabelDetail.png
 */
 
 /*!

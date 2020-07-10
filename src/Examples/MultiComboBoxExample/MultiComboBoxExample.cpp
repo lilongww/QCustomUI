@@ -1,13 +1,14 @@
-#include "MultiComboBoxExample.h"
+﻿#include "MultiComboBoxExample.h"
 
 #include <QCustomUi/QCtmMultiComboBox.h>
 
 #include <QHBoxLayout>
 
-MultiComboBoxExample::MultiComboBoxExample(QWidget *parent)
+MultiComboBoxExample::MultiComboBoxExample(QWidget* parent)
     : QCtmWindow(parent)
 {
     init();
+    setWindowTitle(tr("MultiComboBox Example"));
 }
 
 MultiComboBoxExample::~MultiComboBoxExample()

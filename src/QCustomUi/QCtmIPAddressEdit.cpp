@@ -1,4 +1,4 @@
-/*********************************************************************************
+﻿/*********************************************************************************
 **                                                                              **
 **  Copyright (C) 2019-2020 LiLong                                              **
 **  This file is part of QCustomUi.                                             **
@@ -90,6 +90,10 @@ struct QCtmIPAddressEdit::Impl
     \inherits   QWidget
     \ingroup    QCustomUi
     \inmodule   QCustomUi
+
+    \b          {The ip address edit screenshot:}
+    \image      QCtmIPAddressEditDetail.png
+
 */
 
 /*!

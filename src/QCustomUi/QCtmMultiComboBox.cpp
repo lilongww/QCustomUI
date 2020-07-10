@@ -1,4 +1,4 @@
-/*********************************************************************************
+﻿/*********************************************************************************
 **                                                                              **
 **  Copyright (C) 2019-2020 LiLong                                              **
 **  This file is part of QCustomUi.                                             **
@@ -60,6 +60,9 @@ struct QCtmMultiComboBox::Impl
     \inherits   QComboBox
     \ingroup    QCustomUi
     \inmodule   QCustomUi
+
+    \b          {The multi combobox screenshot:}
+    \image      QCtmMultiComboBoxDetail.png
 */
 
 /*!
@@ -223,13 +226,11 @@ bool QCtmMultiComboBox::eventFilter(QObject* watched, QEvent* event)
         {
             m_impl->timer.restart();
         }
-#ifdef Q_OS_LINUX
         else if (event->type() == QEvent::MouseButtonRelease)
         {
             event->ignore();
             return true;
         }
-#endif
     }
     return QComboBox::eventFilter(watched, event);
 }
