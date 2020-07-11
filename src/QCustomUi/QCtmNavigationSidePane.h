@@ -39,7 +39,8 @@ public:
         Right,
         Bottom
     };
-    explicit QCtmNavigationSidePane(QCtmNavigationBar* parent = nullptr);
+    explicit QCtmNavigationSidePane(QCtmNavigationBar* parent);
+    QCtmNavigationSidePane(DockArea area, QCtmNavigationBar* parent);
     ~QCtmNavigationSidePane();
 
     void setDockArea(DockArea area);

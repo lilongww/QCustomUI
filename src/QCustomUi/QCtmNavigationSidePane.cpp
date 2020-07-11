@@ -68,6 +68,9 @@ struct QCtmNavigationSidePane::Impl
     \inherits   QWidget
     \ingroup    QCustomUi
     \inmodule   QCustomUi
+
+    \b          {The navigation bar screenshot:}
+    \image      QCtmNavigationPaneDetail.png
 */
 
 /*!
@@ -114,6 +117,15 @@ QCtmNavigationSidePane::QCtmNavigationSidePane(QCtmNavigationBar* parent)
     connect(m_impl->closeBtn, &QPushButton::clicked, this, [=]() { this->close(); });
     this->setAttribute(Qt::WA_TranslucentBackground);
     setPopup(true);
+}
+
+/*!
+    \brief      Constructs a side pane with the given \a area and \a parent.
+*/
+QCtmNavigationSidePane::QCtmNavigationSidePane(DockArea area, QCtmNavigationBar* parent)
+    : QCtmNavigationSidePane(parent)
+{
+    setDockArea(area);
 }
 
 /*!
