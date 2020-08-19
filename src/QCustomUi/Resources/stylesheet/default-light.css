@@ -1,4 +1,4 @@
-/*********************************************************************************
+ï»¿/*********************************************************************************
 **                                                                              **
 **  Copyright (C) 2019-2020 LiLong                                              **
 **  This file is part of QCustomUi.                                             **
@@ -43,7 +43,12 @@ QPushButton:hover
     border: 1px solid #8EBDED;
 }
 
-QPushButton:pressed
+QPushButton:focus
+{
+    border: 2px solid #8EBDED;
+}
+
+QPushButton:pressed, QPushButton:checked
 {
     background: #CBE5FF;
     border: 1px solid #2477CE;
@@ -54,11 +59,6 @@ QPushButton:disabled
     background: #E1E1E1;
     border: 1px solid #D2D2D2;
     color: #AAAAAA;
-}
-
-QPushButton:focus
-{
-    border: 2px solid #8EBDED;
 }
 
 /************************QComboBox********************/
@@ -586,7 +586,7 @@ QTreeView::item:hover, QTreeView::branch:hover
 }
 
 QTreeView::item:selected, QTreeView::branch:selected
-{ /** Êó±êÑ¡ÖÐ **/
+{ /** é¼ æ ‡é€‰ä¸­ **/
     background-color: rgb(85, 170, 255);
     color: white;
 }
@@ -687,7 +687,8 @@ QTabBar::close-button:!selected
 /*****************************************************************************/
 
 /*****************************QCtmToolBox-View********************************/
-.QCtmToolBox QTreeView, .QCtmToolBox QTableView, .QCtmToolBox QListView {
+.QCtmToolBox QTreeView, .QCtmToolBox QTableView, .QCtmToolBox QListView
+{
     background: #F0F0F0;
 }
 /*****************************************************************************/
