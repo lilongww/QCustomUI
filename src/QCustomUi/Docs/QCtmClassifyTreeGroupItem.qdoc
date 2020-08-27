@@ -1,0 +1,71 @@
+﻿/*!
+    \class      QCtmClassifyTreeGroupItem
+    \brief      This is a standard group item that used with QCtmClassifyTreeView.
+    \inherits   QCtmClassifyTreeItem
+    \ingroup    QCustomUi
+    \inmodule   QCustomUi
+    \inheaderfile QCtmClassifyTreeGroupItem.h
+*/
+
+/*!
+    \fn         QCtmClassifyTreeGroupItem::QCtmClassifyTreeGroupItem()
+    \brief      Constructs a group item.
+*/
+
+/*!
+    \fn         explicit QCtmClassifyTreeGroupItem::QCtmClassifyTreeGroupItem(const QString& text)
+    \brief      Constructs a group item with the given \a text.
+*/
+
+/*!
+    \fn         explicit QCtmClassifyTreeGroupItem::QCtmClassifyTreeGroupItem(const QIcon& icon, const QString& text)
+    \brief      Constructs a group item with the given \a icon and \a text.
+*/
+
+/*!
+    \fn         QCtmClassifyTreeGroupItem::~QCtmClassifyTreeGroupItem()
+    \brief      Destroys the group item.
+*/
+
+/*!
+    \reimp
+    \fn         int QCtmClassifyTreeGroupItem::itemType() const
+*/
+
+/*!
+    \fn         void QCtmClassifyTreeGroupItem::addChild(QCtmClassifyTreeItem* item);
+    \brief      Adds the given \a item.
+    \sa         insertChild, removeChild
+*/
+
+/*!
+    \fn         void QCtmClassifyTreeGroupItem::insertChild(int row, QCtmClassifyTreeItem* item);
+    \brief      Inserts the given \a item to \a row position.
+    \sa         addChild, removeChild
+*/
+
+/*!
+    \fn         void QCtmClassifyTreeGroupItem::removeChild(QCtmClassifyTreeItem* item);
+    \brief      Removes the given \a item.
+    \sa         addChild, removeChild
+*/
+
+/*!
+    \fn         QCtmClassifyTreeItem* QCtmClassifyTreeGroupItem::child(int row) const;
+    \brief      Returns the item of the given \a row.
+*/
+
+/*!
+    \fn         int QCtmClassifyTreeGroupItem::rowOf(const QCtmClassifyTreeItem* item) const;
+    \brief      Returns the index of the given \a item.
+*/
+
+/*!
+    \fn         int QCtmClassifyTreeGroupItem::count() const;
+    \brief      Returns the children count.
+*/
+
+/*!
+    \fn         void QCtmClassifyTreeGroupItem::clear();
+    \brief      Removes all children.
+*/

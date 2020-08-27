@@ -1,4 +1,4 @@
-/*********************************************************************************
+ï»¿/*********************************************************************************
 **                                                                              **
 **  Copyright (C) 2019-2020 LiLong                                              **
 **  This file is part of QCustomUi.                                             **
@@ -297,7 +297,7 @@ QCtmNavigationSideBar QToolButton
     background-color: transparent;
 }
 
-/*ÕâÀïÊ¹ÓÃ#sidebar1::checked ÎÞÐ§*/
+/*è¿™é‡Œä½¿ç”¨#sidebar1::checked æ— æ•ˆ*/
 .QCtmNavigationSideBar #sidebar1[checked=true]
 {
     qproperty-icon: url(:/Resources/images/sidebar-1-light.png);
@@ -1019,4 +1019,9 @@ QCtmDockTitle QToolButton#qctmdocking_float_btn[float=true]
 QCtmStageProgressBar
 {
     background: #E6E6E6;
+}
+
+QCtmClassifyTreeView::item:hover
+{
+    background: #CBE5FF;
 }

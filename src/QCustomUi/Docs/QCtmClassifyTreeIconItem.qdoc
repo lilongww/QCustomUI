@@ -1,0 +1,13 @@
+﻿/*!
+    \class      QCtmClassifyTreeIconItem
+    \brief      This is a standard icon item that used with QCtmClassifyTreeModel.
+    \inherits   QCtmClassifyTreeItem
+    \ingroup    QCustomUi
+    \inmodule   QCustomUi
+    \inheaderfile QCtmClassifyTreeIconItem.h
+*/
+
+/*!
+    \reimp
+    \fn         int QCtmClassifyTreeIconItem::itemType() const
+*/

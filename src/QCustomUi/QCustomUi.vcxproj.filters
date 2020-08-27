@@ -90,6 +90,12 @@
     <ClInclude Include="QCtmMessageTipData.h">
       <Filter>MessageTip</Filter>
     </ClInclude>
+    <ClInclude Include="Private\QCtmClassifyTreeNode_p.h">
+      <Filter>Private</Filter>
+    </ClInclude>
+    <ClInclude Include="QCtmClassifyTreeItem.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Private\flowlayout.cpp">
@@ -242,6 +248,15 @@
     <ClCompile Include="QCtmDrawerItemWidget.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="QCtmClassifyTreeView.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="QCtmClassifyTreeModel.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="QCtmClassifyTreeItem.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <QtMoc Include="QCtmAbstractLogModel.h">
@@ -370,6 +385,12 @@
     <QtMoc Include="QCtmDrawerItemWidget.h">
       <Filter>Header Files</Filter>
     </QtMoc>
+    <QtMoc Include="QCtmClassifyTreeView.h">
+      <Filter>Header Files</Filter>
+    </QtMoc>
+    <QtMoc Include="QCtmClassifyTreeModel.h">
+      <Filter>Header Files</Filter>
+    </QtMoc>
   </ItemGroup>
   <ItemGroup>
     <QtUic Include="QCtmWindow.ui">
@@ -398,6 +419,12 @@
       <Filter>Resource Files</Filter>
     </None>
     <None Include="Docs\QCtmAbstractMessageTipData.qdoc">
+      <Filter>Doc</Filter>
+    </None>
+    <None Include="Docs\QCtmClassifyTreeIconItem.qdoc">
+      <Filter>Doc</Filter>
+    </None>
+    <None Include="Docs\QCtmClassifyTreeGroupItem.qdoc">
       <Filter>Doc</Filter>
     </None>
   </ItemGroup>

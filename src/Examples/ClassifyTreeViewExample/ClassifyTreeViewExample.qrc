@@ -1,0 +1,6 @@
+<RCC>
+    <qresource prefix="/ClassifyTreeViewExample">
+        <file>resources/bus-color.svg</file>
+        <file>resources/list.svg</file>
+    </qresource>
+</RCC>

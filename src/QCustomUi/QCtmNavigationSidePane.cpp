@@ -1,4 +1,4 @@
-/*********************************************************************************
+﻿/*********************************************************************************
 **                                                                              **
 **  Copyright (C) 2019-2020 LiLong                                              **
 **  This file is part of QCustomUi.                                             **
@@ -68,9 +68,6 @@ struct QCtmNavigationSidePane::Impl
     \inherits   QWidget
     \ingroup    QCustomUi
     \inmodule   QCustomUi
-
-    \b          {The navigation bar screenshot:}
-    \image      QCtmNavigationPaneDetail.png
 */
 
 /*!

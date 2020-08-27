@@ -152,6 +152,7 @@
     <QtMoc Include="Private\QCtmSeparator_p.h" />
     <QtMoc Include="Private\QCtmFramelessDelegate_win.h">
     </QtMoc>
+    <ClInclude Include="Private\QCtmClassifyTreeNode_p.h" />
     <ClInclude Include="Private\QCtmStyle_p.h" />
     <QtMoc Include="Private\QCtmToolButton_p.h" />
     <QtMoc Include="Private\QCtmDrawerItemTitle_p.h" />
@@ -168,6 +169,9 @@
     </QtMoc>
     <QtMoc Include="QCtmStageProgressBar.h" />
     <QtMoc Include="QCtmDrawerItemWidget.h" />
+    <QtMoc Include="QCtmClassifyTreeView.h" />
+    <QtMoc Include="QCtmClassifyTreeModel.h" />
+    <ClInclude Include="QCtmClassifyTreeItem.h" />
     <ClInclude Include="QCtmLogData.h" />
     <ClInclude Include="QCtmStyleSheet.h" />
     <ClInclude Include="resource.h" />
@@ -207,6 +211,9 @@
     <ClCompile Include="QCtmAbstractMessageTipModel.cpp" />
     <ClCompile Include="QCtmAbstractMessageTipView.cpp" />
     <ClCompile Include="QCtmApplication.cpp" />
+    <ClCompile Include="QCtmClassifyTreeItem.cpp" />
+    <ClCompile Include="QCtmClassifyTreeModel.cpp" />
+    <ClCompile Include="QCtmClassifyTreeView.cpp" />
     <ClCompile Include="QCtmColor.cpp" />
     <ClCompile Include="QCtmComboBox.cpp" />
     <ClCompile Include="QCtmDialog.cpp" />
@@ -265,6 +272,8 @@
     <None Include="Docs\QCtmAbstractMessageTipData.qdoc">
       <FileType>Document</FileType>
     </None>
+    <None Include="Docs\QCtmClassifyTreeGroupItem.qdoc" />
+    <None Include="Docs\QCtmClassifyTreeIconItem.qdoc" />
     <None Include="qcustomui_zh.ts" />
     <None Include="Resources\stylesheet\default-light.css" />
     <None Include="Resources\stylesheet\sw-light.css" />
