@@ -68,6 +68,9 @@ struct QCtmNavigationSidePane::Impl
     \inherits   QWidget
     \ingroup    QCustomUi
     \inmodule   QCustomUi
+
+    \b          {The navigation side pane screenshot:}
+    \image      QCtmNavigationPaneDetail.png
 */
 
 /*!
