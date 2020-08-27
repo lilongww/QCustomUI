@@ -242,7 +242,7 @@ void QCtmClassifyTreeView::expandAll()
 }
 
 /*!
-    \brief      Expand the given index.
+    \brief      Expand the given \a index.
     \sa         expandAll, collapse
 */
 void QCtmClassifyTreeView::expand(const QModelIndex& index)
@@ -288,7 +288,7 @@ void QCtmClassifyTreeView::collapseAll()
 }
 
 /*!
-    \brief      Collapse the given index.
+    \brief      Collapse the given \a index.
     \sa         expand, collapseAll
 */
 void QCtmClassifyTreeView::collapse(const QModelIndex& index)

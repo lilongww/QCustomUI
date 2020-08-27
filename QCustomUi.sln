@@ -47,6 +47,9 @@ EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "NavigationPane", "src\Examples\NavigationPane\NavigationPane.vcxproj", "{123883E4-253B-4781-A3D0-16114BBD82FC}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ClassifyTreeViewExample", "src\Examples\ClassifyTreeViewExample\ClassifyTreeViewExample.vcxproj", "{21D5236B-D4B6-4929-8A1D-0567624CDCFC}"
+	ProjectSection(ProjectDependencies) = postProject
+		{B12702AD-ABFB-343A-A199-8E24837244A3} = {B12702AD-ABFB-343A-A199-8E24837244A3}
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -139,7 +142,7 @@ Global
 		{21D5236B-D4B6-4929-8A1D-0567624CDCFC} = {5FB04206-6C3C-4796-86E5-CEF694F70939}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {33AA058C-7429-4789-AA83-6E68B9103AE5}
 		Qt5Version = $(DefaultQtVersion)
+		SolutionGuid = {33AA058C-7429-4789-AA83-6E68B9103AE5}
 	EndGlobalSection
 EndGlobal
