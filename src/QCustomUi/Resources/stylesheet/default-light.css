@@ -31,12 +31,6 @@ QPushButton
     font-weight: 400;
 }
 
-QPushButton[text]
-{
-    padding-left: 15px;
-    padding-right: 15px;
-}
-
 QPushButton:hover
 {
     background: #E1F0FF;
