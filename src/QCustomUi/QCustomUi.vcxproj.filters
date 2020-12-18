@@ -55,6 +55,9 @@
     <Filter Include="MessageTip">
       <UniqueIdentifier>{5b2dcb19-a518-481b-8e2b-9e0e37749904}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Docking">
+      <UniqueIdentifier>{5db82d59-3d02-44bd-b8ba-b4794eb6c4b1}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="qcustomui_global.h">
@@ -257,6 +260,24 @@
     <ClCompile Include="QCtmClassifyTreeItem.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="QCtmDockManager.cpp">
+      <Filter>Docking</Filter>
+    </ClCompile>
+    <ClCompile Include="QCtmDockContainerWidget.cpp">
+      <Filter>Docking</Filter>
+    </ClCompile>
+    <ClCompile Include="QCtmDockAreaWidget.cpp">
+      <Filter>Docking</Filter>
+    </ClCompile>
+    <ClCompile Include="Private\QCtmDockSplitter.cpp">
+      <Filter>Private</Filter>
+    </ClCompile>
+    <ClCompile Include="QCtmDockWidget.cpp">
+      <Filter>Docking</Filter>
+    </ClCompile>
+    <ClCompile Include="Private\QCtmDockTabWidget.cpp">
+      <Filter>Private</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <QtMoc Include="QCtmAbstractLogModel.h">
@@ -390,6 +411,24 @@
     </QtMoc>
     <QtMoc Include="QCtmClassifyTreeModel.h">
       <Filter>Header Files</Filter>
+    </QtMoc>
+    <QtMoc Include="QCtmDockManager.h">
+      <Filter>Docking</Filter>
+    </QtMoc>
+    <QtMoc Include="QCtmDockContainerWidget.h">
+      <Filter>Docking</Filter>
+    </QtMoc>
+    <QtMoc Include="QCtmDockAreaWidget.h">
+      <Filter>Docking</Filter>
+    </QtMoc>
+    <QtMoc Include="Private\QCtmDockSplitter_p.h">
+      <Filter>Private</Filter>
+    </QtMoc>
+    <QtMoc Include="QCtmDockWidget.h">
+      <Filter>Docking</Filter>
+    </QtMoc>
+    <QtMoc Include="Private\QCtmDockTabWidget_p.h">
+      <Filter>Private</Filter>
     </QtMoc>
   </ItemGroup>
   <ItemGroup>
