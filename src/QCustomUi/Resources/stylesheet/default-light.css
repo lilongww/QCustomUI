@@ -55,6 +55,12 @@ QPushButton:disabled
     color: #AAAAAA;
 }
 
+QPushButton[text]
+{
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
 /************************QComboBox********************/
 QComboBox
 {
