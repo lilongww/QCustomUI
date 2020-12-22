@@ -96,6 +96,9 @@
     <ClInclude Include="QCtmClassifyTreeItem.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="QCtmToolBox.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Private\flowlayout.cpp">
@@ -257,6 +260,12 @@
     <ClCompile Include="QCtmClassifyTreeItem.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="QCtmToolBox.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Private\QCtmToolBoxItem.cpp">
+      <Filter>Private</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <QtMoc Include="QCtmAbstractLogModel.h">
@@ -391,6 +400,9 @@
     <QtMoc Include="QCtmClassifyTreeModel.h">
       <Filter>Header Files</Filter>
     </QtMoc>
+    <QtMoc Include="Private\QCtmToolBoxItem_p.h">
+      <Filter>Private</Filter>
+    </QtMoc>
   </ItemGroup>
   <ItemGroup>
     <QtUic Include="QCtmWindow.ui">
@@ -398,6 +410,9 @@
     </QtUic>
     <QtUic Include="QCtmTitleBar.ui">
       <Filter>Form Files</Filter>
+    </QtUic>
+    <QtUic Include="Private\QCtmToolBoxItem.ui">
+      <Filter>Private</Filter>
     </QtUic>
   </ItemGroup>
   <ItemGroup>
