@@ -1,11 +1,11 @@
-#include "StageProgressBarExample.h"
+﻿#include "StageProgressBarExample.h"
 
 #include <QCustomUi/QCtmStageProgressBar.h>
 
 #include <QGridLayout>
 #include <QSlider>
 
-StageProgressBarExample::StageProgressBarExample(QWidget *parent)
+StageProgressBarExample::StageProgressBarExample(QWidget* parent)
     : QCtmWindow(parent)
 {
     init();
@@ -29,7 +29,7 @@ void StageProgressBarExample::init()
     progressBar1->setText(i++, "We work from nine to five.");
     progressBar1->setText(i++, "He stands six feet seven.");
     progressBar1->setText(i++, "I wake at seven every morning.");
-    progressBar1->setTextVisible(true);
+    //progressBar1->setTextVisible(true);
     progressBar1->setOrientation(Qt::Vertical);
     //progressBar1->setStageCricleRadius(20);
     layout->addWidget(progressBar1, 0, 0);
@@ -37,7 +37,7 @@ void StageProgressBarExample::init()
     auto progressBar2 = new QCtmStageProgressBar(this);
     i = 0;
     progressBar2->setStageCount(7);
-    progressBar2->setText(i++, "one");
+    progressBar2->setText(i++, "one more word");
     progressBar2->setText(i++, "two");
     progressBar2->setText(i++, "three");
     progressBar2->setText(i++, "four");
@@ -45,11 +45,11 @@ void StageProgressBarExample::init()
     progressBar2->setText(i++, "six");
     progressBar2->setText(i++, "seven");
     progressBar2->setTextVisible(true);
-    layout->addWidget(progressBar2, 0, 1);
+    layout->addWidget(progressBar2, 1, 0);
 
     auto slider = new QSlider(this);
     slider->setOrientation(Qt::Horizontal);
-    layout->addWidget(slider, 1, 0, 1, 2);
+    layout->addWidget(slider, 2, 0);
     connect(slider, &QSlider::valueChanged, this, [=](double value) {progressBar1->setValue(value); progressBar2->setValue(value); });
     slider->setValue(20);
 }

@@ -309,8 +309,8 @@ void QCtmStageProgressBar::paintEvent([[maybe_unused]] QPaintEvent* event)
         {
             if (index == 0)
             {
-                channel.setLeft(rect.center().x() - m_impl->stageCricleRadius / 4);
-                channel.setRight(rect.center().x() + m_impl->stageCricleRadius / 4);
+                channel.setLeft(m_impl->textVisible ? rect.center().x() - m_impl->stageCricleRadius / 4 : rect.center().x() + m_impl->stageCricleRadius / 4);
+                channel.setRight(m_impl->textVisible ? rect.center().x() + m_impl->stageCricleRadius / 4 : rect.center().x() - m_impl->stageCricleRadius / 4);
                 channel.setBottom(rect.center().y());
             }
             else if (index == m_impl->stageCount - 1)
@@ -339,7 +339,8 @@ void QCtmStageProgressBar::paintEvent([[maybe_unused]] QPaintEvent* event)
     {
         const auto& rect = doStageRect(index);
         drawStage(&p, index, rect, m_impl->value);
-        drawText(&p, index, doTextRect(index), m_impl->texts[index]);
+        if (m_impl->textVisible)
+            drawText(&p, index, doTextRect(index), m_impl->texts[index]);
     }
 }
 
@@ -463,7 +464,7 @@ int QCtmStageProgressBar::doMinimumWidth() const
 int QCtmStageProgressBar::doMinimumHeight() const
 {
     if (Qt::Horizontal == m_impl->orientation)
-        return fontMetrics().height() + (m_impl->textVisible ? fontMetrics().height() + fontMetrics().leading() : 0);
+        return m_impl->stageCricleRadius * 2 + (m_impl->textVisible ? fontMetrics().height() + fontMetrics().leading() : 0);
     else
     {
         auto step = (m_impl->stageCricleRadius * 2 * m_impl->stageCount + m_impl->stageCricleRadius * 2 * (m_impl->stageCount - 1) - m_impl->stageCricleRadius) / m_impl->stageCount;
