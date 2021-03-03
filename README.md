@@ -1,6 +1,6 @@
 # QCustomUI
 
-文档：http://llongww.gitee.io/qcustomuidocument
+文档：https://llongww.gitee.io/qcustomuidocument
 
 **[1.2.0]**
 ```
