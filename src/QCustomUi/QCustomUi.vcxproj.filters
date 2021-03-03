@@ -266,6 +266,9 @@
     <ClCompile Include="Private\QCtmToolBoxItem.cpp">
       <Filter>Private</Filter>
     </ClCompile>
+    <ClCompile Include="QCtmLoadingDialog.cpp">
+      <Filter>Display Widgets</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <QtMoc Include="QCtmAbstractLogModel.h">
@@ -403,6 +406,9 @@
     <QtMoc Include="Private\QCtmToolBoxItem_p.h">
       <Filter>Private</Filter>
     </QtMoc>
+    <QtMoc Include="QCtmLoadingDialog.h">
+      <Filter>Display Widgets</Filter>
+    </QtMoc>
   </ItemGroup>
   <ItemGroup>
     <QtUic Include="QCtmWindow.ui">
@@ -413,6 +419,9 @@
     </QtUic>
     <QtUic Include="Private\QCtmToolBoxItem.ui">
       <Filter>Private</Filter>
+    </QtUic>
+    <QtUic Include="QCtmLoadingDialog.ui">
+      <Filter>Form Files</Filter>
     </QtUic>
   </ItemGroup>
   <ItemGroup>

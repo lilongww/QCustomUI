@@ -152,6 +152,7 @@
     <QtMoc Include="Private\QCtmSeparator_p.h" />
     <QtMoc Include="Private\QCtmFramelessDelegate_win.h">
     </QtMoc>
+    <QtMoc Include="QCtmLoadingDialog.h" />
     <ClInclude Include="Private\QCtmClassifyTreeNode_p.h" />
     <ClInclude Include="Private\QCtmStyle_p.h" />
     <QtMoc Include="Private\QCtmToolButton_p.h" />
@@ -208,6 +209,7 @@
     <ClInclude Include="qcustomui_global.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="QCtmLoadingDialog.cpp" />
     <ClCompile Include="Private\QCtmFramelessDelegate_win.cpp" />
     <ClCompile Include="Private\QCtmToolBoxItem.cpp" />
     <ClCompile Include="QCtmAbstractLogModel.cpp" />
@@ -265,6 +267,7 @@
     <ClCompile Include="Private\Util.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <QtUic Include="QCtmLoadingDialog.ui" />
     <QtUic Include="Private\QCtmToolBoxItem.ui" />
     <QtUic Include="QCtmTitleBar.ui" />
     <QtUic Include="QCtmWindow.ui" />

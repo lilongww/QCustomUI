@@ -37,6 +37,7 @@
         <file>Resources/edit.png</file>
         <file>Resources/cancel.png</file>
         <file>Resources/ok.png</file>
+        <file>Resources/loading.gif</file>
     </qresource>
     <qresource prefix="/stylesheet">
         <file>Resources/stylesheet/default-light.css</file>
