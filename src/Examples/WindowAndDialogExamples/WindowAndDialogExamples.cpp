@@ -1,4 +1,4 @@
-#include "WindowAndDialogExamples.h"
+﻿#include "WindowAndDialogExamples.h"
 
 #include <QCustomUi/QCtmTitleBar.h>
 #include <QCustomUi/QCtmDialog.h>
@@ -9,7 +9,7 @@
 #include <QMenu>
 #include <QStatusBar>
 
-WindowAndDialogExamples::WindowAndDialogExamples(QWidget *parent)
+WindowAndDialogExamples::WindowAndDialogExamples(QWidget* parent)
     : QCtmWindow(parent)
 {
     ui.setupUi(this->centralWidget());
@@ -26,5 +26,5 @@ WindowAndDialogExamples::WindowAndDialogExamples(QWidget *parent)
     this->setMenuBar(menuBar);
     menuBar->addMenu(tr("&File"))->addAction(tr("&Open"));
     this->setStatusBar(new QStatusBar(this));
+    ui.popDialogBtn->winId();
 }
-

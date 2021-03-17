@@ -1,4 +1,4 @@
-/*********************************************************************************
+﻿/*********************************************************************************
 **                                                                              **
 **  Copyright (C) 2019-2020 LiLong                                              **
 **  This file is part of QCustomUi.                                             **
@@ -103,6 +103,16 @@ bool QCtmWinFramelessDelegate::nativeEvent([[maybe_unused]] const QByteArray& ev
     break;
     case WM_NCCALCSIZE:
     {
+        if (msg->wParam)
+        {
+            NCCALCSIZE_PARAMS* ncParam = reinterpret_cast<NCCALCSIZE_PARAMS*>(msg->lParam);
+            int i = 1;
+        }
+        else
+        {
+            RECT* rect = reinterpret_cast<RECT*>(msg->lParam);
+            int i = 1;
+        }
         *result = 0;
         return true;
     }
