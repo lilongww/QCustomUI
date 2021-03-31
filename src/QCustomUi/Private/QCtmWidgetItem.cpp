@@ -1,4 +1,4 @@
-/*********************************************************************************
+﻿/*********************************************************************************
 **                                                                              **
 **  Copyright (C) 2019-2020 LiLong                                              **
 **  This file is part of QCustomUi.                                             **
@@ -23,6 +23,39 @@
 
 #include <QWidgetAction>
 
+inline void setToolButtonProperty(QAction* action, QCtmToolButton* btn)
+{
+    auto setToolButtonStyle = [](QAction* action, QCtmToolButton* btn)
+    {
+        if (action->icon().isNull())
+            btn->setToolButtonStyle(Qt::ToolButtonTextOnly);
+        else if (action->text().isEmpty())
+            btn->setToolButtonStyle(Qt::ToolButtonIconOnly);
+        else
+            btn->setToolButtonStyle(Qt::ToolButtonTextBesideIcon);
+    };
+    btn->setDefaultAction(action);
+    btn->setSizePolicy(QSizePolicy::Minimum, QSizePolicy::Minimum);
+    btn->setObjectName(action->objectName());
+    btn->setVisible(action->isVisible());
+    setToolButtonStyle(action, btn);
+    QObject::connect(action, &QAction::changed, btn, [=]()
+        {
+            setToolButtonStyle(action, btn);
+            btn->setVisible(action->isVisible());
+        });
+    QObject::connect(action, &QObject::objectNameChanged, btn, [=](const QString& name) {btn->setObjectName(name); });
+};
+
+inline void setWidgetProperty(QAction* action, QWidget* widget)
+{
+    QObject::connect(action, &QAction::changed, widget, [=]()
+        {
+            widget->setVisible(action->isVisible());
+        });
+    QObject::connect(action, &QObject::objectNameChanged, widget, [=](const QString& name) {widget->setObjectName(name); });
+}
+
 struct QCtmWidgetItem::Impl
 {
     QAction* action{ nullptr };
@@ -41,6 +74,12 @@ QCtmWidgetItem::QCtmWidgetItem(QAction* action, Qt::Orientation orientation, QWi
     {
         m_impl->customWidget = true;
         m_impl->widget = wa->defaultWidget();
+        if (auto btn = qobject_cast<QCtmToolButton*>(m_impl->widget); btn)
+        {
+            setToolButtonProperty(action, btn);
+        }
+        else
+            setWidgetProperty(action, m_impl->widget);
     }
     else
     {
@@ -54,26 +93,8 @@ QCtmWidgetItem::QCtmWidgetItem(QAction* action, Qt::Orientation orientation, QWi
         }
         else
         {
-            auto setToolButtonStyle = [](QAction* action, QCtmToolButton* btn)
-            {
-                if (action->icon().isNull())
-                    btn->setToolButtonStyle(Qt::ToolButtonTextOnly);
-                else if (action->text().isEmpty())
-                    btn->setToolButtonStyle(Qt::ToolButtonIconOnly);
-                else
-                    btn->setToolButtonStyle(Qt::ToolButtonTextBesideIcon);
-            };
             auto btn = new QCtmToolButton(parent);
-            btn->setDefaultAction(action);
-            btn->setSizePolicy(QSizePolicy::Minimum, QSizePolicy::Minimum);
-            btn->setObjectName(action->objectName());
-            btn->setVisible(action->isVisible());
-            setToolButtonStyle(action, btn);
-            QObject::connect(action, &QAction::changed, btn, [=]() {
-                setToolButtonStyle(action, btn);
-                btn->setVisible(action->isVisible());
-                });
-            QObject::connect(action, &QObject::objectNameChanged, btn, [=](const QString& name) {btn->setObjectName(name); });
+            setToolButtonProperty(action, btn);
             m_impl->widget = btn;
         }
     }
