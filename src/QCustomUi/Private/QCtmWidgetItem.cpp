@@ -37,12 +37,14 @@ inline void setToolButtonProperty(QAction* action, QCtmToolButton* btn)
     btn->setDefaultAction(action);
     btn->setSizePolicy(QSizePolicy::Minimum, QSizePolicy::Minimum);
     btn->setObjectName(action->objectName());
-    btn->setVisible(action->isVisible());
+    if(btn->parent())
+        btn->setVisible(action->isVisible());
     setToolButtonStyle(action, btn);
     QObject::connect(action, &QAction::changed, btn, [=]()
         {
             setToolButtonStyle(action, btn);
-            btn->setVisible(action->isVisible());
+            if(btn->parent())
+                btn->setVisible(action->isVisible());
         });
     QObject::connect(action, &QObject::objectNameChanged, btn, [=](const QString& name) {btn->setObjectName(name); });
 };
@@ -51,7 +53,8 @@ inline void setWidgetProperty(QAction* action, QWidget* widget)
 {
     QObject::connect(action, &QAction::changed, widget, [=]()
         {
-            widget->setVisible(action->isVisible());
+            if(widget->parent())
+                widget->setVisible(action->isVisible());
         });
     QObject::connect(action, &QObject::objectNameChanged, widget, [=](const QString& name) {widget->setObjectName(name); });
 }
