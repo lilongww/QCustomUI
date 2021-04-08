@@ -1,4 +1,4 @@
-/*********************************************************************************
+﻿/*********************************************************************************
 **                                                                              **
 **  Copyright (C) 2019-2020 LiLong                                              **
 **  This file is part of QCustomUi.                                             **
@@ -19,7 +19,6 @@
 
 #pragma once
 
-#include "qcustomui_global.h"
 #include "QCtmToolButton_p.h"
 
 #include <memory>

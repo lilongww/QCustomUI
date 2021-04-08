@@ -1,4 +1,4 @@
-/*********************************************************************************
+﻿/*********************************************************************************
 **                                                                              **
 **  Copyright (C) 2019-2020 LiLong                                              **
 **  This file is part of QCustomUi.                                             **
@@ -22,7 +22,7 @@
 #include "QCtmNavigationBar.h"
 #include "ui_QCtmWindow.h"
 #include "Private/QCtmFramelessDelegate_p.h"
-#include "QCtmFramelessDelegate_win.h"
+#include "Private/QCtmFramelessDelegate_win.h"
 
 #include <QVBoxLayout>
 #include <QEvent>
