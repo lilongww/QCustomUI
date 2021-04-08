@@ -1,1 +1,2 @@
 add_subdirectory(QCustomUi)
+add_subdirectory(Examples)

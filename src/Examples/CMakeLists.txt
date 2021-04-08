@@ -1,0 +1,13 @@
+include(${PROJECT_SOURCE_DIR}/cmake/Example.cmake)
+
+add_subdirectory(ClassifyTreeViewExample)
+add_subdirectory(DrawerExample)
+add_subdirectory(EditLabelExample)
+add_subdirectory(IPAddressEditExample)
+add_subdirectory(LoadingExample)
+add_subdirectory(MessageBoxExample)
+add_subdirectory(MultiComboBoxExample)
+add_subdirectory(NavigationBarExample)
+add_subdirectory(NavigationPane)
+add_subdirectory(StageProgressBarExample)
+add_subdirectory(WindowAndDialogExamples)

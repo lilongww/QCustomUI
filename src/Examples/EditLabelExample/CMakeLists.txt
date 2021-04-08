@@ -1,0 +1,35 @@
+string( REGEX REPLACE ".*/(.*)" "\\1" TARGET_NAME ${CMAKE_CURRENT_SOURCE_DIR} ) 
+
+include_directories(../../)
+
+file(GLOB HEADERS *.h)
+file(GLOB SOURCES *.cpp)
+file(GLOB RESOURCES *.qrc)
+file(GLOB UI *.ui)
+
+source_group("Headers" FILES ${HEADERS})
+source_group("Sources" FILES ${SOURCES})
+source_group("Resource" FILES ${RESOURCES})
+source_group("UI" FILES ${UI})
+
+add_executable(${TARGET_NAME} WIN32
+ ${HEADERS}
+ ${SOURCES}
+ ${RESOURCES}
+ ${UI}
+)
+
+set_property(TARGET ${TARGET_NAME} PROPERTY FOLDER "Examples")
+
+if(WIN32)
+    target_link_libraries(${TARGET_NAME} PUBLIC qtmain QCustomUi PRIVATE Qt5::Core Qt5::Gui Qt5::Widgets)
+else()
+    target_link_libraries(${TARGET_NAME} PUBLIC QCustomUi PRIVATE Qt5::Core Qt5::Gui Qt5::Widgets)
+endif(WIN32)
+
+install(TARGETS ${TARGET_NAME}
+        CONFIGURATIONS Debug
+        RUNTIME DESTINATION ${INSTALL_BINDIR}/Debug)
+install(TARGETS ${TARGET_NAME}
+        CONFIGURATIONS Release
+        RUNTIME DESTINATION ${INSTALL_BINDIR}/Release)
