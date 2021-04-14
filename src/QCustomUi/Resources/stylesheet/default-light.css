@@ -25,7 +25,7 @@
 /************************QPushButton********************/
 QPushButton
 {
-    min-height: 23px;
+    min-height: 27px;
     background: #E1E1E1;
     border: 1px solid #ADADAD;
     font-weight: 400;
@@ -161,7 +161,6 @@ QLineEdit:disabled
 QSpinBox, QDoubleSpinBox
 {
     qproperty-alignment: 'AlignHCenter | AlignVCenter';
-    height: 21px;
     font-weight: 400;
     background: #FFFFFF;
     border: 1px solid #999999;
@@ -181,17 +180,15 @@ QSpinBox:disabled, QDoubleSpinBox:disabled
 
 QSpinBox::up-button, QDoubleSpinBox::up-button
 {
-    height: 21px;
     background: transparent;
-    subcontrol-position: right;
+    /*subcontrol-position: right;*/
     border: none;
 }
 
 QSpinBox::down-button, QDoubleSpinBox::down-button
 {
-    height: 21px;
     background: transparent;
-    subcontrol-position: left;
+    /*subcontrol-position: left;*/
     border: none;
 }
 
@@ -199,12 +196,14 @@ QSpinBox::up-button:hover, QDoubleSpinBox::up-button:hover
 {
     background: #CBE5FF;
     border-left: 1px solid #2477CE;
+    border-bottom: 1px solid #2477CE;
 }
 
 QSpinBox::down-button:hover, QDoubleSpinBox::down-button:hover
 {
     background: #CBE5FF;
-    border-right: 1px solid #2477CE;
+    border-left: 1px solid #2477CE;
+    border-top: 1px solid #2477CE;
 }
 
 QSpinBox::up-button:pressed, QSpinBox::down-button:pressed, QDoubleSpinBox::up-button:pressed, QDoubleSpinBox::down-button:pressed
@@ -589,11 +588,6 @@ QTreeView::item:selected, QTreeView::branch:selected
 { /** 鼠标选中 **/
     background-color: rgb(85, 170, 255);
     color: white;
-}
-
-QTreeView::item
-{
-    height: 24px
 }
 
 QTreeView::branch:open:has-children

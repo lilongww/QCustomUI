@@ -411,8 +411,8 @@ QCtmTabWidget QTabBar::tab:!selected
 
 .QCtmDrawerItemWidget #title
 {
-    min-height: 22px;
-    max-height: 22px;
+    min-height: 30px;
+    max-height: 30px;
     background: #E1E0E0;
     font-family: 'Microsoft YaHei';
     font-weight: bold;
@@ -781,8 +781,6 @@ QCtmMessageBox QPushButton:pressed
 /**********************QCtmComboBox*************************/
 QCtmComboBox
 {
-    min-height: 22px;
-    max-height: 22px;
     background: #FFFFFF;
     border: 1px solid #999999;
     color: #808080;
