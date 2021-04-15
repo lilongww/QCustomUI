@@ -1,4 +1,4 @@
-/*********************************************************************************
+﻿/*********************************************************************************
 **                                                                              **
 **  Copyright (C) 2019-2020 LiLong                                              **
 **  This file is part of QCustomUi.                                             **
@@ -43,8 +43,6 @@ QCtmTableView::QCtmTableView(QWidget* parent)
 
     horizontalHeader()->setDefaultAlignment(Qt::AlignLeft | Qt::AlignVCenter);
     verticalHeader()->setSectionResizeMode(QHeaderView::Fixed);
-    verticalHeader()->setDefaultSectionSize(24);
-
     m_delegate = new QCtmTableItemDelegate(this);
     setItemDelegate(m_delegate);
 }
