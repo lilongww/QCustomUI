@@ -136,12 +136,14 @@ set(TOOLS_HEADERS
  "QCtmStyleSheet.h"
  "QCtmColor.h"
  "QCtmApplication.h"
+ "QCtmFile.h"
 )
 
 set(TOOLS_SOURCES
  "QCtmColor.cpp"
  "QCtmStyleSheet.cpp"
  "QCtmApplication.cpp"
+ "QCtmFile.cpp"
 )
 
 if(WIN32)
