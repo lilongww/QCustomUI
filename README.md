@@ -2,6 +2,11 @@
 
 文档：https://llongww.gitee.io/qcustomuidocument
 
+**[1.4.1]**
+```
+1.解决QCtmMultiComboBox在disabled状态下依旧能够点击弹出下拉框的问题。
+```
+
 **[1.4.0]**
 ```
 1.添加QCtmFile工具类，提供文件读写便捷函数.

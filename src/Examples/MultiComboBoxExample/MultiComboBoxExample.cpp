@@ -18,13 +18,22 @@ MultiComboBoxExample::~MultiComboBoxExample()
 
 void MultiComboBoxExample::init()
 {
-    auto box = new QCtmMultiComboBox(this);
-    QStringList items{ tr("Item1"), tr("Item2"), tr("Item3"), tr("Item4"), tr("Item5") };
-    box->addItems(items);
-
-    auto layout = new QHBoxLayout(this->centralWidget());
+    auto layout = new QVBoxLayout(this->centralWidget());
     layout->addStretch(1);
-    box->setMinimumWidth(200);
-    layout->addWidget(box);
+    {
+        auto box = new QCtmMultiComboBox(this);
+        QStringList items{ tr("Item1"), tr("Item2"), tr("Item3"), tr("Item4"), tr("Item5") };
+        box->addItems(items);
+        box->setFixedWidth(200);
+        layout->addWidget(box);
+    }
+    {
+        auto box = new QCtmMultiComboBox(this);
+        box->setEnabled(false);
+        QStringList items{ tr("Item1"), tr("Item2"), tr("Item3"), tr("Item4"), tr("Item5") };
+        box->addItems(items);
+        box->setFixedWidth(200);
+        layout->addWidget(box);
+    }
     layout->addStretch(1);
 }

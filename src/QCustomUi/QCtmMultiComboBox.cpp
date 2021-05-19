@@ -212,6 +212,8 @@ bool QCtmMultiComboBox::eventFilter(QObject* watched, QEvent* event)
         case  QEvent::MouseButtonPress:
             if (m_impl->timer.elapsed() > 50)
             {
+                if (!isEnabled())
+                    break;
                 showPopup();
             }
             break;
