@@ -1,2 +1,3 @@
 add_subdirectory(QCustomUi)
 add_subdirectory(Examples)
+add_subdirectory(Designer)

@@ -200,7 +200,7 @@ add_library(QCustomUi SHARED
 )
 
 target_link_libraries(QCustomUi PRIVATE Qt5::Core Qt5::Gui Qt5::Widgets Qt5::WinExtras Qt5::Network)
-set_target_properties(QCustomUi PROPERTIES VERSION "1.3.1.0" SOVERSION 1)
+set_target_properties(QCustomUi PROPERTIES VERSION ${QCUSTOMUI_VERSION} SOVERSION 1)
 
 file(GLOB PUBLIC_HEADERS ./*.h)
 file(GLOB _RESOURCE_HEADER_LIST "./resource.h")
