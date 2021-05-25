@@ -1,6 +1,18 @@
-# QCustomUI
+# QCustomUi
+
+QCustomUi是一个自定义UI库，主要提供无边框窗口和一些自定义控件，方便Qt开发。
+当前库于Qt5.15.2下编译通过。
+
+编译完成后，点击安装，会自动安装设计器插件到QtDesigner和QtCreator下。
+>注意：如果没有将Qt的运行库设置到PATH环境变量中，QtCreator可能缺乏某些QCustomUi依赖的Qt库而无法加载设计器插件。
 
 文档：https://llongww.gitee.io/qcustomuidocument
+
+**[1.5.0]**
+```
+1.添加部分常用控件的设计器插件，可以在设计器中直接拖拽和编辑这些控件，而不必使用“提升为”，提升开发效率；
+2.解决QCtmStageProgressBar最大值最小值和当前值可设置为不正确的范围的问题。
+```
 
 **[1.4.1]**
 ```
