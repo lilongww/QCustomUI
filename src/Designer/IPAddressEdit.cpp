@@ -26,7 +26,7 @@ QIcon IPAddressEdit::icon() const
 QString IPAddressEdit::domXml() const
 {
     return "<ui language=\"c++\">\n"
-        " <widget class=\"QCtmIPAddressEdit\" name=\"stageProgressBar\">\n"
+        " <widget class=\"QCtmIPAddressEdit\" name=\"IPAddressEdit\">\n"
         " </widget>\n"
         "</ui>\n";
 }
