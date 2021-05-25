@@ -4,6 +4,8 @@
 #include "MultiComboBox.h"
 #include "ComboBox.h"
 #include "TableView.h"
+#include "ClassifyTreeView.h"
+#include "EditLabel.h"
 
 #include <QCustomUi/QCtmStyleSheet.h>
 
@@ -23,6 +25,8 @@ QCustomUiWidgets::QCustomUiWidgets(QObject* parent /*= 0*/)
     m_impl->widgets.push_back(new MultiComboBox(this));
     m_impl->widgets.push_back(new ComboBox(this));
     m_impl->widgets.push_back(new TableView(this));
+    m_impl->widgets.push_back(new ClassifyTreeView(this));
+    m_impl->widgets.push_back(new EditLabel(this));
     qApp->setStyleSheet(QCtmStyleSheet::defaultStyleSheet());
 }
 
