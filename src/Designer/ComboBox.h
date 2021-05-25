@@ -19,7 +19,9 @@ public:
     QWidget* createWidget(QWidget* parent) override;
     void initialize(QDesignerFormEditorInterface* core) override
     { 
-        if (m_initialized)return; m_initialized = true;
+        if (m_initialized)
+            return;
+        m_initialized = true;
     }
 private:
     bool m_initialized{ false };

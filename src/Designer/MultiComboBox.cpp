@@ -16,7 +16,7 @@ QIcon MultiComboBox::icon() const
 QString MultiComboBox::domXml() const
 {
     return "<ui language=\"c++\">\n"
-        " <widget class=\"QCtmMultiComboBox\" name=\"MultiComboBox\">\n"
+        " <widget class=\"QCtmMultiComboBox\" name=\"multiComboBox\">\n"
         " </widget>\n"
         "</ui>\n";
 }

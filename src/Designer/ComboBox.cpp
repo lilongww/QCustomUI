@@ -11,7 +11,7 @@ ComboBox::ComboBox(QObject* parent /*= nullptr*/)
 QString ComboBox::domXml() const
 {
     return "<ui language=\"c++\">\n"
-        " <widget class=\"QCtmComboBox\" name=\"ComboBox\">\n"
+        " <widget class=\"QCtmComboBox\" name=\"comboBox\">\n"
         " </widget>\n"
         "</ui>\n";
 }

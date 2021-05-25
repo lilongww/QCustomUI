@@ -5,13 +5,15 @@ set(HEADERS
  "StageProgressBar.h"
  "IPAddressEdit.h"
  "MultiComboBox.h"
- "ComboBox.h")
+ "ComboBox.h"
+ "TableView.h")
 set(SOURCES 
  "QCustomUiWidgets.cpp"
  "StageProgressBar.cpp"
  "IPAddressEdit.cpp"
  "MultiComboBox.cpp"
  "ComboBox.cpp"
+ "TableView.cpp"
 )
 
 file(GLOB RESOURCES *.qrc)
@@ -36,7 +38,7 @@ add_library(${TARGET_NAME} SHARED
     ${SOURCES}
     ${RESOURCES}
     ${UI}
- )
+   )
 
 target_link_libraries(${TARGET_NAME} PUBLIC QCustomUi PRIVATE Qt5::Core Qt5::Gui Qt5::Widgets Qt5::Designer)
 set_target_properties(${TARGET_NAME} PROPERTIES VERSION ${QCUSTOMUI_VERSION} SOVERSION 1)
