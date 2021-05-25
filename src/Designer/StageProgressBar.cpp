@@ -26,21 +26,7 @@ QIcon StageProgressBar::icon() const
 QString StageProgressBar::domXml() const
 {
     return "<ui language=\"c++\">\n"
-        " <widget class=\"StageProgressBar\" name=\"stageProgressBar\">\n"
-        "  <property name=\"geometry\">\n"
-        "   <rect>\n"
-        "    <x>0</x>\n"
-        "    <y>0</y>\n"
-        "    <width>100</width>\n"
-        "    <height>100</height>\n"
-        "   </rect>\n"
-        "  </property>\n"
-        "  <property name=\"toolTip\" >\n"
-        "   <string>The current time</string>\n"
-        "  </property>\n"
-        "  <property name=\"whatsThis\" >\n"
-        "   <string>StageProgressBar.</string>\n"
-        "  </property>\n"
+        " <widget class=\"QCtmStageProgressBar\" name=\"stageProgressBar\">\n"
         " </widget>\n"
         "</ui>\n";
 }

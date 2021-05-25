@@ -15,5 +15,6 @@ else()
 endif(${CMAKE_SIZEOF_VOID_P} EQUAL 8)
 
 include(${CMAKE_CURRENT_LIST_DIR}/cmake/Common.cmake)
+file(REAL_PATH "${QT_DIR}/../../.." QTDIR)
 
 add_subdirectory(src)

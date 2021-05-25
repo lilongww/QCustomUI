@@ -1,7 +1,14 @@
 set(TARGET_NAME "QCustomUiDesignerPlugin")
 
-file(GLOB HEADERS *.h)
-file(GLOB SOURCES *.cpp)
+set(HEADERS
+ "QCustomUiWidgets.h"
+ "StageProgressBar.h"
+)
+set(SOURCES 
+ "QCustomUiWidgets.cpp"
+ "StageProgressBar.cpp"
+)
+
 file(GLOB RESOURCES *.qrc)
 file(GLOB UI *.ui)
 
@@ -31,4 +38,8 @@ set_target_properties(${TARGET_NAME} PROPERTIES VERSION ${QCUSTOMUI_VERSION} SOV
 
 install(TARGETS ${TARGET_NAME}
         CONFIGURATIONS Release
-        RUNTIME DESTINATION ${INSTALL_BINDIR}/Release)
+        RUNTIME DESTINATION ${QTDIR}/plugins/designer)
+
+install(FILES ${QCustomUi_BINARY_DIR}/src/QCustomUi/QCustomUi${CMAKE_SHARED_MODULE_SUFFIX}
+        CONFIGURATIONS Release
+        DESTINATION ${QTDIR}/bin)
