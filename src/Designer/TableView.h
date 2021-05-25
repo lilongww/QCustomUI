@@ -5,6 +5,7 @@
 class TableView : public QObject, public QDesignerCustomWidgetInterface
 {
     Q_OBJECT
+        Q_INTERFACES(QDesignerCustomWidgetInterface)
 public:
     explicit TableView(QObject* parent = nullptr);
 

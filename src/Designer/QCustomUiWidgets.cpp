@@ -30,6 +30,11 @@ QCustomUiWidgets::QCustomUiWidgets(QObject* parent /*= 0*/)
     qApp->setStyleSheet(QCtmStyleSheet::defaultStyleSheet());
 }
 
+QCustomUiWidgets::~QCustomUiWidgets()
+{
+
+}
+
 QList<QDesignerCustomWidgetInterface*> QCustomUiWidgets::customWidgets() const
 {
     return m_impl->widgets;

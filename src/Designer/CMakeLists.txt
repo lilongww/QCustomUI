@@ -33,7 +33,7 @@ set(CMAKE_AUTOUIC ON)
 set(CMAKE_AUTORCC ON)
 
 find_package(QT NAMES Qt5 REQUIRED)
-find_package(Qt${QT_VERSION_MAJOR} COMPONENTS Core Gui Widgets Designer REQUIRED)
+find_package(Qt${QT_VERSION_MAJOR} COMPONENTS Core Gui Widgets UiPlugin REQUIRED)
 
 include_directories(../)
 
@@ -44,13 +44,19 @@ add_library(${TARGET_NAME} SHARED
     ${UI}
      )
 
-target_link_libraries(${TARGET_NAME} PUBLIC QCustomUi PRIVATE Qt5::Core Qt5::Gui Qt5::Widgets Qt5::Designer)
+target_link_libraries(${TARGET_NAME} PUBLIC QCustomUi PRIVATE Qt5::Core Qt5::Gui Qt5::Widgets Qt5::UiPlugin)
 set_target_properties(${TARGET_NAME} PROPERTIES VERSION ${QCUSTOMUI_VERSION} SOVERSION 1)
 
 install(TARGETS ${TARGET_NAME}
         CONFIGURATIONS Release
         RUNTIME DESTINATION ${QTDIR}/plugins/designer)
+install(TARGETS ${TARGET_NAME}
+        CONFIGURATIONS Release
+        RUNTIME DESTINATION ${QTDIR}/../../Tools/QtCreator/bin/plugins/designer)
 
 install(FILES ${QCustomUi_BINARY_DIR}/src/QCustomUi/QCustomUi${CMAKE_SHARED_MODULE_SUFFIX}
         CONFIGURATIONS Release
         DESTINATION ${QTDIR}/bin)
+install(FILES ${QCustomUi_BINARY_DIR}/src/QCustomUi/QCustomUi${CMAKE_SHARED_MODULE_SUFFIX}
+        CONFIGURATIONS Release
+        DESTINATION ${QTDIR}/../../Tools/QtCreator/bin)

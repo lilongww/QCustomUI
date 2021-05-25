@@ -5,6 +5,7 @@
 class ComboBox : public QObject, public QDesignerCustomWidgetInterface
 {
     Q_OBJECT
+        Q_INTERFACES(QDesignerCustomWidgetInterface)
 public:
     ComboBox(QObject* parent = nullptr);
     bool isContainer() const override { return false; }
