@@ -56,8 +56,8 @@ QCtmStageProgressBar::QCtmStageProgressBar(QWidget* parent)
     : QWidget(parent)
     , m_impl(std::make_unique<Impl>())
 {
-    setSizePolicy(QSizePolicy(QSizePolicy::Expanding, QSizePolicy::Fixed));
-    resize(0, 0);
+    setOrientation(Qt::Horizontal);
+    adjustSize();
 }
 
 /*!
@@ -76,6 +76,11 @@ void QCtmStageProgressBar::setOrientation(Qt::Orientation orientation)
     if (m_impl->orientation == orientation)
         return;
     m_impl->orientation = orientation;
+    if (m_impl->orientation == Qt::Horizontal)
+        setSizePolicy(QSizePolicy(QSizePolicy::Expanding, QSizePolicy::Fixed));
+    else
+        setSizePolicy(QSizePolicy(QSizePolicy::Fixed, QSizePolicy::Expanding));
+    adjustSize();
     updateGeometry();
 }
 
@@ -191,7 +196,7 @@ bool QCtmStageProgressBar::textVisible() const
 void QCtmStageProgressBar::setValue(int value)
 {
     m_impl->value = value;
-    update();
+    normalize();
 }
 
 /*!
@@ -209,8 +214,10 @@ int QCtmStageProgressBar::value() const
 */
 void QCtmStageProgressBar::setMaximum(int maximum)
 {
+    if (m_impl->minimum > maximum)
+        m_impl->minimum = maximum;
     m_impl->maximum = maximum;
-    update();
+    normalize();
 }
 
 /*!
@@ -228,8 +235,10 @@ int QCtmStageProgressBar::maximum() const
 */
 void QCtmStageProgressBar::setMinimum(int min)
 {
+    if (m_impl->maximum < min)
+        m_impl->maximum = min;
     m_impl->minimum = min;
-    update();
+    normalize();
 }
 
 /*!
@@ -546,4 +555,13 @@ QRectF QCtmStageProgressBar::doTextRect(int index) const
     {
         return QRectF(stageRect.right() + 10, stageRect.top(), size.width(), qMax(size.height(), m_impl->stageCricleRadius * 2));
     }
+}
+
+void QCtmStageProgressBar::normalize()
+{
+    if (m_impl->value > m_impl->maximum)
+        m_impl->value = m_impl->maximum;
+    else if (m_impl->value < m_impl->minimum)
+        m_impl->value = m_impl->minimum;
+    update();
 }

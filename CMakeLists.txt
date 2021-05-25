@@ -1,5 +1,7 @@
 project(QCustomUi)
 
+set(QCUSTOMUI_VERSION "1.5.0.0")
+
 set(CMAKE_BUILD_WITH_INSTALL_RPATH TRUE)
 set(CMAKE_INSTALL_PREFIX ${CMAKE_CURRENT_LIST_DIR}/build)
 set(CMAKE_BINARY_DIR ${CMAKE_CURRENT_LIST_DIR}/build/obj)
@@ -13,5 +15,6 @@ else()
 endif(${CMAKE_SIZEOF_VOID_P} EQUAL 8)
 
 include(${CMAKE_CURRENT_LIST_DIR}/cmake/Common.cmake)
+file(REAL_PATH "${QT_DIR}/../../.." QTDIR)
 
 add_subdirectory(src)

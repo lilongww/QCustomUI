@@ -50,7 +50,6 @@ public:
     void removeItem(QCtmDrawerItemWidget* item);
     int indexOf(QCtmDrawerItemWidget* item) const;
     QCtmDrawerItemWidget* item(int index) const;
-    void setAllExpand(bool expand) const;
     int count() const;
     void setExclusive(bool exclusive);
     bool exclusive() const;

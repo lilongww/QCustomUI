@@ -35,7 +35,12 @@ class QCUSTOMUI_EXPORT QCtmStageProgressBar : public QWidget
         Q_PROPERTY(bool textVisible READ textVisible WRITE setTextVisible)
         Q_PROPERTY(QPen stageIndexTextColor READ stageIndexTextColor WRITE setStageIndexTextColor)
         Q_PROPERTY(QBrush rateBackground READ rateBackground WRITE setRateBackground)
-public:
+        Q_PROPERTY(int maximum READ maximum WRITE setMaximum)
+        Q_PROPERTY(int minimum READ minimum WRITE setMinimum)
+        Q_PROPERTY(int value READ value WRITE setValue USER true)
+        Q_PROPERTY(Qt::Orientation orientation READ orientation WRITE setOrientation)
+
+public: 
     QCtmStageProgressBar(QWidget* parent);
     ~QCtmStageProgressBar();
 
@@ -79,6 +84,7 @@ protected:
     int doMinimumHeight() const;
     QRectF doStageRect(int index) const;
     QRectF doTextRect(int index) const;
+    void normalize();
 private:
     struct Impl;
     std::unique_ptr<Impl> m_impl;
