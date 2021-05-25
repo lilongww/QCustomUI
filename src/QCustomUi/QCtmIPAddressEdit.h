@@ -32,6 +32,7 @@ class QCUSTOMUI_EXPORT QCtmIPAddressEdit : public QWidget
 {
     Q_OBJECT
         Q_PROPERTY(bool readOnly READ isReadOnly WRITE setReadOnly)
+        Q_PROPERTY(QString ipAddress READ ipAddress WRITE setIPAddress)
 public:
     QCtmIPAddressEdit(QWidget* parent);
     ~QCtmIPAddressEdit();

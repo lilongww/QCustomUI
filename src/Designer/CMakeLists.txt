@@ -3,10 +3,11 @@ set(TARGET_NAME "QCustomUiDesignerPlugin")
 set(HEADERS
  "QCustomUiWidgets.h"
  "StageProgressBar.h"
-)
+ "IPAddressEdit.h")
 set(SOURCES 
  "QCustomUiWidgets.cpp"
  "StageProgressBar.cpp"
+ "IPAddressEdit.cpp"
 )
 
 file(GLOB RESOURCES *.qrc)

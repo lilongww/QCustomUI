@@ -1,5 +1,6 @@
 #include "QCustomUiWidgets.h"
 #include "StageProgressBar.h"
+#include "IPAddressEdit.h"
 
 #include <QCustomUi/QCtmStyleSheet.h>
 
@@ -16,6 +17,7 @@ QCustomUiWidgets::QCustomUiWidgets(QObject* parent /*= 0*/)
 {
 
     m_impl->widgets.push_back(new StageProgressBar(this));
+    m_impl->widgets.push_back(new IPAddressEdit(this));
     qApp->setStyleSheet(QCtmStyleSheet::defaultStyleSheet());
 }
 
