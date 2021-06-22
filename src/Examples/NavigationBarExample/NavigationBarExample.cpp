@@ -21,6 +21,7 @@ NavigationBarExample::~NavigationBarExample()
 void NavigationBarExample::init()
 {
     auto nvBar = new QCtmNavigationBar(this);
+    nvBar->setFixedHeight(120);
     setNavigationBar(nvBar);
 
     QPixmap image({ 120, 70 });

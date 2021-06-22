@@ -1,4 +1,4 @@
-/*********************************************************************************
+﻿/*********************************************************************************
 **                                                                              **
 **  Copyright (C) 2019-2020 LiLong                                              **
 **  This file is part of QCustomUi.                                             **
@@ -23,7 +23,7 @@
 
 /*!
     \class      QCtmComboBox
-    \brief      QCtmComboBox provide a combobox, the pop list view can be set style sheet.
+    \brief      提供一个下拉列表可被样式表设置的combobox，以及其他功能补丁.
     \inherits   QComboBox
     \ingroup    QCustomUi
     \inmodule   QCustomUi
@@ -31,18 +31,32 @@
 */
 
 /*!
-    \brief      Constructs a combobox with given \a parent.
+    \brief      构造一个父窗口为 \a parent 的combobox对象.
 */
 
-QCtmComboBox::QCtmComboBox(QWidget *parent)
+QCtmComboBox::QCtmComboBox(QWidget* parent)
     : QComboBox(parent)
 {
     setView(new QListView(this));
 }
 
 /*!
-    \brief      Destroys the combobox.
+    \brief      销毁该combobox对象.
 */
 QCtmComboBox::~QCtmComboBox()
 {
 }
+
+/*!
+    \reimp
+*/
+void QCtmComboBox::showPopup()
+{
+    emit aboutToShowPopup();
+    QComboBox::showPopup();
+}
+
+/*!
+    \fn         void QCtmComboBox::aboutToShowPopup();
+    \brief      弹出框显示前发送该信号.
+*/

@@ -30,4 +30,10 @@ class QCUSTOMUI_EXPORT QCtmComboBox : public QComboBox
 public:
     QCtmComboBox(QWidget *parent);
     ~QCtmComboBox();
+
+signals:
+    void aboutToShowPopup();
+
+protected:
+    void showPopup() override;
 };
