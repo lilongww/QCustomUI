@@ -8,6 +8,15 @@ QCustomUi是一个自定义UI库，主要提供无边框窗口和一些自定义
 
 文档：https://llongww.gitee.io/qcustomuidocument
 
+**[1.5.1]**
+```
+1.解决IP地址输入框在触摸屏下无法用软键盘输入的问题；
+2.添加QCtmComboBox下拉框弹出前的信号；
+3.优化CMake文件；
+4.解决MessageTip系列控件样式bug；
+5.解决QCtmNavigationSidePane在窗口最大化时，位置大小计算错误问题。
+```
+
 **[1.5.0]**
 ```
 1.添加部分常用控件的设计器插件，可以在设计器中直接拖拽和编辑这些控件，而不必使用“提升为”，提升开发效率；
