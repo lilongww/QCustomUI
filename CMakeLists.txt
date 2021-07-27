@@ -1,3 +1,5 @@
+cmake_minimum_required(VERSION 3.20)
+
 project(QCustomUi)
 
 set(QCUSTOMUI_VERSION "1.5.0.0")

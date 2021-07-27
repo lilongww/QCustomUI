@@ -1,4 +1,4 @@
-/*********************************************************************************
+﻿/*********************************************************************************
 **                                                                              **
 **  Copyright (C) 2019-2020 LiLong                                              **
 **  This file is part of QCustomUi.                                             **
@@ -35,7 +35,7 @@ struct QCtmMessageTipButton::Impl
 
 /*!
     \class      QCtmMessageTipButton
-    \brief      QCtmMessageTipButton provide a button to show count of the message tip data.
+    \brief      消息提示按钮.
     \inherits   QAbstractButton
     \ingroup    QCustomUi
     \inmodule   QCustomUi
@@ -43,11 +43,11 @@ struct QCtmMessageTipButton::Impl
 
 /*!
     \property   QCtmMessageTipButton::tipColor
-    \brief      Holds color for the tip of the button
+    \brief      消息提示数量的颜色.
 */
 
 /*!
-    \brief      Constructs a message tip button with \a parent.
+    \brief      构造一个父对象为 \a parent 的消息提示按钮.
 */
 QCtmMessageTipButton::QCtmMessageTipButton(QWidget* parent)
     : QAbstractButton(parent)
@@ -56,17 +56,18 @@ QCtmMessageTipButton::QCtmMessageTipButton(QWidget* parent)
     m_impl->helper = new QCtmMessageTipHelper(this);
     connect(this, &QAbstractButton::clicked, this, &QCtmMessageTipButton::onClicked);
     setSizePolicy(QSizePolicy::Minimum, QSizePolicy::Expanding);
+    setFocusPolicy(Qt::NoFocus);
 }
 
 /*!
-    \brief      Destroys the button.
+    \brief      销毁该消息提示按钮对象.
 */
 QCtmMessageTipButton::~QCtmMessageTipButton()
 {
 }
 
 /*!
-    \brief      Sets the message tip \a model.
+    \brief      设置消息提示按钮的数据来源 \a model.
     \sa         model()
 */
 void QCtmMessageTipButton::setModel(QCtmAbstractMessageTipModel* model)
@@ -86,7 +87,7 @@ void QCtmMessageTipButton::setModel(QCtmAbstractMessageTipModel* model)
 }
 
 /*!
-    \brief      Returns the message tip model.
+    \brief      返回消息提示按钮的数据来源 model.
     \sa         setModel
 */
 QCtmAbstractMessageTipModel* QCtmMessageTipButton::model() const
@@ -95,7 +96,7 @@ QCtmAbstractMessageTipModel* QCtmMessageTipButton::model() const
 }
 
 /*!
-    \brief      Sets the message tip \a view.
+    \brief      设置消息提示按钮的拓展列表视图 \a view.
     \sa         view()
 */
 void QCtmMessageTipButton::setView(QCtmAbstractMessageTipView* view)
@@ -105,7 +106,7 @@ void QCtmMessageTipButton::setView(QCtmAbstractMessageTipView* view)
 }
 
 /*!
-    \brief      Returns the message tip view.
+    \brief      返回消息提示按钮的拓展列表视图 \a view.
     \sa         setView
 */
 QCtmAbstractMessageTipView* QCtmMessageTipButton::view() const
@@ -114,7 +115,7 @@ QCtmAbstractMessageTipView* QCtmMessageTipButton::view() const
 }
 
 /*!
-    \brief      Set the \a color of the tool tip.
+    \brief      设置消息提示数量的颜色 \a color.
     \sa         tipColor()
 */
 void QCtmMessageTipButton::setTipColor(const QColor& color)
@@ -123,7 +124,7 @@ void QCtmMessageTipButton::setTipColor(const QColor& color)
 }
 
 /*!
-    \brief      Returns the color of the tool tip.
+    \brief      返回消息提示数量的颜色.
     \sa         setTipColor
 */
 const QColor& QCtmMessageTipButton::tipColor() const
@@ -161,7 +162,7 @@ QSize QCtmMessageTipButton::sizeHint() const
 }
 
 /*!
-    \brief      Sets the model to view.
+    \brief      连接 model 和视图.
 */
 void QCtmMessageTipButton::connectView()
 {
@@ -170,7 +171,7 @@ void QCtmMessageTipButton::connectView()
 }
 
 /*!
-    \brief      Set arguments for the style option, \a opt.
+    \brief      初始化样式选项 \a opt.
 */
 void QCtmMessageTipButton::initStyleOption(QStyleOptionButton* opt)
 {
@@ -187,7 +188,7 @@ void QCtmMessageTipButton::initStyleOption(QStyleOptionButton* opt)
 }
 
 /*!
-    \brief      Pop the message tip view when the button is clicked.
+    \brief      响应点击操作.
 */
 void QCtmMessageTipButton::onClicked(bool)
 {
@@ -201,10 +202,9 @@ void QCtmMessageTipButton::onClicked(bool)
 }
 
 /*!
-    \brief      Update the button when the message tip model is changed.
+    \brief      消息变化时更新界面.
 */
 void QCtmMessageTipButton::onModelDataChanged()
 {
     update();
 }
-

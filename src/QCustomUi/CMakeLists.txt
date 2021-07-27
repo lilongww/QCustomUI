@@ -12,9 +12,13 @@ add_compile_definitions(QCUSTOMUI_LIB UNICODE)
 file(GLOB PRIVATRE_HEADERS ./Private/*.h)
 file(GLOB PRIVATRE_SOURCES ./Private/*.cpp)
 file(GLOB UI ./*.ui)
-file(GLOB RESOURCES ./*.qrc)
 file(GLOB DOCS ./Docs/*.qdoc)
-list(APPEND RESOURCES "${PROJECT_SOURCE_DIR}/README.md")
+
+set(RESOURCES
+ "${PROJECT_SOURCE_DIR}/README.md"
+ "QCustomUi.qrc"
+ "Resources/stylesheet/default-light.css"
+ "Resources/stylesheet/sw-light.css")
 
 set(HEADERS
  "qcustomui_global.h"

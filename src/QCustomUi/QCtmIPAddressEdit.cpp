@@ -28,6 +28,7 @@
 #include <QClipboard>
 #include <QMenu>
 #include <QDebug>
+#include <QAccessible>
 
 constexpr int SECTION_COUNT = 4;
 constexpr int SECTION_CURSOR_COUNT = 4;
@@ -122,7 +123,6 @@ QCtmIPAddressEdit::QCtmIPAddressEdit(QWidget* parent)
     setContextMenuPolicy(Qt::CustomContextMenu);
     m_impl->selections.resize(SECTION_COUNT);
     m_impl->timer.setInterval(qApp->cursorFlashTime() / 2);
-    setCursor(Qt::IBeamCursor);
     setFocusPolicy(Qt::StrongFocus);
     connect(&m_impl->timer, &QTimer::timeout, this, [=]() {
         m_impl->cursorSwitch = !m_impl->cursorSwitch;
@@ -131,6 +131,7 @@ QCtmIPAddressEdit::QCtmIPAddressEdit(QWidget* parent)
     connect(this, &QWidget::customContextMenuRequested, this, &QCtmIPAddressEdit::onCustomContextMenuRequested);
     QMetaObject::invokeMethod(this, "init", Qt::QueuedConnection);
     initActions();
+    setReadOnly(m_impl->readOnly);
 }
 
 /*!
@@ -191,6 +192,16 @@ QString QCtmIPAddressEdit::ipAddress() const
 void QCtmIPAddressEdit::setReadOnly(bool ro)
 {
     m_impl->readOnly = ro;
+    setAttribute(Qt::WA_MacShowFocusRect, !ro);
+    setAttribute(Qt::WA_InputMethodEnabled, !ro);
+    setCursor(ro ? Qt::ArrowCursor : Qt::IBeamCursor);
+    QEvent event(QEvent::ReadOnlyChange);
+    QCoreApplication::sendEvent(this, &event);
+    update();
+    QAccessible::State changedState;
+    changedState.readOnly = ro;
+    QAccessibleStateChangeEvent ev(this, changedState);
+    QAccessible::updateAccessibility(&ev);
 }
 
 /*!
@@ -600,6 +611,24 @@ void QCtmIPAddressEdit::focusOutEvent(QFocusEvent* event)
         clearSelection();
     update();
     emit editFinished();
+}
+
+/*!
+    \reimp
+*/
+void QCtmIPAddressEdit::inputMethodEvent(QInputMethodEvent* e)
+{
+    if (m_impl->readOnly)
+        e->ignore();
+    else
+        e->accept();
+}
+
+QVariant QCtmIPAddressEdit::inputMethodQuery(Qt::InputMethodQuery query) const
+{
+    if (query == Qt::ImEnabled)
+        return false;
+    return QWidget::inputMethodQuery(query);
 }
 
 /*!

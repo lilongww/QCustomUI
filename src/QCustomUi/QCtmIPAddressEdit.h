@@ -1,4 +1,4 @@
-/*********************************************************************************
+﻿/*********************************************************************************
 **                                                                              **
 **  Copyright (C) 2019-2020 LiLong                                              **
 **  This file is part of QCustomUi.                                             **
@@ -55,9 +55,10 @@ protected:
     void mouseReleaseEvent(QMouseEvent* event) override;
     void focusInEvent(QFocusEvent* event) override;
     void focusOutEvent(QFocusEvent* event) override;
+    void inputMethodEvent(QInputMethodEvent* e) override;
+    QVariant inputMethodQuery(Qt::InputMethodQuery query) const override;
     QSize sizeHint() const override;
     QSize minimumSizeHint() const override;
-
 private:
     int sectionOfCursorPosition(int position) const;
     QTextLayout& textLayout(int pos) const;
