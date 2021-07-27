@@ -29,6 +29,7 @@
 #include <QStyleOption>
 #include <QApplication>
 #include <QMouseEvent>
+#include <QTimer>
 
 #include <assert.h>
 
@@ -302,7 +303,7 @@ QSize QCtmNavigationSidePane::smartSize(DockArea area)const
     QSize alignSize;
     const auto& bindActionRect = m_impl->navigationBar->actionRect(m_impl->bindAction);
     auto topWidget = m_impl->navigationBar->window();
-    const auto& margins = topWidget->contentsMargins();
+    const auto& margins = topWidget->layout()->contentsMargins();
     switch (area)
     {
     case DockArea::Left:
@@ -364,14 +365,25 @@ bool QCtmNavigationSidePane::eventFilter(QObject* o, QEvent* e)
         switch (e->type())
         {
         case QEvent::Move:
+        case QEvent::Resize:
         {
             auto pos = smartPosition(dockArea());
             move(pos);
-            break;
-        }
-        case QEvent::Resize:
             resize(sizeHint());
             break;
+        }
+#if WIN32 //WIN10 最大化计算bugfix
+        case QEvent::WindowStateChange:
+        {
+            QTimer::singleShot(1, [=]
+                {
+                    auto pos = smartPosition(dockArea());
+                    move(pos);
+                    resize(sizeHint());
+                });
+        }
+        break;
+#endif
         default:
             break;
         }
@@ -467,7 +479,7 @@ QPoint QCtmNavigationSidePane::smartPosition(DockArea area) const
         return QPoint(0, 0);
     auto topWidget = m_impl->navigationBar->window();
     auto pos = topWidget->mapToGlobal(m_impl->navigationBar->pos());
-    const auto& margins = topWidget->contentsMargins();
+    const auto& margins = topWidget->layout()->contentsMargins();
     switch (area)
     {
     case DockArea::Left:
