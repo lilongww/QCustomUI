@@ -226,65 +226,6 @@ QCtmNavigationImageButton:checked
 
 /************************************************************************/
 
-/********************************************************************/
-
-.QCtmNavigationMainMenu
-{
-    background: #C0C1C3;
-    margin-top: 20px;
-    margin-left: 23px;
-    margin-bottom: 20px;
-    margin-right: 20px;
-}
-
-/********************************************************************/
-
-/************************QCtmNavigationBackstageMenu************************/
-
-.QCtmNavigationBackstageMenu
-{
-    background: white;
-    qproperty-baseColor: gray;
-}
-
-/********************************************************************/
-
-/************************QCtmNavigationBackstageActionGroup***********************************/
-
-.QCtmNavigationBackstageActionGroup #title
-{
-    color: #107EE5;
-    font: bold 14pt 'Microsoft YaHei';
-}
-
-.QCtmNavigationBackstageActionGroup QToolButton
-{
-    border: none;
-    font-family: 'Microsoft YaHei';
-    font-weight: 400;
-    color: #1F1F1F;
-}
-
-.QCtmNavigationBackstageActionGroup QToolButton:hover
-{
-    background: #F0F0F0;
-}
-
-.QCtmNavigationBackstageActionGroup QToolButton:pressed
-{
-    padding-top: 2px;
-    padding-left: 2px;
-    background: #007ACC;
-    color: white;
-}
-
-.QCtmNavigationBackstageActionGroup
-{
-    background: white;
-}
-
-/**************************************************************/
-
 /***********************QCtmNavigationSideBar**************************/
 .QCtmNavigationSideBar
 {
@@ -471,29 +412,29 @@ QCtmTabWidget QTabBar::tab:!selected
 
 /************************************************************/
 
-QCtmNavigationSidePanel
+QCtmNavigationSidePane
 {
     background-color: white;
 }
 
-QCtmNavigationSidePanel #closeBtn
+QCtmNavigationSidePane #closeBtn
 {
     background: transparent;
     image: url(:/QCustomUi/Resources/close-light.png);
     border: none;
 }
 
-QCtmNavigationSidePanel #closeBtn:hover
+QCtmNavigationSidePane #closeBtn:hover
 {
     background: transparent;
 }
 
-QCtmNavigationSidePanel #closeBtn:pressed
+QCtmNavigationSidePane #closeBtn:pressed
 {
     background: transparent;
 }
 
-QCtmNavigationSidePanel #title
+QCtmNavigationSidePane #title
 {
     padding-left: 10px;
     font-family: 'Microsoft YaHei';
@@ -501,7 +442,7 @@ QCtmNavigationSidePanel #title
     color: #515151;
 }
 
-QCtmNavigationSidePanel #titleBar
+QCtmNavigationSidePane #titleBar
 {
     min-height: 28px;
 }
@@ -550,23 +491,23 @@ QCtmToolBoxItem QLabel
 }
 /************************************************************/
 
-/*********************QCtmMessageTip**************************/
+/*********************QCtmMessageTipButton**************************/
 
-QCtmMessageTip
+QCtmMessageTipButton
 {
     border: none;
     background: transparent;
     color: white;
-    qproperty-tipcolor: #F54545;
+    qproperty-tipColor: #F54545;
     qproperty-icon: url(:/QCustomUi/Resources/messageTip-light.png);
 }
 
-QCtmMessageTip:hover
+QCtmMessageTipButton:hover
 {
     background-color: #cbe5ff;
 }
 
-QCtmMessageTip:pressed
+QCtmMessageTipButton:pressed
 {
     background-color: #cbe5ff;
 }
