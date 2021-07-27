@@ -14,7 +14,8 @@ QCustomUi是一个自定义UI库，主要提供无边框窗口和一些自定义
 2.添加QCtmComboBox下拉框弹出前的信号；
 3.优化CMake文件；
 4.解决MessageTip系列控件样式bug；
-5.解决QCtmNavigationSidePane在窗口最大化时，位置大小计算错误问题。
+5.解决QCtmNavigationSidePane在窗口最大化时，位置大小计算错误问题；
+6.添加MessageTipExample。
 ```
 
 **[1.5.0]**
