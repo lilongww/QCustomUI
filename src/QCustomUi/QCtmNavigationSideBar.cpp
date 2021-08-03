@@ -1,4 +1,4 @@
-/*********************************************************************************
+﻿/*********************************************************************************
 **                                                                              **
 **  Copyright (C) 2019-2020 LiLong                                              **
 **  This file is part of QCustomUi.                                             **
@@ -71,7 +71,7 @@ struct QCtmNavigationSideBar::Impl
 
 /*!
     \class      QCtmNavigationSideBar
-    \brief      QCtmNavigationSideBar provide a side bar widget. It look like a vertical tool bar.
+    \brief      导航侧边栏，类似一个ToolBox.
     \inherits   QWidget
     \ingroup    QCustomUi
     \inmodule   QCustomUi
@@ -79,25 +79,25 @@ struct QCtmNavigationSideBar::Impl
 
 /*!
     \property   QCtmNavigationSideBar::iconSize
-    \brief      The iconSize holds size of the icon.
+    \brief      该属性决定侧边栏的图标大小.
 */
 
 /*!
     \enum       QCtmNavigationSideBar::ActionPosition
-                Describe the direction of the navigation side bar.
+                Action的安放位置.
     \value      Top
-                Top of the navigation side bar.
+                Action安放在侧边栏的顶部.
     \value      Bottom
-                Bottom of the navigation side bar.
+                Action安放在侧边栏的底部.
 */
 
 /*!
     \fn         void QCtmNavigationSideBar::iconSizeChanged(const QSize& size)
-    \brief      Emit this signal when the \a size of icon has been changed.
+    \brief      图标大小 \a size 发生改变时发送该信号.
 */
 
 /*!
-    \brief      Constructs a navigation side bar with the given \a parent.
+    \brief      构造一个父窗口为 \a parent 的导航侧边栏对象.
 */
 QCtmNavigationSideBar::QCtmNavigationSideBar(QWidget* parent)
     : QWidget(parent)
@@ -120,7 +120,7 @@ QCtmNavigationSideBar::QCtmNavigationSideBar(QWidget* parent)
 }
 
 /*!
-    \brief      Destroys the navigation side bar.
+    \brief      销毁该侧边栏对象.
 */
 QCtmNavigationSideBar::~QCtmNavigationSideBar()
 {
@@ -128,8 +128,7 @@ QCtmNavigationSideBar::~QCtmNavigationSideBar()
 
 /*!
     \overload   addAction
-                This function creates and add a action to the navigation side bar with the given \a icon, \a text and \a pos.
-                And returns the newly created action.
+                重载函数，在侧边栏的 \a pos 位置添加一个图标为 \a icon 文本为 \a text 的Action.
     \sa         QWidget::addAction
 */
 QAction* QCtmNavigationSideBar::addAction(const QIcon& icon, const QString& text, ActionPosition pos)
@@ -140,7 +139,7 @@ QAction* QCtmNavigationSideBar::addAction(const QIcon& icon, const QString& text
 
 /*!
     \overload   addAction
-                This function add the given \a action to the navigation side bar with \a pos.
+                重载函数，在侧边栏的 \a pos 添加一个 \a action.
     \sa         QWidget::addAction
 */
 void QCtmNavigationSideBar::addAction(QAction* action, ActionPosition pos)
@@ -154,7 +153,7 @@ void QCtmNavigationSideBar::addAction(QAction* action, ActionPosition pos)
 }
 
 /*!
-    \brief      Returns the action count with the given \a pos.
+    \brief      返回 \a pos 位置的Action数量.
     \sa         addAction, insertAction
 */
 int QCtmNavigationSideBar::count(ActionPosition pos) const
@@ -163,7 +162,7 @@ int QCtmNavigationSideBar::count(ActionPosition pos) const
 }
 
 /*!
-    \brief      Sets the \a size of the icon.
+    \brief      设置Action的图标大小 \a size.
     \sa         iconSize
 */
 void QCtmNavigationSideBar::setIconSize(const QSize& size)
@@ -172,7 +171,7 @@ void QCtmNavigationSideBar::setIconSize(const QSize& size)
 }
 
 /*!
-    \brief      Returns size of the icon.
+    \brief      返回Action的图标大小.
     \sa         setIconSize
 */
 const QSize& QCtmNavigationSideBar::iconSize() const
@@ -181,7 +180,7 @@ const QSize& QCtmNavigationSideBar::iconSize() const
 }
 
 /*!
-    \brief      Returns the action at the given \a index and \a pos.
+    \brief      返回位于 \a pos \a index 的Action.
     \sa         addAction, insertAction, indexOf
 */
 QAction* QCtmNavigationSideBar::actionAt(int index, ActionPosition pos) const
@@ -239,16 +238,8 @@ void QCtmNavigationSideBar::actionEvent(QActionEvent* event)
                 item->widget()->show();
             }
         };
-        QCtmWidgetItemPtr item = std::make_shared<QCtmWidgetItem>(event->action(), Qt::Vertical, this);
-        if (!item->isCustomWidget())
-        {
-            auto btn = qobject_cast<QToolButton*>(item->widget());
-            if (btn)
-            {
-                btn->setIconSize(m_impl->iconSize);
-                connect(this, &QCtmNavigationSideBar::iconSizeChanged, btn, &QToolButton::setIconSize);
-            }
-        }
+        QCtmWidgetItemPtr item = std::make_shared<QCtmWidgetItem>(event->action(), Qt::Vertical, m_impl->iconSize, this);
+        connect(this, &QCtmNavigationSideBar::iconSizeChanged, item.get(), &QCtmWidgetItem::iconSizeChanged);
         switch (pos)
         {
         case Top:
@@ -284,7 +275,7 @@ void QCtmNavigationSideBar::actionEvent(QActionEvent* event)
 
 /*!
     \overload   insertAction
-                Insert the given \a action with \a index and \a pos.
+                重载函数，在 \a pos \a index 位置插入一个 \a action.
     \sa         QWidget::insertAction
 */
 void QCtmNavigationSideBar::insertAction(int index, QAction* action, ActionPosition pos)
@@ -296,8 +287,7 @@ void QCtmNavigationSideBar::insertAction(int index, QAction* action, ActionPosit
 
 /*!
     \overload   insertAction
-                Create and insert a action with the given \a index, \a icon, \a text and \a pos.
-                And returns the newly created action.
+                重载函数， 在 \a pos \a index 位置插入并返回一个图标为 \a icon 文本为 \a text 的Action.
     \sa         QWidget::insertAction
 */
 QAction* QCtmNavigationSideBar::insertAction(int index, const QIcon& icon, const QString& text, ActionPosition pos)
@@ -309,7 +299,7 @@ QAction* QCtmNavigationSideBar::insertAction(int index, const QIcon& icon, const
 }
 
 /*!
-    \brief      Returns index of the given \a action.
+    \brief      返回 \a action 的序号.
     \sa         count, actionAt
 */
 int QCtmNavigationSideBar::indexOf(QAction* action) const
@@ -320,4 +310,3 @@ int QCtmNavigationSideBar::indexOf(QAction* action) const
         return m_impl->topActions.contains(m_impl->find(action));
     return -1;
 }
-

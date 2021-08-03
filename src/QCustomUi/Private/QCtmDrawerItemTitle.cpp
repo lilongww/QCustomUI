@@ -1,4 +1,4 @@
-/*********************************************************************************
+﻿/*********************************************************************************
 **                                                                              **
 **  Copyright (C) 2019-2020 LiLong                                              **
 **  This file is part of QCustomUi.                                             **
@@ -34,6 +34,7 @@ struct QCtmDrawerItemTitle::Impl
     QHBoxLayout* widgetLayout{ nullptr };
     QList<QCtmWidgetItemPtr> items;
     QCtmDrawerItemWidget* treeItem{ nullptr };
+    QSize iconSize{ 16,16 };
 };
 
 QCtmDrawerItemTitle::QCtmDrawerItemTitle(QCtmDrawerItemWidget* parent)
@@ -91,6 +92,17 @@ int QCtmDrawerItemTitle::indexOf(QAction* action) const
     return m_impl->items.indexOf(item);
 }
 
+void QCtmDrawerItemTitle::setIconSize(const QSize& size)
+{
+    m_impl->iconSize = size;
+    emit iconSizeChanged(m_impl->iconSize);
+}
+
+const QSize& QCtmDrawerItemTitle::iconSize() const
+{
+    return m_impl->iconSize;
+}
+
 void QCtmDrawerItemTitle::paintEvent([[maybe_unused]] QPaintEvent* event)
 {
     QPainter p(this);
@@ -128,7 +140,8 @@ void QCtmDrawerItemTitle::actionEvent(QActionEvent* event)
 {
     if (event->type() == QEvent::ActionAdded)
     {
-        QCtmWidgetItemPtr item = std::make_shared<QCtmWidgetItem>(event->action(), Qt::Horizontal, this);
+        QCtmWidgetItemPtr item = std::make_shared<QCtmWidgetItem>(event->action(), Qt::Horizontal, m_impl->iconSize, this);
+        connect(this, &QCtmDrawerItemTitle::iconSizeChanged, item.get(), &QCtmWidgetItem::iconSizeChanged);
         Util::addItem(item, m_impl->items, event->before(), m_impl->widgetLayout);
     }
     else if (event->type() == QEvent::ActionRemoved)

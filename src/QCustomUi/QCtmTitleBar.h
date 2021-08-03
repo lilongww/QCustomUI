@@ -1,4 +1,4 @@
-/*********************************************************************************
+﻿/*********************************************************************************
 **                                                                              **
 **  Copyright (C) 2019-2020 LiLong                                              **
 **  This file is part of QCustomUi.                                             **
@@ -37,6 +37,7 @@ class QCUSTOMUI_EXPORT QCtmTitleBar : public QWidget
 {
     Q_OBJECT
         Q_PROPERTY(bool iconIsVisible READ iconIsVisible WRITE setIconVisible)
+        Q_PROPERTY(QSize iconSize READ iconSize WRITE setIconSize NOTIFY iconSizeChanged)
 public:
     QCtmTitleBar(QWidget* parent = Q_NULLPTR);
     ~QCtmTitleBar();
@@ -44,9 +45,12 @@ public:
     void setMenuBar(QMenuBar* menu);
     QMenuBar* menuBar()const;
     void removeMenuBar();
-
     void setIconVisible(bool show);
     bool iconIsVisible()const;
+    void setIconSize(const QSize& size);
+    const QSize& iconSize() const;
+signals:
+    void iconSizeChanged(const QSize& size);
 private slots:
     void onCloseBtn();
     void onMaximumSizeBtn();

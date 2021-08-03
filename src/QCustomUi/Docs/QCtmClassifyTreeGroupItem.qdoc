@@ -1,6 +1,6 @@
 ﻿/*!
     \class      QCtmClassifyTreeGroupItem
-    \brief      This is a standard group item that used with QCtmClassifyTreeView.
+    \brief      用在分类视图 QCtmClassifyTreeView 里的item.
     \inherits   QCtmClassifyTreeItem
     \ingroup    QCustomUi
     \inmodule   QCustomUi
@@ -9,22 +9,22 @@
 
 /*!
     \fn         QCtmClassifyTreeGroupItem::QCtmClassifyTreeGroupItem()
-    \brief      Constructs a group item.
+    \brief      构造一个item.
 */
 
 /*!
     \fn         explicit QCtmClassifyTreeGroupItem::QCtmClassifyTreeGroupItem(const QString& text)
-    \brief      Constructs a group item with the given \a text.
+    \brief      根据 \a text 构造一个item.
 */
 
 /*!
     \fn         explicit QCtmClassifyTreeGroupItem::QCtmClassifyTreeGroupItem(const QIcon& icon, const QString& text)
-    \brief      Constructs a group item with the given \a icon and \a text.
+    \brief      根据 \a icon 和 \a text 构造一个item.
 */
 
 /*!
     \fn         QCtmClassifyTreeGroupItem::~QCtmClassifyTreeGroupItem()
-    \brief      Destroys the group item.
+    \brief      销毁该item对象.
 */
 
 /*!
@@ -34,38 +34,38 @@
 
 /*!
     \fn         void QCtmClassifyTreeGroupItem::addChild(QCtmClassifyTreeItem* item);
-    \brief      Adds the given \a item.
+    \brief      添加一个子项 \a item.
     \sa         insertChild, removeChild
 */
 
 /*!
     \fn         void QCtmClassifyTreeGroupItem::insertChild(int row, QCtmClassifyTreeItem* item);
-    \brief      Inserts the given \a item to \a row position.
+    \brief      在 \a row 的位置插入一个子项 \a item.
     \sa         addChild, removeChild
 */
 
 /*!
     \fn         void QCtmClassifyTreeGroupItem::removeChild(QCtmClassifyTreeItem* item);
-    \brief      Removes the given \a item.
+    \brief      移除给予的子项 \a item.
     \sa         addChild, removeChild
 */
 
 /*!
     \fn         QCtmClassifyTreeItem* QCtmClassifyTreeGroupItem::child(int row) const;
-    \brief      Returns the item of the given \a row.
+    \brief      返回 \a row 位置的子项.
 */
 
 /*!
     \fn         int QCtmClassifyTreeGroupItem::rowOf(const QCtmClassifyTreeItem* item) const;
-    \brief      Returns the index of the given \a item.
+    \brief      返回 \a item 所在的位置.
 */
 
 /*!
     \fn         int QCtmClassifyTreeGroupItem::count() const;
-    \brief      Returns the children count.
+    \brief      返回子项的数量.
 */
 
 /*!
     \fn         void QCtmClassifyTreeGroupItem::clear();
-    \brief      Removes all children.
+    \brief      移除所有的子项.
 */

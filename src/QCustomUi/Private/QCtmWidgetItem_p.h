@@ -1,4 +1,4 @@
-/*********************************************************************************
+﻿/*********************************************************************************
 **                                                                              **
 **  Copyright (C) 2019-2020 LiLong                                              **
 **  This file is part of QCustomUi.                                             **
@@ -27,7 +27,7 @@ class QCtmWidgetItem : public QObject
 {
     Q_OBJECT
 public:
-    QCtmWidgetItem(QAction* action, Qt::Orientation orientation, QWidget* parent = nullptr);
+    QCtmWidgetItem(QAction* action, Qt::Orientation orientation, const QSize& iconSize = QSize(16, 16), QWidget* parent = nullptr);
     ~QCtmWidgetItem();
 
     void release();
@@ -35,6 +35,8 @@ public:
     QAction* action() const;
     QWidget* widget() const;
     bool isCustomWidget() const;
+signals:
+    void iconSizeChanged(const QSize& size);
 private:
     struct Impl;
     std::unique_ptr<Impl> m_impl;

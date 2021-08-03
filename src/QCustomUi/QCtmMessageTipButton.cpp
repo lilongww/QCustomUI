@@ -106,7 +106,7 @@ void QCtmMessageTipButton::setView(QCtmAbstractMessageTipView* view)
 }
 
 /*!
-    \brief      返回消息提示按钮的拓展列表视图 \a view.
+    \brief      返回消息提示按钮的拓展列表视图.
     \sa         setView
 */
 QCtmAbstractMessageTipView* QCtmMessageTipButton::view() const

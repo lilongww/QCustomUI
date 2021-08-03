@@ -43,15 +43,14 @@ struct QCtmDialog::Impl
 
 /*!
     \class      QCtmDialog
-    \brief      This class is the base class of top level widgets that can have a custom title bar.
+    \brief      这是一个模态窗口，类似于QDialog，去掉了系统的边框和标题栏，用自定义的标题栏替代.
     \inherits   QDialog
     \ingroup    QCustomUi
     \inmodule   QCustomUi
 */
 
 /*!
-    \fn         QCtmDialog::QCtmDialog(QWidget* parent)
-    \brief      Constructs a dialog which is a child of \a parent.
+    \brief      构造一个父窗口为 \a parent 的窗口对象.
 */
 QCtmDialog::QCtmDialog(QWidget* parent)
     : QDialog(parent)
@@ -81,15 +80,14 @@ QCtmDialog::QCtmDialog(QWidget* parent)
 }
 
 /*!
-    \brief      Destroys the widget.
+    \brief      销毁该窗口对象.
 */
 QCtmDialog::~QCtmDialog()
 {
 }
 
 /*!
-    \fn         void QCtmDialog::setCentralWidget(QWidget *widget)
-    \brief      Sets the given widget to be the main window's central \a widget.
+    \brief      设置 \a widget 为窗口的中央部件.
     \sa centralWidget
  */
 void QCtmDialog::setCentralWidget(QWidget* widget)
@@ -109,8 +107,7 @@ void QCtmDialog::setCentralWidget(QWidget* widget)
 }
 
 /*!
-    \fn         QWidget* QCtmDialog::centralWidget() const
-    \brief      Returns the central widget.
+    \brief      返回中央部件地址.
     \sa         setCentralWidget
 */
 QWidget* QCtmDialog::centralWidget() const
@@ -119,7 +116,7 @@ QWidget* QCtmDialog::centralWidget() const
 }
 
 /*!
-    \brief      Sets the given \a titleBar, the old title bar will be delete.
+    \brief      设置标题栏 \a titleBar.
     \sa         titleBar(), removeTitleBar()
 */
 void QCtmDialog::setTitleBar(QCtmTitleBar* titleBar)
@@ -138,7 +135,7 @@ void QCtmDialog::setTitleBar(QCtmTitleBar* titleBar)
 }
 
 /*!
-    \brief      Returns the title bar widget.
+    \brief      返回窗口的标题栏.
     \sa         setTitleBar, removeTitleBar()
 */
 QCtmTitleBar* QCtmDialog::titleBar() const
@@ -147,7 +144,7 @@ QCtmTitleBar* QCtmDialog::titleBar() const
 }
 
 /*!
-    \brief      Remove the title bar, the title bar will be delete.
+    \brief      移除窗口的标题栏.
     \sa         setTitleBar, titleBar()
 */
 void QCtmDialog::removeTitleBar()
@@ -160,8 +157,7 @@ void QCtmDialog::removeTitleBar()
 }
 
 /*!
-    \brief      Add the given \a moveBar.
-                The move bar provide a function that user can drag the move bar to move the dialog.
+    \brief      添加鼠标可拖拽区域 \a moveBar, moveBar必须为该窗口的子控件之一.
     \sa         removeMoveBar
 */
 void QCtmDialog::addMoveBar(QWidget* moveBar)
@@ -170,7 +166,7 @@ void QCtmDialog::addMoveBar(QWidget* moveBar)
 }
 
 /*!
-    \brief      Remove the give \a moveBar.
+    \brief      移除鼠标拖拽区域 \a moveBar.
     \sa         addMoveBar
 */
 void QCtmDialog::removeMoveBar(QWidget* moveBar)
@@ -249,7 +245,7 @@ bool QCtmDialog::nativeEvent(const QByteArray& eventType, void* message, long* r
 }
 
 /*!
-    \brief      Normalize \a pos
+    \brief      标准化 \a pos.
 */
 void QCtmDialog::normalizes(QPoint& pos)
 {

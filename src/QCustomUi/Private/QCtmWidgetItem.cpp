@@ -37,13 +37,13 @@ inline void setToolButtonProperty(QAction* action, QCtmToolButton* btn)
     btn->setDefaultAction(action);
     btn->setSizePolicy(QSizePolicy::Minimum, QSizePolicy::Minimum);
     btn->setObjectName(action->objectName());
-    if(btn->parent())
+    if (btn->parent())
         btn->setVisible(action->isVisible());
     setToolButtonStyle(action, btn);
     QObject::connect(action, &QAction::changed, btn, [=]()
         {
             setToolButtonStyle(action, btn);
-            if(btn->parent())
+            if (btn->parent())
                 btn->setVisible(action->isVisible());
         });
     QObject::connect(action, &QObject::objectNameChanged, btn, [=](const QString& name) {btn->setObjectName(name); });
@@ -53,7 +53,7 @@ inline void setWidgetProperty(QAction* action, QWidget* widget)
 {
     QObject::connect(action, &QAction::changed, widget, [=]()
         {
-            if(widget->parent())
+            if (widget->parent())
                 widget->setVisible(action->isVisible());
         });
     QObject::connect(action, &QObject::objectNameChanged, widget, [=](const QString& name) {widget->setObjectName(name); });
@@ -66,7 +66,7 @@ struct QCtmWidgetItem::Impl
     bool customWidget{ false };
 };
 
-QCtmWidgetItem::QCtmWidgetItem(QAction* action, Qt::Orientation orientation, QWidget* parent)
+QCtmWidgetItem::QCtmWidgetItem(QAction* action, Qt::Orientation orientation, const QSize& iconSize, QWidget* parent)
     : QObject(parent)
     , m_impl(std::make_unique<Impl>())
 {
@@ -80,6 +80,8 @@ QCtmWidgetItem::QCtmWidgetItem(QAction* action, Qt::Orientation orientation, QWi
         if (auto btn = qobject_cast<QCtmToolButton*>(m_impl->widget); btn)
         {
             setToolButtonProperty(action, btn);
+            btn->setIconSize(iconSize);
+            connect(this, &QCtmWidgetItem::iconSizeChanged, btn, &QCtmToolButton::setIconSize);
         }
         else
             setWidgetProperty(action, m_impl->widget);
@@ -99,6 +101,8 @@ QCtmWidgetItem::QCtmWidgetItem(QAction* action, Qt::Orientation orientation, QWi
             auto btn = new QCtmToolButton(parent);
             setToolButtonProperty(action, btn);
             m_impl->widget = btn;
+            btn->setIconSize(iconSize);
+            connect(this, &QCtmWidgetItem::iconSizeChanged, btn, &QCtmToolButton::setIconSize);
         }
     }
 }

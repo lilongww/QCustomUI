@@ -1,4 +1,4 @@
-/*********************************************************************************
+﻿/*********************************************************************************
 **                                                                              **
 **  Copyright (C) 2019-2020 LiLong                                              **
 **  This file is part of QCustomUi.                                             **
@@ -28,6 +28,7 @@ class QCtmDrawerWidget;
 class QCUSTOMUI_EXPORT QCtmDrawerItemWidget : public QWidget
 {
     Q_OBJECT
+        Q_PROPERTY(QSize iconSize READ iconSize WRITE setIconSize NOTIFY iconSizeChanged)
 public:
     void setWidget(QWidget* widget);
     QWidget* widget() const;
@@ -48,9 +49,12 @@ public:
     int count() const;
     int indexOf(QAction* action);
     QAction* actionAt(int index);
+    void setIconSize(const QSize& size);
+    const QSize& iconSize() const;
 signals:
     void expandChanged(bool expand);
     void titleClicked(bool expand);
+    void iconSizeChanged(const QSize& size);
 protected:
     QCtmDrawerItemWidget(const QString& title, QCtmDrawerWidget* parent);
     ~QCtmDrawerItemWidget();

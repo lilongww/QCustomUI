@@ -48,6 +48,8 @@ struct QCtmNavigationBar::Impl
     QHBoxLayout* leftLayout;
     QHBoxLayout* rightLayout;
 
+    QSize iconSize{ 16,16 };
+
     QCtmWidgetItemPtr find(QAction* action)
     {
         auto item = find(action, Left);
@@ -116,6 +118,12 @@ struct QCtmNavigationBar::Impl
                 The left of the navigation bar.
     \value      Right
                 The right of the navigation bar.
+*/
+
+/*!
+    \fn         void QCtmNavigationBar::iconSizeChanged(const QSize& size);
+    \brief      当图标大小发生改变时发送该信号 \a size.
+    \sa         setIconSize
 */
 
 /*!
@@ -489,6 +497,24 @@ QAction* QCtmNavigationBar::actionAt(int index, ActionPosition pos) const
 }
 
 /*!
+    \brief      设置Action图标的大小 \a size.
+    \sa         iconSize
+*/
+void QCtmNavigationBar::setIconSize(const QSize& size)
+{
+    m_impl->iconSize = size;
+    emit iconSizeChanged(m_impl->iconSize);
+}
+
+/*!
+    \brief      返回Action图标的大小.
+    \sa         setIconSize
+*/
+const QSize& QCtmNavigationBar::iconSize() const
+{
+    return m_impl->iconSize;
+}
+/*!
     \reimp
 */
 void QCtmNavigationBar::paintEvent([[maybe_unused]] QPaintEvent* e)
@@ -510,7 +536,8 @@ void QCtmNavigationBar::actionEvent(QActionEvent* event)
 
     if (event->type() == QEvent::ActionAdded)
     {
-        auto item = std::make_shared<QCtmWidgetItem>(event->action(), Qt::Horizontal, this);
+        auto item = std::make_shared<QCtmWidgetItem>(event->action(), Qt::Horizontal, m_impl->iconSize, this);
+        connect(this, &QCtmNavigationBar::iconSizeChanged, item.get(), &QCtmWidgetItem::iconSizeChanged);
         switch (pos)
         {
         case Left:

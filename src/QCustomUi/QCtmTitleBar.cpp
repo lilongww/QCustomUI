@@ -36,6 +36,7 @@ struct QCtmTitleBar::Impl
     QMenuBar* menuBar{ nullptr };
     bool showIcon{ true };
     QList<QCtmWidgetItemPtr> items;
+    QSize iconSize{ 16,16 };
 };
 
 /*!
@@ -138,6 +139,23 @@ bool QCtmTitleBar::iconIsVisible() const
     return m_impl->showIcon;
 }
 
+/*!
+    \brief      设置Action图标大小 \a size.
+    \sa         iconSize
+*/
+void QCtmTitleBar::setIconSize(const QSize& size)
+{
+    m_impl->iconSize = size;
+}
+
+/*!
+    \brief      返回Action图标大小.
+    \sa         setIconSize
+*/
+const QSize& QCtmTitleBar::iconSize() const
+{
+    return m_impl->iconSize;
+}
 /*!
     \brief      Close the window when the close button is clicked.
     \sa         onMaximumSizeBtn(), onMinimumSizeBtn()
@@ -268,8 +286,8 @@ bool QCtmTitleBar::eventFilter(QObject* watched, QEvent* event)
                 }
                 if (m_impl->showIcon)
                     ui->horizontalLayout->setContentsMargins(leftMargin + titleSpacing + m_impl->windowIcon.width(), 0, 0, 0);
+            }
         }
-    }
         else if (event->type() == QEvent::WindowTitleChange)
         {
             update();
@@ -284,7 +302,7 @@ bool QCtmTitleBar::eventFilter(QObject* watched, QEvent* event)
                     ui->maximumSizeBtn->show();
             }
         }
-}
+    }
     return false;
 }
 
@@ -295,7 +313,8 @@ void QCtmTitleBar::actionEvent(QActionEvent* event)
 {
     if (event->type() == QEvent::ActionAdded)
     {
-        auto item = std::make_shared<QCtmWidgetItem>(event->action(), Qt::Horizontal, this);
+        auto item = std::make_shared<QCtmWidgetItem>(event->action(), Qt::Horizontal, m_impl->iconSize, this);
+        connect(this, &QCtmTitleBar::iconSizeChanged, item.get(), &QCtmWidgetItem::iconSizeChanged);
         Util::addItem(item, m_impl->items, event->before(), ui->actionLayout);
     }
     else
