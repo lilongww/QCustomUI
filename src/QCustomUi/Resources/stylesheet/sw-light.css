@@ -497,9 +497,6 @@ QCtmMessageTipButton
 {
     border: none;
     background: transparent;
-    color: white;
-    qproperty-tipColor: #F54545;
-    qproperty-icon: url(:/QCustomUi/Resources/messageTip-light.png);
 }
 
 QCtmMessageTipButton:hover

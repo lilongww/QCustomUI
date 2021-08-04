@@ -57,6 +57,11 @@ QCtmMessageTipButton::QCtmMessageTipButton(QWidget* parent)
     connect(this, &QAbstractButton::clicked, this, &QCtmMessageTipButton::onClicked);
     setSizePolicy(QSizePolicy::Minimum, QSizePolicy::Expanding);
     setFocusPolicy(Qt::NoFocus);
+    setIcon(QIcon(":/QCustomUi/Resources/messageTip-light.png"));
+    setTipColor(0xF54545);
+    auto pal = this->palette();
+    pal.setColor(QPalette::WindowText, Qt::white);
+    setPalette(pal);
 }
 
 /*!
