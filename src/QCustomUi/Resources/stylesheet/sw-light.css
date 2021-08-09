@@ -513,38 +513,31 @@ QCtmMessageTipButton:pressed
 
 /*********************QCtmMessageView**************************/
 
-.QCtmMessageView #title
+.QCtmMessagetTipView #title
 {
     font-family: 'Microsoft YaHei';
     font-weight: 400;
-    color: rgba(255,255,255,1);
+    color: white;
 }
 
-.QCtmMessageView #titleBar
+.QCtmMessagetTipView #titleBar
 {
-    background: rgba(0,122,204,1);
+    background: rgba(0,122,204,255);
 }
 
-.QCtmMessageView #closeBtn
+.QCtmMessagetTipView #closeBtn
 {
     qproperty-icon: url(:/QCustomUi/Resources/close.png);
     border: none;
 }
 
-.QCtmMessageView QListView
+.QCtmMessagetTipView #qcustomui-tipview
 {
     background: #F5F5F5;
-    selection-background-color: white;
+    selection-background-color: red;
     border: none;
 }
 
-.QCtmMessageView
-{
-    qproperty-decoration: #A7A7A7;
-    qproperty-titlecolor: #303030;
-    qproperty-timecolor: #656464;
-    qproperty-closebuttonicon: url(:/QCustomUi/Resources/close-light.png);
-}
 /************************************************************/
 
 /***********************QCtmMainWindow***********************/
@@ -845,16 +838,6 @@ QCtmTableView QTableCornerButton::section
 {
     background: transparent;
     border: none;
-}
-
-QCtmDialog:!active
-{
-    border: 1px solid rgba(0,0,0,0);
-}
-
-QCtmDialog:active
-{
-    border: 1px solid #2A7ACF;
 }
 
 QCtmIPAddressEdit

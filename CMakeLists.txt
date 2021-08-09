@@ -2,7 +2,7 @@ cmake_minimum_required(VERSION 3.20)
 
 project(QCustomUi)
 
-set(QCUSTOMUI_VERSION "1.5.0.0")
+set(QCUSTOMUI_VERSION "1.5.2.0")
 
 set(CMAKE_BUILD_WITH_INSTALL_RPATH TRUE)
 set(CMAKE_INSTALL_PREFIX ${CMAKE_CURRENT_LIST_DIR}/build)
