@@ -8,6 +8,10 @@ QCustomUi是一个自定义UI库，主要提供无边框窗口和一些自定义
 
 文档：https://llongww.gitee.io/qcustomuidocument
 
+**[1.6.0]**
+```
+1.QCtmMessageTipModel默认最新消息显示在前面;
+```
 **[1.5.2]**
 ```
 1.增加部分控件的iconSize属性和接口;

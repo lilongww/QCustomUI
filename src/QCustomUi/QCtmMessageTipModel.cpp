@@ -30,7 +30,7 @@ struct QCtmMessageTipModel::Impl
 
 /*!
     \class      QCtmMessageTipModel
-    \brief      QCtmMessageTipModel provide a common message tip model.
+    \brief      消息提示model的一般实现.
     \inherits   QCtmAbstractMessageTipModel
     \ingroup    QCustomUi
     \inmodule   QCustomUi
@@ -39,16 +39,18 @@ struct QCtmMessageTipModel::Impl
 
 /*!
     \property   QCtmMessageTipModel::titleColor
-    \brief      Holds color of the title text.
+    \brief      消息标题的文本颜色.
+    \sa         setTitleColor, titleColor
 */
 
 /*!
     \property   QCtmMessageTipModel::timeColor
-    \brief      Holds color of the date time text.
+    \brief      消息时间的文本颜色.
+    \sa         setTimeColor, timeColor
 */
 
 /*!
-    \brief      Constructs a message tip model with \a parent.
+    \brief      构造一个父对象为 \a parent 的消息model.
 */
 QCtmMessageTipModel::QCtmMessageTipModel(QObject* parent)
     : QCtmAbstractMessageTipModel(parent)
@@ -57,7 +59,7 @@ QCtmMessageTipModel::QCtmMessageTipModel(QObject* parent)
 }
 
 /*!
-    \brief      Destroys the message tip model.
+    \brief      销毁当前消息model对象.
 */
 QCtmMessageTipModel::~QCtmMessageTipModel()
 {
@@ -123,7 +125,7 @@ int QCtmMessageTipModel::columnCount([[maybe_unused]] const QModelIndex& parent 
 }
 
 /*!
-    \brief      Set \a color of the message title.
+    \brief      设置消息标题的文本颜色 \a color.
     \sa         titleColor()
 */
 void QCtmMessageTipModel::setTitleColor(const QColor& color)
@@ -132,7 +134,7 @@ void QCtmMessageTipModel::setTitleColor(const QColor& color)
 }
 
 /*!
-    \brief      Returns color of the message title.
+    \brief      返回消息标题的文本颜色.
     \sa         setTitleColor
 */
 const QColor& QCtmMessageTipModel::titleColor() const
@@ -141,7 +143,7 @@ const QColor& QCtmMessageTipModel::titleColor() const
 }
 
 /*!
-    \brief      Set \a color of the message time.
+    \brief      设置消息时间的文本颜色 \a color.
     \sa         timeColor()
 */
 void QCtmMessageTipModel::setTimeColor(const QColor& color)
@@ -150,7 +152,7 @@ void QCtmMessageTipModel::setTimeColor(const QColor& color)
 }
 
 /*!
-    \brief      Returns color of the message time.
+    \brief      返回消息时间的文本颜色.
     \sa         setTimeColor
 */
 const QColor& QCtmMessageTipModel::timeColor() const

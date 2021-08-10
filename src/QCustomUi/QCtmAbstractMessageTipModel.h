@@ -30,7 +30,7 @@ using QCtmAbstractMessageTipDataPtr = std::shared_ptr<class QCtmAbstractMessageT
 class QCUSTOMUI_EXPORT QCtmAbstractMessageTipModel : public QAbstractTableModel
 {
     Q_OBJECT
-
+        Q_PROPERTY(bool reversedOrder READ reversedOrder WRITE setReversedOrder)
 public:
     QCtmAbstractMessageTipModel(QObject* parent);
     ~QCtmAbstractMessageTipModel();
@@ -42,6 +42,8 @@ public:
     void clear();
     void setMaximumCount(int count);
     int maximumCount() const;
+    void setReversedOrder(bool re);
+    bool reversedOrder() const;
 
     int	rowCount(const QModelIndex& parent = QModelIndex()) const override;
     bool setData([[maybe_unused]] const QModelIndex& index, [[maybe_unused]] const QVariant& value, [[maybe_unused]] int role = Qt::EditRole) override { return false; }

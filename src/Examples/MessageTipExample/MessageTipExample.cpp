@@ -19,7 +19,12 @@ MessageTipExample::MessageTipExample(QWidget* parent)
     msgTipBtn->setView(new QCtmMessageTipView(navigationBar()));
     auto model = new QCtmMessageTipModel(this);
     msgTipBtn->setModel(model);
-    model->addMessage(std::make_shared<QCtmMessageTipData>("Title", "This is message content.", QDateTime::currentDateTime()));
+    for (int i = 0; i < 10; i++)
+    {
+        model->addMessage(std::make_shared<QCtmMessageTipData>(QString("Title%1").arg(i + 1)
+            , "This is message content."
+            , QDateTime::currentDateTime()));
+    }
 }
 
 MessageTipExample::~MessageTipExample()
