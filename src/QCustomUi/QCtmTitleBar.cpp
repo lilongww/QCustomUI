@@ -195,15 +195,16 @@ void QCtmTitleBar::paintEvent([[maybe_unused]] QPaintEvent* event)
     opt.init(this);
     QPainter p(this);
     style()->drawPrimitive(QStyle::PE_Widget, &opt, &p, this);
+    const auto& iconRect = doIconRect();
     if (!m_impl->windowIcon.isNull() && m_impl->showIcon)
     {
-        p.drawPixmap(doIconRect(), m_impl->windowIcon);
+        p.drawPixmap(iconRect, m_impl->windowIcon);
     }
 
     if (parentWidget())
     {
         auto text = parentWidget()->windowTitle();
-        auto rect = opt.fontMetrics.boundingRect(text);
+        QRect rect(QPoint{ 0,0 }, opt.fontMetrics.size(Qt::TextSingleLine, text));
         if (m_impl->menuBar)
         {
             if (m_impl->menuBar->geometry().right() >= (this->width() - rect.width()) / 2)
@@ -214,16 +215,14 @@ void QCtmTitleBar::paintEvent([[maybe_unused]] QPaintEvent* event)
                 rect.moveTo((width() - rect.width()) / 2, 0);
         }
         else
-            rect.moveTo(leftMargin + m_impl->windowIcon.width() + titleSpacing, 0);
+            rect.moveTo(leftMargin + iconRect.width() + titleSpacing, 0);
         rect.setHeight(this->height());
         QTextOption to;
         to.setWrapMode(QTextOption::NoWrap);
         to.setAlignment(Qt::AlignCenter);
-        p.save();
         p.setFont(this->font());
         p.setPen(this->palette().windowText().color());
         p.drawText(rect, text, to);
-        p.restore();
     }
 }
 

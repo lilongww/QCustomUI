@@ -13,6 +13,7 @@ QCustomUi是一个自定义UI库，主要提供无边框窗口和一些自定义
 1.增加部分控件的iconSize属性和接口;
 2.修复字体改变后，QCtmMessageTipButton显示的数字不全的问题；
 3.修复QCtmIPAddressEdit字体大小设置无效的问题；
+4.修复QCtmTitleBar字体调整时，标题文字部分被覆盖的问题；
 ```
 **[1.5.1]**
 ```
