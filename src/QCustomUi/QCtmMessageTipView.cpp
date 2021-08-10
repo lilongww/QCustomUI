@@ -1,4 +1,4 @@
-/*********************************************************************************
+﻿/*********************************************************************************
 **                                                                              **
 **  Copyright (C) 2019-2020 LiLong                                              **
 **  This file is part of QCustomUi.                                             **
@@ -88,6 +88,7 @@ QCtmMessageTipView::QCtmMessageTipView(QCtmNavigationBar* parent)
     this->setTitleBarVisible(true);
     setPopup(false);
     m_impl->view = new QListView(this);
+    m_impl->view->setObjectName("qcustomui-tipview");
     m_impl->view->setMouseTracking(true);
 
     m_impl->delegate = new QCtmMessageViewDelegate(m_impl->view);
@@ -101,6 +102,10 @@ QCtmMessageTipView::QCtmMessageTipView(QCtmNavigationBar* parent)
     m_impl->view->verticalScrollBar()->installEventFilter(this);
 
     qRegisterMetaType<QCtmAbstractMessageTipDataPtr>("QCtmAbstractMessagePtr");
+    setDecoration(0xA7A7A7);
+    setCloseButtonIcon(QPixmap(":/QCustomUi/Resources/close-light.png"));
+    setTitleColor(0x303030);
+    setTimeColor(0x656464);
 }
 
 /*!

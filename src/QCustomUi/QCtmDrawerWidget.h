@@ -41,6 +41,7 @@ class QCUSTOMUI_EXPORT QCtmDrawerWidget : public QWidget
 {
     Q_OBJECT
         Q_PROPERTY(bool exclusive READ exclusive WRITE setExclusive)
+        Q_PROPERTY(QSize iconSize READ iconSize WRITE setIconSize NOTIFY iconSizeChanged)
 public:
     QCtmDrawerWidget(QWidget* parent = nullptr);
     ~QCtmDrawerWidget();
@@ -54,10 +55,12 @@ public:
     void setExclusive(bool exclusive);
     bool exclusive() const;
     void setSizes(const QList<int>& sizes);
+    void setIconSize(const QSize& size);
+    const QSize& iconSize() const;
 signals:
     void itemExpandChanged(QCtmDrawerItemWidget* item, bool expand);
     void itemTitleClicked(QCtmDrawerItemWidget* item, bool expand);
-
+    void iconSizeChanged(const QSize& size);
 public slots:
     void expandAll();
     void collapseAll();

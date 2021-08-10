@@ -25,6 +25,8 @@
 
 class QCUSTOMUI_EXPORT QCtmToolBox : public QWidget
 {
+    Q_OBJECT
+        Q_PROPERTY(QSize iconSize READ iconSize WRITE setIconSize NOTIFY iconSizeChanged)
 public:
     QCtmToolBox(QWidget* parent);
     ~QCtmToolBox();
@@ -37,7 +39,12 @@ public:
     QWidget* widget(int index) const;
     void setStretchFactor(int index, int stretch);
     void setSizes(const QList<int>& sizes);
+    QList<int> sizes() const;
     void setDefaultStretch(int index, int stretch);
+    void setIconSize(const QSize& size);
+    const QSize& iconSize() const;
+signals:
+    void iconSizeChanged(const QSize& size);
 protected:
     void showEvent([[maybe_unused]] QShowEvent* event);
 private:

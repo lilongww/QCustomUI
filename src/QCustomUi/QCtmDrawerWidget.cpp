@@ -33,38 +33,45 @@ struct QCtmDrawerWidget::Impl
     bool exclusive{ false };
     bool resizeLator{ false };
     QList<int> sizes;
+    QSize iconSize{ 16, 16 };
 };
 
 /*!
     \class      QCtmDrawerWidget
-    \brief      QCtmDrawerWidget provide a drawer widget container.
+    \brief      抽屉窗口类.
     \inherits   QWidget
     \ingroup    QCustomUi
     \inmodule   QCustomUi
 
-    \b          {The drawer widget screenshot:}
+    \b          {抽屉窗口的截图:}
     \image      QCtmDrawerWidgetDetail.png
 */
 
 /*!
     \property   QCtmDrawerWidget::exclusive
-    \brief      This property holds the items expand state of the draw widget is exclusive.
+    \brief      该属性表示抽屉窗口的各项展开状态是否互斥.
 */
 
 /*!
     \fn         void QCtmDrawerWidget::itemExpandChanged(QCtmDrawerItemWidget* item, bool expand)
-    \brief      Emit this signal when the \a item \a expand state is changed.
+    \brief      抽屉项 \a item 的展开状态 \a expand 发生变化时发送该信号.
     \sa         itemTitleClicked
 */
 
 /*!
     \fn         void QCtmDrawerWidget::itemTitleClicked(QCtmDrawerItemWidget* item, bool expand)
-    \brief      Emit this signal when the title bar of the \a item has being clicked, \a expand.
+    \brief      抽屉项 \a item 的标题被点击时发送该信号 \a expand.
     \sa         itemExpandChanged
 */
 
 /*!
-    \brief      Constructs a drawer widget with the \a parent.
+    \fn         void QCtmDrawerWidget::iconSizeChanged(const QSize& size);
+    \brief      当Action的图标大小发生改变时发送该信号 \a size.
+    \sa         setIconSize
+*/
+
+/*!
+    \brief      构造一个父窗口为 \a parent 的抽屉窗口对象.
 */
 QCtmDrawerWidget::QCtmDrawerWidget(QWidget* parent)
     : QWidget(parent),
@@ -83,15 +90,14 @@ QCtmDrawerWidget::QCtmDrawerWidget(QWidget* parent)
 }
 
 /*!
-    \brief      Destroys the drawer widget.
+    \brief      销毁该抽屉窗口对象.
 */
 QCtmDrawerWidget::~QCtmDrawerWidget()
 {
 }
 
 /*!
-    \brief      Add the given \a widget to the drawer widget and set the given \a title text.
-                Returns the item of the widget.
+    \brief      添加并返回一个标题为 \a title 容纳窗口为 \a widget 的抽屉项.
     \sa         insertWidget, removeItem
 */
 QCtmDrawerItemWidget* QCtmDrawerWidget::addWidget(const QString& title, QWidget* widget)
@@ -100,15 +106,16 @@ QCtmDrawerItemWidget* QCtmDrawerWidget::addWidget(const QString& title, QWidget*
 }
 
 /*!
-    \brief      Insert the given \a widget to the drawer widget with \a index and set the given \a title text.
-                Returns the item of the widget.
+    \brief      在 \a index 位置插入并返回一个标题为 \a title 容纳窗口为 \a widget 的抽屉项.
     \sa         addWidget, removeItem
 */
 QCtmDrawerItemWidget* QCtmDrawerWidget::insertWidget(int index, const QString& title, QWidget* widget)
 {
     auto item = new QCtmDrawerItemWidget(title, this);
+    item->setIconSize(m_impl->iconSize);
     connect(item, &QCtmDrawerItemWidget::expandChanged, this, &QCtmDrawerWidget::onItemExpand);
     connect(item, &QCtmDrawerItemWidget::titleClicked, this, &QCtmDrawerWidget::onItemClicked);
+    connect(this, &QCtmDrawerWidget::iconSizeChanged, item, &QCtmDrawerItemWidget::setIconSize);
     item->setWidget(widget);
     m_impl->splitter->insertWidget(index, item);
     m_impl->sizes = m_impl->splitter->sizes();
@@ -118,7 +125,7 @@ QCtmDrawerItemWidget* QCtmDrawerWidget::insertWidget(int index, const QString& t
 }
 
 /*!
-    \brief      Removes the \a item from the drawer widget.
+    \brief      移除给予的抽屉项 \a item.
     \sa         addWidget, insertWidget
 */
 void QCtmDrawerWidget::removeItem(QCtmDrawerItemWidget* item)
@@ -127,7 +134,7 @@ void QCtmDrawerWidget::removeItem(QCtmDrawerItemWidget* item)
 }
 
 /*!
-    \brief      Returns the index of the given \a item.
+    \brief      返回抽屉项 \a item 所在的位置.
     \sa         item
 */
 int QCtmDrawerWidget::indexOf(QCtmDrawerItemWidget* item) const
@@ -136,7 +143,7 @@ int QCtmDrawerWidget::indexOf(QCtmDrawerItemWidget* item) const
 }
 
 /*!
-    \brief      Returns the item of the given \a index.
+    \brief      返回 \a index 位置的抽屉项.
     \sa         indexOf
 */
 QCtmDrawerItemWidget* QCtmDrawerWidget::item(int index) const
@@ -145,7 +152,7 @@ QCtmDrawerItemWidget* QCtmDrawerWidget::item(int index) const
 }
 
 /*!
-    \brief      Returns count of the items.
+    \brief      返回抽屉项数量.
 */
 int QCtmDrawerWidget::count() const
 {
@@ -153,7 +160,7 @@ int QCtmDrawerWidget::count() const
 }
 
 /*!
-    \brief      Sets the expand state whether to be \a exclusive.
+    \brief      设置抽屉项的展开状态是否互斥 \a exclusive.
     \sa         exclusive()
 */
 void QCtmDrawerWidget::setExclusive(bool exclusive)
@@ -162,7 +169,7 @@ void QCtmDrawerWidget::setExclusive(bool exclusive)
 }
 
 /*!
-    \brief      Returns the expand state whether to be exclusive.
+    \brief      返回抽屉项的展开状态是否互斥.
     \sa         setExclusive
 */
 bool QCtmDrawerWidget::exclusive() const
@@ -171,7 +178,7 @@ bool QCtmDrawerWidget::exclusive() const
 }
 
 /*!
-    \brief      Sets the \a sizes of items.
+    \brief      设置各抽屉项的大小 \a sizes.
 \*/
 void QCtmDrawerWidget::setSizes(const QList<int>& sizes)
 {
@@ -191,7 +198,25 @@ void QCtmDrawerWidget::setSizes(const QList<int>& sizes)
 }
 
 /*!
-    \brief      Calculate and resize the items.
+    \brief      设置Action的图标大小 \a size.
+    \sa         iconSize
+*/
+void QCtmDrawerWidget::setIconSize(const QSize& size)
+{
+    m_impl->iconSize = size;
+    emit iconSizeChanged(size);
+}
+
+/*!
+    \brief      返回Action的图标大小.
+    \sa         setIconSize
+*/
+const QSize& QCtmDrawerWidget::iconSize() const
+{
+    return m_impl->iconSize;
+}
+/*!
+    \brief      计算各抽屉项的大小.
 */
 void QCtmDrawerWidget::doResize()
 {
@@ -238,7 +263,7 @@ void QCtmDrawerWidget::doResize()
 }
 
 /*!
-    \brief      Update the drawer widget when the \a expand state of item has been changed.
+    \brief      响应抽屉项展开状态 \a expand.
     \sa         onItemClicked
 */
 void QCtmDrawerWidget::onItemExpand(bool expand)
@@ -262,7 +287,7 @@ void QCtmDrawerWidget::onItemExpand(bool expand)
 }
 
 /*!
-    \brief      Update the drawer widget when the title bar of the item clicked, \a expand.
+    \brief      响应抽屉项标题点击信号 \a expand.
     \sa         onItemExpand
 */
 void QCtmDrawerWidget::onItemClicked(bool expand)
@@ -276,7 +301,7 @@ void QCtmDrawerWidget::onItemClicked(bool expand)
 }
 
 /*!
-    \brief      Expands all expandable items.
+    \brief      展开所有抽屉项.
     \sa         collapseAll()
 */
 void QCtmDrawerWidget::expandAll()
@@ -288,7 +313,7 @@ void QCtmDrawerWidget::expandAll()
 }
 
 /*!
-    \brief      Collapses all expanded items.
+    \brief      关闭所有抽屉项.
     \sa         expandAll()
 */
 void QCtmDrawerWidget::collapseAll()
@@ -300,7 +325,7 @@ void QCtmDrawerWidget::collapseAll()
 }
 
 /*!
-    \brief      Returns all of the items is closed.
+    \brief      返回所有的抽屉项是否都关闭了.
 */
 bool QCtmDrawerWidget::allClosed() const
 {
@@ -314,7 +339,7 @@ bool QCtmDrawerWidget::allClosed() const
 }
 
 /*!
-    \brief      Returns the total \a sizes.
+    \brief      返回 \a sizes 的总和.
 */
 int QCtmDrawerWidget::total(const QList<int>& sizes) const
 {
@@ -340,7 +365,7 @@ void QCtmDrawerWidget::showEvent(QShowEvent* event)
 }
 
 /*!
-    \brief      Update the drawer widget when the \a expand state of \a item has been changed.
+    \brief      响应抽屉项 \a item 的展开状态变化 \a expand.
 */
 void QCtmDrawerWidget::childExpandChanged(QCtmDrawerItemWidget* item, bool expand)
 {

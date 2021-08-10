@@ -56,6 +56,7 @@ protected:
     void focusInEvent(QFocusEvent* event) override;
     void focusOutEvent(QFocusEvent* event) override;
     void inputMethodEvent(QInputMethodEvent* e) override;
+    bool event(QEvent* event) override;
     QVariant inputMethodQuery(Qt::InputMethodQuery query) const override;
     QSize sizeHint() const override;
     QSize minimumSizeHint() const override;
@@ -73,7 +74,7 @@ private:
     bool hasSelection() const;
     void initActions();
 private slots:
-    void init();
+    void updateTextLayout();
     void onCustomContextMenuRequested(const QPoint& pos);
 private:
     struct Impl;

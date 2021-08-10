@@ -18,26 +18,28 @@
 **********************************************************************************/
 
 #include "QCtmMessageTipHelper_p.h"
+#include "../QCtmMessageTipButton.h"
 
 #include <QPainter>
 #include <QStyleOption>
+#include <QEvent>
 
 #include <assert.h>
 
 struct QCtmMessageTipHelper::Impl
 {
-    int width{ 14 };
-    int height{ 16 };
+    QSize size{ 14, 16 };
     int margin{ 5 };
     int radius{ 25 };
 
     QColor tipColor;
 };
 
-QCtmMessageTipHelper::QCtmMessageTipHelper(QWidget* parent)
+QCtmMessageTipHelper::QCtmMessageTipHelper(QCtmMessageTipButton* parent)
     : QObject(parent)
     , m_impl(std::make_unique<Impl>())
 {
+    m_impl->size = parent->fontMetrics().size(Qt::TextSingleLine, "99");
     parent->installEventFilter(this);
 }
 
@@ -81,5 +83,16 @@ const QColor& QCtmMessageTipHelper::tipColor() const
 QRect QCtmMessageTipHelper::tipsRect(const QRect& rect)
 {
     auto nrect = rect.normalized();
-    return QRect(nrect.right() - m_impl->width - m_impl->margin, nrect.top() + m_impl->margin, m_impl->width, m_impl->height);
+    return QRect(QPoint(nrect.right() - m_impl->size.width() - m_impl->margin, nrect.top() + m_impl->margin)
+        , m_impl->size);
+}
+
+bool QCtmMessageTipHelper::eventFilter(QObject* watched, QEvent* event)
+{
+    auto w = qobject_cast<QCtmMessageTipButton*>(watched);
+    if (w && event->type() == QEvent::FontChange)
+    {
+        m_impl->size = w->fontMetrics().size(Qt::TextSingleLine, "99");;
+    }
+    return false;
 }

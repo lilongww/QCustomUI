@@ -1,4 +1,4 @@
-#include "QCtmToolBoxItem_p.h"
+﻿#include "QCtmToolBoxItem_p.h"
 #include "QCtmWidgetItem_p.h"
 #include "Util_p.h"
 
@@ -14,15 +14,16 @@ struct QCtmToolBoxItem::Impl
     QString title;
     QIcon icon;
     QWidget* m_content{ nullptr };
-    int m_stretch{ 0 };
+    int stretch{ 0 };
+    QSize iconSize{ 16,16 };
 };
 
-QCtmToolBoxItem::QCtmToolBoxItem(QWidget *parent)
-	: QWidget(parent)
+QCtmToolBoxItem::QCtmToolBoxItem(QWidget* parent)
+    : QWidget(parent)
     , m_impl(std::make_unique<Impl>())
 {
-	ui.setupUi(this);
-	setObjectName("item");
+    ui.setupUi(this);
+    setObjectName("item");
     m_impl->layout = new QHBoxLayout(ui.item_title);
     m_impl->layout->setAlignment(Qt::AlignRight);
     m_impl->layout->setMargin(0);
@@ -54,7 +55,7 @@ void QCtmToolBoxItem::setContent(QWidget* widget)
         }
         delete m_impl->m_content;
     }
-	ui.contentLayout->addWidget(widget);
+    ui.contentLayout->addWidget(widget);
     m_impl->m_content = widget;
     for (auto action : m_impl->m_content->actions())
     {
@@ -65,17 +66,17 @@ void QCtmToolBoxItem::setContent(QWidget* widget)
 
 QWidget* QCtmToolBoxItem::content() const
 {
-	return m_impl->m_content;
+    return m_impl->m_content;
 }
 
 void QCtmToolBoxItem::setStretch(int stretch)
 {
-    m_impl->m_stretch = stretch;
+    m_impl->stretch = stretch;
 }
 
 int QCtmToolBoxItem::stretch() const
 {
-	return m_impl->m_stretch;
+    return m_impl->stretch;
 }
 
 void QCtmToolBoxItem::setIcon(const QIcon& icon)
@@ -88,19 +89,31 @@ const QIcon& QCtmToolBoxItem::icon() const
     return m_impl->icon;
 }
 
-void QCtmToolBoxItem::paintEvent([[maybe_unused]] QPaintEvent *event)
+void QCtmToolBoxItem::setIconSize(const QSize& size)
 {
-	QStyleOption opt;
-	opt.initFrom(this);
-	QPainter p(this);
-	style()->drawPrimitive(QStyle::PE_Widget, &opt, &p, this);
+    m_impl->iconSize = size;
+    emit iconSizeChanged(size);
 }
 
-void QCtmToolBoxItem::actionEvent(QActionEvent *event)
+const QSize& QCtmToolBoxItem::iconSize() const
+{
+    return m_impl->iconSize;
+}
+
+void QCtmToolBoxItem::paintEvent([[maybe_unused]] QPaintEvent* event)
+{
+    QStyleOption opt;
+    opt.initFrom(this);
+    QPainter p(this);
+    style()->drawPrimitive(QStyle::PE_Widget, &opt, &p, this);
+}
+
+void QCtmToolBoxItem::actionEvent(QActionEvent* event)
 {
     if (event->type() == QEvent::ActionAdded)
     {
-        auto item = std::make_shared<QCtmWidgetItem>(event->action(), Qt::Horizontal, this);
+        auto item = std::make_shared<QCtmWidgetItem>(event->action(), Qt::Horizontal, m_impl->iconSize, this);
+        connect(this, &QCtmToolBoxItem::iconSizeChanged, item.get(), &QCtmWidgetItem::iconSizeChanged);
         Util::addItem(item, m_impl->items, event->before(), m_impl->layout);
     }
     else if (event->type() == QEvent::ActionRemoved)
@@ -109,7 +122,7 @@ void QCtmToolBoxItem::actionEvent(QActionEvent *event)
     }
 }
 
-bool QCtmToolBoxItem::eventFilter(QObject *watched, QEvent *event)
+bool QCtmToolBoxItem::eventFilter(QObject* watched, QEvent* event)
 {
     if (watched == m_impl->m_content)
     {

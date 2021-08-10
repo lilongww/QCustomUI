@@ -1,4 +1,4 @@
-/*********************************************************************************
+﻿/*********************************************************************************
 **                                                                              **
 **  Copyright (C) 2019-2020 LiLong                                              **
 **  This file is part of QCustomUi.                                             **
@@ -32,7 +32,7 @@ class QCtmNavigationSidePane;
 class QCUSTOMUI_EXPORT QCtmNavigationBar : public QWidget
 {
     Q_OBJECT
-
+        Q_PROPERTY(QSize iconSize READ iconSize WRITE setIconSize NOTIFY iconSizeChanged)
 public:
     enum ActionPosition
     {
@@ -66,6 +66,10 @@ public:
     int count(ActionPosition pos)const;
     QRect actionRect(QAction* action);
     QAction* actionAt(int index, ActionPosition pos) const;
+    void setIconSize(const QSize& size);
+    const QSize& iconSize() const;
+signals:
+    void iconSizeChanged(const QSize& size);
 protected:
     void paintEvent(QPaintEvent* event)override;
     void actionEvent(QActionEvent* event) override;

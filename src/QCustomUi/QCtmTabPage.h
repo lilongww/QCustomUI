@@ -1,4 +1,4 @@
-/*********************************************************************************
+﻿/*********************************************************************************
 **                                                                              **
 **  Copyright (C) 2019-2020 LiLong                                              **
 **  This file is part of QCustomUi.                                             **
@@ -32,6 +32,7 @@ class QCtmTabCornerLayout;
 class QCUSTOMUI_EXPORT QCtmTabPage :public QWidget
 {
     Q_OBJECT
+        Q_PROPERTY(QSize iconSize READ iconSize WRITE setIconSize NOTIFY iconSizeChanged)
 public:
     QAction* addAction(const QIcon& icon, const QString& text);
     QAction* addAction(const QString& text);
@@ -42,8 +43,11 @@ public:
     QAction* actionAt(int index) const;
     QWidget* takeCentralWidget() const;
     QWidget* centralWidget() const;
-
+    void setIconSize(const QSize& size);
+    const QSize& iconSize() const;
     using QWidget::addAction;
+signals:
+    void iconSizeChanged(const QSize& size);
 protected:
     void paintEvent(QPaintEvent* event) override;
     void actionEvent(QActionEvent* event) override;

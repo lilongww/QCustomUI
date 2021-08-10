@@ -1,6 +1,6 @@
 ﻿/*!
     \class      QCtmClassifyTreeIconItem
-    \brief      This is a standard icon item that used with QCtmClassifyTreeModel.
+    \brief      这是一个标准的图标item, 用在QCtmClassifyTreeModel中.
     \inherits   QCtmClassifyTreeItem
     \ingroup    QCustomUi
     \inmodule   QCustomUi

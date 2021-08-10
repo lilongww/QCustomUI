@@ -1,4 +1,4 @@
-/*********************************************************************************
+﻿/*********************************************************************************
 **                                                                              **
 **  Copyright (C) 2019-2020 LiLong                                              **
 **  This file is part of QCustomUi.                                             **
@@ -30,17 +30,20 @@ class QCtmDrawerItemTitle : public QPushButton
 {
     Q_OBJECT
         Q_PROPERTY(QString text READ text WRITE setText)
+        Q_PROPERTY(QSize iconSize READ iconSize WRITE setIconSize NOTIFY iconSizeChanged)
 public:
     QCtmDrawerItemTitle(QCtmDrawerItemWidget* parent);
     ~QCtmDrawerItemTitle();
 
     void setExpand(bool expand);
     bool isExpand() const;
-
     void insertAction(int index, QAction* action);
     QAction* actionAt(int index) const;
     int indexOf(QAction* action) const;
-
+    void setIconSize(const QSize& size);
+    const QSize& iconSize() const;
+signals:
+    void iconSizeChanged(const QSize& size);
 protected:
     void paintEvent(QPaintEvent* event) override;
     void actionEvent(QActionEvent* event) override;

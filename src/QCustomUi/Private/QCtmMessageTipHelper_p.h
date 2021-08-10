@@ -23,12 +23,13 @@
 
 #include <memory>
 
+class QCtmMessageTipButton;
 class QCtmMessageTipHelper : public QObject
 {
     Q_OBJECT
 
 public:
-    QCtmMessageTipHelper(QWidget* parent);
+    QCtmMessageTipHelper(QCtmMessageTipButton* parent);
     ~QCtmMessageTipHelper();
 
     void drawMessageTip(int msgCount, QPainter& p, QWidget* w);
@@ -37,7 +38,7 @@ public:
     const QColor& tipColor()const;
 protected:
     QRect tipsRect(const QRect& rect);
-
+    bool eventFilter(QObject* watched, QEvent* event) override;
 private:
     struct Impl;
     std::unique_ptr<Impl> m_impl;

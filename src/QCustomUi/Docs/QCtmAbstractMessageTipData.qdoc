@@ -1,4 +1,4 @@
-/*********************************************************************************
+﻿/*********************************************************************************
 **                                                                              **
 **  Copyright (C) 2019-2020 LiLong                                              **
 **  This file is part of QCustomUi.                                             **
@@ -19,17 +19,17 @@
 
 /*!
     \class      QCtmAbstractMessageTipData
-    \brief      QCtmAbstractMessageTipData provide a abstract interface for message tip data.
+    \brief      消息提示数据接口类.
     \ingroup    QCustomUi
     \inmodule   QCustomUi
 */
 
 /*!
     \fn         QCtmAbstractMessageTipData::QCtmAbstractMessageTipData()
-    \brief      Constructs a message tip data.
+    \brief      构造函数.
 */
 
 /*!
     \fn         QCtmAbstractMessageTipData::~QCtmAbstractMessageTipData()
-    \brief      Destroys the message tip data.
+    \brief      析构函数.
 */

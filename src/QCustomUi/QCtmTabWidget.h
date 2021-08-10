@@ -1,4 +1,4 @@
-/*********************************************************************************
+﻿/*********************************************************************************
 **                                                                              **
 **  Copyright (C) 2019-2020 LiLong                                              **
 **  This file is part of QCustomUi.                                             **
@@ -32,6 +32,7 @@ class QCtmTabPage;
 class QCUSTOMUI_EXPORT QCtmTabWidget :public QTabWidget
 {
     Q_OBJECT
+        Q_PROPERTY(QSize iconSize READ iconSize WRITE setIconSize NOTIFY iconSizeChanged)
 public:
     QCtmTabWidget(QWidget* parent = nullptr);
     ~QCtmTabWidget();
@@ -41,6 +42,10 @@ public:
     QCtmTabPage* addTab(QWidget* widget, const QIcon& icon, const QString& label);
     QCtmTabPage* insertTab(int index, QWidget* widget, const QString& label);
     QCtmTabPage* insertTab(int index, QWidget* widget, const QIcon& icon, const QString& label);
+    void setIconSize(const QSize& size);
+    const QSize& iconSize() const;
+signals:
+    void iconSizeChanged(const QSize& size);
 protected:
     void paintEvent(QPaintEvent* e);
 
@@ -51,4 +56,3 @@ private:
     struct Impl;
     std::unique_ptr<Impl> m_impl;
 };
-

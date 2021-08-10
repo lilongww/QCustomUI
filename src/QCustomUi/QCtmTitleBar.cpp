@@ -36,6 +36,7 @@ struct QCtmTitleBar::Impl
     QMenuBar* menuBar{ nullptr };
     bool showIcon{ true };
     QList<QCtmWidgetItemPtr> items;
+    QSize iconSize{ 16,16 };
 };
 
 /*!
@@ -139,6 +140,23 @@ bool QCtmTitleBar::iconIsVisible() const
 }
 
 /*!
+    \brief      设置Action图标大小 \a size.
+    \sa         iconSize
+*/
+void QCtmTitleBar::setIconSize(const QSize& size)
+{
+    m_impl->iconSize = size;
+}
+
+/*!
+    \brief      返回Action图标大小.
+    \sa         setIconSize
+*/
+const QSize& QCtmTitleBar::iconSize() const
+{
+    return m_impl->iconSize;
+}
+/*!
     \brief      Close the window when the close button is clicked.
     \sa         onMaximumSizeBtn(), onMinimumSizeBtn()
 */
@@ -177,15 +195,16 @@ void QCtmTitleBar::paintEvent([[maybe_unused]] QPaintEvent* event)
     opt.init(this);
     QPainter p(this);
     style()->drawPrimitive(QStyle::PE_Widget, &opt, &p, this);
+    const auto& iconRect = doIconRect();
     if (!m_impl->windowIcon.isNull() && m_impl->showIcon)
     {
-        p.drawPixmap(doIconRect(), m_impl->windowIcon);
+        p.drawPixmap(iconRect, m_impl->windowIcon);
     }
 
     if (parentWidget())
     {
         auto text = parentWidget()->windowTitle();
-        auto rect = opt.fontMetrics.boundingRect(text);
+        QRect rect(QPoint{ 0,0 }, opt.fontMetrics.size(Qt::TextSingleLine, text));
         if (m_impl->menuBar)
         {
             if (m_impl->menuBar->geometry().right() >= (this->width() - rect.width()) / 2)
@@ -196,16 +215,14 @@ void QCtmTitleBar::paintEvent([[maybe_unused]] QPaintEvent* event)
                 rect.moveTo((width() - rect.width()) / 2, 0);
         }
         else
-            rect.moveTo(leftMargin + m_impl->windowIcon.width() + titleSpacing, 0);
+            rect.moveTo(leftMargin + iconRect.width() + titleSpacing, 0);
         rect.setHeight(this->height());
         QTextOption to;
         to.setWrapMode(QTextOption::NoWrap);
         to.setAlignment(Qt::AlignCenter);
-        p.save();
         p.setFont(this->font());
         p.setPen(this->palette().windowText().color());
         p.drawText(rect, text, to);
-        p.restore();
     }
 }
 
@@ -268,8 +285,8 @@ bool QCtmTitleBar::eventFilter(QObject* watched, QEvent* event)
                 }
                 if (m_impl->showIcon)
                     ui->horizontalLayout->setContentsMargins(leftMargin + titleSpacing + m_impl->windowIcon.width(), 0, 0, 0);
+            }
         }
-    }
         else if (event->type() == QEvent::WindowTitleChange)
         {
             update();
@@ -284,7 +301,7 @@ bool QCtmTitleBar::eventFilter(QObject* watched, QEvent* event)
                     ui->maximumSizeBtn->show();
             }
         }
-}
+    }
     return false;
 }
 
@@ -295,7 +312,8 @@ void QCtmTitleBar::actionEvent(QActionEvent* event)
 {
     if (event->type() == QEvent::ActionAdded)
     {
-        auto item = std::make_shared<QCtmWidgetItem>(event->action(), Qt::Horizontal, this);
+        auto item = std::make_shared<QCtmWidgetItem>(event->action(), Qt::Horizontal, m_impl->iconSize, this);
+        connect(this, &QCtmTitleBar::iconSizeChanged, item.get(), &QCtmWidgetItem::iconSizeChanged);
         Util::addItem(item, m_impl->items, event->before(), ui->actionLayout);
     }
     else

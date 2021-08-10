@@ -1,4 +1,4 @@
-/*********************************************************************************
+﻿/*********************************************************************************
 **                                                                              **
 **  Copyright (C) 2019-2020 LiLong                                              **
 **  This file is part of QCustomUi.                                             **
@@ -37,6 +37,7 @@ struct QCtmTabPage::Impl
     QHBoxLayout* cornerLayout{ nullptr };
     QHBoxLayout* layout{ nullptr };
     QWidget* centralWidget{ nullptr };
+    QSize iconSize{ 16,16 };
 };
 
 /*!
@@ -45,6 +46,12 @@ struct QCtmTabPage::Impl
     \inherits   QWidget
     \ingroup    QCustomUi
     \inmodule   QCustomUi
+*/
+
+/*!
+    \fn         void QCtmTabPage::iconSizeChanged(const QSize& size);
+    \brief      当Action的图标大小发生改变时发送该信号 \a size.
+    \sa         setIconSize
 */
 
 /*!
@@ -93,7 +100,7 @@ void QCtmTabPage::insertAction(int index, QAction* action)
 }
 
 /**
- * @brief  		Insert a action.
+ * @brief       Insert a action.
  */
 QAction* QCtmTabPage::insertAction(int index, const QString& text)
 {
@@ -144,6 +151,24 @@ QWidget* QCtmTabPage::centralWidget() const
 }
 
 /*!
+    \brief      设置Action图标大小 \a size.
+    \sa         iconSize
+*/
+void QCtmTabPage::setIconSize(const QSize& size)
+{
+    m_impl->iconSize = size;
+    emit iconSizeChanged(size);
+}
+
+/*!
+    \brief      返回Action的图标大小.
+    \sa         setIconSize
+*/
+const QSize& QCtmTabPage::iconSize() const
+{
+    return m_impl->iconSize;
+}
+/*!
     \brief      Returns count of the action.
     \sa         addAction, insertAction
 */
@@ -170,7 +195,8 @@ void QCtmTabPage::actionEvent(QActionEvent* event)
 {
     if (event->type() == QActionEvent::ActionAdded)
     {
-        auto item = std::make_shared<QCtmWidgetItem>(event->action(), Qt::Horizontal, this);
+        auto item = std::make_shared<QCtmWidgetItem>(event->action(), Qt::Horizontal, m_impl->iconSize, this);
+        connect(this, &QCtmTabPage::iconSizeChanged, item.get(), &QCtmWidgetItem::iconSizeChanged);
         Util::addItem(item, m_impl->actions, event->before(), m_impl->cornerLayout);
     }
     else if (event->type() == QActionEvent::ActionRemoved)

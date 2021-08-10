@@ -1,4 +1,4 @@
-#include "QCtmDrawerItemWidget.h"
+﻿#include "QCtmDrawerItemWidget.h"
 #include "QCtmDrawerWidget.h"
 #include "Private/QCtmDrawerItemTitle_p.h"
 
@@ -17,26 +17,35 @@ struct QCtmDrawerItemWidget::Impl
 
 /*!
     \class      QCtmDrawerItemWidget
-    \brief      QCtmDrawerItemWidget provide a item when add a widget to the QCtmDrawerWidget.
+    \brief      抽屉窗口 QCtmDrawerWidget 的抽屉项.
     \inherits   QWidget
     \ingroup    QCustomUi
     \inmodule   QCustomUi
+
+    \b          {抽屉窗口的截图，抽屉项为其中一栏:}
+    \image      QCtmDrawerWidgetDetail.png
 */
 
 /*!
     \fn         void QCtmDrawerItemWidget::expandChanged(bool expand)
-    \brief      Emit this signal when the item's \a expand state is changed.
+    \brief      当抽屉项的扩展状态发生变化时，发送该信号 \a expand.
     \sa         QCtmDrawerItemWidget::titleClicked
 */
 
 /*!
     \fn         void QCtmDrawerItemWidget::titleClicked(bool expand)
-    \brief      Emit this signal when the title bar of the item has being clicked, \a expand.
+    \brief      当抽屉项的标题栏被点击时发送该信号 \a expand.
     \sa         QCtmDrawerItemWidget::expandChanged
 */
 
 /*!
-    \brief      Constructs a item with the given \a title and \a parent.
+    \fn         void QCtmDrawerItemWidget::iconSizeChanged(const QSize& size);
+    \brief      当Action的图标大小发生改变时发送该信号 \a size.
+    \sa         QCtmDrawerItemWidget::setIconSize
+*/
+
+/*!
+    \brief      构造一个标题为 \a title, 父窗口为 \a parent 的抽屉窗口.
 */
 QCtmDrawerItemWidget::QCtmDrawerItemWidget(const QString& title, QCtmDrawerWidget* parent)
     : QWidget(parent)
@@ -67,7 +76,7 @@ QCtmDrawerItemWidget::QCtmDrawerItemWidget(const QString& title, QCtmDrawerWidge
 }
 
 /*!
-    \brief      Destroys the item.
+    \brief      销毁该抽屉项对象.
 */
 QCtmDrawerItemWidget::~QCtmDrawerItemWidget()
 {
@@ -75,7 +84,7 @@ QCtmDrawerItemWidget::~QCtmDrawerItemWidget()
 }
 
 /*!
-    \brief      Sets the given \a widget.
+    \brief      设置抽屉项容纳的部件 \a widget.
     \sa         widget()
 */
 void QCtmDrawerItemWidget::setWidget(QWidget* widget)
@@ -90,7 +99,7 @@ void QCtmDrawerItemWidget::setWidget(QWidget* widget)
 }
 
 /*!
-    \brief      Returns the widget.
+    \brief      返回该抽屉项容纳的部件.
     \sa         setWidget
 */
 QWidget* QCtmDrawerItemWidget::widget() const
@@ -99,7 +108,7 @@ QWidget* QCtmDrawerItemWidget::widget() const
 }
 
 /*!
-    \brief      Sets the \a title.
+    \brief      设置抽屉项的标题 \a title.
     \sa         title()
 */
 void QCtmDrawerItemWidget::setTitle(const QString& title)
@@ -108,7 +117,7 @@ void QCtmDrawerItemWidget::setTitle(const QString& title)
 }
 
 /*!
-    \brief      Returns the title.
+    \brief      返回抽屉项的标题.
     \sa         setTitle
 */
 QString QCtmDrawerItemWidget::title() const
@@ -117,7 +126,7 @@ QString QCtmDrawerItemWidget::title() const
 }
 
 /*!
-    \brief      Returns expand state of the item.
+    \brief      返回该抽屉项的展开状态.
     \sa         setExpand
 */
 bool QCtmDrawerItemWidget::isExpand() const
@@ -126,7 +135,7 @@ bool QCtmDrawerItemWidget::isExpand() const
 }
 
 /*!
-    \brief      Sets the \a expand state of the item.
+    \brief      设置该抽屉项的展开状态 \a expand.
     \sa         isExpand
 */
 void QCtmDrawerItemWidget::setExpand(bool expand)
@@ -151,7 +160,7 @@ void QCtmDrawerItemWidget::setExpand(bool expand)
 }
 
 /*!
-    \brief      Changes the expand state when the title bar clicked.
+    \brief      响应标题栏点击信号.
 */
 void QCtmDrawerItemWidget::onClicked()
 {
@@ -175,7 +184,7 @@ void QCtmDrawerItemWidget::resizeEvent([[maybe_unused]] QResizeEvent* event)
 }
 
 /*!
-    \brief      Returns a suggest size.
+    \brief      返回抽屉项的建议大小.
     \sa         setSuggestSize
 */
 int QCtmDrawerItemWidget::suggestSize() const
@@ -184,7 +193,7 @@ int QCtmDrawerItemWidget::suggestSize() const
 }
 
 /*!
-    \brief      Sets a suggest \a size.
+    \brief      设置抽屉项的建议大小 \a size.
     \sa         suggestSize()
 */
 void QCtmDrawerItemWidget::setSuggestSize(int size)
@@ -194,8 +203,7 @@ void QCtmDrawerItemWidget::setSuggestSize(int size)
 
 /*!
     \overload   addAction
-                Creates a action with the given \a text.
-                And adds and returns the action to the title bar.
+                在标题栏上添加一个文本为 \a text 的Action.
     \sa         QCtmDrawerItemWidget::addAction, removeAction
 */
 QAction* QCtmDrawerItemWidget::addAction(const QString& text)
@@ -204,8 +212,7 @@ QAction* QCtmDrawerItemWidget::addAction(const QString& text)
 }
 
 /*!
-    \brief      Creates a action with the given \a icon and \a text.
-                And adds and returns the action to the title bar.
+    \brief      在标题栏上添加一个图标为 \a icon 文本为 \a text 的Action.
     \sa         insertAction, removeAction
 */
 QAction* QCtmDrawerItemWidget::addAction(const QIcon& icon, const QString& text)
@@ -215,8 +222,7 @@ QAction* QCtmDrawerItemWidget::addAction(const QIcon& icon, const QString& text)
 
 /*!
     \overload   addAction
-                Creates a action with the given \a icon.
-                And adds and returns the action to the title bar.
+                在标题栏上添加一个图标为 \a icon 的Action.
     \sa         insertAction, removeAction
 */
 QAction* QCtmDrawerItemWidget::addAction(const QIcon& icon)
@@ -225,7 +231,7 @@ QAction* QCtmDrawerItemWidget::addAction(const QIcon& icon)
 }
 
 /*!
-    \brief      Insert the given \a action to the position of \a index.
+    \brief      在标题栏上的 \a index 位置插入一个 \a action.
     \sa         addAction, removeAction
 */
 void QCtmDrawerItemWidget::insertAction(int index, QAction* action)
@@ -235,8 +241,7 @@ void QCtmDrawerItemWidget::insertAction(int index, QAction* action)
 
 /*!
     \overload   insertAction
-                Creates a action with the given \a text.
-                And inserts and returns the action to the title bar with \a index.
+                在标题栏上的 \a index 位置插入一个文本为 \a text 的Action.
     \sa         QCtmDrawerItemWidget::insertAction, removeAction
 */
 QAction* QCtmDrawerItemWidget::insertAction(int index, const QString& text)
@@ -246,8 +251,7 @@ QAction* QCtmDrawerItemWidget::insertAction(int index, const QString& text)
 
 /*!
     \overload   insertAction
-                Creates a action with the given \a icon and \a text.
-                And inserts and returns the action to the title bar with \a index.
+                在标题栏上的 \a index 位置插入一个图标为 \a icon 文本为 \a text 的Action.
     \sa         QCtmDrawerItemWidget::insertAction, removeAction
 */
 QAction* QCtmDrawerItemWidget::insertAction(int index, const QIcon& icon, const QString& text)
@@ -258,7 +262,7 @@ QAction* QCtmDrawerItemWidget::insertAction(int index, const QIcon& icon, const 
 }
 
 /*!
-    \brief      Remove the given \a action.
+    \brief      移除给予的 \a action.
     \sa         addAction, insertAction
 */
 void QCtmDrawerItemWidget::removeAction(QAction* action)
@@ -267,7 +271,7 @@ void QCtmDrawerItemWidget::removeAction(QAction* action)
 }
 
 /*!
-    \brief      Returns the count of actions.
+    \brief      返回Action的数量.
 */
 int QCtmDrawerItemWidget::count() const
 {
@@ -275,7 +279,7 @@ int QCtmDrawerItemWidget::count() const
 }
 
 /*!
-    \brief      Returns the index of the given \a action.
+    \brief      返回 \a action 的位置.
     \sa         actionAt
 */
 int QCtmDrawerItemWidget::indexOf(QAction* action)
@@ -284,10 +288,29 @@ int QCtmDrawerItemWidget::indexOf(QAction* action)
 }
 
 /*!
-    \brief      Returns the action of the given \a index.
+    \brief      返回 \a index 位置的Action.
     \sa         indexOf
 */
 QAction* QCtmDrawerItemWidget::actionAt(int index)
 {
     return m_impl->title->actionAt(index);
+}
+
+/*!
+    \brief      设置Action的大小 \a size.
+    \sa         iconSize
+*/
+void QCtmDrawerItemWidget::setIconSize(const QSize& size)
+{
+    m_impl->title->setIconSize(size);
+    emit iconSizeChanged(size);
+}
+
+/*!
+    \brief      返回Action的大小.
+    \sa         setIconSize
+*/
+const QSize& QCtmDrawerItemWidget::iconSize() const
+{
+    return m_impl->title->iconSize();
 }

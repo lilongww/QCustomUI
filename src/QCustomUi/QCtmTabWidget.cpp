@@ -1,4 +1,4 @@
-/*********************************************************************************
+﻿/*********************************************************************************
 **                                                                              **
 **  Copyright (C) 2019-2020 LiLong                                              **
 **  This file is part of QCustomUi.                                             **
@@ -32,6 +32,7 @@ struct QCtmTabWidget::Impl
     QWidget* cornerWidget{ nullptr };
     QHBoxLayout* cornerLayout{ nullptr };
     QToolButton* closeBtn{ nullptr };
+    QSize iconSize{ 16,16 };
 
     void setPageCornerWidget(QWidget* widget)
     {
@@ -54,6 +55,12 @@ struct QCtmTabWidget::Impl
     \inherits   QTabWidget
     \ingroup    QCustomUi
     \inmodule   QCustomUi
+*/
+
+/*!
+    \fn         void QCtmTabWidget::iconSizeChanged(const QSize& size);
+    \brief      当Action的图标大小发生变化时发送该信号 \a size.
+    \sa         setIconSize
 */
 
 /*!
@@ -125,9 +132,30 @@ QCtmTabPage* QCtmTabWidget::insertTab(int index, QWidget* widget, const QString&
 QCtmTabPage* QCtmTabWidget::insertTab(int index, QWidget* widget, [[maybe_unused]] const QIcon& icon, const QString& label)
 {
     auto page = new QCtmTabPage(this);
+    page->setIconSize(m_impl->iconSize);
+    connect(this, &QCtmTabWidget::iconSizeChanged, page, &QCtmTabPage::setIconSize);
     page->setCentralWidget(widget);
     QTabWidget::insertTab(index, page, label);
     return page;
+}
+
+/*!
+    \brief      设置Action的图标大小 \a size.
+    \sa         iconSize
+*/
+void QCtmTabWidget::setIconSize(const QSize& size)
+{
+    m_impl->iconSize = size;
+    emit iconSizeChanged(size);
+}
+
+/*!
+    \brief      返回Action的图标大小.
+    \sa         setIconSize
+*/
+const QSize& QCtmTabWidget::iconSize() const
+{
+    return m_impl->iconSize;
 }
 
 /*!
@@ -156,4 +184,3 @@ void QCtmTabWidget::onCurrentChanged(int index)
     else
         this->setCornerWidget(nullptr);
 }
-

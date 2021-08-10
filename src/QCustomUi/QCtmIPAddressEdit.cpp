@@ -129,7 +129,7 @@ QCtmIPAddressEdit::QCtmIPAddressEdit(QWidget* parent)
         update();
         });
     connect(this, &QWidget::customContextMenuRequested, this, &QCtmIPAddressEdit::onCustomContextMenuRequested);
-    QMetaObject::invokeMethod(this, "init", Qt::QueuedConnection);
+    updateTextLayout();
     initActions();
     setReadOnly(m_impl->readOnly);
 }
@@ -624,6 +624,18 @@ void QCtmIPAddressEdit::inputMethodEvent(QInputMethodEvent* e)
         e->accept();
 }
 
+/*!
+    \reimp
+*/
+bool QCtmIPAddressEdit::event(QEvent* event)
+{
+    if (event->type() == QEvent::FontChange)
+    {
+        updateTextLayout();
+    }
+    return QWidget::event(event);
+}
+
 QVariant QCtmIPAddressEdit::inputMethodQuery(Qt::InputMethodQuery query) const
 {
     if (query == Qt::ImEnabled)
@@ -835,13 +847,14 @@ int QCtmIPAddressEdit::redoTextLayout(QTextLayout& textLayout) const
     \brief      Initialization
     \sa
 */
-void QCtmIPAddressEdit::init()
+void QCtmIPAddressEdit::updateTextLayout()
 {
     QTextOption txtOpt;
     txtOpt.setAlignment(Qt::AlignCenter);
     for (int i = 0; i < SECTION_COUNT; i++)
     {
         auto&& textLayout = m_impl->textLayouts[i];
+        textLayout.clearLayout();
         textLayout.setCacheEnabled(true);
         textLayout.setTextOption(txtOpt);
         textLayout.setFont(this->font());
