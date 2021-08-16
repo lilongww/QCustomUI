@@ -51,12 +51,14 @@ set(INPUT_HEADERS
  "QCtmIPAddressEdit.h"
  "QCtmMultiComboBox.h"
  "QCtmComboBox.h"
+ "QCtmInputDialog.h"
 )
 
 set(INPUT_SOURCES
  "QCtmIPAddressEdit.cpp"
  "QCtmMultiComboBox.cpp"
  "QCtmComboBox.cpp"
+ "QCtmInputDialog.cpp"
 )
 
 set(CONTAINERS_HEADERS
@@ -203,7 +205,7 @@ add_library(QCustomUi SHARED
  ${DOCS}
 )
 
-target_link_libraries(QCustomUi PRIVATE Qt5::Core Qt5::Gui Qt5::Widgets Qt5::WinExtras Qt5::Network)
+target_link_libraries(QCustomUi PRIVATE Qt5::Core Qt5::Gui Qt5::Widgets Qt5::WinExtras Qt5::Network Qt5::WidgetsPrivate)
 set_target_properties(QCustomUi PROPERTIES VERSION ${QCUSTOMUI_VERSION} SOVERSION 1)
 
 file(GLOB PUBLIC_HEADERS ./*.h)

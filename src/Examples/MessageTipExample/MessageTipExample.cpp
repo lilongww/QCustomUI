@@ -5,6 +5,7 @@
 #include <QCustomUi/QCtmMessageTipData.h>
 #include <QCustomUi/QCtmMessageTipModel.h>
 #include <QCustomUi/QCtmMessageTipView.h>
+#include <QCustomUi/QCtmInputDialog.h>
 
 #include <QWidgetAction>
 

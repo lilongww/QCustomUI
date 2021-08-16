@@ -243,33 +243,3 @@ bool QCtmDialog::nativeEvent(const QByteArray& eventType, void* message, long* r
     return QDialog::nativeEvent(eventType, message, result);
 #endif
 }
-
-/*!
-    \brief      标准化 \a pos.
-*/
-void QCtmDialog::normalizes(QPoint& pos)
-{
-    auto screen = qApp->screenAt(pos);
-    if (!screen)
-        return;
-    auto rect = screen->geometry();
-    if (pos.x() < rect.left())
-    {
-        pos.setX(rect.left());
-    }
-
-    if (pos.x() + this->width() > rect.right())
-    {
-        pos.setX(rect.right() - this->width());
-    }
-
-    if (pos.y() < rect.top())
-    {
-        pos.setX(rect.top());
-    }
-
-    if (pos.y() + this->height() > rect.bottom())
-    {
-        pos.setY(rect.bottom() - this->height());
-    }
-}
