@@ -12,6 +12,7 @@ QCustomUi是一个自定义UI库，主要提供无边框窗口和一些自定义
 ```
 1.QCtmMessageTipModel默认最新消息显示在前面;
 2.新增QCtmInputDialog，该弹窗继承于QInputDialog，实现了QCustomUi的窗口风格；
+3.删除冗余样式表；
 ```
 **[1.5.2]**
 ```
