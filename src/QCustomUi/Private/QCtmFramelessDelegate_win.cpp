@@ -26,13 +26,13 @@
 #include <QPainter>
 #include <QPen>
 #include <QDebug>
+#include <QWindow>
+#include <QBackingStore>
 
 #ifdef Q_OS_WIN
-
-#include <qwinfunctions.h>
-
 #include <windows.h>
 #include <windowsx.h>
+#include <dwmapi.h>
 
 constexpr long AeroBorderlessFlag = WS_POPUP | WS_THICKFRAME | WS_CAPTION | WS_SYSMENU | WS_MAXIMIZEBOX | WS_MINIMIZEBOX;
 constexpr long BasicBorderlessFlag = WS_POPUP | WS_THICKFRAME | WS_SYSMENU | WS_MAXIMIZEBOX | WS_MINIMIZEBOX;
@@ -45,6 +45,27 @@ struct QCtmWinFramelessDelegate::Impl
     QWidget* parent{ nullptr };
     bool firstShow{ true };
 };
+
+inline bool isCompositionEnabled()
+{
+#if QT_VERSION < QT_VERSION_CHECK(6,0,0)
+    return QtWin::isCompositionEnabled();
+#else
+    BOOL enabled = FALSE;
+    DwmIsCompositionEnabled(&enabled);
+    return enabled;
+#endif
+}
+
+inline void extendFrameIntoClientArea(QWindow *window, int left, int top, int right, int bottom)
+{
+#if QT_VERSION < QT_VERSION_CHECK(6,0,0)
+    QtWin::extendFrameIntoClientArea(window, left, top, right, bottom);
+#else
+    MARGINS margins = {left, right, top, bottom};
+    DwmExtendFrameIntoClientArea(reinterpret_cast<HWND>(window->winId()), &margins);
+#endif
+}
 
 QCtmWinFramelessDelegate::QCtmWinFramelessDelegate(QWidget* parent, const QWidgetList& moveBars)
     : QObject(parent)
@@ -81,9 +102,15 @@ void QCtmWinFramelessDelegate::removeMoveBar(QWidget* w)
     m_impl->moveBars.removeOne(w);
 }
 
+#if QT_VERSION < QT_VERSION_CHECK(6,0,0)
 bool QCtmWinFramelessDelegate::nativeEvent([[maybe_unused]] const QByteArray& eventType
     , void* message
     , long*& result)
+#else
+bool QCtmWinFramelessDelegate::nativeEvent(const QByteArray &eventType
+    , void *message
+    , qintptr *result)
+#endif
 {
     MSG* msg = static_cast<MSG*>(message);
     switch (msg->message) {
@@ -247,7 +274,7 @@ bool QCtmWinFramelessDelegate::nativeEvent([[maybe_unused]] const QByteArray& ev
     break;
     case WM_NCACTIVATE:
     {
-        if (!QtWin::isCompositionEnabled()) {
+        if (!isCompositionEnabled()) {
             *result = 1;
             return true;
         }
@@ -257,7 +284,7 @@ bool QCtmWinFramelessDelegate::nativeEvent([[maybe_unused]] const QByteArray& ev
     {
         if (m_impl->parent->isMaximized())
         {
-            if (QtWin::isCompositionEnabled())
+            if (isCompositionEnabled())
             {
                 auto margin = 8 / m_impl->parent->devicePixelRatioF();
                 m_impl->parent->layout()->setContentsMargins(QMargins(margin, margin, margin, margin));
@@ -319,7 +346,7 @@ bool QCtmWinFramelessDelegate::eventFilter(QObject* watched, QEvent* event)
     {
         if (event->type() == QEvent::WindowStateChange)
         {
-            if (m_impl->parent->isMaximized() && QtWin::isCompositionEnabled() && !m_impl->parent->windowFlags().testFlag(Qt::Tool))
+            if (m_impl->parent->isMaximized() && isCompositionEnabled() && !m_impl->parent->windowFlags().testFlag(Qt::Tool))
             {
                 auto margin = 8 / m_impl->parent->devicePixelRatioF();
                 m_impl->parent->layout()->setContentsMargins(QMargins(margin, margin, margin, margin));
@@ -353,7 +380,7 @@ void QCtmWinFramelessDelegate::setWindowLong()
     auto hwnd = reinterpret_cast<HWND>(m_impl->parent->winId());
 
     long style;
-    if (QtWin::isCompositionEnabled())
+    if (isCompositionEnabled())
     {
         if (m_impl->parent->maximumSize() == QSize(QWIDGETSIZE_MAX, QWIDGETSIZE_MAX)
             && m_impl->parent->windowFlags().testFlag(Qt::WindowMaximizeButtonHint))
@@ -371,9 +398,9 @@ void QCtmWinFramelessDelegate::setWindowLong()
     }
     SetWindowLongPtr(hwnd, GWL_STYLE, style);
 
-    if (QtWin::isCompositionEnabled())
+    if (isCompositionEnabled())
     {
-        QtWin::extendFrameIntoClientArea(m_impl->parent, 1, 1, 1, 1);
+        extendFrameIntoClientArea(m_impl->parent->backingStore()->window(), 1, 1, 1, 1);
     }
 
     SetWindowPos(hwnd, nullptr, 0, 0, 0, 0, SWP_FRAMECHANGED | SWP_NOMOVE | SWP_NOSIZE);

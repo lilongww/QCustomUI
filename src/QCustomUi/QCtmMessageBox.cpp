@@ -27,7 +27,6 @@
 #include <QPushButton>
 #include <QStyle>
 #include <QApplication>
-#include <QDesktopWidget>
 #include <QScreen>
 
 struct QCtmMessageBox::Impl
@@ -544,7 +543,7 @@ void QCtmMessageBox::init()
     QHBoxLayout* msgLayout = new QHBoxLayout;
     msgLayout->addWidget(m_impl->iconLabel, 0);
     msgLayout->addWidget(m_impl->label, 1);
-    msgLayout->setMargin(0);
+    msgLayout->setContentsMargins(0,0,0,0);
     msgLayout->setSpacing(20);
     layout->addLayout(msgLayout);
     layout->addWidget(m_impl->buttonBox);
@@ -605,14 +604,16 @@ void QCtmMessageBox::updateSize()
     if (windowTitleWidth > width)
         width = windowTitleWidth;
 
-    centralWidget()->layout()->activate();
-    int height = (centralWidget()->layout()->hasHeightForWidth())
-        ? centralWidget()->layout()->totalHeightForWidth(width)
-        : centralWidget()->layout()->totalMinimumSize().height();
+    auto layout = centralWidget()->layout();
+    layout->activate();
+    int height = (layout->hasHeightForWidth())
+        ? layout->totalHeightForWidth(width)
+        : layout->totalMinimumSize().height();
 
     const auto& margins = contentsMargins();
-    setFixedSize(width + margins.left() + margins.right() + centralWidget()->layout()->margin()
-        , height + this->titleBar()->height() + margins.bottom() + margins.top() + centralWidget()->layout()->margin());
+    const auto& layoutMargins = layout->contentsMargins();
+    setFixedSize(width + margins.left() + margins.right() + layoutMargins.left() + layoutMargins.right()
+        , height + this->titleBar()->height() + margins.bottom() + margins.top() + layoutMargins.top() + layoutMargins.bottom());
 }
 
 /*!

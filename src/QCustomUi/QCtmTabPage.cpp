@@ -234,7 +234,7 @@ QCtmTabPage::QCtmTabPage(QCtmTabWidget* parent)
     assert(parent);
     m_impl->cornerWidget = new QWidget;
     m_impl->cornerLayout = new QHBoxLayout(m_impl->cornerWidget);
-    m_impl->cornerLayout->setMargin(0);
+    m_impl->cornerLayout->setContentsMargins(0,0,0,0);
 
     m_impl->layout = new QHBoxLayout(this);
 }

@@ -23,7 +23,6 @@
 #include "Private/QCtmFramelessDelegate_win.h"
 
 #include <QVBoxLayout>
-#include <QDesktopWidget>
 #include <QApplication>
 #include <QMoveEvent>
 #include <QApplication>
@@ -60,7 +59,7 @@ QCtmDialog::QCtmDialog(QWidget* parent)
     m_impl->title->setObjectName("ctmDialogTitleBar");
 
     m_impl->layout = new QVBoxLayout(this);
-    m_impl->layout->setMargin(0);
+    m_impl->layout->setContentsMargins(0,0,0,0);
     m_impl->layout->setSpacing(0);
 
     m_impl->layout->addWidget(m_impl->title);
@@ -230,7 +229,11 @@ bool QCtmDialog::eventFilter(QObject* o, QEvent* e)
 /*!
     \reimp
 */
+#if QT_VERSION < QT_VERSION_CHECK(6,0,0)
 bool QCtmDialog::nativeEvent(const QByteArray& eventType, void* message, long* result)
+#else
+bool QCtmDialog::nativeEvent(const QByteArray& eventType, void* message, qintptr* result)
+#endif
 {
 #ifdef Q_OS_WIN
     if (!m_impl->delegate)

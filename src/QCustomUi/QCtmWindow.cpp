@@ -337,7 +337,11 @@ bool QCtmWindow::eventFilter(QObject* watched, QEvent* event)
 /*!
     \reimp
 */
+#if QT_VERSION < QT_VERSION_CHECK(6,0,0)
 bool QCtmWindow::nativeEvent(const QByteArray& eventType, void* message, long* result)
+#else
+bool QCtmWindow::nativeEvent(const QByteArray &eventType, void *message, qintptr *result)
+#endif
 {
 #ifdef Q_OS_WIN
     if (!m_impl->delegate)

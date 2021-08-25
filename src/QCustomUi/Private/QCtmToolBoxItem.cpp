@@ -26,7 +26,7 @@ QCtmToolBoxItem::QCtmToolBoxItem(QWidget* parent)
     setObjectName("item");
     m_impl->layout = new QHBoxLayout(ui.item_title);
     m_impl->layout->setAlignment(Qt::AlignRight);
-    m_impl->layout->setMargin(0);
+    m_impl->layout->setContentsMargins(0,0,0,0);
     m_impl->layout->setSpacing(0);
     ui.item_title->installEventFilter(this);
 }

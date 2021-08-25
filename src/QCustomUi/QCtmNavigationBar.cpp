@@ -135,13 +135,13 @@ QCtmNavigationBar::QCtmNavigationBar(QWidget* parent)
 {
     setFixedHeight(50);
     QHBoxLayout* layout = new QHBoxLayout(this);
-    layout->setMargin(1);
+    layout->setContentsMargins(1,1,1,1);
     layout->setSpacing(0);
     m_impl->leftLayout = new QHBoxLayout;
-    m_impl->leftLayout->setMargin(0);
+    m_impl->leftLayout->setContentsMargins(0,0,0,0);
     m_impl->leftLayout->setSpacing(1);
     m_impl->rightLayout = new QHBoxLayout;
-    m_impl->rightLayout->setMargin(0);
+    m_impl->rightLayout->setContentsMargins(0,0,0,0);
     m_impl->rightLayout->setSpacing(1);
 
     layout->addLayout(m_impl->leftLayout);

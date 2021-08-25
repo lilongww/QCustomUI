@@ -30,7 +30,6 @@
 #include <QBackingStore>
 #include <QLayout>
 #include <QDebug>
-#include <QDesktopWidget>
 #include <QPlatformSurfaceEvent>
 #include <QElapsedTimer>
 #include <QPainterPath>
@@ -52,7 +51,11 @@ struct QCtmFramelessDelegate::Impl
 {
     QWidget* parent{ nullptr };
     Directions direction;
+#if QT_VERSION < QT_VERSION_CHECK(6,0,0)
     QPoint mousePressPos;
+#else
+    QPointF mousePressPos;
+#endif
     QElapsedTimer moveBarElapsedTimer;
     bool mousePressed{ false };
     QWidgetList moveBars;
@@ -316,7 +319,11 @@ void QCtmFramelessDelegate::mousePressEvent(QMouseEvent* e)
     if (m_impl->direction != NONE && e->button() == Qt::LeftButton)
     {
         m_impl->mousePressed = true;
+#if QT_VERSION < QT_VERSION_CHECK(6,0,0)
         m_impl->mousePressPos = e->globalPos();
+#else
+        m_impl->mousePressPos = e->screenPos();
+#endif
     }
 }
 

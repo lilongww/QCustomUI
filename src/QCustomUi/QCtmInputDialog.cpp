@@ -42,7 +42,7 @@ QCtmInputDialog::QCtmInputDialog(QWidget* parent, Qt::WindowFlags flags)
 {
     sizeHint();
     m_impl->layout = new QVBoxLayout;
-    m_impl->layout->setMargin(0);
+    m_impl->layout->setContentsMargins(0,0,0,0);
     {
         auto layout = qobject_cast<QVBoxLayout*>(this->layout());
         auto w = new QWidget(this);
@@ -259,7 +259,11 @@ void QCtmInputDialog::hideEvent(QHideEvent*)
 /*!
     \reimp
 */
+#if QT_VERSION < QT_VERSION_CHECK(6,0,0)
 bool QCtmInputDialog::nativeEvent(const QByteArray& eventType, void* message, long* result)
+#else
+bool QCtmInputDialog::nativeEvent(const QByteArray& eventType, void* message, qintptr* result)
+#endif
 {
 #ifdef Q_OS_WIN
     if (!m_impl->delegate)

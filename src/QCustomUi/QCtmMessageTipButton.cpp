@@ -163,7 +163,7 @@ QSize QCtmMessageTipButton::sizeHint() const
 {
     auto&& size = QAbstractButton::sizeHint();
     size.setWidth(this->iconSize().width() + 20);
-    return size.expandedTo(qApp->globalStrut());
+    return size;
 }
 
 /*!

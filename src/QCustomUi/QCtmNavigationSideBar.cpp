@@ -107,10 +107,10 @@ QCtmNavigationSideBar::QCtmNavigationSideBar(QWidget* parent)
     m_impl->layout->setContentsMargins(0, 10, 0, 10);
     m_impl->topLayout = new QVBoxLayout;
     m_impl->layout->addLayout(m_impl->topLayout);
-    m_impl->topLayout->setMargin(0);
+    m_impl->topLayout->setContentsMargins(0,0,0,0);
     m_impl->topLayout->setSpacing(25);
     m_impl->bottomLayout = new QVBoxLayout;
-    m_impl->bottomLayout->setMargin(0);
+    m_impl->bottomLayout->setContentsMargins(0,0,0,0);
     m_impl->bottomLayout->setSpacing(25);
     m_impl->layout->addStretch(1);
     m_impl->layout->addLayout(m_impl->bottomLayout);
@@ -211,7 +211,7 @@ QAction* QCtmNavigationSideBar::actionAt(int index, ActionPosition pos) const
 void QCtmNavigationSideBar::paintEvent(QPaintEvent*)
 {
     QStyleOption opt;
-    opt.init(this);
+    opt.initFrom(this);
     QPainter p(this);
     style()->drawPrimitive(QStyle::PE_Widget, &opt, &p, this);
 }

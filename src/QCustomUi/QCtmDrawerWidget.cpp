@@ -85,7 +85,7 @@ QCtmDrawerWidget::QCtmDrawerWidget(QWidget* parent)
 
     QHBoxLayout* layout = new QHBoxLayout(this);
     layout->addWidget(m_impl->splitter);
-    layout->setMargin(0);
+    layout->setContentsMargins(0,0,0,0);
     qRegisterMetaType<QCtmDrawerItemWidget*>("QCtmDrawerItemWidget*");
 }
 

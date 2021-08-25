@@ -20,7 +20,7 @@ add_executable(${TARGET_NAME} WIN32
 )
 
 set_property(TARGET ${TARGET_NAME} PROPERTY FOLDER "Examples")
-target_link_libraries(${TARGET_NAME} PUBLIC QCustomUi PRIVATE Qt5::Core Qt5::Gui Qt5::Widgets)
+target_link_libraries(${TARGET_NAME} PUBLIC QCustomUi PRIVATE Qt${QT_VERSION_MAJOR}::Core Qt${QT_VERSION_MAJOR}::Gui Qt${QT_VERSION_MAJOR}::Widgets)
 
 install(TARGETS ${TARGET_NAME}
         CONFIGURATIONS Debug

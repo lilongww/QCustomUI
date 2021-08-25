@@ -2,8 +2,8 @@ set(CMAKE_AUTOMOC ON)
 set(CMAKE_AUTOUIC ON)
 set(CMAKE_AUTORCC ON)
 
-find_package(QT NAMES Qt5 REQUIRED)
-find_package(Qt${QT_VERSION_MAJOR} COMPONENTS Core Gui Widgets WinExtras Network REQUIRED)
+find_package(QT NAMES Qt6 Qt5 REQUIRED)
+find_package(Qt${QT_VERSION_MAJOR} COMPONENTS Core Gui Widgets Network REQUIRED)
 
 include_directories("./")
 
@@ -205,7 +205,11 @@ add_library(QCustomUi SHARED
  ${DOCS}
 )
 
-target_link_libraries(QCustomUi PRIVATE Qt5::Core Qt5::Gui Qt5::Widgets Qt5::WinExtras Qt5::Network Qt5::WidgetsPrivate)
+if(WIN32)
+    target_link_libraries(QCustomUi PUBLIC dwmapi PRIVATE Qt${QT_VERSION_MAJOR}::Core Qt${QT_VERSION_MAJOR}::Gui Qt${QT_VERSION_MAJOR}::Widgets Qt${QT_VERSION_MAJOR}::Network Qt${QT_VERSION_MAJOR}::WidgetsPrivate)
+else ()
+    target_link_libraries(QCustomUi PRIVATE Qt${QT_VERSION_MAJOR}::Core Qt${QT_VERSION_MAJOR}::Gui Qt${QT_VERSION_MAJOR}::Widgets Qt${QT_VERSION_MAJOR}::Network Qt${QT_VERSION_MAJOR}::WidgetsPrivate)
+endif(WIN32)
 set_target_properties(QCustomUi PROPERTIES VERSION ${QCUSTOMUI_VERSION} SOVERSION 1)
 
 file(GLOB PUBLIC_HEADERS ./*.h)
