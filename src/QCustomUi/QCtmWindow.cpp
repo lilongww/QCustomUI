@@ -66,7 +66,6 @@ QCtmWindow::QCtmWindow(QWidget* parent)
     ui->setupUi(this);
     ui->verticalLayout->setAlignment(Qt::AlignTop | Qt::AlignLeft);
     m_impl->content = new QWidget(this);
-    m_impl->content->setAutoFillBackground(true);
     ui->titleLayout->addWidget(m_impl->title);
     ui->contentLayout->addWidget(m_impl->content);
     m_impl->content->installEventFilter(this);
@@ -75,6 +74,7 @@ QCtmWindow::QCtmWindow(QWidget* parent)
     m_impl->delegate = new QCtmWinFramelessDelegate(this, m_impl->title);
 #else
     m_impl->delegate = new QCtmFramelessDelegate(this, m_impl->title);
+    m_impl->content->setAutoFillBackground(true);
 #endif
 }
 
@@ -340,7 +340,7 @@ bool QCtmWindow::eventFilter(QObject* watched, QEvent* event)
 #if QT_VERSION < QT_VERSION_CHECK(6,0,0)
 bool QCtmWindow::nativeEvent(const QByteArray& eventType, void* message, long* result)
 #else
-bool QCtmWindow::nativeEvent(const QByteArray &eventType, void *message, qintptr *result)
+bool QCtmWindow::nativeEvent(const QByteArray& eventType, void* message, qintptr* result)
 #endif
 {
 #ifdef Q_OS_WIN

@@ -27,4 +27,5 @@ WindowAndDialogExamples::WindowAndDialogExamples(QWidget* parent)
     menuBar->addMenu(tr("&File"))->addAction(tr("&Open"));
     this->setStatusBar(new QStatusBar(this));
     ui.popDialogBtn->winId();
+    centralWidget()->winId();
 }

@@ -39,13 +39,6 @@ constexpr long BasicBorderlessFlag = WS_POPUP | WS_THICKFRAME | WS_SYSMENU | WS_
 constexpr long AeroBorderlessFixedFlag = WS_POPUP | WS_CAPTION | WS_SYSMENU | WS_MAXIMIZEBOX | WS_MINIMIZEBOX;
 constexpr long BasicBorderlessFixedFlag = WS_POPUP | WS_SYSMENU | WS_MAXIMIZEBOX | WS_MINIMIZEBOX;
 
-struct QCtmWinFramelessDelegate::Impl
-{
-    QWidgetList moveBars;
-    QWidget* parent{ nullptr };
-    bool firstShow{ true };
-};
-
 inline bool isCompositionEnabled()
 {
 #if QT_VERSION < QT_VERSION_CHECK(6,0,0)
@@ -57,15 +50,27 @@ inline bool isCompositionEnabled()
 #endif
 }
 
-inline void extendFrameIntoClientArea(QWindow *window, int left, int top, int right, int bottom)
+inline void extendFrameIntoClientArea(QWindow* window, int left, int top, int right, int bottom)
 {
 #if QT_VERSION < QT_VERSION_CHECK(6,0,0)
     QtWin::extendFrameIntoClientArea(window, left, top, right, bottom);
 #else
-    MARGINS margins = {left, right, top, bottom};
+    MARGINS margins = { left, right, top, bottom };
     DwmExtendFrameIntoClientArea(reinterpret_cast<HWND>(window->winId()), &margins);
 #endif
 }
+
+struct QCtmWinFramelessDelegate::Impl
+{
+    QWidgetList moveBars;
+    QWidget* parent{ nullptr };
+    bool firstShow{ true };
+
+    inline void setNoMargins()
+    {
+        parent->layout()->setContentsMargins(QMargins(0, 0, 0, 0));
+    };
+};
 
 QCtmWinFramelessDelegate::QCtmWinFramelessDelegate(QWidget* parent, const QWidgetList& moveBars)
     : QObject(parent)
@@ -78,8 +83,9 @@ QCtmWinFramelessDelegate::QCtmWinFramelessDelegate(QWidget* parent, const QWidge
         | Qt::WindowCloseButtonHint
         | Qt::WindowSystemMenuHint);
     parent->installEventFilter(this);
-
     m_impl->moveBars = moveBars;
+    m_impl->setNoMargins();
+    m_impl->parent->setProperty("qcustomui-window", true);
 }
 
 QCtmWinFramelessDelegate::QCtmWinFramelessDelegate(QWidget* parent, QWidget* title)
@@ -105,15 +111,16 @@ void QCtmWinFramelessDelegate::removeMoveBar(QWidget* w)
 #if QT_VERSION < QT_VERSION_CHECK(6,0,0)
 bool QCtmWinFramelessDelegate::nativeEvent([[maybe_unused]] const QByteArray& eventType
     , void* message
-    , long*& result)
+    , long* result)
 #else
-bool QCtmWinFramelessDelegate::nativeEvent(const QByteArray &eventType
-    , void *message
-    , qintptr *result)
+bool QCtmWinFramelessDelegate::nativeEvent(const QByteArray& eventType
+    , void* message
+    , qintptr* result)
 #endif
 {
     MSG* msg = static_cast<MSG*>(message);
-    switch (msg->message) {
+    switch (msg->message)
+    {
     case WM_SETFOCUS:
     {
         Qt::FocusReason reason;
@@ -133,12 +140,10 @@ bool QCtmWinFramelessDelegate::nativeEvent(const QByteArray &eventType
         if (msg->wParam)
         {
             NCCALCSIZE_PARAMS* ncParam = reinterpret_cast<NCCALCSIZE_PARAMS*>(msg->lParam);
-            int i = 1;
         }
         else
         {
             RECT* rect = reinterpret_cast<RECT*>(msg->lParam);
-            int i = 1;
         }
         *result = 0;
         return true;
@@ -159,14 +164,14 @@ bool QCtmWinFramelessDelegate::nativeEvent(const QByteArray &eventType
         if (msg->wParam == VK_SPACE) {
             *result = 0;
             return true;
-        }
     }
+}
     break;
     case WM_NCHITTEST:
     {
-        QPoint globalPos = QCursor::pos();
-        int x = globalPos.x();
-        int y = globalPos.y();
+        POINTS globalPos = MAKEPOINTS(msg->lParam);
+        int x = globalPos.x;
+        int y = globalPos.y;
 
         auto borderX = /*GetSystemMetrics(SM_CXFRAME) +*/ GetSystemMetrics(SM_CXPADDEDBORDER);
         auto borderY = /*GetSystemMetrics(SM_CYFRAME) +*/ GetSystemMetrics(SM_CXPADDEDBORDER);
@@ -178,7 +183,7 @@ bool QCtmWinFramelessDelegate::nativeEvent(const QByteArray &eventType
         }
 
         auto rect = m_impl->parent->frameGeometry();
-        auto localPos = m_impl->parent->mapFromGlobal(globalPos);
+        auto localPos = m_impl->parent->mapFromGlobal(QPoint(x, y));
 
         if (x >= rect.left() && x <= rect.left() + borderX) {
             if (y >= rect.top() && y <= rect.top() + borderY) {
@@ -222,11 +227,11 @@ bool QCtmWinFramelessDelegate::nativeEvent(const QByteArray &eventType
                 return true;
             }
         }
-        else {
+        else
+        {
             *result = HTNOWHERE;
             return true;
         }
-
 
         for (auto w : m_impl->moveBars)
         {
@@ -291,12 +296,12 @@ bool QCtmWinFramelessDelegate::nativeEvent(const QByteArray &eventType
             }
             else
             {
-                m_impl->parent->layout()->setContentsMargins(QMargins(0, 0, 0, 0));
+                m_impl->setNoMargins();
             }
         }
         else
         {
-            m_impl->parent->layout()->setContentsMargins(QMargins(0, 0, 0, 0));
+            m_impl->setNoMargins();
         }
     }
     break;
@@ -336,7 +341,7 @@ bool QCtmWinFramelessDelegate::nativeEvent(const QByteArray &eventType
     }
     default:
         break;
-    }
+}
     return false;
 }
 
@@ -354,7 +359,7 @@ bool QCtmWinFramelessDelegate::eventFilter(QObject* watched, QEvent* event)
             }
             else
             {
-                m_impl->parent->layout()->setContentsMargins(QMargins(0, 0, 0, 0));
+                m_impl->setNoMargins();
                 m_impl->parent->layout()->update();
                 if (!m_impl->parent->underMouse())
                 {

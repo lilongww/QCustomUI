@@ -1,4 +1,4 @@
-/*********************************************************************************
+﻿/*********************************************************************************
 **                                                                              **
 **  Copyright (C) 2019-2020 LiLong                                              **
 **  This file is part of QCustomUi.                                             **
@@ -40,11 +40,11 @@ public:
 #if QT_VERSION < QT_VERSION_CHECK(6,0,0)
     bool nativeEvent(const QByteArray& eventType
         , void* message
-        , long*& result);
+        , long* result);
 #else
-    bool nativeEvent(const QByteArray &eventType
-        , void *message
-        , qintptr *result);
+    bool nativeEvent(const QByteArray& eventType
+        , void* message
+        , qintptr* result);
 #endif
 protected:
     bool eventFilter(QObject* watched, QEvent* event) override;

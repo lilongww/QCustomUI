@@ -1,4 +1,4 @@
-/*********************************************************************************
+ï»¿/*********************************************************************************
 **                                                                              **
 **  Copyright (C) 2019-2020 LiLong                                              **
 **  This file is part of QCustomUi.                                             **
@@ -30,7 +30,7 @@ struct QCtmMessageTipModel::Impl
 
 /*!
     \class      QCtmMessageTipModel
-    \brief      ÏûÏ¢ÌáÊ¾modelµÄÒ»°ãÊµÏÖ.
+    \brief      æ¶ˆæ¯æç¤ºmodelçš„ä¸€èˆ¬å®ç°.
     \inherits   QCtmAbstractMessageTipModel
     \ingroup    QCustomUi
     \inmodule   QCustomUi
@@ -39,18 +39,18 @@ struct QCtmMessageTipModel::Impl
 
 /*!
     \property   QCtmMessageTipModel::titleColor
-    \brief      ÏûÏ¢±êÌâµÄÎÄ±¾ÑÕÉ«.
+    \brief      æ¶ˆæ¯æ ‡é¢˜çš„æ–‡æœ¬é¢œè‰².
     \sa         setTitleColor, titleColor
 */
 
 /*!
     \property   QCtmMessageTipModel::timeColor
-    \brief      ÏûÏ¢Ê±¼äµÄÎÄ±¾ÑÕÉ«.
+    \brief      æ¶ˆæ¯æ—¶é—´çš„æ–‡æœ¬é¢œè‰².
     \sa         setTimeColor, timeColor
 */
 
 /*!
-    \brief      ¹¹ÔìÒ»¸ö¸¸¶ÔÏóÎª \a parent µÄÏûÏ¢model.
+    \brief      æ„é€ ä¸€ä¸ªçˆ¶å¯¹è±¡ä¸º \a parent çš„æ¶ˆæ¯model.
 */
 QCtmMessageTipModel::QCtmMessageTipModel(QObject* parent)
     : QCtmAbstractMessageTipModel(parent)
@@ -59,7 +59,7 @@ QCtmMessageTipModel::QCtmMessageTipModel(QObject* parent)
 }
 
 /*!
-    \brief      Ïú»Ùµ±Ç°ÏûÏ¢model¶ÔÏó.
+    \brief      é”€æ¯å½“å‰æ¶ˆæ¯modelå¯¹è±¡.
 */
 QCtmMessageTipModel::~QCtmMessageTipModel()
 {
@@ -125,7 +125,7 @@ int QCtmMessageTipModel::columnCount([[maybe_unused]] const QModelIndex& parent 
 }
 
 /*!
-    \brief      ÉèÖÃÏûÏ¢±êÌâµÄÎÄ±¾ÑÕÉ« \a color.
+    \brief      è®¾ç½®æ¶ˆæ¯æ ‡é¢˜çš„æ–‡æœ¬é¢œè‰² \a color.
     \sa         titleColor()
 */
 void QCtmMessageTipModel::setTitleColor(const QColor& color)
@@ -134,7 +134,7 @@ void QCtmMessageTipModel::setTitleColor(const QColor& color)
 }
 
 /*!
-    \brief      ·µ»ØÏûÏ¢±êÌâµÄÎÄ±¾ÑÕÉ«.
+    \brief      è¿”å›æ¶ˆæ¯æ ‡é¢˜çš„æ–‡æœ¬é¢œè‰².
     \sa         setTitleColor
 */
 const QColor& QCtmMessageTipModel::titleColor() const
@@ -143,7 +143,7 @@ const QColor& QCtmMessageTipModel::titleColor() const
 }
 
 /*!
-    \brief      ÉèÖÃÏûÏ¢Ê±¼äµÄÎÄ±¾ÑÕÉ« \a color.
+    \brief      è®¾ç½®æ¶ˆæ¯æ—¶é—´çš„æ–‡æœ¬é¢œè‰² \a color.
     \sa         timeColor()
 */
 void QCtmMessageTipModel::setTimeColor(const QColor& color)
@@ -152,7 +152,7 @@ void QCtmMessageTipModel::setTimeColor(const QColor& color)
 }
 
 /*!
-    \brief      ·µ»ØÏûÏ¢Ê±¼äµÄÎÄ±¾ÑÕÉ«.
+    \brief      è¿”å›æ¶ˆæ¯æ—¶é—´çš„æ–‡æœ¬é¢œè‰².
     \sa         setTimeColor
 */
 const QColor& QCtmMessageTipModel::timeColor() const

@@ -1,4 +1,4 @@
-/*********************************************************************************
+ï»¿/*********************************************************************************
 **                                                                              **
 **  Copyright (C) 2019-2020 LiLong                                              **
 **  This file is part of QCustomUi.                                             **
@@ -28,7 +28,7 @@ struct QCtmAbstractMessageTipModel::Impl
 
 /*!
     \class      QCtmAbstractMessageTipModel
-    \brief      ÏûÏ¢model½Ó¿ÚÀà£¬¶¨ÒåÏûÏ¢modelµÄ»ù±¾½Ó¿Ú£¬Òª¶¨Òå×Ô¼ºµÄÏûÏ¢model¿ÉÒÔ¼Ì³Ğ×Ô¸ÃÀà.
+    \brief      æ¶ˆæ¯modelæ¥å£ç±»ï¼Œå®šä¹‰æ¶ˆæ¯modelçš„åŸºæœ¬æ¥å£ï¼Œè¦å®šä¹‰è‡ªå·±çš„æ¶ˆæ¯modelå¯ä»¥ç»§æ‰¿è‡ªè¯¥ç±».
     \inherits   QAbstractTableModel
     \ingroup    QCustomUi
     \inmodule   QCustomUi
@@ -36,28 +36,29 @@ struct QCtmAbstractMessageTipModel::Impl
 
 /*!
     \property   QCtmAbstractMessageTipModel::reversedOrder
-    \brief      ÏûÏ¢ÊÇ·ñÄæĞòÏÔÊ¾£¬¼´×îĞÂÒ»ÌõÏûÏ¢ÏÔÊ¾ÔÚµÚÒ»Ìõ£¬Ä¬ÈÏÎªÕæ.
+    \brief      æ¶ˆæ¯æ˜¯å¦é€†åºæ˜¾ç¤ºï¼Œå³æœ€æ–°ä¸€æ¡æ¶ˆæ¯æ˜¾ç¤ºåœ¨ç¬¬ä¸€æ¡ï¼Œé»˜è®¤ä¸ºçœŸ.
     \sa         setReversedOrder, reversedOrder
 */
 
 /*!
-    \brief      ¹¹ÔìÒ»¸ö¸¸¶ÔÏóÎª \a parent µÄÏûÏ¢¶ÔÏó.
+    \brief      æ„é€ ä¸€ä¸ªçˆ¶å¯¹è±¡ä¸º \a parent çš„æ¶ˆæ¯å¯¹è±¡.
 */
 QCtmAbstractMessageTipModel::QCtmAbstractMessageTipModel(QObject* parent)
     : QAbstractTableModel(parent)
     , m_impl(std::make_unique<Impl>())
 {
+
 }
 
 /*!
-    \brief      Ïú»Ùµ±Ç°ÏûÏ¢model¶ÔÏó.
+    \brief      é”€æ¯å½“å‰æ¶ˆæ¯modelå¯¹è±¡.
 */
 QCtmAbstractMessageTipModel::~QCtmAbstractMessageTipModel()
 {
 }
 
 /*!
-    \brief      Ìí¼ÓÒ»ÌõÏûÏ¢ \a msg.
+    \brief      æ·»åŠ ä¸€æ¡æ¶ˆæ¯ \a msg.
     \sa         insertMessage, removeMessage
 */
 void QCtmAbstractMessageTipModel::addMessage(QCtmAbstractMessageTipDataPtr msg)
@@ -66,7 +67,7 @@ void QCtmAbstractMessageTipModel::addMessage(QCtmAbstractMessageTipDataPtr msg)
 }
 
 /*!
-    \brief      ÔÚ \a index µÄÎ»ÖÃ²åÈëÒ»ÌõÏûÏ¢¶ÔÏó \a msg.
+    \brief      åœ¨ \a index çš„ä½ç½®æ’å…¥ä¸€æ¡æ¶ˆæ¯å¯¹è±¡ \a msg.
     \sa         addMessage, removeMessage
 */
 void QCtmAbstractMessageTipModel::insertMessage(int index, QCtmAbstractMessageTipDataPtr msg)
@@ -82,7 +83,7 @@ void QCtmAbstractMessageTipModel::insertMessage(int index, QCtmAbstractMessageTi
 }
 
 /*!
-    \brief      ´ÓÏûÏ¢modelÖĞÒÆ³ıÏûÏ¢¶ÔÏó \a msg.
+    \brief      ä»æ¶ˆæ¯modelä¸­ç§»é™¤æ¶ˆæ¯å¯¹è±¡ \a msg.
     \sa         addMessage, insertMessage
 */
 void QCtmAbstractMessageTipModel::removeMessage(QCtmAbstractMessageTipDataPtr msg)
@@ -93,15 +94,15 @@ void QCtmAbstractMessageTipModel::removeMessage(QCtmAbstractMessageTipDataPtr ms
 }
 
 /*!
-    \brief      ·µ»ØµÚ \a row ĞĞµÄÏûÏ¢¶ÔÏó.
+    \brief      è¿”å›ç¬¬ \a row è¡Œçš„æ¶ˆæ¯å¯¹è±¡.
 */
 QCtmAbstractMessageTipDataPtr QCtmAbstractMessageTipModel::message(int row) const
 {
-        return m_impl->messages.at(m_impl->reversedOrder ? m_impl->messages.size() - 1 - row : row);
+    return m_impl->messages.at(m_impl->reversedOrder ? m_impl->messages.size() - 1 - row : row);
 }
 
 /*!
-    \brief      Çå³ıËùÓĞÏûÏ¢¶ÔÏó.
+    \brief      æ¸…é™¤æ‰€æœ‰æ¶ˆæ¯å¯¹è±¡.
 */
 void QCtmAbstractMessageTipModel::clear()
 {
@@ -111,7 +112,7 @@ void QCtmAbstractMessageTipModel::clear()
 }
 
 /*!
-    \brief      ÉèÖÃÏûÏ¢×î´ó±£´æÊıÁ¿ \a count.
+    \brief      è®¾ç½®æ¶ˆæ¯æœ€å¤§ä¿å­˜æ•°é‡ \a count.
     \sa         maximumCount()
 */
 void QCtmAbstractMessageTipModel::setMaximumCount(int count)
@@ -120,7 +121,7 @@ void QCtmAbstractMessageTipModel::setMaximumCount(int count)
 }
 
 /*!
-    \brief      ·µ»ØÏûÏ¢×î´ó±£´æ¶ÔÏó.
+    \brief      è¿”å›æ¶ˆæ¯æœ€å¤§ä¿å­˜å¯¹è±¡.
     \sa         setMaximumCount
 */
 int QCtmAbstractMessageTipModel::maximumCount() const
@@ -129,7 +130,7 @@ int QCtmAbstractMessageTipModel::maximumCount() const
 }
 
 /*!
-    \brief      ÉèÖÃÏûÏ¢ÊÇ·ñÄæĞòÏÔÊ¾£¬¼´×îĞÂÒ»ÌõÏÔÊ¾ÔÚµÚÒ»Ìõ£¬Ä¬ÈÏÎªÕæ.
+    \brief      è®¾ç½®æ¶ˆæ¯æ˜¯å¦é€†åºæ˜¾ç¤ºï¼Œå³æœ€æ–°ä¸€æ¡æ˜¾ç¤ºåœ¨ç¬¬ä¸€æ¡ï¼Œé»˜è®¤ä¸ºçœŸ.
     \sa         reversedOrder
 */
 void QCtmAbstractMessageTipModel::setReversedOrder(bool re)
@@ -140,7 +141,7 @@ void QCtmAbstractMessageTipModel::setReversedOrder(bool re)
 }
 
 /*!
-    \brief      ÏûÏ¢ÊÇ·ñÄæĞòÏÔÊ¾£¬¼´×îĞÂÒ»ÌõÏÔÊ¾ÔÚµÚÒ»Ìõ£¬Ä¬ÈÏÎªÕæ.
+    \brief      æ¶ˆæ¯æ˜¯å¦é€†åºæ˜¾ç¤ºï¼Œå³æœ€æ–°ä¸€æ¡æ˜¾ç¤ºåœ¨ç¬¬ä¸€æ¡ï¼Œé»˜è®¤ä¸ºçœŸ.
     \sa         setReversedOrder
 */
 bool QCtmAbstractMessageTipModel::reversedOrder() const
