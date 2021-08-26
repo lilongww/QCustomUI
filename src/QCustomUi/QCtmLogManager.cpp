@@ -298,7 +298,7 @@ QList<QString> QCtmLogManager::parseObjectNames(QString& msg)
     {
         for(const auto& objName : list)
         {
-            msg.replace(objName, " ");
+            msg.replace("#" + objName, "");
         }
     }
 
