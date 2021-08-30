@@ -70,13 +70,16 @@ struct QCtmApplication::Impl
 */
 
 /*!
-    \brief      Constructs a application with \a argc, \a argv and \a f.
+    \brief      Constructs a application with \a argc, \a argv and \a f, \a defaultStyle
 */
-QCtmApplication::QCtmApplication(int& argc, char** argv, int f/*= ApplicationFlags*/)
+QCtmApplication::QCtmApplication(int& argc, char** argv, int f/*= ApplicationFlags*/, bool defaultStyle)
     : QApplication(argc, argv, f)
     , m_impl(std::make_unique<Impl>())
 {
-    setStyleSheet(QCtmStyleSheet::defaultStyleSheet());
+    if (defaultStyle)
+    {
+        setStyleSheet(QCtmStyleSheet::defaultStyleSheet());
+    }
 #ifdef Q_OS_WIN
     installNativeEventFilter(new WindowsEventFilter);
 #endif //Q_OS_WIN
