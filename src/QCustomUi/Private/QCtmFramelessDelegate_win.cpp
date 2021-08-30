@@ -69,6 +69,7 @@ struct QCtmWinFramelessDelegate::Impl
     inline void setNoMargins()
     {
         parent->layout()->setContentsMargins(QMargins(0, 0, 0, 0));
+        parent->layout()->update();
     };
 };
 
@@ -79,13 +80,11 @@ QCtmWinFramelessDelegate::QCtmWinFramelessDelegate(QWidget* parent, const QWidge
     m_impl->parent = parent;
     parent->setWindowFlags(parent->windowFlags()
         | Qt::FramelessWindowHint
-        | Qt::WindowMinMaxButtonsHint
         | Qt::WindowCloseButtonHint
         | Qt::WindowSystemMenuHint);
     parent->installEventFilter(this);
     m_impl->moveBars = moveBars;
     m_impl->setNoMargins();
-    m_impl->parent->setProperty("qcustomui-window", true);
 }
 
 QCtmWinFramelessDelegate::QCtmWinFramelessDelegate(QWidget* parent, QWidget* title)
@@ -140,6 +139,29 @@ bool QCtmWinFramelessDelegate::nativeEvent(const QByteArray& eventType
         if (msg->wParam)
         {
             NCCALCSIZE_PARAMS* ncParam = reinterpret_cast<NCCALCSIZE_PARAMS*>(msg->lParam);
+            if (!m_impl->parent->testAttribute(Qt::WA_Moved))
+            {
+                auto state = m_impl->parent->windowState();
+                if (ncParam->lppos->flags & SWP_NOSIZE)
+                {
+                    m_impl->parent->move(ncParam->rgrc->left
+                        , ncParam->rgrc->top);
+                }
+                else if (ncParam->lppos->flags & SWP_NOMOVE)
+                {
+                    m_impl->parent->resize(ncParam->rgrc->right - ncParam->rgrc->left
+                        , ncParam->rgrc->bottom - ncParam->rgrc->top);
+                }
+                else if (!(ncParam->lppos->flags & SWP_NOMOVE) && !(ncParam->lppos->flags & SWP_NOSIZE))
+                {
+                    m_impl->parent->setGeometry(ncParam->rgrc->left
+                        , ncParam->rgrc->top
+                        , ncParam->rgrc->right - ncParam->rgrc->left
+                        , ncParam->rgrc->bottom - ncParam->rgrc->top);
+                }
+                m_impl->parent->setWindowState(state);
+                m_impl->parent->setAttribute(Qt::WA_Moved, false);
+            }
         }
         else
         {
@@ -164,8 +186,8 @@ bool QCtmWinFramelessDelegate::nativeEvent(const QByteArray& eventType
         if (msg->wParam == VK_SPACE) {
             *result = 0;
             return true;
+        }
     }
-}
     break;
     case WM_NCHITTEST:
     {
@@ -341,7 +363,7 @@ bool QCtmWinFramelessDelegate::nativeEvent(const QByteArray& eventType
     }
     default:
         break;
-}
+    }
     return false;
 }
 
@@ -387,19 +409,25 @@ void QCtmWinFramelessDelegate::setWindowLong()
     long style;
     if (isCompositionEnabled())
     {
-        if (m_impl->parent->maximumSize() == QSize(QWIDGETSIZE_MAX, QWIDGETSIZE_MAX)
-            && m_impl->parent->windowFlags().testFlag(Qt::WindowMaximizeButtonHint))
+        if (m_impl->parent->maximumSize() == QSize(QWIDGETSIZE_MAX, QWIDGETSIZE_MAX))
             style = AeroBorderlessFlag;
         else
             style = AeroBorderlessFixedFlag;
     }
     else
     {
-        if (m_impl->parent->maximumSize() == QSize(QWIDGETSIZE_MAX, QWIDGETSIZE_MAX)
-            && m_impl->parent->windowFlags().testFlag(Qt::WindowMaximizeButtonHint))
+        if (m_impl->parent->maximumSize() == QSize(QWIDGETSIZE_MAX, QWIDGETSIZE_MAX))
             style = BasicBorderlessFlag;
         else
             style = BasicBorderlessFixedFlag;
+    }
+    if (!m_impl->parent->windowFlags().testFlag(Qt::WindowMinimizeButtonHint))
+    {
+        style &= ~WS_MINIMIZEBOX;
+    }
+    if (!m_impl->parent->windowFlags().testFlag(Qt::WindowMaximizeButtonHint))
+    {
+        style &= ~WS_MAXIMIZEBOX;
     }
     SetWindowLongPtr(hwnd, GWL_STYLE, style);
 

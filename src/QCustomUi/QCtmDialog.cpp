@@ -59,7 +59,7 @@ QCtmDialog::QCtmDialog(QWidget* parent)
     m_impl->title->setObjectName("ctmDialogTitleBar");
 
     m_impl->layout = new QVBoxLayout(this);
-    m_impl->layout->setContentsMargins(0,0,0,0);
+    m_impl->layout->setContentsMargins(0, 0, 0, 0);
     m_impl->layout->setSpacing(0);
 
     m_impl->layout->addWidget(m_impl->title);
@@ -204,7 +204,7 @@ bool QCtmDialog::shadowless() const
 /*!
     \reimp
 */
-void QCtmDialog::hideEvent(QHideEvent*)
+void QCtmDialog::hideEvent(QHideEvent* e)
 {
     auto closeBtn = m_impl->title->findChild<QWidget*>("closeBtn");
     if (closeBtn)
@@ -212,6 +212,7 @@ void QCtmDialog::hideEvent(QHideEvent*)
         auto e = new QEvent(QEvent::Type::Leave);
         qApp->sendEvent(closeBtn, e);
     }
+    QDialog::hideEvent(e);
 }
 
 /*!
