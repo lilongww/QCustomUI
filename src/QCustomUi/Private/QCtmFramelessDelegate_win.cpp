@@ -36,8 +36,6 @@
 
 constexpr long AeroBorderlessFlag = WS_POPUP | WS_THICKFRAME | WS_CAPTION | WS_SYSMENU | WS_MAXIMIZEBOX | WS_MINIMIZEBOX;
 constexpr long BasicBorderlessFlag = WS_POPUP | WS_THICKFRAME | WS_SYSMENU | WS_MAXIMIZEBOX | WS_MINIMIZEBOX;
-constexpr long AeroBorderlessFixedFlag = WS_POPUP | WS_CAPTION | WS_SYSMENU | WS_MAXIMIZEBOX | WS_MINIMIZEBOX;
-constexpr long BasicBorderlessFixedFlag = WS_POPUP | WS_SYSMENU | WS_MAXIMIZEBOX | WS_MINIMIZEBOX;
 
 inline bool isCompositionEnabled()
 {
@@ -203,58 +201,60 @@ bool QCtmWinFramelessDelegate::nativeEvent(const QByteArray& eventType
             borderX = 0;
             borderY = 0;
         }
-
-        auto rect = m_impl->parent->frameGeometry();
-        auto localPos = m_impl->parent->mapFromGlobal(QPoint(x, y));
-
-        if (x >= rect.left() && x <= rect.left() + borderX) {
-            if (y >= rect.top() && y <= rect.top() + borderY) {
-                *result = HTTOPLEFT;
-                return true;
-            }
-            if (y > rect.top() + borderY && y < rect.bottom() - borderY) {
-                *result = HTLEFT;
-                return true;
-            }
-            if (y >= rect.bottom() - borderY && y <= rect.bottom()) {
-                *result = HTBOTTOMLEFT;
-                return true;
-            }
-        }
-        else if (x > rect.left() + borderX && x < rect.right() - borderX) {
-            if (y >= rect.top() && y <= rect.top() + borderY) {
-                *result = HTTOP;
-                return true;
-            }
-            if (y > rect.top() + borderY && y < rect.top() + borderY) {
-                *result = HTCAPTION;
-                return true;
-            }
-            if (y >= rect.bottom() - borderY && y <= rect.bottom()) {
-                *result = HTBOTTOM;
-                return true;
-            }
-        }
-        else if (x >= rect.right() - borderX && x <= rect.right()) {
-            if (y >= rect.top() && y <= rect.top() + borderY) {
-                *result = HTTOPRIGHT;
-                return true;
-            }
-            if (y > rect.top() + borderY && y < rect.bottom() - borderY) {
-                *result = HTRIGHT;
-                return true;
-            }
-            if (y >= rect.bottom() - borderY && y <= rect.bottom()) {
-                *result = HTBOTTOMRIGHT;
-                return true;
-            }
-        }
-        else
+        if (m_impl->parent->minimumSize() != m_impl->parent->maximumSize())
         {
-            *result = HTNOWHERE;
-            return true;
+            auto rect = m_impl->parent->frameGeometry();
+
+            if (x >= rect.left() && x <= rect.left() + borderX) {
+                if (y >= rect.top() && y <= rect.top() + borderY) {
+                    *result = HTTOPLEFT;
+                    return true;
+                }
+                if (y > rect.top() + borderY && y < rect.bottom() - borderY) {
+                    *result = HTLEFT;
+                    return true;
+                }
+                if (y >= rect.bottom() - borderY && y <= rect.bottom()) {
+                    *result = HTBOTTOMLEFT;
+                    return true;
+                }
+            }
+            else if (x > rect.left() + borderX && x < rect.right() - borderX) {
+                if (y >= rect.top() && y <= rect.top() + borderY) {
+                    *result = HTTOP;
+                    return true;
+                }
+                if (y > rect.top() + borderY && y < rect.top() + borderY) {
+                    *result = HTCAPTION;
+                    return true;
+                }
+                if (y >= rect.bottom() - borderY && y <= rect.bottom()) {
+                    *result = HTBOTTOM;
+                    return true;
+                }
+            }
+            else if (x >= rect.right() - borderX && x <= rect.right()) {
+                if (y >= rect.top() && y <= rect.top() + borderY) {
+                    *result = HTTOPRIGHT;
+                    return true;
+                }
+                if (y > rect.top() + borderY && y < rect.bottom() - borderY) {
+                    *result = HTRIGHT;
+                    return true;
+                }
+                if (y >= rect.bottom() - borderY && y <= rect.bottom()) {
+                    *result = HTBOTTOMRIGHT;
+                    return true;
+                }
+            }
+            else
+            {
+                *result = HTNOWHERE;
+                return true;
+            }
         }
 
+        auto localPos = m_impl->parent->mapFromGlobal(QPoint(x, y));
         for (auto w : m_impl->moveBars)
         {
             auto child = m_impl->parent->childAt(localPos);
@@ -406,29 +406,13 @@ void QCtmWinFramelessDelegate::setWindowLong()
 {
     auto hwnd = reinterpret_cast<HWND>(m_impl->parent->winId());
 
-    long style;
-    if (isCompositionEnabled())
-    {
-        if (m_impl->parent->maximumSize() == QSize(QWIDGETSIZE_MAX, QWIDGETSIZE_MAX))
-            style = AeroBorderlessFlag;
-        else
-            style = AeroBorderlessFixedFlag;
-    }
-    else
-    {
-        if (m_impl->parent->maximumSize() == QSize(QWIDGETSIZE_MAX, QWIDGETSIZE_MAX))
-            style = BasicBorderlessFlag;
-        else
-            style = BasicBorderlessFixedFlag;
-    }
-    if (!m_impl->parent->windowFlags().testFlag(Qt::WindowMinimizeButtonHint))
-    {
+    long style = isCompositionEnabled() ? AeroBorderlessFlag : BasicBorderlessFlag;
+
+    if (!m_impl->parent->windowFlags().testFlag(Qt::WindowMinimizeButtonHint)
+        || m_impl->parent->maximumSize() != QSize(QWIDGETSIZE_MAX, QWIDGETSIZE_MAX))
         style &= ~WS_MINIMIZEBOX;
-    }
     if (!m_impl->parent->windowFlags().testFlag(Qt::WindowMaximizeButtonHint))
-    {
         style &= ~WS_MAXIMIZEBOX;
-    }
     SetWindowLongPtr(hwnd, GWL_STYLE, style);
 
     if (isCompositionEnabled())
@@ -437,7 +421,6 @@ void QCtmWinFramelessDelegate::setWindowLong()
     }
 
     SetWindowPos(hwnd, nullptr, 0, 0, 0, 0, SWP_FRAMECHANGED | SWP_NOMOVE | SWP_NOSIZE);
-
 }
 
 void QCtmWinFramelessDelegate::showSystemMenu(const QPoint& pos)
