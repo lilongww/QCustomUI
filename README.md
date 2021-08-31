@@ -17,6 +17,7 @@ QCustomUi是一个自定义UI库，主要提供无边框窗口和一些自定义
 5.QCtmApplication添加是否加载默认样式表的选项；
 6.解决QCtmDialog最大化后关闭，再次打开时窗口状态异常的问题；
 7.修改QCtmDialog的默认行为，不再默认具备最大化和最小化按钮；
+8.优化QCtmNavigationBar的Logo图标自适应；
 ```
 **[1.5.2]**
 ```
