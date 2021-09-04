@@ -3,8 +3,12 @@ set(CMAKE_AUTOUIC ON)
 set(CMAKE_AUTORCC ON)
 
 find_package(QT NAMES Qt6 Qt5 REQUIRED)
-find_package(Qt${QT_VERSION_MAJOR} COMPONENTS Core Gui Widgets Network REQUIRED)
-
+if(${QT_VERSION_MAJOR} EQUAL 5)
+    find_package(Qt${QT_VERSION_MAJOR} COMPONENTS Core Gui Widgets Network WinExtras REQUIRED)
+else(${QT_VERSION_MAJOR} EQUAL 5)
+    find_package(Qt${QT_VERSION_MAJOR} COMPONENTS Core Gui Widgets Network REQUIRED)
+endif(${QT_VERSION_MAJOR} EQUAL 5)
+message("-- Found Qt${QT_VERSION_MAJOR}")
 include_directories("./")
 
 add_compile_definitions(QCUSTOMUI_LIB UNICODE)
@@ -206,7 +210,11 @@ add_library(QCustomUi SHARED
 )
 
 if(WIN32)
-    target_link_libraries(QCustomUi PUBLIC dwmapi PRIVATE Qt${QT_VERSION_MAJOR}::Core Qt${QT_VERSION_MAJOR}::Gui Qt${QT_VERSION_MAJOR}::Widgets Qt${QT_VERSION_MAJOR}::Network Qt${QT_VERSION_MAJOR}::WidgetsPrivate)
+    if(${QT_VERSION_MAJOR} EQUAL 5)
+        target_link_libraries(QCustomUi PUBLIC dwmapi PRIVATE Qt${QT_VERSION_MAJOR}::Core Qt${QT_VERSION_MAJOR}::Gui Qt${QT_VERSION_MAJOR}::Widgets Qt${QT_VERSION_MAJOR}::Network Qt${QT_VERSION_MAJOR}::WinExtras Qt${QT_VERSION_MAJOR}::WidgetsPrivate)
+    else(${QT_VERSION_MAJOR} EQUAL 5)
+        target_link_libraries(QCustomUi PUBLIC dwmapi PRIVATE Qt${QT_VERSION_MAJOR}::Core Qt${QT_VERSION_MAJOR}::Gui Qt${QT_VERSION_MAJOR}::Widgets Qt${QT_VERSION_MAJOR}::Network Qt${QT_VERSION_MAJOR}::WidgetsPrivate)
+    endif(${QT_VERSION_MAJOR} EQUAL 5)
 else ()
     target_link_libraries(QCustomUi PRIVATE Qt${QT_VERSION_MAJOR}::Core Qt${QT_VERSION_MAJOR}::Gui Qt${QT_VERSION_MAJOR}::Widgets Qt${QT_VERSION_MAJOR}::Network Qt${QT_VERSION_MAJOR}::WidgetsPrivate)
 endif(WIN32)
