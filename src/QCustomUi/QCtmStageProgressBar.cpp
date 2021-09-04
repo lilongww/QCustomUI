@@ -414,7 +414,6 @@ void QCtmStageProgressBar::initStyleOption(QStyleOptionProgressBar* opt) const
     opt->progress = m_impl->value;
     opt->textAlignment = Qt::AlignCenter;
     opt->textVisible = m_impl->textVisible;
-    opt->orientation = m_impl->orientation;
 }
 
 /*!

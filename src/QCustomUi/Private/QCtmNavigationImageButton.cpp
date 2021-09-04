@@ -1,4 +1,4 @@
-/*********************************************************************************
+﻿/*********************************************************************************
 **                                                                              **
 **  Copyright (C) 2019-2020 LiLong                                              **
 **  This file is part of QCustomUi.                                             **
@@ -21,10 +21,26 @@
 
 #include <QPainter>
 #include <QStyleOption>
+#include <QResizeEvent>
+
+constexpr auto Padding = 10;
+constexpr auto Margins = QMargins{ Padding, Padding, Padding, Padding };
 
 struct QCtmNavigationImageButton::Impl
 {
     bool pressed = false;
+    QPixmap cache;
+    inline void generateCache(QCtmNavigationImageButton* q, const QSize& size)
+    {
+        auto st = q->isChecked() ? QIcon::On : QIcon::Off;
+        const auto& sizes = q->icon().availableSizes(QIcon::Mode::Normal, st);
+        if (cache.isNull() || cache.size().grownBy(Margins) != size && !sizes.isEmpty())
+        {
+            cache = q->icon().pixmap(sizes.front(), QIcon::Normal, st)
+                .scaledToHeight(qMin(size.shrunkBy(Margins).height(), sizes.front().height()), Qt::TransformationMode::SmoothTransformation);
+            q->updateGeometry();
+        }
+    }
 };
 
 QCtmNavigationImageButton::QCtmNavigationImageButton(QWidget* parent)
@@ -32,7 +48,6 @@ QCtmNavigationImageButton::QCtmNavigationImageButton(QWidget* parent)
     , m_impl(std::make_unique<Impl>())
 {
     this->setSizePolicy(QSizePolicy(QSizePolicy::Maximum, QSizePolicy::Preferred));
-    setContentsMargins(QMargins(5, 0, 5, 0));
     connect(this, &QCtmNavigationImageButton::pressed, this, [=]() { m_impl->pressed = true; update(); });
     connect(this, &QCtmNavigationImageButton::released, this, [=]() { m_impl->pressed = false; update(); });
 }
@@ -62,26 +77,31 @@ void QCtmNavigationImageButton::paintEvent([[maybe_unused]] QPaintEvent* e)
     style()->drawControl(QStyle::CE_PushButton, &opt, &p, this);
 
     {//draw icon
-        auto st = this->isChecked() ? QIcon::On : QIcon::Off;
-        const auto& sizes = this->icon().availableSizes(QIcon::Mode::Normal, st);
-        if (!sizes.isEmpty())
+        if (!m_impl->cache.isNull())
         {
-            const auto& pixmap = this->icon().pixmap(sizes.front(), QIcon::Normal, st);
-            this->style()->drawItemPixmap(&p, opt.rect, Qt::AlignCenter, pixmap);
+            style()->drawItemPixmap(&p
+                , opt.rect
+                , Qt::AlignCenter
+                , m_impl->cache);
+        }
+        else
+        {
+            m_impl->generateCache(this, this->size());
         }
     }
 }
 
+void QCtmNavigationImageButton::resizeEvent(QResizeEvent* e)
+{
+    m_impl->generateCache(this, e->size());
+    QCtmToolButton::resizeEvent(e);
+}
+
 QSize QCtmNavigationImageButton::sizeHint() const
 {
-    QStyleOptionButton opt;
-    opt.initFrom(this);
-    auto st = this->isChecked() ? QIcon::On : QIcon::Off;
-    const auto& sizes = this->icon().availableSizes(QIcon::Mode::Normal, st);
-    if (!sizes.isEmpty())
+    if (!m_impl->cache.isNull())
     {
-        const auto& size = this->style()->sizeFromContents(QStyle::CT_PushButton, &opt, sizes.front(), this);
-        return size;
+        return m_impl->cache.size().grownBy(Margins);
     }
-    return QSize(-1, -1);
+    return QSize(5, 5);
 }

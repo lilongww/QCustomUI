@@ -26,24 +26,60 @@
 #include <QPainter>
 #include <QPen>
 #include <QDebug>
+#include <QWindow>
+#include <QBackingStore>
+#include <QScopeGuard>
 
 #ifdef Q_OS_WIN
-
-#include <qwinfunctions.h>
-
 #include <windows.h>
 #include <windowsx.h>
+#include <dwmapi.h>
 
 constexpr long AeroBorderlessFlag = WS_POPUP | WS_THICKFRAME | WS_CAPTION | WS_SYSMENU | WS_MAXIMIZEBOX | WS_MINIMIZEBOX;
 constexpr long BasicBorderlessFlag = WS_POPUP | WS_THICKFRAME | WS_SYSMENU | WS_MAXIMIZEBOX | WS_MINIMIZEBOX;
-constexpr long AeroBorderlessFixedFlag = WS_POPUP | WS_CAPTION | WS_SYSMENU | WS_MAXIMIZEBOX | WS_MINIMIZEBOX;
-constexpr long BasicBorderlessFixedFlag = WS_POPUP | WS_SYSMENU | WS_MAXIMIZEBOX | WS_MINIMIZEBOX;
+
+inline bool isCompositionEnabled()
+{
+#if QT_VERSION < QT_VERSION_CHECK(6,0,0)
+    return QtWin::isCompositionEnabled();
+#else
+    BOOL enabled = FALSE;
+    DwmIsCompositionEnabled(&enabled);
+    return enabled;
+#endif
+}
+
+inline void extendFrameIntoClientArea(QWindow* window, int left, int top, int right, int bottom)
+{
+#if QT_VERSION < QT_VERSION_CHECK(6,0,0)
+    QtWin::extendFrameIntoClientArea(window, left, top, right, bottom);
+#else
+    MARGINS margins = { left, right, top, bottom };
+    DwmExtendFrameIntoClientArea(reinterpret_cast<HWND>(window->winId()), &margins);
+#endif
+}
 
 struct QCtmWinFramelessDelegate::Impl
 {
     QWidgetList moveBars;
     QWidget* parent{ nullptr };
     bool firstShow{ true };
+
+    inline void setNoMargins()
+    {
+        parent->layout()->setContentsMargins(QMargins(0, 0, 0, 0));
+        parent->layout()->update();
+    };
+
+    inline double dpiScale(double value)
+    {
+        return value / parent->devicePixelRatioF();
+    }
+
+    inline double unDpiScale(double value)
+    {
+        return value * parent->devicePixelRatioF();
+    }
 };
 
 QCtmWinFramelessDelegate::QCtmWinFramelessDelegate(QWidget* parent, const QWidgetList& moveBars)
@@ -53,12 +89,11 @@ QCtmWinFramelessDelegate::QCtmWinFramelessDelegate(QWidget* parent, const QWidge
     m_impl->parent = parent;
     parent->setWindowFlags(parent->windowFlags()
         | Qt::FramelessWindowHint
-        | Qt::WindowMinMaxButtonsHint
         | Qt::WindowCloseButtonHint
         | Qt::WindowSystemMenuHint);
     parent->installEventFilter(this);
-
     m_impl->moveBars = moveBars;
+    m_impl->setNoMargins();
 }
 
 QCtmWinFramelessDelegate::QCtmWinFramelessDelegate(QWidget* parent, QWidget* title)
@@ -81,12 +116,46 @@ void QCtmWinFramelessDelegate::removeMoveBar(QWidget* w)
     m_impl->moveBars.removeOne(w);
 }
 
+inline void debugPos(unsigned i)
+{
+#define Pair(a) std::pair<int, const char*>(a, #a)
+    static std::map<int, const char*> values{ Pair(SWP_NOSIZE),
+        Pair(SWP_NOSIZE),
+        Pair(SWP_NOMOVE),
+        Pair(SWP_NOZORDER),
+        Pair(SWP_NOREDRAW),
+        Pair(SWP_NOACTIVATE),
+        Pair(SWP_FRAMECHANGED),
+        Pair(SWP_SHOWWINDOW),
+        Pair(SWP_HIDEWINDOW),
+        Pair(SWP_NOCOPYBITS),
+        Pair(SWP_NOOWNERZORDER),
+        Pair(SWP_NOSENDCHANGING),
+        Pair(SWP_DEFERERASE),
+        Pair(SWP_ASYNCWINDOWPOS)
+    };
+    std::for_each(values.begin(), values.end(), [i](const auto& value)
+        {
+            if (value.first & i)
+            {
+                qDebug() << value.second;
+            }
+        });
+}
+
+#if QT_VERSION < QT_VERSION_CHECK(6,0,0)
 bool QCtmWinFramelessDelegate::nativeEvent([[maybe_unused]] const QByteArray& eventType
     , void* message
-    , long*& result)
+    , long* result)
+#else
+bool QCtmWinFramelessDelegate::nativeEvent(const QByteArray& eventType
+    , void* message
+    , qintptr* result)
+#endif
 {
     MSG* msg = static_cast<MSG*>(message);
-    switch (msg->message) {
+    switch (msg->message)
+    {
     case WM_SETFOCUS:
     {
         Qt::FocusReason reason;
@@ -106,12 +175,36 @@ bool QCtmWinFramelessDelegate::nativeEvent([[maybe_unused]] const QByteArray& ev
         if (msg->wParam)
         {
             NCCALCSIZE_PARAMS* ncParam = reinterpret_cast<NCCALCSIZE_PARAMS*>(msg->lParam);
-            int i = 1;
+            if (!m_impl->parent->testAttribute(Qt::WA_Moved))
+            {
+                //debugPos(ncParam->lppos->flags);
+                auto state = m_impl->parent->windowState();
+                auto scope = qScopeGuard([=]()
+                    {
+                        m_impl->parent->setWindowState(state);
+                    });
+                if (ncParam->lppos->flags & SWP_NOSIZE)
+                {
+                    m_impl->parent->move(m_impl->dpiScale(ncParam->rgrc->left)
+                        , m_impl->dpiScale(ncParam->rgrc->top));
+                }
+                else if (ncParam->lppos->flags & SWP_NOMOVE)
+                {
+                    m_impl->parent->resize(m_impl->dpiScale(ncParam->rgrc->right - ncParam->rgrc->left)
+                        , m_impl->dpiScale(ncParam->rgrc->bottom - ncParam->rgrc->top));
+                }
+                else if (!(ncParam->lppos->flags & SWP_NOMOVE) && !(ncParam->lppos->flags & SWP_NOSIZE) && !(ncParam->lppos->flags & SWP_NOACTIVATE))
+                {
+                    m_impl->parent->setGeometry(m_impl->dpiScale(ncParam->rgrc->left)
+                        , m_impl->dpiScale(ncParam->rgrc->top)
+                        , m_impl->dpiScale(ncParam->rgrc->right - ncParam->rgrc->left)
+                        , m_impl->dpiScale(ncParam->rgrc->bottom - ncParam->rgrc->top));
+                }
+            }
         }
         else
         {
-            RECT* rect = reinterpret_cast<RECT*>(msg->lParam);
-            int i = 1;
+            //RECT* rect = reinterpret_cast<RECT*>(msg->lParam);
         }
         *result = 0;
         return true;
@@ -137,70 +230,72 @@ bool QCtmWinFramelessDelegate::nativeEvent([[maybe_unused]] const QByteArray& ev
     break;
     case WM_NCHITTEST:
     {
-        QPoint globalPos = QCursor::pos();
-        int x = globalPos.x();
-        int y = globalPos.y();
+        POINTS globalPos = MAKEPOINTS(msg->lParam);
+        int x = m_impl->dpiScale(globalPos.x);
+        int y = m_impl->dpiScale(globalPos.y);
 
-        auto borderX = /*GetSystemMetrics(SM_CXFRAME) +*/ GetSystemMetrics(SM_CXPADDEDBORDER);
-        auto borderY = /*GetSystemMetrics(SM_CYFRAME) +*/ GetSystemMetrics(SM_CXPADDEDBORDER);
+        auto borderX = GetSystemMetrics(SM_CXPADDEDBORDER);
+        auto borderY = GetSystemMetrics(SM_CXPADDEDBORDER);
 
         if (m_impl->parent->isMaximized())
         {
             borderX = 0;
             borderY = 0;
         }
+        if (m_impl->parent->minimumSize() != m_impl->parent->maximumSize())
+        {
+            auto rect = m_impl->parent->frameGeometry();
 
-        auto rect = m_impl->parent->frameGeometry();
-        auto localPos = m_impl->parent->mapFromGlobal(globalPos);
-
-        if (x >= rect.left() && x <= rect.left() + borderX) {
-            if (y >= rect.top() && y <= rect.top() + borderY) {
-                *result = HTTOPLEFT;
-                return true;
+            if (x >= rect.left() && x <= rect.left() + borderX) {
+                if (y >= rect.top() && y <= rect.top() + borderY) {
+                    *result = HTTOPLEFT;
+                    return true;
+                }
+                if (y > rect.top() + borderY && y < rect.bottom() - borderY) {
+                    *result = HTLEFT;
+                    return true;
+                }
+                if (y >= rect.bottom() - borderY && y <= rect.bottom()) {
+                    *result = HTBOTTOMLEFT;
+                    return true;
+                }
             }
-            if (y > rect.top() + borderY && y < rect.bottom() - borderY) {
-                *result = HTLEFT;
-                return true;
+            else if (x > rect.left() + borderX && x < rect.right() - borderX) {
+                if (y >= rect.top() && y <= rect.top() + borderY) {
+                    *result = HTTOP;
+                    return true;
+                }
+                if (y > rect.top() + borderY && y < rect.top() + borderY) {
+                    *result = HTCAPTION;
+                    return true;
+                }
+                if (y >= rect.bottom() - borderY && y <= rect.bottom()) {
+                    *result = HTBOTTOM;
+                    return true;
+                }
             }
-            if (y >= rect.bottom() - borderY && y <= rect.bottom()) {
-                *result = HTBOTTOMLEFT;
+            else if (x >= rect.right() - borderX && x <= rect.right()) {
+                if (y >= rect.top() && y <= rect.top() + borderY) {
+                    *result = HTTOPRIGHT;
+                    return true;
+                }
+                if (y > rect.top() + borderY && y < rect.bottom() - borderY) {
+                    *result = HTRIGHT;
+                    return true;
+                }
+                if (y >= rect.bottom() - borderY && y <= rect.bottom()) {
+                    *result = HTBOTTOMRIGHT;
+                    return true;
+                }
+            }
+            else
+            {
+                *result = HTNOWHERE;
                 return true;
             }
         }
-        else if (x > rect.left() + borderX && x < rect.right() - borderX) {
-            if (y >= rect.top() && y <= rect.top() + borderY) {
-                *result = HTTOP;
-                return true;
-            }
-            if (y > rect.top() + borderY && y < rect.top() + borderY) {
-                *result = HTCAPTION;
-                return true;
-            }
-            if (y >= rect.bottom() - borderY && y <= rect.bottom()) {
-                *result = HTBOTTOM;
-                return true;
-            }
-        }
-        else if (x >= rect.right() - borderX && x <= rect.right()) {
-            if (y >= rect.top() && y <= rect.top() + borderY) {
-                *result = HTTOPRIGHT;
-                return true;
-            }
-            if (y > rect.top() + borderY && y < rect.bottom() - borderY) {
-                *result = HTRIGHT;
-                return true;
-            }
-            if (y >= rect.bottom() - borderY && y <= rect.bottom()) {
-                *result = HTBOTTOMRIGHT;
-                return true;
-            }
-        }
-        else {
-            *result = HTNOWHERE;
-            return true;
-        }
 
-
+        auto localPos = m_impl->parent->mapFromGlobal(QPoint(x, y));
         for (auto w : m_impl->moveBars)
         {
             auto child = m_impl->parent->childAt(localPos);
@@ -247,7 +342,7 @@ bool QCtmWinFramelessDelegate::nativeEvent([[maybe_unused]] const QByteArray& ev
     break;
     case WM_NCACTIVATE:
     {
-        if (!QtWin::isCompositionEnabled()) {
+        if (!isCompositionEnabled()) {
             *result = 1;
             return true;
         }
@@ -257,29 +352,29 @@ bool QCtmWinFramelessDelegate::nativeEvent([[maybe_unused]] const QByteArray& ev
     {
         if (m_impl->parent->isMaximized())
         {
-            if (QtWin::isCompositionEnabled())
+            if (isCompositionEnabled())
             {
-                auto margin = 8 / m_impl->parent->devicePixelRatioF();
+                auto margin = m_impl->dpiScale(8);
                 m_impl->parent->layout()->setContentsMargins(QMargins(margin, margin, margin, margin));
             }
             else
             {
-                m_impl->parent->layout()->setContentsMargins(QMargins(0, 0, 0, 0));
+                m_impl->setNoMargins();
             }
         }
         else
         {
-            m_impl->parent->layout()->setContentsMargins(QMargins(0, 0, 0, 0));
+            m_impl->setNoMargins();
         }
     }
     break;
     case WM_GETMINMAXINFO:
     {
         auto info = (MINMAXINFO*)msg->lParam;
-        info->ptMinTrackSize.x = m_impl->parent->minimumWidth();
-        info->ptMinTrackSize.y = m_impl->parent->minimumHeight();
-        info->ptMaxTrackSize.x = m_impl->parent->maximumWidth();
-        info->ptMaxTrackSize.y = m_impl->parent->maximumHeight();
+        info->ptMinTrackSize.x = GetSystemMetrics(SM_CXMINIMIZED);
+        info->ptMinTrackSize.y = GetSystemMetrics(SM_CYMINIMIZED);
+        info->ptMaxTrackSize.x = GetSystemMetrics(SM_CXMAXIMIZED);
+        info->ptMaxTrackSize.y = GetSystemMetrics(SM_CYMAXIMIZED);
 
         if (::MonitorFromWindow(::FindWindow(L"Shell_TrayWnd", nullptr), MONITOR_DEFAULTTONEAREST) ==
             ::MonitorFromWindow((HWND)(m_impl->parent->winId()), MONITOR_DEFAULTTONEAREST))
@@ -319,7 +414,7 @@ bool QCtmWinFramelessDelegate::eventFilter(QObject* watched, QEvent* event)
     {
         if (event->type() == QEvent::WindowStateChange)
         {
-            if (m_impl->parent->isMaximized() && QtWin::isCompositionEnabled() && !m_impl->parent->windowFlags().testFlag(Qt::Tool))
+            if (m_impl->parent->isMaximized() && isCompositionEnabled() && !m_impl->parent->windowFlags().testFlag(Qt::Tool))
             {
                 auto margin = 8 / m_impl->parent->devicePixelRatioF();
                 m_impl->parent->layout()->setContentsMargins(QMargins(margin, margin, margin, margin));
@@ -327,7 +422,7 @@ bool QCtmWinFramelessDelegate::eventFilter(QObject* watched, QEvent* event)
             }
             else
             {
-                m_impl->parent->layout()->setContentsMargins(QMargins(0, 0, 0, 0));
+                m_impl->setNoMargins();
                 m_impl->parent->layout()->update();
                 if (!m_impl->parent->underMouse())
                 {
@@ -352,32 +447,21 @@ void QCtmWinFramelessDelegate::setWindowLong()
 {
     auto hwnd = reinterpret_cast<HWND>(m_impl->parent->winId());
 
-    long style;
-    if (QtWin::isCompositionEnabled())
-    {
-        if (m_impl->parent->maximumSize() == QSize(QWIDGETSIZE_MAX, QWIDGETSIZE_MAX)
-            && m_impl->parent->windowFlags().testFlag(Qt::WindowMaximizeButtonHint))
-            style = AeroBorderlessFlag;
-        else
-            style = AeroBorderlessFixedFlag;
-    }
-    else
-    {
-        if (m_impl->parent->maximumSize() == QSize(QWIDGETSIZE_MAX, QWIDGETSIZE_MAX)
-            && m_impl->parent->windowFlags().testFlag(Qt::WindowMaximizeButtonHint))
-            style = BasicBorderlessFlag;
-        else
-            style = BasicBorderlessFixedFlag;
-    }
+    long style = isCompositionEnabled() ? AeroBorderlessFlag : BasicBorderlessFlag;
+
+    if (!m_impl->parent->windowFlags().testFlag(Qt::WindowMinimizeButtonHint)
+        || m_impl->parent->maximumSize() != QSize(QWIDGETSIZE_MAX, QWIDGETSIZE_MAX))
+        style &= ~WS_MINIMIZEBOX;
+    if (!m_impl->parent->windowFlags().testFlag(Qt::WindowMaximizeButtonHint))
+        style &= ~WS_MAXIMIZEBOX;
     SetWindowLongPtr(hwnd, GWL_STYLE, style);
 
-    if (QtWin::isCompositionEnabled())
+    if (isCompositionEnabled())
     {
-        QtWin::extendFrameIntoClientArea(m_impl->parent, 1, 1, 1, 1);
+        extendFrameIntoClientArea(m_impl->parent->backingStore()->window(), 1, 1, 1, 1);
     }
 
     SetWindowPos(hwnd, nullptr, 0, 0, 0, 0, SWP_FRAMECHANGED | SWP_NOMOVE | SWP_NOSIZE);
-
 }
 
 void QCtmWinFramelessDelegate::showSystemMenu(const QPoint& pos)

@@ -13,10 +13,11 @@ WindowAndDialogExamples::WindowAndDialogExamples(QWidget* parent)
     : QCtmWindow(parent)
 {
     ui.setupUi(this->centralWidget());
+    auto* dlg = new QCtmDialog(this);
+    dlg->setWindowFlag(Qt::WindowMinMaxButtonsHint);
     connect(ui.popDialogBtn, &QPushButton::clicked, this, [=]()
         {
-            QCtmDialog dlg(this);
-            dlg.exec();
+            dlg->exec();
         });
     this->titleBar()->addAction(new QAction(tr("Test Button")));
     auto action = new QWidgetAction(this);
@@ -27,4 +28,5 @@ WindowAndDialogExamples::WindowAndDialogExamples(QWidget* parent)
     menuBar->addMenu(tr("&File"))->addAction(tr("&Open"));
     this->setStatusBar(new QStatusBar(this));
     ui.popDialogBtn->winId();
+    centralWidget()->winId();
 }

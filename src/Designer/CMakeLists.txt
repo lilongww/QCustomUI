@@ -32,7 +32,7 @@ set(CMAKE_AUTOMOC ON)
 set(CMAKE_AUTOUIC ON)
 set(CMAKE_AUTORCC ON)
 
-find_package(QT NAMES Qt5 REQUIRED)
+find_package(QT NAMES Qt6 Qt5 REQUIRED)
 find_package(Qt${QT_VERSION_MAJOR} COMPONENTS Core Gui Widgets UiPlugin REQUIRED)
 
 include_directories(../)
@@ -44,7 +44,7 @@ add_library(${TARGET_NAME} SHARED
     ${UI}
      )
 
-target_link_libraries(${TARGET_NAME} PUBLIC QCustomUi PRIVATE Qt5::Core Qt5::Gui Qt5::Widgets Qt5::UiPlugin)
+target_link_libraries(${TARGET_NAME} PUBLIC QCustomUi PRIVATE Qt${QT_VERSION_MAJOR}::Core Qt${QT_VERSION_MAJOR}::Gui Qt${QT_VERSION_MAJOR}::Widgets Qt${QT_VERSION_MAJOR}::UiPlugin)
 set_target_properties(${TARGET_NAME} PROPERTIES VERSION ${QCUSTOMUI_VERSION} SOVERSION 1)
 
 install(TARGETS ${TARGET_NAME}

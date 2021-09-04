@@ -53,7 +53,7 @@ QCtmDrawerItemWidget::QCtmDrawerItemWidget(const QString& title, QCtmDrawerWidge
 {
     m_impl->tree = parent;
     m_impl->layout = new QVBoxLayout(this);
-    m_impl->layout->setMargin(0);
+    m_impl->layout->setContentsMargins(0,0,0,0);
     m_impl->layout->setSpacing(0);
 
     m_impl->title = new QCtmDrawerItemTitle(this);

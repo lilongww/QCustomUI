@@ -23,7 +23,6 @@
 #include "Private/QCtmFramelessDelegate_win.h"
 
 #include <QVBoxLayout>
-#include <QDesktopWidget>
 #include <QApplication>
 #include <QMoveEvent>
 #include <QApplication>
@@ -60,7 +59,7 @@ QCtmDialog::QCtmDialog(QWidget* parent)
     m_impl->title->setObjectName("ctmDialogTitleBar");
 
     m_impl->layout = new QVBoxLayout(this);
-    m_impl->layout->setMargin(0);
+    m_impl->layout->setContentsMargins(0, 0, 0, 0);
     m_impl->layout->setSpacing(0);
 
     m_impl->layout->addWidget(m_impl->title);
@@ -205,7 +204,7 @@ bool QCtmDialog::shadowless() const
 /*!
     \reimp
 */
-void QCtmDialog::hideEvent(QHideEvent*)
+void QCtmDialog::hideEvent(QHideEvent* e)
 {
     auto closeBtn = m_impl->title->findChild<QWidget*>("closeBtn");
     if (closeBtn)
@@ -213,6 +212,7 @@ void QCtmDialog::hideEvent(QHideEvent*)
         auto e = new QEvent(QEvent::Type::Leave);
         qApp->sendEvent(closeBtn, e);
     }
+    QDialog::hideEvent(e);
 }
 
 /*!
@@ -230,7 +230,11 @@ bool QCtmDialog::eventFilter(QObject* o, QEvent* e)
 /*!
     \reimp
 */
+#if QT_VERSION < QT_VERSION_CHECK(6,0,0)
 bool QCtmDialog::nativeEvent(const QByteArray& eventType, void* message, long* result)
+#else
+bool QCtmDialog::nativeEvent(const QByteArray& eventType, void* message, qintptr* result)
+#endif
 {
 #ifdef Q_OS_WIN
     if (!m_impl->delegate)
@@ -242,34 +246,4 @@ bool QCtmDialog::nativeEvent(const QByteArray& eventType, void* message, long* r
 #else
     return QDialog::nativeEvent(eventType, message, result);
 #endif
-}
-
-/*!
-    \brief      标准化 \a pos.
-*/
-void QCtmDialog::normalizes(QPoint& pos)
-{
-    auto screen = qApp->screenAt(pos);
-    if (!screen)
-        return;
-    auto rect = screen->geometry();
-    if (pos.x() < rect.left())
-    {
-        pos.setX(rect.left());
-    }
-
-    if (pos.x() + this->width() > rect.right())
-    {
-        pos.setX(rect.right() - this->width());
-    }
-
-    if (pos.y() < rect.top())
-    {
-        pos.setX(rect.top());
-    }
-
-    if (pos.y() + this->height() > rect.bottom())
-    {
-        pos.setY(rect.bottom() - this->height());
-    }
 }

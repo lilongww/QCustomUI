@@ -8,6 +8,17 @@ QCustomUi是一个自定义UI库，主要提供无边框窗口和一些自定义
 
 文档：https://llongww.gitee.io/qcustomuidocument
 
+**[1.6.0]**
+```
+1.QCtmMessageTipModel默认最新消息显示在前面;
+2.新增QCtmInputDialog，该弹窗继承于QInputDialog，实现了QCustomUi的窗口风格；
+3.删除冗余样式表；
+4.解决windows下的无边框窗口，在子窗口具备句柄的情况下无法拖拽的问题；
+5.QCtmApplication添加是否加载默认样式表的选项；
+6.解决QCtmDialog最大化后关闭，再次打开时窗口状态异常的问题；
+7.修改QCtmDialog的默认行为，不再默认具备最大化和最小化按钮；
+8.优化QCtmNavigationBar的Logo图标自适应；
+```
 **[1.5.2]**
 ```
 1.增加部分控件的iconSize属性和接口;

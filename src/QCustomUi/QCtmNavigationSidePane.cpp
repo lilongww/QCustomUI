@@ -53,7 +53,7 @@ struct QCtmNavigationSidePane::Impl
         titleBar->setObjectName("titleBar");
         QHBoxLayout* layout = new QHBoxLayout(titleBar);
         closeBtn = new QPushButton(titleBar);
-        layout->setMargin(0);
+        layout->setContentsMargins(0,0,0,0);
         closeBtn->setObjectName("closeBtn");
         title = new QLabel(titleBar);
         title->setObjectName("title");

@@ -175,31 +175,6 @@ QCtmNavigationBar::separator
     qproperty-icon: url(:/QCustomUi/Resources/help-light.png);
 }
 
-.QCtmNavigationBar #projectService
-{
-    qproperty-icon: url(:/QCustomUi/Resources/MainMenu-light.png);
-}
-
-.QCtmNavigationBar #projectService:checked
-{
-    qproperty-icon: url(:/QCustomUi/Resources/MainMenu-light.png);
-}
-
-.QCtmNavigationBar #Logo
-{
-    qproperty-icon: url(:/Resources/images/Logo-light.png);
-}
-
-.QCtmNavigationBar #systeMmenu
-{
-    qproperty-icon: url(:/QCustomUi/Resources/system_menu-light.png);
-}
-
-.QCtmNavigationBar #people
-{
-    qproperty-icon: url(:/QCustomUi/Resources/people-light.png);
-}
-
 /****************************************************************/
 
 /**************************QCtmNavigationImageButton****************************/
@@ -237,43 +212,11 @@ QCtmNavigationSideBar QToolButton
     border: none;
     background-color: transparent;
 }
-
-/*这里使用#sidebar1::checked 无效*/
-.QCtmNavigationSideBar #sidebar1[checked=true]
-{
-    qproperty-icon: url(:/Resources/images/sidebar-1-light.png);
-}
-
-.QCtmNavigationSideBar #sidebar2[checked=true]
-{
-    qproperty-icon: url(:/Resources/images/sidebar-2-light.png);
-}
-
-.QCtmNavigationSideBar #sidebar3[checked=true]
-{
-    qproperty-icon: url(:/Resources/images/sidebar-3-light.png);
-}
-
-.QCtmNavigationSideBar #sidebar1[checked=false]
-{
-    qproperty-icon: url(:/Resources/images/sidebar-1.png);
-}
-
-.QCtmNavigationSideBar #sidebar2[checked=false]
-{
-    qproperty-icon: url(:/Resources/images/sidebar-2.png);
-}
-
-.QCtmNavigationSideBar #sidebar3[checked=false]
-{
-    qproperty-icon: url(:/Resources/images/sidebar-3.png);
-}
-
 /************************************************************/
 
 /*************************QCtmTabWidget**********************/
 
-.QCtmTabWidget #closeButton, .QCtmTabWidget #areaButton
+.QCtmTabWidget #closeButton
 {
     width: 20px;
     height: 20px;
@@ -285,17 +228,12 @@ QCtmNavigationSideBar QToolButton
     image: url(:/QCustomUi/Resources/hideButton-light.png);
 }
 
-.QCtmTabWidget #areaButton
-{
-    qproperty-icon: url(:/QCustomUi/Resources/areaButton-light.png);
-}
-
-.QCtmTabWidget #closeButton:hover, .QCtmTabWidget #areaButton:hover
+.QCtmTabWidget #closeButton:hover
 {
     background: #CBE5FF;
 }
 
-.QCtmTabWidget #closeButton:pressed, .QCtmTabWidget #areaButton:pressed
+.QCtmTabWidget #closeButton:pressed
 {
     image: url(:/QCustomUi/Resources/hideButton.png);
     background: #2477CE;
@@ -537,14 +475,6 @@ QCtmMessageTipButton:pressed
     selection-background-color: red;
     border: none;
 }
-
-/************************************************************/
-
-/***********************QCtmMainWindow***********************/
-.QCtmMainWindow
-{
-    background: white;
-}
 /************************************************************/
 
 /*************************QCtmLogWidget*********************/
@@ -672,7 +602,7 @@ QCtmMessageTipButton:pressed
 
 /***********************QCtmMessageBox***********************/
 
-QCtmMessageBox #titleBar
+QCtmMessageBox#titleBar
 {
     background: #FFFFFF;
 }

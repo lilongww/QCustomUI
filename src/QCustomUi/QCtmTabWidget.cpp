@@ -72,7 +72,7 @@ QCtmTabWidget::QCtmTabWidget(QWidget* parent) :
 {
     m_impl->cornerWidget = new QWidget(this);
     m_impl->cornerLayout = new QHBoxLayout(m_impl->cornerWidget);
-    m_impl->cornerLayout->setMargin(0);
+    m_impl->cornerLayout->setContentsMargins(0,0,0,0);
 
     m_impl->closeBtn = new QToolButton(this);
     m_impl->closeBtn->setObjectName("closeButton");

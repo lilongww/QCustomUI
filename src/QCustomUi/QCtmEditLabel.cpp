@@ -203,7 +203,7 @@ void QCtmEditLabel::init()
     QHBoxLayout* layout = new QHBoxLayout(this);
     m_impl->editButton = new QToolButton(this);
     m_impl->editButton->setIcon(QIcon(":/QCustomUi/Resources/edit.png"));
-    layout->setMargin(0);
+    layout->setContentsMargins(0,0,0,0);
     layout->addStretch(1);
     layout->addWidget(m_impl->editButton);
     layout->setSpacing(EditButtonSpace);
@@ -247,7 +247,7 @@ void QCtmEditLabel::onEditButtonClicked()
         });
     layout->addWidget(cancelBtn);
     layout->setSpacing(EditButtonSpace - 2);
-    layout->setMargin(0);
+    layout->setContentsMargins(0,0,0,0);
     editBase->move(this->parentWidget() ? this->parentWidget()->mapToGlobal(this->pos()) : this->pos());
     editBase->show();
 }

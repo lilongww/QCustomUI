@@ -43,11 +43,11 @@ QCtmDrawerItemTitle::QCtmDrawerItemTitle(QCtmDrawerItemWidget* parent)
 {
     m_impl->treeItem = parent;
     m_impl->layout = new QHBoxLayout(this);
-    m_impl->layout->setMargin(0);
+    m_impl->layout->setContentsMargins(0,0,0,0);
     m_impl->layout->setSpacing(0);
     m_impl->layout->addStretch(1);
     m_impl->widgetLayout = new QHBoxLayout;
-    m_impl->widgetLayout->setMargin(0);
+    m_impl->widgetLayout->setContentsMargins(0,0,0,0);
     m_impl->widgetLayout->setSpacing(0);
     m_impl->layout->addLayout(m_impl->widgetLayout);
     m_impl->widgetLayout->setAlignment(Qt::AlignRight);

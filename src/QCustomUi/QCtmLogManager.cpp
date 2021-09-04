@@ -25,7 +25,7 @@
 #include <QDateTime>
 #include <QFile>
 #include <QDir>
-#include <QRegExp>
+#include <QRegularExpression>
 #include <QMutex>
 #include <QMutexLocker>
 #include <QThread>
@@ -182,7 +182,11 @@ void qtMessageHandle(QtMsgType type, const QMessageLogContext& context, const QS
 
     QCtmLogManager::Impl::oldHandle(type, context, message);
 
+#if QT_VERSION < QT_VERSION_CHECK(6,0,0)
     QMutexLocker locker(&QCtmLogManager::instance().m_impl->mutex);
+#else
+    QMutexLocker<QMutex> locker(&QCtmLogManager::instance().m_impl->mutex);
+#endif
     if (QCtmLogManager::instance().m_impl->saveLogs[type])
     {
         QCtmLogManager::instance().writeLog(data);
@@ -279,30 +283,25 @@ void QCtmLogManager::unRegisterModel(QCtmAbstractLogModel* model)
 */
 QList<QString> QCtmLogManager::parseObjectNames(QString& msg)
 {
-    QRegExp rx(objExp);
+    QRegularExpression rx(objExp);
+    QRegularExpressionMatchIterator i = rx.globalMatch(msg);
     QStringList list;
-    int pos = 0;
 
-    QString temp = msg;
-    while ((pos = rx.indexIn(msg, pos)) != -1) {
-        const auto& str = rx.cap(0);
+    while (i.hasNext())
+    {
+        auto match = i.next();
+        const auto& str = match.captured();
         list << str.right(str.size() - 1);
-        pos += rx.matchedLength();
-        temp = msg.right(msg.size() - pos);
     }
 
     if (!list.isEmpty())
     {
-        if (!temp.isEmpty())
+        for(const auto& objName : list)
         {
-            if (temp.at(0) == ' ')
-            {
-                temp = temp.right(temp.size() - 1);
-            }
+            msg.replace("#" + objName, "");
         }
     }
 
-    msg = temp;
     return list;
 }
 

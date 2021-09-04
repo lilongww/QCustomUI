@@ -663,8 +663,7 @@ QSize QCtmIPAddressEdit::minimumSizeHint() const
     int w = fm.horizontalAdvance(" 000 . 000 . 000 . 000 ") + margins.left() + margins.right();
     QStyleOptionFrame opt;
     initStyleOption(&opt);
-    return (style()->sizeFromContents(QStyle::CT_LineEdit, &opt, QSize(w, h).
-        expandedTo(QApplication::globalStrut()), this));
+    return style()->sizeFromContents(QStyle::CT_LineEdit, &opt, QSize(w, h), this);
 }
 
 /*!

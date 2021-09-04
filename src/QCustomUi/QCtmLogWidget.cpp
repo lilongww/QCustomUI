@@ -177,7 +177,7 @@ void QCtmLogWidget::init()
     m_impl->logView->setSelectionMode(QTableView::SingleSelection);
 
     QHBoxLayout* layout = new QHBoxLayout(this);
-    layout->setMargin(0);
+    layout->setContentsMargins(0,0,0,0);
     layout->addWidget(m_impl->logView);
 
     addAction(m_impl->errorAction);
