@@ -28,6 +28,7 @@
 #include <QDebug>
 #include <QWindow>
 #include <QBackingStore>
+#include <QScopeGuard>
 
 #ifdef Q_OS_WIN
 #include <windows.h>
@@ -69,6 +70,16 @@ struct QCtmWinFramelessDelegate::Impl
         parent->layout()->setContentsMargins(QMargins(0, 0, 0, 0));
         parent->layout()->update();
     };
+
+    inline double dpiScale(double value)
+    {
+        return value / parent->devicePixelRatioF();
+    }
+
+    inline double unDpiScale(double value)
+    {
+        return value * parent->devicePixelRatioF();
+    }
 };
 
 QCtmWinFramelessDelegate::QCtmWinFramelessDelegate(QWidget* parent, const QWidgetList& moveBars)
@@ -105,6 +116,33 @@ void QCtmWinFramelessDelegate::removeMoveBar(QWidget* w)
     m_impl->moveBars.removeOne(w);
 }
 
+inline void debugPos(unsigned i)
+{
+#define Pair(a) std::pair<int, const char*>(a, #a)
+    static std::map<int, const char*> values{ Pair(SWP_NOSIZE),
+        Pair(SWP_NOSIZE),
+        Pair(SWP_NOMOVE),
+        Pair(SWP_NOZORDER),
+        Pair(SWP_NOREDRAW),
+        Pair(SWP_NOACTIVATE),
+        Pair(SWP_FRAMECHANGED),
+        Pair(SWP_SHOWWINDOW),
+        Pair(SWP_HIDEWINDOW),
+        Pair(SWP_NOCOPYBITS),
+        Pair(SWP_NOOWNERZORDER),
+        Pair(SWP_NOSENDCHANGING),
+        Pair(SWP_DEFERERASE),
+        Pair(SWP_ASYNCWINDOWPOS)
+    };
+    std::for_each(values.begin(), values.end(), [i](const auto& value)
+        {
+            if (value.first & i)
+            {
+                qDebug() << value.second;
+            }
+        });
+}
+
 #if QT_VERSION < QT_VERSION_CHECK(6,0,0)
 bool QCtmWinFramelessDelegate::nativeEvent([[maybe_unused]] const QByteArray& eventType
     , void* message
@@ -139,31 +177,34 @@ bool QCtmWinFramelessDelegate::nativeEvent(const QByteArray& eventType
             NCCALCSIZE_PARAMS* ncParam = reinterpret_cast<NCCALCSIZE_PARAMS*>(msg->lParam);
             if (!m_impl->parent->testAttribute(Qt::WA_Moved))
             {
+                //debugPos(ncParam->lppos->flags);
                 auto state = m_impl->parent->windowState();
+                auto scope = qScopeGuard([=]()
+                    {
+                        m_impl->parent->setWindowState(state);
+                    });
                 if (ncParam->lppos->flags & SWP_NOSIZE)
                 {
-                    m_impl->parent->move(ncParam->rgrc->left
-                        , ncParam->rgrc->top);
+                    m_impl->parent->move(m_impl->dpiScale(ncParam->rgrc->left)
+                        , m_impl->dpiScale(ncParam->rgrc->top));
                 }
                 else if (ncParam->lppos->flags & SWP_NOMOVE)
                 {
-                    m_impl->parent->resize(ncParam->rgrc->right - ncParam->rgrc->left
-                        , ncParam->rgrc->bottom - ncParam->rgrc->top);
+                    m_impl->parent->resize(m_impl->dpiScale(ncParam->rgrc->right - ncParam->rgrc->left)
+                        , m_impl->dpiScale(ncParam->rgrc->bottom - ncParam->rgrc->top));
                 }
-                else if (!(ncParam->lppos->flags & SWP_NOMOVE) && !(ncParam->lppos->flags & SWP_NOSIZE))
+                else if (!(ncParam->lppos->flags & SWP_NOMOVE) && !(ncParam->lppos->flags & SWP_NOSIZE) && !(ncParam->lppos->flags & SWP_NOACTIVATE))
                 {
-                    m_impl->parent->setGeometry(ncParam->rgrc->left
-                        , ncParam->rgrc->top
-                        , ncParam->rgrc->right - ncParam->rgrc->left
-                        , ncParam->rgrc->bottom - ncParam->rgrc->top);
+                    m_impl->parent->setGeometry(m_impl->dpiScale(ncParam->rgrc->left)
+                        , m_impl->dpiScale(ncParam->rgrc->top)
+                        , m_impl->dpiScale(ncParam->rgrc->right - ncParam->rgrc->left)
+                        , m_impl->dpiScale(ncParam->rgrc->bottom - ncParam->rgrc->top));
                 }
-                m_impl->parent->setWindowState(state);
-                m_impl->parent->setAttribute(Qt::WA_Moved, false);
             }
         }
         else
         {
-            RECT* rect = reinterpret_cast<RECT*>(msg->lParam);
+            //RECT* rect = reinterpret_cast<RECT*>(msg->lParam);
         }
         *result = 0;
         return true;
@@ -190,11 +231,11 @@ bool QCtmWinFramelessDelegate::nativeEvent(const QByteArray& eventType
     case WM_NCHITTEST:
     {
         POINTS globalPos = MAKEPOINTS(msg->lParam);
-        int x = globalPos.x;
-        int y = globalPos.y;
+        int x = m_impl->dpiScale(globalPos.x);
+        int y = m_impl->dpiScale(globalPos.y);
 
-        auto borderX = /*GetSystemMetrics(SM_CXFRAME) +*/ GetSystemMetrics(SM_CXPADDEDBORDER);
-        auto borderY = /*GetSystemMetrics(SM_CYFRAME) +*/ GetSystemMetrics(SM_CXPADDEDBORDER);
+        auto borderX = GetSystemMetrics(SM_CXPADDEDBORDER);
+        auto borderY = GetSystemMetrics(SM_CXPADDEDBORDER);
 
         if (m_impl->parent->isMaximized())
         {
@@ -313,7 +354,7 @@ bool QCtmWinFramelessDelegate::nativeEvent(const QByteArray& eventType
         {
             if (isCompositionEnabled())
             {
-                auto margin = 8 / m_impl->parent->devicePixelRatioF();
+                auto margin = m_impl->dpiScale(8);
                 m_impl->parent->layout()->setContentsMargins(QMargins(margin, margin, margin, margin));
             }
             else
@@ -330,10 +371,10 @@ bool QCtmWinFramelessDelegate::nativeEvent(const QByteArray& eventType
     case WM_GETMINMAXINFO:
     {
         auto info = (MINMAXINFO*)msg->lParam;
-        info->ptMinTrackSize.x = m_impl->parent->minimumWidth();
-        info->ptMinTrackSize.y = m_impl->parent->minimumHeight();
-        info->ptMaxTrackSize.x = m_impl->parent->maximumWidth();
-        info->ptMaxTrackSize.y = m_impl->parent->maximumHeight();
+        info->ptMinTrackSize.x = GetSystemMetrics(SM_CXMINIMIZED);
+        info->ptMinTrackSize.y = GetSystemMetrics(SM_CYMINIMIZED);
+        info->ptMaxTrackSize.x = GetSystemMetrics(SM_CXMAXIMIZED);
+        info->ptMaxTrackSize.y = GetSystemMetrics(SM_CYMAXIMIZED);
 
         if (::MonitorFromWindow(::FindWindow(L"Shell_TrayWnd", nullptr), MONITOR_DEFAULTTONEAREST) ==
             ::MonitorFromWindow((HWND)(m_impl->parent->winId()), MONITOR_DEFAULTTONEAREST))
