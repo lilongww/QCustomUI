@@ -31,6 +31,9 @@
 #include <QScopeGuard>
 
 #ifdef Q_OS_WIN
+#if QT_VERSION < QT_VERSION_CHECK(6,0,0)
+#include <QtWin>
+#endif
 #include <windows.h>
 #include <windowsx.h>
 #include <dwmapi.h>
