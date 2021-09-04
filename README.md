@@ -1,7 +1,7 @@
 # QCustomUi
 
 QCustomUi是一个自定义UI库，主要提供无边框窗口和一些自定义控件，方便Qt开发。
-当前库于Qt5.15.2下编译通过。
+当前库于Qt5.15.2和Qt6下编译通过。
 
 编译完成后，点击安装，会自动安装设计器插件到QtDesigner和QtCreator下。
 >注意：如果没有将Qt的运行库设置到PATH环境变量中，QtCreator可能缺乏某些QCustomUi依赖的Qt库而无法加载设计器插件。
@@ -18,6 +18,7 @@ QCustomUi是一个自定义UI库，主要提供无边框窗口和一些自定义
 6.解决QCtmDialog最大化后关闭，再次打开时窗口状态异常的问题；
 7.修改QCtmDialog的默认行为，不再默认具备最大化和最小化按钮；
 8.优化QCtmNavigationBar的Logo图标自适应；
+9.适配Qt6。
 ```
 **[1.5.2]**
 ```
