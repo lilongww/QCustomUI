@@ -443,6 +443,10 @@ bool QCtmWinFramelessDelegate::eventFilter(QObject* watched, QEvent* event)
                 setWindowLong();
             }
         }
+        else if (event->type() == QEvent::WinIdChange)
+        {
+            m_impl->firstShow = true;
+        }
     }
     return false;
 }

@@ -42,7 +42,7 @@ public:
         if (msg->message == WM_NCHITTEST)
         {
             auto w = QWidget::find(reinterpret_cast<WId>(msg->hwnd));
-            if (w->window() != w)
+            if (w && w->window() != w)
             {
                 *result = HTTRANSPARENT;
                 return true;

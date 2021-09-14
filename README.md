@@ -11,7 +11,8 @@ QCustomUi是一个自定义UI库，主要提供无边框窗口和一些自定义
 **[1.6.1]**
 
 ```
-1.bugfix：QCtmDialog默认显示位置不正确。
+1.bugfix：QCtmDialog默认显示位置不正确；
+2.bugfix：解决窗口被ALT+F4快捷键关闭后，再次打开显示不正常的问题；
 ```
 
 
