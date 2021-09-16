@@ -203,6 +203,7 @@ bool QCtmWinFramelessDelegate::nativeEvent(const QByteArray& eventType
                         , m_impl->dpiScale(ncParam->rgrc->right - ncParam->rgrc->left)
                         , m_impl->dpiScale(ncParam->rgrc->bottom - ncParam->rgrc->top));
                 }
+                m_impl->parent->setAttribute(Qt::WA_Moved, false);
             }
         }
         else
@@ -441,6 +442,10 @@ bool QCtmWinFramelessDelegate::eventFilter(QObject* watched, QEvent* event)
                 m_impl->firstShow = false;
                 setWindowLong();
             }
+        }
+        else if (event->type() == QEvent::WinIdChange)
+        {
+            m_impl->firstShow = true;
         }
     }
     return false;
