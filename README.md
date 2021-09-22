@@ -8,11 +8,17 @@ QCustomUi是一个自定义UI库，主要提供无边框窗口和一些自定义
 
 文档：https://llongww.gitee.io/qcustomuidocument
 
+**[1.6.2]**
+```
+1.bugfix：带native子窗口的QCtmWindow，点击任务栏图标显示/隐藏窗口时，显示异常；
+2.bugfix：native子窗口hover事件失效。
+```
+
 **[1.6.1]**
 
 ```
 1.bugfix：QCtmDialog默认显示位置不正确；
-2.bugfix：解决窗口被ALT+F4快捷键关闭后，再次打开显示不正常的问题；
+2.bugfix：解决窗口被ALT+F4快捷键关闭后，再次打开显示不正常的问题。
 ```
 
 
