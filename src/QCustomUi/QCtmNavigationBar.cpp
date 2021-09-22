@@ -43,9 +43,11 @@ static Q_CONSTEXPR const char* ActionPosProperty = "QCtm_ActionPosition";
 struct QCtmNavigationBar::Impl
 {
     QList<QCtmWidgetItemPtr> leftItems;
+    QList<QCtmWidgetItemPtr> centerItems;
     QList<QCtmWidgetItemPtr> rightItems;
 
     QHBoxLayout* leftLayout;
+    QHBoxLayout* centerLayout;
     QHBoxLayout* rightLayout;
 
     QSize iconSize{ 16,16 };
@@ -53,6 +55,9 @@ struct QCtmNavigationBar::Impl
     QCtmWidgetItemPtr find(QAction* action)
     {
         auto item = find(action, Left);
+        if (item)
+            return item;
+        item = find(action, Center);
         return item ? item : find(action, Right);
     }
 
@@ -72,6 +77,8 @@ struct QCtmNavigationBar::Impl
         {
         case Left:
             return find(action, leftItems);
+        case Center:
+            return find(action, centerItems);
         case Right:
             return find(action, rightItems);
         }
@@ -93,6 +100,8 @@ struct QCtmNavigationBar::Impl
         {
         case Left:
             return find(widget, leftItems);
+        case Center:
+            return find(widget, centerItems);
         case Right:
             return find(widget, rightItems);
         }
@@ -102,7 +111,7 @@ struct QCtmNavigationBar::Impl
 
 /*!
     \class      QCtmNavigationBar
-    \brief      QCtmNavigationBar look like a tool bar, but it can be used with QCtmWindow, QCtmNavigationPane and more.
+    \brief      QCtmNavigationBar类似于QToolBar，它可以配合QCtmWindow和QCtmNavigationPane使用.
     \inherits   QWidget
     \ingroup    QCustomUi
     \inmodule   QCustomUi
@@ -113,11 +122,13 @@ struct QCtmNavigationBar::Impl
 
 /*!
     \enum       QCtmNavigationBar::ActionPosition
-                Describe the direction of the navigation bar.
+                描述Action的显示位置.
     \value      Left
-                The left of the navigation bar.
+                靠左显示.
+    \value      Center
+                居中显示.
     \value      Right
-                The right of the navigation bar.
+                靠右显示.
 */
 
 /*!
@@ -127,7 +138,7 @@ struct QCtmNavigationBar::Impl
 */
 
 /*!
-    \brief      Constructs a navigation bar with \a parent.
+    \brief      构造一个父对象为 \a parent 的QCtmNavigationBar.
 */
 QCtmNavigationBar::QCtmNavigationBar(QWidget* parent)
     : QWidget(parent)
@@ -135,22 +146,29 @@ QCtmNavigationBar::QCtmNavigationBar(QWidget* parent)
 {
     setFixedHeight(50);
     QHBoxLayout* layout = new QHBoxLayout(this);
-    layout->setContentsMargins(1,1,1,1);
+    layout->setContentsMargins(1, 1, 1, 1);
     layout->setSpacing(0);
-    m_impl->leftLayout = new QHBoxLayout;
-    m_impl->leftLayout->setContentsMargins(0,0,0,0);
-    m_impl->leftLayout->setSpacing(1);
-    m_impl->rightLayout = new QHBoxLayout;
-    m_impl->rightLayout->setContentsMargins(0,0,0,0);
-    m_impl->rightLayout->setSpacing(1);
+    auto initLayout = [](QHBoxLayout** layout)
+    {
+        *layout = new QHBoxLayout;
+        (*layout)->setContentsMargins(0, 0, 0, 0);
+        (*layout)->setSpacing(1);
+    };
+
+    initLayout(&m_impl->leftLayout);
+    initLayout(&m_impl->centerLayout);
+    initLayout(&m_impl->rightLayout);
 
     layout->addLayout(m_impl->leftLayout);
     layout->addStretch(1);
+    layout->addLayout(m_impl->centerLayout);
+    layout->addStretch(1);
     layout->addLayout(m_impl->rightLayout);
+    setAttribute(Qt::WA_StyledBackground);
 }
 
 /*!
-    \brief      Destroys the navigation bar.
+    \brief      销毁当前QCtmNavigationBar对象.
 */
 QCtmNavigationBar::~QCtmNavigationBar()
 {
@@ -158,19 +176,22 @@ QCtmNavigationBar::~QCtmNavigationBar()
 
 /*!
     \overload   addAction
-                This function add the given \a action to the navigation bar with the \a pos.
+                将 \a action 添加到 \a pos 位置.
     \sa         QWidget::addAction
 */
 void QCtmNavigationBar::addAction(QAction* action, ActionPosition pos)
 {
-    int index = pos == ActionPosition::Right ? m_impl->rightItems.size() : m_impl->leftItems.size();
+    int index = pos == ActionPosition::Right
+        ? m_impl->rightItems.size()
+        : pos == ActionPosition::Center
+        ? m_impl->centerItems.size()
+        : m_impl->leftItems.size();
     insertAction(index, action, pos);
 }
 
 /*!
     \overload   addAction
-                This convenience function creates a new action with an \a icon, \a text and \a pos.
-                The Function adds the newly created action to the navigation bar and returns it.
+                该重载函数创建并返回一个图标为 \a icon, 文本为 \a text 的action，并显示到 \a pos 位置.
     \sa         QCtmNavigationBar::addAction
 */
 QAction* QCtmNavigationBar::addAction(const QIcon& icon, const QString& text, ActionPosition pos)
@@ -182,8 +203,7 @@ QAction* QCtmNavigationBar::addAction(const QIcon& icon, const QString& text, Ac
 
 /*!
     \overload   addAction
-                This convenience function creates a new action with \a text and \a pos.
-                The Function adds the newly created action to the navigation bar and returns it.
+                该重载函数创建并返回一个文本为 \a text 的action，并显示到 \a pos 位置.
     \sa         QCtmNavigationBar::addAction
 */
 QAction* QCtmNavigationBar::addAction(const QString& text, ActionPosition pos)
@@ -193,7 +213,7 @@ QAction* QCtmNavigationBar::addAction(const QString& text, ActionPosition pos)
 
 /*!
     \overload   insertAction
-                This convenience function insert the given \a action to the navigation bar with the \a index and \a pos.
+                该重载函数将 \a action 插入到 \a index 的位置，并显示到 \a pos 位置.
     \sa         QWidget::insertAction
 */
 void QCtmNavigationBar::insertAction(int index, QAction* action, ActionPosition pos)
@@ -205,8 +225,7 @@ void QCtmNavigationBar::insertAction(int index, QAction* action, ActionPosition 
 
 /*!
     \overload   insertAction
-    \brief      This function creates and add a action to the navigation bar with the given \a index, \a icon, \a text and \a pos.
-                And returns the newly created action.
+    \brief      该重载函数创建并返回一个图标为 \a icon, 文本为 \a text 的action，并插入到 \a index 位置，显示到 \a pos 位置.
     \sa         QCtmNavigationBar::insertAction
 */
 QAction* QCtmNavigationBar::insertAction(int index, const QIcon& icon, const QString& text, ActionPosition pos)
@@ -218,8 +237,7 @@ QAction* QCtmNavigationBar::insertAction(int index, const QIcon& icon, const QSt
 
 /*!
     \overload   insertAction
-                This function creates and add a action to the navigation bar with the given \a index, \a text and pos.
-                And return the newly created action.
+                该重载函数创建并返回一个文本为 \a text 的action，并插入到 \a index 位置，显示到 \a pos 位置.
     \sa         QCtmNavigationBar::insertAction
 */
 QAction* QCtmNavigationBar::insertAction(int index, const QString& text, ActionPosition pos)
@@ -228,7 +246,7 @@ QAction* QCtmNavigationBar::insertAction(int index, const QString& text, ActionP
 }
 
 /*!
-    \brief      Add a separator to the navigation bar with the given \a pos.
+    \brief      在 \a pos 位置添加一个分隔符.
     \sa         insertSeparator
 */
 QAction* QCtmNavigationBar::addSeparator(ActionPosition pos)
@@ -237,7 +255,7 @@ QAction* QCtmNavigationBar::addSeparator(ActionPosition pos)
 }
 
 /*!
-    \brief      Insert a separator to the navigation bar with the given \a index and \a pos.
+    \brief      在 \a index, \a pos 位置插入一个分隔符.
     \sa         addSeparator
 */
 QAction* QCtmNavigationBar::insertSeparator(int index, ActionPosition pos)
@@ -249,8 +267,7 @@ QAction* QCtmNavigationBar::insertSeparator(int index, ActionPosition pos)
 }
 
 /*!
-    \brief      This function add the given \a action and \a pane to the navigation bar with \a pos.
-                And bind the \a action and \a pane.
+    \brief      在 \a pos 位置添加一个 \a action 并与 \a pane 绑定.
     \sa         insertPane
 */
 void QCtmNavigationBar::addPane(QAction* action, ActionPosition pos, QCtmNavigationSidePane* pane)
@@ -260,9 +277,7 @@ void QCtmNavigationBar::addPane(QAction* action, ActionPosition pos, QCtmNavigat
 
 /*!
     \overload   addPane
-                Add a \a pane to the navigation bar.
-                And creates a binded action with the given \a icon, \a text, \a pos.
-                And returns the newly created action.
+                添加并返回一个图标为 \a icon, 文本为 \a text 的action，显示到 \a pos 位置，并且与 \a pane 绑定.
     \sa         QCtmNavigationBar::addPane
 */
 QAction* QCtmNavigationBar::addPane(const QIcon& icon, const QString& text, ActionPosition pos, QCtmNavigationSidePane* pane)
@@ -274,9 +289,7 @@ QAction* QCtmNavigationBar::addPane(const QIcon& icon, const QString& text, Acti
 
 /*!
     \overload   addPane
-                This function add the given \a pane to the navigation bar.
-                And creates a binded action with the given \a text and \a pos.
-                And returns the newly created action.
+                添加并返回一个文本为 \a text 的action，显示到 \a pos 位置，并且与 \a pane 绑定.
     \sa         QCtmNavigationBar::addPane
 */
 QAction* QCtmNavigationBar::addPane(const QString& text, ActionPosition pos, QCtmNavigationSidePane* pane)
@@ -286,8 +299,7 @@ QAction* QCtmNavigationBar::addPane(const QString& text, ActionPosition pos, QCt
 
 
 /*!
-    \brief      This function insert the given \a pane and \a action to the navigation bar with \a index and \a pos.
-                And bind the \a action and \a pane.
+    \brief      插入一个 \a action 到 \a index 位置，显示到 \a pos 位置，并且与 \a pane 绑定.
     \sa         insertAction
 */
 void QCtmNavigationBar::insertPane(int index, QAction* action, ActionPosition pos, QCtmNavigationSidePane* pane)
@@ -315,9 +327,7 @@ void QCtmNavigationBar::insertPane(int index, QAction* action, ActionPosition po
 
 /*!
     \overload   insertPane
-                This function insert the given pane to the navigation bar.
-                And creates and inserts a action to the navigation bar with the given \a index, \a icon, \a text and \a pos.
-                And returns the newly created action.
+                插入并返回一个图标为 \a icon, 文本为 \a text 的action，并插入到 \a index 位置，显示到 \a pos 位置，并且与 \a pane 绑定.
     \sa         QCtmNavigationBar::insertPane
 */
 QAction* QCtmNavigationBar::insertPane(int index, const QIcon& icon, const QString& text, ActionPosition pos, QCtmNavigationSidePane* pane)
@@ -329,9 +339,7 @@ QAction* QCtmNavigationBar::insertPane(int index, const QIcon& icon, const QStri
 
 /*!
     \overload   insertPane
-                This function insert the given pane to the navigation bar.
-                And creates and inserts a action to the navigation bar with the given \a index, \a text and \a pos.
-                And returns the newly created action.
+                插入并返回一个文本为 \a text 的action，并插入到 \a index 位置，显示到 \a pos 位置，并且与 \a pane 绑定.
     \sa         QCtmNavigationBar::insertPane
 */
 QAction* QCtmNavigationBar::insertPane(int index, const QString& text, ActionPosition pos, QCtmNavigationSidePane* pane)
@@ -340,8 +348,7 @@ QAction* QCtmNavigationBar::insertPane(int index, const QString& text, ActionPos
 }
 
 /*!
-    \brief      Add a help action to the navigation bar with the given \a filePath, \a icon and \a pos.
-                And returns the newly created action.
+    \brief      添加并返回一个图标为 \a icon 的帮助action到 \a pos 位置，点击时打开 \a filePath的帮助文档.
     \sa         insertHelp
 */
 QAction* QCtmNavigationBar::addHelp(const QUrl& filePath, const QIcon& icon, ActionPosition pos)
@@ -351,8 +358,7 @@ QAction* QCtmNavigationBar::addHelp(const QUrl& filePath, const QIcon& icon, Act
 }
 
 /*!
-    \brief      Insert a help action to the navigation bar with the given \a index, \a filePath, \a icon and \a pos.
-                And returns the newly created action.
+    \brief      插入并返回一个图标为 \a icon 的帮助action到 \a index, \a pos 位置，点击时打开 \a filePath的帮助文档.
     \sa         addHelp
 */
 QAction* QCtmNavigationBar::insertHelp(int index, const QUrl& filePath, const QIcon& icon, ActionPosition pos /*= Right*/)
@@ -366,8 +372,7 @@ QAction* QCtmNavigationBar::insertHelp(int index, const QUrl& filePath, const QI
 }
 
 /*!
-    \brief      Add a logo action to the navigation bar with the given \a icon and \a pos.
-                And returns the newly created action.
+    \brief      添加并返回一个图标为 \a icon, 显示位置为 \a pos 的Logo action.
     \sa         insertLogo
 */
 QAction* QCtmNavigationBar::addLogo(const QIcon& icon, ActionPosition pos)
@@ -377,8 +382,7 @@ QAction* QCtmNavigationBar::addLogo(const QIcon& icon, ActionPosition pos)
 }
 
 /*!
-    \brief      Insert a logo action to the navigation bar with the given \a index, \a icon and \a pos.
-                And returns the newly created action.
+    \brief      插入并返回一个图标为 \a icon, 显示位置为 \a index, \a pos 的Logo action.
     \sa         addLogo
 */
 QAction* QCtmNavigationBar::insertLogo(int index, const QIcon& icon, ActionPosition pos /*= Left*/)
@@ -397,8 +401,7 @@ QAction* QCtmNavigationBar::insertLogo(int index, const QIcon& icon, ActionPosit
 }
 
 /*!
-    \brief      Add a user action to the navigation bar with the given \a icon, \a text and \a pos.
-                And returns the newly created action.
+    \brief      添加并返回一个图标为 \a icon, 文本为 \a text, 显示位置为 \a pos 的用户action.
     \sa         insertUser
 */
 QAction* QCtmNavigationBar::addUser(const QIcon& icon, const QString& text, ActionPosition pos)
@@ -407,8 +410,7 @@ QAction* QCtmNavigationBar::addUser(const QIcon& icon, const QString& text, Acti
 }
 
 /*!
-    \brief      Insert a user action to the navigation bar with the given \a index, \a icon, \a text and \a pos.
-                And returns the newly created action.
+    \brief      插入并返回一个图标为 \a icon, 文本为 \a text, 显示位置为 \a index, \a pos 的用户action.
     \sa         addUser
 */
 QAction* QCtmNavigationBar::insertUser(int index, const QIcon& icon, const QString& text, ActionPosition pos)
@@ -428,24 +430,24 @@ QAction* QCtmNavigationBar::insertUser(int index, const QIcon& icon, const QStri
 }
 
 /*!
-    \brief      Returns the index of the \a action.
+    \brief      返回 \a action 的序号.
 */
 int QCtmNavigationBar::indexOf(QAction* action) const
 {
     auto item = m_impl->find(action, Left);
     if (item)
         return m_impl->leftItems.indexOf(item);
-    else
-    {
-        item = m_impl->find(action, Right);
-        if (item)
-            return m_impl->rightItems.indexOf(item);
-    }
+    item = m_impl->find(action, Center);
+    if (item)
+        return m_impl->centerItems.indexOf(item);
+    item = m_impl->find(action, Right);
+    if (item)
+        return m_impl->rightItems.indexOf(item);
     return -1;
 }
 
 /*!
-    \brief      Returns the action count with \a pos.
+    \brief      返回 \a pos 位置的action数量.
 */
 int QCtmNavigationBar::count(ActionPosition pos) const
 {
@@ -453,6 +455,8 @@ int QCtmNavigationBar::count(ActionPosition pos) const
     {
     case ActionPosition::Left:
         return m_impl->leftItems.size();
+    case ActionPosition::Center:
+        return m_impl->centerItems.size();
     case ActionPosition::Right:
         return m_impl->rightItems.size();
     }
@@ -460,7 +464,7 @@ int QCtmNavigationBar::count(ActionPosition pos) const
 }
 
 /*!
-    \brief      Returns rect of the \a action.
+    \brief      返回 \a action 的区域.
 */
 QRect QCtmNavigationBar::actionRect(QAction* action)
 {
@@ -471,25 +475,28 @@ QRect QCtmNavigationBar::actionRect(QAction* action)
 }
 
 /*!
-    \brief      Returns the action at the given \a index and \a pos.
+    \brief      返回 \a pos \a index 位置的action.
     \sa         addAction, insertAction
 */
 QAction* QCtmNavigationBar::actionAt(int index, ActionPosition pos) const
 {
     if (index < 0)
         return nullptr;
+    auto findAction = [index](const QList<QCtmWidgetItemPtr>& items) ->QAction*
+    {
+        if (items.size() > index)
+            return items.at(index)->action();
+        else
+            return nullptr;
+    };
     switch (pos)
     {
     case QCtmNavigationBar::Left:
-        if (m_impl->leftItems.size() > index)
-            return m_impl->leftItems.at(index)->action();
-        else
-            return nullptr;
+        return findAction(m_impl->leftItems);
+    case QCtmNavigationBar::Center:
+        return findAction(m_impl->centerItems);
     case QCtmNavigationBar::Right:
-        if (m_impl->rightItems.size() > index)
-            return m_impl->rightItems.at(index)->action();
-        else
-            return nullptr;
+        return findAction(m_impl->rightItems);
     default:
         break;
     }
@@ -514,14 +521,6 @@ const QSize& QCtmNavigationBar::iconSize() const
 {
     return m_impl->iconSize;
 }
-/*!
-    \reimp
-*/
-void QCtmNavigationBar::paintEvent([[maybe_unused]] QPaintEvent* e)
-{
-    QPainter p(this);
-    drawBackground(&p);
-}
 
 /*!
     \reimp
@@ -543,6 +542,9 @@ void QCtmNavigationBar::actionEvent(QActionEvent* event)
         case Left:
             Util::addItem(item, m_impl->leftItems, event->before(), m_impl->leftLayout);
             break;
+        case Center:
+            Util::addItem(item, m_impl->centerItems, event->before(), m_impl->centerLayout);
+            break;
         case Right:
             Util::addItem(item, m_impl->rightItems, event->before(), m_impl->rightLayout);
             break;
@@ -562,21 +564,14 @@ void QCtmNavigationBar::actionEvent(QActionEvent* event)
             m_impl->leftLayout->takeAt(m_impl->leftLayout->indexOf(item->widget()));
             m_impl->leftItems.removeOne(item);
             break;
+        case Center:
+            m_impl->centerLayout->takeAt(m_impl->centerLayout->indexOf(item->widget()));
+            m_impl->centerItems.removeOne(item);
+            break;
         case Right:
             m_impl->rightLayout->takeAt(m_impl->rightLayout->indexOf(item->widget()));
             m_impl->rightItems.removeOne(item);
             break;
         }
     }
-}
-
-/*!
-    \brief      This function draw the background of the navigation bar, \a p.
-    \sa         paintEvent
-*/
-void QCtmNavigationBar::drawBackground(QPainter* p)
-{
-    QStyleOption opt;
-    opt.initFrom(this);
-    style()->drawPrimitive(QStyle::PE_Widget, &opt, p, this);
 }

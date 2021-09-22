@@ -47,4 +47,5 @@ void NavigationBarExample::init()
     nvBar->addHelp(QUrl("http://llongww.gitee.io/qcustomuidocument"), QIcon(":/QCustomUi/Resources/help-light.png"));
 
     nvBar->addUser(QIcon(":/QCustomUi/Resources/people-light.png"), "ABC")->setVisible(false);
+    nvBar->addAction(tr("Center Action"), QCtmNavigationBar::Center);
 }

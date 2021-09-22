@@ -8,6 +8,11 @@ QCustomUi是一个自定义UI库，主要提供无边框窗口和一些自定义
 
 文档：https://llongww.gitee.io/qcustomuidocument
 
+**[1.7.0]**
+```
+1.QCtmNavigationBar添加ActionPosition::Center选项，可以将Action添加到中央位置;
+```
+
 **[1.6.2]**
 ```
 1.bugfix：带native子窗口的QCtmWindow，点击任务栏图标显示/隐藏窗口时，显示异常；
