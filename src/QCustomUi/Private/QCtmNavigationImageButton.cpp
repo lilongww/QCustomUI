@@ -34,7 +34,7 @@ struct QCtmNavigationImageButton::Impl
     {
         auto st = q->isChecked() ? QIcon::On : QIcon::Off;
         const auto& sizes = q->icon().availableSizes(QIcon::Mode::Normal, st);
-        if (cache.isNull() || cache.size().grownBy(Margins) != size && !sizes.isEmpty())
+        if ((cache.isNull() || cache.size().grownBy(Margins) != size) && !sizes.isEmpty())
         {
             cache = q->icon().pixmap(sizes.front(), QIcon::Normal, st)
                 .scaledToHeight(qMin(size.shrunkBy(Margins).height(), sizes.front().height()), Qt::TransformationMode::SmoothTransformation);
