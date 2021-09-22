@@ -25,6 +25,8 @@
 #include <functional>
 
 #ifdef Q_OS_WIN
+
+using MSG = struct tagMSG;
 class QCtmWinFramelessDelegate : public QObject
 {
     Q_OBJECT
@@ -51,8 +53,14 @@ protected:
 private:
     void setWindowLong();
     void showSystemMenu(const QPoint& pos);
+#if QT_VERSION < QT_VERSION_CHECK(6,0,0)
+    bool onNCTitTest(MSG* msg, long* result);
+#else
+    bool onNCTitTest(MSG* msg, qintptr* result);
+#endif
 private:
     struct Impl;
     std::unique_ptr<Impl> m_impl;
+    friend class WindowsEventFilter;
 };
 #endif
