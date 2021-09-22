@@ -144,7 +144,7 @@ inline void debugPos(unsigned i)
                 qDebug() << value.second;
             }
         });
-}
+    }
 
 #if QT_VERSION < QT_VERSION_CHECK(6,0,0)
 bool QCtmWinFramelessDelegate::nativeEvent([[maybe_unused]] const QByteArray& eventType
@@ -184,35 +184,27 @@ bool QCtmWinFramelessDelegate::nativeEvent(const QByteArray& eventType
                 auto state = m_impl->parent->windowState();
                 auto scope = qScopeGuard([=]()
                     {
-                        m_impl->parent->setWindowState(state);
+                        m_impl->parent->setAttribute(Qt::WA_Moved, true);
+                        if (state != m_impl->parent->windowState())
+                            m_impl->parent->setWindowState(state);
                     });
-                if (ncParam->lppos->flags & SWP_FRAMECHANGED
-                    && !(ncParam->lppos->flags & SWP_NOCOPYBITS))
+                if (!(ncParam->lppos->flags & SWP_NOCOPYBITS))
                 {
-                    if (!(ncParam->lppos->flags & SWP_NOMOVE)
-                        && !(ncParam->lppos->flags & SWP_NOSIZE)
-                        && !(ncParam->lppos->flags & SWP_NOACTIVATE))
-                    {
-                        m_impl->parent->setGeometry(m_impl->dpiScale(ncParam->rgrc->left)
-                            , m_impl->dpiScale(ncParam->rgrc->top)
-                            , m_impl->dpiScale(ncParam->rgrc->right - ncParam->rgrc->left)
-                            , m_impl->dpiScale(ncParam->rgrc->bottom - ncParam->rgrc->top));
-                    }
-                    else if (ncParam->lppos->flags & SWP_NOSIZE && !(ncParam->lppos->flags & SWP_NOMOVE))
+                    if (!(ncParam->lppos->flags & SWP_NOMOVE))
                     {
                         m_impl->parent->move(m_impl->dpiScale(ncParam->rgrc->left)
                             , m_impl->dpiScale(ncParam->rgrc->top));
                     }
-                    else if (ncParam->lppos->flags & SWP_NOMOVE && !(ncParam->lppos->flags & SWP_NOSIZE))
+                    if (!(ncParam->lppos->flags & SWP_NOSIZE))
                     {
                         m_impl->parent->resize(m_impl->dpiScale(ncParam->rgrc->right - ncParam->rgrc->left)
                             , m_impl->dpiScale(ncParam->rgrc->bottom - ncParam->rgrc->top));
                     }
                 }
             }
+            *result = 0;
+            return true;
         }
-        *result = 0;
-        return true;
     }
     break;
     case WM_SYSCOMMAND:
@@ -265,6 +257,7 @@ bool QCtmWinFramelessDelegate::nativeEvent(const QByteArray& eventType
     break;
     case WM_GETMINMAXINFO:
     {
+        return false;
         auto info = (MINMAXINFO*)msg->lParam;
         info->ptMinTrackSize.x = GetSystemMetrics(SM_CXMINIMIZED);
         info->ptMinTrackSize.y = GetSystemMetrics(SM_CYMINIMIZED);
@@ -333,6 +326,10 @@ bool QCtmWinFramelessDelegate::eventFilter(QObject* watched, QEvent* event)
                 m_impl->firstShow = false;
                 setWindowLong();
             }
+            if (m_impl->parent->windowFlags().testFlag(Qt::Dialog))
+            {
+                m_impl->parent->setAttribute(Qt::WA_Moved, false);
+            }
         }
         else if (event->type() == QEvent::WinIdChange)
         {
@@ -345,7 +342,6 @@ bool QCtmWinFramelessDelegate::eventFilter(QObject* watched, QEvent* event)
 void QCtmWinFramelessDelegate::setWindowLong()
 {
     auto hwnd = reinterpret_cast<HWND>(m_impl->parent->winId());
-
     long style = isCompositionEnabled() ? AeroBorderlessFlag : BasicBorderlessFlag;
 
     if (!m_impl->parent->windowFlags().testFlag(Qt::WindowMinimizeButtonHint)
@@ -357,7 +353,7 @@ void QCtmWinFramelessDelegate::setWindowLong()
 
     if (isCompositionEnabled())
     {
-        extendFrameIntoClientArea(m_impl->parent->backingStore()->window(), 1, 1, 1, 1);
+        extendFrameIntoClientArea(m_impl->parent->windowHandle(), 1, 1, 1, 1);
     }
 
     SetWindowPos(hwnd, nullptr, 0, 0, 0, 0, SWP_FRAMECHANGED | SWP_NOMOVE | SWP_NOSIZE);
