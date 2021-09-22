@@ -180,12 +180,11 @@ bool QCtmWinFramelessDelegate::nativeEvent(const QByteArray& eventType
             NCCALCSIZE_PARAMS* ncParam = reinterpret_cast<NCCALCSIZE_PARAMS*>(msg->lParam);
             if (!m_impl->parent->testAttribute(Qt::WA_Moved))
             {
-                //debugPos(ncParam->lppos->flags);
+                debugPos(ncParam->lppos->flags);
                 auto state = m_impl->parent->windowState();
                 auto scope = qScopeGuard([=]()
                     {
                         m_impl->parent->setWindowState(state);
-                        m_impl->parent->setAttribute(Qt::WA_Moved, false);
                     });
                 if (ncParam->lppos->flags & SWP_FRAMECHANGED
                     && !(ncParam->lppos->flags & SWP_NOCOPYBITS))
