@@ -144,7 +144,7 @@ inline void debugPos(unsigned i)
                 qDebug() << value.second;
             }
         });
-    }
+}
 
 #if QT_VERSION < QT_VERSION_CHECK(6,0,0)
 bool QCtmWinFramelessDelegate::nativeEvent([[maybe_unused]] const QByteArray& eventType
@@ -180,7 +180,7 @@ bool QCtmWinFramelessDelegate::nativeEvent(const QByteArray& eventType
             NCCALCSIZE_PARAMS* ncParam = reinterpret_cast<NCCALCSIZE_PARAMS*>(msg->lParam);
             if (!m_impl->parent->testAttribute(Qt::WA_Moved))
             {
-                debugPos(ncParam->lppos->flags);
+                //debugPos(ncParam->lppos->flags);
                 auto state = m_impl->parent->windowState();
                 auto scope = qScopeGuard([=]()
                     {

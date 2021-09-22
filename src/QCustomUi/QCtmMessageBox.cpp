@@ -527,6 +527,9 @@ QCtmMessageBox::StandardButton QCtmMessageBox::warning(QWidget* parent, const QS
 void QCtmMessageBox::showEvent(QShowEvent* event)
 {
     updateSize();
+#ifdef Q_OS_WIN
+    setAttribute(Qt::WA_Moved, false);
+#endif
     QCtmDialog::showEvent(event);
 }
 
