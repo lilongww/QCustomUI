@@ -70,8 +70,9 @@ struct QCtmWinFramelessDelegate::Impl
 
     inline void setNoMargins()
     {
-        parent->layout()->setContentsMargins(QMargins(0, 0, 0, 0));
-        parent->layout()->update();
+        bool max = IsZoomed((HWND)parent->winId());
+        auto margin = dpiScale(8);
+        parent->layout()->setContentsMargins(max ? QMargins(margin, margin, margin, margin) : QMargins(0, 0, 0, 0));
     };
 
     inline double dpiScale(double value)
@@ -178,30 +179,8 @@ bool QCtmWinFramelessDelegate::nativeEvent(const QByteArray& eventType
         if (msg->wParam)
         {
             NCCALCSIZE_PARAMS* ncParam = reinterpret_cast<NCCALCSIZE_PARAMS*>(msg->lParam);
-            if (!m_impl->parent->testAttribute(Qt::WA_Moved))
-            {
-                //debugPos(ncParam->lppos->flags);
-                auto state = m_impl->parent->windowState();
-                auto scope = qScopeGuard([=]()
-                    {
-                        m_impl->parent->setAttribute(Qt::WA_Moved, true);
-                        if (state != m_impl->parent->windowState())
-                            m_impl->parent->setWindowState(state);
-                    });
-                if (!(ncParam->lppos->flags & SWP_NOCOPYBITS))
-                {
-                    if (!(ncParam->lppos->flags & SWP_NOMOVE))
-                    {
-                        m_impl->parent->move(m_impl->dpiScale(ncParam->rgrc->left)
-                            , m_impl->dpiScale(ncParam->rgrc->top));
-                    }
-                    if (!(ncParam->lppos->flags & SWP_NOSIZE))
-                    {
-                        m_impl->parent->resize(m_impl->dpiScale(ncParam->rgrc->right - ncParam->rgrc->left)
-                            , m_impl->dpiScale(ncParam->rgrc->bottom - ncParam->rgrc->top));
-                    }
-                }
-            }
+            if (ncParam->lppos->flags & SWP_FRAMECHANGED)
+                m_impl->setNoMargins();
             *result = 0;
             return true;
         }
@@ -235,47 +214,6 @@ bool QCtmWinFramelessDelegate::nativeEvent(const QByteArray& eventType
         }
     }
     break;
-    case WM_DWMCOMPOSITIONCHANGED:
-    {
-        if (m_impl->parent->isMaximized())
-        {
-            if (isCompositionEnabled())
-            {
-                auto margin = m_impl->dpiScale(8);
-                m_impl->parent->layout()->setContentsMargins(QMargins(margin, margin, margin, margin));
-            }
-            else
-            {
-                m_impl->setNoMargins();
-            }
-        }
-        else
-        {
-            m_impl->setNoMargins();
-        }
-    }
-    break;
-    case WM_GETMINMAXINFO:
-    {
-        return false;
-        auto info = (MINMAXINFO*)msg->lParam;
-        info->ptMinTrackSize.x = GetSystemMetrics(SM_CXMINIMIZED);
-        info->ptMinTrackSize.y = GetSystemMetrics(SM_CYMINIMIZED);
-        info->ptMaxTrackSize.x = GetSystemMetrics(SM_CXMAXIMIZED);
-        info->ptMaxTrackSize.y = GetSystemMetrics(SM_CYMAXIMIZED);
-
-        if (::MonitorFromWindow(::FindWindow(L"Shell_TrayWnd", nullptr), MONITOR_DEFAULTTONEAREST) ==
-            ::MonitorFromWindow((HWND)(m_impl->parent->winId()), MONITOR_DEFAULTTONEAREST))
-        {
-            info->ptMaxPosition.x = 0;
-            info->ptMaxPosition.y = 0;
-
-            info->ptMaxSize.x = GetSystemMetrics(SM_CXFULLSCREEN) + GetSystemMetrics(SM_CXDLGFRAME);
-            info->ptMaxSize.y = GetSystemMetrics(SM_CYFULLSCREEN) + GetSystemMetrics(SM_CYCAPTION);
-        }
-        return true;
-    }
-    break;
     case WM_NCLBUTTONDBLCLK:
     {
         if (m_impl->parent->maximumSize() == QSize(QWIDGETSIZE_MAX, QWIDGETSIZE_MAX)
@@ -302,22 +240,6 @@ bool QCtmWinFramelessDelegate::eventFilter(QObject* watched, QEvent* event)
     {
         if (event->type() == QEvent::WindowStateChange)
         {
-            if (m_impl->parent->isMaximized() && isCompositionEnabled() && !m_impl->parent->windowFlags().testFlag(Qt::Tool))
-            {
-                auto margin = 8 / m_impl->parent->devicePixelRatioF();
-                m_impl->parent->layout()->setContentsMargins(QMargins(margin, margin, margin, margin));
-                m_impl->parent->layout()->update();
-            }
-            else
-            {
-                m_impl->setNoMargins();
-                m_impl->parent->layout()->update();
-                if (!m_impl->parent->underMouse())
-                {
-                    ::PostMessage((HWND)m_impl->parent->winId(), WM_NCMOUSELEAVE, 0, 0);
-                }
-            }
-            m_impl->parent->repaint();
         }
         else if (event->type() == QEvent::Show)
         {
@@ -328,7 +250,8 @@ bool QCtmWinFramelessDelegate::eventFilter(QObject* watched, QEvent* event)
             }
             if (m_impl->parent->windowFlags().testFlag(Qt::Dialog))
             {
-                m_impl->parent->setAttribute(Qt::WA_Moved, false);
+                //m_impl->parent->setAttribute(Qt::WA_Moved, false);
+                //m_impl->parent->setAttribute(Qt::WA_Resized, true);
             }
         }
         else if (event->type() == QEvent::WinIdChange)
@@ -342,7 +265,7 @@ bool QCtmWinFramelessDelegate::eventFilter(QObject* watched, QEvent* event)
 void QCtmWinFramelessDelegate::setWindowLong()
 {
     auto hwnd = reinterpret_cast<HWND>(m_impl->parent->winId());
-    long style = isCompositionEnabled() ? AeroBorderlessFlag : BasicBorderlessFlag;
+    long style = GetWindowLongPtr(hwnd, GWL_STYLE) | (isCompositionEnabled() ? AeroBorderlessFlag : BasicBorderlessFlag);
 
     if (!m_impl->parent->windowFlags().testFlag(Qt::WindowMinimizeButtonHint)
         || m_impl->parent->maximumSize() != QSize(QWIDGETSIZE_MAX, QWIDGETSIZE_MAX))
