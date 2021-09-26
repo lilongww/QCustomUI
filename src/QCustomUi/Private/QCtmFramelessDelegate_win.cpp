@@ -72,7 +72,7 @@ struct QCtmWinFramelessDelegate::Impl
     {
         bool max = IsZoomed((HWND)parent->winId());
         auto margin = dpiScale(8);
-        parent->layout()->setContentsMargins(max ? QMargins(margin, margin, margin, margin) : QMargins(0, 0, 0, 0));
+        parent->setContentsMargins(max ? QMargins(margin, margin, margin, margin) : QMargins(0, 0, 0, 0));
     };
 
     inline double dpiScale(double value)
@@ -84,6 +84,7 @@ struct QCtmWinFramelessDelegate::Impl
     {
         return value * parent->devicePixelRatioF();
     }
+    WINDOWPLACEMENT wndPlaceMent;
 };
 
 QCtmWinFramelessDelegate::QCtmWinFramelessDelegate(QWidget* parent, const QWidgetList& moveBars)
@@ -180,7 +181,9 @@ bool QCtmWinFramelessDelegate::nativeEvent(const QByteArray& eventType
         {
             NCCALCSIZE_PARAMS* ncParam = reinterpret_cast<NCCALCSIZE_PARAMS*>(msg->lParam);
             if (ncParam->lppos->flags & SWP_FRAMECHANGED)
+            {
                 m_impl->setNoMargins();
+            }
             *result = 0;
             return true;
         }
@@ -248,12 +251,25 @@ bool QCtmWinFramelessDelegate::eventFilter(QObject* watched, QEvent* event)
                 m_impl->firstShow = false;
                 setWindowLong();
             }
+            if (m_impl->parent->windowFlags().testFlag(Qt::Dialog))
+            {
+                m_impl->parent->setAttribute(Qt::WA_Resized);
+                if (m_impl->parent->windowFlags().testFlag(Qt::Dialog) && !m_impl->firstShow && m_impl->parent->isMaximized())
+                {
+                    QMetaObject::invokeMethod(this, [=]()
+                        {
+                            SetWindowPlacement((HWND)m_impl->parent->winId(), &m_impl->wndPlaceMent);
+                        }, Qt::QueuedConnection);
+                }
+            }
+            m_impl->setNoMargins();
         }
         else if (event->type() == QEvent::Hide)
         {
             if (m_impl->parent->windowFlags().testFlag(Qt::Dialog))
             {
-                SendMessage((HWND)m_impl->parent->winId(), WM_SYSCOMMAND, SC_CLOSE, 0);
+                m_impl->wndPlaceMent.length = sizeof(m_impl->wndPlaceMent);
+                GetWindowPlacement((HWND)m_impl->parent->winId(), &m_impl->wndPlaceMent);
             }
         }
         else if (event->type() == QEvent::WinIdChange)
