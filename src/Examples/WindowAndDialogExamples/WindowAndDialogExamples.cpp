@@ -17,7 +17,7 @@ WindowAndDialogExamples::WindowAndDialogExamples(QWidget* parent)
     auto layout = new QHBoxLayout(dlg->centralWidget());
     auto btn = new QPushButton(dlg);
     layout->addWidget(btn);
-    //btn->winId();
+    btn->winId();
     dlg->setWindowFlag(Qt::WindowMinMaxButtonsHint);
     connect(ui.popDialogBtn, &QPushButton::clicked, this, [=]()
         {

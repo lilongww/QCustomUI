@@ -1,4 +1,4 @@
-/*********************************************************************************
+﻿/*********************************************************************************
 **                                                                              **
 **  Copyright (C) 2019-2020 LiLong                                              **
 **  This file is part of QCustomUi.                                             **
@@ -40,7 +40,7 @@ namespace Util
         layout->insertWidget(index, item->widget());
         if (item->isCustomWidget())
         {
-            item->widget()->show();
+            item->widget()->setVisible(item->action()->isVisible());
         }
     };
 
