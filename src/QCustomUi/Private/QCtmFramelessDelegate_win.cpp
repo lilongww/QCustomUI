@@ -38,8 +38,8 @@
 #include <windowsx.h>
 #include <dwmapi.h>
 
-constexpr long AeroBorderlessFlag = WS_POPUP | WS_THICKFRAME | WS_CAPTION | WS_SYSMENU | WS_MAXIMIZEBOX | WS_MINIMIZEBOX;
-constexpr long BasicBorderlessFlag = WS_POPUP | WS_THICKFRAME | WS_SYSMENU | WS_MAXIMIZEBOX | WS_MINIMIZEBOX;
+constexpr long AeroBorderlessFlag = WS_POPUP | WS_THICKFRAME | WS_CAPTION | WS_SYSMENU | WS_MAXIMIZEBOX | WS_MINIMIZEBOX | WS_BORDER;
+constexpr long BasicBorderlessFlag = WS_POPUP | WS_THICKFRAME | WS_SYSMENU | WS_MAXIMIZEBOX | WS_MINIMIZEBOX | WS_BORDER;
 
 inline bool isCompositionEnabled()
 {
@@ -92,9 +92,9 @@ QCtmWinFramelessDelegate::QCtmWinFramelessDelegate(QWidget* parent, const QWidge
 {
     m_impl->parent = parent;
     parent->setWindowFlags(parent->windowFlags()
-        | Qt::FramelessWindowHint
         | Qt::WindowCloseButtonHint
-        | Qt::WindowSystemMenuHint);
+        | Qt::WindowSystemMenuHint
+        | Qt::MSWindowsFixedSizeDialogHint);
     parent->installEventFilter(this);
     m_impl->moveBars = moveBars;
     m_impl->setNoMargins();
@@ -176,7 +176,7 @@ bool QCtmWinFramelessDelegate::nativeEvent(const QByteArray& eventType
     break;
     case WM_NCCALCSIZE:
     {
-        if (msg->wParam)
+        if (msg->wParam && !m_impl->firstShow)
         {
             NCCALCSIZE_PARAMS* ncParam = reinterpret_cast<NCCALCSIZE_PARAMS*>(msg->lParam);
             if (ncParam->lppos->flags & SWP_FRAMECHANGED)
@@ -248,10 +248,12 @@ bool QCtmWinFramelessDelegate::eventFilter(QObject* watched, QEvent* event)
                 m_impl->firstShow = false;
                 setWindowLong();
             }
+        }
+        else if (event->type() == QEvent::Hide)
+        {
             if (m_impl->parent->windowFlags().testFlag(Qt::Dialog))
             {
-                //m_impl->parent->setAttribute(Qt::WA_Moved, false);
-                //m_impl->parent->setAttribute(Qt::WA_Resized, true);
+                SendMessage((HWND)m_impl->parent->winId(), WM_SYSCOMMAND, SC_CLOSE, 0);
             }
         }
         else if (event->type() == QEvent::WinIdChange)
@@ -276,7 +278,7 @@ void QCtmWinFramelessDelegate::setWindowLong()
 
     if (isCompositionEnabled())
     {
-        extendFrameIntoClientArea(m_impl->parent->windowHandle(), 1, 1, 1, 1);
+        extendFrameIntoClientArea(m_impl->parent->windowHandle(), -1, -1, -1, -1);
     }
 
     SetWindowPos(hwnd, nullptr, 0, 0, 0, 0, SWP_FRAMECHANGED | SWP_NOMOVE | SWP_NOSIZE);
@@ -379,7 +381,7 @@ bool QCtmWinFramelessDelegate::onNCTitTest(MSG* msg, qintptr* result)
     }
     if (m_impl->parent->minimumSize() != m_impl->parent->maximumSize())
     {
-        auto rect = m_impl->parent->frameGeometry();
+        auto rect = m_impl->parent->geometry();
 
         if (x >= rect.left() && x <= rect.left() + borderX) {
             if (y >= rect.top() && y <= rect.top() + borderY) {

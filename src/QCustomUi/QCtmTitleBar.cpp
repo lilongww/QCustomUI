@@ -171,7 +171,7 @@ void QCtmTitleBar::onCloseBtn()
 */
 void QCtmTitleBar::onMaximumSizeBtn()
 {
-    if (this->window()->isMaximized())
+    if (this->window()->isMaximized() || this->window()->isFullScreen())
         this->window()->showNormal();
     else
         this->window()->showMaximized();
