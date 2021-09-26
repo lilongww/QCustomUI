@@ -68,9 +68,9 @@ struct QCtmWinFramelessDelegate::Impl
     QWidget* parent{ nullptr };
     bool firstShow{ true };
 
-    inline void setNoMargins()
+    inline void setNoMargins(HWND hwnd)
     {
-        bool max = IsZoomed((HWND)parent->winId());
+        bool max = IsZoomed(hwnd);
         auto margin = dpiScale(8);
         parent->layout()->setContentsMargins(max ? QMargins(margin, margin, margin, margin) : QMargins(0, 0, 0, 0));
     };
@@ -98,7 +98,6 @@ QCtmWinFramelessDelegate::QCtmWinFramelessDelegate(QWidget* parent, const QWidge
         | Qt::WindowSystemMenuHint);
     parent->installEventFilter(this);
     m_impl->moveBars = moveBars;
-    m_impl->setNoMargins();
 }
 
 QCtmWinFramelessDelegate::QCtmWinFramelessDelegate(QWidget* parent, QWidget* title)
@@ -182,7 +181,7 @@ bool QCtmWinFramelessDelegate::nativeEvent(const QByteArray& eventType
             NCCALCSIZE_PARAMS* ncParam = reinterpret_cast<NCCALCSIZE_PARAMS*>(msg->lParam);
             if (ncParam->lppos->flags & SWP_FRAMECHANGED)
             {
-                m_impl->setNoMargins();
+                m_impl->setNoMargins(msg->hwnd);
             }
             *result = 0;
             return true;
@@ -262,7 +261,6 @@ bool QCtmWinFramelessDelegate::eventFilter(QObject* watched, QEvent* event)
                         }, Qt::QueuedConnection);
                 }
             }
-            m_impl->setNoMargins();
         }
         else if (event->type() == QEvent::Hide)
         {
