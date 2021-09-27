@@ -11,15 +11,11 @@ QCustomUi是一个自定义UI库，主要提供无边框窗口和一些自定义
 **[1.7.0]**
 ```
 1.QCtmNavigationBar添加ActionPosition::Center选项，可以将Action添加到中央位置;
-2.bugfix：解决dialog左右停靠时，关闭再打开失去交互的问题；
-3.优化dialog最大化，关闭，打开，恢复正常大小时，大小依然为最大化大小的问题；
-4.解决添加到QCtnNavigationBar的QWidgetAction为不显示时，添加后依然显示的问题。
-```
-
-**[1.6.2]**
-```
-1.bugfix：带native子窗口的QCtmWindow，点击任务栏图标显示/隐藏窗口时，显示异常；
-2.bugfix：native子窗口hover事件失效。
+2.优化dialog最大化，关闭，打开，恢复正常大小时，大小依然为最大化大小的问题；
+3.bugfix：解决添加到QCtnNavigationBar的QWidgetAction为不显示时，添加后依然显示的问题；
+4.bugfix：解决dialog左右停靠时，关闭再打开失去交互的问题；
+5.bugfix：带native子窗口的QCtmWindow，点击任务栏图标显示/隐藏窗口时，显示异常；
+6.bugfix：native子窗口hover事件失效。
 ```
 
 **[1.6.1]**
