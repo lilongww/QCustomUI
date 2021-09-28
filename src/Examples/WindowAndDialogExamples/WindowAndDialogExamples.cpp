@@ -2,12 +2,15 @@
 
 #include <QCustomUi/QCtmTitleBar.h>
 #include <QCustomUi/QCtmDialog.h>
+#include <QCustomUi/QCtmLoadingDialog.h>
 
 #include <QWidgetAction>
 #include <QLineEdit>
 #include <QMenuBar>
 #include <QMenu>
 #include <QStatusBar>
+
+#include <thread>
 
 WindowAndDialogExamples::WindowAndDialogExamples(QWidget* parent)
     : QCtmWindow(parent)
@@ -22,6 +25,17 @@ WindowAndDialogExamples::WindowAndDialogExamples(QWidget* parent)
     connect(ui.popDialogBtn, &QPushButton::clicked, this, [=]()
         {
             dlg->exec();
+        });
+    connect(btn, &QPushButton::clicked, this, [=]
+        {
+            QCtmLoadingDialog loading(dlg);
+            std::thread thread([&]
+                {
+                    std::this_thread::sleep_for(std::chrono::milliseconds(1));
+                    QMetaObject::invokeMethod(&loading, "done");
+                });
+            loading.exec();
+            thread.join();
         });
     this->titleBar()->addAction(new QAction(tr("Test Button")));
     auto action = new QWidgetAction(this);
