@@ -19,11 +19,11 @@
 
 #pragma once
 
-#include <QItemDelegate>
+#include <QStyledItemDelegate>
 
 #include <memory>
 
-class QCtmMessageViewDelegate : public QItemDelegate
+class QCtmMessageViewDelegate : public QStyledItemDelegate
 {
     Q_OBJECT
 

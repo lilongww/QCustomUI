@@ -48,7 +48,7 @@ struct QCtmMessageViewDelegate::Impl
 };
 
 QCtmMessageViewDelegate::QCtmMessageViewDelegate(QObject* parent)
-    : QItemDelegate(parent)
+    : QStyledItemDelegate(parent)
     , m_impl(std::make_unique<Impl>())
 {
 }
@@ -72,12 +72,11 @@ void QCtmMessageViewDelegate::paint(QPainter* painter, const QStyleOptionViewIte
 
 QSize QCtmMessageViewDelegate::sizeHint(const QStyleOptionViewItem& option, const QModelIndex& index) const
 {
-    auto opt = setOptions(index, option);
-    auto w = qobject_cast<const QListView*>(opt.widget);
+    auto w = qobject_cast<const QListView*>(option.widget);
     if (!w)
-        return QItemDelegate::sizeHint(opt, index);
+        return QStyledItemDelegate::sizeHint(option, index);
 
-    auto font = opt.font;
+    auto font = option.font;
     font.setBold(true);
     font.setUnderline(true);
     QFontMetrics fm(font);
@@ -176,14 +175,8 @@ void QCtmMessageViewDelegate::drawDecoration(QPainter* painter, [[maybe_unused]]
 
 void QCtmMessageViewDelegate::drawBackground(QPainter* painter, const QStyleOptionViewItem& option, [[maybe_unused]] const QModelIndex& index)const
 {
-    QBrush background;
-    if (option.state.testFlag(QStyle::State_MouseOver))
-    {
-        background = option.palette.color(QPalette::Normal, QPalette::Highlight);
-    }
-    else
-        background = option.palette.color(QPalette::Normal, QPalette::Window);
-    painter->fillRect(option.rect, background);
+    QStyle* style = option.widget ? option.widget->style() : QApplication::style();
+    style->drawPrimitive(QStyle::PE_PanelItemViewItem, &option, painter, option.widget);
 }
 
 QRect QCtmMessageViewDelegate::doDateTimeRect(const QStyleOptionViewItem& option, const QModelIndex& index) const

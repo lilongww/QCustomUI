@@ -159,3 +159,11 @@ const QColor& QCtmMessageTipModel::timeColor() const
 {
     return m_impl->timeColor;
 }
+
+/*!
+    \reimp
+*/
+Qt::ItemFlags QCtmMessageTipModel::flags(const QModelIndex& index) const
+{
+    return Qt::ItemIsEnabled;
+}
