@@ -18,6 +18,7 @@
 **********************************************************************************/
 
 #include "QCtmMessageTipView.h"
+#include "QCtmMessageTipData.h"
 #include "QCtmAbstractMessageTipModel.h"
 #include "Private/QCtmMessageViewDelegate_p.h"
 
@@ -27,12 +28,14 @@
 #include <QHelpEvent>
 #include <QEvent>
 #include <QToolTip>
+#include <QToolButton>
 
 struct QCtmMessageTipView::Impl
 {
     QListView* view{ nullptr };
     QCtmAbstractMessageTipModel* model{ nullptr };
     QCtmMessageViewDelegate* delegate{ nullptr };
+    QToolButton* clearAll;
 
     QColor titleColor;
     QColor timeColor;
@@ -40,7 +43,7 @@ struct QCtmMessageTipView::Impl
 
 /*!
     \class      QCtmMessageTipView
-    \brief      QCtmMessageTipView provide a common message tip view to show the message tip datas.
+    \brief      QCtmMessageTipView 是显示具体消息的列表.
     \inherits   QCtmAbstractMessageTipView
     \ingroup    QCustomUi
     \inmodule   QCustomUi
@@ -48,38 +51,48 @@ struct QCtmMessageTipView::Impl
 
 /*!
     \property   QCtmMessageTipView::decoration
-    \brief      Holds the decoration color of the message tip.
+    \brief      装饰条的颜色.
 */
 
 /*!
     \property   QCtmMessageTipView::titleColor
-    \brief      Holds the title color of the message tip.
+    \brief      消息标题的颜色.
 */
 
 /*!
     \property   QCtmMessageTipView::timeColor
-    \brief      Holds the time color of the message tip.
+    \brief      时间的颜色.
 */
 
 /*!
     \property   QCtmMessageTipView::closeButtonIcon
-    \brief      Holds the icon of close button of the message tip.
+    \brief      关闭按钮的图标.
 */
 
 /*!
     \fn         void QCtmMessageTipView::closeButtonClicked(const QModelIndex& index)
-    \brief      Emit this signal when the close button of message tip with \a index has been clicked.
+    \brief      当  \a index 位置的消息的关闭按钮被点击时，发送该信号.
     \sa         messageClicked
 */
 
 /*!
-    \fn         void QCtmMessageTipView::messageClicked(QCtmAbstractMessageTipDataPtr message);
-    \brief      Emit this signal when the title of message tip has been clicked, and given the \a message pointer.
+    \fn         void QCtmMessageTipView::messageClicked(QCtmMessageTipDataPtr message);
+    \brief      当消息被点击时，发送该信号 \a message.
     \sa         closeButtonClicked
 */
 
 /*!
-    \brief      Constructs a message tip view with \a parent.
+    \fn         bool QCtmMessageTipView::aboutToCloseMessage(QCtmMessageTipDataPtr message);
+    \brief      如果要在关闭消息时，弹出确认窗口，连接该信号，并在槽函数中返回是否删除 \a message.
+*/
+
+/*!
+    \fn         bool QCtmMessageTipView::aboutToClearAllMessages();
+    \brief      如果要在清除所有消息时，弹出确认窗口，连接该信号，并在槽函数中返回是否删除.
+*/
+
+/*!
+    \brief      构造一个父对象为 \a parent 的消息列表.
 */
 QCtmMessageTipView::QCtmMessageTipView(QCtmNavigationBar* parent)
     : QCtmAbstractMessageTipView(parent)
@@ -87,18 +100,42 @@ QCtmMessageTipView::QCtmMessageTipView(QCtmNavigationBar* parent)
 {
     this->setTitleBarVisible(true);
     setPopup(false);
+    m_impl->clearAll = new QToolButton(this);
+    m_impl->clearAll->setObjectName("qcustomui_clearAll");
+    m_impl->clearAll->setCursor(Qt::PointingHandCursor);
+    m_impl->clearAll->setText(tr("Clear All"));
     m_impl->view = new QListView(this);
-    m_impl->view->setObjectName("qcustomui-tipview");
+    m_impl->view->setObjectName("qcustomui_tipview");
     m_impl->view->setMouseTracking(true);
+
+    auto base = new QWidget(this);
+    {
+        auto layout = new QVBoxLayout(base);
+        layout->setContentsMargins(0, 0, 0, 0);
+        {
+            auto btnBase = new QWidget(this);
+            btnBase->setObjectName("qcustomui_clearAllBase");
+            auto l = new QHBoxLayout(btnBase);
+            l->addStretch(1);
+            l->addWidget(m_impl->clearAll);
+            l->setContentsMargins(0, 0, 0, 0);
+            layout->addWidget(btnBase);
+        }
+        layout->addWidget(m_impl->view);
+        layout->setSpacing(0);
+        setWidget(base);
+    }
 
     m_impl->delegate = new QCtmMessageViewDelegate(m_impl->view);
     m_impl->view->setItemDelegate(m_impl->delegate);
-    setWidget(m_impl->view);
     setFixedWidth(300);
 
     connect(m_impl->delegate, &QCtmMessageViewDelegate::closeButtonClicked, this, &QCtmMessageTipView::closeButtonClicked);
     connect(m_impl->delegate, &QCtmMessageViewDelegate::closeButtonClicked, this, &QCtmMessageTipView::onCloseButtonClicked);
     connect(m_impl->delegate, &QCtmMessageViewDelegate::titleClicked, this, &QCtmMessageTipView::onTitleClicked);
+    connect(m_impl->clearAll, &QToolButton::clicked, this, &QCtmMessageTipView::clearAll);
+    connect(this, &QCtmMessageTipView::aboutToCloseMessage, this, [] {return true; });
+    connect(this, &QCtmMessageTipView::aboutToClearAllMessages, this, [] {return true; });
     m_impl->view->verticalScrollBar()->installEventFilter(this);
 
     qRegisterMetaType<QCtmAbstractMessageTipDataPtr>("QCtmAbstractMessagePtr");
@@ -109,14 +146,14 @@ QCtmMessageTipView::QCtmMessageTipView(QCtmNavigationBar* parent)
 }
 
 /*!
-    \brief      Destroys the message tip view.
+    \brief      销毁该消息列表.
 */
 QCtmMessageTipView::~QCtmMessageTipView()
 {
 }
 
 /*!
-    \brief      Sets the given \a model.
+    \brief      设置消息 \a model.
     \sa         model()
 */
 void QCtmMessageTipView::setModel(QCtmAbstractMessageTipModel* model)
@@ -128,7 +165,7 @@ void QCtmMessageTipView::setModel(QCtmAbstractMessageTipModel* model)
 }
 
 /*!
-    \brief      Returns the model.
+    \brief      返回消息 model.
     \sa         setModel
 */
 QCtmAbstractMessageTipModel* QCtmMessageTipView::model() const
@@ -137,7 +174,7 @@ QCtmAbstractMessageTipModel* QCtmMessageTipView::model() const
 }
 
 /*!
-    \brief      Set the \a color of the decoration.
+    \brief      设置装饰颜色 \a color.
     \sa         decoration()
 */
 void QCtmMessageTipView::setDecoration(const QColor& color)
@@ -146,7 +183,7 @@ void QCtmMessageTipView::setDecoration(const QColor& color)
 }
 
 /*!
-    \brief      Returns the color of the decoration.
+    \brief      返回装饰颜色 \a color.
     \sa         setDecoration
 */
 const QColor& QCtmMessageTipView::decoration() const
@@ -155,7 +192,7 @@ const QColor& QCtmMessageTipView::decoration() const
 }
 
 /*!
-    \brief      Set the \a color of the title.
+    \brief      设置标题栏颜色 \a color.
     \sa         titleColor()
 */
 void QCtmMessageTipView::setTitleColor(const QColor& color)
@@ -166,7 +203,7 @@ void QCtmMessageTipView::setTitleColor(const QColor& color)
 }
 
 /*!
-    \brief      Returns the color of the title.
+    \brief      返回标题栏颜色.
     \sa         setTitleColor
 */
 const QColor& QCtmMessageTipView::titleColor() const
@@ -175,7 +212,7 @@ const QColor& QCtmMessageTipView::titleColor() const
 }
 
 /*!
-    \brief      Set the \a color of the time.
+    \brief      设置时间颜色　＼a color.
     \sa         timeColor()
 */
 void QCtmMessageTipView::setTimeColor(const QColor& color)
@@ -186,7 +223,7 @@ void QCtmMessageTipView::setTimeColor(const QColor& color)
 }
 
 /*!
-    \brief      Returns the color of the time.
+    \brief      返回时间颜色.
     \sa         setTimeColor
 */
 const QColor& QCtmMessageTipView::timeColor() const
@@ -195,7 +232,7 @@ const QColor& QCtmMessageTipView::timeColor() const
 }
 
 /*!
-    \brief      Set the \a icon of the close button.
+    \brief      设置关闭按钮图标 \a icon.
     \sa         closeButtonIcon()
 */
 void QCtmMessageTipView::setCloseButtonIcon(const QPixmap& icon)
@@ -204,7 +241,7 @@ void QCtmMessageTipView::setCloseButtonIcon(const QPixmap& icon)
 }
 
 /*!
-    \brief      Returns the icon of the close button.
+    \brief      返回关闭按钮图标.
     \sa         setCloseButtonIcon
 */
 const QPixmap& QCtmMessageTipView::closeButtonIcon() const
@@ -212,6 +249,35 @@ const QPixmap& QCtmMessageTipView::closeButtonIcon() const
     return m_impl->delegate->closeButtonIcon();
 }
 
+/*!
+    \brief      设置为触控外观，即一直显示标题超链接样式和关闭按钮，默认为 false \a flag.
+    \sa         touchControlStyle
+*/
+void QCtmMessageTipView::setTouchControlStyle(bool flag)
+{
+    m_impl->delegate->setTouchControlStyle(flag);
+    m_impl->view->viewport()->update();
+}
+
+/*!
+    \brief      返回是否为触控外观.
+    \sa         setTouchControlStyle
+*/
+bool QCtmMessageTipView::touchControlStyle() const
+{
+    return m_impl->delegate->touchControlStyle();
+}
+
+/*!
+    \brief      清空所有消息.
+*/
+void QCtmMessageTipView::clearAll()
+{
+    if (emit aboutToClearAllMessages())
+    {
+        m_impl->model->clear();
+    }
+}
 /*!
     \reimp
 */
@@ -243,11 +309,13 @@ bool QCtmMessageTipView::eventFilter(QObject* o, QEvent* e)
 }
 
 /*!
-    \brief      Remove the message tip when the close button clicked.
+    \brief      关闭 \a index 位置的消息.
 */
 void QCtmMessageTipView::onCloseButtonClicked(const QModelIndex& index)
 {
-    if (m_impl->model)
+    if (!index.isValid())
+        return;
+    if (m_impl->model && emit aboutToCloseMessage(std::dynamic_pointer_cast<QCtmMessageTipData>(m_impl->model->message(index.row()))))
     {
         m_impl->model->removeMessage(m_impl->model->message(index.row()));
         m_impl->view->viewport()->update();
@@ -255,13 +323,13 @@ void QCtmMessageTipView::onCloseButtonClicked(const QModelIndex& index)
 }
 
 /*!
-    \brief      Emit messageClicked when the message tip title clicked.
+    \brief      响应 \a index 位置的消息标题栏点击.
 */
 void QCtmMessageTipView::onTitleClicked(const QModelIndex& index)
 {
     if (index.isValid())
     {
         auto msg = m_impl->model->message(index.row());
-        emit messageClicked(msg);
+        emit messageClicked(std::dynamic_pointer_cast<QCtmMessageTipData>(msg));
     }
 }

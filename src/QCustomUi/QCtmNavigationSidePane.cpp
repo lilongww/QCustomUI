@@ -50,13 +50,13 @@ struct QCtmNavigationSidePane::Impl
     QWidget* initTitleBar(QWidget* parent)
     {
         titleBar = new QWidget(parent);
-        titleBar->setObjectName("titleBar");
+        titleBar->setObjectName("qcustomui_titleBar");
         QHBoxLayout* layout = new QHBoxLayout(titleBar);
         closeBtn = new QPushButton(titleBar);
         layout->setContentsMargins(0,0,0,0);
-        closeBtn->setObjectName("closeBtn");
+        closeBtn->setObjectName("qcustomui_closeBtn");
         title = new QLabel(titleBar);
-        title->setObjectName("title");
+        title->setObjectName("qcustomui_title");
         layout->addWidget(title, 1);
         layout->addWidget(closeBtn);
         return titleBar;

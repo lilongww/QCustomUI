@@ -355,7 +355,7 @@ QCtmNavigationSidePane
     background-color: white;
 }
 
-QCtmNavigationSidePane #closeBtn
+QCtmNavigationSidePane #qcustomui_closeBtn
 {
     background: transparent;
     image: url(:/QCustomUi/Resources/close-light.png);
@@ -372,7 +372,7 @@ QCtmNavigationSidePane #closeBtn:pressed
     background: transparent;
 }
 
-QCtmNavigationSidePane #title
+QCtmNavigationSidePane #qcustomui_title
 {
     padding-left: 10px;
     font-family: 'Microsoft YaHei';
@@ -380,15 +380,24 @@ QCtmNavigationSidePane #title
     color: #515151;
 }
 
-QCtmNavigationSidePane #titleBar
+QCtmNavigationSidePane #qcustomui_titleBar
 {
     min-height: 28px;
 }
 
+QCtmNavigationSidePane #qcustomui_clearAll
+{
+    background: transparent;
+    color: #0083CE;
+    text-decoration: underline;
+}
+
+QCtmNavigationSidePane #qcustomui_clearAllBase
+{
+    background: white;
+}
 /************************************************************/
-
 /*********************QCtmToolBox************************/
-
 .QCtmToolBox #toolBoxSplitter::handle:vertical
 {
     height: 1px;

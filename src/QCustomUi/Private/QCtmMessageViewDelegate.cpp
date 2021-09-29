@@ -44,6 +44,7 @@ struct QCtmMessageViewDelegate::Impl
 
     QColor decoration;
     QPixmap closeButtonIcon;
+    bool touchControlStyle{ false };
 };
 
 QCtmMessageViewDelegate::QCtmMessageViewDelegate(QObject* parent)
@@ -109,6 +110,16 @@ const QPixmap& QCtmMessageViewDelegate::closeButtonIcon() const
     return m_impl->closeButtonIcon;
 }
 
+void QCtmMessageViewDelegate::setTouchControlStyle(bool flag)
+{
+    m_impl->touchControlStyle = flag;
+}
+
+bool QCtmMessageViewDelegate::touchControlStyle() const
+{
+    return m_impl->touchControlStyle;
+}
+
 void QCtmMessageViewDelegate::drawTitle(QPainter* painter, const QStyleOptionViewItem& option, const QModelIndex& index) const
 {
     auto model = index.model();
@@ -121,7 +132,7 @@ void QCtmMessageViewDelegate::drawTitle(QPainter* painter, const QStyleOptionVie
 
     auto font = option.font;
     painter->save();
-    if (option.state.testFlag(QStyle::State_MouseOver))
+    if (m_impl->touchControlStyle || option.state.testFlag(QStyle::State_MouseOver))
     {
         font.setUnderline(true);
     }
@@ -149,7 +160,7 @@ void QCtmMessageViewDelegate::drawDateTime(QPainter* painter, const QStyleOption
 
 void QCtmMessageViewDelegate::drawCloseButton(QPainter* painter, const QStyleOptionViewItem& option, [[maybe_unused]] const QModelIndex& index) const
 {
-    if (!option.state.testFlag(QStyle::State_MouseOver))
+    if (!m_impl->touchControlStyle && !option.state.testFlag(QStyle::State_MouseOver))
         return;
     const auto& rect = doCloseBtnRect(option);
 

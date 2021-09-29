@@ -39,6 +39,9 @@ public:
 
     void setCloseButtonIcon(const QPixmap& pixmap);
     const QPixmap& closeButtonIcon() const;
+
+    void setTouchControlStyle(bool flag);
+    bool touchControlStyle() const;
 protected:
     bool editorEvent(QEvent* event, QAbstractItemModel* model, const QStyleOptionViewItem& option, const QModelIndex& index) override;
 private:
