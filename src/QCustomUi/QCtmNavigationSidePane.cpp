@@ -146,7 +146,7 @@ void QCtmNavigationSidePane::setDockArea(DockArea area)
     switch (area)
     {
     case DockArea::Left:
-        layout()->setContentsMargins(0, 0, margin * 2, 0);
+        layout()->setContentsMargins(0, 0, margin, 0);
         break;
     case DockArea::Right:
         layout()->setContentsMargins(margin, 0, 0, 0);
