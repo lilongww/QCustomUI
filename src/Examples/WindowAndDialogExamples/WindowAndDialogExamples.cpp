@@ -16,7 +16,7 @@ WindowAndDialogExamples::WindowAndDialogExamples(QWidget* parent)
     : QCtmWindow(parent)
 {
     ui.setupUi(this->centralWidget());
-    auto* dlg = new QCtmDialog(this);
+    auto* dlg = new QCtmWindow(nullptr);
     auto layout = new QHBoxLayout(dlg->centralWidget());
     auto btn = new QPushButton(dlg);
     layout->addWidget(btn);
@@ -24,7 +24,7 @@ WindowAndDialogExamples::WindowAndDialogExamples(QWidget* parent)
     dlg->setWindowFlag(Qt::WindowMinMaxButtonsHint);
     connect(ui.popDialogBtn, &QPushButton::clicked, this, [=]()
         {
-            dlg->exec();
+            dlg->show();
         });
     connect(btn, &QPushButton::clicked, this, [=]
         {

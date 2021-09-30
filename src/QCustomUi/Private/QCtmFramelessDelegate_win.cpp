@@ -250,25 +250,19 @@ bool QCtmWinFramelessDelegate::eventFilter(QObject* watched, QEvent* event)
                 m_impl->firstShow = false;
                 setWindowLong();
             }
-            if (m_impl->parent->windowFlags().testFlag(Qt::Dialog))
+            m_impl->parent->setAttribute(Qt::WA_Resized);
+            if (!m_impl->firstShow && m_impl->parent->isMaximized())
             {
-                m_impl->parent->setAttribute(Qt::WA_Resized);
-                if (m_impl->parent->windowFlags().testFlag(Qt::Dialog) && !m_impl->firstShow && m_impl->parent->isMaximized())
-                {
-                    QMetaObject::invokeMethod(this, [=]()
-                        {
-                            SetWindowPlacement((HWND)m_impl->parent->winId(), &m_impl->wndPlaceMent);
-                        }, Qt::QueuedConnection);
-                }
+                QMetaObject::invokeMethod(this, [=]()
+                    {
+                        SetWindowPlacement((HWND)m_impl->parent->winId(), &m_impl->wndPlaceMent);
+                    }, Qt::QueuedConnection);
             }
         }
         else if (event->type() == QEvent::Hide)
         {
-            if (m_impl->parent->windowFlags().testFlag(Qt::Dialog))
-            {
-                m_impl->wndPlaceMent.length = sizeof(m_impl->wndPlaceMent);
-                GetWindowPlacement((HWND)m_impl->parent->winId(), &m_impl->wndPlaceMent);
-            }
+            m_impl->wndPlaceMent.length = sizeof(m_impl->wndPlaceMent);
+            GetWindowPlacement((HWND)m_impl->parent->winId(), &m_impl->wndPlaceMent);
         }
         else if (event->type() == QEvent::WinIdChange)
         {
