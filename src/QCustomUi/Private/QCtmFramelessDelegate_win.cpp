@@ -264,6 +264,14 @@ bool QCtmWinFramelessDelegate::eventFilter(QObject* watched, QEvent* event)
             m_impl->wndPlaceMent.length = sizeof(m_impl->wndPlaceMent);
             GetWindowPlacement((HWND)m_impl->parent->winId(), &m_impl->wndPlaceMent);
         }
+        else if (event->type() == QEvent::Close)
+        {
+            if (!m_impl->parent->windowFlags().testFlag(Qt::Dialog))
+            {
+                m_impl->wndPlaceMent.length = sizeof(m_impl->wndPlaceMent);
+                GetWindowPlacement((HWND)m_impl->parent->winId(), &m_impl->wndPlaceMent);
+            }
+        }
         else if (event->type() == QEvent::WinIdChange)
         {
             m_impl->firstShow = true;
