@@ -23,6 +23,7 @@
 #include <QApplication>
 #include <QMovie>
 #include <QResizeEvent>
+#include <QDebug>
 
 struct QCtmLoadingDialog::Impl
 {
@@ -164,9 +165,7 @@ bool QCtmLoadingDialog::eventFilter(QObject* watched, QEvent* event)
     {
         if (event->type() == QEvent::Resize)
         {
-            auto evt = reinterpret_cast<QResizeEvent*>(event);
-            if (evt)
-                resize(evt->size());
+            resize(this->topLevelWidget()->size());
         }
     }
     return false;
