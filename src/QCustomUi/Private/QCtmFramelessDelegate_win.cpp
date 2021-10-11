@@ -255,13 +255,15 @@ bool QCtmWinFramelessDelegate::eventFilter(QObject* watched, QEvent* event)
             {
                 QMetaObject::invokeMethod(this, [=]()
                     {
-                        SetWindowPlacement((HWND)m_impl->parent->winId(), &m_impl->wndPlaceMent);
+                        if(m_impl->wndPlaceMent.showCmd != SW_SHOWMINIMIZED)
+                            SetWindowPlacement((HWND)m_impl->parent->winId(), &m_impl->wndPlaceMent);
                     }, Qt::QueuedConnection);
             }
         }
         else if (event->type() == QEvent::Hide)
         {
             m_impl->wndPlaceMent.length = sizeof(m_impl->wndPlaceMent);
+            m_impl->wndPlaceMent.showCmd = SW_SHOWNORMAL;
             GetWindowPlacement((HWND)m_impl->parent->winId(), &m_impl->wndPlaceMent);
         }
         else if (event->type() == QEvent::Close)
