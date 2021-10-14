@@ -1,0 +1,6 @@
+<RCC>
+    <qresource prefix="/ToolBoxExample">
+        <file>Resource/NewFolder.svg</file>
+        <file>Resource/NewFolderActive.svg</file>
+    </qresource>
+</RCC>

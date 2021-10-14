@@ -42,6 +42,7 @@ QCtmToolBoxItem::QCtmToolBoxItem(QWidget* parent)
     , m_impl(std::make_unique<Impl>())
 {
     ui.setupUi(this);
+    setFocusPolicy(Qt::StrongFocus);
     m_impl->layout = new QHBoxLayout(ui.item_title);
     m_impl->layout->setAlignment(Qt::AlignRight);
     m_impl->layout->setContentsMargins(0, 0, 0, 0);
