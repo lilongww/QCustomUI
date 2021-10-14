@@ -57,8 +57,9 @@ QCtmToolBox::QCtmToolBox(QWidget* parent)
     m_impl->vSplitter->setChildrenCollapsible(false);
     m_impl->vSplitter->setObjectName("toolBoxSplitter");
     QHBoxLayout* layout = new QHBoxLayout(this);
-    layout->setContentsMargins(0,0,0,0);
+    layout->setContentsMargins(0, 0, 0, 0);
     layout->addWidget(m_impl->vSplitter);
+    setAttribute(Qt::WA_StyledBackground);
 }
 
 /*!

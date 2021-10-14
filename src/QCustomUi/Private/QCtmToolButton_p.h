@@ -35,9 +35,10 @@ public:
     void setIcon(const QIcon& icon);
     void setShowToolTips(bool show);
     bool showToolTips() const;
-
+    void setSelected(bool select);
 protected:
     bool event(QEvent* e) override;
+    void initStyleOption(QStyleOptionToolButton* option) const override;
 private:
     struct Impl;
     std::unique_ptr<Impl> m_impl;

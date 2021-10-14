@@ -14,13 +14,14 @@ QCustomUi是一个自定义UI库，主要提供无边框窗口和一些自定义
 2.优化dialog最大化，关闭，打开，恢复正常大小时，大小依然为最大化大小的问题；
 3.重新实现QCtmLoadingDialog，优化流程较短时，loading窗口法起到阻塞效果的问题；
 4.MessageTip优化对触摸屏的显示，添加Clear All按钮，添加删除/清空消息的确认API, 优化背景色；
-5.bugfix：解决添加到QCtnNavigationBar的QWidgetAction为不显示时，添加后依然显示的问题；
-6.bugfix：解决dialog左右停靠时，关闭再打开失去交互的问题；
-7.bugfix：带native子窗口的QCtmWindow，点击任务栏图标显示/隐藏窗口时，显示异常；
-8.bugfix：native子窗口hover事件失效；
-9.bugfix：QCtmNavigationSidePane Left停靠时，阴影显示异常；
-10.bugfix：QCtmMessageTipButton 清空消息时未刷新；
-11.bugfix: QCtmInputDialog 垂直方向放大时，标题栏位移，现在使其与QInputDialog放大行为一致。
+5.优化QCtmToolBox样式，添加QCtmToolBox示例；
+6.bugfix：解决添加到QCtnNavigationBar的QWidgetAction为不显示时，添加后依然显示的问题；
+7.bugfix：解决dialog左右停靠时，关闭再打开失去交互的问题；
+8.bugfix：带native子窗口的QCtmWindow，点击任务栏图标显示/隐藏窗口时，显示异常；
+9.bugfix：native子窗口hover事件失效；
+10.bugfix：QCtmNavigationSidePane Left停靠时，阴影显示异常；
+11.bugfix：QCtmMessageTipButton 清空消息时未刷新；
+12.bugfix: QCtmInputDialog 垂直方向放大时，标题栏位移，现在使其与QInputDialog放大行为一致。
 ```
 
 **[1.6.1]**

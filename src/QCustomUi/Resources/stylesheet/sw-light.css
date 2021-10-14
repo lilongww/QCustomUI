@@ -397,24 +397,37 @@ QCtmNavigationSidePane #qcustomui_clearAllBase
     background: white;
 }
 /************************************************************/
+
 /*********************QCtmToolBox************************/
+.QCtmToolBox
+{
+    background: #eeeef2;
+    border: 1px solid #CCCEDB;
+}
+
 .QCtmToolBox #toolBoxSplitter::handle:vertical
 {
     height: 1px;
-    background: #D3D3D3;
+    background: #d0d0d0;
 }
 
-.QCtmToolBoxItem #item_title
+QCtmToolBoxItemTitle
 {
-    min-height: 40px;
-    background: transparent;
+    outline: none;
+    min-height: 24px;
+    max-height: 24px;
+    background: #E0E1E2;
     color: #4F4F4F;
-    font-family: 'Microsoft YaHei';
-    font-weight: 400;
     padding-left: 20px;
 }
 
-.QCtmToolBoxItem #item_title QCtmToolButton
+QCtmToolBoxItemTitle[qcustomui_active="true"]
+{
+    background: #007ACC;
+    color: white;
+}
+
+QCtmToolBoxItemTitle QCtmToolButton
 {
     border: none;
     min-width: 16px;
@@ -422,20 +435,16 @@ QCtmNavigationSidePane #qcustomui_clearAllBase
     padding: 5px;
 }
 
-.QCtmToolBoxItem #item_title QCtmToolButton:hover
+QCtmToolBoxItemTitle QCtmToolButton:hover
 {
     background: #d9d9d9;
 }
 
-QCtmToolBoxItem
+QCtmToolBoxItemTitle QCtmToolButton[qcustomui_active="true"]:hover
 {
-    background: #F3F3F3;
+    background: #52B0EF;
 }
 
-QCtmToolBoxItem QLabel
-{
-    color: black;
-}
 /************************************************************/
 
 /*********************QCtmMessageTipButton**************************/

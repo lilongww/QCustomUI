@@ -263,7 +263,6 @@ bool QCtmWinFramelessDelegate::eventFilter(QObject* watched, QEvent* event)
         else if (event->type() == QEvent::Hide)
         {
             m_impl->wndPlaceMent.length = sizeof(m_impl->wndPlaceMent);
-            m_impl->wndPlaceMent.showCmd = SW_SHOWNORMAL;
             GetWindowPlacement((HWND)m_impl->parent->winId(), &m_impl->wndPlaceMent);
         }
         else if (event->type() == QEvent::Close)
