@@ -70,6 +70,7 @@ QCtmTitleBar::QCtmTitleBar(QWidget* parent)
     connect(ui->maximumSizeBtn, &QPushButton::clicked, this, &QCtmTitleBar::onMaximumSizeBtn);
 
     parent->installEventFilter(this);
+    setAttribute(Qt::WA_StyledBackground);
 }
 
 /*!
@@ -194,7 +195,6 @@ void QCtmTitleBar::paintEvent([[maybe_unused]] QPaintEvent* event)
     QStyleOption opt;
     opt.initFrom(this);
     QPainter p(this);
-    style()->drawPrimitive(QStyle::PE_Widget, &opt, &p, this);
     const auto& iconRect = doIconRect();
     if (!m_impl->windowIcon.isNull() && m_impl->showIcon)
     {

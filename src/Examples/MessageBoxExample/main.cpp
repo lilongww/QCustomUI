@@ -1,8 +1,8 @@
-#include "MessageBoxExample.h"
+﻿#include "MessageBoxExample.h"
 
 #include <QCustomUi/QCtmApplication.h>
 
-int main(int argc, char *argv[])
+int main(int argc, char* argv[])
 {
     QCtmApplication a(argc, argv);
     MessageBoxExample w;

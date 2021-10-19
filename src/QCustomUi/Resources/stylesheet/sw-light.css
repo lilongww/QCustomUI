@@ -620,10 +620,6 @@ QCtmMessageTipButton:pressed
 
 /***********************QCtmMessageBox***********************/
 
-QCtmMessageBox#titleBar
-{
-    background: #FFFFFF;
-}
 
 QCtmMessageBox
 {
@@ -738,7 +734,6 @@ QCtmComboBox QListView::item:selected
 QCtmTableView
 {
     qproperty-alternatingRowColors: true;
-    qproperty-showGrid: false;
     background: white;
     alternate-background-color: #F7F7F7;
     border: none;

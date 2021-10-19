@@ -56,7 +56,6 @@ QCtmDialog::QCtmDialog(QWidget* parent)
     , m_impl(std::make_unique<Impl>())
 {
     m_impl->title = new QCtmTitleBar(this);
-    m_impl->title->setObjectName("ctmDialogTitleBar");
 
     m_impl->layout = new QVBoxLayout(this);
     m_impl->layout->setContentsMargins(0, 0, 0, 0);
@@ -73,9 +72,7 @@ QCtmDialog::QCtmDialog(QWidget* parent)
     m_impl->delegate = new QCtmFramelessDelegate(this, m_impl->title);
     setWindowFlag(Qt::Dialog);
 #endif
-    auto content = new QWidget(this);
-    content->setAutoFillBackground(true);
-    setCentralWidget(content);
+    setCentralWidget(new QWidget(this));
 }
 
 /*!
@@ -93,7 +90,6 @@ void QCtmDialog::setCentralWidget(QWidget* widget)
 {
     delete m_impl->content;
     m_impl->content = widget;
-    widget->setAutoFillBackground(true);
     layout()->addWidget(widget);
     QVBoxLayout* l = qobject_cast<QVBoxLayout*>(layout());
     if (l)
