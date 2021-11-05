@@ -21,7 +21,8 @@ QCustomUi是一个自定义UI库，主要提供无边框窗口和一些自定义
 9.bugfix：native子窗口hover事件失效；
 10.bugfix：QCtmNavigationSidePane Left停靠时，阴影显示异常；
 11.bugfix：QCtmMessageTipButton 清空消息时未刷新；
-12.bugfix: QCtmInputDialog 垂直方向放大时，标题栏位移，现在使其与QInputDialog放大行为一致。
+12.bugfix：QCtmInputDialog 垂直方向放大时，标题栏位移，现在使其与QInputDialog放大行为一致；
+13.bugfix：解决无边框窗口在双屏幕下的显示/拖拽问题。
 ```
 
 **[1.6.1]**

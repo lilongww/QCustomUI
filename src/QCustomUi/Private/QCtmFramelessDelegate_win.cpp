@@ -240,8 +240,10 @@ bool QCtmWinFramelessDelegate::eventFilter(QObject* watched, QEvent* event)
 {
     if (watched == m_impl->parent)
     {
+        qDebug() << event->type();
         if (event->type() == QEvent::WindowStateChange)
         {
+            int i = 0;
         }
         else if (event->type() == QEvent::Show)
         {
@@ -276,6 +278,11 @@ bool QCtmWinFramelessDelegate::eventFilter(QObject* watched, QEvent* event)
         else if (event->type() == QEvent::WinIdChange)
         {
             m_impl->firstShow = true;
+        }
+        else if (event->type() == QEvent::ScreenChangeInternal)
+        {
+            SetWindowPos(reinterpret_cast<HWND>(m_impl->parent->winId()), nullptr, 0, 0, 0, 0, SWP_FRAMECHANGED | SWP_NOMOVE | SWP_NOSIZE);
+            return false;
         }
     }
     return false;
@@ -384,9 +391,7 @@ bool QCtmWinFramelessDelegate::onNCTitTest(MSG* msg, long* result)
 bool QCtmWinFramelessDelegate::onNCTitTest(MSG* msg, qintptr* result)
 #endif
 {
-    POINTS globalPos = MAKEPOINTS(msg->lParam);
-    int x = m_impl->dpiScale(globalPos.x);
-    int y = m_impl->dpiScale(globalPos.y);
+    auto [x, y] = QCursor::pos();
 
     auto borderX = GetSystemMetrics(SM_CXPADDEDBORDER);
     auto borderY = GetSystemMetrics(SM_CXPADDEDBORDER);
@@ -398,7 +403,7 @@ bool QCtmWinFramelessDelegate::onNCTitTest(MSG* msg, qintptr* result)
     }
     if (m_impl->parent->minimumSize() != m_impl->parent->maximumSize())
     {
-        auto rect = m_impl->parent->frameGeometry();
+        auto rect = m_impl->parent->geometry();
 
         if (x >= rect.left() && x <= rect.left() + borderX) {
             if (y >= rect.top() && y <= rect.top() + borderY) {
