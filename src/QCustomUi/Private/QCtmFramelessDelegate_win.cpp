@@ -240,7 +240,7 @@ bool QCtmWinFramelessDelegate::eventFilter(QObject* watched, QEvent* event)
 {
     if (watched == m_impl->parent)
     {
-        qDebug() << event->type();
+        //qDebug() << event->type();
         if (event->type() == QEvent::WindowStateChange)
         {
             int i = 0;
