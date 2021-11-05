@@ -19,6 +19,7 @@
 
 #include "QCtmApplication.h"
 #include "QCtmStyleSheet.h"
+#include "Private/QCtmFramelessDelegate_win.h"
 
 #include <QLocalServer>
 #include <QLocalSocket>
@@ -42,10 +43,15 @@ public:
         if (msg->message == WM_NCHITTEST)
         {
             auto w = QWidget::find(reinterpret_cast<WId>(msg->hwnd));
-            if (w && w->window() != w)
+            if (w && w->window() && w->window() != w)
             {
-                *result = HTTRANSPARENT;
-                return true;
+                auto d = w->window()->findChild<QCtmWinFramelessDelegate*>();
+                if (d && d->onNCTitTest(msg, result))
+                {
+                    *result = HTTRANSPARENT;
+                    return true;
+                }
+                return false;
             }
         }
         return false;

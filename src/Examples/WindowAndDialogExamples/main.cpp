@@ -12,6 +12,6 @@ int main(int argc, char* argv[])
 {
     QCtmApplication a(argc, argv);
     WindowAndDialogExamples w;
-    w.show();
+    w.showMaximized();
     return a.exec();
 }

@@ -28,7 +28,7 @@ class QCUSTOMUI_EXPORT QCtmToolBox : public QWidget
     Q_OBJECT
         Q_PROPERTY(QSize iconSize READ iconSize WRITE setIconSize NOTIFY iconSizeChanged)
 public:
-    QCtmToolBox(QWidget* parent);
+    QCtmToolBox(QWidget* parent = nullptr);
     ~QCtmToolBox();
 
     void addWidget(const QString& title, QWidget* widget);

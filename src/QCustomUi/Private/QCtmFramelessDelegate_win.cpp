@@ -68,10 +68,11 @@ struct QCtmWinFramelessDelegate::Impl
     QWidget* parent{ nullptr };
     bool firstShow{ true };
 
-    inline void setNoMargins()
+    inline void setNoMargins(HWND hwnd)
     {
-        parent->layout()->setContentsMargins(QMargins(0, 0, 0, 0));
-        parent->layout()->update();
+        bool max = IsZoomed(hwnd);
+        auto margin = dpiScale(8);
+        parent->layout()->setContentsMargins(max ? QMargins(margin, margin, margin, margin) : QMargins(0, 0, 0, 0));
     };
 
     inline double dpiScale(double value)
@@ -83,6 +84,7 @@ struct QCtmWinFramelessDelegate::Impl
     {
         return value * parent->devicePixelRatioF();
     }
+    WINDOWPLACEMENT wndPlaceMent;
 };
 
 QCtmWinFramelessDelegate::QCtmWinFramelessDelegate(QWidget* parent, const QWidgetList& moveBars)
@@ -96,7 +98,6 @@ QCtmWinFramelessDelegate::QCtmWinFramelessDelegate(QWidget* parent, const QWidge
         | Qt::WindowSystemMenuHint);
     parent->installEventFilter(this);
     m_impl->moveBars = moveBars;
-    m_impl->setNoMargins();
 }
 
 QCtmWinFramelessDelegate::QCtmWinFramelessDelegate(QWidget* parent, QWidget* title)
@@ -178,40 +179,13 @@ bool QCtmWinFramelessDelegate::nativeEvent(const QByteArray& eventType
         if (msg->wParam)
         {
             NCCALCSIZE_PARAMS* ncParam = reinterpret_cast<NCCALCSIZE_PARAMS*>(msg->lParam);
-            if (!m_impl->parent->testAttribute(Qt::WA_Moved))
+            if (ncParam->lppos->flags & SWP_FRAMECHANGED)
             {
-                //debugPos(ncParam->lppos->flags);
-                auto state = m_impl->parent->windowState();
-                auto scope = qScopeGuard([=]()
-                    {
-                        m_impl->parent->setWindowState(state);
-                    });
-                if (ncParam->lppos->flags & SWP_NOSIZE)
-                {
-                    m_impl->parent->move(m_impl->dpiScale(ncParam->rgrc->left)
-                        , m_impl->dpiScale(ncParam->rgrc->top));
-                }
-                else if (ncParam->lppos->flags & SWP_NOMOVE)
-                {
-                    m_impl->parent->resize(m_impl->dpiScale(ncParam->rgrc->right - ncParam->rgrc->left)
-                        , m_impl->dpiScale(ncParam->rgrc->bottom - ncParam->rgrc->top));
-                }
-                else if (!(ncParam->lppos->flags & SWP_NOMOVE) && !(ncParam->lppos->flags & SWP_NOSIZE) && !(ncParam->lppos->flags & SWP_NOACTIVATE))
-                {
-                    m_impl->parent->setGeometry(m_impl->dpiScale(ncParam->rgrc->left)
-                        , m_impl->dpiScale(ncParam->rgrc->top)
-                        , m_impl->dpiScale(ncParam->rgrc->right - ncParam->rgrc->left)
-                        , m_impl->dpiScale(ncParam->rgrc->bottom - ncParam->rgrc->top));
-                }
-                m_impl->parent->setAttribute(Qt::WA_Moved, false);
+                m_impl->setNoMargins(msg->hwnd);
             }
+            *result = 0;
+            return true;
         }
-        else
-        {
-            //RECT* rect = reinterpret_cast<RECT*>(msg->lParam);
-        }
-        *result = 0;
-        return true;
     }
     break;
     case WM_SYSCOMMAND:
@@ -233,163 +207,13 @@ bool QCtmWinFramelessDelegate::nativeEvent(const QByteArray& eventType
     }
     break;
     case WM_NCHITTEST:
-    {
-        POINTS globalPos = MAKEPOINTS(msg->lParam);
-        int x = m_impl->dpiScale(globalPos.x);
-        int y = m_impl->dpiScale(globalPos.y);
-
-        auto borderX = GetSystemMetrics(SM_CXPADDEDBORDER);
-        auto borderY = GetSystemMetrics(SM_CXPADDEDBORDER);
-
-        if (m_impl->parent->isMaximized())
-        {
-            borderX = 0;
-            borderY = 0;
-        }
-        if (m_impl->parent->minimumSize() != m_impl->parent->maximumSize())
-        {
-            auto rect = m_impl->parent->frameGeometry();
-
-            if (x >= rect.left() && x <= rect.left() + borderX) {
-                if (y >= rect.top() && y <= rect.top() + borderY) {
-                    *result = HTTOPLEFT;
-                    return true;
-                }
-                if (y > rect.top() + borderY && y < rect.bottom() - borderY) {
-                    *result = HTLEFT;
-                    return true;
-                }
-                if (y >= rect.bottom() - borderY && y <= rect.bottom()) {
-                    *result = HTBOTTOMLEFT;
-                    return true;
-                }
-            }
-            else if (x > rect.left() + borderX && x < rect.right() - borderX) {
-                if (y >= rect.top() && y <= rect.top() + borderY) {
-                    *result = HTTOP;
-                    return true;
-                }
-                if (y > rect.top() + borderY && y < rect.top() + borderY) {
-                    *result = HTCAPTION;
-                    return true;
-                }
-                if (y >= rect.bottom() - borderY && y <= rect.bottom()) {
-                    *result = HTBOTTOM;
-                    return true;
-                }
-            }
-            else if (x >= rect.right() - borderX && x <= rect.right()) {
-                if (y >= rect.top() && y <= rect.top() + borderY) {
-                    *result = HTTOPRIGHT;
-                    return true;
-                }
-                if (y > rect.top() + borderY && y < rect.bottom() - borderY) {
-                    *result = HTRIGHT;
-                    return true;
-                }
-                if (y >= rect.bottom() - borderY && y <= rect.bottom()) {
-                    *result = HTBOTTOMRIGHT;
-                    return true;
-                }
-            }
-            else
-            {
-                *result = HTNOWHERE;
-                return true;
-            }
-        }
-
-        auto localPos = m_impl->parent->mapFromGlobal(QPoint(x, y));
-        for (auto w : m_impl->moveBars)
-        {
-            auto child = m_impl->parent->childAt(localPos);
-
-            if (!child)
-                continue;
-
-            if (child == w)
-            {
-                auto pos = w->mapFrom(m_impl->parent, localPos);
-                auto title = qobject_cast<QCtmTitleBar*>(w);
-                if (title)
-                {
-                    if (title->iconIsVisible() && title->doIconRect().contains(pos))
-                    {
-                        *result = HTSYSMENU;
-                        return true;
-                    }
-                }
-                *result = HTCAPTION;
-                return true;
-            }
-            else
-            {
-                auto it = std::find_if(w->children().begin(), w->children().end(), [&](const auto& obj)
-                    {
-                        if (obj->isWidgetType())
-                        {
-                            return obj == child;
-                        }
-                        return false;
-                    });
-
-                if (it != w->children().end()
-                    && w->metaObject()->className() != QString("QWidget")
-                    && w->metaObject()->className() != QString("QLabel"))
-                {
-                    *result = HTCLIENT;
-                    return true;
-                }
-            }
-        }
-    }
-    break;
+        return onNCTitTest(msg, result);
     case WM_NCACTIVATE:
     {
         if (!isCompositionEnabled()) {
             *result = 1;
             return true;
         }
-    }
-    break;
-    case WM_DWMCOMPOSITIONCHANGED:
-    {
-        if (m_impl->parent->isMaximized())
-        {
-            if (isCompositionEnabled())
-            {
-                auto margin = m_impl->dpiScale(8);
-                m_impl->parent->layout()->setContentsMargins(QMargins(margin, margin, margin, margin));
-            }
-            else
-            {
-                m_impl->setNoMargins();
-            }
-        }
-        else
-        {
-            m_impl->setNoMargins();
-        }
-    }
-    break;
-    case WM_GETMINMAXINFO:
-    {
-        auto info = (MINMAXINFO*)msg->lParam;
-        info->ptMinTrackSize.x = GetSystemMetrics(SM_CXMINIMIZED);
-        info->ptMinTrackSize.y = GetSystemMetrics(SM_CYMINIMIZED);
-        info->ptMaxTrackSize.x = GetSystemMetrics(SM_CXMAXIMIZED);
-        info->ptMaxTrackSize.y = GetSystemMetrics(SM_CYMAXIMIZED);
-
-        if (::MonitorFromWindow(::FindWindow(L"Shell_TrayWnd", nullptr), MONITOR_DEFAULTTONEAREST) ==
-            ::MonitorFromWindow((HWND)(m_impl->parent->winId()), MONITOR_DEFAULTTONEAREST))
-        {
-            info->ptMaxPosition.x = 0;
-            info->ptMaxPosition.y = 0;
-
-            info->ptMaxSize.x = GetSystemMetrics(SM_CXFULLSCREEN) + GetSystemMetrics(SM_CXDLGFRAME);
-            info->ptMaxSize.y = GetSystemMetrics(SM_CYFULLSCREEN) + GetSystemMetrics(SM_CYCAPTION);
-        }
-        return true;
     }
     break;
     case WM_NCLBUTTONDBLCLK:
@@ -416,24 +240,10 @@ bool QCtmWinFramelessDelegate::eventFilter(QObject* watched, QEvent* event)
 {
     if (watched == m_impl->parent)
     {
+        //qDebug() << event->type();
         if (event->type() == QEvent::WindowStateChange)
         {
-            if (m_impl->parent->isMaximized() && isCompositionEnabled() && !m_impl->parent->windowFlags().testFlag(Qt::Tool))
-            {
-                auto margin = 8 / m_impl->parent->devicePixelRatioF();
-                m_impl->parent->layout()->setContentsMargins(QMargins(margin, margin, margin, margin));
-                m_impl->parent->layout()->update();
-            }
-            else
-            {
-                m_impl->setNoMargins();
-                m_impl->parent->layout()->update();
-                if (!m_impl->parent->underMouse())
-                {
-                    ::PostMessage((HWND)m_impl->parent->winId(), WM_NCMOUSELEAVE, 0, 0);
-                }
-            }
-            m_impl->parent->repaint();
+            int i = 0;
         }
         else if (event->type() == QEvent::Show)
         {
@@ -442,10 +252,37 @@ bool QCtmWinFramelessDelegate::eventFilter(QObject* watched, QEvent* event)
                 m_impl->firstShow = false;
                 setWindowLong();
             }
+            m_impl->parent->setAttribute(Qt::WA_Resized);
+            if (!m_impl->firstShow && m_impl->parent->isMaximized())
+            {
+                QMetaObject::invokeMethod(this, [=]()
+                    {
+                        if(m_impl->wndPlaceMent.showCmd != SW_SHOWMINIMIZED)
+                            SetWindowPlacement((HWND)m_impl->parent->winId(), &m_impl->wndPlaceMent);
+                    }, Qt::QueuedConnection);
+            }
+        }
+        else if (event->type() == QEvent::Hide)
+        {
+            m_impl->wndPlaceMent.length = sizeof(m_impl->wndPlaceMent);
+            GetWindowPlacement((HWND)m_impl->parent->winId(), &m_impl->wndPlaceMent);
+        }
+        else if (event->type() == QEvent::Close)
+        {
+            if (!m_impl->parent->windowFlags().testFlag(Qt::Dialog))
+            {
+                m_impl->wndPlaceMent.length = sizeof(m_impl->wndPlaceMent);
+                GetWindowPlacement((HWND)m_impl->parent->winId(), &m_impl->wndPlaceMent);
+            }
         }
         else if (event->type() == QEvent::WinIdChange)
         {
             m_impl->firstShow = true;
+        }
+        else if (event->type() == QEvent::ScreenChangeInternal)
+        {
+            SetWindowPos(reinterpret_cast<HWND>(m_impl->parent->winId()), nullptr, 0, 0, 0, 0, SWP_FRAMECHANGED | SWP_NOMOVE | SWP_NOSIZE);
+            return false;
         }
     }
     return false;
@@ -454,8 +291,7 @@ bool QCtmWinFramelessDelegate::eventFilter(QObject* watched, QEvent* event)
 void QCtmWinFramelessDelegate::setWindowLong()
 {
     auto hwnd = reinterpret_cast<HWND>(m_impl->parent->winId());
-
-    long style = isCompositionEnabled() ? AeroBorderlessFlag : BasicBorderlessFlag;
+    long style = GetWindowLongPtr(hwnd, GWL_STYLE) | (isCompositionEnabled() ? AeroBorderlessFlag : BasicBorderlessFlag);
 
     if (!m_impl->parent->windowFlags().testFlag(Qt::WindowMinimizeButtonHint)
         || m_impl->parent->maximumSize() != QSize(QWIDGETSIZE_MAX, QWIDGETSIZE_MAX))
@@ -466,7 +302,7 @@ void QCtmWinFramelessDelegate::setWindowLong()
 
     if (isCompositionEnabled())
     {
-        extendFrameIntoClientArea(m_impl->parent->backingStore()->window(), 1, 1, 1, 1);
+        extendFrameIntoClientArea(m_impl->parent->windowHandle(), 1, 1, 1, 1);
     }
 
     SetWindowPos(hwnd, nullptr, 0, 0, 0, 0, SWP_FRAMECHANGED | SWP_NOMOVE | SWP_NOSIZE);
@@ -549,4 +385,118 @@ void QCtmWinFramelessDelegate::showSystemMenu(const QPoint& pos)
     }
 }
 
+#if QT_VERSION < QT_VERSION_CHECK(6,0,0)
+bool QCtmWinFramelessDelegate::onNCTitTest(MSG* msg, long* result)
+#else
+bool QCtmWinFramelessDelegate::onNCTitTest(MSG* msg, qintptr* result)
+#endif
+{
+    auto [x, y] = QCursor::pos();
+
+    auto borderX = GetSystemMetrics(SM_CXPADDEDBORDER);
+    auto borderY = GetSystemMetrics(SM_CXPADDEDBORDER);
+
+    if (m_impl->parent->isMaximized())
+    {
+        borderX = 0;
+        borderY = 0;
+    }
+    if (m_impl->parent->minimumSize() != m_impl->parent->maximumSize())
+    {
+        auto rect = m_impl->parent->geometry();
+
+        if (x >= rect.left() && x <= rect.left() + borderX) {
+            if (y >= rect.top() && y <= rect.top() + borderY) {
+                *result = HTTOPLEFT;
+                return true;
+            }
+            if (y > rect.top() + borderY && y < rect.bottom() - borderY) {
+                *result = HTLEFT;
+                return true;
+            }
+            if (y >= rect.bottom() - borderY && y <= rect.bottom()) {
+                *result = HTBOTTOMLEFT;
+                return true;
+            }
+        }
+        else if (x > rect.left() + borderX && x < rect.right() - borderX) {
+            if (y >= rect.top() && y <= rect.top() + borderY) {
+                *result = HTTOP;
+                return true;
+            }
+            if (y > rect.top() + borderY && y < rect.top() + borderY) {
+                *result = HTCAPTION;
+                return true;
+            }
+            if (y >= rect.bottom() - borderY && y <= rect.bottom()) {
+                *result = HTBOTTOM;
+                return true;
+            }
+        }
+        else if (x >= rect.right() - borderX && x <= rect.right()) {
+            if (y >= rect.top() && y <= rect.top() + borderY) {
+                *result = HTTOPRIGHT;
+                return true;
+            }
+            if (y > rect.top() + borderY && y < rect.bottom() - borderY) {
+                *result = HTRIGHT;
+                return true;
+            }
+            if (y >= rect.bottom() - borderY && y <= rect.bottom()) {
+                *result = HTBOTTOMRIGHT;
+                return true;
+            }
+        }
+        else
+        {
+            *result = HTNOWHERE;
+            return true;
+        }
+    }
+
+    auto localPos = m_impl->parent->mapFromGlobal(QPoint(x, y));
+    for (auto w : m_impl->moveBars)
+    {
+        auto child = m_impl->parent->childAt(localPos);
+
+        if (!child)
+            continue;
+
+        if (child == w)
+        {
+            auto pos = w->mapFrom(m_impl->parent, localPos);
+            auto title = qobject_cast<QCtmTitleBar*>(w);
+            if (title)
+            {
+                if (title->iconIsVisible() && title->doIconRect().contains(pos))
+                {
+                    *result = HTSYSMENU;
+                    return true;
+                }
+            }
+            *result = HTCAPTION;
+            return true;
+        }
+        else
+        {
+            auto it = std::find_if(w->children().begin(), w->children().end(), [&](const auto& obj)
+                {
+                    if (obj->isWidgetType())
+                    {
+                        return obj == child;
+                    }
+                    return false;
+                });
+
+            if (it != w->children().end()
+                && w->metaObject()->className() != QString("QWidget")
+                && w->metaObject()->className() != QString("QLabel"))
+            {
+                *result = HTCLIENT;
+                return false;
+            }
+        }
+    }
+    return false;
+}
 #endif

@@ -17,50 +17,66 @@
 **  along with QCustomUi.  If not, see <https://www.gnu.org/licenses/>.         **
 **********************************************************************************/
 
-#pragma once
+#include "QCtmToolBoxItemTitle_p.h"
 
-#include <QWidget>
+#include <QPainter>
+#include <QStyle>
+#include <QStyleOption>
 
-#include <memory>
-#include <functional>
-
-#ifdef Q_OS_WIN
-
-using MSG = struct tagMSG;
-class QCtmWinFramelessDelegate : public QObject
+struct QCtmToolBoxItemTitle::Impl
 {
-    Q_OBJECT
-
-public:
-    QCtmWinFramelessDelegate(QWidget* parent, const QWidgetList& moveBars);
-    QCtmWinFramelessDelegate(QWidget* parent, QWidget* title);
-    ~QCtmWinFramelessDelegate();
-
-    void addMoveBar(QWidget* w);
-    void removeMoveBar(QWidget* w);
-
-#if QT_VERSION < QT_VERSION_CHECK(6,0,0)
-    bool nativeEvent(const QByteArray& eventType
-        , void* message
-        , long* result);
-#else
-    bool nativeEvent(const QByteArray& eventType
-        , void* message
-        , qintptr* result);
-#endif
-protected:
-    bool eventFilter(QObject* watched, QEvent* event) override;
-private:
-    void setWindowLong();
-    void showSystemMenu(const QPoint& pos);
-#if QT_VERSION < QT_VERSION_CHECK(6,0,0)
-    bool onNCTitTest(MSG* msg, long* result);
-#else
-    bool onNCTitTest(MSG* msg, qintptr* result);
-#endif
-private:
-    struct Impl;
-    std::unique_ptr<Impl> m_impl;
-    friend class WindowsEventFilter;
+    QString title;
+    QIcon icon;
 };
-#endif
+
+QCtmToolBoxItemTitle::QCtmToolBoxItemTitle(QWidget* parent)
+    : QWidget(parent)
+    , m_impl(std::make_unique<Impl>())
+{
+    setAttribute(Qt::WA_StyledBackground);
+    setFocusPolicy(Qt::StrongFocus);
+}
+
+QCtmToolBoxItemTitle::~QCtmToolBoxItemTitle()
+{
+
+}
+
+void QCtmToolBoxItemTitle::setTitle(const QString& title)
+{
+    m_impl->title = title;
+}
+
+const QString& QCtmToolBoxItemTitle::title() const
+{
+    return m_impl->title;
+}
+
+void QCtmToolBoxItemTitle::setIcon(const QIcon& icon)
+{
+    m_impl->icon = icon;
+}
+
+const QIcon& QCtmToolBoxItemTitle::icon() const
+{
+    return m_impl->icon;
+}
+
+void QCtmToolBoxItemTitle::paintEvent(QPaintEvent* event)
+{
+    QPainter p(this);
+    QStyleOptionViewItem opt;
+    opt.initFrom(this);
+    opt.text = m_impl->title;
+    opt.icon = m_impl->icon;
+    opt.font = font();
+    opt.decorationAlignment = Qt::AlignLeft | Qt::AlignVCenter;
+    opt.displayAlignment = Qt::AlignLeft | Qt::AlignVCenter;
+    opt.features = QStyleOptionViewItem::HasDisplay;
+    opt.state.setFlag(QStyle::State_HasFocus, false);
+    opt.rect = style()->subElementRect(QStyle::SE_FrameContents, &opt, this);
+    if (!opt.icon.isNull())
+        opt.features |= QStyleOptionViewItem::HasDecoration;
+    style()->drawControl(QStyle::CE_ItemViewItem, &opt, &p, this);
+
+}

@@ -220,7 +220,6 @@ QCtmMessageBox::QCtmMessageBox(QWidget* parent)
     : QCtmDialog(parent)
     , m_impl(std::make_unique<Impl>())
 {
-    this->setStyle(new QCtmStyle(this->style()));
     init();
 }
 
@@ -527,6 +526,9 @@ QCtmMessageBox::StandardButton QCtmMessageBox::warning(QWidget* parent, const QS
 void QCtmMessageBox::showEvent(QShowEvent* event)
 {
     updateSize();
+#ifdef Q_OS_WIN
+    setAttribute(Qt::WA_Moved, false);
+#endif
     QCtmDialog::showEvent(event);
 }
 
@@ -543,7 +545,7 @@ void QCtmMessageBox::init()
     QHBoxLayout* msgLayout = new QHBoxLayout;
     msgLayout->addWidget(m_impl->iconLabel, 0);
     msgLayout->addWidget(m_impl->label, 1);
-    msgLayout->setContentsMargins(0,0,0,0);
+    msgLayout->setContentsMargins(0, 0, 0, 0);
     msgLayout->setSpacing(20);
     layout->addLayout(msgLayout);
     layout->addWidget(m_impl->buttonBox);

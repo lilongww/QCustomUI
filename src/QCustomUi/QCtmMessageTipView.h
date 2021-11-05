@@ -26,7 +26,7 @@
 #include <memory>
 
 class QCtmNavigationBar;
-using QCtmAbstractMessageTipDataPtr = std::shared_ptr<class QCtmAbstractMessageTipData>;
+using QCtmMessageTipDataPtr = std::shared_ptr<class QCtmMessageTipData>;
 
 class QCUSTOMUI_EXPORT QCtmMessageTipView : public QCtmAbstractMessageTipView
 {
@@ -35,6 +35,7 @@ class QCUSTOMUI_EXPORT QCtmMessageTipView : public QCtmAbstractMessageTipView
         Q_PROPERTY(QColor titleColor READ titleColor WRITE setTitleColor)
         Q_PROPERTY(QColor timeColor READ timeColor WRITE setTimeColor)
         Q_PROPERTY(QPixmap closeButtonIcon READ closeButtonIcon WRITE setCloseButtonIcon)
+        Q_PROPERTY(bool touchControlStyle READ touchControlStyle WRITE setTouchControlStyle)
 public:
     QCtmMessageTipView(QCtmNavigationBar* parent);
     ~QCtmMessageTipView();
@@ -49,9 +50,15 @@ public:
     const QColor& timeColor()const;
     void setCloseButtonIcon(const QPixmap& icon);
     const QPixmap& closeButtonIcon()const;
+    void setTouchControlStyle(bool flag);
+    bool touchControlStyle() const;
 signals:
     void closeButtonClicked(const QModelIndex& index);
-    void messageClicked(QCtmAbstractMessageTipDataPtr message);
+    void messageClicked(QCtmMessageTipDataPtr message);
+    bool aboutToCloseMessage(QCtmMessageTipDataPtr message);
+    bool aboutToClearAllMessages();
+public slots:
+    void clearAll();
 protected:
     void resizeEvent(QResizeEvent*) override;
     void showEvent(QShowEvent*) override;

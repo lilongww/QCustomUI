@@ -22,6 +22,7 @@ struct QCtmInputDialog::Impl
     QCtmFramelessDelegate* delegate{ nullptr };
 #endif
     QVBoxLayout* layout{ nullptr };
+    QLayout* mainLayout{ nullptr };
 };
 
 /*!
@@ -42,23 +43,24 @@ QCtmInputDialog::QCtmInputDialog(QWidget* parent, Qt::WindowFlags flags)
 {
     sizeHint();
     m_impl->layout = new QVBoxLayout;
-    m_impl->layout->setContentsMargins(0,0,0,0);
+    m_impl->layout->setContentsMargins(0, 0, 0, 0);
+    m_impl->title = new QCtmTitleBar(this);
+    m_impl->title->setObjectName("ctmDialogTitleBar");
+    m_impl->layout->addWidget(m_impl->title, 0);
     {
-        auto layout = qobject_cast<QVBoxLayout*>(this->layout());
+        m_impl->mainLayout = qobject_cast<QVBoxLayout*>(this->layout());
         auto w = new QWidget(this);
-        w->setLayout(layout);
-        layout->setParent(w);
+        w->setSizePolicy(QSizePolicy::Ignored, QSizePolicy::Ignored);
+        w->setLayout(m_impl->mainLayout);
+        m_impl->mainLayout->setParent(w);
         auto style = this->style();
-        layout->setContentsMargins(style->pixelMetric(QStyle::PM_LayoutLeftMargin)
+        m_impl->mainLayout->setContentsMargins(style->pixelMetric(QStyle::PM_LayoutLeftMargin)
             , style->pixelMetric(QStyle::PM_LayoutTopMargin)
             , style->pixelMetric(QStyle::PM_LayoutRightMargin)
             , style->pixelMetric(QStyle::PM_LayoutBottomMargin));
-        m_impl->layout->addWidget(w);
+        m_impl->layout->addWidget(w, 1);
     }
     setLayout(m_impl->layout);
-    m_impl->title = new QCtmTitleBar(this);
-    m_impl->title->setObjectName("ctmDialogTitleBar");
-    m_impl->layout->insertWidget(0, m_impl->title);
 #ifdef Q_OS_WIN
     m_impl->delegate = new QCtmWinFramelessDelegate(this, m_impl->title);
 #else
@@ -254,6 +256,15 @@ void QCtmInputDialog::hideEvent(QHideEvent*)
         auto e = new QEvent(QEvent::Type::Leave);
         qApp->sendEvent(closeBtn, e);
     }
+}
+
+/*!
+    \reimp
+*/
+void QCtmInputDialog::showEvent(QShowEvent* e)
+{
+    m_impl->layout->setSizeConstraint(m_impl->mainLayout->sizeConstraint());
+    QInputDialog::showEvent(e);
 }
 
 /*!

@@ -23,16 +23,31 @@
 
 #include <QDialog>
 
-class QCUSTOMUI_EXPORT QCtmLoadingDialog : public QDialog
+class QCUSTOMUI_EXPORT QCtmLoadingDialog : public QWidget
 {
     Q_OBJECT
 
 public:
-    QCtmLoadingDialog(QWidget* parent = nullptr);
+    enum class Result
+    {
+        Cancel,
+        Done
+    };
+    QCtmLoadingDialog(QWidget* parent);
     ~QCtmLoadingDialog();
 
+    void setCancelEnable(bool flag);
+    bool cancelEnable() const;
+public slots:
+    void done();
+    void cancel();
+    Result exec();
 protected:
     void showEvent(QShowEvent*) override;
+    void closeEvent(QCloseEvent* event) override;
+    void hideEvent(QHideEvent* event) override;
+    bool eventFilter(QObject* watched, QEvent* event);
+    void keyPressEvent(QKeyEvent* event) override;
 private:
     struct Impl;
     std::unique_ptr<Impl> m_impl;

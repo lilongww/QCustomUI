@@ -22,18 +22,23 @@
 
 #include <QApplication>
 #include <QMovie>
+#include <QResizeEvent>
+#include <QDebug>
 
 struct QCtmLoadingDialog::Impl
 {
     Ui::QCtmLoadingDialog* ui{ new Ui::QCtmLoadingDialog };
     QMovie* movie{ nullptr };
     ~Impl() { delete ui; }
+    QEventLoop loop;
+    Result result{ Result::Cancel };
+    bool cancelEnable{ false };
 };
 
 /*!
     \class      QCtmLoadingDialog
     \brief      等待加载窗口.
-    \inherits   QDialog
+    \inherits   QWidget
     \ingroup    QCustomUi
     \inmodule   QCustomUi
     \inheaderfile QCtmLoadingDialog.h
@@ -43,15 +48,16 @@ struct QCtmLoadingDialog::Impl
     \brief      构造函数，在 \a parent 的顶层窗口上覆盖加载窗口.
 */
 QCtmLoadingDialog::QCtmLoadingDialog(QWidget* parent)
-    : QDialog(parent)
+    : QWidget(parent->topLevelWidget())
     , m_impl(std::make_unique<Impl>())
 {
+    setFocusPolicy(Qt::FocusPolicy::StrongFocus);
     m_impl->ui->setupUi(this);
-    setWindowFlag(Qt::FramelessWindowHint);
-    setAttribute(Qt::WA_TranslucentBackground);
     m_impl->movie = new QMovie(this);
     m_impl->movie->setFileName(":/QCustomUi/Resources/loading.gif");
     m_impl->ui->label->setMovie(m_impl->movie);
+    setVisible(false);
+    parent->topLevelWidget()->installEventFilter(this);
 }
 
 /*!
@@ -62,16 +68,116 @@ QCtmLoadingDialog::~QCtmLoadingDialog()
 }
 
 /*!
+    \brief      设置是否可以按ESC键取消 \a flag.
+    \sa         cancelEnable
+*/
+void QCtmLoadingDialog::setCancelEnable(bool flag)
+{
+    m_impl->cancelEnable = flag;
+}
+
+/*!
+    \brief      是否可以按ESC键取消显示loading窗口.
+    \sa         setCancelEnable
+*/
+bool QCtmLoadingDialog::cancelEnable() const
+{
+    return m_impl->cancelEnable;
+}
+
+/*!
+    \brief      Loading 窗口加载完成时调用该函数，测试exec返回Done.
+    \sa         cancel
+*/
+void QCtmLoadingDialog::done()
+{
+    QMetaObject::invokeMethod(this, [=]
+        {
+            m_impl->result = Result::Done;
+            m_impl->loop.quit();
+        });
+}
+
+/*!
+    \brief      Loading 窗口加载未完成时调用该函数，此时exec返回Cancel.
+    \sa         done
+*/
+void QCtmLoadingDialog::cancel()
+{
+    QMetaObject::invokeMethod(this, [=]
+        {
+            m_impl->result = Result::Cancel;
+            m_impl->loop.quit();
+        });
+}
+
+/*!
+    \brief      阻塞并显示 loading 窗口.
+    \note       不应使用show来显示loading.
+*/
+QCtmLoadingDialog::Result QCtmLoadingDialog::exec()
+{
+    m_impl->result = Result::Cancel;
+    ensurePolished();
+    setVisible(true);
+    m_impl->loop.exec(QEventLoop::DialogExec);
+    setVisible(false);
+    m_impl->loop.processEvents();
+    return m_impl->result;
+}
+
+/*!
     \reimp
 */
 void QCtmLoadingDialog::showEvent(QShowEvent* e)
 {
-    auto pw = this->parentWidget();
-    if (pw)
-    {
-        auto tl = pw->topLevelWidget();
-        this->setGeometry(tl->geometry());
-    }
+    auto tl = topLevelWidget();
+    this->setGeometry(QRect(QPoint(0, 0), tl->size()));
+    raise();
+    setFocus();
     m_impl->movie->start();
-    QDialog::showEvent(e);
+}
+
+/*!
+    \reimp
+*/
+void QCtmLoadingDialog::closeEvent(QCloseEvent* event)
+{
+    if (m_impl->loop.isRunning())
+        m_impl->loop.quit();
+}
+
+/*!
+    \reimp
+*/
+void QCtmLoadingDialog::hideEvent(QHideEvent* event)
+{
+    if (m_impl->loop.isRunning())
+        m_impl->loop.quit();
+}
+
+/*!
+    \reimp
+*/
+bool QCtmLoadingDialog::eventFilter(QObject* watched, QEvent* event)
+{
+    if (watched == this->topLevelWidget())
+    {
+        if (event->type() == QEvent::Resize)
+        {
+            resize(this->topLevelWidget()->size());
+        }
+    }
+    return false;
+}
+
+/*!
+    \reimp
+*/
+void QCtmLoadingDialog::keyPressEvent(QKeyEvent* event)
+{
+    if (event->key() == Qt::Key_Escape && m_impl->cancelEnable)
+    {
+        cancel();
+    }
 }

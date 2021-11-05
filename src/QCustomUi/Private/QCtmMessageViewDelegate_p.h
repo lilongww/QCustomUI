@@ -19,11 +19,11 @@
 
 #pragma once
 
-#include <QItemDelegate>
+#include <QStyledItemDelegate>
 
 #include <memory>
 
-class QCtmMessageViewDelegate : public QItemDelegate
+class QCtmMessageViewDelegate : public QStyledItemDelegate
 {
     Q_OBJECT
 
@@ -39,6 +39,9 @@ public:
 
     void setCloseButtonIcon(const QPixmap& pixmap);
     const QPixmap& closeButtonIcon() const;
+
+    void setTouchControlStyle(bool flag);
+    bool touchControlStyle() const;
 protected:
     bool editorEvent(QEvent* event, QAbstractItemModel* model, const QStyleOptionViewItem& option, const QModelIndex& index) override;
 private:

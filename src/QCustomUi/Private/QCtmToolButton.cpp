@@ -22,10 +22,12 @@
 #include <QAction>
 #include <QStyle>
 #include <QEvent>
+#include <QStyleOption>
 
 struct QCtmToolButton::Impl
 {
     bool showToolTip{ true };
+    bool selected{ false };
 };
 
 QCtmToolButton::QCtmToolButton(QWidget* parent)
@@ -57,6 +59,20 @@ void QCtmToolButton::setShowToolTips(bool show)
 bool QCtmToolButton::showToolTips() const
 {
     return m_impl->showToolTip;
+}
+
+void QCtmToolButton::setSelected(bool select)
+{
+    m_impl->selected = select;
+}
+
+void QCtmToolButton::initStyleOption(QStyleOptionToolButton* option) const
+{
+    QToolButton::initStyleOption(option);
+    if (m_impl->selected)
+        option->icon = this->icon().pixmap(iconSize()
+            , m_impl->selected ? QIcon::Mode::Selected : QIcon::Mode::Normal
+            , isChecked() ? QIcon::State::On : QIcon::State::Off);
 }
 
 bool QCtmToolButton::event(QEvent* e)

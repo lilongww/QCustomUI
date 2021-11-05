@@ -30,7 +30,7 @@
     <number>0</number>
    </property>
    <item>
-    <widget class="QWidget" name="item_title" native="true">
+    <widget class="QCtmToolBoxItemTitle" name="item_title" native="true">
      <property name="minimumSize">
       <size>
        <width>0</width>
@@ -62,6 +62,14 @@
    </item>
   </layout>
  </widget>
+ <customwidgets>
+  <customwidget>
+   <class>QCtmToolBoxItemTitle</class>
+   <extends>QWidget</extends>
+   <header>QCtmToolBoxItemTitle_p.h</header>
+   <container>1</container>
+  </customwidget>
+ </customwidgets>
  <resources/>
  <connections/>
 </ui>

@@ -84,6 +84,7 @@ void QCtmMessageTipButton::setModel(QCtmAbstractMessageTipModel* model)
     m_impl->model = model;
     connect(m_impl->model, &QAbstractItemModel::rowsRemoved, this, &QCtmMessageTipButton::onModelDataChanged);
     connect(m_impl->model, &QAbstractItemModel::rowsInserted, this, &QCtmMessageTipButton::onModelDataChanged);
+    connect(m_impl->model, &QAbstractItemModel::modelReset, this, &QCtmMessageTipButton::onModelDataChanged);
     connectView();
     if (this->isVisible())
     {

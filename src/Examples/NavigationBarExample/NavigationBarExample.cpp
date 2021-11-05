@@ -6,6 +6,7 @@
 #include <QUrl>
 #include <QWidgetAction>
 #include <QLineEdit>
+#include <QTimer>
 
 NavigationBarExample::NavigationBarExample(QWidget* parent)
     : QCtmWindow(parent)
@@ -43,8 +44,10 @@ void NavigationBarExample::init()
     search->addAction(new QAction(QIcon(":/QCustomUi/Resources/search-light.png"), "", this), QLineEdit::ActionPosition::TrailingPosition);
     auto action = new QWidgetAction(this);
     action->setDefaultWidget(search);
+    action->setVisible(false);
     nvBar->addAction(action, QCtmNavigationBar::Right);
     nvBar->addHelp(QUrl("http://llongww.gitee.io/qcustomuidocument"), QIcon(":/QCustomUi/Resources/help-light.png"));
-
+    QTimer::singleShot(2000, [=]() {action->setVisible(true); });
     nvBar->addUser(QIcon(":/QCustomUi/Resources/people-light.png"), "ABC")->setVisible(false);
+    nvBar->addAction(tr("Center Action"), QCtmNavigationBar::Center);
 }

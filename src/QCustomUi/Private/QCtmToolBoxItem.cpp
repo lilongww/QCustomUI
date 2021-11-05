@@ -1,18 +1,37 @@
-﻿#include "QCtmToolBoxItem_p.h"
+﻿/*********************************************************************************
+**                                                                              **
+**  Copyright (C) 2019-2020 LiLong                                              **
+**  This file is part of QCustomUi.                                             **
+**                                                                              **
+**  QCustomUi is free software: you can redistribute it and/or modify           **
+**  it under the terms of the GNU Lesser General Public License as published by **
+**  the Free Software Foundation, either version 3 of the License, or           **
+**  (at your option) any later version.                                         **
+**                                                                              **
+**  QCustomUi is distributed in the hope that it will be useful,                **
+**  but WITHOUT ANY WARRANTY; without even the implied warranty of              **
+**  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the               **
+**  GNU Lesser General Public License for more details.                         **
+**                                                                              **
+**  You should have received a copy of the GNU Lesser General Public License    **
+**  along with QCustomUi.  If not, see <https://www.gnu.org/licenses/>.         **
+**********************************************************************************/
+
+#include "QCtmToolBoxItem_p.h"
 #include "QCtmWidgetItem_p.h"
 #include "Util_p.h"
+#include "QCtmToolButton_p.h"
 
 #include <QPainter>
 #include <QStyleOption>
 #include <QActionEvent>
+#include <QApplication>
 #include <QList>
 
 struct QCtmToolBoxItem::Impl
 {
     QList<QCtmWidgetItemPtr> items;
     QHBoxLayout* layout{ nullptr };
-    QString title;
-    QIcon icon;
     QWidget* m_content{ nullptr };
     int stretch{ 0 };
     QSize iconSize{ 16,16 };
@@ -23,12 +42,28 @@ QCtmToolBoxItem::QCtmToolBoxItem(QWidget* parent)
     , m_impl(std::make_unique<Impl>())
 {
     ui.setupUi(this);
-    setObjectName("item");
+    setFocusPolicy(Qt::StrongFocus);
     m_impl->layout = new QHBoxLayout(ui.item_title);
     m_impl->layout->setAlignment(Qt::AlignRight);
-    m_impl->layout->setContentsMargins(0,0,0,0);
+    m_impl->layout->setContentsMargins(0, 0, 0, 0);
     m_impl->layout->setSpacing(0);
-    ui.item_title->installEventFilter(this);
+    connect(qApp, &QApplication::focusChanged, this, [=](auto, auto now)
+        {
+            auto setActive = [](bool act, QWidget* obj)
+            {
+                obj->style()->unpolish(obj);
+                obj->setProperty("qcustomui_active", act);
+                obj->style()->polish(obj);
+            };
+            auto active = now && (now == this || isAncestorOf(now));
+            setActive(active, ui.item_title);
+            auto btns = ui.item_title->findChildren<QCtmToolButton*>();
+            for (auto btn : btns)
+            {
+                setActive(active, btn);
+                btn->setSelected(active);
+            }
+        });
 }
 
 QCtmToolBoxItem::~QCtmToolBoxItem()
@@ -37,12 +72,12 @@ QCtmToolBoxItem::~QCtmToolBoxItem()
 
 void QCtmToolBoxItem::setTitle(const QString& text)
 {
-    m_impl->title = text;
+    ui.item_title->setTitle(text);
 }
 
 QString QCtmToolBoxItem::title() const
 {
-    return m_impl->title;
+    return ui.item_title->title();
 }
 
 void QCtmToolBoxItem::setContent(QWidget* widget)
@@ -81,12 +116,12 @@ int QCtmToolBoxItem::stretch() const
 
 void QCtmToolBoxItem::setIcon(const QIcon& icon)
 {
-    m_impl->icon = icon;
+    ui.item_title->setIcon(icon);
 }
 
 const QIcon& QCtmToolBoxItem::icon() const
 {
-    return m_impl->icon;
+    return ui.item_title->icon();
 }
 
 void QCtmToolBoxItem::setIconSize(const QSize& size)
@@ -98,14 +133,6 @@ void QCtmToolBoxItem::setIconSize(const QSize& size)
 const QSize& QCtmToolBoxItem::iconSize() const
 {
     return m_impl->iconSize;
-}
-
-void QCtmToolBoxItem::paintEvent([[maybe_unused]] QPaintEvent* event)
-{
-    QStyleOption opt;
-    opt.initFrom(this);
-    QPainter p(this);
-    style()->drawPrimitive(QStyle::PE_Widget, &opt, &p, this);
 }
 
 void QCtmToolBoxItem::actionEvent(QActionEvent* event)
@@ -139,26 +166,6 @@ bool QCtmToolBoxItem::eventFilter(QObject* watched, QEvent* event)
             {
                 removeAction(evt->action());
             }
-        }
-    }
-    else if (watched == ui.item_title)
-    {
-        if (event->type() == QEvent::Paint)
-        {
-            QPainter p(ui.item_title);
-            QStyleOptionViewItem opt;
-            opt.initFrom(ui.item_title);
-            opt.text = m_impl->title;
-            opt.icon = m_impl->icon;
-            opt.font = ui.item_title->font();
-            opt.decorationAlignment = Qt::AlignLeft | Qt::AlignVCenter;
-            opt.displayAlignment = Qt::AlignLeft | Qt::AlignVCenter;
-            opt.features = QStyleOptionViewItem::HasDisplay;
-            opt.rect = ui.item_title->style()->subElementRect(QStyle::SE_FrameContents, &opt, ui.item_title);
-            if (!opt.icon.isNull())
-                opt.features |= QStyleOptionViewItem::HasDecoration;
-            ui.item_title->style()->drawControl(QStyle::CE_ItemViewItem, &opt, &p, ui.item_title);
-            return true;
         }
     }
     return false;

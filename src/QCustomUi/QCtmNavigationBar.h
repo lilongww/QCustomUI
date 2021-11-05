@@ -37,6 +37,7 @@ public:
     enum ActionPosition
     {
         Left,
+        Center,
         Right
     };
     QCtmNavigationBar(QWidget* parent);
@@ -71,10 +72,7 @@ public:
 signals:
     void iconSizeChanged(const QSize& size);
 protected:
-    void paintEvent(QPaintEvent* event)override;
     void actionEvent(QActionEvent* event) override;
-    virtual void drawBackground(QPainter* p);
-
 private:
     struct Impl;
     std::unique_ptr<Impl> m_impl;

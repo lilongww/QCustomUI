@@ -8,7 +8,7 @@ if(${QT_VERSION_MAJOR} EQUAL 5)
 else(${QT_VERSION_MAJOR} EQUAL 5)
     find_package(Qt${QT_VERSION_MAJOR} COMPONENTS Core Gui Widgets Network REQUIRED)
 endif(${QT_VERSION_MAJOR} EQUAL 5)
-message("-- Found Qt${QT_VERSION_MAJOR}")
+message("-- Found Qt ${QT_VERSION}")
 include_directories("./")
 
 add_compile_definitions(QCUSTOMUI_LIB UNICODE)
@@ -156,6 +156,9 @@ set(TOOLS_SOURCES
  "QCtmFile.cpp"
 )
 
+set(UI_PRIVATE
+ "Private/QCtmToolBoxItem.ui")
+
 if(WIN32)
  list(APPEND RESOURCES "QCustomUi.rc")
 endif()
@@ -181,6 +184,7 @@ source_group("Sources/Views" FILES ${VIEW_SOURCES})
 source_group("Sources/Tools" FILES ${TOOLS_SOURCES})
 
 source_group("UI" FILES ${UI})
+source_group("UI/Private" FILES ${UI_PRIVATE})
 source_group("Resource" FILES ${RESOURCES})
 
 add_library(QCustomUi SHARED
@@ -205,6 +209,7 @@ add_library(QCustomUi SHARED
  ${TOOLS_SOURCES}
 
  ${UI}
+ ${UI_PRIVATE}
  ${RESOURCES}
  ${DOCS}
 )
