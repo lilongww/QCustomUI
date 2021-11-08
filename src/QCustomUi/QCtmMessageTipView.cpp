@@ -183,7 +183,7 @@ void QCtmMessageTipView::setDecoration(const QColor& color)
 }
 
 /*!
-    \brief      返回装饰颜色 \a color.
+    \brief      返回装饰颜色.
     \sa         setDecoration
 */
 const QColor& QCtmMessageTipView::decoration() const
@@ -212,7 +212,7 @@ const QColor& QCtmMessageTipView::titleColor() const
 }
 
 /*!
-    \brief      设置时间颜色　＼a color.
+    \brief      设置时间颜色 \a color.
     \sa         timeColor()
 */
 void QCtmMessageTipView::setTimeColor(const QColor& color)

@@ -120,9 +120,24 @@ void QCtmInputDialog::removeTitleBar()
 }
 
 /*!
-    \overload
+    \brief      弹出显示一个单行文本输入窗口，并返回输入的字符串，
+                父窗口为 \a parent,
+                标题栏为 \a title,
+                显示信息为 \a label,
+                显示模式为 \a echo,
+                显示文本为 \a text,
+                是否点击确定按钮 \a ok,
+                窗口标志位为 \a flags,
+                输入法为 \a inputMethodHints.
 */
-QString QCtmInputDialog::getText(QWidget* parent, const QString& title, const QString& label, QLineEdit::EchoMode echo, const QString& text, bool* ok, Qt::WindowFlags flags, Qt::InputMethodHints inputMethodHints)
+QString QCtmInputDialog::getText(QWidget* parent
+    , const QString& title
+    , const QString& label
+    , QLineEdit::EchoMode echo
+    , const QString& text
+    , bool* ok
+    , Qt::WindowFlags flags
+    , Qt::InputMethodHints inputMethodHints)
 {
     QCtmInputDialog dlg(parent, flags);
     dlg.setWindowTitle(title);
@@ -143,9 +158,22 @@ QString QCtmInputDialog::getText(QWidget* parent, const QString& title, const QS
 }
 
 /*!
-    \overload
+    \brief      弹出显示一个多行文本输入窗口，并返回输入的字符串，
+                父窗口为 \a parent,
+                标题栏为 \a title,
+                显示信息为 \a label,
+                显示文本为 \a text,
+                是否点击确定按钮 \a ok,
+                窗口标志位为 \a flags,
+                输入法为 \a inputMethodHints.
 */
-QString QCtmInputDialog::getMultiLineText(QWidget* parent, const QString& title, const QString& label, const QString& text, bool* ok, Qt::WindowFlags flags, Qt::InputMethodHints inputMethodHints)
+QString QCtmInputDialog::getMultiLineText(QWidget* parent
+    , const QString& title
+    , const QString& label
+    , const QString& text
+    , bool* ok
+    , Qt::WindowFlags flags
+    , Qt::InputMethodHints inputMethodHints)
 {
     QCtmInputDialog dialog(parent, flags);
     dialog.setOptions(QInputDialog::UsePlainTextEditForTextInput);
@@ -166,9 +194,26 @@ QString QCtmInputDialog::getMultiLineText(QWidget* parent, const QString& title,
 }
 
 /*!
-    \overload
+    \brief      弹出显示一个 ComboBox 选择窗口，并返回选中的字符串，
+                父窗口为 \a parent,
+                标题栏为 \a title,
+                显示信息为 \a label,
+                候选项目为 \a items,
+                当前显示项为 \a current,
+                是否可编辑 \a editable,
+                是否点击确定按钮 \a ok,
+                窗口标志位为 \a flags,
+                输入法为 \a inputMethodHints.
 */
-QString QCtmInputDialog::getItem(QWidget* parent, const QString& title, const QString& label, const QStringList& items, int current, bool editable, bool* ok, Qt::WindowFlags flags, Qt::InputMethodHints inputMethodHints)
+QString QCtmInputDialog::getItem(QWidget* parent
+    , const QString& title
+    , const QString& label
+    , const QStringList& items
+    , int current
+    , bool editable
+    , bool* ok
+    , Qt::WindowFlags flags
+    , Qt::InputMethodHints inputMethodHints)
 {
     QString text(items.value(current));
 
@@ -192,7 +237,16 @@ QString QCtmInputDialog::getItem(QWidget* parent, const QString& title, const QS
 }
 
 /*!
-    \overload
+    \brief      弹出显示一个整数输入窗口，并返回输入的值，
+                父窗口为 \a parent,
+                标题栏为 \a title,
+                显示信息为 \a label,
+                值为 \a value,
+                最小值为 \a minValue,
+                最大值为 \a maxValue,
+                步进为 \a step,
+                是否点击确定按钮 \a ok,
+                窗口标志位为 \a flags.
 */
 int QCtmInputDialog::getInt(QWidget* parent, const QString& title, const QString& label, int value, int minValue, int maxValue, int step, bool* ok, Qt::WindowFlags flags)
 {
@@ -215,7 +269,17 @@ int QCtmInputDialog::getInt(QWidget* parent, const QString& title, const QString
 }
 
 /*!
-    \overload
+    \brief      弹出显示一个浮点数输入窗口，并返回输入的值，
+                父窗口为 \a parent,
+                标题栏为 \a title,
+                显示信息为 \a label,
+                值为 \a value,
+                最小值为 \a minValue,
+                最大值为 \a maxValue,
+                保留小数位为 \a decimals,
+                是否点击确定按钮 \a ok,
+                窗口标志位为 \a flags,
+                步进为 \a step.
 */
 double QCtmInputDialog::getDouble(QWidget* parent
     , const QString& title

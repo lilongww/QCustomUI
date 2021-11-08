@@ -130,7 +130,7 @@ int QCtmAbstractMessageTipModel::maximumCount() const
 }
 
 /*!
-    \brief      设置消息是否逆序显示，即最新一条显示在第一条，默认为真.
+    \brief      设置消息是否逆序显示 \a re, 即最新一条显示在第一条，默认为真.
     \sa         reversedOrder
 */
 void QCtmAbstractMessageTipModel::setReversedOrder(bool re)

@@ -348,7 +348,7 @@ QAction* QCtmNavigationBar::insertPane(int index, const QString& text, ActionPos
 }
 
 /*!
-    \brief      添加并返回一个图标为 \a icon 的帮助action到 \a pos 位置，点击时打开 \a filePath的帮助文档.
+    \brief      添加并返回一个图标为 \a icon 的帮助action到 \a pos 位置，点击时打开 \a filePath 的帮助文档.
     \sa         insertHelp
 */
 QAction* QCtmNavigationBar::addHelp(const QUrl& filePath, const QIcon& icon, ActionPosition pos)
@@ -358,7 +358,7 @@ QAction* QCtmNavigationBar::addHelp(const QUrl& filePath, const QIcon& icon, Act
 }
 
 /*!
-    \brief      插入并返回一个图标为 \a icon 的帮助action到 \a index, \a pos 位置，点击时打开 \a filePath的帮助文档.
+    \brief      插入并返回一个图标为 \a icon 的帮助action到 \a index, \a pos 位置，点击时打开 \a filePath 的帮助文档.
     \sa         addHelp
 */
 QAction* QCtmNavigationBar::insertHelp(int index, const QUrl& filePath, const QIcon& icon, ActionPosition pos /*= Right*/)
