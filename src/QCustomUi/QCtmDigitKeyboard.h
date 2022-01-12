@@ -33,6 +33,15 @@ public:
         IntInput = 1,
         DoubleInput
     };
+
+    struct Unit
+    {
+        QString unit;
+        QVariant minimum{ 0 };
+        QVariant maximum{ 99 };
+    };
+    using Units = std::vector<Unit>;
+
     QCtmDigitKeyboard(QWidget* parent = nullptr);
     ~QCtmDigitKeyboard();
 
@@ -47,8 +56,8 @@ public:
     void setRange(const QVariant& min, const QVariant& max);
     void setSingleStep(const QVariant& step);
     QVariant singleStep() const;
-    void setUnits(const std::vector<QString>& units);
-    const std::vector<QString>& units() const;
+    void setUnits(const Units& units);
+    const Units& units() const;
     void setCurrentUnitIndex(int index);
     int currentUnitIndex() const;
     void setDecimals(int decimals);
@@ -68,6 +77,7 @@ private:
     void clearUnits();
     void createUnits();
     void syncBindBox();
+    void acceptUnit(int unitIndex);
 private:
     struct Impl;
     std::unique_ptr<Impl> m_impl;

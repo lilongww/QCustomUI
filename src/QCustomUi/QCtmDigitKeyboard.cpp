@@ -18,6 +18,7 @@
 **********************************************************************************/
 
 #include "QCtmDigitKeyboard.h"
+#include "QCtmMessageBox.h"
 #include "ui_QCtmDigitKeyboard.h"
 
 #include <QDoubleSpinBox>
@@ -32,7 +33,7 @@ struct QCtmDigitKeyboard::Impl
     QVariant maximum;
     QVariant minimum;
     QVariant step;
-    std::vector<QString> units;
+    Units units;
     int currentUnitIndex{ 0 };
     Ui::QCtmDigitKeyboard ui;
     QAbstractSpinBox* box{ nullptr };
@@ -185,23 +186,21 @@ QVariant QCtmDigitKeyboard::singleStep() const
     \brief      设置可选单位列表 \a units.
     \sa         units
 */
-void QCtmDigitKeyboard::setUnits(const std::vector<QString>& units)
+void QCtmDigitKeyboard::setUnits(const Units& units)
 {
     m_impl->units = units;
     clearUnits();
+    if (units.empty())
+        return;
     createUnits();
-    if (m_impl->box)
-    {
-        m_impl->currentUnitIndex = 0;
-        m_impl->box->setProperty("suffix", units.empty() ? "" : units[m_impl->currentUnitIndex]);
-    }
+    setCurrentUnitIndex(0);
 }
 
 /*!
     \brief      返回可选单位列表.
     \sa         setUnits
 */
-const std::vector<QString>& QCtmDigitKeyboard::units() const
+const QCtmDigitKeyboard::Units& QCtmDigitKeyboard::units() const
 {
     return m_impl->units;
 }
@@ -213,9 +212,10 @@ const std::vector<QString>& QCtmDigitKeyboard::units() const
 void QCtmDigitKeyboard::setCurrentUnitIndex(int index)
 {
     m_impl->currentUnitIndex = index;
-    if (m_impl->box)
+    if (m_impl->box && !m_impl->units.empty())
     {
-        m_impl->box->setProperty("suffix", m_impl->units.empty() ? "" : m_impl->units[m_impl->currentUnitIndex]);
+        const auto& unit = m_impl->units[m_impl->currentUnitIndex];
+        m_impl->box->setProperty("suffix", unit.unit);
     }
 }
 
@@ -296,6 +296,11 @@ bool QCtmDigitKeyboard::eventFilter(QObject* obj, QEvent* event)
             {
                 if (exec() == QDialog::Accepted)
                 {
+                    if (!m_impl->units.empty())
+                    {
+                        m_impl->bindedBox->setProperty("minimum", m_impl->units[m_impl->currentUnitIndex].minimum);
+                        m_impl->bindedBox->setProperty("maximum", m_impl->units[m_impl->currentUnitIndex].maximum);
+                    }
                     m_impl->bindedBox->setProperty("value", value());
                     m_impl->bindedBox->setProperty("suffix", m_impl->box->property("suffix"));
                 }
@@ -328,7 +333,7 @@ void QCtmDigitKeyboard::ensureConnect()
         box->setRange(m_impl->minimum.toInt(), m_impl->maximum.toInt());
         box->setValue(m_impl->value.toDouble());
         if (!m_impl->units.empty())
-            box->setSuffix(m_impl->units.at(m_impl->currentUnitIndex));
+            box->setSuffix(m_impl->units.at(m_impl->currentUnitIndex).unit);
         m_impl->box = box;
         setValue(box->value());
         connect(box, &QSpinBox::valueChanged, this, [this](auto val)
@@ -344,7 +349,7 @@ void QCtmDigitKeyboard::ensureConnect()
         box->setDecimals(m_impl->decimals);
         box->setValue(m_impl->value.toDouble());
         if (!m_impl->units.empty())
-            box->setSuffix(m_impl->units.at(m_impl->currentUnitIndex));
+            box->setSuffix(m_impl->units.at(m_impl->currentUnitIndex).unit);
         m_impl->box = box;
         setValue(box->value());
         connect(box, &QDoubleSpinBox::valueChanged, this, [this](auto val)
@@ -407,12 +412,20 @@ void QCtmDigitKeyboard::init()
     btn = new QPushButton(".", this);
     btn->setFocusPolicy(Qt::NoFocus);
     m_impl->ui.digitLayout->addWidget(btn, 3, 2);
-    connect(m_impl->ui.buttonBox, &QDialogButtonBox::accepted, this, &QCtmDialog::accept);
+    connect(m_impl->ui.buttonBox, &QDialogButtonBox::accepted, this, [=]()
+        {
+            if (!m_impl->units.empty())
+                acceptUnit(m_impl->currentUnitIndex);
+            else
+                accept();
+        });
     connect(m_impl->ui.buttonBox, &QDialogButtonBox::rejected, this, &QCtmDialog::reject);
 }
 
 void QCtmDigitKeyboard::clearUnits()
 {
+    if (m_impl->box)
+        m_impl->box->setProperty("suffix", "");
     for (int row = m_impl->ui.unitsLayout->rowCount() - 1; row >= 0; row--)
     {
         for (int col = m_impl->ui.unitsLayout->columnCount() - 1; col >= 0; col--)
@@ -430,14 +443,11 @@ void QCtmDigitKeyboard::createUnits()
 {
     for (int i = 0; i < m_impl->units.size(); i++)
     {
-        auto btn = new QPushButton(m_impl->units[i], this);
+        auto btn = new QPushButton(m_impl->units[i].unit, this);
         m_impl->ui.unitsLayout->addWidget(btn, i % 4, i / 4, Qt::AlignTop);
-        connect(btn, &QPushButton::clicked, this, [=]()
-            {
-                setCurrentUnitIndex(i);
-                accept();
-            });
+        connect(btn, &QPushButton::clicked, this, std::bind(&QCtmDigitKeyboard::acceptUnit, this, i));
     }
+
     if (!m_impl->units.empty() && m_impl->units.size() < 4)
     {
         for (int i = m_impl->units.size(); i < 4; i++)
@@ -456,23 +466,81 @@ void QCtmDigitKeyboard::syncBindBox()
 
     if (m_impl->bindedBox)
     {
-        setRange(pv("minimum"), pv("maximum"));
+        if (m_impl->units.empty())
+            setRange(pv("minimum"), pv("maximum"));
         setValue(pv("value"));
         if (m_impl->mode == InputMode::DoubleInput)
             setDecimals(pv("decimals").toInt());
         setSingleStep(pv("singleStep"));
         if (m_impl->units.empty())
         {
-            m_impl->bindedBox->setProperty("suffix", pv("suffix"));
+            m_impl->box->setProperty("suffix", pv("suffix"));
         }
         else
         {
             auto unit = pv("suffix").toString();
-            auto it = std::find(m_impl->units.begin(), m_impl->units.end(), unit);
+            auto it = std::find_if(m_impl->units.begin(), m_impl->units.end(), [&](const auto& u) {return u.unit == unit; });
             if (it != m_impl->units.end())
             {
                 setCurrentUnitIndex(static_cast<int>(std::distance(m_impl->units.begin(), it)));
             }
         }
     }
+
+    if (m_impl->units.empty())
+        return;
+    auto minIt = std::max_element(m_impl->units.begin(), m_impl->units.end(), [=](const auto& u1, const auto& u2)
+        {
+            if (m_impl->mode == InputMode::IntInput)
+                return u1.minimum.toInt() < u2.minimum.toInt();
+            else
+                return u1.minimum.toDouble() < u2.minimum.toDouble();
+        });
+    auto maxIt = std::max_element(m_impl->units.begin(), m_impl->units.end(), [=](const auto& u1, const auto& u2)
+        {
+            if (m_impl->mode == InputMode::IntInput)
+                return u1.maximum.toInt() < u2.maximum.toInt();
+            else
+                return u1.maximum.toDouble() < u2.maximum.toDouble();
+        });
+    if (m_impl->box)
+    {
+        m_impl->box->setProperty("minimum", minIt->minimum);
+        m_impl->box->setProperty("maximum", maxIt->maximum);
+    }
+}
+
+void QCtmDigitKeyboard::acceptUnit(int unitIndex)
+{
+    auto value = m_impl->box->property("value");
+    setCurrentUnitIndex(unitIndex);
+    const auto& unit = m_impl->units.at(unitIndex);
+    QString error;
+    auto valueCheck = [this, &unit, &error](const QVariant& value)
+    {
+        if (m_impl->mode == InputMode::IntInput)
+        {
+            auto v = value.toInt();
+            auto max = unit.maximum.toInt();
+            auto min = unit.minimum.toInt();
+            error = tr("%1%2 - %3%4").arg(min).arg(unit.unit).arg(max).arg(unit.unit);
+            return min <= v && v <= max;
+        }
+        else
+        {
+            auto v = value.toDouble();
+            auto max = unit.maximum.toDouble();
+            auto min = unit.minimum.toDouble();
+            error = tr("%1%2 - %3%4").arg(min).arg(unit.unit).arg(max).arg(unit.unit);
+            return min <= v && v <= max;
+        }
+    };
+    if (!valueCheck(value))
+    {
+        QCtmMessageBox::warning(this, tr("Warning"), tr("Value out of range: %1").arg(error));
+        m_impl->box->setFocus();
+        m_impl->box->selectAll();
+        return;
+    }
+    accept();
 }
