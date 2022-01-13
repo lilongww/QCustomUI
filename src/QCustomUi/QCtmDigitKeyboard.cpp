@@ -95,20 +95,16 @@ QCtmDigitKeyboard::InputMode QCtmDigitKeyboard::inputMode() const
 */
 void QCtmDigitKeyboard::setValue(const QVariant& value)
 {
+    m_impl->value = value;
+    if (m_impl->box)
     {
-        m_impl->value = value;
-        qDebug() << "set " << m_impl->value;
-        if (m_impl->box)
+        if (auto sp = qobject_cast<QSpinBox*>(m_impl->box); sp)
         {
-            if (auto sp = qobject_cast<QSpinBox*>(m_impl->box); sp)
-            {
-                sp->setValue(m_impl->value.toInt());
-            }
-            else
-            {
-                qobject_cast<QDoubleSpinBox*>(m_impl->box)->setValue(m_impl->value.toDouble());
-            }
-            qDebug() << "box" << m_impl->box->property("value");
+            sp->setValue(m_impl->value.toInt());
+        }
+        else
+        {
+            qobject_cast<QDoubleSpinBox*>(m_impl->box)->setValue(m_impl->value.toDouble());
         }
     }
 }
