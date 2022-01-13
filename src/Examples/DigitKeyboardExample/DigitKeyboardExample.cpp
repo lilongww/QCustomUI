@@ -40,4 +40,5 @@ DigitKeyboardExample::DigitKeyboardExample(QWidget* parent)
         { "GHz", 0, 1} });
     auto keyboard3 = new QCtmDigitKeyboard(this);
     keyboard3->bindBox(sp);
+    sp->setValue(10000);
 }

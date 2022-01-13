@@ -95,11 +95,21 @@ QCtmDigitKeyboard::InputMode QCtmDigitKeyboard::inputMode() const
 */
 void QCtmDigitKeyboard::setValue(const QVariant& value)
 {
-    if (value != m_impl->value)
     {
         m_impl->value = value;
+        qDebug() << "set " << m_impl->value;
         if (m_impl->box)
-            m_impl->box->setProperty("value", value);
+        {
+            if (auto sp = qobject_cast<QSpinBox*>(m_impl->box); sp)
+            {
+                sp->setValue(m_impl->value.toInt());
+            }
+            else
+            {
+                qobject_cast<QDoubleSpinBox*>(m_impl->box)->setValue(m_impl->value.toDouble());
+            }
+            qDebug() << "box" << m_impl->box->property("value");
+        }
     }
 }
 
@@ -261,6 +271,14 @@ void QCtmDigitKeyboard::bindBox(QAbstractSpinBox* box)
         m_impl->bindedBox->findChild<QLineEdit*>()->removeEventFilter(this);
     m_impl->bindedBox = box;
     connect(box, &QObject::destroyed, this, [=]() {m_impl->bindedBox = nullptr; });
+    if (m_impl->mode == InputMode::IntInput)
+    {
+        connect(qobject_cast<QSpinBox*>(box), &QSpinBox::valueChanged, this, &QCtmDigitKeyboard::setValue);
+    }
+    else
+    {
+        connect(qobject_cast<QDoubleSpinBox*>(box), &QDoubleSpinBox::valueChanged, this, &QCtmDigitKeyboard::setValue);
+    }
     box->findChild<QLineEdit*>()->installEventFilter(this);
 }
 
@@ -295,15 +313,6 @@ bool QCtmDigitKeyboard::eventFilter(QObject* obj, QEvent* event)
             if (evt && evt->button() == Qt::LeftButton)
             {
                 setValue(m_impl->bindedBox->property("value"));
-                auto unitStr = m_impl->bindedBox->property("suffix").toString();
-                if (!m_impl->units.empty())
-                {
-                    auto it = std::find_if(m_impl->units.begin(), m_impl->units.end(), [&](const auto& u)
-                        {
-                            return u.unit == unitStr;
-                        });
-                    setCurrentUnitIndex(it == m_impl->units.end() ? 0 : std::distance(m_impl->units.begin(), it));
-                }
                 if (exec() == QDialog::Accepted)
                 {
                     if (!m_impl->units.empty())
