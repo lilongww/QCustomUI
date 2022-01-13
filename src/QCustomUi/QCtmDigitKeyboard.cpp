@@ -294,6 +294,16 @@ bool QCtmDigitKeyboard::eventFilter(QObject* obj, QEvent* event)
             auto evt = dynamic_cast<QMouseEvent*>(event);
             if (evt && evt->button() == Qt::LeftButton)
             {
+                setValue(m_impl->bindedBox->property("value"));
+                auto unitStr = m_impl->bindedBox->property("suffix").toString();
+                if (!m_impl->units.empty())
+                {
+                    auto it = std::find_if(m_impl->units.begin(), m_impl->units.end(), [&](const auto& u)
+                        {
+                            return u.unit == unitStr;
+                        });
+                    setCurrentUnitIndex(it == m_impl->units.end() ? 0 : std::distance(m_impl->units.begin(), it));
+                }
                 if (exec() == QDialog::Accepted)
                 {
                     if (!m_impl->units.empty())

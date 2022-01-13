@@ -21,6 +21,7 @@ DigitKeyboardExample::DigitKeyboardExample(QWidget* parent)
     auto sp = new QSpinBox(this);
     sp->setSuffix("KHz");
     sp->setRange(0, 1000);
+    sp->setValue(100);
     layout->addWidget(sp);
 
     auto keyboard1 = new QCtmDigitKeyboard(this);
