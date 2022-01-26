@@ -46,6 +46,7 @@ struct QCtmDialog::Impl
     \inherits   QDialog
     \ingroup    QCustomUi
     \inmodule   QCustomUi
+    \inheaderfile QCtmDialog.h
 */
 
 /*!

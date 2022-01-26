@@ -17,44 +17,47 @@
 **  along with QCustomUi.  If not, see <https://www.gnu.org/licenses/>.         **
 **********************************************************************************/
 
-#include "QCtmAbstractMessageTipView.h"
-#include "QCtmAbstractMessageTipModel.h"
+#include "qcustomui_global.h"
 
-#include <QEvent>
+#include <QWidget>
+#include <QLineEdit>
 
-/*!
-    \class      QCtmAbstractMessageTipView
-    \brief      消息提示视图接口类.
-    \inherits   QCtmNavigationSidePane
-    \ingroup    QCustomUi
-    \inmodule   QCustomUi
-    \inheaderfile QCtmAbstractMessageTipView.h
-*/
+#include <memory>
 
-/*!
-    \brief      构造函数 \a parent.
-*/
-QCtmAbstractMessageTipView::QCtmAbstractMessageTipView(QCtmNavigationBar* parent)
-    : QCtmNavigationSidePane(parent)
+class QStyleOptionFrame;
+
+class QCUSTOMUI_EXPORT QCtmPathBrowser : public QWidget
 {
-    this->setDockArea(QCtmNavigationSidePane::DockArea::Right);
-}
+    Q_PROPERTY(QString path READ path WRITE setPath)
+        Q_PROPERTY(bool readOnly READ readOnly WRITE setReadOnly)
+        Q_OBJECT
+public:
+    QCtmPathBrowser(QWidget* parent = nullptr);
+    ~QCtmPathBrowser();
 
-/*!
-    \brief      析构函数.
-*/
-QCtmAbstractMessageTipView::~QCtmAbstractMessageTipView()
-{
-}
-
-/*!
-    \fn         void QCtmAbstractMessageTipView::setModel(QCtmAbstractMessageTipModel* model)
-    \brief      设置消息提示 \a model.
-    \sa         model()
-*/
-
-/*!
-    \fn         QCtmAbstractMessageTipModel* QCtmAbstractMessageTipView::model() const
-    \brief      返回消息提示 model.
-    \sa         setModel
-*/
+    void setPath(QString path);
+    QString path() const;
+    void setReadOnly(bool flag);
+    bool readOnly() const;
+    void setLineEdit(QLineEdit* editor);
+    QLineEdit* lineEdit() const;
+signals:
+    void pathChanged(const QString& path);
+    void pathClicked(const QString& path);
+protected:
+    void paintEvent(QPaintEvent* event) override;
+    QSize sizeHint() const override;
+    QSize minimumSizeHint() const override;
+    bool event(QEvent* e) override;
+    void resizeEvent(QResizeEvent* event) override;
+    void mousePressEvent(QMouseEvent* event) override;
+    void mouseReleaseEvent(QMouseEvent* event) override;
+    bool eventFilter(QObject* watched, QEvent* event) override;
+    virtual void initStyleOption(QStyleOptionFrame* option) const;
+    void cancelEditor();
+private:
+    void generatorNodes();
+private:
+    struct Impl;
+    std::unique_ptr<Impl> m_impl;
+};

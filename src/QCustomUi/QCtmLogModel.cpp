@@ -1,4 +1,4 @@
-/*********************************************************************************
+﻿/*********************************************************************************
 **                                                                              **
 **  Copyright (C) 2019-2020 LiLong                                              **
 **  This file is part of QCustomUi.                                             **
@@ -48,14 +48,15 @@ struct QCtmLogModel::Impl
 
 /*!
     \class      QCtmLogModel
-    \brief      QCtmLogModel provide a log message model to show log message datas in view.
+    \brief      标准日志 model.
     \inherits   QCtmAbstractLogModel
     \ingroup    QCustomUi
     \inmodule   QCustomUi
+    \inheaderfile QCtmLogModel.h
 */
 
 /*!
-    \brief      Constructs a model with \a objectName and \a parent.
+    \brief      构造函数 \a objectName, \a parent.
     \sa         QObject::setObjectName
 */
 QCtmLogModel::QCtmLogModel(const QString& objectName, QObject* parent)
@@ -66,14 +67,14 @@ QCtmLogModel::QCtmLogModel(const QString& objectName, QObject* parent)
 }
 
 /*!
-    \brief      Destroys the model.
+    \brief      析构函数.
 */
 QCtmLogModel::~QCtmLogModel()
 {
 }
 
 /*!
-    \brief      Clear all log messages.
+    \brief      清除所有日志.
 */
 void QCtmLogModel::clear()
 {
@@ -171,7 +172,7 @@ int QCtmLogModel::columnCount([[maybe_unused]] const QModelIndex& parent /*= QMo
 }
 
 /*!
-    \brief      Sets maximum message \a count of the log.
+    \brief      设置日志最大数量 \a count.
     \sa         maximumCount()
 */
 void QCtmLogModel::setMaximumCount(int count)
@@ -180,7 +181,7 @@ void QCtmLogModel::setMaximumCount(int count)
 }
 
 /*!
-    \brief      Returns maximum message count of the log.
+    \brief      返回日志最大数量.
     \sa         setMaximumCount
 */
 int QCtmLogModel::maximumCount() const
@@ -189,7 +190,7 @@ int QCtmLogModel::maximumCount() const
 }
 
 /*!
-    \brief      Sets insert \a policy of the log.
+    \brief      设置日志插入策略 \a policy.
     \sa         logInsertPolicy()
 */
 void QCtmLogModel::setLogInsertPolicy(QCtmLogData::LogInsertPolicy policy)
@@ -198,7 +199,7 @@ void QCtmLogModel::setLogInsertPolicy(QCtmLogData::LogInsertPolicy policy)
 }
 
 /*!
-    \brief      Returns insert policy of the log.
+    \brief      返回日志插入策略.
     \sa         setLogInsertPolicy
 */
 QCtmLogData::LogInsertPolicy QCtmLogModel::logInsertPolicy() const
@@ -207,7 +208,7 @@ QCtmLogData::LogInsertPolicy QCtmLogModel::logInsertPolicy() const
 }
 
 /*!
-    \brief      Sets the \a icon for information log message type.
+    \brief      设置 Info 等级日志图标 \a icon.
     \sa         infoIcon()
 */
 void QCtmLogModel::setInfoIcon(const QIcon& icon)
@@ -216,7 +217,7 @@ void QCtmLogModel::setInfoIcon(const QIcon& icon)
 }
 
 /*!
-    \brief      Returns the icon for information log message.
+    \brief      返回 Info 等级日志图标.
     \sa         setInfoIcon
 */
 const QIcon& QCtmLogModel::infoIcon() const
@@ -225,7 +226,7 @@ const QIcon& QCtmLogModel::infoIcon() const
 }
 
 /*!
-    \brief      Sets the \a icon for warning log message type.
+    \brief      设置 Warning 等级日志图标 \a icon.
     \sa         warningIcon()
 */
 void QCtmLogModel::setWarningIcon(const QIcon& icon)
@@ -234,7 +235,7 @@ void QCtmLogModel::setWarningIcon(const QIcon& icon)
 }
 
 /*!
-    \brief      Returns the icon for warning log message type.
+    \brief      返回 Warning 等级日志图标.
     \sa         setWarningIcon
 */
 const QIcon& QCtmLogModel::warningIcon() const
@@ -243,7 +244,7 @@ const QIcon& QCtmLogModel::warningIcon() const
 }
 
 /*!
-    \brief      Sets the \a icon for error log message type.
+    \brief      设置 Error 等级日志图标 \a icon.
     \sa         errorIcon()
 */
 void QCtmLogModel::setErrorIcon(const QIcon& icon)
@@ -252,7 +253,7 @@ void QCtmLogModel::setErrorIcon(const QIcon& icon)
 }
 
 /*!
-    \brief      Returns the icon for error log message type.
+    \brief      返回 Error 等级日志图标.
     \sa         setErrorIcon
 */
 const QIcon& QCtmLogModel::errorIcon() const
@@ -261,7 +262,7 @@ const QIcon& QCtmLogModel::errorIcon() const
 }
 
 /*!
-    \brief      Returns the count for warning log message type.
+    \brief      返回 Warning 等级日志数量.
 */
 int QCtmLogModel::warningCount() const
 {
@@ -269,7 +270,7 @@ int QCtmLogModel::warningCount() const
 }
 
 /*!
-    \brief      Returns the count for information log message type.
+    \brief      返回 Info 等级日志数量.
 */
 int QCtmLogModel::infoCount() const
 {
@@ -277,7 +278,7 @@ int QCtmLogModel::infoCount() const
 }
 
 /*!
-    \brief      Returns the count for error log message type.
+    \brief      返回 Error 等级日志数量.
 */
 int QCtmLogModel::errorCount() const
 {
@@ -344,7 +345,7 @@ void QCtmLogModel::logEvent(QCtmLogEvent* e)
 }
 
 /*!
-    \brief      Update the header texts when the language has been changed.
+    \brief      重新翻译UI.
 */
 void QCtmLogModel::retranslateUi()
 {

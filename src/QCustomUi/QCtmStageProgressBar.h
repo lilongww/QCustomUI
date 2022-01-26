@@ -1,4 +1,4 @@
-/*********************************************************************************
+﻿/*********************************************************************************
 **                                                                              **
 **  Copyright (C) 2019-2020 LiLong                                              **
 **  This file is part of QCustomUi.                                             **
@@ -33,14 +33,14 @@ class QCUSTOMUI_EXPORT QCtmStageProgressBar : public QWidget
     Q_OBJECT
         Q_PROPERTY(int stageCount READ stageCount WRITE setStageCount)
         Q_PROPERTY(bool textVisible READ textVisible WRITE setTextVisible)
-        Q_PROPERTY(QPen stageIndexTextColor READ stageIndexTextColor WRITE setStageIndexTextColor)
+        Q_PROPERTY(QPen stageIndexTextPen READ stageIndexTextPen WRITE setStageIndexTextPen)
         Q_PROPERTY(QBrush rateBackground READ rateBackground WRITE setRateBackground)
         Q_PROPERTY(int maximum READ maximum WRITE setMaximum)
         Q_PROPERTY(int minimum READ minimum WRITE setMinimum)
         Q_PROPERTY(int value READ value WRITE setValue USER true)
         Q_PROPERTY(Qt::Orientation orientation READ orientation WRITE setOrientation)
 
-public: 
+public:
     QCtmStageProgressBar(QWidget* parent);
     ~QCtmStageProgressBar();
 
@@ -68,8 +68,8 @@ public:
     void setMinimum(int min);
     int minimum() const;
 
-    void setStageIndexTextColor(const QPen& color);
-    const QPen& stageIndexTextColor() const;
+    void setStageIndexTextPen(const QPen& pen);
+    const QPen& stageIndexTextPen() const;
 
     void setRateBackground(const QBrush& brush);
     const QBrush& rateBackground() const;

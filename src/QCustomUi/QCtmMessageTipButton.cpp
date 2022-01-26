@@ -39,6 +39,7 @@ struct QCtmMessageTipButton::Impl
     \inherits   QAbstractButton
     \ingroup    QCustomUi
     \inmodule   QCustomUi
+    \inheaderfile QCtmMessageTipButton.h
 */
 
 /*!

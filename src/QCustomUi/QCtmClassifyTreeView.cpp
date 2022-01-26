@@ -46,18 +46,18 @@ struct QCtmClassifyTreeView::Impl
 
 /*!
     \class      QCtmClassifyTreeView
-    \brief      QCtmClassifyTreeView look like a QListView which set the QListView::IconMode view mode, but it can classify the item in group.
+    \brief      归类树视图.
     \inherits   QAbstractItemView
     \ingroup    QCustomUi
     \inmodule   QCustomUi
     \inheaderfile QCtmClassifyTreeView.h
 
-    \b          {The classify tree view widget screenshot:}
+    \b          {截图:}
     \image      QCtmClassifyTreeViewDetail.png
 */
 
 /*!
-    \brief      Constructs a view with the given \a parent.
+    \brief      构造函数 \a parent.
 */
 QCtmClassifyTreeView::QCtmClassifyTreeView(QWidget* parent)
     : QAbstractItemView(parent)
@@ -68,14 +68,14 @@ QCtmClassifyTreeView::QCtmClassifyTreeView(QWidget* parent)
 }
 
 /*!
-    \brief      Destroys the view.
+    \brief      析构函数.
 */
 QCtmClassifyTreeView::~QCtmClassifyTreeView()
 {
 }
 
 /*!
-    \brief      Sets the given \a space of horizontal direction.
+    \brief      设置水平间隔像素 \a space.
     \sa         horizontalSpace
 */
 void QCtmClassifyTreeView::setHorizontalSpace(int space)
@@ -84,7 +84,7 @@ void QCtmClassifyTreeView::setHorizontalSpace(int space)
 }
 
 /*!
-    \brief      Returns space of horizontal direction.
+    \brief      返回水平间隔像素.
     \sa         setHorizontalSpace
 */
 int QCtmClassifyTreeView::horizontalSpace() const
@@ -93,7 +93,7 @@ int QCtmClassifyTreeView::horizontalSpace() const
 }
 
 /*!
-    \brief      Sets the given \a space of vertical direction.
+    \brief      设置垂直间隔像素 \a space.
     \sa         verticalSpace
 */
 void QCtmClassifyTreeView::setVerticalSpace(int space)
@@ -102,7 +102,7 @@ void QCtmClassifyTreeView::setVerticalSpace(int space)
 }
 
 /*!
-    \brief      Returns space of vertical direction.
+    \brief      返回垂直间隔像素.
     \sa         setVerticalSpace
 */
 int QCtmClassifyTreeView::verticalSpace() const
@@ -111,7 +111,7 @@ int QCtmClassifyTreeView::verticalSpace() const
 }
 
 /*!
-    \brief      Sets the given \a size of icon item.
+    \brief      设置图标项目的大小 \a size.
     \sa         iconItemSize
 */
 void QCtmClassifyTreeView::setIconItemSize(const QSize& size)
@@ -120,7 +120,7 @@ void QCtmClassifyTreeView::setIconItemSize(const QSize& size)
 }
 
 /*!
-    \brief      Returns size of icon item.
+    \brief      返回图标项目的大小.
     \sa         setIconItemSize
 */
 QSize QCtmClassifyTreeView::iconItemSize() const
@@ -129,7 +129,7 @@ QSize QCtmClassifyTreeView::iconItemSize() const
 }
 
 /*!
-    \brief      Sets the identation \a i.
+    \brief      设置缩进像素 \a i.
     \sa         indentation
 */
 void QCtmClassifyTreeView::setIndentation(int i)
@@ -138,7 +138,7 @@ void QCtmClassifyTreeView::setIndentation(int i)
 }
 
 /*!
-    \brief      Returns identation.
+    \brief      返回缩进像素.
     \sa         setIndentation
 */
 int QCtmClassifyTreeView::indentation() const
@@ -216,7 +216,7 @@ QRect QCtmClassifyTreeView::visualRect(const QModelIndex& index) const
 }
 
 /*!
-    \brief      Expand all of the group item.
+    \brief      展开所有项目.
     \sa         expand, collapseAll
 */
 void QCtmClassifyTreeView::expandAll()
@@ -242,7 +242,7 @@ void QCtmClassifyTreeView::expandAll()
 }
 
 /*!
-    \brief      Expand the given \a index.
+    \brief      展开 \a index 项目.
     \sa         expandAll, collapse
 */
 void QCtmClassifyTreeView::expand(const QModelIndex& index)
@@ -262,7 +262,7 @@ void QCtmClassifyTreeView::expand(const QModelIndex& index)
 }
 
 /*!
-    \brief      Collapse all of the group item.
+    \brief      收缩所有项目.
     \sa         collapse, collapseAll
 */
 void QCtmClassifyTreeView::collapseAll()
@@ -288,7 +288,7 @@ void QCtmClassifyTreeView::collapseAll()
 }
 
 /*!
-    \brief      Collapse the given \a index.
+    \brief      收缩 \a index 项目.
     \sa         expand, collapseAll
 */
 void QCtmClassifyTreeView::collapse(const QModelIndex& index)
@@ -475,7 +475,7 @@ void QCtmClassifyTreeView::updateGeometries()
 }
 
 /*!
-    \brief      Update layout of the items.
+    \brief      更新布局.
 */
 void QCtmClassifyTreeView::relayoutNodes()
 {
@@ -545,7 +545,7 @@ void QCtmClassifyTreeView::relayoutNodes()
 }
 
 /*!
-    \brief      Sets \a option by \a node.
+    \brief      初始化 \a node 对应的风格选项 \a option.
 */
 void QCtmClassifyTreeView::initStyleOption(QCtmClassifyTreeNode* node, QStyleOptionViewItem& option)
 {

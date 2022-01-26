@@ -1,4 +1,4 @@
-/*********************************************************************************
+﻿/*********************************************************************************
 **                                                                              **
 **  Copyright (C) 2019-2020 LiLong                                              **
 **  This file is part of QCustomUi.                                             **
@@ -21,23 +21,23 @@
 
 /*!
     \class      QCtmLogData
-    \brief      Log message data definition.
+    \brief      日志消息结构定义.
     \ingroup    QCustomUi
     \inmodule   QCustomUi
+    \inheaderfile QCtmLogData.h
 */
-
 
 /*!
     \enum       QCtmLogData::LogInsertPolicy
-                Log inert policy
+                日志插入策略.
     \value      ASC
-                Ascending order.
+                正序插入.
     \value      DESC
-                Descending order.
+                逆序插入.
 */
 
 /*!
-    \brief      Constructs a log message data with \a type, \a context, \a msg.
+    \brief      构造函数 \a type, \a context, \a msg.
 */
 QCtmLogData::QCtmLogData(QtMsgType type, const QMessageLogContext& context, const QString& msg)
     : m_type(type)
@@ -51,7 +51,7 @@ QCtmLogData::QCtmLogData(QtMsgType type, const QMessageLogContext& context, cons
 }
 
 /*!
-    \brief      Destroys the log message data.
+    \brief      析构函数.
 */
 QCtmLogData::~QCtmLogData()
 {
@@ -59,7 +59,7 @@ QCtmLogData::~QCtmLogData()
 }
 
 /*!
-    \brief      Returns type of the log message data.
+    \brief      返回日志类型.
 */
 QtMsgType QCtmLogData::type() const
 {
@@ -67,7 +67,7 @@ QtMsgType QCtmLogData::type() const
 }
 
 /*!
-    \brief      Returns context of the log message data.
+    \brief      返回日志上下文.
 */
 const QMessageLogContext& QCtmLogData::context() const
 {
@@ -75,7 +75,7 @@ const QMessageLogContext& QCtmLogData::context() const
 }
 
 /*!
-    \brief      Returns message content of the log message data.
+    \brief      返回日志内容.
 */
 const QString& QCtmLogData::msg() const
 {
@@ -83,7 +83,7 @@ const QString& QCtmLogData::msg() const
 }
 
 /*!
-    \brief      Returns date time of the log message data.
+    \brief      返回日志时间.
 */
 const QDateTime& QCtmLogData::dateTime() const
 {

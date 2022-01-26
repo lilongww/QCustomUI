@@ -1,4 +1,4 @@
-/*********************************************************************************
+﻿/*********************************************************************************
 **                                                                              **
 **  Copyright (C) 2019-2020 LiLong                                              **
 **  This file is part of QCustomUi.                                             **
@@ -51,40 +51,41 @@ struct QCtmLogWidget::Impl
 
 /*!
     \class      QCtmLogWidget
-    \brief      QCtmLogWidget provide a log message view widget to show log message datas.
+    \brief      标准日志窗口.
     \inherits   QWidget
     \ingroup    QCustomUi
     \inmodule   QCustomUi
+    \inheaderfile QCtmLogWidget.h
 */
 
 /*!
     \property   QCtmLogWidget::infoIcon
-    \brief      Holds icon of the information log.
+    \brief      Info 等级日志图标.
 */
 
 /*!
     \property   QCtmLogWidget::warningIcon
-    \brief      Holds icon of the warning log.
+    \brief      Warning 等级日志图标.
 */
 
 /*!
     \property   QCtmLogWidget::errorIcon
-    \brief      Holds icon of the error log.
+    \brief      Error 等级日志图标.
 */
 
 /*!
     \enum       QCtmLogWidget::QCtmLogColumn
-                Describe column of the log view.
+                日志列表列定义.
     \value      Level
-                The level of log.
+                日志等级.
     \value      Time
-                The time of log.
+                日志时间.
     \value      Description
-                The description of log.
+                日志描述.
 */
 
 /*!
-    \brief      Constructs a log view widget with \a objectName and \a parent.
+    \brief      构造函数 \a objectName, \a parent.
 */
 QCtmLogWidget::QCtmLogWidget(const QString& objectName, QWidget* parent)
     : QWidget(parent)
@@ -95,14 +96,14 @@ QCtmLogWidget::QCtmLogWidget(const QString& objectName, QWidget* parent)
 }
 
 /*!
-    \brief      Destroys the log view widget.
+    \brief      析构函数.
 */
 QCtmLogWidget::~QCtmLogWidget()
 {
 }
 
 /*!
-    \brief      Set insert \a policy of the log.
+    \brief      设置日志插入策略 \a policy.
     \sa         logInsertPolicy()
 */
 void QCtmLogWidget::setLogInsertPolicy(QCtmLogData::LogInsertPolicy policy)
@@ -111,7 +112,7 @@ void QCtmLogWidget::setLogInsertPolicy(QCtmLogData::LogInsertPolicy policy)
 }
 
 /*!
-    \brief      Returns insert policy of the log.
+    \brief      返回日志插入策略.
     \sa         setLogInsertPolicy
 */
 QCtmLogData::LogInsertPolicy QCtmLogWidget::logInsertPolicy() const
@@ -120,7 +121,7 @@ QCtmLogData::LogInsertPolicy QCtmLogWidget::logInsertPolicy() const
 }
 
 /*!
-    \brief      Sets whether the \a column is \a visible.
+    \brief      设置 \a column 列是否可见 \a visible.
     \sa         columnVisible
 */
 void QCtmLogWidget::setColumnVisible(QCtmLogColumn column, bool visible)
@@ -135,7 +136,7 @@ void QCtmLogWidget::setColumnVisible(QCtmLogColumn column, bool visible)
 }
 
 /*!
-    \brief      Returns whether the \a column is visible.
+    \brief      返回 \a column 列是否可见.
     \sa         setColumnVisible
 */
 bool QCtmLogWidget::columnVisible(QCtmLogColumn column) const
@@ -144,7 +145,7 @@ bool QCtmLogWidget::columnVisible(QCtmLogColumn column) const
 }
 
 /*!
-    \brief      Initialization
+    \brief      初始化.
 */
 void QCtmLogWidget::init()
 {
@@ -177,7 +178,7 @@ void QCtmLogWidget::init()
     m_impl->logView->setSelectionMode(QTableView::SingleSelection);
 
     QHBoxLayout* layout = new QHBoxLayout(this);
-    layout->setContentsMargins(0,0,0,0);
+    layout->setContentsMargins(0, 0, 0, 0);
     layout->addWidget(m_impl->logView);
 
     addAction(m_impl->errorAction);
@@ -299,7 +300,7 @@ void QCtmLogWidget::changeEvent(QEvent* e)
 }
 
 /*!
-    \brief      Update the log message counts.
+    \brief      更新日志数量.
 */
 void QCtmLogWidget::updateLogCount()
 {
@@ -309,7 +310,7 @@ void QCtmLogWidget::updateLogCount()
 }
 
 /*!
-    \brief      Sets the \a icon for information message type.
+    \brief      设置 Info 等级日志图标 \a icon.
     \sa         infoIcon()
 */
 void QCtmLogWidget::setInfoIcon(const QIcon& icon)
@@ -319,7 +320,7 @@ void QCtmLogWidget::setInfoIcon(const QIcon& icon)
 }
 
 /*!
-    \brief      Returns the icon for information message type.
+    \brief      返回 Info 等级日志图标.
     \sa         setInfoIcon
 */
 const QIcon& QCtmLogWidget::infoIcon() const
@@ -328,7 +329,7 @@ const QIcon& QCtmLogWidget::infoIcon() const
 }
 
 /*!
-    \brief      Sets the \a icon for warning message type.
+    \brief      设置 Warning 日志图标 \a icon.
     \sa         warningIcon()
 */
 void QCtmLogWidget::setWarningIcon(const QIcon& icon)
@@ -338,7 +339,7 @@ void QCtmLogWidget::setWarningIcon(const QIcon& icon)
 }
 
 /*!
-    \brief      Returns the icon for warning message type.
+    \brief      返回 Warning 日志图标.
     \sa         setWarningIcon
 */
 const QIcon& QCtmLogWidget::warningIcon() const
@@ -347,7 +348,7 @@ const QIcon& QCtmLogWidget::warningIcon() const
 }
 
 /*!
-    \brief      Sets the \a icon for error message type.
+    \brief      设置 Error 日志图标 \a icon.
     \sa         errorIcon()
 */
 void QCtmLogWidget::setErrorIcon(const QIcon& icon)
@@ -357,7 +358,7 @@ void QCtmLogWidget::setErrorIcon(const QIcon& icon)
 }
 
 /*!
-    \brief      Returns the icon for error message type.
+    \brief      返回 Error 日志图标.
     \sa         setErrorIcon
 */
 const QIcon& QCtmLogWidget::errorIcon() const
@@ -366,7 +367,7 @@ const QIcon& QCtmLogWidget::errorIcon() const
 }
 
 /*!
-    \brief      Sets the maximum \a count of log message.
+    \brief      设置最大日志数量 \a count.
     \sa         maximumCount()
 */
 void QCtmLogWidget::setMaximumCount(int count)
@@ -375,11 +376,10 @@ void QCtmLogWidget::setMaximumCount(int count)
 }
 
 /*!
-    \brief      Returns the maximum count of log message.
+    \brief      返回最大日志数量.
     \sa         setMaximumCount
 */
 int QCtmLogWidget::maximumCount() const
 {
     return m_impl->model->maximumCount();
 }
-

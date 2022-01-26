@@ -1,4 +1,4 @@
-/*********************************************************************************
+﻿/*********************************************************************************
 **                                                                              **
 **  Copyright (C) 2019-2020 LiLong                                              **
 **  This file is part of QCustomUi.                                             **
@@ -53,23 +53,23 @@ decltype(&qtMessageHandle) QCtmLogManager::Impl::oldHandle;
 
 /*!
     \class      QCtmLogManager
-    \brief      QCtmLogManager hook the qt debug frame and manager the debug messages.
+    \brief      日志管理器.
     \ingroup    QCustomUi
     \inmodule   QCustomUi
+    \inheaderfile QCtmLogManager.h
 */
 
 /*!
     \enum       QCtmLogManager::LogSavePolicy
-                Describe save policy of log.
+                日志保存策略.
     \value      Date
-                Segmentation the log file by date.
+                按日期保存.
     \value      Size
-                Segmentation the log file by size.
+                按大小保存.
 */
 
 /*!
-    \brief      Call the function before the QApplication is instantiated. If this function is not be called, the
-                debug message will not be handle.
+    \brief      在 qApp 初始化之前调用该函数重定向日志句柄，如果在初始化之后调用则无法获取日志.
 */
 void QCtmLogManager::initBeforeApp()
 {
@@ -77,7 +77,7 @@ void QCtmLogManager::initBeforeApp()
 }
 
 /*!
-    \brief      Returns the log manager singleton instance.
+    \brief      返回单例.
 */
 QCtmLogManager& QCtmLogManager::instance()
 {
@@ -86,7 +86,7 @@ QCtmLogManager& QCtmLogManager::instance()
 }
 
 /*!
-    \brief      Set the log file \a path.
+    \brief      设置日志保存路径 \a path.
     \sa         logFilePath
 */
 void QCtmLogManager::setLogFilePath(const QString& path)
@@ -95,7 +95,7 @@ void QCtmLogManager::setLogFilePath(const QString& path)
 }
 
 /*!
-    \brief      Returns the log file path.
+    \brief      返回日志保存路径.
     \sa         setLogFilePath
 */
 const QString& QCtmLogManager::logFilePath() const
@@ -104,7 +104,7 @@ const QString& QCtmLogManager::logFilePath() const
 }
 
 /*!
-    \brief      Sets save \a policy of log.
+    \brief      设置日志保存策略 \a policy.
     \sa         logSavePolicy
 */
 void QCtmLogManager::setLogSavePolicy(LogSavePolicy policy)
@@ -113,7 +113,7 @@ void QCtmLogManager::setLogSavePolicy(LogSavePolicy policy)
 }
 
 /*!
-    \brief      Returns the save policy of log.
+    \brief      返回日志保存策略.
     \sa         setLogSavePolicy
 */
 QCtmLogManager::LogSavePolicy QCtmLogManager::logSavePolicy() const
@@ -122,7 +122,7 @@ QCtmLogManager::LogSavePolicy QCtmLogManager::logSavePolicy() const
 }
 
 /*!
-    \brief      Sets whether the log message \a type should be \a save.
+    \brief      设置日志类型 \a type 是否保存 \a save.
     \sa         logTypeEnable
 */
 void QCtmLogManager::setLogTypeEnable(QtMsgType type, bool save)
@@ -131,7 +131,7 @@ void QCtmLogManager::setLogTypeEnable(QtMsgType type, bool save)
 }
 
 /*!
-    \brief      Returns whether the log message \a type should be save.
+    \brief      返回日志类型 \a type 是否保存.
     \sa         setLogTypeEnable
 */
 bool QCtmLogManager::logTypeEnable(QtMsgType type) const
@@ -140,7 +140,7 @@ bool QCtmLogManager::logTypeEnable(QtMsgType type) const
 }
 
 /*!
-    \brief      Set the log file limit \a size, if the save policy is LogSaveType::Size.
+    \brief      设置日志大小限制 \a size.
     \sa         logSizeLimit
 */
 void QCtmLogManager::setLogSizeLimit(qint64 size)
@@ -149,7 +149,7 @@ void QCtmLogManager::setLogSizeLimit(qint64 size)
 }
 
 /*!
-    \brief      Returns limit size of the log file.
+    \brief      返回日志大小限制.
     \sa         setLogSizeLimit
 */
 qint64 QCtmLogManager::logSizeLimit() const
@@ -194,7 +194,7 @@ void qtMessageHandle(QtMsgType type, const QMessageLogContext& context, const QS
 }
 
 /*!
-    \brief      Constructs a log manager.
+    \brief      构造函数.
 */
 QCtmLogManager::QCtmLogManager()
     : m_impl(std::make_unique<Impl>())
@@ -213,14 +213,14 @@ QCtmLogManager::QCtmLogManager()
 }
 
 /*!
-    \brief      Destorys the log manager.
+    \brief      析构函数.
 */
 QCtmLogManager::~QCtmLogManager()
 {
 }
 
 /*!
-    \brief      Write the log message \a data to file.
+    \brief      写入日志 \a data.
 */
 void QCtmLogManager::writeLog(QCtmLogDataPtr data)
 {
@@ -261,7 +261,7 @@ void QCtmLogManager::writeLog(QCtmLogDataPtr data)
 }
 
 /*!
-    \brief      Register the log message \a model to show log message on views.
+    \brief      设置日志 \a model.
     \sa         unRegisterModel
 */
 void QCtmLogManager::registerModel(QCtmAbstractLogModel* model)
@@ -270,7 +270,7 @@ void QCtmLogManager::registerModel(QCtmAbstractLogModel* model)
 }
 
 /*!
-    \brief      Unregister the log message \a model.
+    \brief      移除日志 \a model.
     \sa         registerModel
 */
 void QCtmLogManager::unRegisterModel(QCtmAbstractLogModel* model)
@@ -279,7 +279,7 @@ void QCtmLogManager::unRegisterModel(QCtmAbstractLogModel* model)
 }
 
 /*!
-    \brief      Parse object names in the \a msg.
+    \brief      解析日志 \a msg.
 */
 QList<QString> QCtmLogManager::parseObjectNames(QString& msg)
 {
@@ -296,7 +296,7 @@ QList<QString> QCtmLogManager::parseObjectNames(QString& msg)
 
     if (!list.isEmpty())
     {
-        for(const auto& objName : list)
+        for (const auto& objName : list)
         {
             msg.replace("#" + objName, "");
         }
@@ -306,8 +306,7 @@ QList<QString> QCtmLogManager::parseObjectNames(QString& msg)
 }
 
 /*!
-    \brief      Check the log file, and create a new log file by save policy.
-                Returns true if current log file is legal.
+    \brief      检测日志文件，根据日志保存策略重新保存日志.
 */
 bool QCtmLogManager::checkFile()
 {

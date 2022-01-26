@@ -57,6 +57,7 @@ set(INPUT_HEADERS
  "QCtmMultiComboBox.h"
  "QCtmComboBox.h"
  "QCtmInputDialog.h"
+ "QCtmPathBrowser.h"
  "QCtmDigitKeyboard.h"
 )
 
@@ -65,6 +66,7 @@ set(INPUT_SOURCES
  "QCtmMultiComboBox.cpp"
  "QCtmComboBox.cpp"
  "QCtmInputDialog.cpp"
+ "QCtmPathBrowser.cpp"
  "QCtmDigitKeyboard.cpp"
 )
 

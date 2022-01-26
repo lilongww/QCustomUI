@@ -75,6 +75,7 @@ struct QCtmNavigationSideBar::Impl
     \inherits   QWidget
     \ingroup    QCustomUi
     \inmodule   QCustomUi
+    \inheaderfile QCtmNavigationSideBar.h
 */
 
 /*!
@@ -107,16 +108,17 @@ QCtmNavigationSideBar::QCtmNavigationSideBar(QWidget* parent)
     m_impl->layout->setContentsMargins(0, 10, 0, 10);
     m_impl->topLayout = new QVBoxLayout;
     m_impl->layout->addLayout(m_impl->topLayout);
-    m_impl->topLayout->setContentsMargins(0,0,0,0);
+    m_impl->topLayout->setContentsMargins(0, 0, 0, 0);
     m_impl->topLayout->setSpacing(25);
     m_impl->bottomLayout = new QVBoxLayout;
-    m_impl->bottomLayout->setContentsMargins(0,0,0,0);
+    m_impl->bottomLayout->setContentsMargins(0, 0, 0, 0);
     m_impl->bottomLayout->setSpacing(25);
     m_impl->layout->addStretch(1);
     m_impl->layout->addLayout(m_impl->bottomLayout);
 
     m_impl->actionGroup = new QCtmActionGroup(this);
     setFixedWidth(50);
+    setAttribute(Qt::WA_StyledBackground);
 }
 
 /*!
@@ -208,23 +210,12 @@ QAction* QCtmNavigationSideBar::actionAt(int index, ActionPosition pos) const
 /*!
     \reimp
 */
-void QCtmNavigationSideBar::paintEvent(QPaintEvent*)
-{
-    QStyleOption opt;
-    opt.initFrom(this);
-    QPainter p(this);
-    style()->drawPrimitive(QStyle::PE_Widget, &opt, &p, this);
-}
-
-/*!
-    \reimp
-*/
 void QCtmNavigationSideBar::actionEvent(QActionEvent* event)
 {
     ActionPosition pos = Top;
     if (event->action()->property(ActionPosProperty).isValid())
     {
-        pos = (ActionPosition)event->action()->property(ActionPosProperty).toInt();
+        pos = static_cast<ActionPosition>(event->action()->property(ActionPosProperty).toInt());
     }
     if (event->type() == QEvent::ActionAdded)
     {
@@ -280,9 +271,8 @@ void QCtmNavigationSideBar::actionEvent(QActionEvent* event)
 */
 void QCtmNavigationSideBar::insertAction(int index, QAction* action, ActionPosition pos)
 {
-    auto before = actionAt(index, pos);
     action->setProperty(ActionPosProperty, pos);
-    QWidget::insertAction(before, action);
+    QWidget::insertAction(actionAt(index, pos), action);
 }
 
 /*!

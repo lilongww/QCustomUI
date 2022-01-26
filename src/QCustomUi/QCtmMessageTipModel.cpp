@@ -35,6 +35,7 @@ struct QCtmMessageTipModel::Impl
     \ingroup    QCustomUi
     \inmodule   QCustomUi
     \sa         QCtmMessageTipData
+    \inheaderfile QCtmMessageTipModel.h
 */
 
 /*!

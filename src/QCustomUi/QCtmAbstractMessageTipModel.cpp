@@ -32,6 +32,7 @@ struct QCtmAbstractMessageTipModel::Impl
     \inherits   QAbstractTableModel
     \ingroup    QCustomUi
     \inmodule   QCustomUi
+    \inheaderfile QCtmAbstractMessageTipModel.h
 */
 
 /*!

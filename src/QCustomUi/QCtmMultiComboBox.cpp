@@ -56,17 +56,18 @@ struct QCtmMultiComboBox::Impl
 
 /*!
     \class      QCtmMultiComboBox
-    \brief      QCtmMultiComboBox provide a combobox, that can select multi items.
+    \brief      可多选的ComboBox.
     \inherits   QComboBox
     \ingroup    QCustomUi
     \inmodule   QCustomUi
+    \inheaderfile QCtmMultiComboBox.h
 
-    \b          {The multi combobox screenshot:}
+    \b          {截图:}
     \image      QCtmMultiComboBoxDetail.png
 */
 
 /*!
-    \brief      Constructs a combobox with \a parent.
+    \brief      构造函数 \a parent.
 */
 QCtmMultiComboBox::QCtmMultiComboBox(QWidget* parent)
     : QComboBox(parent)
@@ -95,7 +96,7 @@ QCtmMultiComboBox::QCtmMultiComboBox(QWidget* parent)
 }
 
 /*!
-    \brief      Destroys the combobox.
+    \brief      析构函数.
 */
 QCtmMultiComboBox::~QCtmMultiComboBox()
 {
@@ -103,7 +104,7 @@ QCtmMultiComboBox::~QCtmMultiComboBox()
 
 /*!
     \overload
-    \brief      Sets the given \a model
+    \brief      设置数据来源 \a model.
 */
 void QCtmMultiComboBox::setModel(QAbstractItemModel* model)
 {
@@ -116,7 +117,7 @@ void QCtmMultiComboBox::setModel(QAbstractItemModel* model)
 
 /*!
     \overload
-    \brief      Returns the model.
+    \brief      返回数据来源.
 */
 QAbstractItemModel* QCtmMultiComboBox::model() const
 {
@@ -124,7 +125,7 @@ QAbstractItemModel* QCtmMultiComboBox::model() const
 }
 
 /*!
-    \brief      Returns the checked items.
+    \brief      返回被选中的项目.
     \sa         checkedDatas(), setChecked
 */
 QStringList QCtmMultiComboBox::checkedItems() const
@@ -140,7 +141,7 @@ QStringList QCtmMultiComboBox::checkedItems() const
 }
 
 /*!
-    \brief      Returns the checked items datas.
+    \brief      返回被选中的项目数据.
     \sa         checkedItems(), setChecked
 */
 QVariantList QCtmMultiComboBox::checkedDatas() const
@@ -156,7 +157,7 @@ QVariantList QCtmMultiComboBox::checkedDatas() const
 }
 
 /*!
-    \brief      Set check state of the \a index, \a checked.
+    \brief      设置第 \a index 项是否选中 \a checked.
     \sa         isChecked
 */
 void QCtmMultiComboBox::setChecked(int index, bool checked)
@@ -166,7 +167,7 @@ void QCtmMultiComboBox::setChecked(int index, bool checked)
 }
 
 /*!
-    \brief      Returns check state of the \a index.
+    \brief      返回第 \a index 项是否选中.
     \sa         setChecked
 */
 bool QCtmMultiComboBox::isChecked(int index) const

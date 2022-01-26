@@ -41,22 +41,23 @@ struct QCtmTitleBar::Impl
 
 /*!
     \class      QCtmTitleBar
-    \brief      QCtmTitleBar provide a custom title bar for QCtmWindow and QCtmDialog.
+    \brief      QCtmWindow 和 QCtmDialog 的自定义标题栏.
     \inherits   QWidget
     \ingroup    QCustomUi
     \inmodule   QCustomUi
+    \inheaderfile QCtmTitleBar.h
 
-    \b          {The title bar screenshot:}
+    \b          {截图:}
     \image      QCtmTitleBarDetail.png
 */
 
 /*!
     \property   QCtmTitleBar::iconIsVisible
-    \brief      The showIcon holds the icon whether to show.
+    \brief      是否显示图标.
 */
 
 /*!
-    \brief      Constructs a title bar with \a parent.
+    \brief      构造函数 \a parent.
 */
 QCtmTitleBar::QCtmTitleBar(QWidget* parent)
     : QWidget(parent)
@@ -74,7 +75,7 @@ QCtmTitleBar::QCtmTitleBar(QWidget* parent)
 }
 
 /*!
-    \brief      Destroys the title bar.
+    \brief      析构函数.
 */
 QCtmTitleBar::~QCtmTitleBar()
 {
@@ -82,7 +83,7 @@ QCtmTitleBar::~QCtmTitleBar()
 }
 
 /*!
-    \brief      Sets the given \a menu.
+    \brief      设置菜单栏 \a menu.
     \sa         menuBar(), removeMenuBar()
 */
 void QCtmTitleBar::setMenuBar(QMenuBar* menu)
@@ -96,7 +97,7 @@ void QCtmTitleBar::setMenuBar(QMenuBar* menu)
 }
 
 /*!
-    \brief      Returns the menu bar.
+    \brief      返回菜单栏.
     \sa         setMenuBar, removeMenuBar()
 */
 QMenuBar* QCtmTitleBar::menuBar() const
@@ -105,7 +106,7 @@ QMenuBar* QCtmTitleBar::menuBar() const
 }
 
 /*!
-    \brief      Removes the menu bar.
+    \brief      移除菜单栏.
     \sa         setMenuBar, menuBar
 */
 void QCtmTitleBar::removeMenuBar()
@@ -119,7 +120,7 @@ void QCtmTitleBar::removeMenuBar()
 }
 
 /*!
-    \brief      Sets the icon whether to \a show.
+    \brief      设置是否显示图标 \a show.
     \sa         iconIsVisible()
 */
 void QCtmTitleBar::setIconVisible(bool show)
@@ -132,7 +133,7 @@ void QCtmTitleBar::setIconVisible(bool show)
 }
 
 /*!
-    \brief      Returns the icon whether to show.
+    \brief      返回是否显示图标.
     \sa         setIconVisible
 */
 bool QCtmTitleBar::iconIsVisible() const
@@ -158,7 +159,7 @@ const QSize& QCtmTitleBar::iconSize() const
     return m_impl->iconSize;
 }
 /*!
-    \brief      Close the window when the close button is clicked.
+    \brief      响应关闭按钮.
     \sa         onMaximumSizeBtn(), onMinimumSizeBtn()
 */
 void QCtmTitleBar::onCloseBtn()
@@ -167,7 +168,7 @@ void QCtmTitleBar::onCloseBtn()
 }
 
 /*!
-    \brief      Resize the window when the maximum size button is clicked.
+    \brief      响应最大化按钮.
     \sa         onCloseBtn(), onMinimumSizeBtn()
 */
 void QCtmTitleBar::onMaximumSizeBtn()
@@ -179,7 +180,7 @@ void QCtmTitleBar::onMaximumSizeBtn()
 }
 
 /*!
-    \brief      Set the window minimum size when the minimum size button is clicked.
+    \brief      响应最小化按钮.
     \sa         onCloseBtn(), onMaximumSizeBtn()
 */
 void QCtmTitleBar::onMinimumSizeBtn()
@@ -323,7 +324,7 @@ void QCtmTitleBar::actionEvent(QActionEvent* event)
 }
 
 /*!
-    \brief      Returns rect of the icon.
+    \brief      计算图标包围盒.
 */
 QRect QCtmTitleBar::doIconRect() const
 {

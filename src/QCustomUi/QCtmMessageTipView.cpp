@@ -47,6 +47,7 @@ struct QCtmMessageTipView::Impl
     \inherits   QCtmAbstractMessageTipView
     \ingroup    QCustomUi
     \inmodule   QCustomUi
+    \inheaderfile QCtmMessageTipView.h
 */
 
 /*!

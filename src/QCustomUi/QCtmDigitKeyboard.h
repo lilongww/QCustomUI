@@ -26,6 +26,10 @@ class QAbstractSpinBox;
 class QCUSTOMUI_EXPORT QCtmDigitKeyboard : public QCtmDialog
 {
     Q_PROPERTY(QVariant value READ value WRITE setValue NOTIFY valueChanged)
+        Q_PROPERTY(QVariant maximum READ maximum WRITE setMaximum)
+        Q_PROPERTY(QVariant minimum READ minimum WRITE setMinimum)
+        Q_PROPERTY(QVariant singleStep READ singleStep WRITE setSingleStep)
+        Q_PROPERTY(int decimals READ decimals WRITE setDecimals)
         Q_OBJECT
 public:
     enum class InputMode

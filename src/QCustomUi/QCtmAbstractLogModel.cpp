@@ -1,4 +1,4 @@
-/*********************************************************************************
+﻿/*********************************************************************************
 **                                                                              **
 **  Copyright (C) 2019-2020 LiLong                                              **
 **  This file is part of QCustomUi.                                             **
@@ -23,14 +23,15 @@
 
 /*!
     \class      QCtmAbstractLogModel
-    \brief      QCtmAbstractLogModel provide a abstract log model interface.
+    \brief      日志 model 接口类.
     \inherits   QAbstractTableModel
     \ingroup    QCustomUi
     \inmodule   QCustomUi
+    \inheaderfile QCtmAbstractLogModel.h
 */
 
 /*!
-    \brief      Constructs a model with \a objectName and \a parent.
+    \brief      构造一个日志 model 设置 \a objectName 和父对象 \a parent.
 */
 QCtmAbstractLogModel::QCtmAbstractLogModel(const QString& objectName, QObject* parent)
     : QAbstractTableModel(parent)
@@ -40,7 +41,7 @@ QCtmAbstractLogModel::QCtmAbstractLogModel(const QString& objectName, QObject* p
 }
 
 /*!
-    \brief      Destroys the model.
+    \brief      析构函数.
 */
 QCtmAbstractLogModel::~QCtmAbstractLogModel()
 {
@@ -49,7 +50,7 @@ QCtmAbstractLogModel::~QCtmAbstractLogModel()
 
 /*!
     \fn         void QCtmAbstractLogModel::clear()
-    \brief      Clear the model.
+    \brief      清空日志.
 */
 
 /*!
@@ -93,7 +94,7 @@ bool QCtmAbstractLogModel::removeColumns(int column, int count, const QModelInde
 }
 
 /*!
-    \brief      Answer the log event, \a e.
+    \brief      日志事件 \a e.
 */
 void QCtmAbstractLogModel::logEvent(QCtmLogEvent* e)
 {
@@ -101,7 +102,7 @@ void QCtmAbstractLogModel::logEvent(QCtmLogEvent* e)
 }
 
 /*!
-    \brief      This will be call when the language has been changed.
+    \brief      重新翻译UI.
 */
 void QCtmAbstractLogModel::retranslateUi()
 {

@@ -1,4 +1,4 @@
-/*********************************************************************************
+﻿/*********************************************************************************
 **                                                                              **
 **  Copyright (C) 2019-2020 LiLong                                              **
 **  This file is part of QCustomUi.                                             **
@@ -23,15 +23,16 @@
 
 /*!
     \class      QCtmTableItemDelegate
-    \brief      QCtmTableItemDelegate provide a delegate for QCtmTableView to show hover row.
+    \brief      自定义 TableView 的委托，实现行的 hover.
     \inherits   QStyledItemDelegate
     \ingroup    QCustomUi
     \inmodule   QCustomUi
     \sa         QCtmTableView
+    \inheaderfile QCtmTableItemDelegate.h
 */
 
 /*!
-    \brief      Constructs a delegate with \a parent.
+    \brief      构造函数 \a parent.
 */
 QCtmTableItemDelegate::QCtmTableItemDelegate(QTableView* parent)
     : QStyledItemDelegate(parent)
@@ -40,7 +41,7 @@ QCtmTableItemDelegate::QCtmTableItemDelegate(QTableView* parent)
 }
 
 /*!
-    \brief      Destroys the delegate.
+    \brief      析构函数.
 */
 QCtmTableItemDelegate::~QCtmTableItemDelegate()
 {

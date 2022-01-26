@@ -27,7 +27,7 @@ struct QCtmClassifyTreeModel::Impl
 
 /*!
     \class      QCtmClassifyTreeModel
-    \brief      QCtmClassifyTreeModel is a standard model that used with QCtmClassifyTreeView.
+    \brief      标准归类树 model.
     \inherits   QAbstractItemModel
     \ingroup    QCustomUi
     \inmodule   QCustomUi
@@ -35,7 +35,7 @@ struct QCtmClassifyTreeModel::Impl
 */
 
 /*!
-    \brief      Constructs a model with the given \a parent.
+    \brief      构造函数 \a parent.
 */
 QCtmClassifyTreeModel::QCtmClassifyTreeModel(QObject* parent)
     : QAbstractItemModel(parent)
@@ -44,7 +44,7 @@ QCtmClassifyTreeModel::QCtmClassifyTreeModel(QObject* parent)
 }
 
 /*!
-    \brief      Destroys the model.
+    \brief      析构函数.
 */
 QCtmClassifyTreeModel::~QCtmClassifyTreeModel()
 {
@@ -53,7 +53,7 @@ QCtmClassifyTreeModel::~QCtmClassifyTreeModel()
 }
 
 /*!
-    \brief      Add the given \a item.
+    \brief      添加根节点 \a item.
     \sa         insertItem, removeItem
 */
 void QCtmClassifyTreeModel::addItem(QCtmClassifyTreeItem* item)
@@ -62,7 +62,7 @@ void QCtmClassifyTreeModel::addItem(QCtmClassifyTreeItem* item)
 }
 
 /*!
-    \brief      Insert the given \a item to \a index position.
+    \brief      插入根节点 \a index, \a item.
     \sa         addItem, removeItem
 */
 void QCtmClassifyTreeModel::insertItem(int index, QCtmClassifyTreeItem* item)
@@ -73,7 +73,7 @@ void QCtmClassifyTreeModel::insertItem(int index, QCtmClassifyTreeItem* item)
 }
 
 /*!
-    \brief      Remove the given \a item.
+    \brief      移除根节点 \a item.
     \sa         addItem, insertItem
 */
 void QCtmClassifyTreeModel::removeItem(QCtmClassifyTreeItem* item)
@@ -87,7 +87,7 @@ void QCtmClassifyTreeModel::removeItem(QCtmClassifyTreeItem* item)
 }
 
 /*!
-    \brief      Resets the model.
+    \brief      重置 model.
 */
 void QCtmClassifyTreeModel::reset()
 {
@@ -96,7 +96,7 @@ void QCtmClassifyTreeModel::reset()
 }
 
 /*!
-    \brief      Returns index of the given \a item.
+    \brief      返回 \a item 的 index.
 */
 QModelIndex QCtmClassifyTreeModel::indexFromItem(const QCtmClassifyTreeItem* item) const
 {

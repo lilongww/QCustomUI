@@ -39,34 +39,33 @@ struct QCtmEditLabel::Impl
 
 /*!
     \class      QCtmEditLabel
-    \brief      QCtmEditLabel is used for displaying text and edit the text.
+    \brief      QLabel的扩展，可进行编辑.
     \inherits   QLabel
     \ingroup    QCustomUi
     \inmodule   QCustomUi
+    \inheaderfile QCtmEditLabel.h
 
-    \b          {The edit label screenshot:}
+    \b          {截图:}
     \image      QCtmEditLabelDetail.png
 */
 
 /*!
     \property   QCtmEditLabel::readOnly
-    \brief      This property holds whether the line edit is read only.
-                By default, this property is false.
+    \brief      是否只读.
 */
 
 /*!
     \property   QCtmEditLabel::editButtonIcon
-    \brief      This property holds edit button' icon.
+    \brief      编辑按钮的图标.
 */
 
 /*!
     \fn         void QCtmEditLabel::editFinished();
-    \brief      Emit this signal when edit finished.
+    \brief      编辑完成时发送该信号.
 */
 
 /*!
-    \brief      Constructs an empty label.
-                The \a parent and widget flag \a f, arguments are passed to the QFrame constructor.
+    \brief      构造函数 \a parent, \a f.
 */
 QCtmEditLabel::QCtmEditLabel(QWidget* parent, Qt::WindowFlags f)
     : QLabel(parent, f)
@@ -76,8 +75,7 @@ QCtmEditLabel::QCtmEditLabel(QWidget* parent, Qt::WindowFlags f)
 }
 
 /*!
-    \brief      Constructs a label that displays the text,\a text.
-                The \a parent and widget flag \a f, arguments are passed to the QLabel constructor.
+    \brief      构造函数，并设置显示文字 \a text, \a parent, \a f.
 */
 QCtmEditLabel::QCtmEditLabel(const QString& text, QWidget* parent /*= nullptr*/, Qt::WindowFlags f)
     : QCtmEditLabel(parent, f)
@@ -86,7 +84,7 @@ QCtmEditLabel::QCtmEditLabel(const QString& text, QWidget* parent /*= nullptr*/,
 }
 
 /*!
-    \brief      Destroys the label.
+    \brief      析构函数.
 */
 QCtmEditLabel::~QCtmEditLabel()
 {
@@ -94,7 +92,7 @@ QCtmEditLabel::~QCtmEditLabel()
 }
 
 /*!
-    \brief      Set the label is read only, \a flag.
+    \brief      设置是否只读 \a flag.
     \sa         isReadOnly
 */
 void QCtmEditLabel::setReadOnly(bool flag)
@@ -103,7 +101,7 @@ void QCtmEditLabel::setReadOnly(bool flag)
 }
 
 /*!
-    \brief      Returns whether the label is read-only
+    \brief      返回是否只读.
     \sa         setReadOnly
 */
 bool QCtmEditLabel::isReadOnly() const
@@ -112,7 +110,7 @@ bool QCtmEditLabel::isReadOnly() const
 }
 
 /*!
-    \brief      Set the edit button's \a icon
+    \brief      设置编辑按钮图标 \a icon.
     \sa         editButtonIcon
 */
 void QCtmEditLabel::setEditButtonIcon(const QIcon& icon)
@@ -121,7 +119,7 @@ void QCtmEditLabel::setEditButtonIcon(const QIcon& icon)
 }
 
 /*!
-    \brief      Returns the edit button's icon
+    \brief      返回编辑按钮图标.
 */
 QIcon QCtmEditLabel::editButtonIcon() const
 {
@@ -129,7 +127,7 @@ QIcon QCtmEditLabel::editButtonIcon() const
 }
 
 /*!
-    \brief      Sets \a icon for the finish button.
+    \brief      设置编辑完成按钮图标 \a icon.
     \sa         finishButtonIcon()
 */
 void QCtmEditLabel::setFinishButtonIcon(const QIcon& icon)
@@ -138,7 +136,7 @@ void QCtmEditLabel::setFinishButtonIcon(const QIcon& icon)
 }
 
 /*!
-    \brief      Returns icon of finish button.
+    \brief      返回编辑完成按钮图标.
     \sa         setFinishButtonIcon
 */
 QIcon QCtmEditLabel::finishButtonIcon() const
@@ -147,7 +145,7 @@ QIcon QCtmEditLabel::finishButtonIcon() const
 }
 
 /*!
-    \brief      Sets \a icon for the revert button.
+    \brief      设置回退按钮图标 \a icon.
     \sa         revertButtonIcon()
 */
 void QCtmEditLabel::setRevertButtonIcon(const QIcon& icon)
@@ -156,7 +154,7 @@ void QCtmEditLabel::setRevertButtonIcon(const QIcon& icon)
 }
 
 /*!
-    \brief      Returns icon of the revert button.
+    \brief      返回回退按钮图标.
     \sa         setRevertButtonIcon
 */
 QIcon QCtmEditLabel::revertButtonIcon() const
@@ -195,7 +193,7 @@ QSize QCtmEditLabel::minimumSizeHint() const
 }
 
 /*!
-    \brief      initialization
+    \brief      初始化.
 */
 void QCtmEditLabel::init()
 {
@@ -203,7 +201,7 @@ void QCtmEditLabel::init()
     QHBoxLayout* layout = new QHBoxLayout(this);
     m_impl->editButton = new QToolButton(this);
     m_impl->editButton->setIcon(QIcon(":/QCustomUi/Resources/edit.png"));
-    layout->setContentsMargins(0,0,0,0);
+    layout->setContentsMargins(0, 0, 0, 0);
     layout->addStretch(1);
     layout->addWidget(m_impl->editButton);
     layout->setSpacing(EditButtonSpace);
@@ -214,7 +212,7 @@ void QCtmEditLabel::init()
 }
 
 /*!
-    \brief      Edit button click operation.
+    \brief      响应编辑按钮.
 */
 void QCtmEditLabel::onEditButtonClicked()
 {
@@ -247,7 +245,7 @@ void QCtmEditLabel::onEditButtonClicked()
         });
     layout->addWidget(cancelBtn);
     layout->setSpacing(EditButtonSpace - 2);
-    layout->setContentsMargins(0,0,0,0);
+    layout->setContentsMargins(0, 0, 0, 0);
     editBase->move(this->parentWidget() ? this->parentWidget()->mapToGlobal(this->pos()) : this->pos());
     editBase->show();
 }
