@@ -1,4 +1,4 @@
-set(CMAKE_AUTOMOC ON)
+﻿set(CMAKE_AUTOMOC ON)
 set(CMAKE_AUTOUIC ON)
 set(CMAKE_AUTORCC ON)
 
@@ -9,6 +9,7 @@ else(${QT_VERSION_MAJOR} EQUAL 5)
     find_package(Qt${QT_VERSION_MAJOR} COMPONENTS Core Gui Widgets Network REQUIRED)
 endif(${QT_VERSION_MAJOR} EQUAL 5)
 message("-- Found Qt ${QT_VERSION}")
+message("-- QTDIR: ${QTDIR}")
 include_directories("./")
 
 add_compile_definitions(QCUSTOMUI_LIB UNICODE)
@@ -57,6 +58,7 @@ set(INPUT_HEADERS
  "QCtmComboBox.h"
  "QCtmInputDialog.h"
  "QCtmPathBrowser.h"
+ "QCtmDigitKeyboard.h"
 )
 
 set(INPUT_SOURCES
@@ -65,6 +67,7 @@ set(INPUT_SOURCES
  "QCtmComboBox.cpp"
  "QCtmInputDialog.cpp"
  "QCtmPathBrowser.cpp"
+ "QCtmDigitKeyboard.cpp"
 )
 
 set(CONTAINERS_HEADERS

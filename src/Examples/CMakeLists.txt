@@ -1,4 +1,4 @@
-include(${PROJECT_SOURCE_DIR}/cmake/Example.cmake)
+﻿include(${PROJECT_SOURCE_DIR}/cmake/Example.cmake)
 
 add_subdirectory(ClassifyTreeViewExample)
 add_subdirectory(DrawerExample)
@@ -15,3 +15,4 @@ add_subdirectory(MessageTipExample)
 add_subdirectory(InputDialogExample)
 add_subdirectory(ToolBoxExample)
 add_subdirectory(PathBrowserExample)
+add_subdirectory(DigitKeyboardExample)
