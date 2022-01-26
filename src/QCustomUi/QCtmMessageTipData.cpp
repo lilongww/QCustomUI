@@ -1,4 +1,4 @@
-/*********************************************************************************
+﻿/*********************************************************************************
 **                                                                              **
 **  Copyright (C) 2019-2020 LiLong                                              **
 **  This file is part of QCustomUi.                                             **
@@ -39,14 +39,15 @@ struct QCtmMessageTipData::Impl
 
 /*!
     \class      QCtmMessageTipData
-    \brief      QCtmMessageTipData provide a common message tip function.
+    \brief      标准消息提示数据结构定义.
     \inherits   QCtmAbstractMessageTipData
     \ingroup    QCustomUi
     \inmodule   QCustomUi
+    \inheaderfile QCtmMessageTipData.h
 */
 
 /*!
-    \brief      Constructs a message tip data with \a title, \a content and \a time.
+    \brief      构造函数 \a title, \a content, \a time.
 */
 QCtmMessageTipData::QCtmMessageTipData(const QString& title, const QString& content, const QDateTime& time)
     :m_impl(std::make_unique<Impl>())
@@ -57,14 +58,14 @@ QCtmMessageTipData::QCtmMessageTipData(const QString& title, const QString& cont
 }
 
 /*!
-    \brief      Destroys the message tip data.
+    \brief      析构函数.
 */
 QCtmMessageTipData::~QCtmMessageTipData()
 {
 }
 
 /*!
-    \brief      Sets \a title of the message tip data.
+    \brief      设置标题 \a title.
     \sa         title()
 */
 void QCtmMessageTipData::setTitle(const QString& title)
@@ -73,7 +74,7 @@ void QCtmMessageTipData::setTitle(const QString& title)
 }
 
 /*!
-    \brief      Returns title of the message tip data.
+    \brief      返回标题.
     \sa         setTitle
 */
 const QString& QCtmMessageTipData::title() const
@@ -82,7 +83,7 @@ const QString& QCtmMessageTipData::title() const
 }
 
 /*!
-    \brief      Sets \a content of the message tip data.
+    \brief      设置消息内容 \a content.
     \sa         content
 */
 void QCtmMessageTipData::setContent(const QString& content)
@@ -91,7 +92,7 @@ void QCtmMessageTipData::setContent(const QString& content)
 }
 
 /*!
-    \brief      Returns content of the message tip data.
+    \brief      返回消息内容.
     \sa         setContent
 */
 const QString& QCtmMessageTipData::content() const
@@ -100,7 +101,7 @@ const QString& QCtmMessageTipData::content() const
 }
 
 /*!
-    \brief      Sets date \a time of the message tip data.
+    \brief      设置消息时间 \a time.
     \sa         dateTime()
 */
 void QCtmMessageTipData::setDateTime(const QDateTime& time)
@@ -109,7 +110,7 @@ void QCtmMessageTipData::setDateTime(const QDateTime& time)
 }
 
 /*!
-    \brief      Returns date time of the message tip data.
+    \brief      返回消息时间.
     \sa         setDateTime
 */
 const QDateTime& QCtmMessageTipData::dateTime() const

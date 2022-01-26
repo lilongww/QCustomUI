@@ -1,4 +1,4 @@
-/*********************************************************************************
+﻿/*********************************************************************************
 **                                                                              **
 **  Copyright (C) 2019-2020 LiLong                                              **
 **  This file is part of QCustomUi.                                             **
@@ -28,14 +28,15 @@ struct QCtmLogFilterModel::Impl
 
 /*!
     \class      QCtmLogFilterModel
-    \brief      QCtmLogFilterModel provide a filter to filter the log messages.
+    \brief      日志筛选 model.
     \inherits   QSortFilterProxyModel
     \ingroup    QCustomUi
     \inmodule   QCustomUi
+    \inheaderfile QCtmLogFilterModel.h
 */
 
 /*!
-    \brief      Constructs a log message filter with \a parent.
+    \brief      构造函数 \a parent.
 */
 QCtmLogFilterModel::QCtmLogFilterModel(QObject* parent)
     : QSortFilterProxyModel(parent)
@@ -44,14 +45,14 @@ QCtmLogFilterModel::QCtmLogFilterModel(QObject* parent)
 }
 
 /*!
-    \brief      Destroys the filter.
+    \brief      析构函数.
 */
 QCtmLogFilterModel::~QCtmLogFilterModel()
 {
 }
 
 /*!
-    \brief      Search logs that contains the given \a keyword
+    \brief      查询关键字 \a keyword.
 */
 void QCtmLogFilterModel::search(const QString& keyword)
 {
@@ -74,7 +75,7 @@ bool QCtmLogFilterModel::filterAcceptsRow(int sourceRow, [[maybe_unused]] const 
 }
 
 /*!
-    \brief      Sets whether the message \a type will to \a show.
+    \brief      设置日志类型 \a type 是否显示 \a show.
 */
 void QCtmLogFilterModel::showLog(QtMsgType type, bool show)
 {

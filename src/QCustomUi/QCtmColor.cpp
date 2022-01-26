@@ -1,4 +1,4 @@
-/*********************************************************************************
+﻿/*********************************************************************************
 **                                                                              **
 **  Copyright (C) 2019-2020 LiLong                                              **
 **  This file is part of QCustomUi.                                             **
@@ -30,10 +30,11 @@ bool isLight(QColor color)
 
 /*!
     \class      QCtmColor
-    \brief      QCtmColor provide more function to calculation of the color.
+    \brief      部分常用颜色和颜色计算方法.
     \inherits   QObject
     \ingroup    QCustomUi
     \inmodule   QCustomUi
+    \inheaderfile QCtmColor.h
 */
 
 /*!
@@ -107,7 +108,7 @@ bool isLight(QColor color)
 */
 
 /*!
-    \brief      Generate a background color by \a index.
+    \brief      生成背景色 \a index, 如果 \a index 超过20，从头开始循环.
     \sa         generateForegroundColor
 */
 QColor QCtmColor::generateBackgroundColor(int index)
@@ -118,7 +119,7 @@ QColor QCtmColor::generateBackgroundColor(int index)
 }
 
 /*!
-    \brief      Generate a foreground color by \a color.
+    \brief      根据 \a color 生成前景色.
     \sa         generateBackgroundColor
 */
 QColor QCtmColor::generateForegroundColor(QColor color)

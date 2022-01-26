@@ -1,4 +1,4 @@
-/*********************************************************************************
+﻿/*********************************************************************************
 **                                                                              **
 **  Copyright (C) 2019-2020 LiLong                                              **
 **  This file is part of QCustomUi.                                             **
@@ -27,14 +27,15 @@ struct QCtmLogEvent::Impl
 
 /*!
     \class      QCtmLogEvent
-    \brief      QCtmLogEvent provide a custom event to transfer log message datas.
+    \brief      日志事件.
     \inherits   QEvent
     \ingroup    QCustomUi
     \inmodule   QCustomUi
+    \inheaderfile QCtmLogEvent.h
 */
 
 /*!
-    \brief      Constructs a log event with \a log message data.
+    \brief      构造函数 \a log.
 */
 QCtmLogEvent::QCtmLogEvent(QCtmLogDataPtr log)
     : QEvent((QEvent::Type)QCtmLog)
@@ -44,7 +45,7 @@ QCtmLogEvent::QCtmLogEvent(QCtmLogDataPtr log)
 }
 
 /*!
-    \brief      Destroys the log event.
+    \brief      析构函数.
 */
 QCtmLogEvent::~QCtmLogEvent()
 {
@@ -52,7 +53,7 @@ QCtmLogEvent::~QCtmLogEvent()
 }
 
 /*!
-    \brief      Returns the log message data.
+    \brief      返回日志内容.
 */
 QCtmLogDataPtr QCtmLogEvent::log() const
 {

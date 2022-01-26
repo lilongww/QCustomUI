@@ -28,6 +28,7 @@
     \ingroup    QCustomUi
     \inmodule   QCustomUi
     \sa         QComboBox
+    \inheaderfile QCtmComboBox.h
 */
 
 /*!

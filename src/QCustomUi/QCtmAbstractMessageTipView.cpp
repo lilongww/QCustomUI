@@ -1,4 +1,4 @@
-/*********************************************************************************
+﻿/*********************************************************************************
 **                                                                              **
 **  Copyright (C) 2019-2020 LiLong                                              **
 **  This file is part of QCustomUi.                                             **
@@ -24,23 +24,24 @@
 
 /*!
     \class      QCtmAbstractMessageTipView
-    \brief      QCtmAbstractMessageTipView provide abstract interface for message tip view.
+    \brief      消息提示视图接口类.
     \inherits   QCtmNavigationSidePane
     \ingroup    QCustomUi
     \inmodule   QCustomUi
+    \inheaderfile QCtmAbstractMessageTipView.h
 */
 
 /*!
-    \brief      Constructs a message tip view with \a parent.
+    \brief      构造函数 \a parent.
 */
-QCtmAbstractMessageTipView::QCtmAbstractMessageTipView(QCtmNavigationBar *parent)
-	: QCtmNavigationSidePane(parent)
+QCtmAbstractMessageTipView::QCtmAbstractMessageTipView(QCtmNavigationBar* parent)
+    : QCtmNavigationSidePane(parent)
 {
-	this->setDockArea(QCtmNavigationSidePane::DockArea::Right);
+    this->setDockArea(QCtmNavigationSidePane::DockArea::Right);
 }
 
 /*!
-    \brief      Destroys the message tip view.
+    \brief      析构函数.
 */
 QCtmAbstractMessageTipView::~QCtmAbstractMessageTipView()
 {
@@ -48,12 +49,12 @@ QCtmAbstractMessageTipView::~QCtmAbstractMessageTipView()
 
 /*!
     \fn         void QCtmAbstractMessageTipView::setModel(QCtmAbstractMessageTipModel* model)
-    \brief      Sets the message tip \a model.
+    \brief      设置消息提示 \a model.
     \sa         model()
 */
 
 /*!
-    \fn         QCtmAbstractMessageTipModel* QCtmAbstractMessageTipView::model() const 
-    \brief      Returns the message tip model.
+    \fn         QCtmAbstractMessageTipModel* QCtmAbstractMessageTipView::model() const
+    \brief      返回消息提示 model.
     \sa         setModel
 */

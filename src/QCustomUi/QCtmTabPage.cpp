@@ -42,10 +42,11 @@ struct QCtmTabPage::Impl
 
 /*!
     \class      QCtmTabPage
-    \brief      QCtmTabPage is the QCtmTabWidget page handle.
+    \brief      QCtmTabWidget 的子页面.
     \inherits   QWidget
     \ingroup    QCustomUi
     \inmodule   QCustomUi
+    \inheaderfile QCtmTabPage.h
 */
 
 /*!
@@ -55,8 +56,7 @@ struct QCtmTabPage::Impl
 */
 
 /*!
-    \brief      Create a action with the given \a icon and \a text.
-                And the action to the corner widget.
+    \brief      添加图标为 \a icon 文本为 \a text 的Action到角落窗口上.
     \sa         insertAction
 */
 QAction* QCtmTabPage::addAction(const QIcon& icon, const QString& text)
@@ -66,7 +66,7 @@ QAction* QCtmTabPage::addAction(const QIcon& icon, const QString& text)
 
 /*!
     \overload   addAction
-                Create a action with the given \a text. And the action to the corner widget.
+                添加文本为 \a text 的Action到角落窗口上.
     \sa         QCtmTabPage::addAction
 */
 QAction* QCtmTabPage::addAction(const QString& text)
@@ -76,9 +76,7 @@ QAction* QCtmTabPage::addAction(const QString& text)
 
 /*!
     \overload   insertAction
-                This function creates a action with the given \a icon and \a text.
-                And inserts the action to \a index.
-                And returns the action.
+                添加图标为 \a icon 文本为 \a text 的Action，并插入到角落窗口的 \a index 位置.
     \sa         QCtmTabPage::insertAction
 */
 QAction* QCtmTabPage::insertAction(int index, const QIcon& icon, const QString& text)
@@ -90,7 +88,7 @@ QAction* QCtmTabPage::insertAction(int index, const QIcon& icon, const QString& 
 
 /*!
     \overload   insertAction
-                This function insert the given \a action to the index.
+                插入 \a action 到角落窗口的 \a index 位置.
     \sa         QWidget::insertAction
 */
 void QCtmTabPage::insertAction(int index, QAction* action)
@@ -99,16 +97,16 @@ void QCtmTabPage::insertAction(int index, QAction* action)
     QWidget::insertAction(before, action);
 }
 
-/**
- * @brief       Insert a action.
- */
+/*!
+    \brief      添加文本为 \a text 的Action，并插入到角落窗口的 \a index 位置.
+*/
 QAction* QCtmTabPage::insertAction(int index, const QString& text)
 {
     return insertAction(index, QIcon(), text);
 }
 
 /*!
-    \brief      Returns the action of the \a index.
+    \brief      返回序号为 \a index 的Action.
     \sa         addAction, insertAction
 */
 QAction* QCtmTabPage::actionAt(int index) const
@@ -123,7 +121,7 @@ QAction* QCtmTabPage::actionAt(int index) const
 }
 
 /*!
-    \brief      Take and returns the central widget.
+    \brief      取出中央窗口，不再控制其生命周期.
     \sa         setCentralWidget, centralWidget()
 */
 QWidget* QCtmTabPage::takeCentralWidget() const
@@ -142,7 +140,7 @@ QWidget* QCtmTabPage::takeCentralWidget() const
 }
 
 /*!
-    \brief      Returns the central widget.
+    \brief      返回中央窗口.
     \sa         setCentralWidget
 */
 QWidget* QCtmTabPage::centralWidget() const
@@ -169,7 +167,7 @@ const QSize& QCtmTabPage::iconSize() const
     return m_impl->iconSize;
 }
 /*!
-    \brief      Returns count of the action.
+    \brief      返回Action的数量.
     \sa         addAction, insertAction
 */
 int QCtmTabPage::count() const
@@ -206,7 +204,7 @@ void QCtmTabPage::actionEvent(QActionEvent* event)
 }
 
 /*!
-    \brief      Returns the corner widget.
+    \brief      返回角落窗口.
 */
 QWidget* QCtmTabPage::cornerWidget() const
 {
@@ -214,7 +212,7 @@ QWidget* QCtmTabPage::cornerWidget() const
 }
 
 /*!
-    \brief      Sets the given central \a widget.
+    \brief      设置中央窗口 \a widget.
     \sa         centralWidget
 */
 void QCtmTabPage::setCentralWidget(QWidget* widget)
@@ -225,7 +223,7 @@ void QCtmTabPage::setCentralWidget(QWidget* widget)
 }
 
 /*!
-    \brief      Constructs a page widget with the given \a parent.
+    \brief      构造函数 \a parent.
 */
 QCtmTabPage::QCtmTabPage(QCtmTabWidget* parent)
     : QWidget(parent)
@@ -234,13 +232,13 @@ QCtmTabPage::QCtmTabPage(QCtmTabWidget* parent)
     assert(parent);
     m_impl->cornerWidget = new QWidget;
     m_impl->cornerLayout = new QHBoxLayout(m_impl->cornerWidget);
-    m_impl->cornerLayout->setContentsMargins(0,0,0,0);
+    m_impl->cornerLayout->setContentsMargins(0, 0, 0, 0);
 
     m_impl->layout = new QHBoxLayout(this);
 }
 
 /*!
-    \brief      Destroys the page.
+    \brief      析构函数.
 */
 QCtmTabPage::~QCtmTabPage()
 {

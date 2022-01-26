@@ -30,7 +30,7 @@ struct QCtmClassifyTreeItem::Impl
 
 /*!
     \class      QCtmClassifyTreeItem
-    \brief      This is a abstract item, subclass this class and used with QCtmClassifyTreeModel.
+    \brief      归类树子项.
     \ingroup    QCustomUi
     \inmodule   QCustomUi
     \inheaderfile QCtmClassifyTreeItem.h
@@ -38,20 +38,20 @@ struct QCtmClassifyTreeItem::Impl
 
 /*!
     \enum       QCtmClassifyTreeItem::ItemType
-                Item type.
+                项目类型.
     \value      Group
-                The item is a group item.
+                分组项目.
     \value      Icon
-                The item is a icon item.
+                图标项目.
 */
 
 /*!
     \fn         virtual int QCtmClassifyTreeItem::itemType() const = 0;
-    \brief      Returns the item type.
+    \brief      返回项目类型.
 */
 
 /*!
-    \brief      Constructs a item.
+    \brief      构造函数.
 */
 QCtmClassifyTreeItem::QCtmClassifyTreeItem()
     : m_impl(std::make_unique<Impl>())
@@ -60,7 +60,7 @@ QCtmClassifyTreeItem::QCtmClassifyTreeItem()
 }
 
 /*!
-    \brief      Constructs a item with the give \a text.
+    \brief      构造函数，设置显示文本 \a text.
 */
 QCtmClassifyTreeItem::QCtmClassifyTreeItem(const QString& text)
     : QCtmClassifyTreeItem()
@@ -69,7 +69,7 @@ QCtmClassifyTreeItem::QCtmClassifyTreeItem(const QString& text)
 }
 
 /*!
-    \brief      Constructs a item with the given \a icon and \a text.
+    \brief      构造函数，设置显示文本 \a text 和图标 \a icon.
 */
 QCtmClassifyTreeItem::QCtmClassifyTreeItem(const QIcon& icon, const QString& text)
     : QCtmClassifyTreeItem()
@@ -79,7 +79,7 @@ QCtmClassifyTreeItem::QCtmClassifyTreeItem(const QIcon& icon, const QString& tex
 }
 
 /*!
-    \brief      Destroys the item.
+    \brief      析构函数.
 */
 QCtmClassifyTreeItem::~QCtmClassifyTreeItem()
 {
@@ -87,7 +87,7 @@ QCtmClassifyTreeItem::~QCtmClassifyTreeItem()
 }
 
 /*!
-    \brief      Returns the model.
+    \brief      返回数据 model.
 */
 QCtmClassifyTreeModel* QCtmClassifyTreeItem::model() const
 {
@@ -97,7 +97,7 @@ QCtmClassifyTreeModel* QCtmClassifyTreeItem::model() const
 }
 
 /*!
-    \brief      Returns the index.
+    \brief      返回 index.
 */
 QModelIndex QCtmClassifyTreeItem::index() const
 {
@@ -105,7 +105,7 @@ QModelIndex QCtmClassifyTreeItem::index() const
 }
 
 /*!
-    \brief      Returns the parent item.
+    \brief      返回父项目.
 */
 QCtmClassifyTreeItem* QCtmClassifyTreeItem::parent() const
 {
@@ -113,7 +113,7 @@ QCtmClassifyTreeItem* QCtmClassifyTreeItem::parent() const
 }
 
 /*!
-    \brief      Sets the given \a model.
+    \brief      设置 \a model.
 */
 void QCtmClassifyTreeItem::setModel(QCtmClassifyTreeModel* model)
 {
@@ -121,7 +121,7 @@ void QCtmClassifyTreeItem::setModel(QCtmClassifyTreeModel* model)
 }
 
 /*!
-    \brief      Sets the given \a parent item.
+    \brief      设置父项目 \a parent.
 */
 void QCtmClassifyTreeItem::setParent(QCtmClassifyTreeItem* parent)
 {
@@ -129,7 +129,7 @@ void QCtmClassifyTreeItem::setParent(QCtmClassifyTreeItem* parent)
 }
 
 /*!
-    \brief      Sets the given \a text.
+    \brief      设置显示文本 \a text.
     \sa         text
 */
 void QCtmClassifyTreeItem::setText(const QString& text)
@@ -143,7 +143,7 @@ void QCtmClassifyTreeItem::setText(const QString& text)
 }
 
 /*!
-    \brief      Returns the text.
+    \brief      返回显示文本.
     \sa         setText
 */
 const QString& QCtmClassifyTreeItem::text() const
@@ -152,7 +152,7 @@ const QString& QCtmClassifyTreeItem::text() const
 }
 
 /*!
-    \brief      Sets the given \a icon.
+    \brief      设置图标 \a icon.
     \sa         icon
 */
 void QCtmClassifyTreeItem::setIcon(const QIcon& icon)
@@ -166,7 +166,7 @@ void QCtmClassifyTreeItem::setIcon(const QIcon& icon)
 }
 
 /*!
-    \brief      Returns the icon.
+    \brief      返回显示图标.
     \sa         setIcon
 */
 const QIcon& QCtmClassifyTreeItem::icon() const

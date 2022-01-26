@@ -1,4 +1,4 @@
-/*********************************************************************************
+﻿/*********************************************************************************
 **                                                                              **
 **  Copyright (C) 2019-2020 LiLong                                              **
 **  This file is part of QCustomUi.                                             **
@@ -23,13 +23,14 @@
 
 /*!
     \class      QCtmStyleSheet
-    \brief      QCtmStyleSheet provide a default style sheet.
+    \brief      默认样式表.
     \ingroup    QCustomUi
     \inmodule   QCustomUi
+    \inheaderfile QCtmStyleSheet.h
 */
 
 /*!
-    \brief      Returns the default style sheet string.
+    \brief      返回默认样式表.
     \sa         QApplication::setStyleSheet
 */
 QString QCtmStyleSheet::defaultStyleSheet()

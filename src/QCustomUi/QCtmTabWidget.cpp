@@ -51,10 +51,11 @@ struct QCtmTabWidget::Impl
 
 /*!
     \class      QCtmTabWidget
-    \brief      QCtmTabWidget provide a tab widget, that can add action to the top right area.
+    \brief      与QTableWidget相似，扩展了角落窗口的功能.
     \inherits   QTabWidget
     \ingroup    QCustomUi
     \inmodule   QCustomUi
+    \inheaderfile QCtmTabWidget.h
 */
 
 /*!
@@ -64,7 +65,7 @@ struct QCtmTabWidget::Impl
 */
 
 /*!
-    \brief      Constructs a tab widget with the given \a parent.
+    \brief      构造函数 \a parent.
 */
 QCtmTabWidget::QCtmTabWidget(QWidget* parent) :
     QTabWidget(parent),
@@ -72,7 +73,7 @@ QCtmTabWidget::QCtmTabWidget(QWidget* parent) :
 {
     m_impl->cornerWidget = new QWidget(this);
     m_impl->cornerLayout = new QHBoxLayout(m_impl->cornerWidget);
-    m_impl->cornerLayout->setContentsMargins(0,0,0,0);
+    m_impl->cornerLayout->setContentsMargins(0, 0, 0, 0);
 
     m_impl->closeBtn = new QToolButton(this);
     m_impl->closeBtn->setObjectName("closeButton");
@@ -81,10 +82,11 @@ QCtmTabWidget::QCtmTabWidget(QWidget* parent) :
     setCornerWidget(m_impl->cornerWidget);
     connect(this, &QTabWidget::currentChanged, this, &QCtmTabWidget::onCurrentChanged);
     connect(m_impl->closeBtn, &QToolButton::clicked, this, &QWidget::hide);
+    setAttribute(Qt::WA_StyledBackground);
 }
 
 /*!
-    \brief      Destroys the tab widget.
+    \brief      析构函数.
 */
 QCtmTabWidget::~QCtmTabWidget()
 {
@@ -93,8 +95,7 @@ QCtmTabWidget::~QCtmTabWidget()
 
 /*!
     \overload   addTab
-                Add a tab to the tab widget with the given \a widget and \a label.
-                And returns the page.
+                添加标题为 \a label 的子页面 \a widget.
     \sa         QCtmTabWidget::addTab
 */
 QCtmTabPage* QCtmTabWidget::addTab(QWidget* widget, const QString& label)
@@ -103,8 +104,8 @@ QCtmTabPage* QCtmTabWidget::addTab(QWidget* widget, const QString& label)
 }
 
 /*!
-    \brief      Add a tab to the tab widget with the given \a widget, \a icon and \a label.
-                And returns the page.
+    \overload   addTab
+    \brief      添加图标为 \a icon 标题为 \a label 的子页面 \a widget.
     \sa         QCtmTabWidget::insertTab
 */
 QCtmTabPage* QCtmTabWidget::addTab(QWidget* widget, const QIcon& icon, const QString& label)
@@ -114,8 +115,7 @@ QCtmTabPage* QCtmTabWidget::addTab(QWidget* widget, const QIcon& icon, const QSt
 
 /*!
     \overload   insertTab
-                Insert a tab to the tab widget with the given \a index, \a widget and \a label.
-                And returns the page.
+                在 \a index 的位置插入标题为 \a label 的子页面 \a widget.
     \sa         QCtmTabWidget::insertTab
 */
 QCtmTabPage* QCtmTabWidget::insertTab(int index, QWidget* widget, const QString& label)
@@ -125,17 +125,16 @@ QCtmTabPage* QCtmTabWidget::insertTab(int index, QWidget* widget, const QString&
 
 /*!
     \overload   insertTab
-                Insert a tab to the tab widget with the given \a index, \a widget, \a icon and \a label.
-                And returns the page.
+                在 \a index 的位置插入图标为 \a icon 标题为 \a label 的子页面 \a widget.
     \sa         QTabWidget::insertTab
 */
-QCtmTabPage* QCtmTabWidget::insertTab(int index, QWidget* widget, [[maybe_unused]] const QIcon& icon, const QString& label)
+QCtmTabPage* QCtmTabWidget::insertTab(int index, QWidget* widget, const QIcon& icon, const QString& label)
 {
     auto page = new QCtmTabPage(this);
     page->setIconSize(m_impl->iconSize);
     connect(this, &QCtmTabWidget::iconSizeChanged, page, &QCtmTabPage::setIconSize);
     page->setCentralWidget(widget);
-    QTabWidget::insertTab(index, page, label);
+    QTabWidget::insertTab(index, page, icon, label);
     return page;
 }
 
@@ -159,18 +158,7 @@ const QSize& QCtmTabWidget::iconSize() const
 }
 
 /*!
-    \reimp
-*/
-void QCtmTabWidget::paintEvent([[maybe_unused]] QPaintEvent* e)
-{
-    QPainter p(this);
-    QStyleOption opt;
-    opt.initFrom(this);
-    style()->drawPrimitive(QStyle::PE_Widget, &opt, &p, this);
-}
-
-/*!
-    \brief      Change the corner widget when the current \a index changed.
+    \brief      切换页面 \a index 时修改角落窗口的显示内容.
 */
 void QCtmTabWidget::onCurrentChanged(int index)
 {

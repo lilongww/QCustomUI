@@ -87,33 +87,34 @@ struct QCtmIPAddressEdit::Impl
 
 /*!
     \class      QCtmIPAddressEdit
-    \brief      QCtmIPAddressEdit provide a IPv4 format input control.
+    \brief      IPv4 输入框.
     \inherits   QWidget
     \ingroup    QCustomUi
     \inmodule   QCustomUi
+    \inheaderfile QCtmIPAddressEdit.h
 
-    \b          {The ip address edit screenshot:}
+    \b          {截图:}
     \image      QCtmIPAddressEditDetail.png
 
 */
 
 /*!
     \property   QCtmIPAddressEdit::readOnly
-    \brief      This property holds whether the ip address edit is read only.
+    \brief      输入框是否只读.
 */
 
 /*!
     \fn         void QCtmIPAddressEdit::editChanged()
-    \brief      When the text is changed, the signal will be emit.
+    \brief      当文本变化时发送该信号.
 */
 
 /*!
     \fn         void QCtmIPAddressEdit::editFinished()
-    \brief      When the edit operation is finished, the signal will be emit.
+    \brief      编辑完成时发送该信号.
 */
 
 /*!
-    \brief      Constructs a QCtmIPAddressEdit with \a parent.
+    \brief      构造函数 \a parent.
 */
 QCtmIPAddressEdit::QCtmIPAddressEdit(QWidget* parent)
     : QWidget(parent)
@@ -135,14 +136,14 @@ QCtmIPAddressEdit::QCtmIPAddressEdit(QWidget* parent)
 }
 
 /*!
-    \brief      Destroys the QCtmIPAddressEdit.
+    \brief      析构函数.
 */
 QCtmIPAddressEdit::~QCtmIPAddressEdit()
 {
 }
 
 /*!
-    \brief      Set and show \a ip, the ip format must be legal.
+    \brief      设置 \a ip 地址.
     \sa         ipAddress()
 */
 void QCtmIPAddressEdit::setIPAddress(const QString& ip)
@@ -172,7 +173,7 @@ void QCtmIPAddressEdit::setIPAddress(const QString& ip)
 }
 
 /*!
-    \brief      Returns the ip string.
+    \brief      返回IP地址.
     \sa         setIPAddress
 */
 QString QCtmIPAddressEdit::ipAddress() const
@@ -186,7 +187,7 @@ QString QCtmIPAddressEdit::ipAddress() const
 }
 
 /*!
-    \brief      Set the ip edit control is read only, \a ro.
+    \brief      设置是否只读 \a ro.
     \sa         isReadOnly()
 */
 void QCtmIPAddressEdit::setReadOnly(bool ro)
@@ -205,7 +206,7 @@ void QCtmIPAddressEdit::setReadOnly(bool ro)
 }
 
 /*!
-    \brief      Returns the edit control is read only.
+    \brief      返回是否只读.
     \sa         setReadOnly
 */
 bool QCtmIPAddressEdit::isReadOnly() const

@@ -42,6 +42,7 @@ struct QCtmDrawerWidget::Impl
     \inherits   QWidget
     \ingroup    QCustomUi
     \inmodule   QCustomUi
+    \inheaderfile QCtmDrawerWidget.h
 
     \b          {抽屉窗口的截图:}
     \image      QCtmDrawerWidgetDetail.png
@@ -85,7 +86,7 @@ QCtmDrawerWidget::QCtmDrawerWidget(QWidget* parent)
 
     QHBoxLayout* layout = new QHBoxLayout(this);
     layout->addWidget(m_impl->splitter);
-    layout->setContentsMargins(0,0,0,0);
+    layout->setContentsMargins(0, 0, 0, 0);
     qRegisterMetaType<QCtmDrawerItemWidget*>("QCtmDrawerItemWidget*");
 }
 

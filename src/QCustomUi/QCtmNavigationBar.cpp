@@ -115,6 +115,7 @@ struct QCtmNavigationBar::Impl
     \inherits   QWidget
     \ingroup    QCustomUi
     \inmodule   QCustomUi
+    \inheaderfile QCtmNavigationBar.h
 
     \b          {The navigation bar screenshot:}
     \image      QCtmNavigationBarDetail.png

@@ -1,4 +1,4 @@
-/*********************************************************************************
+﻿/*********************************************************************************
 **                                                                              **
 **  Copyright (C) 2019-2020 LiLong                                              **
 **  This file is part of QCustomUi.                                             **
@@ -36,14 +36,15 @@ struct QCtmHeaderView::Impl
 
 /*!
     \class      QCtmHeaderView
-    \brief      QCtmHeaderView provide a check box to sets the items check state.
+    \brief      自定义表头，提供了 checkbox 勾选功能.
     \inherits   QHeaderView
     \ingroup    QCustomUi
     \inmodule   QCustomUi
+    \inheaderfile QCtmHeaderView.h
 */
 
 /*!
-    \brief      Constructs a header view with \a orientation and \a parent.
+    \brief      构造函数 \a orientation, \a parent.
 */
 QCtmHeaderView::QCtmHeaderView(Qt::Orientation orientation, QWidget* parent)
     : QHeaderView(orientation, parent)
@@ -53,7 +54,7 @@ QCtmHeaderView::QCtmHeaderView(Qt::Orientation orientation, QWidget* parent)
 }
 
 /*!
-    \brief      Destorys the header view.
+    \brief      析构函数.
 */
 QCtmHeaderView::~QCtmHeaderView()
 {
@@ -86,7 +87,7 @@ void QCtmHeaderView::setModel(QAbstractItemModel* model)
 }
 
 /*!
-    \brief      Sets the check box of the \a logicIndex is read-only, \a enable.
+    \brief      设置 \a logicIndex 行/列只读 \a enable.
 */
 void QCtmHeaderView::setReadOnly(int logicIndex, bool enable)
 {
@@ -175,7 +176,7 @@ void QCtmHeaderView::mousePressEvent(QMouseEvent* e)
 }
 
 /*!
-    \brief      Returns rect of check box from \a logicalIndex.
+    \brief      计算 checkbox 的包围盒 \a logicalIndex.
 */
 QRect QCtmHeaderView::doCheckBoxRect(int logicalIndex) const
 {
@@ -193,7 +194,7 @@ QRect QCtmHeaderView::doCheckBoxRect(int logicalIndex) const
 }
 
 /*!
-    \brief      Update check state of header view on model reseted.
+    \brief      响应 model reset.
 */
 void QCtmHeaderView::onModelReset()
 {

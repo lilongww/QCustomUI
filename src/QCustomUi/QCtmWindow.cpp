@@ -32,11 +32,12 @@
 #include <QResizeEvent>
 
 /*!
-         \class QCtmWindow
-         \brief This window is a base widget.
-         \inherits QWidget
-         \ingroup QCustomUi
-         \inmodule QCustomUi
+     \class     QCtmWindow
+     \brief     顶层自定义无边框窗口.
+     \inherits  QWidget
+     \ingroup   QCustomUi
+     \inmodule  QCustomUi
+     \inheaderfile QCtmWindow.h
 */
 
 struct QCtmWindow::Impl
@@ -54,7 +55,7 @@ struct QCtmWindow::Impl
 };
 
 /*!
-    \brief      Constructs a dialog which is a child of \a parent.
+    \brief      构造函数 \a parent.
 */
 QCtmWindow::QCtmWindow(QWidget* parent)
     : QWidget(parent)
@@ -79,7 +80,7 @@ QCtmWindow::QCtmWindow(QWidget* parent)
 }
 
 /*!
-    \brief      Destroys the widget.
+    \brief      析构函数.
 */
 QCtmWindow::~QCtmWindow()
 {
@@ -87,7 +88,7 @@ QCtmWindow::~QCtmWindow()
 }
 
 /*!
-    \brief      Sets the given \a statusBar.
+    \brief      设置状态栏 \a statusBar.
     \sa         statusBar, removeStatusBar
 */
 void QCtmWindow::setStatusBar(QStatusBar* statusBar)
@@ -98,7 +99,7 @@ void QCtmWindow::setStatusBar(QStatusBar* statusBar)
 }
 
 /*!
-    \brief      Returns the status bar.
+    \brief      返回状态栏.
     \sa         setStatusBar, removeStatusBar
 */
 QStatusBar* QCtmWindow::statusBar() const
@@ -107,7 +108,7 @@ QStatusBar* QCtmWindow::statusBar() const
 }
 
 /*!
-    \brief      Remove the status bar.
+    \brief      移除状态栏.
     \sa         setStatusBar, statusBar
 */
 void QCtmWindow::removeStatusBar()
@@ -120,7 +121,7 @@ void QCtmWindow::removeStatusBar()
 }
 
 /*!
-    \brief      Sets the given \a menuBar.
+    \brief      设置菜单栏 \a menuBar.
     \sa         menuBar, removeMenuBar
 */
 void QCtmWindow::setMenuBar(QMenuBar* menuBar)
@@ -132,7 +133,7 @@ void QCtmWindow::setMenuBar(QMenuBar* menuBar)
 }
 
 /*!
-    \brief      Returns the menu bar.
+    \brief      返回菜单栏.
     \sa         setMenuBar, removeMenuBar
 */
 QMenuBar* QCtmWindow::menuBar() const
@@ -143,7 +144,7 @@ QMenuBar* QCtmWindow::menuBar() const
 }
 
 /*!
-    \brief      Remove the menu bar.
+    \brief      移除菜单栏.
     \sa         setMenuBar, menuBar
 */
 void QCtmWindow::removeMenuBar()
@@ -155,7 +156,7 @@ void QCtmWindow::removeMenuBar()
 }
 
 /*!
-    \brief      Sets the given navigation \a bar.
+    \brief      设置导航栏 \a bar.
     \sa         navigationBar, removeNavigationBar
 */
 void QCtmWindow::setNavigationBar(QCtmNavigationBar* bar)
@@ -170,7 +171,7 @@ void QCtmWindow::setNavigationBar(QCtmNavigationBar* bar)
 }
 
 /*!
-    \brief      Returns the navigation bar.
+    \brief      返回导航栏.
     \sa         setNavigationBar, removeNavigationBar
 */
 QCtmNavigationBar* QCtmWindow::navigationBar() const
@@ -179,7 +180,7 @@ QCtmNavigationBar* QCtmWindow::navigationBar() const
 }
 
 /*!
-    \brief      Remove the navigation bar.
+    \brief      移除导航栏.
     \sa         setNavigationBar, navigationBar
 */
 void QCtmWindow::removeNavigationBar()
@@ -193,7 +194,7 @@ void QCtmWindow::removeNavigationBar()
 }
 
 /*!
-    \brief      Sets the given \a titleBar.
+    \brief      设置标题栏 \a titleBar.
     \sa         titleBar(), removeTitleBar()
 */
 void QCtmWindow::setTitleBar(QCtmTitleBar* titleBar)
@@ -209,7 +210,7 @@ void QCtmWindow::setTitleBar(QCtmTitleBar* titleBar)
 }
 
 /*!
-    \brief      Returns the title bar.
+    \brief      返回标题栏.
     \sa         setTitleBar, removeTitleBar()
 */
 QCtmTitleBar* QCtmWindow::titleBar() const
@@ -218,7 +219,7 @@ QCtmTitleBar* QCtmWindow::titleBar() const
 }
 
 /*!
-    \brief      Remove the title bar.
+    \brief      移除标题栏.
     \sa         setTitleBar, titleBar
 */
 void QCtmWindow::removeTitleBar()
@@ -232,7 +233,7 @@ void QCtmWindow::removeTitleBar()
 }
 
 /*!
-    \brief      Sets the given central \a widget.
+    \brief      设置中央窗口 \a widget.
     \sa         centralWidget
 */
 void QCtmWindow::setCentralWidget(QWidget* widget)
@@ -245,7 +246,7 @@ void QCtmWindow::setCentralWidget(QWidget* widget)
 }
 
 /*!
-    \brief      Returns the central widget.
+    \brief      返回中央窗口.
     \sa         setCentralWidget
 */
 QWidget* QCtmWindow::centralWidget() const
@@ -254,8 +255,8 @@ QWidget* QCtmWindow::centralWidget() const
 }
 
 /*!
-    \brief      Add the given \a moveBar.
-                The move bar provide a function that user can drag the move bar to move the window.
+    \brief      添加移动窗口 \a moveBar, 移动窗口可通过鼠标拖动来拖动窗口.
+    \note       移动窗口必须本身就是本窗口的子窗口.
     \sa         removeMoveBar
 */
 void QCtmWindow::addMoveBar(QWidget* moveBar)
@@ -264,7 +265,7 @@ void QCtmWindow::addMoveBar(QWidget* moveBar)
 }
 
 /*!
-    \brief      Remove the given \a moveBar.
+    \brief      移除移动窗口 \a moveBar.
     \sa         addMoveBar
 */
 void QCtmWindow::removeMoveBar(QWidget* moveBar)

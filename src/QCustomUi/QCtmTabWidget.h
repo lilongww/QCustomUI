@@ -46,9 +46,6 @@ public:
     const QSize& iconSize() const;
 signals:
     void iconSizeChanged(const QSize& size);
-protected:
-    void paintEvent(QPaintEvent* e);
-
 private slots:
     void onCurrentChanged(int index);
 

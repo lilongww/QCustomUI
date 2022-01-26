@@ -69,14 +69,15 @@ struct QCtmApplication::Impl
 
 /*!
     \class      QCtmApplication
-    \brief      QCtmApplication provide a function to set the application singleton run, and set the default style sheet.
+    \brief      QApplication 的扩展，设置了默认样式和单实例运行的接口.
     \inherits   QApplication
     \ingroup    QCustomUi
     \inmodule   QCustomUi
+    \inheaderfile QCtmApplication.h
 */
 
 /*!
-    \brief      Constructs a application with \a argc, \a argv and \a f, \a defaultStyle
+    \brief      构造函数 \a argc, \a argv, \a f, \a defaultStyle
 */
 QCtmApplication::QCtmApplication(int& argc, char** argv, int f/*= ApplicationFlags*/, bool defaultStyle)
     : QApplication(argc, argv, f)
@@ -92,15 +93,14 @@ QCtmApplication::QCtmApplication(int& argc, char** argv, int f/*= ApplicationFla
 }
 
 /*!
-    \brief      Destroys the application.
+    \brief      析构函数.
 */
 QCtmApplication::~QCtmApplication()
 {
 }
 
 /*!
-    \brief      Check to see if any other processes start using the same \a key.
-                Returns true if other processes start with the \a key.
+    \brief      检测并返回其他程序是否持有相同的 \a key.
 */
 bool QCtmApplication::checkOtherProcess(const QString& key)
 {

@@ -53,7 +53,7 @@ struct QCtmNavigationSidePane::Impl
         titleBar->setObjectName("qcustomui_titleBar");
         QHBoxLayout* layout = new QHBoxLayout(titleBar);
         closeBtn = new QPushButton(titleBar);
-        layout->setContentsMargins(0,0,0,0);
+        layout->setContentsMargins(0, 0, 0, 0);
         closeBtn->setObjectName("qcustomui_closeBtn");
         title = new QLabel(titleBar);
         title->setObjectName("qcustomui_title");
@@ -65,35 +65,36 @@ struct QCtmNavigationSidePane::Impl
 
 /*!
     \class      QCtmNavigationSidePane
-    \brief      QCtmNavigationSidePane provide a side pane to show top level of the Window.
+    \brief      边缘停靠窗口.
     \inherits   QWidget
     \ingroup    QCustomUi
     \inmodule   QCustomUi
+    \inheaderfile QCtmNavigationSidePane.h
 
-    \b          {The navigation side pane screenshot:}
+    \b          {截图:}
     \image      QCtmNavigationPaneDetail.png
 */
 
 /*!
     \enum       QCtmNavigationSidePane::DockArea
-
+                停靠位置.
     \value      Left
-                Left of the window.
+                窗口左侧.
     \value      Top
-                Top of the window.
+                窗口顶部.
     \value      Right
-                Right of the window.
+                窗口右侧.
     \value      Bottom
-                Bottom of the window.
+                窗口底部.
 */
 
 /*!
     \fn         QCtmNavigationSidePane::paneClosed()
-    \brief      Emit this signal when the side pane has been closed.
+    \brief      停靠窗口关闭时发送该信号.
 */
 
 /*!
-    \brief      Constructs a side pane with the given \a parent.
+    \brief      构造函数 \a parent.
 */
 QCtmNavigationSidePane::QCtmNavigationSidePane(QCtmNavigationBar* parent)
     : QWidget(parent)
@@ -121,7 +122,7 @@ QCtmNavigationSidePane::QCtmNavigationSidePane(QCtmNavigationBar* parent)
 }
 
 /*!
-    \brief      Constructs a side pane with the given \a area and \a parent.
+    \brief      构造函数，构造时确定其停靠位置 \a area, \a parent.
 */
 QCtmNavigationSidePane::QCtmNavigationSidePane(DockArea area, QCtmNavigationBar* parent)
     : QCtmNavigationSidePane(parent)
@@ -130,14 +131,14 @@ QCtmNavigationSidePane::QCtmNavigationSidePane(DockArea area, QCtmNavigationBar*
 }
 
 /*!
-    \brief      Destroys the side pane.
+    \brief      析构函数.
 */
 QCtmNavigationSidePane::~QCtmNavigationSidePane()
 {
 }
 
 /*!
-    \brief      Sets dock \a area of the side pane.
+    \brief      设置窗口停靠位置 \a area.
     \sa         dockArea
 */
 void QCtmNavigationSidePane::setDockArea(DockArea area)
@@ -161,7 +162,7 @@ void QCtmNavigationSidePane::setDockArea(DockArea area)
 }
 
 /*!
-    \brief      Returns dock area of the side pane.
+    \brief      返回窗口停靠位置.
     \sa         setDockArea
 */
 QCtmNavigationSidePane::DockArea QCtmNavigationSidePane::dockArea() const
@@ -170,8 +171,8 @@ QCtmNavigationSidePane::DockArea QCtmNavigationSidePane::dockArea() const
 }
 
 /*!
-    \brief      Sets the given \a widget.
-                Note:The \a widget must layout before set, otherwise the layout will be invalid.
+    \brief      设置要显示的窗口 \a widget.
+    \note       \a widget 必须在设置前布局，设置窗口后再布局无效.
     \sa         widget()
 */
 void QCtmNavigationSidePane::setWidget(QWidget* widget)
@@ -180,7 +181,7 @@ void QCtmNavigationSidePane::setWidget(QWidget* widget)
 }
 
 /*!
-    \brief      Returns the widget.
+    \brief      返回设置的窗口.
     \sa         setWidget
 */
 QWidget* QCtmNavigationSidePane::widget() const
@@ -189,7 +190,7 @@ QWidget* QCtmNavigationSidePane::widget() const
 }
 
 /*!
-    \brief      Returns the container of the widget.
+    \brief      返回容器窗口.
     \sa         widget()
 */
 QScrollArea* QCtmNavigationSidePane::viewContainer() const
@@ -198,7 +199,7 @@ QScrollArea* QCtmNavigationSidePane::viewContainer() const
 }
 
 /*!
-    \brief      Sets the title bar whether being \a visible.
+    \brief      设置标题栏是否可见 \a visible.
     \sa         titleBarIsVisible()
 */
 void QCtmNavigationSidePane::setTitleBarVisible(bool visible)
@@ -207,7 +208,7 @@ void QCtmNavigationSidePane::setTitleBarVisible(bool visible)
 }
 
 /*!
-    \brief      Returns the title bar whether being visible.
+    \brief      返回标题栏是否可见.
     \sa         setTitleBarVisible
 */
 bool QCtmNavigationSidePane::titleBarIsVisible() const
@@ -216,7 +217,7 @@ bool QCtmNavigationSidePane::titleBarIsVisible() const
 }
 
 /*!
-    \brief      Sets \a text of the title bar.
+    \brief      设置标题栏文字 \a text.
     \sa         title()
 */
 void QCtmNavigationSidePane::setTitle(const QString& text)
@@ -225,7 +226,7 @@ void QCtmNavigationSidePane::setTitle(const QString& text)
 }
 
 /*!
-    \brief      Returns text of the title bar.
+    \brief      返回标题栏文字.
     \sa         setTitle
 */
 QString QCtmNavigationSidePane::title() const
@@ -234,8 +235,7 @@ QString QCtmNavigationSidePane::title() const
 }
 
 /*!
-    \brief      Sets the side pane whether being \a popup.
-                If \a popup, the title bar will be auto close when lost focus.
+    \brief      设置窗口是否以Popup方式显示 \a popup.
     \sa         popup()
 */
 void QCtmNavigationSidePane::setPopup(bool popup)
@@ -245,7 +245,7 @@ void QCtmNavigationSidePane::setPopup(bool popup)
 }
 
 /*!
-    \brief      Returns popup for the side pane.
+    \brief      返回窗口是否以Popup方式显示.
     \sa         setPopup
 */
 bool QCtmNavigationSidePane::popup() const
@@ -292,7 +292,7 @@ QSize QCtmNavigationSidePane::sizeHint() const
 }
 
 /*!
-    \brief      Returns size of the side pane with \a area.
+    \brief      根据 \a area 自动计算窗口显示大小.
     \sa         smartPosition
 */
 QSize QCtmNavigationSidePane::smartSize(DockArea area)const
@@ -331,7 +331,7 @@ QSize QCtmNavigationSidePane::smartSize(DockArea area)const
 }
 
 /*!
-    \brief      Sets the navigation \a bar.
+    \brief      绑定 QCtmNavigationBar \a bar.
     \sa         navigationBar(), QCtmNavigationBar
 */
 void QCtmNavigationSidePane::setNavigationBar(QCtmNavigationBar* bar)
@@ -347,7 +347,7 @@ void QCtmNavigationSidePane::setNavigationBar(QCtmNavigationBar* bar)
 }
 
 /*!
-    \brief      Returns the navigation bar.
+    \brief      返回绑定的 QCtmNavigationBar.
     \sa         setNavigationBar, QCtmNavigationBar
 */
 QCtmNavigationBar* QCtmNavigationSidePane::navigationBar() const
@@ -388,9 +388,9 @@ bool QCtmNavigationSidePane::eventFilter(QObject* o, QEvent* e)
             break;
         }
 
-    }
+        }
     return false;
-}
+    }
 
 /*!
     \reimp
@@ -413,8 +413,7 @@ void QCtmNavigationSidePane::mousePressEvent(QMouseEvent* event)
 }
 
 /*!
-    \brief      Bind the side pane with the given \a action.
-                The action is part of QCtmNavigationBar
+    \brief      绑定到 QCtmNavigationBar 上的 \a action.
     \sa         QCtmNavigationBar
 */
 void QCtmNavigationSidePane::bindAction(QAction* action)
@@ -423,7 +422,7 @@ void QCtmNavigationSidePane::bindAction(QAction* action)
 }
 
 /*!
-    \brief      Draw shadow for the side pane.
+    \brief      绘制阴影 \a shadowWidth.
     \sa         paintEvent
 */
 void QCtmNavigationSidePane::paintShadow(int shadowWidth)
@@ -470,7 +469,7 @@ void QCtmNavigationSidePane::paintShadow(int shadowWidth)
 }
 
 /*!
-    \brief      Returns position of the side pane with \a area.
+    \brief      根据 \a area 计算显示位置.
     \sa         smartSize
 */
 QPoint QCtmNavigationSidePane::smartPosition(DockArea area) const

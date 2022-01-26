@@ -1,4 +1,4 @@
-/*********************************************************************************
+﻿/*********************************************************************************
 **                                                                              **
 **  Copyright (C) 2019-2020 LiLong                                              **
 **  This file is part of QCustomUi.                                             **
@@ -51,7 +51,6 @@ public:
 signals:
     void iconSizeChanged(const QSize& size);
 protected:
-    void paintEvent(QPaintEvent*) override;
     void actionEvent(QActionEvent* event) override;
 private:
     struct Impl;

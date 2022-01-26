@@ -42,70 +42,59 @@ struct QCtmMessageBox::Impl
 
 /*!
     \class      QCtmMessageBox
-    \brief      QCtmMessageBox provide a custom looking message box, The usage is similar to \l QMessageBox.
+    \brief      自定义外观的消息框，用法参考 QMessageBox.
     \inherits   QCtmDialog
     \ingroup    QCustomUi
     \inmodule   QCustomUi
     \sa         QMessageBox
+    \inheaderfile QCtmMessageBox.h
 
-    \b          {The message box screenshot:}
+    \b          {截图:}
     \image      QCtmMessageBoxDetail.png
 */
 
 /*!
-    \enum QCtmMessageBox::ButtonRole
+    \enum       QCtmMessageBox::ButtonRole
+                按钮角色.
+    \value      InvalidRole     无效按钮.
+    \value      AcceptRole      点击按钮将使窗口以 Accepted 关闭，例如：“确定” 按钮.
+    \value      RejectRole      点击按钮将使窗口以 Rejected 关闭，例如：“取消” 按钮.
+    \value      DestructiveRole 点击按钮将取消更改并关闭弹窗，例如：“放弃更改” 按钮.
+    \value      ActionRole      点击该按钮将导致对话框中的元素发生更改.
+    \value      HelpRole        点击按钮请求帮助.
+    \value      YesRole         类似于 “是” 按钮.
+    \value      NoRole          类似于 “否” 按钮.
+    \value      ApplyRole       类似于 “应用” 按钮.
+    \value      ResetRole       类似于 “恢复默认” 按钮.
 
-    This enum describes the roles that can be used to describe buttons in
-    the button box. Combinations of these roles are as flags used to
-    describe different aspects of their behavior.
+    \omitvalue  NRoles
 
-    \value InvalidRole The button is invalid.
-    \value AcceptRole Clicking the button causes the dialog to be accepted
-           (e.g. OK).
-    \value RejectRole Clicking the button causes the dialog to be rejected
-           (e.g. Cancel).
-    \value DestructiveRole Clicking the button causes a destructive change
-           (e.g. for Discarding Changes) and closes the dialog.
-    \value ActionRole Clicking the button causes changes to the elements within
-           the dialog.
-    \value HelpRole The button can be clicked to request help.
-    \value YesRole The button is a "Yes"-like button.
-    \value NoRole The button is a "No"-like button.
-    \value ApplyRole The button applies current changes.
-    \value ResetRole The button resets the dialog's fields to default values.
-
-    \omitvalue NRoles
-
-    \sa StandardButton
+    \sa         StandardButton
 */
 
 /*!
-    \enum QCtmMessageBox::StandardButton
+    \enum       QCtmMessageBox::StandardButton
+                这些枚举描述了标准按钮的标志。每个按钮有一个对应的 \l ButtonRole.
 
-    These enums describe flags for standard buttons. Each button has a
-    defined \l ButtonRole.
-
-    \value Ok An "OK" button defined with the \l AcceptRole.
-    \value Open An "Open" button defined with the \l AcceptRole.
-    \value Save A "Save" button defined with the \l AcceptRole.
-    \value Cancel A "Cancel" button defined with the \l RejectRole.
-    \value Close A "Close" button defined with the \l RejectRole.
-    \value Discard A "Discard" or "Don't Save" button, depending on the platform,
-                    defined with the \l DestructiveRole.
-    \value Apply An "Apply" button defined with the \l ApplyRole.
-    \value Reset A "Reset" button defined with the \l ResetRole.
-    \value RestoreDefaults A "Restore Defaults" button defined with the \l ResetRole.
-    \value Help A "Help" button defined with the \l HelpRole.
-    \value SaveAll A "Save All" button defined with the \l AcceptRole.
-    \value Yes A "Yes" button defined with the \l YesRole.
-    \value YesToAll A "Yes to All" button defined with the \l YesRole.
-    \value No A "No" button defined with the \l NoRole.
-    \value NoToAll A "No to All" button defined with the \l NoRole.
-    \value Abort An "Abort" button defined with the \l RejectRole.
-    \value Retry A "Retry" button defined with the \l AcceptRole.
-    \value Ignore An "Ignore" button defined with the \l AcceptRole.
-
-    \value NoButton An invalid button.
+    \value      Ok              “确定” 按钮，对应 \l AcceptRole.
+    \value      Open            “打开” 按钮，对应 \l AcceptRole.
+    \value      Save            “保存” 按钮，对应 \l AcceptRole.
+    \value      Cancel          “取消” 按钮，对应 \l RejectRole.
+    \value      Close           “关闭” 按钮，对应 \l RejectRole.
+    \value      Discard         “放弃更改” 按钮，对应 \l DestructiveRole.
+    \value      Apply           “应用” 按钮，对应 \l ApplyRole.
+    \value      Reset           “重置” 按钮，对应 \l ResetRole.
+    \value      RestoreDefaults “恢复默认” 按钮，对应 \l ResetRole.
+    \value      Help            “帮助” 按钮，对应 \l HelpRole.
+    \value      SaveAll         “全部保存” 按钮，对应 \l AcceptRole.
+    \value      Yes             “是” 按钮，对应 \l YesRole.
+    \value      YesToAll        “全部是” 按钮，对应 \l YesRole.
+    \value      No              “否” 按钮，对应 \l NoRole.
+    \value      NoToAll         “全部否” 按钮，对应 \l NoRole.
+    \value      Abort           “中止” 按钮，对应 \l RejectRole.
+    \value      Retry           “重试” 按钮，对应 \l AcceptRole.
+    \value      Ignore          “忽略” 按钮，对应 \l AcceptRole.
+    \value      NoButton        无效按钮.
 
     \omitvalue FirstButton
     \omitvalue LastButton
@@ -114,39 +103,25 @@ struct QCtmMessageBox::Impl
 */
 
 /*!
-    \enum QCtmMessageBox::Icon
-
-    This enum has the following values:
-
-    \value NoIcon the message box does not have any icon.
-
-    \value Question an icon indicating that
-    the message is asking a question.
-
-    \value Information an icon indicating that
-    the message is nothing out of the ordinary.
-
-    \value Warning an icon indicating that the
-    message is a warning, but can be dealt with.
-
-    \value Critical an icon indicating that
-    the message represents a critical problem.
-
+    \enum       QCtmMessageBox::Icon
+                显示图标.
+    \value      NoIcon      无图标.
+    \value      Question    询问图标.
+    \value      Information 信息图标.
+    \value      Warning     警告图标.
+    \value      Critical    错误图标.
 */
 
 /*!
     \property   QCtmMessageBox::text
-    \brief      This property holds the message box text to be displayed.
-                The text will be interpreted either as a plain text or as rich text, depending on the text format setting (QCtmMessageBox::textFormat). The default setting is Qt::AutoText, i.e., the message box will try to auto-detect the format of the text.
-                The default value of this property is an empty string.
+    \brief      消息弹窗的显示文本.
 */
 
 /*!
-    \property QCtmMessageBox::icon
-    \brief the message box's icon
+    \property   QCtmMessageBox::icon
+    \brief      消息弹窗的图标.
 
-    The icon of the message box can be specified with one of the
-    values:
+    这些图标可以是下面的任意一个:
 
     \list
     \li QCtmMessageBox::NoIcon
@@ -156,65 +131,36 @@ struct QCtmMessageBox::Impl
     \li QCtmMessageBox::Critical
     \endlist
 
-    The default is QCtmMessageBox::NoIcon.
-
-    The pixmap used to display the actual icon depends on the current
-    \l{QWidget::style} {GUI style}. You can also set a custom pixmap
-    for the icon by setting the \l{QCtmMessageBox::iconPixmap} {icon
-    pixmap} property.
+    默认为 QCtmMessageBox::NoIcon.
 
     \sa iconPixmap
 */
 
 /*!
-    \property QCtmMessageBox::iconPixmap
-    \brief the current icon
-
-    The icon currently used by the message box. Note that it's often
-    hard to draw one pixmap that looks appropriate in all GUI styles;
-    you may want to supply a different pixmap for each platform.
-
-    By default, this property is undefined.
-
-    \sa icon
+    \property   QCtmMessageBox::iconPixmap
+    \brief      当前显示图标.
+    \sa         icon
 */
 
 /*!
-    \property QCtmMessageBox::textFormat
-    \brief the format of the text displayed by the message box
-
-    The current text format used by the message box. See the \l
-    Qt::TextFormat enum for an explanation of the possible options.
-
-    The default format is Qt::AutoText.
-
-    \sa setText()
+    \property   QCtmMessageBox::textFormat
+    \brief      消息框显示的文本格式.
+    \sa         setText()
 */
 
 /*!
-    \property QCtmMessageBox::standardButtons
-    \brief collection of standard buttons in the message box
-
-    This property controls which standard buttons are used by the message box.
-
-    By default, this property contains no standard buttons.
-
-    \sa addButton
+    \property   QCtmMessageBox::standardButtons
+    \brief      消息弹窗的按钮集合.
+    \sa         addButton
 */
 
 /*!
-    \property QMessageBox::textInteractionFlags
-
-    Specifies how the label of the message box should interact with user
-    input.
-
-    The default value depends on the style.
-
-    \sa QStyle::SH_MessageBox_TextInteractionFlags
+    \property   QCtmMessageBox::textInteractionFlags
+                指定消息框的标签应如何与用户交互输入。
 */
 
 /*!
-    \brief      Constructs a message box with the given \a parent.
+    \brief      构造函数 \a parent.
 */
 QCtmMessageBox::QCtmMessageBox(QWidget* parent)
     : QCtmDialog(parent)
@@ -224,7 +170,7 @@ QCtmMessageBox::QCtmMessageBox(QWidget* parent)
 }
 
 /*!
-    \brief      Constructs a message box with the given \a icon, \a title, \a text, \a buttons, \a parent, \a f.
+    \brief      构造函数，并指定显示图标 \a icon, 标题文本 \a title, 显示文本 \a text, 按钮集合 \a buttons, 父窗口 \a parent, 窗口风格 \a f.
 */
 QCtmMessageBox::QCtmMessageBox(Icon icon
     , const QString& title
@@ -242,14 +188,14 @@ QCtmMessageBox::QCtmMessageBox(Icon icon
 }
 
 /*!
-    \brief      Destorys the message box.
+    \brief      析构函数.
 */
 QCtmMessageBox::~QCtmMessageBox()
 {
 }
 
 /*!
-    \brief      Sets the given standard \a buttons.
+    \brief      设置按钮集合 \a buttons.
     \sa         standardButtons()
 */
 void QCtmMessageBox::setStandardButtons(StandardButtons buttons)
@@ -265,7 +211,7 @@ void QCtmMessageBox::setStandardButtons(StandardButtons buttons)
 }
 
 /*!
-    \brief      Returns the standard buttons.
+    \brief      返回按钮集合.
     \sa         setStandardButtons
 */
 QCtmMessageBox::StandardButtons QCtmMessageBox::standardButtons() const
@@ -274,7 +220,7 @@ QCtmMessageBox::StandardButtons QCtmMessageBox::standardButtons() const
 }
 
 /*!
-    \brief      Sets the message box's default button to \a button.
+    \brief      设置默认按钮 \a button.
     \sa         defaultButton
 */
 void QCtmMessageBox::setDefaultButton(StandardButton button)
@@ -288,7 +234,7 @@ void QCtmMessageBox::setDefaultButton(StandardButton button)
 }
 
 /*!
-    \brief      Returns the message box's default button.
+    \brief      返回默认按钮.
     \sa         setDefaultButton
 */
 QCtmMessageBox::StandardButton QCtmMessageBox::defaultButton()
@@ -297,8 +243,7 @@ QCtmMessageBox::StandardButton QCtmMessageBox::defaultButton()
 }
 
 /*!
-    \brief      Returns the button that was clicked by the user, or nullptr if the user hit the Esc key and no escape button was set.
-                If exec() hasn't been called yet, returns nullptr.
+    \brief      返回点击的按钮.
 */
 QAbstractButton* QCtmMessageBox::clickedButton() const
 {
@@ -306,7 +251,7 @@ QAbstractButton* QCtmMessageBox::clickedButton() const
 }
 
 /*!
-    \brief      Returns the standard button enum value corresponding to the given \a button, or NoButton if the given button isn't a standard button.
+    \brief      返回按钮对应的标准按钮 \a button.
 */
 QCtmMessageBox::StandardButton QCtmMessageBox::standardButton(QAbstractButton* button) const
 {
@@ -319,7 +264,7 @@ QCtmMessageBox::StandardButton QCtmMessageBox::standardButton(QAbstractButton* b
 }
 
 /*!
-    \brief      Adds the given \a button to the message box with the specified \a role.
+    \brief      添加按钮 \a button 并指定其角色 \a role.
     \sa         removeButton
 */
 void QCtmMessageBox::addButton(QAbstractButton* button, ButtonRole role)
@@ -332,7 +277,7 @@ void QCtmMessageBox::addButton(QAbstractButton* button, ButtonRole role)
 }
 
 /*!
-    \brief      Creates a button with the given \a text, adds it to the message box for the specified \a role, and returns it.
+    \brief      创建文本为 \a text 的按钮并指定其角色 \a role.
     \overload   addButton
     \sa         removeButton
 */
@@ -344,7 +289,7 @@ QPushButton* QCtmMessageBox::addButton(const QString& text, ButtonRole role)
 }
 
 /*!
-    \brief      Adds a standard button to the message box if it is valid to do so, and returns the push \a button.
+    \brief      添加标准按钮 \a button.
     \overload   addButton
     \sa         removeButton
 */
@@ -354,7 +299,7 @@ QPushButton* QCtmMessageBox::addButton(StandardButton button)
 }
 
 /*!
-    \brief      Removes button from the \a button box without deleting it.
+    \brief      移除按钮 \a button.
     \sa         addButton
 */
 void QCtmMessageBox::removeButton(QAbstractButton* button)
@@ -365,7 +310,7 @@ void QCtmMessageBox::removeButton(QAbstractButton* button)
 }
 
 /*!
-    \brief      Sets the given \a text.
+    \brief      设置显示文本 \a text.
     \sa         text()
 */
 void QCtmMessageBox::setText(const QString& text)
@@ -374,7 +319,7 @@ void QCtmMessageBox::setText(const QString& text)
 }
 
 /*!
-    \brief      Returns the text.
+    \brief      返回显示文本.
     \sa         setText
 */
 QString QCtmMessageBox::text() const
@@ -383,7 +328,7 @@ QString QCtmMessageBox::text() const
 }
 
 /*!
-    \brief      Returns the icon.
+    \brief      返回显示图标.
     \sa         setIcon
 */
 QCtmMessageBox::Icon QCtmMessageBox::icon() const
@@ -392,7 +337,7 @@ QCtmMessageBox::Icon QCtmMessageBox::icon() const
 }
 
 /*!
-    \brief      Sets the given \a icon.
+    \brief      设置显示图标 \a icon.
     \sa         icon()
 */
 void QCtmMessageBox::setIcon(Icon icon)
@@ -418,7 +363,7 @@ void QCtmMessageBox::setIcon(Icon icon)
 }
 
 /*!
-    \brief      Returns the icon pixmap.
+    \brief      返回图标.
     \sa         setIconPixmap
 */
 QPixmap QCtmMessageBox::iconPixmap() const
@@ -427,7 +372,7 @@ QPixmap QCtmMessageBox::iconPixmap() const
 }
 
 /*!
-    \brief      Sets the given \a pixmap, the \l icon will be set to be Icon::NoIcon.
+    \brief      设置自定义的图标 \a pixmap, 并且 \l icon 将被设置为 Icon::NoIcon.
     \sa         iconPixmap
 */
 void QCtmMessageBox::setIconPixmap(const QPixmap& pixmap)
@@ -437,7 +382,7 @@ void QCtmMessageBox::setIconPixmap(const QPixmap& pixmap)
 }
 
 /*!
-    \brief      Returns the text format.
+    \brief      返回文本格式.
     \sa         setTextFormat
 */
 Qt::TextFormat QCtmMessageBox::textFormat() const
@@ -446,7 +391,7 @@ Qt::TextFormat QCtmMessageBox::textFormat() const
 }
 
 /*!
-    \brief      Sets the give text \a format.
+    \brief      设置文本格式 \a format.
     \sa         textFormat()
 */
 void QCtmMessageBox::setTextFormat(Qt::TextFormat format)
@@ -455,7 +400,7 @@ void QCtmMessageBox::setTextFormat(Qt::TextFormat format)
 }
 
 /*!
-    \brief      Sets the given text interaction \a flags.
+    \brief      设置文本交互方式 \a flags.
     \sa         textInteractionFlags()
 */
 void QCtmMessageBox::setTextInteractionFlags(Qt::TextInteractionFlags flags)
@@ -464,7 +409,7 @@ void QCtmMessageBox::setTextInteractionFlags(Qt::TextInteractionFlags flags)
 }
 
 /*!
-    \brief      Returns the given text interaction flags.
+    \brief      返回文本交互方式.
     \sa         setTextInteractionFlags
 */
 Qt::TextInteractionFlags QCtmMessageBox::textInteractionFlags() const
@@ -473,10 +418,14 @@ Qt::TextInteractionFlags QCtmMessageBox::textInteractionFlags() const
 }
 
 /*!
-    \brief      Constructs and show a message box by given \a parent, \a title, \a text, \a buttons, \a defaultButton.
+    \brief      构造一个错误消息弹窗，并指定标题文本 \a title, 显示文本 \a text, 按钮集合 \a buttons, 默认按钮 \a defaultButton, 父窗口 \a parent.
     \sa         QMessageBox::critical
 */
-QCtmMessageBox::StandardButton QCtmMessageBox::critical(QWidget* parent, const QString& title, const QString& text, StandardButtons buttons /*= Ok */, StandardButton defaultButton /*= NoButton*/)
+QCtmMessageBox::StandardButton QCtmMessageBox::critical(QWidget* parent
+    , const QString& title
+    , const QString& text
+    , StandardButtons buttons /*= Ok */
+    , StandardButton defaultButton /*= NoButton*/)
 {
     QCtmMessageBox box(Icon::Critical, title, text, buttons, parent);
     box.setDefaultButton(defaultButton);
@@ -485,10 +434,14 @@ QCtmMessageBox::StandardButton QCtmMessageBox::critical(QWidget* parent, const Q
 }
 
 /*!
-    \brief      Constructs and show a message box by given \a parent, \a title, \a text, \a buttons, \a defaultButton.
+    \brief      构造一个信息消息弹窗，并指定标题文本 \a title, 显示文本 \a text, 按钮集合 \a buttons, 默认按钮 \a defaultButton, 父窗口 \a parent.
     \sa         QMessageBox::information
 */
-QCtmMessageBox::StandardButton QCtmMessageBox::information(QWidget* parent, const QString& title, const QString& text, StandardButtons buttons /*= Ok */, StandardButton defaultButton /*= NoButton*/)
+QCtmMessageBox::StandardButton QCtmMessageBox::information(QWidget* parent
+    , const QString& title
+    , const QString& text
+    , StandardButtons buttons /*= Ok */
+    , StandardButton defaultButton /*= NoButton*/)
 {
     QCtmMessageBox box(Icon::Information, title, text, buttons, parent);
     box.setDefaultButton(defaultButton);
@@ -497,10 +450,14 @@ QCtmMessageBox::StandardButton QCtmMessageBox::information(QWidget* parent, cons
 }
 
 /*!
-    \brief      Constructs and show a message box by given \a parent, \a title, \a text, \a buttons, \a defaultButton.
+    \brief      构造一个询问消息弹窗，并指定标题文本 \a title, 显示文本 \a text, 按钮集合 \a buttons, 默认按钮 \a defaultButton, 父窗口 \a parent.
     \sa         QMessageBox::question
 */
-QCtmMessageBox::StandardButton QCtmMessageBox::question(QWidget* parent, const QString& title, const QString& text, StandardButtons buttons /*= StandardButtons(Yes | No) */, StandardButton defaultButton /*= NoButton*/)
+QCtmMessageBox::StandardButton QCtmMessageBox::question(QWidget* parent
+    , const QString& title
+    , const QString& text
+    , StandardButtons buttons /*= StandardButtons(Yes | No) */
+    , StandardButton defaultButton /*= NoButton*/)
 {
     QCtmMessageBox box(Icon::Question, title, text, buttons, parent);
     box.setDefaultButton(defaultButton);
@@ -509,10 +466,14 @@ QCtmMessageBox::StandardButton QCtmMessageBox::question(QWidget* parent, const Q
 }
 
 /*!
-    \brief      Constructs and show a message box by given \a parent, \a title, \a text, \a buttons, \a defaultButton.
+    \brief      构造一个警告消息弹窗，并指定标题文本 \a title, 显示文本 \a text, 按钮集合 \a buttons, 默认按钮 \a defaultButton, 父窗口 \a parent.
     \sa         QMessageBox::warning
 */
-QCtmMessageBox::StandardButton QCtmMessageBox::warning(QWidget* parent, const QString& title, const QString& text, StandardButtons buttons /*= Ok */, StandardButton defaultButton /*= NoButton*/)
+QCtmMessageBox::StandardButton QCtmMessageBox::warning(QWidget* parent
+    , const QString& title
+    , const QString& text
+    , StandardButtons buttons /*= Ok */
+    , StandardButton defaultButton /*= NoButton*/)
 {
     QCtmMessageBox box(Icon::Warning, title, text, buttons, parent);
     box.setDefaultButton(defaultButton);
@@ -533,7 +494,7 @@ void QCtmMessageBox::showEvent(QShowEvent* event)
 }
 
 /*!
-    \brief      Initialization
+    \brief      初始化.
 */
 void QCtmMessageBox::init()
 {
@@ -559,7 +520,7 @@ void QCtmMessageBox::init()
 }
 
 /*!
-    \brief      Calculate the minimum width of the message box.
+    \brief      返回最小布局宽度.
     \sa         updateSize
 */
 int QCtmMessageBox::layoutMinimumWidth()
@@ -569,7 +530,7 @@ int QCtmMessageBox::layoutMinimumWidth()
 }
 
 /*!
-    \brief      Calculate the size of the message box.
+    \brief      计算大小.
     \sa         layoutMinimumWidth
 */
 void QCtmMessageBox::updateSize()
@@ -619,7 +580,7 @@ void QCtmMessageBox::updateSize()
 }
 
 /*!
-    \brief      Calculate the escape button.
+    \brief      检测取消按钮动作.
 */
 void QCtmMessageBox::detectEscapeButton() const
 {

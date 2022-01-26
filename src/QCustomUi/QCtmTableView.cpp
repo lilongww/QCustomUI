@@ -26,14 +26,15 @@
 
 /*!
     \class      QCtmTableView
-    \brief      QCtmTableView provide a custom looking table view.
+    \brief      自定义外观的 TableView.
     \inherits   QTableView
     \ingroup    QCustomUi
     \inmodule   QCustomUi
+    \inheaderfile QCtmTableView.h
 */
 
 /*!
-    \brief      Constructs a table view with \a parent.
+    \brief      构造函数 \a parent.
 */
 QCtmTableView::QCtmTableView(QWidget* parent)
     : QTableView(parent)
@@ -48,7 +49,7 @@ QCtmTableView::QCtmTableView(QWidget* parent)
 }
 
 /*!
-    \brief      Destroys the table view.
+    \brief      析构函数.
 */
 QCtmTableView::~QCtmTableView()
 {
@@ -79,7 +80,7 @@ bool QCtmTableView::viewportEvent(QEvent* event)
 }
 
 /*!
-    \brief      Sets the hover \a index.
+    \brief      设置 hover 的 \a index.
 */
 void QCtmTableView::setHoverIndex(const QModelIndex& index)
 {
