@@ -45,8 +45,8 @@ struct QCtmDigitKeyboard::Impl
     \class      QCtmDigitKeyboard
     \brief      数字输入键盘.
     \inherits   QCtmDialog
-    \ingroup    qcustomui
-    \inmodule   qcustomui
+    \ingroup    QCustomUi
+    \inmodule   QCustomUi
     \inheaderfile QCtmDigitKeyboard.h
 */
 

@@ -28,7 +28,9 @@ class QStyleOptionFrame;
 
 class QCUSTOMUI_EXPORT QCtmPathBrowser : public QWidget
 {
-    Q_OBJECT
+    Q_PROPERTY(QString path READ path WRITE setPath)
+        Q_PROPERTY(bool readOnly READ readOnly WRITE setReadOnly)
+        Q_OBJECT
 public:
     QCtmPathBrowser(QWidget* parent = nullptr);
     ~QCtmPathBrowser();
