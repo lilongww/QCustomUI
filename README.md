@@ -8,9 +8,16 @@ QCustomUi是一个自定义UI库，主要提供无边框窗口和一些自定义
 
 文档：https://llongww.gitee.io/qcustomuidocument
 
+**[1.8.0]**
+```
+1.添加QCtmPathBrowser；
+2.添加QCtmDigitKeyboard；
+3.优化部分代码，优化文档。
+```
+
 **[1.7.0]**
 ```
-1.QCtmNavigationBar添加ActionPosition::Center选项，可以将Action添加到中央位置;
+1.QCtmNavigationBar添加ActionPosition::Center选项，可以将Action添加到中央位置；
 2.优化dialog最大化，关闭，打开，恢复正常大小时，大小依然为最大化大小的问题；
 3.重新实现QCtmLoadingDialog，优化流程较短时，loading窗口法起到阻塞效果的问题；
 4.MessageTip优化对触摸屏的显示，添加Clear All按钮，添加删除/清空消息的确认API, 优化背景色；
