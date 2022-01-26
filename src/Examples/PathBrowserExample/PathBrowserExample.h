@@ -11,5 +11,6 @@ public:
     ~PathBrowserExample();
 
 private:
-    QCtmPathBrowser* m_path;
+    QCtmPathBrowser* m_path1;
+    QCtmPathBrowser* m_path2;
 };

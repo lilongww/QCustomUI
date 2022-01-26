@@ -20,6 +20,7 @@
 #include "qcustomui_global.h"
 
 #include <QWidget>
+#include <QLineEdit>
 
 #include <memory>
 
@@ -32,10 +33,12 @@ public:
     QCtmPathBrowser(QWidget* parent = nullptr);
     ~QCtmPathBrowser();
 
-    void setPath(const QString& path);
+    void setPath(QString path);
     QString path() const;
     void setReadOnly(bool flag);
     bool readOnly() const;
+    void setLineEdit(QLineEdit* editor);
+    QLineEdit* lineEdit() const;
 signals:
     void pathChanged(const QString& path);
     void pathClicked(const QString& path);
@@ -45,10 +48,13 @@ protected:
     QSize minimumSizeHint() const override;
     bool event(QEvent* e) override;
     void resizeEvent(QResizeEvent* event) override;
+    void mousePressEvent(QMouseEvent* event) override;
     void mouseReleaseEvent(QMouseEvent* event) override;
+    bool eventFilter(QObject* watched, QEvent* event) override;
+    virtual void initStyleOption(QStyleOptionFrame* option) const;
+    void cancelEditor();
 private:
     void generatorNodes();
-    void initStyleOption(QStyleOptionFrame* option) const;
 private:
     struct Impl;
     std::unique_ptr<Impl> m_impl;
