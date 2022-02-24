@@ -1,30 +1,20 @@
-#include "MultiComboBox.h"
+﻿#include "MultiComboBox.h"
 
 #include <QCustomUi/QCtmMultiComboBox.h>
 
-MultiComboBox::MultiComboBox(QObject* parent /*= nullptr*/)
-    : QObject(parent)
-{
+MultiComboBox::MultiComboBox(QObject* parent /*= nullptr*/) : QObject(parent) {}
 
-}
-
-QIcon MultiComboBox::icon() const
-{
-    return {};
-}
+QIcon MultiComboBox::icon() const { return {}; }
 
 QString MultiComboBox::domXml() const
 {
     return "<ui language=\"c++\">\n"
-        " <widget class=\"QCtmMultiComboBox\" name=\"multiComboBox\">\n"
-        " </widget>\n"
-        "</ui>\n";
+           " <widget class=\"QCtmMultiComboBox\" name=\"multiComboBox\">\n"
+           " </widget>\n"
+           "</ui>\n";
 }
 
-QWidget* MultiComboBox::createWidget(QWidget* parent)
-{
-    return new QCtmMultiComboBox(parent);
-}
+QWidget* MultiComboBox::createWidget(QWidget* parent) { return new QCtmMultiComboBox(parent); }
 
 void MultiComboBox::initialize(QDesignerFormEditorInterface* core)
 {
@@ -33,4 +23,3 @@ void MultiComboBox::initialize(QDesignerFormEditorInterface* core)
 
     m_initialized = true;
 }
-

@@ -1,11 +1,13 @@
-#pragma once
+﻿#pragma once
 
 #include <QDesignerCustomWidgetInterface>
 
-class ComboBox : public QObject, public QDesignerCustomWidgetInterface
+class ComboBox
+    : public QObject
+    , public QDesignerCustomWidgetInterface
 {
     Q_OBJECT
-        Q_INTERFACES(QDesignerCustomWidgetInterface)
+    Q_INTERFACES(QDesignerCustomWidgetInterface)
 public:
     ComboBox(QObject* parent = nullptr);
     bool isContainer() const override { return false; }
@@ -19,11 +21,12 @@ public:
     QString whatsThis() const override { return "QCtmComboBox"; }
     QWidget* createWidget(QWidget* parent) override;
     void initialize(QDesignerFormEditorInterface* core) override
-    { 
+    {
         if (m_initialized)
             return;
         m_initialized = true;
     }
+
 private:
-    bool m_initialized{ false };
+    bool m_initialized { false };
 };

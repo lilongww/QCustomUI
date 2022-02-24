@@ -1,4 +1,4 @@
-/*********************************************************************************
+﻿/*********************************************************************************
 **                                                                              **
 **  Copyright (C) 2019-2020 LiLong                                              **
 **  This file is part of QCustomUi.                                             **
@@ -21,8 +21,8 @@
 
 #include "qcustomui_global.h"
 
-#include <QString>
 #include <QDateTime>
+#include <QString>
 
 #include <memory>
 
@@ -31,10 +31,9 @@ class QCUSTOMUI_EXPORT QCtmAbstractMessageTipData
 public:
     QCtmAbstractMessageTipData();
     virtual ~QCtmAbstractMessageTipData();
-
 };
 
-class QCUSTOMUI_EXPORT QCtmMessageTipData :public QCtmAbstractMessageTipData
+class QCUSTOMUI_EXPORT QCtmMessageTipData : public QCtmAbstractMessageTipData
 {
 public:
     enum Column
@@ -49,13 +48,13 @@ public:
     ~QCtmMessageTipData();
 
     void setTitle(const QString& title);
-    const QString& title()const;
+    const QString& title() const;
     void setContent(const QString& content);
-    const QString& content()const;
+    const QString& content() const;
     void setDateTime(const QDateTime& time);
-    const QDateTime& dateTime()const;
+    const QDateTime& dateTime() const;
+
 private:
     struct Impl;
     std::unique_ptr<Impl> m_impl;
 };
-

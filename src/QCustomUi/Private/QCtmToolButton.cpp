@@ -20,26 +20,29 @@
 #include "QCtmToolButton_p.h"
 
 #include <QAction>
-#include <QStyle>
 #include <QEvent>
+#include <QStyle>
 #include <QStyleOption>
 
 struct QCtmToolButton::Impl
 {
-    bool showToolTip{ true };
-    bool selected{ false };
+    bool showToolTip { true };
+    bool selected { false };
 };
 
-QCtmToolButton::QCtmToolButton(QWidget* parent)
-    : QToolButton(parent)
-    , m_impl(std::make_unique<Impl>())
+QCtmToolButton::QCtmToolButton(QWidget* parent) : QToolButton(parent), m_impl(std::make_unique<Impl>())
 {
-    connect(this, &QAbstractButton::toggled, this, [=](bool) {style()->unpolish(this); style()->polish(this); });
+    connect(this,
+            &QAbstractButton::toggled,
+            this,
+            [=](bool)
+            {
+                style()->unpolish(this);
+                style()->polish(this);
+            });
 }
 
-QCtmToolButton::~QCtmToolButton()
-{
-}
+QCtmToolButton::~QCtmToolButton() {}
 
 void QCtmToolButton::setIcon(const QIcon& icon)
 {
@@ -51,28 +54,18 @@ void QCtmToolButton::setIcon(const QIcon& icon)
         QToolButton::setIcon(icon);
 }
 
-void QCtmToolButton::setShowToolTips(bool show)
-{
-    m_impl->showToolTip = show;
-}
+void QCtmToolButton::setShowToolTips(bool show) { m_impl->showToolTip = show; }
 
-bool QCtmToolButton::showToolTips() const
-{
-    return m_impl->showToolTip;
-}
+bool QCtmToolButton::showToolTips() const { return m_impl->showToolTip; }
 
-void QCtmToolButton::setSelected(bool select)
-{
-    m_impl->selected = select;
-}
+void QCtmToolButton::setSelected(bool select) { m_impl->selected = select; }
 
 void QCtmToolButton::initStyleOption(QStyleOptionToolButton* option) const
 {
     QToolButton::initStyleOption(option);
     if (m_impl->selected)
-        option->icon = this->icon().pixmap(iconSize()
-            , m_impl->selected ? QIcon::Mode::Selected : QIcon::Mode::Normal
-            , isChecked() ? QIcon::State::On : QIcon::State::Off);
+        option->icon = this->icon().pixmap(
+            iconSize(), m_impl->selected ? QIcon::Mode::Selected : QIcon::Mode::Normal, isChecked() ? QIcon::State::On : QIcon::State::Off);
 }
 
 bool QCtmToolButton::event(QEvent* e)

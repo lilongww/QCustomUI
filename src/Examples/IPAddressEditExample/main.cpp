@@ -1,8 +1,8 @@
-#include "IPAddressEditExample.h"
+﻿#include "IPAddressEditExample.h"
 
 #include <QCustomUi/QCtmApplication.h>
 
-int main(int argc, char *argv[])
+int main(int argc, char* argv[])
 {
     QCtmApplication a(argc, argv);
     IPAddressEditExample w;

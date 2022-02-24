@@ -19,8 +19,8 @@
 
 #include "qcustomui_global.h"
 
-#include <QWidget>
 #include <QLineEdit>
+#include <QWidget>
 
 #include <memory>
 
@@ -29,8 +29,8 @@ class QStyleOptionFrame;
 class QCUSTOMUI_EXPORT QCtmPathBrowser : public QWidget
 {
     Q_PROPERTY(QString path READ path WRITE setPath)
-        Q_PROPERTY(bool readOnly READ readOnly WRITE setReadOnly)
-        Q_OBJECT
+    Q_PROPERTY(bool readOnly READ readOnly WRITE setReadOnly)
+    Q_OBJECT
 public:
     QCtmPathBrowser(QWidget* parent = nullptr);
     ~QCtmPathBrowser();
@@ -44,6 +44,7 @@ public:
 signals:
     void pathChanged(const QString& path);
     void pathClicked(const QString& path);
+
 protected:
     void paintEvent(QPaintEvent* event) override;
     QSize sizeHint() const override;
@@ -55,8 +56,10 @@ protected:
     bool eventFilter(QObject* watched, QEvent* event) override;
     virtual void initStyleOption(QStyleOptionFrame* option) const;
     void cancelEditor();
+
 private:
     void generatorNodes();
+
 private:
     struct Impl;
     std::unique_ptr<Impl> m_impl;

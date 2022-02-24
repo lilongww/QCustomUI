@@ -1,4 +1,4 @@
-/*********************************************************************************
+﻿/*********************************************************************************
 **                                                                              **
 **  Copyright (C) 2019-2020 LiLong                                              **
 **  This file is part of QCustomUi.                                             **
@@ -19,29 +19,29 @@
 
 #include "QCtmFramelessDelegate_p.h"
 
-#include <QEvent>
-#include <QPainter>
-#include <QMouseEvent>
-#include <QResizeEvent>
-#include <qmath.h>
-#include <QStyleOption>
-#include <qdrawutil.h>
 #include <QApplication>
 #include <QBackingStore>
-#include <QLayout>
 #include <QDebug>
-#include <QPlatformSurfaceEvent>
 #include <QElapsedTimer>
+#include <QEvent>
+#include <QLayout>
+#include <QMouseEvent>
+#include <QPainter>
 #include <QPainterPath>
+#include <QPlatformSurfaceEvent>
+#include <QResizeEvent>
+#include <QStyleOption>
+#include <qdrawutil.h>
+#include <qmath.h>
 
 #include <assert.h>
 
 enum Direction
 {
     NONE,
-    UP = 1,
-    DOWN = 2,
-    LEFT = 4,
+    UP    = 1,
+    DOWN  = 2,
+    LEFT  = 4,
     RIGHT = 8
 };
 
@@ -49,25 +49,25 @@ Q_DECLARE_FLAGS(Directions, Direction)
 
 struct QCtmFramelessDelegate::Impl
 {
-    QWidget* parent{ nullptr };
+    QWidget* parent { nullptr };
     Directions direction;
-#if QT_VERSION < QT_VERSION_CHECK(6,0,0)
+#if QT_VERSION < QT_VERSION_CHECK(6, 0, 0)
     QPoint mousePressPos;
 #else
     QPointF mousePressPos;
 #endif
     QElapsedTimer moveBarElapsedTimer;
-    bool mousePressed{ false };
+    bool mousePressed { false };
     QWidgetList moveBars;
-    bool shadowless{ false };
+    bool shadowless { false };
     int margin = 8;
-    int framelessMouseHandleWidth{ 0 };
+    int framelessMouseHandleWidth { 0 };
 
     struct MoveBar
     {
-        bool mousePressed{ false };
+        bool mousePressed { false };
         QPoint mousePosRange;
-    }moveBarInfo;
+    } moveBarInfo;
 };
 
 QCursor cursorShape(Directions direction)
@@ -107,8 +107,7 @@ void releaseHover(QWidget* w)
 }
 
 QCtmFramelessDelegate::QCtmFramelessDelegate(QWidget* parent, const QWidgetList& moveBars)
-    : QObject(parent)
-    , m_impl(std::make_unique<Impl>())
+    : QObject(parent), m_impl(std::make_unique<Impl>())
 {
     m_impl->direction |= Direction::NONE;
     m_impl->parent = parent;
@@ -128,15 +127,9 @@ QCtmFramelessDelegate::QCtmFramelessDelegate(QWidget* parent, const QWidgetList&
     }
 }
 
-QCtmFramelessDelegate::QCtmFramelessDelegate(QWidget* parent, QWidget* title)
-    : QCtmFramelessDelegate(parent, QWidgetList() << title)
-{
+QCtmFramelessDelegate::QCtmFramelessDelegate(QWidget* parent, QWidget* title) : QCtmFramelessDelegate(parent, QWidgetList() << title) {}
 
-}
-
-QCtmFramelessDelegate::~QCtmFramelessDelegate()
-{
-}
+QCtmFramelessDelegate::~QCtmFramelessDelegate() {}
 
 void QCtmFramelessDelegate::addMoveBar(QWidget* widget)
 {
@@ -160,7 +153,7 @@ void QCtmFramelessDelegate::setShadowless(bool flag)
 {
     m_impl->shadowless = flag;
     m_impl->parent->setAttribute(Qt::WA_TranslucentBackground, !flag);
-    m_impl->margin = flag ? 0 : 8;
+    m_impl->margin                    = flag ? 0 : 8;
     m_impl->framelessMouseHandleWidth = flag ? 5 : 0;
     if (!m_impl->parent->isMaximized())
     {
@@ -168,10 +161,7 @@ void QCtmFramelessDelegate::setShadowless(bool flag)
     }
 }
 
-bool QCtmFramelessDelegate::shadowless() const
-{
-    return m_impl->shadowless;
-}
+bool QCtmFramelessDelegate::shadowless() const { return m_impl->shadowless; }
 
 bool QCtmFramelessDelegate::eventFilter(QObject* obj, QEvent* event)
 {
@@ -227,75 +217,77 @@ bool QCtmFramelessDelegate::eventFilter(QObject* obj, QEvent* event)
         {
 
         case QEvent::MouseButtonPress:
-        {
-            auto e = (QMouseEvent*)event;
-            if (e->button() == Qt::LeftButton)
             {
-                m_impl->moveBarInfo.mousePressed = true;
-                m_impl->moveBarInfo.mousePosRange = QCursor::pos() - m_impl->parent->pos();
-                m_impl->moveBarElapsedTimer.restart();
-                moveBar->grabMouse();
+                auto e = (QMouseEvent*)event;
+                if (e->button() == Qt::LeftButton)
+                {
+                    m_impl->moveBarInfo.mousePressed  = true;
+                    m_impl->moveBarInfo.mousePosRange = QCursor::pos() - m_impl->parent->pos();
+                    m_impl->moveBarElapsedTimer.restart();
+                    moveBar->grabMouse();
+                }
+                break;
             }
-            break;
-        }
 
         case QEvent::MouseButtonRelease:
-        {
-            auto e = (QMouseEvent*)event;
-            if (e->button() == Qt::LeftButton)
             {
-                m_impl->moveBarInfo.mousePressed = false;
-                moveBar->releaseMouse();
+                auto e = (QMouseEvent*)event;
+                if (e->button() == Qt::LeftButton)
+                {
+                    m_impl->moveBarInfo.mousePressed = false;
+                    moveBar->releaseMouse();
+                }
+                break;
             }
-            break;
-        }
 
         case QEvent::MouseButtonDblClick:
-        {
-            if (m_impl->parent->maximumSize() == m_impl->parent->minimumSize())
+            {
+                if (m_impl->parent->maximumSize() == m_impl->parent->minimumSize())
+                    break;
+                if (m_impl->parent->windowState().testFlag(Qt::WindowMaximized) ||
+                    m_impl->parent->windowState().testFlag(Qt::WindowFullScreen))
+                    m_impl->parent->showNormal();
+                else
+                    m_impl->parent->showMaximized();
                 break;
-            if (m_impl->parent->windowState().testFlag(Qt::WindowMaximized) || m_impl->parent->windowState().testFlag(Qt::WindowFullScreen))
-                m_impl->parent->showNormal();
-            else
-                m_impl->parent->showMaximized();
-            break;
-        }
+            }
 
         case QEvent::MouseMove:
-        {
-            if (m_impl->moveBarInfo.mousePressed && m_impl->direction == NONE)
             {
-                if (m_impl->moveBarElapsedTimer.elapsed() < 50)
-                    return false;
-                if (m_impl->parent->windowState().testFlag(Qt::WindowMaximized) || m_impl->parent->windowState().testFlag(Qt::WindowFullScreen))
+                if (m_impl->moveBarInfo.mousePressed && m_impl->direction == NONE)
                 {
-                    if (QCursor::pos().y() < 5)
+                    if (m_impl->moveBarElapsedTimer.elapsed() < 50)
                         return false;
-                    m_impl->parent->showNormal();
-                    m_impl->moveBarInfo.mousePosRange = QPoint(moveBar->width() / 2, moveBar->height() / 2);
-                }
-                else
-                {
-                    m_impl->parent->move(QCursor::pos() - m_impl->moveBarInfo.mousePosRange);
-                    if (QCursor::pos().y() < 5)
+                    if (m_impl->parent->windowState().testFlag(Qt::WindowMaximized) ||
+                        m_impl->parent->windowState().testFlag(Qt::WindowFullScreen))
                     {
-                        if (m_impl->parent->maximumSize() == m_impl->parent->minimumSize())
-                            break;
-                        this->metaObject()->invokeMethod(m_impl->parent, "showMaximized", Qt::QueuedConnection);
+                        if (QCursor::pos().y() < 5)
+                            return false;
+                        m_impl->parent->showNormal();
+                        m_impl->moveBarInfo.mousePosRange = QPoint(moveBar->width() / 2, moveBar->height() / 2);
+                    }
+                    else
+                    {
+                        m_impl->parent->move(QCursor::pos() - m_impl->moveBarInfo.mousePosRange);
+                        if (QCursor::pos().y() < 5)
+                        {
+                            if (m_impl->parent->maximumSize() == m_impl->parent->minimumSize())
+                                break;
+                            this->metaObject()->invokeMethod(m_impl->parent, "showMaximized", Qt::QueuedConnection);
+                        }
                     }
                 }
+                break;
             }
-            break;
-        }
         case QEvent::Resize:
-        {
-            QResizeEvent* evt = dynamic_cast<QResizeEvent*>(event);
-            if (evt)
             {
-                m_impl->moveBarInfo.mousePosRange = QPoint(evt->size().width() / 2, evt->size().height() / 2);
+                QResizeEvent* evt = dynamic_cast<QResizeEvent*>(event);
+                if (evt)
+                {
+                    m_impl->moveBarInfo.mousePosRange = QPoint(evt->size().width() / 2, evt->size().height() / 2);
+                }
+                break;
             }
-            break;
-        }
         default:
             break;
         }
@@ -319,7 +311,7 @@ void QCtmFramelessDelegate::mousePressEvent(QMouseEvent* e)
     if (m_impl->direction != NONE && e->button() == Qt::LeftButton)
     {
         m_impl->mousePressed = true;
-#if QT_VERSION < QT_VERSION_CHECK(6,0,0)
+#if QT_VERSION < QT_VERSION_CHECK(6, 0, 0)
         m_impl->mousePressPos = e->globalPos();
 #else
         m_impl->mousePressPos = e->screenPos();
@@ -356,26 +348,28 @@ void QCtmFramelessDelegate::mouseMoveEvent(QMouseEvent*)
     else
     {
         const auto& gloPoint = QCursor::pos();
-        const auto& rect = m_impl->parent->rect();
-        const auto& tl = m_impl->parent->mapToGlobal(rect.topLeft());
-        const auto& rb = m_impl->parent->mapToGlobal(rect.bottomRight());
+        const auto& rect     = m_impl->parent->rect();
+        const auto& tl       = m_impl->parent->mapToGlobal(rect.topLeft());
+        const auto& rb       = m_impl->parent->mapToGlobal(rect.bottomRight());
         if (m_impl->direction != NONE)
         {
             QRect rMove(tl, rb);
-            auto minSize = m_impl->parent->minimumSizeHint().expandedTo(m_impl->parent->minimumSize());
-            auto maxSize = m_impl->parent->maximumSize();
+            auto minSize     = m_impl->parent->minimumSizeHint().expandedTo(m_impl->parent->minimumSize());
+            auto maxSize     = m_impl->parent->maximumSize();
             auto smartResize = [&](Direction direction)
             {
                 switch (direction)
                 {
                 case LEFT:
-                    rMove.setX(std::max(tl.x() - (maxSize.width() - rect.width()), std::min(rb.x() - minSize.width(), gloPoint.x() - m_impl->margin)));
+                    rMove.setX(std::max(tl.x() - (maxSize.width() - rect.width()),
+                                        std::min(rb.x() - minSize.width(), gloPoint.x() - m_impl->margin)));
                     break;
                 case RIGHT:
                     rMove.setWidth(std::min(maxSize.width(), std::max(gloPoint.x() - tl.x() + m_impl->margin, minSize.width())));
                     break;
                 case UP:
-                    rMove.setY(std::max(tl.y() - (maxSize.height() - rect.height()), std::min(rb.y() - minSize.height(), gloPoint.y() - m_impl->margin)));
+                    rMove.setY(std::max(tl.y() - (maxSize.height() - rect.height()),
+                                        std::min(rb.y() - minSize.height(), gloPoint.y() - m_impl->margin)));
                     break;
                 case DOWN:
                     rMove.setHeight(std::min(maxSize.height(), std::max(gloPoint.y() - tl.y() + m_impl->margin, minSize.height())));
@@ -419,10 +413,7 @@ void QCtmFramelessDelegate::mouseReleaseEvent(QMouseEvent* e)
     }
 }
 
-void QCtmFramelessDelegate::mouseDoubleClickEvent([[maybe_unused]] QMouseEvent* e)
-{
-
-}
+void QCtmFramelessDelegate::mouseDoubleClickEvent([[maybe_unused]] QMouseEvent* e) {}
 
 void QCtmFramelessDelegate::paintEvent([[maybe_unused]] QPaintEvent* e)
 {
@@ -445,7 +436,8 @@ void QCtmFramelessDelegate::paintEvent([[maybe_unused]] QPaintEvent* e)
             lm = std::max(std::max(left, top), std::max(right, bottom));
         }
         paintShadow(p, m_impl->margin + lm);
-        opt.rect = QRect(m_impl->margin, m_impl->margin, m_impl->parent->width() - 2 * m_impl->margin, m_impl->parent->height() - 2 * m_impl->margin);
+        opt.rect = QRect(
+            m_impl->margin, m_impl->margin, m_impl->parent->width() - 2 * m_impl->margin, m_impl->parent->height() - 2 * m_impl->margin);
     }
     p.end();
     p.begin(&image);
@@ -455,11 +447,11 @@ void QCtmFramelessDelegate::paintEvent([[maybe_unused]] QPaintEvent* e)
     int left = 0, top = 0, right = 0, bottom = 0;
     if (m_impl->parent->layout())
         m_impl->parent->layout()->getContentsMargins(&left, &top, &right, &bottom);
-    painter.fillRect(QRect(m_impl->margin + left
-        , m_impl->margin + top
-        , m_impl->parent->width() - m_impl->margin * 2 - left - right
-        , m_impl->parent->height() - m_impl->margin * 2 - top - bottom)
-        , opt.palette.window());
+    painter.fillRect(QRect(m_impl->margin + left,
+                           m_impl->margin + top,
+                           m_impl->parent->width() - m_impl->margin * 2 - left - right,
+                           m_impl->parent->height() - m_impl->margin * 2 - top - bottom),
+                     opt.palette.window());
     painter.drawImage(0, 0, image);
 }
 
@@ -477,7 +469,8 @@ void QCtmFramelessDelegate::paintShadow(QPainter& painter, int shadowWidth)
     {
         QPainterPath path;
         path.setFillRule(Qt::WindingFill);
-        path.addRoundedRect(shadowWidth - i, shadowWidth - i, w->width() - (shadowWidth - i) * 2, w->height() - (shadowWidth - i) * 2, 0, Qt::RelativeSize);
+        path.addRoundedRect(
+            shadowWidth - i, shadowWidth - i, w->width() - (shadowWidth - i) * 2, w->height() - (shadowWidth - i) * 2, 0, Qt::RelativeSize);
         auto v = log((i + 1) / (float)shadowWidth) / log(0.5);
         color.setAlpha(v * 20);
         painter.setPen(color);
@@ -486,10 +479,7 @@ void QCtmFramelessDelegate::paintShadow(QPainter& painter, int shadowWidth)
     painter.restore();
 }
 
-void QCtmFramelessDelegate::styleChangeEvent([[maybe_unused]] QEvent* e)
-{
-    updateLayout();
-}
+void QCtmFramelessDelegate::styleChangeEvent([[maybe_unused]] QEvent* e) { updateLayout(); }
 
 void QCtmFramelessDelegate::platformSurfaceEvent(QPlatformSurfaceEvent* e)
 {
@@ -505,8 +495,8 @@ void QCtmFramelessDelegate::platformSurfaceEvent(QPlatformSurfaceEvent* e)
 void QCtmFramelessDelegate::region(const QPoint& cursorGlobalPoint)
 {
     const auto& rect = m_impl->parent->rect();
-    const auto& tl = m_impl->parent->mapToGlobal(rect.topLeft());
-    const auto& rb = m_impl->parent->mapToGlobal(rect.bottomRight());
+    const auto& tl   = m_impl->parent->mapToGlobal(rect.topLeft());
+    const auto& rb   = m_impl->parent->mapToGlobal(rect.bottomRight());
 
     int x = cursorGlobalPoint.x();
     int y = cursorGlobalPoint.y();
@@ -547,9 +537,9 @@ void QCtmFramelessDelegate::updateLayout()
         if (!rect.isValid())
             return;
         int left, top, right = 0, bottom = 0;
-        left = rect.x();
-        top = rect.y();
-        right = m_impl->parent->width() - left - rect.width();
+        left   = rect.x();
+        top    = rect.y();
+        right  = m_impl->parent->width() - left - rect.width();
         bottom = m_impl->parent->height() - top - rect.height();
         if (!m_impl->parent->isMaximized())
             m_impl->parent->layout()->setContentsMargins(left, top, right, bottom);

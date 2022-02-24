@@ -19,27 +19,28 @@
 
 #pragma once
 
-#include "qcustomui_global.h"
 #include "QCtmAbstractMessageTipModel.h"
+#include "qcustomui_global.h"
 
 #include <QColor>
 
 class QCUSTOMUI_EXPORT QCtmMessageTipModel : public QCtmAbstractMessageTipModel
 {
     Q_OBJECT
-        Q_PROPERTY(QColor titleColor READ titleColor WRITE setTitleColor)
-        Q_PROPERTY(QColor timeColor READ timeColor WRITE setTimeColor)
+    Q_PROPERTY(QColor titleColor READ titleColor WRITE setTitleColor)
+    Q_PROPERTY(QColor timeColor READ timeColor WRITE setTimeColor)
 public:
     QCtmMessageTipModel(QObject* parent);
     ~QCtmMessageTipModel();
 
-    QVariant data(const QModelIndex& index, int role)const override;
-    int columnCount(const QModelIndex& parent /* = QModelIndex() */)const override;
+    QVariant data(const QModelIndex& index, int role) const override;
+    int columnCount(const QModelIndex& parent /* = QModelIndex() */) const override;
     void setTitleColor(const QColor& color);
-    const QColor& titleColor()const;
+    const QColor& titleColor() const;
     void setTimeColor(const QColor& color);
-    const QColor& timeColor()const;
+    const QColor& timeColor() const;
     Qt::ItemFlags flags(const QModelIndex& index) const override;
+
 private:
     struct Impl;
     std::unique_ptr<Impl> m_impl;

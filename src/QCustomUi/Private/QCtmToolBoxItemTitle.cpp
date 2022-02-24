@@ -29,54 +29,36 @@ struct QCtmToolBoxItemTitle::Impl
     QIcon icon;
 };
 
-QCtmToolBoxItemTitle::QCtmToolBoxItemTitle(QWidget* parent)
-    : QWidget(parent)
-    , m_impl(std::make_unique<Impl>())
+QCtmToolBoxItemTitle::QCtmToolBoxItemTitle(QWidget* parent) : QWidget(parent), m_impl(std::make_unique<Impl>())
 {
     setAttribute(Qt::WA_StyledBackground);
     setFocusPolicy(Qt::StrongFocus);
 }
 
-QCtmToolBoxItemTitle::~QCtmToolBoxItemTitle()
-{
+QCtmToolBoxItemTitle::~QCtmToolBoxItemTitle() {}
 
-}
+void QCtmToolBoxItemTitle::setTitle(const QString& title) { m_impl->title = title; }
 
-void QCtmToolBoxItemTitle::setTitle(const QString& title)
-{
-    m_impl->title = title;
-}
+const QString& QCtmToolBoxItemTitle::title() const { return m_impl->title; }
 
-const QString& QCtmToolBoxItemTitle::title() const
-{
-    return m_impl->title;
-}
+void QCtmToolBoxItemTitle::setIcon(const QIcon& icon) { m_impl->icon = icon; }
 
-void QCtmToolBoxItemTitle::setIcon(const QIcon& icon)
-{
-    m_impl->icon = icon;
-}
-
-const QIcon& QCtmToolBoxItemTitle::icon() const
-{
-    return m_impl->icon;
-}
+const QIcon& QCtmToolBoxItemTitle::icon() const { return m_impl->icon; }
 
 void QCtmToolBoxItemTitle::paintEvent(QPaintEvent* event)
 {
     QPainter p(this);
     QStyleOptionViewItem opt;
     opt.initFrom(this);
-    opt.text = m_impl->title;
-    opt.icon = m_impl->icon;
-    opt.font = font();
+    opt.text                = m_impl->title;
+    opt.icon                = m_impl->icon;
+    opt.font                = font();
     opt.decorationAlignment = Qt::AlignLeft | Qt::AlignVCenter;
-    opt.displayAlignment = Qt::AlignLeft | Qt::AlignVCenter;
-    opt.features = QStyleOptionViewItem::HasDisplay;
+    opt.displayAlignment    = Qt::AlignLeft | Qt::AlignVCenter;
+    opt.features            = QStyleOptionViewItem::HasDisplay;
     opt.state.setFlag(QStyle::State_HasFocus, false);
     opt.rect = style()->subElementRect(QStyle::SE_FrameContents, &opt, this);
     if (!opt.icon.isNull())
         opt.features |= QStyleOptionViewItem::HasDecoration;
     style()->drawControl(QStyle::CE_ItemViewItem, &opt, &p, this);
-
 }

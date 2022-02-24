@@ -32,7 +32,10 @@ class QCUSTOMUI_EXPORT QCtmClassifyTreeView : public QAbstractItemView
     Q_OBJECT
 
 public:
-    enum Role { NodeTypeRole = Qt::UserRole + 1 };
+    enum Role
+    {
+        NodeTypeRole = Qt::UserRole + 1
+    };
     QCtmClassifyTreeView(QWidget* parent);
     ~QCtmClassifyTreeView();
 
@@ -55,6 +58,7 @@ public slots:
     void expand(const QModelIndex& index);
     void collapseAll();
     void collapse(const QModelIndex& index);
+
 protected:
     int horizontalOffset() const override;
     int verticalOffset() const override;
@@ -72,8 +76,10 @@ protected:
 
     virtual void relayoutNodes();
     virtual void initStyleOption(QCtmClassifyTreeNode* node, QStyleOptionViewItem& option);
+
 private:
     void createNodes();
+
 private:
     struct Impl;
     std::unique_ptr<Impl> m_impl;

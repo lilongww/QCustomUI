@@ -21,8 +21,8 @@
 
 #include "qcustomui_global.h"
 
-#include <QWidget>
 #include <QAction>
+#include <QWidget>
 
 #include <memory>
 
@@ -32,7 +32,7 @@ class QCtmNavigationSidePane;
 class QCUSTOMUI_EXPORT QCtmNavigationBar : public QWidget
 {
     Q_OBJECT
-        Q_PROPERTY(QSize iconSize READ iconSize WRITE setIconSize NOTIFY iconSizeChanged)
+    Q_PROPERTY(QSize iconSize READ iconSize WRITE setIconSize NOTIFY iconSizeChanged)
 public:
     enum ActionPosition
     {
@@ -63,16 +63,18 @@ public:
     QAction* insertLogo(int index, const QIcon& icon, ActionPosition pos = Left);
     QAction* addUser(const QIcon& icon, const QString& text, ActionPosition pos = Right);
     QAction* insertUser(int index, const QIcon& icon, const QString& text, ActionPosition pos = Right);
-    int indexOf(QAction* action)const;
-    int count(ActionPosition pos)const;
+    int indexOf(QAction* action) const;
+    int count(ActionPosition pos) const;
     QRect actionRect(QAction* action);
     QAction* actionAt(int index, ActionPosition pos) const;
     void setIconSize(const QSize& size);
     const QSize& iconSize() const;
 signals:
     void iconSizeChanged(const QSize& size);
+
 protected:
     void actionEvent(QActionEvent* event) override;
+
 private:
     struct Impl;
     std::unique_ptr<Impl> m_impl;

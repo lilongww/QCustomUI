@@ -19,14 +19,11 @@
 
 #include "QCtmColor.h"
 
-#include <QMetaObject>
-#include <QMetaEnum>
 #include <QDebug>
+#include <QMetaEnum>
+#include <QMetaObject>
 
-bool isLight(QColor color)
-{
-    return 0.213 * color.red() + 0.715 * color.green() + 0.072 * color.blue() > 255 / 2;
-}
+bool isLight(QColor color) { return 0.213 * color.red() + 0.715 * color.green() + 0.072 * color.blue() > 255 / 2; }
 
 /*!
     \class      QCtmColor
@@ -113,7 +110,7 @@ bool isLight(QColor color)
 */
 QColor QCtmColor::generateBackgroundColor(int index)
 {
-    index = index % 20;
+    index          = index % 20;
     auto colorEnum = QCtmColor::staticMetaObject.enumerator(0);
     return QColor(colorEnum.value(index));
 }

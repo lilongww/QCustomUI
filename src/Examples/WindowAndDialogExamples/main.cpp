@@ -3,8 +3,8 @@
 #include <QCustomUi/QCtmApplication.h>
 
 #include <QAbstractNativeEventFilter>
-#include <QDialog>
 #include <QDebug>
+#include <QDialog>
 
 #include <qt_windows.h>
 

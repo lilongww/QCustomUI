@@ -21,18 +21,18 @@
 #include "ui_QCtmLoadingDialog.h"
 
 #include <QApplication>
+#include <QDebug>
 #include <QMovie>
 #include <QResizeEvent>
-#include <QDebug>
 
 struct QCtmLoadingDialog::Impl
 {
-    Ui::QCtmLoadingDialog* ui{ new Ui::QCtmLoadingDialog };
-    QMovie* movie{ nullptr };
+    Ui::QCtmLoadingDialog* ui { new Ui::QCtmLoadingDialog };
+    QMovie* movie { nullptr };
     ~Impl() { delete ui; }
     QEventLoop loop;
-    Result result{ Result::Cancel };
-    bool cancelEnable{ false };
+    Result result { Result::Cancel };
+    bool cancelEnable { false };
 };
 
 /*!
@@ -47,9 +47,7 @@ struct QCtmLoadingDialog::Impl
 /*!
     \brief      构造函数，在 \a parent 的顶层窗口上覆盖加载窗口.
 */
-QCtmLoadingDialog::QCtmLoadingDialog(QWidget* parent)
-    : QWidget(parent->topLevelWidget())
-    , m_impl(std::make_unique<Impl>())
+QCtmLoadingDialog::QCtmLoadingDialog(QWidget* parent) : QWidget(parent->topLevelWidget()), m_impl(std::make_unique<Impl>())
 {
     setFocusPolicy(Qt::FocusPolicy::StrongFocus);
     m_impl->ui->setupUi(this);
@@ -63,27 +61,19 @@ QCtmLoadingDialog::QCtmLoadingDialog(QWidget* parent)
 /*!
     \brief      析构该窗口对象.
 */
-QCtmLoadingDialog::~QCtmLoadingDialog()
-{
-}
+QCtmLoadingDialog::~QCtmLoadingDialog() {}
 
 /*!
     \brief      设置是否可以按ESC键取消 \a flag.
     \sa         cancelEnable
 */
-void QCtmLoadingDialog::setCancelEnable(bool flag)
-{
-    m_impl->cancelEnable = flag;
-}
+void QCtmLoadingDialog::setCancelEnable(bool flag) { m_impl->cancelEnable = flag; }
 
 /*!
     \brief      是否可以按ESC键取消显示loading窗口.
     \sa         setCancelEnable
 */
-bool QCtmLoadingDialog::cancelEnable() const
-{
-    return m_impl->cancelEnable;
-}
+bool QCtmLoadingDialog::cancelEnable() const { return m_impl->cancelEnable; }
 
 /*!
     \brief      Loading 窗口加载完成时调用该函数，测试exec返回Done.
@@ -91,11 +81,12 @@ bool QCtmLoadingDialog::cancelEnable() const
 */
 void QCtmLoadingDialog::done()
 {
-    QMetaObject::invokeMethod(this, [=]
-        {
-            m_impl->result = Result::Done;
-            m_impl->loop.quit();
-        });
+    QMetaObject::invokeMethod(this,
+                              [=]
+                              {
+                                  m_impl->result = Result::Done;
+                                  m_impl->loop.quit();
+                              });
 }
 
 /*!
@@ -104,11 +95,12 @@ void QCtmLoadingDialog::done()
 */
 void QCtmLoadingDialog::cancel()
 {
-    QMetaObject::invokeMethod(this, [=]
-        {
-            m_impl->result = Result::Cancel;
-            m_impl->loop.quit();
-        });
+    QMetaObject::invokeMethod(this,
+                              [=]
+                              {
+                                  m_impl->result = Result::Cancel;
+                                  m_impl->loop.quit();
+                              });
 }
 
 /*!

@@ -19,16 +19,9 @@
 
 #include "QCtmMessageTipData.h"
 
-QCtmAbstractMessageTipData::QCtmAbstractMessageTipData()
-{
+QCtmAbstractMessageTipData::QCtmAbstractMessageTipData() {}
 
-}
-
-
-QCtmAbstractMessageTipData::~QCtmAbstractMessageTipData()
-{
-
-}
+QCtmAbstractMessageTipData::~QCtmAbstractMessageTipData() {}
 
 struct QCtmMessageTipData::Impl
 {
@@ -50,70 +43,50 @@ struct QCtmMessageTipData::Impl
     \brief      构造函数 \a title, \a content, \a time.
 */
 QCtmMessageTipData::QCtmMessageTipData(const QString& title, const QString& content, const QDateTime& time)
-    :m_impl(std::make_unique<Impl>())
+    : m_impl(std::make_unique<Impl>())
 {
-    m_impl->title = title;
+    m_impl->title   = title;
     m_impl->content = content;
-    m_impl->time = time;
+    m_impl->time    = time;
 }
 
 /*!
     \brief      析构函数.
 */
-QCtmMessageTipData::~QCtmMessageTipData()
-{
-}
+QCtmMessageTipData::~QCtmMessageTipData() {}
 
 /*!
     \brief      设置标题 \a title.
     \sa         title()
 */
-void QCtmMessageTipData::setTitle(const QString& title)
-{
-    m_impl->title = title;
-}
+void QCtmMessageTipData::setTitle(const QString& title) { m_impl->title = title; }
 
 /*!
     \brief      返回标题.
     \sa         setTitle
 */
-const QString& QCtmMessageTipData::title() const
-{
-    return m_impl->title;
-}
+const QString& QCtmMessageTipData::title() const { return m_impl->title; }
 
 /*!
     \brief      设置消息内容 \a content.
     \sa         content
 */
-void QCtmMessageTipData::setContent(const QString& content)
-{
-    m_impl->content = content;
-}
+void QCtmMessageTipData::setContent(const QString& content) { m_impl->content = content; }
 
 /*!
     \brief      返回消息内容.
     \sa         setContent
 */
-const QString& QCtmMessageTipData::content() const
-{
-    return m_impl->content;
-}
+const QString& QCtmMessageTipData::content() const { return m_impl->content; }
 
 /*!
     \brief      设置消息时间 \a time.
     \sa         dateTime()
 */
-void QCtmMessageTipData::setDateTime(const QDateTime& time)
-{
-    m_impl->time = time;
-}
+void QCtmMessageTipData::setDateTime(const QDateTime& time) { m_impl->time = time; }
 
 /*!
     \brief      返回消息时间.
     \sa         setDateTime
 */
-const QDateTime& QCtmMessageTipData::dateTime() const
-{
-    return m_impl->time;
-}
+const QDateTime& QCtmMessageTipData::dateTime() const { return m_impl->time; }

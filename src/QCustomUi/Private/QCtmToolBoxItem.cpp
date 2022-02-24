@@ -18,28 +18,26 @@
 **********************************************************************************/
 
 #include "QCtmToolBoxItem_p.h"
+#include "QCtmToolButton_p.h"
 #include "QCtmWidgetItem_p.h"
 #include "Util_p.h"
-#include "QCtmToolButton_p.h"
 
-#include <QPainter>
-#include <QStyleOption>
 #include <QActionEvent>
 #include <QApplication>
 #include <QList>
+#include <QPainter>
+#include <QStyleOption>
 
 struct QCtmToolBoxItem::Impl
 {
     QList<QCtmWidgetItemPtr> items;
-    QHBoxLayout* layout{ nullptr };
-    QWidget* m_content{ nullptr };
-    int stretch{ 0 };
-    QSize iconSize{ 16,16 };
+    QHBoxLayout* layout { nullptr };
+    QWidget* m_content { nullptr };
+    int stretch { 0 };
+    QSize iconSize { 16, 16 };
 };
 
-QCtmToolBoxItem::QCtmToolBoxItem(QWidget* parent)
-    : QWidget(parent)
-    , m_impl(std::make_unique<Impl>())
+QCtmToolBoxItem::QCtmToolBoxItem(QWidget* parent) : QWidget(parent), m_impl(std::make_unique<Impl>())
 {
     ui.setupUi(this);
     setFocusPolicy(Qt::StrongFocus);
@@ -47,38 +45,33 @@ QCtmToolBoxItem::QCtmToolBoxItem(QWidget* parent)
     m_impl->layout->setAlignment(Qt::AlignRight);
     m_impl->layout->setContentsMargins(0, 0, 0, 0);
     m_impl->layout->setSpacing(0);
-    connect(qApp, &QApplication::focusChanged, this, [=](auto, auto now)
-        {
-            auto setActive = [](bool act, QWidget* obj)
+    connect(qApp,
+            &QApplication::focusChanged,
+            this,
+            [=](auto, auto now)
             {
-                obj->style()->unpolish(obj);
-                obj->setProperty("qcustomui_active", act);
-                obj->style()->polish(obj);
-            };
-            auto active = now && (now == this || isAncestorOf(now));
-            setActive(active, ui.item_title);
-            auto btns = ui.item_title->findChildren<QCtmToolButton*>();
-            for (auto btn : btns)
-            {
-                setActive(active, btn);
-                btn->setSelected(active);
-            }
-        });
+                auto setActive = [](bool act, QWidget* obj)
+                {
+                    obj->style()->unpolish(obj);
+                    obj->setProperty("qcustomui_active", act);
+                    obj->style()->polish(obj);
+                };
+                auto active = now && (now == this || isAncestorOf(now));
+                setActive(active, ui.item_title);
+                auto btns = ui.item_title->findChildren<QCtmToolButton*>();
+                for (auto btn : btns)
+                {
+                    setActive(active, btn);
+                    btn->setSelected(active);
+                }
+            });
 }
 
-QCtmToolBoxItem::~QCtmToolBoxItem()
-{
-}
+QCtmToolBoxItem::~QCtmToolBoxItem() {}
 
-void QCtmToolBoxItem::setTitle(const QString& text)
-{
-    ui.item_title->setTitle(text);
-}
+void QCtmToolBoxItem::setTitle(const QString& text) { ui.item_title->setTitle(text); }
 
-QString QCtmToolBoxItem::title() const
-{
-    return ui.item_title->title();
-}
+QString QCtmToolBoxItem::title() const { return ui.item_title->title(); }
 
 void QCtmToolBoxItem::setContent(QWidget* widget)
 {
@@ -99,30 +92,15 @@ void QCtmToolBoxItem::setContent(QWidget* widget)
     m_impl->m_content->installEventFilter(this);
 }
 
-QWidget* QCtmToolBoxItem::content() const
-{
-    return m_impl->m_content;
-}
+QWidget* QCtmToolBoxItem::content() const { return m_impl->m_content; }
 
-void QCtmToolBoxItem::setStretch(int stretch)
-{
-    m_impl->stretch = stretch;
-}
+void QCtmToolBoxItem::setStretch(int stretch) { m_impl->stretch = stretch; }
 
-int QCtmToolBoxItem::stretch() const
-{
-    return m_impl->stretch;
-}
+int QCtmToolBoxItem::stretch() const { return m_impl->stretch; }
 
-void QCtmToolBoxItem::setIcon(const QIcon& icon)
-{
-    ui.item_title->setIcon(icon);
-}
+void QCtmToolBoxItem::setIcon(const QIcon& icon) { ui.item_title->setIcon(icon); }
 
-const QIcon& QCtmToolBoxItem::icon() const
-{
-    return ui.item_title->icon();
-}
+const QIcon& QCtmToolBoxItem::icon() const { return ui.item_title->icon(); }
 
 void QCtmToolBoxItem::setIconSize(const QSize& size)
 {
@@ -130,10 +108,7 @@ void QCtmToolBoxItem::setIconSize(const QSize& size)
     emit iconSizeChanged(size);
 }
 
-const QSize& QCtmToolBoxItem::iconSize() const
-{
-    return m_impl->iconSize;
-}
+const QSize& QCtmToolBoxItem::iconSize() const { return m_impl->iconSize; }
 
 void QCtmToolBoxItem::actionEvent(QActionEvent* event)
 {

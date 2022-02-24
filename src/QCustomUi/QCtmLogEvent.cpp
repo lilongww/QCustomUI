@@ -37,25 +37,14 @@ struct QCtmLogEvent::Impl
 /*!
     \brief      构造函数 \a log.
 */
-QCtmLogEvent::QCtmLogEvent(QCtmLogDataPtr log)
-    : QEvent((QEvent::Type)QCtmLog)
-    , m_impl(std::make_unique<Impl>())
-{
-    m_impl->log = log;
-}
+QCtmLogEvent::QCtmLogEvent(QCtmLogDataPtr log) : QEvent((QEvent::Type)QCtmLog), m_impl(std::make_unique<Impl>()) { m_impl->log = log; }
 
 /*!
     \brief      析构函数.
 */
-QCtmLogEvent::~QCtmLogEvent()
-{
-
-}
+QCtmLogEvent::~QCtmLogEvent() {}
 
 /*!
     \brief      返回日志内容.
 */
-QCtmLogDataPtr QCtmLogEvent::log() const
-{
-    return m_impl->log;
-}
+QCtmLogDataPtr QCtmLogEvent::log() const { return m_impl->log; }

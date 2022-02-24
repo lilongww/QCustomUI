@@ -23,7 +23,6 @@
 
 #include <memory>
 
-
 class QCtmNavigationImageButton : public QCtmToolButton
 {
     Q_OBJECT
@@ -35,7 +34,8 @@ public:
 protected:
     void paintEvent(QPaintEvent* e) override;
     void resizeEvent(QResizeEvent* e) override;
-    QSize sizeHint()const override;
+    QSize sizeHint() const override;
+
 private:
     struct Impl;
     std::unique_ptr<Impl> m_impl;

@@ -21,8 +21,8 @@
 
 struct QCtmClassifyTreeItem::Impl
 {
-    QCtmClassifyTreeModel* model{ nullptr };
-    QCtmClassifyTreeItem* parent{ nullptr };
+    QCtmClassifyTreeModel* model { nullptr };
+    QCtmClassifyTreeItem* parent { nullptr };
 
     QIcon icon;
     QString text;
@@ -53,26 +53,17 @@ struct QCtmClassifyTreeItem::Impl
 /*!
     \brief      构造函数.
 */
-QCtmClassifyTreeItem::QCtmClassifyTreeItem()
-    : m_impl(std::make_unique<Impl>())
-{
-
-}
+QCtmClassifyTreeItem::QCtmClassifyTreeItem() : m_impl(std::make_unique<Impl>()) {}
 
 /*!
     \brief      构造函数，设置显示文本 \a text.
 */
-QCtmClassifyTreeItem::QCtmClassifyTreeItem(const QString& text)
-    : QCtmClassifyTreeItem()
-{
-    m_impl->text = text;
-}
+QCtmClassifyTreeItem::QCtmClassifyTreeItem(const QString& text) : QCtmClassifyTreeItem() { m_impl->text = text; }
 
 /*!
     \brief      构造函数，设置显示文本 \a text 和图标 \a icon.
 */
-QCtmClassifyTreeItem::QCtmClassifyTreeItem(const QIcon& icon, const QString& text)
-    : QCtmClassifyTreeItem()
+QCtmClassifyTreeItem::QCtmClassifyTreeItem(const QIcon& icon, const QString& text) : QCtmClassifyTreeItem()
 {
     m_impl->icon = icon;
     m_impl->text = text;
@@ -81,10 +72,7 @@ QCtmClassifyTreeItem::QCtmClassifyTreeItem(const QIcon& icon, const QString& tex
 /*!
     \brief      析构函数.
 */
-QCtmClassifyTreeItem::~QCtmClassifyTreeItem()
-{
-
-}
+QCtmClassifyTreeItem::~QCtmClassifyTreeItem() {}
 
 /*!
     \brief      返回数据 model.
@@ -99,34 +87,22 @@ QCtmClassifyTreeModel* QCtmClassifyTreeItem::model() const
 /*!
     \brief      返回 index.
 */
-QModelIndex QCtmClassifyTreeItem::index() const
-{
-    return m_impl->model->indexFromItem(this);
-}
+QModelIndex QCtmClassifyTreeItem::index() const { return m_impl->model->indexFromItem(this); }
 
 /*!
     \brief      返回父项目.
 */
-QCtmClassifyTreeItem* QCtmClassifyTreeItem::parent() const
-{
-    return m_impl->parent;
-}
+QCtmClassifyTreeItem* QCtmClassifyTreeItem::parent() const { return m_impl->parent; }
 
 /*!
     \brief      设置 \a model.
 */
-void QCtmClassifyTreeItem::setModel(QCtmClassifyTreeModel* model)
-{
-    m_impl->model = model;
-}
+void QCtmClassifyTreeItem::setModel(QCtmClassifyTreeModel* model) { m_impl->model = model; }
 
 /*!
     \brief      设置父项目 \a parent.
 */
-void QCtmClassifyTreeItem::setParent(QCtmClassifyTreeItem* parent)
-{
-    m_impl->parent = parent;
-}
+void QCtmClassifyTreeItem::setParent(QCtmClassifyTreeItem* parent) { m_impl->parent = parent; }
 
 /*!
     \brief      设置显示文本 \a text.
@@ -146,10 +122,7 @@ void QCtmClassifyTreeItem::setText(const QString& text)
     \brief      返回显示文本.
     \sa         setText
 */
-const QString& QCtmClassifyTreeItem::text() const
-{
-    return m_impl->text;
-}
+const QString& QCtmClassifyTreeItem::text() const { return m_impl->text; }
 
 /*!
     \brief      设置图标 \a icon.
@@ -169,40 +142,24 @@ void QCtmClassifyTreeItem::setIcon(const QIcon& icon)
     \brief      返回显示图标.
     \sa         setIcon
 */
-const QIcon& QCtmClassifyTreeItem::icon() const
-{
-    return m_impl->icon;
-}
+const QIcon& QCtmClassifyTreeItem::icon() const { return m_impl->icon; }
 
-int QCtmClassifyTreeIconItem::itemType() const
-{
-    return ItemType::Icon;
-}
-
+int QCtmClassifyTreeIconItem::itemType() const { return ItemType::Icon; }
 
 struct QCtmClassifyTreeGroupItem::Impl
 {
     std::vector<QCtmClassifyTreeItem*> items;
 };
 
-QCtmClassifyTreeGroupItem::QCtmClassifyTreeGroupItem()
-    : m_impl(std::make_unique<Impl>())
+QCtmClassifyTreeGroupItem::QCtmClassifyTreeGroupItem() : m_impl(std::make_unique<Impl>()) {}
+
+QCtmClassifyTreeGroupItem::QCtmClassifyTreeGroupItem(const QString& text) : QCtmClassifyTreeIconItem(text), m_impl(std::make_unique<Impl>())
 {
-
-}
-
-QCtmClassifyTreeGroupItem::QCtmClassifyTreeGroupItem(const QString& text)
-    : QCtmClassifyTreeIconItem(text)
-    , m_impl(std::make_unique<Impl>())
-{
-
 }
 
 QCtmClassifyTreeGroupItem::QCtmClassifyTreeGroupItem(const QIcon& icon, const QString& text)
-    : QCtmClassifyTreeIconItem(icon, text)
-    , m_impl(std::make_unique<Impl>())
+    : QCtmClassifyTreeIconItem(icon, text), m_impl(std::make_unique<Impl>())
 {
-
 }
 
 QCtmClassifyTreeGroupItem::~QCtmClassifyTreeGroupItem()
@@ -213,15 +170,9 @@ QCtmClassifyTreeGroupItem::~QCtmClassifyTreeGroupItem()
     }
 }
 
-int QCtmClassifyTreeGroupItem::itemType() const
-{
-    return ItemType::Group;
-}
+int QCtmClassifyTreeGroupItem::itemType() const { return ItemType::Group; }
 
-void QCtmClassifyTreeGroupItem::addChild(QCtmClassifyTreeItem* item)
-{
-    insertChild(count(), item);
-}
+void QCtmClassifyTreeGroupItem::addChild(QCtmClassifyTreeItem* item) { insertChild(count(), item); }
 
 void QCtmClassifyTreeGroupItem::insertChild(int row, QCtmClassifyTreeItem* item)
 {
@@ -235,7 +186,7 @@ void QCtmClassifyTreeGroupItem::removeChild(QCtmClassifyTreeItem* item)
 {
     if (auto it = std::find(m_impl->items.begin(), m_impl->items.end(), item); it != m_impl->items.end())
     {
-        delete* it;
+        delete *it;
         m_impl->items.erase(it);
         if (model())
             model()->reset();
@@ -255,10 +206,7 @@ int QCtmClassifyTreeGroupItem::rowOf(const QCtmClassifyTreeItem* item) const
     return it == m_impl->items.end() ? -1 : std::distance(m_impl->items.begin(), it);
 }
 
-int QCtmClassifyTreeGroupItem::count() const
-{
-    return static_cast<int>(m_impl->items.size());
-}
+int QCtmClassifyTreeGroupItem::count() const { return static_cast<int>(m_impl->items.size()); }
 
 void QCtmClassifyTreeGroupItem::clear()
 {

@@ -20,14 +20,14 @@
 #include "QCtmToolBox.h"
 #include "Private/QCtmToolBoxItem_p.h"
 
-#include <QSplitter>
 #include <QHBoxLayout>
+#include <QSplitter>
 
 struct QCtmToolBox::Impl
 {
     QSplitter* vSplitter;
-    bool firstShow{ true };
-    QSize iconSize{ 16,16 };
+    bool firstShow { true };
+    QSize iconSize { 16, 16 };
 };
 
 /*!
@@ -48,9 +48,7 @@ struct QCtmToolBox::Impl
 /*!
     \brief      构造一个父窗口为 \a parent 的toolbox.
 */
-QCtmToolBox::QCtmToolBox(QWidget* parent)
-    : QWidget(parent)
-    , m_impl(std::make_unique<Impl>())
+QCtmToolBox::QCtmToolBox(QWidget* parent) : QWidget(parent), m_impl(std::make_unique<Impl>())
 {
     m_impl->vSplitter = new QSplitter(this);
     m_impl->vSplitter->setOrientation(Qt::Vertical);
@@ -65,19 +63,13 @@ QCtmToolBox::QCtmToolBox(QWidget* parent)
 /*!
     \brief      析构当前toolbox对象.
 */
-QCtmToolBox::~QCtmToolBox()
-{
-
-}
+QCtmToolBox::~QCtmToolBox() {}
 
 /*!
     \brief      添加一个标题为 \a title 显示内容为 \a widget 的子窗口.
     \sa         insertWidget, removeWidget
 */
-void QCtmToolBox::addWidget(const QString& title, QWidget* widget)
-{
-    insertWidget(m_impl->vSplitter->count(), title, widget);
-}
+void QCtmToolBox::addWidget(const QString& title, QWidget* widget) { insertWidget(m_impl->vSplitter->count(), title, widget); }
 
 /*!
     \brief      在 \a index 的位置插入一个标题为 \a title 显示内容为 \a widget 的子窗口.
@@ -155,28 +147,19 @@ QWidget* QCtmToolBox::widget(int index) const
 /*!
     \brief      设置第 \a index 子窗口的缩放因子 \a stretch.
 */
-void QCtmToolBox::setStretchFactor(int index, int stretch)
-{
-    m_impl->vSplitter->setStretchFactor(index, stretch);
-}
+void QCtmToolBox::setStretchFactor(int index, int stretch) { m_impl->vSplitter->setStretchFactor(index, stretch); }
 
 /*!
     \brief      设置子窗口们的大小 \a sizes.
     \sa         sizes
 */
-void QCtmToolBox::setSizes(const QList<int>& sizes)
-{
-    m_impl->vSplitter->setSizes(sizes);
-}
+void QCtmToolBox::setSizes(const QList<int>& sizes) { m_impl->vSplitter->setSizes(sizes); }
 
 /*!
     \brief      返回子窗口们的大小.
     \sa         setSizes
 */
-QList<int> QCtmToolBox::sizes() const
-{
-    return m_impl->vSplitter->sizes();
-}
+QList<int> QCtmToolBox::sizes() const { return m_impl->vSplitter->sizes(); }
 
 /*!
     \brief      设置 \a index 子窗口的默认缩放因子 \a stretch.
@@ -204,10 +187,7 @@ void QCtmToolBox::setIconSize(const QSize& size)
     \brief      返回Action的图标大小.
     \sa         setIconSize
 */
-const QSize& QCtmToolBox::iconSize() const
-{
-    return m_impl->iconSize;
-}
+const QSize& QCtmToolBox::iconSize() const { return m_impl->iconSize; }
 
 /*!
     \reimp

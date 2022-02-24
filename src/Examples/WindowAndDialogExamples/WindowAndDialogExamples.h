@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 
 #include "ui_WindowAndDialogExamples.h"
 
@@ -9,7 +9,7 @@ class WindowAndDialogExamples : public QCtmWindow
     Q_OBJECT
 
 public:
-    WindowAndDialogExamples(QWidget *parent = Q_NULLPTR);
+    WindowAndDialogExamples(QWidget* parent = Q_NULLPTR);
 
 private:
     Ui::WindowAndDialogExamplesClass ui;

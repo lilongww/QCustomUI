@@ -37,6 +37,7 @@ public:
     bool isCustomWidget() const;
 signals:
     void iconSizeChanged(const QSize& size);
+
 private:
     struct Impl;
     std::unique_ptr<Impl> m_impl;

@@ -5,8 +5,7 @@
 #include <QAction>
 #include <QIcon>
 
-ToolBoxExample::ToolBoxExample(QWidget* parent)
-    : QWidget(parent)
+ToolBoxExample::ToolBoxExample(QWidget* parent) : QWidget(parent)
 {
     ui.setupUi(this);
     QIcon icon;
@@ -14,13 +13,7 @@ ToolBoxExample::ToolBoxExample(QWidget* parent)
     icon.addFile(":/ToolBoxExample/Resource/NewFolderActive.svg", QSize(), QIcon::Mode::Selected);
     auto action = new QAction(icon, "", this);
     addAction(action);
-    connect(action, &QAction::triggered, this, [=]()
-        {
-            QCtmMessageBox::information(this, tr("Tips"), tr("New Folder"));
-        });
+    connect(action, &QAction::triggered, this, [=]() { QCtmMessageBox::information(this, tr("Tips"), tr("New Folder")); });
 }
 
-ToolBoxExample::~ToolBoxExample()
-{
-
-}
+ToolBoxExample::~ToolBoxExample() {}

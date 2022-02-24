@@ -21,8 +21,8 @@
 
 #include "qcustomui_global.h"
 
-#include <QWidget>
 #include <QTextLayout>
+#include <QWidget>
 
 #include <memory>
 
@@ -31,8 +31,8 @@ class QStyleOptionFrame;
 class QCUSTOMUI_EXPORT QCtmIPAddressEdit : public QWidget
 {
     Q_OBJECT
-        Q_PROPERTY(bool readOnly READ isReadOnly WRITE setReadOnly)
-        Q_PROPERTY(QString ipAddress READ ipAddress WRITE setIPAddress)
+    Q_PROPERTY(bool readOnly READ isReadOnly WRITE setReadOnly)
+    Q_PROPERTY(QString ipAddress READ ipAddress WRITE setIPAddress)
 public:
     QCtmIPAddressEdit(QWidget* parent);
     ~QCtmIPAddressEdit();
@@ -60,6 +60,7 @@ protected:
     QVariant inputMethodQuery(Qt::InputMethodQuery query) const override;
     QSize sizeHint() const override;
     QSize minimumSizeHint() const override;
+
 private:
     int sectionOfCursorPosition(int position) const;
     QTextLayout& textLayout(int pos) const;
@@ -76,6 +77,7 @@ private:
 private slots:
     void updateTextLayout();
     void onCustomContextMenuRequested(const QPoint& pos);
+
 private:
     struct Impl;
     std::unique_ptr<Impl> m_impl;

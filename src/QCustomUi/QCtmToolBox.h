@@ -26,7 +26,7 @@
 class QCUSTOMUI_EXPORT QCtmToolBox : public QWidget
 {
     Q_OBJECT
-        Q_PROPERTY(QSize iconSize READ iconSize WRITE setIconSize NOTIFY iconSizeChanged)
+    Q_PROPERTY(QSize iconSize READ iconSize WRITE setIconSize NOTIFY iconSizeChanged)
 public:
     QCtmToolBox(QWidget* parent = nullptr);
     ~QCtmToolBox();
@@ -45,8 +45,10 @@ public:
     const QSize& iconSize() const;
 signals:
     void iconSizeChanged(const QSize& size);
+
 protected:
     void showEvent([[maybe_unused]] QShowEvent* event);
+
 private:
     struct Impl;
     std::unique_ptr<Impl> m_impl;

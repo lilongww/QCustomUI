@@ -20,21 +20,21 @@
 #include "QCtmEditLabel.h"
 
 #include <QEvent>
-#include <QPainter>
-#include <QToolButton>
 #include <QHBoxLayout>
 #include <QLineEdit>
+#include <QPainter>
+#include <QToolButton>
 
-constexpr int EditButtonSize = 16;
+constexpr int EditButtonSize  = 16;
 constexpr int EditButtonSpace = 4;
 constexpr int extentedWidth() { return (EditButtonSpace + EditButtonSize) * 2; }
 
 struct QCtmEditLabel::Impl
 {
-    bool readOnly{ false };
-    QToolButton* editButton{ nullptr };
-    QIcon finishButtonIcon{ ":/QCustomUi/Resources/ok.png" };
-    QIcon revertButtonIcon{ ":/QCustomUi/Resources/cancel.png" };
+    bool readOnly { false };
+    QToolButton* editButton { nullptr };
+    QIcon finishButtonIcon { ":/QCustomUi/Resources/ok.png" };
+    QIcon revertButtonIcon { ":/QCustomUi/Resources/cancel.png" };
 };
 
 /*!
@@ -67,18 +67,12 @@ struct QCtmEditLabel::Impl
 /*!
     \brief      构造函数 \a parent, \a f.
 */
-QCtmEditLabel::QCtmEditLabel(QWidget* parent, Qt::WindowFlags f)
-    : QLabel(parent, f)
-    , m_impl(std::make_unique<Impl>())
-{
-    init();
-}
+QCtmEditLabel::QCtmEditLabel(QWidget* parent, Qt::WindowFlags f) : QLabel(parent, f), m_impl(std::make_unique<Impl>()) { init(); }
 
 /*!
     \brief      构造函数，并设置显示文字 \a text, \a parent, \a f.
 */
-QCtmEditLabel::QCtmEditLabel(const QString& text, QWidget* parent /*= nullptr*/, Qt::WindowFlags f)
-    : QCtmEditLabel(parent, f)
+QCtmEditLabel::QCtmEditLabel(const QString& text, QWidget* parent /*= nullptr*/, Qt::WindowFlags f) : QCtmEditLabel(parent, f)
 {
     setText(text);
 }
@@ -86,81 +80,54 @@ QCtmEditLabel::QCtmEditLabel(const QString& text, QWidget* parent /*= nullptr*/,
 /*!
     \brief      析构函数.
 */
-QCtmEditLabel::~QCtmEditLabel()
-{
-
-}
+QCtmEditLabel::~QCtmEditLabel() {}
 
 /*!
     \brief      设置是否只读 \a flag.
     \sa         isReadOnly
 */
-void QCtmEditLabel::setReadOnly(bool flag)
-{
-    m_impl->readOnly = flag;
-}
+void QCtmEditLabel::setReadOnly(bool flag) { m_impl->readOnly = flag; }
 
 /*!
     \brief      返回是否只读.
     \sa         setReadOnly
 */
-bool QCtmEditLabel::isReadOnly() const
-{
-    return m_impl->readOnly;
-}
+bool QCtmEditLabel::isReadOnly() const { return m_impl->readOnly; }
 
 /*!
     \brief      设置编辑按钮图标 \a icon.
     \sa         editButtonIcon
 */
-void QCtmEditLabel::setEditButtonIcon(const QIcon& icon)
-{
-    m_impl->editButton->setIcon(icon);
-}
+void QCtmEditLabel::setEditButtonIcon(const QIcon& icon) { m_impl->editButton->setIcon(icon); }
 
 /*!
     \brief      返回编辑按钮图标.
 */
-QIcon QCtmEditLabel::editButtonIcon() const
-{
-    return m_impl->editButton->icon();
-}
+QIcon QCtmEditLabel::editButtonIcon() const { return m_impl->editButton->icon(); }
 
 /*!
     \brief      设置编辑完成按钮图标 \a icon.
     \sa         finishButtonIcon()
 */
-void QCtmEditLabel::setFinishButtonIcon(const QIcon& icon)
-{
-    m_impl->finishButtonIcon = icon;
-}
+void QCtmEditLabel::setFinishButtonIcon(const QIcon& icon) { m_impl->finishButtonIcon = icon; }
 
 /*!
     \brief      返回编辑完成按钮图标.
     \sa         setFinishButtonIcon
 */
-QIcon QCtmEditLabel::finishButtonIcon() const
-{
-    return m_impl->finishButtonIcon;
-}
+QIcon QCtmEditLabel::finishButtonIcon() const { return m_impl->finishButtonIcon; }
 
 /*!
     \brief      设置回退按钮图标 \a icon.
     \sa         revertButtonIcon()
 */
-void QCtmEditLabel::setRevertButtonIcon(const QIcon& icon)
-{
-    m_impl->revertButtonIcon = icon;
-}
+void QCtmEditLabel::setRevertButtonIcon(const QIcon& icon) { m_impl->revertButtonIcon = icon; }
 
 /*!
     \brief      返回回退按钮图标.
     \sa         setRevertButtonIcon
 */
-QIcon QCtmEditLabel::revertButtonIcon() const
-{
-    return m_impl->revertButtonIcon;
-}
+QIcon QCtmEditLabel::revertButtonIcon() const { return m_impl->revertButtonIcon; }
 
 /*!
     \reimp
@@ -199,7 +166,7 @@ void QCtmEditLabel::init()
 {
     setAttribute(Qt::WA_Hover);
     QHBoxLayout* layout = new QHBoxLayout(this);
-    m_impl->editButton = new QToolButton(this);
+    m_impl->editButton  = new QToolButton(this);
     m_impl->editButton->setIcon(QIcon(":/QCustomUi/Resources/edit.png"));
     layout->setContentsMargins(0, 0, 0, 0);
     layout->addStretch(1);
@@ -224,25 +191,27 @@ void QCtmEditLabel::onEditButtonClicked()
     editBase->setAttribute(Qt::WA_TranslucentBackground);
     editBase->setFixedSize(this->size());
     QHBoxLayout* layout = new QHBoxLayout(editBase);
-    QLineEdit* edit = new QLineEdit(editBase);
+    QLineEdit* edit     = new QLineEdit(editBase);
     edit->setFont(this->font());
     edit->setText(this->text());
     layout->addWidget(edit);
     auto applayBtn = new QToolButton(editBase);
     applayBtn->setFixedSize(EditButtonSize, EditButtonSize);
     applayBtn->setIcon(m_impl->finishButtonIcon);
-    connect(applayBtn, &QToolButton::clicked, this, [=]() {
-        this->setText(edit->text());
-        editBase->close();
-        emit editFinished();
-        });
+    connect(applayBtn,
+            &QToolButton::clicked,
+            this,
+            [=]()
+            {
+                this->setText(edit->text());
+                editBase->close();
+                emit editFinished();
+            });
     layout->addWidget(applayBtn);
     auto cancelBtn = new QToolButton(editBase);
     cancelBtn->setFixedSize(EditButtonSize, EditButtonSize);
     cancelBtn->setIcon(m_impl->revertButtonIcon);
-    connect(cancelBtn, &QToolButton::clicked, this, [=]() {
-        editBase->close();
-        });
+    connect(cancelBtn, &QToolButton::clicked, this, [=]() { editBase->close(); });
     layout->addWidget(cancelBtn);
     layout->setSpacing(EditButtonSpace - 2);
     layout->setContentsMargins(0, 0, 0, 0);

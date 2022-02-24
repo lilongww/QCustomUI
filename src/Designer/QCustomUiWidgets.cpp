@@ -1,11 +1,11 @@
-#include "QCustomUiWidgets.h"
-#include "StageProgressBar.h"
+﻿#include "QCustomUiWidgets.h"
+#include "ClassifyTreeView.h"
+#include "ComboBox.h"
+#include "EditLabel.h"
 #include "IPAddressEdit.h"
 #include "MultiComboBox.h"
-#include "ComboBox.h"
+#include "StageProgressBar.h"
 #include "TableView.h"
-#include "ClassifyTreeView.h"
-#include "EditLabel.h"
 
 #include <QCustomUi/QCtmStyleSheet.h>
 
@@ -16,9 +16,7 @@ struct QCustomUiWidgets::Impl
     QList<QDesignerCustomWidgetInterface*> widgets;
 };
 
-QCustomUiWidgets::QCustomUiWidgets(QObject* parent /*= 0*/)
-    : QObject(parent)
-    , m_impl(std::make_unique<Impl>())
+QCustomUiWidgets::QCustomUiWidgets(QObject* parent /*= 0*/) : QObject(parent), m_impl(std::make_unique<Impl>())
 {
     m_impl->widgets.push_back(new StageProgressBar(this));
     m_impl->widgets.push_back(new IPAddressEdit(this));
@@ -30,12 +28,6 @@ QCustomUiWidgets::QCustomUiWidgets(QObject* parent /*= 0*/)
     qApp->setStyleSheet(QCtmStyleSheet::defaultStyleSheet());
 }
 
-QCustomUiWidgets::~QCustomUiWidgets()
-{
+QCustomUiWidgets::~QCustomUiWidgets() {}
 
-}
-
-QList<QDesignerCustomWidgetInterface*> QCustomUiWidgets::customWidgets() const
-{
-    return m_impl->widgets;
-}
+QList<QDesignerCustomWidgetInterface*> QCustomUiWidgets::customWidgets() const { return m_impl->widgets; }

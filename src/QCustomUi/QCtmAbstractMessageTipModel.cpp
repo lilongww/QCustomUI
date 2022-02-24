@@ -22,8 +22,8 @@
 struct QCtmAbstractMessageTipModel::Impl
 {
     QVector<QCtmAbstractMessageTipDataPtr> messages;
-    int maxCount{ 10000 };
-    bool reversedOrder{ true };
+    int maxCount { 10000 };
+    bool reversedOrder { true };
 };
 
 /*!
@@ -44,28 +44,18 @@ struct QCtmAbstractMessageTipModel::Impl
 /*!
     \brief      构造一个父对象为 \a parent 的消息对象.
 */
-QCtmAbstractMessageTipModel::QCtmAbstractMessageTipModel(QObject* parent)
-    : QAbstractTableModel(parent)
-    , m_impl(std::make_unique<Impl>())
-{
-
-}
+QCtmAbstractMessageTipModel::QCtmAbstractMessageTipModel(QObject* parent) : QAbstractTableModel(parent), m_impl(std::make_unique<Impl>()) {}
 
 /*!
     \brief      销毁当前消息model对象.
 */
-QCtmAbstractMessageTipModel::~QCtmAbstractMessageTipModel()
-{
-}
+QCtmAbstractMessageTipModel::~QCtmAbstractMessageTipModel() {}
 
 /*!
     \brief      添加一条消息 \a msg.
     \sa         insertMessage, removeMessage
 */
-void QCtmAbstractMessageTipModel::addMessage(QCtmAbstractMessageTipDataPtr msg)
-{
-    insertMessage(m_impl->messages.size(), msg);
-}
+void QCtmAbstractMessageTipModel::addMessage(QCtmAbstractMessageTipDataPtr msg) { insertMessage(m_impl->messages.size(), msg); }
 
 /*!
     \brief      在 \a index 的位置插入一条消息对象 \a msg.
@@ -116,19 +106,13 @@ void QCtmAbstractMessageTipModel::clear()
     \brief      设置消息最大保存数量 \a count.
     \sa         maximumCount()
 */
-void QCtmAbstractMessageTipModel::setMaximumCount(int count)
-{
-    m_impl->maxCount = count;
-}
+void QCtmAbstractMessageTipModel::setMaximumCount(int count) { m_impl->maxCount = count; }
 
 /*!
     \brief      返回消息最大保存对象.
     \sa         setMaximumCount
 */
-int QCtmAbstractMessageTipModel::maximumCount() const
-{
-    return m_impl->maxCount;
-}
+int QCtmAbstractMessageTipModel::maximumCount() const { return m_impl->maxCount; }
 
 /*!
     \brief      设置消息是否逆序显示 \a re, 即最新一条显示在第一条，默认为真.
@@ -145,10 +129,7 @@ void QCtmAbstractMessageTipModel::setReversedOrder(bool re)
     \brief      消息是否逆序显示，即最新一条显示在第一条，默认为真.
     \sa         setReversedOrder
 */
-bool QCtmAbstractMessageTipModel::reversedOrder() const
-{
-    return m_impl->reversedOrder;
-}
+bool QCtmAbstractMessageTipModel::reversedOrder() const { return m_impl->reversedOrder; }
 
 /*!
     \reimp

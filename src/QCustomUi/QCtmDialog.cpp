@@ -18,25 +18,24 @@
 **********************************************************************************/
 
 #include "QCtmDialog.h"
-#include "QCtmTitleBar.h"
 #include "Private/QCtmFramelessDelegate_p.h"
 #include "Private/QCtmFramelessDelegate_win.h"
+#include "QCtmTitleBar.h"
 
-#include <QVBoxLayout>
 #include <QApplication>
 #include <QMoveEvent>
-#include <QApplication>
 #include <QScreen>
+#include <QVBoxLayout>
 
 struct QCtmDialog::Impl
 {
-    QCtmTitleBar* title{ nullptr };
-    QWidget* content{ nullptr };
-    QVBoxLayout* layout{ nullptr };
+    QCtmTitleBar* title { nullptr };
+    QWidget* content { nullptr };
+    QVBoxLayout* layout { nullptr };
 #ifdef Q_OS_WIN
-    QCtmWinFramelessDelegate* delegate{ nullptr };
+    QCtmWinFramelessDelegate* delegate { nullptr };
 #else
-    QCtmFramelessDelegate* delegate{ nullptr };
+    QCtmFramelessDelegate* delegate { nullptr };
 #endif
 };
 
@@ -52,9 +51,7 @@ struct QCtmDialog::Impl
 /*!
     \brief      构造一个父窗口为 \a parent 的窗口对象.
 */
-QCtmDialog::QCtmDialog(QWidget* parent)
-    : QDialog(parent)
-    , m_impl(std::make_unique<Impl>())
+QCtmDialog::QCtmDialog(QWidget* parent) : QDialog(parent), m_impl(std::make_unique<Impl>())
 {
     m_impl->title = new QCtmTitleBar(this);
 
@@ -79,9 +76,7 @@ QCtmDialog::QCtmDialog(QWidget* parent)
 /*!
     \brief      销毁该窗口对象.
 */
-QCtmDialog::~QCtmDialog()
-{
-}
+QCtmDialog::~QCtmDialog() {}
 
 /*!
     \brief      设置 \a widget 为窗口的中央部件.
@@ -106,10 +101,7 @@ void QCtmDialog::setCentralWidget(QWidget* widget)
     \brief      返回中央部件地址.
     \sa         setCentralWidget
 */
-QWidget* QCtmDialog::centralWidget() const
-{
-    return m_impl->content;
-}
+QWidget* QCtmDialog::centralWidget() const { return m_impl->content; }
 
 /*!
     \brief      设置标题栏 \a titleBar.
@@ -134,10 +126,7 @@ void QCtmDialog::setTitleBar(QCtmTitleBar* titleBar)
     \brief      返回窗口的标题栏.
     \sa         setTitleBar, removeTitleBar()
 */
-QCtmTitleBar* QCtmDialog::titleBar() const
-{
-    return m_impl->title;
-}
+QCtmTitleBar* QCtmDialog::titleBar() const { return m_impl->title; }
 
 /*!
     \brief      移除窗口的标题栏.
@@ -156,19 +145,13 @@ void QCtmDialog::removeTitleBar()
     \brief      添加鼠标可拖拽区域 \a moveBar, moveBar必须为该窗口的子控件之一.
     \sa         removeMoveBar
 */
-void QCtmDialog::addMoveBar(QWidget* moveBar)
-{
-    m_impl->delegate->addMoveBar(moveBar);
-}
+void QCtmDialog::addMoveBar(QWidget* moveBar) { m_impl->delegate->addMoveBar(moveBar); }
 
 /*!
     \brief      移除鼠标拖拽区域 \a moveBar.
     \sa         addMoveBar
 */
-void QCtmDialog::removeMoveBar(QWidget* moveBar)
-{
-    m_impl->delegate->removeMoveBar(moveBar);
-}
+void QCtmDialog::removeMoveBar(QWidget* moveBar) { m_impl->delegate->removeMoveBar(moveBar); }
 #ifndef Q_OS_WIN
 
 /*!
@@ -179,10 +162,7 @@ void QCtmDialog::removeMoveBar(QWidget* moveBar)
     \internal
     \endif
 */
-void QCtmDialog::setShadowless(bool flag)
-{
-    m_impl->delegate->setShadowless(flag);
-}
+void QCtmDialog::setShadowless(bool flag) { m_impl->delegate->setShadowless(flag); }
 
 /*!
     \if         !defined(Q_OS_WIN)
@@ -192,10 +172,7 @@ void QCtmDialog::setShadowless(bool flag)
     \internal
     \endif
 */
-bool QCtmDialog::shadowless() const
-{
-    return m_impl->delegate->shadowless();
-}
+bool QCtmDialog::shadowless() const { return m_impl->delegate->shadowless(); }
 #endif
 
 /*!
@@ -227,7 +204,7 @@ bool QCtmDialog::eventFilter(QObject* o, QEvent* e)
 /*!
     \reimp
 */
-#if QT_VERSION < QT_VERSION_CHECK(6,0,0)
+#if QT_VERSION < QT_VERSION_CHECK(6, 0, 0)
 bool QCtmDialog::nativeEvent(const QByteArray& eventType, void* message, long* result)
 #else
 bool QCtmDialog::nativeEvent(const QByteArray& eventType, void* message, qintptr* result)

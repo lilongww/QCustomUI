@@ -1,11 +1,13 @@
-#pragma once
+﻿#pragma once
 
 #include <QDesignerCustomWidgetInterface>
 
-class IPAddressEdit : public QObject, public QDesignerCustomWidgetInterface
+class IPAddressEdit
+    : public QObject
+    , public QDesignerCustomWidgetInterface
 {
     Q_OBJECT
-        Q_INTERFACES(QDesignerCustomWidgetInterface)
+    Q_INTERFACES(QDesignerCustomWidgetInterface)
 public:
     explicit IPAddressEdit(QObject* parent = nullptr);
 
@@ -22,5 +24,5 @@ public:
     void initialize(QDesignerFormEditorInterface* core) override;
 
 private:
-    bool m_initialized{ false };
+    bool m_initialized { false };
 };

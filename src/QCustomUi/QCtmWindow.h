@@ -1,4 +1,4 @@
-/*********************************************************************************
+﻿/*********************************************************************************
 **                                                                              **
 **  Copyright (C) 2019-2020 LiLong                                              **
 **  This file is part of QCustomUi.                                             **
@@ -21,13 +21,16 @@
 
 #include "qcustomui_global.h"
 
-#include <QWidget>
 #include <QMenuBar>
 #include <QStatusBar>
+#include <QWidget>
 
 #include <memory>
 
-namespace Ui { class QCtmWindow; }
+namespace Ui
+{
+class QCtmWindow;
+}
 class QCtmNavigationBar;
 class QCtmTitleBar;
 
@@ -61,10 +64,10 @@ public:
 #endif
 protected:
     bool eventFilter(QObject* watched, QEvent* event) override;
-#if QT_VERSION < QT_VERSION_CHECK(6,0,0)
+#if QT_VERSION < QT_VERSION_CHECK(6, 0, 0)
     bool nativeEvent(const QByteArray& eventType, void* message, long* result) override;
 #else
-    bool nativeEvent(const QByteArray &eventType, void *message, qintptr *result) override;
+    bool nativeEvent(const QByteArray& eventType, void* message, qintptr* result) override;
 #endif
 private:
     struct Impl;

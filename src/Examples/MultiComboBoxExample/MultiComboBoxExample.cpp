@@ -4,17 +4,13 @@
 
 #include <QHBoxLayout>
 
-MultiComboBoxExample::MultiComboBoxExample(QWidget* parent)
-    : QCtmWindow(parent)
+MultiComboBoxExample::MultiComboBoxExample(QWidget* parent) : QCtmWindow(parent)
 {
     init();
     setWindowTitle(tr("MultiComboBox Example"));
 }
 
-MultiComboBoxExample::~MultiComboBoxExample()
-{
-
-}
+MultiComboBoxExample::~MultiComboBoxExample() {}
 
 void MultiComboBoxExample::init()
 {
@@ -22,7 +18,7 @@ void MultiComboBoxExample::init()
     layout->addStretch(1);
     {
         auto box = new QCtmMultiComboBox(this);
-        QStringList items{ tr("Item1"), tr("Item2"), tr("Item3"), tr("Item4"), tr("Item5") };
+        QStringList items { tr("Item1"), tr("Item2"), tr("Item3"), tr("Item4"), tr("Item5") };
         box->addItems(items);
         box->setFixedWidth(200);
         layout->addWidget(box);
@@ -30,7 +26,7 @@ void MultiComboBoxExample::init()
     {
         auto box = new QCtmMultiComboBox(this);
         box->setEnabled(false);
-        QStringList items{ tr("Item1"), tr("Item2"), tr("Item3"), tr("Item4"), tr("Item5") };
+        QStringList items { tr("Item1"), tr("Item2"), tr("Item3"), tr("Item4"), tr("Item5") };
         box->addItems(items);
         box->setFixedWidth(200);
         layout->addWidget(box);

@@ -9,6 +9,7 @@ class NavigationBarExample : public QCtmWindow
 public:
     NavigationBarExample(QWidget* parent = Q_NULLPTR);
     ~NavigationBarExample();
+
 private:
     void init();
 };

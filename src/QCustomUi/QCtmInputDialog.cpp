@@ -6,23 +6,23 @@
 #include "Private/QCtmFramelessDelegate_p.h"
 #endif
 
-#include <QVBoxLayout>
-#include <QLabel>
-#include <QEvent>
-#include <QApplication>
-#include <QStyle>
 #include "private/qwidget_p.h"
+#include <QApplication>
+#include <QEvent>
+#include <QLabel>
+#include <QStyle>
+#include <QVBoxLayout>
 
 struct QCtmInputDialog::Impl
 {
-    QCtmTitleBar* title{ nullptr };
+    QCtmTitleBar* title { nullptr };
 #ifdef Q_OS_WIN
-    QCtmWinFramelessDelegate* delegate{ nullptr };
+    QCtmWinFramelessDelegate* delegate { nullptr };
 #else
-    QCtmFramelessDelegate* delegate{ nullptr };
+    QCtmFramelessDelegate* delegate { nullptr };
 #endif
-    QVBoxLayout* layout{ nullptr };
-    QLayout* mainLayout{ nullptr };
+    QVBoxLayout* layout { nullptr };
+    QLayout* mainLayout { nullptr };
 };
 
 /*!
@@ -37,9 +37,7 @@ struct QCtmInputDialog::Impl
 /*!
     \brief      构造函数 \a parent, \a flags.
 */
-QCtmInputDialog::QCtmInputDialog(QWidget* parent, Qt::WindowFlags flags)
-    : QInputDialog(parent, flags)
-    , m_impl(std::make_unique<Impl>())
+QCtmInputDialog::QCtmInputDialog(QWidget* parent, Qt::WindowFlags flags) : QInputDialog(parent, flags), m_impl(std::make_unique<Impl>())
 {
     sizeHint();
     m_impl->layout = new QVBoxLayout;
@@ -49,15 +47,15 @@ QCtmInputDialog::QCtmInputDialog(QWidget* parent, Qt::WindowFlags flags)
     m_impl->layout->addWidget(m_impl->title, 0);
     {
         m_impl->mainLayout = qobject_cast<QVBoxLayout*>(this->layout());
-        auto w = new QWidget(this);
+        auto w             = new QWidget(this);
         w->setSizePolicy(QSizePolicy::Ignored, QSizePolicy::Ignored);
         w->setLayout(m_impl->mainLayout);
         m_impl->mainLayout->setParent(w);
         auto style = this->style();
-        m_impl->mainLayout->setContentsMargins(style->pixelMetric(QStyle::PM_LayoutLeftMargin)
-            , style->pixelMetric(QStyle::PM_LayoutTopMargin)
-            , style->pixelMetric(QStyle::PM_LayoutRightMargin)
-            , style->pixelMetric(QStyle::PM_LayoutBottomMargin));
+        m_impl->mainLayout->setContentsMargins(style->pixelMetric(QStyle::PM_LayoutLeftMargin),
+                                               style->pixelMetric(QStyle::PM_LayoutTopMargin),
+                                               style->pixelMetric(QStyle::PM_LayoutRightMargin),
+                                               style->pixelMetric(QStyle::PM_LayoutBottomMargin));
         m_impl->layout->addWidget(w, 1);
     }
     setLayout(m_impl->layout);
@@ -73,10 +71,7 @@ QCtmInputDialog::QCtmInputDialog(QWidget* parent, Qt::WindowFlags flags)
 /*!
     \brief      析构函数.
 */
-QCtmInputDialog::~QCtmInputDialog()
-{
-
-}
+QCtmInputDialog::~QCtmInputDialog() {}
 
 /*!
     \brief      设置标题栏 \a titleBar.
@@ -101,10 +96,7 @@ void QCtmInputDialog::setTitleBar(QCtmTitleBar* titleBar)
     \brief      返回标题栏.
     \sa         setTitleBar, removeTitleBar
 */
-QCtmTitleBar* QCtmInputDialog::titleBar() const
-{
-    return m_impl->title;
-}
+QCtmTitleBar* QCtmInputDialog::titleBar() const { return m_impl->title; }
 
 /*!
     \brief      移除标题栏.
@@ -130,14 +122,14 @@ void QCtmInputDialog::removeTitleBar()
                 窗口标志位为 \a flags,
                 输入法为 \a inputMethodHints.
 */
-QString QCtmInputDialog::getText(QWidget* parent
-    , const QString& title
-    , const QString& label
-    , QLineEdit::EchoMode echo
-    , const QString& text
-    , bool* ok
-    , Qt::WindowFlags flags
-    , Qt::InputMethodHints inputMethodHints)
+QString QCtmInputDialog::getText(QWidget* parent,
+                                 const QString& title,
+                                 const QString& label,
+                                 QLineEdit::EchoMode echo,
+                                 const QString& text,
+                                 bool* ok,
+                                 Qt::WindowFlags flags,
+                                 Qt::InputMethodHints inputMethodHints)
 {
     QCtmInputDialog dlg(parent, flags);
     dlg.setWindowTitle(title);
@@ -149,10 +141,12 @@ QString QCtmInputDialog::getText(QWidget* parent
     const int ret = dlg.exec();
     if (ok)
         *ok = !!ret;
-    if (ret) {
+    if (ret)
+    {
         return dlg.textValue();
     }
-    else {
+    else
+    {
         return QString();
     }
 }
@@ -167,13 +161,13 @@ QString QCtmInputDialog::getText(QWidget* parent
                 窗口标志位为 \a flags,
                 输入法为 \a inputMethodHints.
 */
-QString QCtmInputDialog::getMultiLineText(QWidget* parent
-    , const QString& title
-    , const QString& label
-    , const QString& text
-    , bool* ok
-    , Qt::WindowFlags flags
-    , Qt::InputMethodHints inputMethodHints)
+QString QCtmInputDialog::getMultiLineText(QWidget* parent,
+                                          const QString& title,
+                                          const QString& label,
+                                          const QString& text,
+                                          bool* ok,
+                                          Qt::WindowFlags flags,
+                                          Qt::InputMethodHints inputMethodHints)
 {
     QCtmInputDialog dialog(parent, flags);
     dialog.setOptions(QInputDialog::UsePlainTextEditForTextInput);
@@ -185,10 +179,12 @@ QString QCtmInputDialog::getMultiLineText(QWidget* parent
     const int ret = dialog.exec();
     if (ok)
         *ok = !!ret;
-    if (ret) {
+    if (ret)
+    {
         return dialog.textValue();
     }
-    else {
+    else
+    {
         return QString();
     }
 }
@@ -205,15 +201,15 @@ QString QCtmInputDialog::getMultiLineText(QWidget* parent
                 窗口标志位为 \a flags,
                 输入法为 \a inputMethodHints.
 */
-QString QCtmInputDialog::getItem(QWidget* parent
-    , const QString& title
-    , const QString& label
-    , const QStringList& items
-    , int current
-    , bool editable
-    , bool* ok
-    , Qt::WindowFlags flags
-    , Qt::InputMethodHints inputMethodHints)
+QString QCtmInputDialog::getItem(QWidget* parent,
+                                 const QString& title,
+                                 const QString& label,
+                                 const QStringList& items,
+                                 int current,
+                                 bool editable,
+                                 bool* ok,
+                                 Qt::WindowFlags flags,
+                                 Qt::InputMethodHints inputMethodHints)
 {
     QString text(items.value(current));
 
@@ -228,10 +224,12 @@ QString QCtmInputDialog::getItem(QWidget* parent
     const int ret = dialog.exec();
     if (ok)
         *ok = !!ret;
-    if (ret) {
+    if (ret)
+    {
         return dialog.textValue();
     }
-    else {
+    else
+    {
         return text;
     }
 }
@@ -248,7 +246,15 @@ QString QCtmInputDialog::getItem(QWidget* parent
                 是否点击确定按钮 \a ok,
                 窗口标志位为 \a flags.
 */
-int QCtmInputDialog::getInt(QWidget* parent, const QString& title, const QString& label, int value, int minValue, int maxValue, int step, bool* ok, Qt::WindowFlags flags)
+int QCtmInputDialog::getInt(QWidget* parent,
+                            const QString& title,
+                            const QString& label,
+                            int value,
+                            int minValue,
+                            int maxValue,
+                            int step,
+                            bool* ok,
+                            Qt::WindowFlags flags)
 {
     QCtmInputDialog dialog(parent, flags);
     dialog.setWindowTitle(title);
@@ -260,10 +266,12 @@ int QCtmInputDialog::getInt(QWidget* parent, const QString& title, const QString
     const int ret = dialog.exec();
     if (ok)
         *ok = !!ret;
-    if (ret) {
+    if (ret)
+    {
         return dialog.intValue();
     }
-    else {
+    else
+    {
         return value;
     }
 }
@@ -281,16 +289,16 @@ int QCtmInputDialog::getInt(QWidget* parent, const QString& title, const QString
                 窗口标志位为 \a flags,
                 步进为 \a step.
 */
-double QCtmInputDialog::getDouble(QWidget* parent
-    , const QString& title
-    , const QString& label
-    , double value
-    , double minValue
-    , double maxValue
-    , int decimals
-    , bool* ok
-    , Qt::WindowFlags flags
-    , double step)
+double QCtmInputDialog::getDouble(QWidget* parent,
+                                  const QString& title,
+                                  const QString& label,
+                                  double value,
+                                  double minValue,
+                                  double maxValue,
+                                  int decimals,
+                                  bool* ok,
+                                  Qt::WindowFlags flags,
+                                  double step)
 {
     QCtmInputDialog dialog(parent, flags);
     dialog.setWindowTitle(title);
@@ -334,7 +342,7 @@ void QCtmInputDialog::showEvent(QShowEvent* e)
 /*!
     \reimp
 */
-#if QT_VERSION < QT_VERSION_CHECK(6,0,0)
+#if QT_VERSION < QT_VERSION_CHECK(6, 0, 0)
 bool QCtmInputDialog::nativeEvent(const QByteArray& eventType, void* message, long* result)
 #else
 bool QCtmInputDialog::nativeEvent(const QByteArray& eventType, void* message, qintptr* result)

@@ -1,4 +1,4 @@
-/*********************************************************************************
+﻿/*********************************************************************************
 **                                                                              **
 **  Copyright (C) 2019-2020 LiLong                                              **
 **  This file is part of QCustomUi.                                             **
@@ -24,20 +24,12 @@
 struct QCtmActionGroup::Impl
 {
     QSet<QAction*> actions;
-    QAction* current{ nullptr };
+    QAction* current { nullptr };
 };
 
-QCtmActionGroup::QCtmActionGroup(QObject* parent)
-    : QObject(parent)
-    , m_impl(std::make_unique<Impl>())
-{
+QCtmActionGroup::QCtmActionGroup(QObject* parent) : QObject(parent), m_impl(std::make_unique<Impl>()) {}
 
-}
-
-QCtmActionGroup::~QCtmActionGroup()
-{
-
-}
+QCtmActionGroup::~QCtmActionGroup() {}
 
 void QCtmActionGroup::addAction(QAction* action)
 {
@@ -45,22 +37,22 @@ void QCtmActionGroup::addAction(QAction* action)
     connect(action, &QAction::changed, this, &QCtmActionGroup::actionChanged);
 }
 
-void QCtmActionGroup::removeAction(QAction* action)
-{
-    m_impl->actions.remove(action);
-}
+void QCtmActionGroup::removeAction(QAction* action) { m_impl->actions.remove(action); }
 
 void QCtmActionGroup::actionChanged()
 {
     QAction* action = qobject_cast<QAction*>(sender());
-    if (action->isChecked()) {
-        if (action != m_impl->current) {
+    if (action->isChecked())
+    {
+        if (action != m_impl->current)
+        {
             if (m_impl->current)
                 m_impl->current->setChecked(false);
             m_impl->current = action;
         }
     }
-    else if (action == m_impl->current) {
+    else if (action == m_impl->current)
+    {
         m_impl->current = 0;
     }
 }

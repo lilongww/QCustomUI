@@ -1,8 +1,8 @@
-#include "MultiComboBoxExample.h"
+﻿#include "MultiComboBoxExample.h"
 
 #include <QCustomUi/QCtmApplication.h>
 
-int main(int argc, char *argv[])
+int main(int argc, char* argv[])
 {
     QCtmApplication a(argc, argv);
     MultiComboBoxExample w;

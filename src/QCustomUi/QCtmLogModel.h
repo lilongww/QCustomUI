@@ -1,4 +1,4 @@
-/*********************************************************************************
+﻿/*********************************************************************************
 **                                                                              **
 **  Copyright (C) 2019-2020 LiLong                                              **
 **  This file is part of QCustomUi.                                             **
@@ -37,11 +37,14 @@ struct QCUSTOMUI_EXPORT QCtmLogMessage
 class QCUSTOMUI_EXPORT QCtmLogModel : public QCtmAbstractLogModel
 {
     Q_OBJECT
-        Q_PROPERTY(QIcon infoIcon READ infoIcon WRITE setInfoIcon)
-        Q_PROPERTY(QIcon warningIcon READ warningIcon WRITE setWarningIcon)
-        Q_PROPERTY(QIcon errorIcon READ errorIcon WRITE setErrorIcon)
+    Q_PROPERTY(QIcon infoIcon READ infoIcon WRITE setInfoIcon)
+    Q_PROPERTY(QIcon warningIcon READ warningIcon WRITE setWarningIcon)
+    Q_PROPERTY(QIcon errorIcon READ errorIcon WRITE setErrorIcon)
 public:
-    enum { TypeRole = Qt::UserRole + 1 };
+    enum
+    {
+        TypeRole = Qt::UserRole + 1
+    };
 
     QCtmLogModel(const QString& objectName, QObject* parent);
     ~QCtmLogModel();
@@ -65,9 +68,11 @@ public:
     int warningCount() const;
     int infoCount() const;
     int errorCount() const;
+
 protected:
     void logEvent(QCtmLogEvent* e) override;
     void retranslateUi() override;
+
 private:
     struct Impl;
     std::unique_ptr<Impl> m_impl;

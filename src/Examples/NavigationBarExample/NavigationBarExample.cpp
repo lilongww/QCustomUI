@@ -2,22 +2,15 @@
 
 #include <QCustomUi/QCtmNavigationBar.h>
 
+#include <QLineEdit>
 #include <QPainter>
+#include <QTimer>
 #include <QUrl>
 #include <QWidgetAction>
-#include <QLineEdit>
-#include <QTimer>
 
-NavigationBarExample::NavigationBarExample(QWidget* parent)
-    : QCtmWindow(parent)
-{
-    init();
-}
+NavigationBarExample::NavigationBarExample(QWidget* parent) : QCtmWindow(parent) { init(); }
 
-NavigationBarExample::~NavigationBarExample()
-{
-
-}
+NavigationBarExample::~NavigationBarExample() {}
 
 void NavigationBarExample::init()
 {
@@ -47,7 +40,7 @@ void NavigationBarExample::init()
     action->setVisible(false);
     nvBar->addAction(action, QCtmNavigationBar::Right);
     nvBar->addHelp(QUrl("http://llongww.gitee.io/qcustomuidocument"), QIcon(":/QCustomUi/Resources/help-light.png"));
-    QTimer::singleShot(2000, [=]() {action->setVisible(true); });
+    QTimer::singleShot(2000, [=]() { action->setVisible(true); });
     nvBar->addUser(QIcon(":/QCustomUi/Resources/people-light.png"), "ABC")->setVisible(false);
     nvBar->addAction(tr("Center Action"), QCtmNavigationBar::Center);
 }

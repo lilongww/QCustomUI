@@ -1,4 +1,4 @@
-/*********************************************************************************
+﻿/*********************************************************************************
 **                                                                              **
 **  Copyright (C) 2019-2020 LiLong                                              **
 **  This file is part of QCustomUi.                                             **
@@ -32,26 +32,28 @@ class QStyleOptionButton;
 class QCUSTOMUI_EXPORT QCtmMessageTipButton : public QAbstractButton
 {
     Q_OBJECT
-        Q_PROPERTY(QColor tipColor READ tipColor WRITE setTipColor)
+    Q_PROPERTY(QColor tipColor READ tipColor WRITE setTipColor)
 public:
     QCtmMessageTipButton(QWidget* parent);
     ~QCtmMessageTipButton();
 
     void setModel(QCtmAbstractMessageTipModel* model);
-    QCtmAbstractMessageTipModel* model()const;
+    QCtmAbstractMessageTipModel* model() const;
     void setView(QCtmAbstractMessageTipView* view);
-    QCtmAbstractMessageTipView* view()const;
+    QCtmAbstractMessageTipView* view() const;
     void setTipColor(const QColor& color);
-    const QColor& tipColor()const;
+    const QColor& tipColor() const;
+
 private:
     void paintEvent(QPaintEvent* event) override;
-    QSize sizeHint()const override;
+    QSize sizeHint() const override;
     void connectView();
     void initStyleOption(QStyleOptionButton* opt);
 
 private slots:
     void onClicked(bool);
     void onModelDataChanged();
+
 private:
     struct Impl;
     std::unique_ptr<Impl> m_impl;

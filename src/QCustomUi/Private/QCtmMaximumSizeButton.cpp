@@ -1,4 +1,4 @@
-/*********************************************************************************
+﻿/*********************************************************************************
 **                                                                              **
 **  Copyright (C) 2019-2020 LiLong                                              **
 **  This file is part of QCustomUi.                                             **
@@ -21,15 +21,9 @@
 
 #include <QStyle>
 
-QCtmMaximumSizeButton::QCtmMaximumSizeButton(QWidget* parent)
-    : QPushButton(parent)
-    , m_maxsized(false)
-{
-}
+QCtmMaximumSizeButton::QCtmMaximumSizeButton(QWidget* parent) : QPushButton(parent), m_maxsized(false) {}
 
-QCtmMaximumSizeButton::~QCtmMaximumSizeButton()
-{
-}
+QCtmMaximumSizeButton::~QCtmMaximumSizeButton() {}
 
 void QCtmMaximumSizeButton::setMaximumSized(bool max)
 {
@@ -38,7 +32,4 @@ void QCtmMaximumSizeButton::setMaximumSized(bool max)
     this->style()->polish(this);
 }
 
-bool QCtmMaximumSizeButton::maximumSized() const
-{
-    return m_maxsized;
-}
+bool QCtmMaximumSizeButton::maximumSized() const { return m_maxsized; }

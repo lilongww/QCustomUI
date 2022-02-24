@@ -21,14 +21,14 @@
 
 #include "qcustomui_global.h"
 
-#include <QWidget>
 #include <QMenu>
+#include <QWidget>
 
 #include <memory>
 
 namespace Ui
 {
-    class QCtmTitleBar;
+class QCtmTitleBar;
 }
 
 class QMenuBar;
@@ -36,17 +36,17 @@ class QMenuBar;
 class QCUSTOMUI_EXPORT QCtmTitleBar : public QWidget
 {
     Q_OBJECT
-        Q_PROPERTY(bool iconIsVisible READ iconIsVisible WRITE setIconVisible)
-        Q_PROPERTY(QSize iconSize READ iconSize WRITE setIconSize NOTIFY iconSizeChanged)
+    Q_PROPERTY(bool iconIsVisible READ iconIsVisible WRITE setIconVisible)
+    Q_PROPERTY(QSize iconSize READ iconSize WRITE setIconSize NOTIFY iconSizeChanged)
 public:
     QCtmTitleBar(QWidget* parent = Q_NULLPTR);
     ~QCtmTitleBar();
 
     void setMenuBar(QMenuBar* menu);
-    QMenuBar* menuBar()const;
+    QMenuBar* menuBar() const;
     void removeMenuBar();
     void setIconVisible(bool show);
-    bool iconIsVisible()const;
+    bool iconIsVisible() const;
     void setIconSize(const QSize& size);
     const QSize& iconSize() const;
 signals:
@@ -59,11 +59,12 @@ private slots:
 protected:
     void paintEvent(QPaintEvent* event) override;
     void showEvent(QShowEvent* event) override;
-    bool eventFilter(QObject* watched, QEvent* event)override;
+    bool eventFilter(QObject* watched, QEvent* event) override;
     void actionEvent(QActionEvent* event) override;
 
 private:
     QRect doIconRect() const;
+
 private:
     Ui::QCtmTitleBar* ui;
 

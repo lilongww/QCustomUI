@@ -8,8 +8,7 @@
 
 #include <thread>
 
-LoadingExample::LoadingExample(QWidget* parent)
-    : QCtmWindow(parent)
+LoadingExample::LoadingExample(QWidget* parent) : QCtmWindow(parent)
 {
     setWindowTitle(tr("LoadingExample"));
     auto btn = new QPushButton(this->centralWidget());
@@ -17,13 +16,18 @@ LoadingExample::LoadingExample(QWidget* parent)
     btn->setText(tr("Show Loading 3 seconds"));
     auto loading = new QCtmLoadingDialog(this);
     loading->setCancelEnable(true);
-    connect(btn, &QPushButton::clicked, this, [=]()
-        {
-            std::thread([&]
-                {
-                    std::this_thread::sleep_for(std::chrono::milliseconds(3000));
-                    QMetaObject::invokeMethod(loading, &QCtmLoadingDialog::done);
-                }).detach();
+    connect(btn,
+            &QPushButton::clicked,
+            this,
+            [=]()
+            {
+                std::thread(
+                    [&]
+                    {
+                        std::this_thread::sleep_for(std::chrono::milliseconds(3000));
+                        QMetaObject::invokeMethod(loading, &QCtmLoadingDialog::done);
+                    })
+                    .detach();
                 auto ret = loading->exec();
                 if (ret == QCtmLoadingDialog::Result::Done)
                 {
@@ -33,5 +37,5 @@ LoadingExample::LoadingExample(QWidget* parent)
                 {
                     QCtmMessageBox::information(this, "Tips", "Loading canceled.");
                 }
-        });
+            });
 }

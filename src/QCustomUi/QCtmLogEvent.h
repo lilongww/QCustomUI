@@ -1,4 +1,4 @@
-/*********************************************************************************
+﻿/*********************************************************************************
 **                                                                              **
 **  Copyright (C) 2019-2020 LiLong                                              **
 **  This file is part of QCustomUi.                                             **
@@ -19,23 +19,27 @@
 
 #pragma once
 
-#include "qcustomui_global.h"
 #include "QCtmLogData.h"
+#include "qcustomui_global.h"
 
+#include <QDateTime>
 #include <QEvent>
 #include <QString>
-#include <QDateTime>
 
 #include <memory>
 
 class QCUSTOMUI_EXPORT QCtmLogEvent : public QEvent
 {
 public:
-    enum { QCtmLog = QEvent::User + 0xFE };
+    enum
+    {
+        QCtmLog = QEvent::User + 0xFE
+    };
     QCtmLogEvent(QCtmLogDataPtr log);
     ~QCtmLogEvent();
 
-    QCtmLogDataPtr log()const;
+    QCtmLogDataPtr log() const;
+
 private:
     struct Impl;
     std::unique_ptr<Impl> m_impl;

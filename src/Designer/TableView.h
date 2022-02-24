@@ -1,11 +1,13 @@
-#pragma once
+﻿#pragma once
 
 #include <QDesignerCustomWidgetInterface>
 
-class TableView : public QObject, public QDesignerCustomWidgetInterface
+class TableView
+    : public QObject
+    , public QDesignerCustomWidgetInterface
 {
     Q_OBJECT
-        Q_INTERFACES(QDesignerCustomWidgetInterface)
+    Q_INTERFACES(QDesignerCustomWidgetInterface)
 public:
     explicit TableView(QObject* parent = nullptr);
 
@@ -27,5 +29,5 @@ public:
     }
 
 private:
-    bool m_initialized{ false };
+    bool m_initialized { false };
 };

@@ -34,8 +34,7 @@
 /*!
     \brief      构造函数 \a parent.
 */
-QCtmAbstractMessageTipView::QCtmAbstractMessageTipView(QCtmNavigationBar* parent)
-    : QCtmNavigationSidePane(parent)
+QCtmAbstractMessageTipView::QCtmAbstractMessageTipView(QCtmNavigationBar* parent) : QCtmNavigationSidePane(parent)
 {
     this->setDockArea(QCtmNavigationSidePane::DockArea::Right);
 }
@@ -43,9 +42,7 @@ QCtmAbstractMessageTipView::QCtmAbstractMessageTipView(QCtmNavigationBar* parent
 /*!
     \brief      析构函数.
 */
-QCtmAbstractMessageTipView::~QCtmAbstractMessageTipView()
-{
-}
+QCtmAbstractMessageTipView::~QCtmAbstractMessageTipView() {}
 
 /*!
     \fn         void QCtmAbstractMessageTipView::setModel(QCtmAbstractMessageTipModel* model)

@@ -1,4 +1,4 @@
-/*********************************************************************************
+﻿/*********************************************************************************
 **                                                                              **
 **  Copyright (C) 2019-2020 LiLong                                              **
 **  This file is part of QCustomUi.                                             **
@@ -19,8 +19,8 @@
 
 #pragma once
 
-#include <QWidget>
 #include <QStyleOption>
+#include <QWidget>
 
 class QCtmSeparator : public QWidget
 {
@@ -30,7 +30,7 @@ public:
     QCtmSeparator(Qt::Orientation orientation, QWidget* parent = nullptr);
     ~QCtmSeparator();
 
-    Qt::Orientation orientation()const;
+    Qt::Orientation orientation() const;
 
 protected:
     QSize sizeHint() const override;

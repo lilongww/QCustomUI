@@ -1,8 +1,8 @@
-#include "StageProgressBarExample.h"
+﻿#include "StageProgressBarExample.h"
 
 #include <QCustomUi/QCtmApplication.h>
 
-int main(int argc, char *argv[])
+int main(int argc, char* argv[])
 {
     QCtmApplication a(argc, argv);
     StageProgressBarExample w;

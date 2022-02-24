@@ -1,4 +1,4 @@
-/*********************************************************************************
+﻿/*********************************************************************************
 **                                                                              **
 **  Copyright (C) 2019-2020 LiLong                                              **
 **  This file is part of QCustomUi.                                             **
@@ -33,13 +33,14 @@ class QCUSTOMUI_EXPORT QCtmAbstractLogModel : public QAbstractTableModel
     Q_OBJECT
 
 public:
-    QCtmAbstractLogModel(const QString& objectName, QObject *parent);
+    QCtmAbstractLogModel(const QString& objectName, QObject* parent);
     ~QCtmAbstractLogModel();
     virtual void clear() = 0;
-    bool insertRows(int row, int count, const QModelIndex &parent = QModelIndex()) override;
-    bool insertColumns(int column, int count, const QModelIndex &parent = QModelIndex()) override;
-    bool removeRows(int row, int count, const QModelIndex &parent = QModelIndex()) override;
-    bool removeColumns(int column, int count, const QModelIndex &parent = QModelIndex()) override;
+    bool insertRows(int row, int count, const QModelIndex& parent = QModelIndex()) override;
+    bool insertColumns(int column, int count, const QModelIndex& parent = QModelIndex()) override;
+    bool removeRows(int row, int count, const QModelIndex& parent = QModelIndex()) override;
+    bool removeColumns(int column, int count, const QModelIndex& parent = QModelIndex()) override;
+
 protected:
     bool event(QEvent* e) override;
     virtual void logEvent(QCtmLogEvent* e);

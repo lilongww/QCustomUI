@@ -19,26 +19,26 @@
 
 #include "QCtmIPAddressEdit.h"
 
+#include <QAccessible>
+#include <QAction>
+#include <QApplication>
+#include <QClipboard>
+#include <QDebug>
+#include <QMenu>
 #include <QPainter>
 #include <QStyleOption>
-#include <QApplication>
 #include <QTextLayout>
 #include <QTimer>
-#include <QAction>
-#include <QClipboard>
-#include <QMenu>
-#include <QDebug>
-#include <QAccessible>
 
-constexpr int SECTION_COUNT = 4;
+constexpr int SECTION_COUNT        = 4;
 constexpr int SECTION_CURSOR_COUNT = 4;
 
 QTextLayout::FormatRange createFormatRange(int cursor1, int cursor2, const QPalette& palette)
 {
     QTextLayout::FormatRange range;
-    int local1 = cursor1 % SECTION_CURSOR_COUNT;
-    int local2 = cursor2 % SECTION_CURSOR_COUNT;
-    range.start = qMin(local1, local2);
+    int local1   = cursor1 % SECTION_CURSOR_COUNT;
+    int local2   = cursor2 % SECTION_CURSOR_COUNT;
+    range.start  = qMin(local1, local2);
     range.length = qMax(local1, local2) - range.start;
     range.format.setBackground(palette.brush(QPalette::Highlight));
     range.format.setForeground(palette.brush(QPalette::HighlightedText));
@@ -48,11 +48,11 @@ QTextLayout::FormatRange createFormatRange(int cursor1, int cursor2, const QPale
 void moveFormatRange(QTextLayout::FormatRange& range, int beforeCursor, int afterCursor)
 {
     int before = beforeCursor % SECTION_CURSOR_COUNT;
-    int after = afterCursor % SECTION_CURSOR_COUNT;
+    int after  = afterCursor % SECTION_CURSOR_COUNT;
 
     int anchor;
     auto start = range.start;
-    auto end = range.start + range.length;
+    auto end   = range.start + range.length;
 
     if (end > start && before == start)
         anchor = end;
@@ -60,29 +60,29 @@ void moveFormatRange(QTextLayout::FormatRange& range, int beforeCursor, int afte
         anchor = start;
     else
         anchor = before;
-    start = qMin(anchor, after);
-    end = qMax(anchor, after);
-    range.start = start;
+    start        = qMin(anchor, after);
+    end          = qMax(anchor, after);
+    range.start  = start;
     range.length = end - start;
 }
 
 struct QCtmIPAddressEdit::Impl
 {
-    const int verticalMargin{ 1 };
-    const int horizontalMargin{ 2 };
-    bool frame{ true };
-    bool readOnly{ false };
-    int cursorPosition{ 0 };
-    int ascent{ 0 };
-    int pressedSection{ 0 };
-    int pressedCursor{ 0 };
-    bool pressed{ false };
+    const int verticalMargin { 1 };
+    const int horizontalMargin { 2 };
+    bool frame { true };
+    bool readOnly { false };
+    int cursorPosition { 0 };
+    int ascent { 0 };
+    int pressedSection { 0 };
+    int pressedCursor { 0 };
+    bool pressed { false };
 
     QTextLayout textLayouts[SECTION_COUNT];
     QTimer timer;
-    bool cursorSwitch{ false };
+    bool cursorSwitch { false };
     QVector<QVector<QTextLayout::FormatRange>> selections;
-    QAction* copy, * paste;
+    QAction *copy, *paste;
 };
 
 /*!
@@ -116,19 +116,21 @@ struct QCtmIPAddressEdit::Impl
 /*!
     \brief      构造函数 \a parent.
 */
-QCtmIPAddressEdit::QCtmIPAddressEdit(QWidget* parent)
-    : QWidget(parent)
-    , m_impl(std::make_unique<Impl>())
+QCtmIPAddressEdit::QCtmIPAddressEdit(QWidget* parent) : QWidget(parent), m_impl(std::make_unique<Impl>())
 {
     setSizePolicy(QSizePolicy(QSizePolicy::Expanding, QSizePolicy::Fixed, QSizePolicy::LineEdit));
     setContextMenuPolicy(Qt::CustomContextMenu);
     m_impl->selections.resize(SECTION_COUNT);
     m_impl->timer.setInterval(qApp->cursorFlashTime() / 2);
     setFocusPolicy(Qt::StrongFocus);
-    connect(&m_impl->timer, &QTimer::timeout, this, [=]() {
-        m_impl->cursorSwitch = !m_impl->cursorSwitch;
-        update();
-        });
+    connect(&m_impl->timer,
+            &QTimer::timeout,
+            this,
+            [=]()
+            {
+                m_impl->cursorSwitch = !m_impl->cursorSwitch;
+                update();
+            });
     connect(this, &QWidget::customContextMenuRequested, this, &QCtmIPAddressEdit::onCustomContextMenuRequested);
     updateTextLayout();
     initActions();
@@ -138,9 +140,7 @@ QCtmIPAddressEdit::QCtmIPAddressEdit(QWidget* parent)
 /*!
     \brief      析构函数.
 */
-QCtmIPAddressEdit::~QCtmIPAddressEdit()
-{
-}
+QCtmIPAddressEdit::~QCtmIPAddressEdit() {}
 
 /*!
     \brief      设置 \a ip 地址.
@@ -155,7 +155,7 @@ void QCtmIPAddressEdit::setIPAddress(const QString& ip)
         {
             if (str.size() > 0 && str.size() <= 3)
             {
-                bool ok = false;
+                bool ok  = false;
                 auto num = str.toInt(&ok);
                 if (!(num >= 0 && num <= 255 && ok))
                     return;
@@ -209,10 +209,7 @@ void QCtmIPAddressEdit::setReadOnly(bool ro)
     \brief      返回是否只读.
     \sa         setReadOnly
 */
-bool QCtmIPAddressEdit::isReadOnly() const
-{
-    return m_impl->readOnly;
-}
+bool QCtmIPAddressEdit::isReadOnly() const { return m_impl->readOnly; }
 
 /*!
     \brief      Returns the section of the given \a position.
@@ -242,12 +239,12 @@ QRect QCtmIPAddressEdit::rectOfIpSection(int section) const
     QStyleOptionFrame opt;
     initStyleOption(&opt);
     int dotWidth = opt.fontMetrics.horizontalAdvance('.');
-    auto rect = this->style()->subElementRect(QStyle::SE_FrameContents, &opt, this);
+    auto rect    = this->style()->subElementRect(QStyle::SE_FrameContents, &opt, this);
     if (rect.isEmpty())
         rect = QRect(QPoint(0, 0), this->rect().size());
 
     int ipSectionWidth = opt.fontMetrics.horizontalAdvance(" 000 ");
-    return { rect.left() + (dotWidth * section) + section * ipSectionWidth , rect.top(), ipSectionWidth, rect.height() };
+    return { rect.left() + (dotWidth * section) + section * ipSectionWidth, rect.top(), ipSectionWidth, rect.height() };
 }
 
 /*!
@@ -260,7 +257,10 @@ QRect QCtmIPAddressEdit::boundRect(int section, const QRect& rect) const
     QStyleOptionFrame opt;
     initStyleOption(&opt);
     auto br = layout.boundingRect();
-    return { qRound(rect.x() + (rect.width() - br.width()) / 2), qRound(rect.y() + (rect.height() - br.height()) / 2), qRound(br.width()), qRound(br.height()) };
+    return { qRound(rect.x() + (rect.width() - br.width()) / 2),
+             qRound(rect.y() + (rect.height() - br.height()) / 2),
+             qRound(br.width()),
+             qRound(br.height()) };
 }
 
 /*!
@@ -272,7 +272,7 @@ bool QCtmIPAddressEdit::setText(QTextLayout& textLayout, const QString& text)
 {
     if (!text.isEmpty())
     {
-        bool ok{ false };
+        bool ok { false };
         auto num = text.toInt(&ok);
         if (num < 0 || num > 255)
             return false;
@@ -302,7 +302,7 @@ void QCtmIPAddressEdit::paintEvent([[maybe_unused]] QPaintEvent* event)
 
     for (int i = 0; i < SECTION_COUNT; i++)
     {
-        const auto& rect = rectOfIpSection(i);
+        const auto& rect    = rectOfIpSection(i);
         const auto& txtRect = boundRect(i, rect);
         m_impl->textLayouts[i].draw(&p, txtRect.topLeft(), m_impl->selections[i], txtRect);
         if (i != SECTION_COUNT - 1)
@@ -311,8 +311,8 @@ void QCtmIPAddressEdit::paintEvent([[maybe_unused]] QPaintEvent* event)
     if (m_impl->cursorSwitch && hasFocus() && !isReadOnly())
     {
         auto&& txtLayout = this->textLayout(m_impl->cursorPosition);
-        auto section = sectionOfCursorPosition(m_impl->cursorPosition);
-        section = section > SECTION_COUNT - 1 ? SECTION_COUNT - 1 : section;
+        auto section     = sectionOfCursorPosition(m_impl->cursorPosition);
+        section          = section > SECTION_COUNT - 1 ? SECTION_COUNT - 1 : section;
         const auto& rect = boundRect(section, rectOfIpSection(section));
         txtLayout.drawCursor(&p, QPoint(rect.left(), rect.y() + m_impl->ascent), m_impl->cursorPosition % 4);
     }
@@ -332,7 +332,7 @@ void QCtmIPAddressEdit::keyPressEvent(QKeyEvent* event)
             deleteSelectedText();
         }
         auto&& layout = textLayout(m_impl->cursorPosition);
-        auto&& txt = layout.text();
+        auto&& txt    = layout.text();
         if (txt.size() <= m_impl->cursorPosition % SECTION_CURSOR_COUNT)
         {
             if (txt.size() < SECTION_CURSOR_COUNT - 1)
@@ -341,8 +341,8 @@ void QCtmIPAddressEdit::keyPressEvent(QKeyEvent* event)
                 if (setText(layout, txt))
                 {
                     m_impl->cursorPosition++;
-                    if (txt.size() == SECTION_CURSOR_COUNT - 1
-                        && sectionOfCursorPosition(m_impl->cursorPosition) != SECTION_CURSOR_COUNT - 1)
+                    if (txt.size() == SECTION_CURSOR_COUNT - 1 &&
+                        sectionOfCursorPosition(m_impl->cursorPosition) != SECTION_CURSOR_COUNT - 1)
                         m_impl->cursorPosition++;
                 }
             }
@@ -365,14 +365,14 @@ void QCtmIPAddressEdit::keyPressEvent(QKeyEvent* event)
             return;
         }
         auto&& layout = textLayout(m_impl->cursorPosition);
-        auto&& txt = layout.text();
+        auto&& txt    = layout.text();
         if (m_impl->cursorPosition % SECTION_CURSOR_COUNT == 0)
         {
             auto section = sectionOfCursorPosition(m_impl->cursorPosition);
             if (section != 0)
             {
-                auto&& layout = m_impl->textLayouts[section - 1];
-                auto txt = layout.text();
+                auto&& layout          = m_impl->textLayouts[section - 1];
+                auto txt               = layout.text();
                 m_impl->cursorPosition = (section - 1) * SECTION_CURSOR_COUNT + txt.size();
                 if (!txt.isEmpty())
                 {
@@ -400,13 +400,11 @@ void QCtmIPAddressEdit::keyPressEvent(QKeyEvent* event)
             auto start = m_impl->cursorPosition % SECTION_CURSOR_COUNT;
             if (start == 0)
                 return;
-            auto section = sectionOfCursorPosition(m_impl->cursorPosition);
+            auto section     = sectionOfCursorPosition(m_impl->cursorPosition);
             auto&& selection = m_impl->selections[section];
             if (selection.isEmpty())
             {
-                QTextLayout::FormatRange&& range = createFormatRange(m_impl->cursorPosition - 1
-                    , m_impl->cursorPosition
-                    , this->palette());
+                QTextLayout::FormatRange&& range = createFormatRange(m_impl->cursorPosition - 1, m_impl->cursorPosition, this->palette());
                 selection.push_back(range);
             }
             else
@@ -419,8 +417,8 @@ void QCtmIPAddressEdit::keyPressEvent(QKeyEvent* event)
         else if (m_impl->cursorPosition > 0)
         {
             m_impl->cursorPosition--;
-            auto section = sectionOfCursorPosition(m_impl->cursorPosition);
-            auto&& txtLayout = m_impl->textLayouts[section];
+            auto section          = sectionOfCursorPosition(m_impl->cursorPosition);
+            auto&& txtLayout      = m_impl->textLayouts[section];
             auto sectionMaxCursor = txtLayout.text().size() + (section)*SECTION_CURSOR_COUNT;
             if (m_impl->cursorPosition > sectionMaxCursor)
                 m_impl->cursorPosition = sectionMaxCursor;
@@ -437,7 +435,7 @@ void QCtmIPAddressEdit::keyPressEvent(QKeyEvent* event)
             auto start = m_impl->cursorPosition % SECTION_CURSOR_COUNT;
             if (start == SECTION_CURSOR_COUNT - 1)
                 return;
-            auto section = sectionOfCursorPosition(m_impl->cursorPosition);
+            auto section     = sectionOfCursorPosition(m_impl->cursorPosition);
             auto&& selection = m_impl->selections[section];
             if (selection.isEmpty())
             {
@@ -453,7 +451,7 @@ void QCtmIPAddressEdit::keyPressEvent(QKeyEvent* event)
         }
         else if (m_impl->cursorPosition < SECTION_CURSOR_COUNT * SECTION_COUNT)
         {
-            auto&& section = sectionOfCursorPosition(m_impl->cursorPosition);
+            auto&& section   = sectionOfCursorPosition(m_impl->cursorPosition);
             auto&& txtLayout = m_impl->textLayouts[section];
             if (m_impl->cursorPosition % SECTION_CURSOR_COUNT == txtLayout.text().size())
             {
@@ -483,7 +481,7 @@ void QCtmIPAddressEdit::keyPressEvent(QKeyEvent* event)
     }
     else if (event->text() == ".")
     {
-        auto section = sectionOfCursorPosition(m_impl->cursorPosition);
+        auto section     = sectionOfCursorPosition(m_impl->cursorPosition);
         auto&& txtLayout = m_impl->textLayouts[section];
         if (!txtLayout.text().isEmpty() && section < SECTION_COUNT - 1 && txtLayout.text().size() == m_impl->cursorPosition % 4)
         {
@@ -505,11 +503,11 @@ void QCtmIPAddressEdit::mouseDoubleClickEvent(QMouseEvent* event)
     if (event->button() == Qt::LeftButton && event->modifiers().testFlag(Qt::NoModifier))
     {
         clearSelection();
-        auto cursor = xToCursor(event->pos().x());
+        auto cursor  = xToCursor(event->pos().x());
         auto section = sectionOfCursorPosition(cursor);
         QTextLayout::FormatRange range;
-        range.start = 0;
-        range.length = m_impl->textLayouts[section].text().size();
+        range.start            = 0;
+        range.length           = m_impl->textLayouts[section].text().size();
         m_impl->cursorPosition = section * SECTION_CURSOR_COUNT + range.length;
         range.format.setBackground(palette().brush(QPalette::Highlight));
         range.format.setForeground(palette().brush(QPalette::HighlightedText));
@@ -528,13 +526,13 @@ void QCtmIPAddressEdit::mousePressEvent(QMouseEvent* event)
         clearSelection();
         m_impl->cursorPosition = xToCursor(event->pos().x());
         m_impl->pressedSection = sectionOfCursorPosition(m_impl->cursorPosition);
-        m_impl->pressedCursor = m_impl->cursorPosition;
-        m_impl->pressed = true;
+        m_impl->pressedCursor  = m_impl->cursorPosition;
+        m_impl->pressed        = true;
         update();
     }
     else if (event->button() == Qt::LeftButton && event->modifiers().testFlag(Qt::ShiftModifier))
     {
-        auto section = sectionOfCursorPosition(m_impl->cursorPosition);
+        auto section               = sectionOfCursorPosition(m_impl->cursorPosition);
         auto pressedCursorPosition = xToCursor(event->pos().x());
         if (section != sectionOfCursorPosition(pressedCursorPosition))
             return;
@@ -647,10 +645,7 @@ QVariant QCtmIPAddressEdit::inputMethodQuery(Qt::InputMethodQuery query) const
 /*!
     \reimp
 */
-QSize QCtmIPAddressEdit::sizeHint() const
-{
-    return minimumSizeHint();
-}
+QSize QCtmIPAddressEdit::sizeHint() const { return minimumSizeHint(); }
 
 /*!
     \reimp
@@ -658,10 +653,10 @@ QSize QCtmIPAddressEdit::sizeHint() const
 QSize QCtmIPAddressEdit::minimumSizeHint() const
 {
     ensurePolished();
-    const auto& fm = fontMetrics();
+    const auto& fm      = fontMetrics();
     const auto& margins = this->contentsMargins();
-    int h = fm.height() + qMax(2 * m_impl->verticalMargin, fm.leading()) + margins.top() + margins.bottom();
-    int w = fm.horizontalAdvance(" 000 . 000 . 000 . 000 ") + margins.left() + margins.right();
+    int h               = fm.height() + qMax(2 * m_impl->verticalMargin, fm.leading()) + margins.top() + margins.bottom();
+    int w               = fm.horizontalAdvance(" 000 . 000 . 000 . 000 ") + margins.left() + margins.right();
     QStyleOptionFrame opt;
     initStyleOption(&opt);
     return style()->sizeFromContents(QStyle::CT_LineEdit, &opt, QSize(w, h), this);
@@ -676,9 +671,8 @@ void QCtmIPAddressEdit::initStyleOption(QStyleOptionFrame* option) const
         return;
 
     option->initFrom(this);
-    option->rect = contentsRect();
-    option->lineWidth = m_impl->frame ? style()->pixelMetric(QStyle::PM_DefaultFrameWidth, option, this)
-        : 0;
+    option->rect         = contentsRect();
+    option->lineWidth    = m_impl->frame ? style()->pixelMetric(QStyle::PM_DefaultFrameWidth, option, this) : 0;
     option->midLineWidth = 0;
     option->state |= QStyle::State_Sunken;
     if (m_impl->readOnly)
@@ -740,7 +734,7 @@ void QCtmIPAddressEdit::deleteSelectedText()
         auto fr = m_impl->selections[section];
         if (!fr.isEmpty())
         {
-            auto&& range = fr.front();
+            auto&& range      = fr.front();
             auto&& textLayout = m_impl->textLayouts[section];
             setText(textLayout, textLayout.text().remove(range.start, range.length));
             m_impl->cursorPosition = section * SECTION_CURSOR_COUNT + textLayout.text().size();
@@ -774,57 +768,65 @@ void QCtmIPAddressEdit::initActions()
     m_impl->copy = new QAction(tr("Copy"), this);
     m_impl->copy->setShortcut(QKeySequence::Copy);
     m_impl->copy->setShortcutContext(Qt::WidgetWithChildrenShortcut);
-    connect(m_impl->copy, &QAction::triggered, this, [=]() {
-        for (int section = 0; section < SECTION_COUNT; section++)
-        {
-            auto selection = m_impl->selections[section];
-            if (!selection.isEmpty())
+    connect(m_impl->copy,
+            &QAction::triggered,
+            this,
+            [=]()
             {
-                auto&& range = selection.front();
-                auto text = m_impl->textLayouts[section].text().mid(range.start, range.length);
-                qApp->clipboard()->setText(text);
-                return;
-            }
-        }
-        });
+                for (int section = 0; section < SECTION_COUNT; section++)
+                {
+                    auto selection = m_impl->selections[section];
+                    if (!selection.isEmpty())
+                    {
+                        auto&& range = selection.front();
+                        auto text    = m_impl->textLayouts[section].text().mid(range.start, range.length);
+                        qApp->clipboard()->setText(text);
+                        return;
+                    }
+                }
+            });
     m_impl->paste = new QAction(tr("Paste"), this);
     m_impl->paste->setShortcut(QKeySequence::Paste);
     m_impl->paste->setShortcutContext(Qt::WidgetWithChildrenShortcut);
-    connect(m_impl->paste, &QAction::triggered, this, [=]() {
-        if (isReadOnly())
-            return;
-        if (qApp->clipboard()->text().isEmpty())
-            return;
-        if (qApp->clipboard()->text().split(".").size() == 4)
-        {
-            setIPAddress(qApp->clipboard()->text());
-            return;
-        }
-        auto&& section = sectionOfCursorPosition(m_impl->cursorPosition);
-        auto&& txtLayout = m_impl->textLayouts[section];
-        auto&& text = txtLayout.text();
-        auto&& selection = m_impl->selections[section];
-        auto local = m_impl->cursorPosition % SECTION_CURSOR_COUNT;
-        if (selection.isEmpty())
-        {
-            text.insert(local, qApp->clipboard()->text());
-            if (text.size() > SECTION_CURSOR_COUNT - 1)
-                return;
-            setText(txtLayout, text);
-            m_impl->cursorPosition = section * SECTION_CURSOR_COUNT + local + 1;
-        }
-        else
-        {
-            auto range = selection.front();
-            text.replace(range.start, range.length, qApp->clipboard()->text());
-            if (text.size() > SECTION_CURSOR_COUNT - 1)
-                return;
-            setText(txtLayout, text);
-            m_impl->cursorPosition = section * SECTION_CURSOR_COUNT + range.start + range.length;
-        }
-        clearSelection();
-        update();
-        });
+    connect(m_impl->paste,
+            &QAction::triggered,
+            this,
+            [=]()
+            {
+                if (isReadOnly())
+                    return;
+                if (qApp->clipboard()->text().isEmpty())
+                    return;
+                if (qApp->clipboard()->text().split(".").size() == 4)
+                {
+                    setIPAddress(qApp->clipboard()->text());
+                    return;
+                }
+                auto&& section   = sectionOfCursorPosition(m_impl->cursorPosition);
+                auto&& txtLayout = m_impl->textLayouts[section];
+                auto&& text      = txtLayout.text();
+                auto&& selection = m_impl->selections[section];
+                auto local       = m_impl->cursorPosition % SECTION_CURSOR_COUNT;
+                if (selection.isEmpty())
+                {
+                    text.insert(local, qApp->clipboard()->text());
+                    if (text.size() > SECTION_CURSOR_COUNT - 1)
+                        return;
+                    setText(txtLayout, text);
+                    m_impl->cursorPosition = section * SECTION_CURSOR_COUNT + local + 1;
+                }
+                else
+                {
+                    auto range = selection.front();
+                    text.replace(range.start, range.length, qApp->clipboard()->text());
+                    if (text.size() > SECTION_CURSOR_COUNT - 1)
+                        return;
+                    setText(txtLayout, text);
+                    m_impl->cursorPosition = section * SECTION_CURSOR_COUNT + range.start + range.length;
+                }
+                clearSelection();
+                update();
+            });
 
     addAction(m_impl->copy);
     addAction(m_impl->paste);

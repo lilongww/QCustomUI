@@ -26,8 +26,8 @@
 class QCtmToolButton : public QToolButton
 {
     Q_OBJECT
-        Q_PROPERTY(QIcon icon READ icon WRITE setIcon)
-        Q_PROPERTY(bool showToolTips READ showToolTips WRITE setShowToolTips)
+    Q_PROPERTY(QIcon icon READ icon WRITE setIcon)
+    Q_PROPERTY(bool showToolTips READ showToolTips WRITE setShowToolTips)
 public:
     QCtmToolButton(QWidget* parent);
     ~QCtmToolButton();
@@ -36,9 +36,11 @@ public:
     void setShowToolTips(bool show);
     bool showToolTips() const;
     void setSelected(bool select);
+
 protected:
     bool event(QEvent* e) override;
     void initStyleOption(QStyleOptionToolButton* option) const override;
+
 private:
     struct Impl;
     std::unique_ptr<Impl> m_impl;

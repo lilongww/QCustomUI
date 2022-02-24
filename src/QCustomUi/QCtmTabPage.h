@@ -21,18 +21,18 @@
 
 #include "qcustomui_global.h"
 
-#include <QWidget>
 #include <QAction>
+#include <QWidget>
 
 #include <memory>
 
 class QCtmTabWidget;
 class QCtmTabCornerLayout;
 
-class QCUSTOMUI_EXPORT QCtmTabPage :public QWidget
+class QCUSTOMUI_EXPORT QCtmTabPage : public QWidget
 {
     Q_OBJECT
-        Q_PROPERTY(QSize iconSize READ iconSize WRITE setIconSize NOTIFY iconSizeChanged)
+    Q_PROPERTY(QSize iconSize READ iconSize WRITE setIconSize NOTIFY iconSizeChanged)
 public:
     QAction* addAction(const QIcon& icon, const QString& text);
     QAction* addAction(const QString& text);
@@ -48,12 +48,13 @@ public:
     using QWidget::addAction;
 signals:
     void iconSizeChanged(const QSize& size);
+
 protected:
     void paintEvent(QPaintEvent* event) override;
     void actionEvent(QActionEvent* event) override;
     void setCentralWidget(QWidget* widget);
 
-    QWidget* cornerWidget()const;
+    QWidget* cornerWidget() const;
     QCtmTabPage(QCtmTabWidget* parent);
     ~QCtmTabPage();
     friend QCtmTabWidget;

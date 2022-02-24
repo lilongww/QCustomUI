@@ -1,19 +1,12 @@
-#include "EditLabelExample.h"
+﻿#include "EditLabelExample.h"
 
 #include <QCustomUi/QCtmEditLabel.h>
 
 #include <QHBoxLayout>
 
-EditLabelExample::EditLabelExample(QWidget *parent)
-    : QCtmWindow(parent)
-{
-    init();
-}
+EditLabelExample::EditLabelExample(QWidget* parent) : QCtmWindow(parent) { init(); }
 
-EditLabelExample::~EditLabelExample()
-{
-
-}
+EditLabelExample::~EditLabelExample() {}
 
 void EditLabelExample::init()
 {

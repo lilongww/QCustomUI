@@ -49,13 +49,14 @@ public:
     QWidget* widget() const;
     QScrollArea* viewContainer() const;
     void setTitleBarVisible(bool visible);
-    bool titleBarIsVisible()const;
+    bool titleBarIsVisible() const;
     void setTitle(const QString& text);
     QString title() const;
     void setPopup(bool popup);
     bool popup() const;
 signals:
     void paneClosed();
+
 protected:
     void paintEvent(QPaintEvent* event) override;
     void showEvent(QShowEvent* event) override;
@@ -69,9 +70,11 @@ protected:
 
     void setNavigationBar(QCtmNavigationBar* bar);
     QCtmNavigationBar* navigationBar() const;
+
 private:
     void bindAction(QAction* action);
     void paintShadow(int shadowWidth);
+
 private:
     struct Impl;
     std::unique_ptr<Impl> m_impl;

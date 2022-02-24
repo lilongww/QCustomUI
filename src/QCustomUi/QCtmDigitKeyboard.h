@@ -26,11 +26,11 @@ class QAbstractSpinBox;
 class QCUSTOMUI_EXPORT QCtmDigitKeyboard : public QCtmDialog
 {
     Q_PROPERTY(QVariant value READ value WRITE setValue NOTIFY valueChanged)
-        Q_PROPERTY(QVariant maximum READ maximum WRITE setMaximum)
-        Q_PROPERTY(QVariant minimum READ minimum WRITE setMinimum)
-        Q_PROPERTY(QVariant singleStep READ singleStep WRITE setSingleStep)
-        Q_PROPERTY(int decimals READ decimals WRITE setDecimals)
-        Q_OBJECT
+    Q_PROPERTY(QVariant maximum READ maximum WRITE setMaximum)
+    Q_PROPERTY(QVariant minimum READ minimum WRITE setMinimum)
+    Q_PROPERTY(QVariant singleStep READ singleStep WRITE setSingleStep)
+    Q_PROPERTY(int decimals READ decimals WRITE setDecimals)
+    Q_OBJECT
 public:
     enum class InputMode
     {
@@ -41,8 +41,8 @@ public:
     struct Unit
     {
         QString unit;
-        QVariant minimum{ 0 };
-        QVariant maximum{ 99 };
+        QVariant minimum { 0 };
+        QVariant maximum { 99 };
     };
     using Units = std::vector<Unit>;
 
@@ -69,11 +69,13 @@ public:
     void bindBox(QAbstractSpinBox* box);
 signals:
     void valueChanged(const QVariant& value);
+
 protected:
     QSize sizeHint() const override;
     QSize minimumSizeHint() const override;
     bool eventFilter(QObject* obj, QEvent* event) override;
     void showEvent(QShowEvent* event) override;
+
 private:
     void ensureConnect();
     void ensureConnect() const;
@@ -82,6 +84,7 @@ private:
     void createUnits();
     void syncBindBox();
     void acceptUnit(int unitIndex);
+
 private:
     struct Impl;
     std::unique_ptr<Impl> m_impl;

@@ -1,4 +1,4 @@
-/*********************************************************************************
+﻿/*********************************************************************************
 **                                                                              **
 **  Copyright (C) 2019-2020 LiLong                                              **
 **  This file is part of QCustomUi.                                             **
@@ -19,22 +19,21 @@
 
 #pragma once
 
-#include "qcustomui_global.h"
 #include "QCtmLogEvent.h"
+#include "qcustomui_global.h"
 
-#include <QWidget>
 #include <QIcon>
+#include <QWidget>
 
 #include <memory>
 
 class QCUSTOMUI_EXPORT QCtmLogWidget : public QWidget
 {
     Q_OBJECT
-        Q_PROPERTY(QIcon infoIcon READ infoIcon WRITE setInfoIcon)
-        Q_PROPERTY(QIcon warningIcon READ warningIcon WRITE setWarningIcon)
-        Q_PROPERTY(QIcon errorIcon READ errorIcon WRITE setErrorIcon)
+    Q_PROPERTY(QIcon infoIcon READ infoIcon WRITE setInfoIcon)
+    Q_PROPERTY(QIcon warningIcon READ warningIcon WRITE setWarningIcon)
+    Q_PROPERTY(QIcon errorIcon READ errorIcon WRITE setErrorIcon)
 public:
-
     enum class QCtmLogColumn
     {
         Level,
@@ -57,11 +56,13 @@ public:
     const QIcon& errorIcon() const;
     void setMaximumCount(int count);
     int maximumCount() const;
+
 private:
     void init();
     void changeEvent(QEvent* e) override;
 private slots:
     void updateLogCount();
+
 private:
     struct Impl;
     std::unique_ptr<Impl> m_impl;

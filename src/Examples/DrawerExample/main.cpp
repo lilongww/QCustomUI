@@ -1,8 +1,8 @@
-#include "DrawerExample.h"
+﻿#include "DrawerExample.h"
 
 #include <QCustomUi/QCtmApplication.h>
 
-int main(int argc, char *argv[])
+int main(int argc, char* argv[])
 {
     QCtmApplication a(argc, argv);
     DrawerExample w;

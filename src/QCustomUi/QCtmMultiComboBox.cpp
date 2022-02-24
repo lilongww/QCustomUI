@@ -19,22 +19,19 @@
 
 #include "QCtmMultiComboBox.h"
 
+#include <QDebug>
+#include <QElapsedTimer>
+#include <QFrame>
+#include <QLineEdit>
 #include <QListView>
 #include <QMouseEvent>
 #include <QStandardItemModel>
-#include <QFrame>
-#include <QLineEdit>
-#include <QElapsedTimer>
-#include <QDebug>
 
 class QCtmMultiComboBoxModel : public QStandardItemModel
 {
 public:
     using QStandardItemModel::QStandardItemModel;
-    Qt::ItemFlags flags([[maybe_unused]] const QModelIndex& index) const override
-    {
-        return Qt::ItemIsEnabled;
-    }
+    Qt::ItemFlags flags([[maybe_unused]] const QModelIndex& index) const override { return Qt::ItemIsEnabled; }
     QVariant data(const QModelIndex& index, int role /* = Qt::DisplayRole */) const override
     {
         const auto& d = QStandardItemModel::data(index, role);
@@ -51,7 +48,7 @@ struct QCtmMultiComboBox::Impl
     QListView* view;
     QCtmMultiComboBoxModel* model;
     QElapsedTimer timer;
-    QWidget* contianer{ nullptr };
+    QWidget* contianer { nullptr };
 };
 
 /*!
@@ -69,16 +66,14 @@ struct QCtmMultiComboBox::Impl
 /*!
     \brief      构造函数 \a parent.
 */
-QCtmMultiComboBox::QCtmMultiComboBox(QWidget* parent)
-    : QComboBox(parent)
-    , m_impl(std::make_unique<Impl>())
+QCtmMultiComboBox::QCtmMultiComboBox(QWidget* parent) : QComboBox(parent), m_impl(std::make_unique<Impl>())
 {
     m_impl->view = new QListView(this);
     this->setView(m_impl->view);
     m_impl->model = new QCtmMultiComboBoxModel(this);
     setModel(m_impl->model);
     const auto& cons = this->findChildren<QFrame*>();
-    auto lineEdit = new QLineEdit(this);
+    auto lineEdit    = new QLineEdit(this);
     setLineEdit(lineEdit);
     lineEdit->setReadOnly(true);
     lineEdit->installEventFilter(this);
@@ -98,9 +93,7 @@ QCtmMultiComboBox::QCtmMultiComboBox(QWidget* parent)
 /*!
     \brief      析构函数.
 */
-QCtmMultiComboBox::~QCtmMultiComboBox()
-{
-}
+QCtmMultiComboBox::~QCtmMultiComboBox() {}
 
 /*!
     \overload
@@ -109,20 +102,21 @@ QCtmMultiComboBox::~QCtmMultiComboBox()
 void QCtmMultiComboBox::setModel(QAbstractItemModel* model)
 {
     QComboBox::setModel(model);
-    connect(model, &QAbstractItemModel::dataChanged, this, [=]() {
-        const auto& items = this->checkedItems();
-        this->lineEdit()->setText(items.join(";"));
-        });
+    connect(model,
+            &QAbstractItemModel::dataChanged,
+            this,
+            [=]()
+            {
+                const auto& items = this->checkedItems();
+                this->lineEdit()->setText(items.join(";"));
+            });
 }
 
 /*!
     \overload
     \brief      返回数据来源.
 */
-QAbstractItemModel* QCtmMultiComboBox::model() const
-{
-    return QComboBox::model();
-}
+QAbstractItemModel* QCtmMultiComboBox::model() const { return QComboBox::model(); }
 
 /*!
     \brief      返回被选中的项目.
@@ -190,18 +184,16 @@ bool QCtmMultiComboBox::eventFilter(QObject* watched, QEvent* event)
         case QEvent::MouseMove:
             return false;
         case QEvent::MouseButtonRelease:
-        {
-            QMouseEvent* evt = (QMouseEvent*)(event);
-            auto index = this->view()->indexAt(evt->pos());
-            if (index.isValid())
             {
-                this->model()->setData(index
-                    , index.data(Qt::CheckStateRole).toInt() == Qt::Checked
-                    ? Qt::Unchecked : Qt::Checked
-                    , Qt::CheckStateRole);
+                QMouseEvent* evt = (QMouseEvent*)(event);
+                auto index       = this->view()->indexAt(evt->pos());
+                if (index.isValid())
+                {
+                    this->model()->setData(
+                        index, index.data(Qt::CheckStateRole).toInt() == Qt::Checked ? Qt::Unchecked : Qt::Checked, Qt::CheckStateRole);
+                }
+                return false;
             }
-            return false;
-        }
         default:
             break;
         }
@@ -210,7 +202,7 @@ bool QCtmMultiComboBox::eventFilter(QObject* watched, QEvent* event)
     {
         switch (event->type())
         {
-        case  QEvent::MouseButtonPress:
+        case QEvent::MouseButtonPress:
             if (m_impl->timer.elapsed() > 50)
             {
                 if (!isEnabled())
@@ -221,7 +213,6 @@ bool QCtmMultiComboBox::eventFilter(QObject* watched, QEvent* event)
         default:
             break;
         }
-
     }
     else if (watched == m_impl->contianer)
     {

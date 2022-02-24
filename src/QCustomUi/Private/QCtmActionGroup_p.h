@@ -1,4 +1,4 @@
-/*********************************************************************************
+﻿/*********************************************************************************
 **                                                                              **
 **  Copyright (C) 2019-2020 LiLong                                              **
 **  This file is part of QCustomUi.                                             **
@@ -35,6 +35,7 @@ public:
     void removeAction(QAction* action);
 private slots:
     void actionChanged();
+
 private:
     struct Impl;
     std::unique_ptr<Impl> m_impl;

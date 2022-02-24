@@ -1,4 +1,4 @@
-/*********************************************************************************
+﻿/*********************************************************************************
 **                                                                              **
 **  Copyright (C) 2019-2020 LiLong                                              **
 **  This file is part of QCustomUi.                                             **
@@ -24,13 +24,13 @@
 class QCtmMaximumSizeButton : public QPushButton
 {
     Q_OBJECT
-        Q_PROPERTY(bool maximumsized READ maximumSized WRITE setMaximumSized)
+    Q_PROPERTY(bool maximumsized READ maximumSized WRITE setMaximumSized)
 public:
     QCtmMaximumSizeButton(QWidget* parent);
     ~QCtmMaximumSizeButton();
 
     void setMaximumSized(bool max);
-    bool maximumSized()const;
+    bool maximumSized() const;
 
 private:
     bool m_maxsized;

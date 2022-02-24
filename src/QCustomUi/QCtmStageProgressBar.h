@@ -21,8 +21,8 @@
 
 #include "qcustomui_global.h"
 
-#include <QWidget>
 #include <QPen>
+#include <QWidget>
 
 #include <memory>
 
@@ -31,14 +31,14 @@ class QStyleOptionProgressBar;
 class QCUSTOMUI_EXPORT QCtmStageProgressBar : public QWidget
 {
     Q_OBJECT
-        Q_PROPERTY(int stageCount READ stageCount WRITE setStageCount)
-        Q_PROPERTY(bool textVisible READ textVisible WRITE setTextVisible)
-        Q_PROPERTY(QPen stageIndexTextPen READ stageIndexTextPen WRITE setStageIndexTextPen)
-        Q_PROPERTY(QBrush rateBackground READ rateBackground WRITE setRateBackground)
-        Q_PROPERTY(int maximum READ maximum WRITE setMaximum)
-        Q_PROPERTY(int minimum READ minimum WRITE setMinimum)
-        Q_PROPERTY(int value READ value WRITE setValue USER true)
-        Q_PROPERTY(Qt::Orientation orientation READ orientation WRITE setOrientation)
+    Q_PROPERTY(int stageCount READ stageCount WRITE setStageCount)
+    Q_PROPERTY(bool textVisible READ textVisible WRITE setTextVisible)
+    Q_PROPERTY(QPen stageIndexTextPen READ stageIndexTextPen WRITE setStageIndexTextPen)
+    Q_PROPERTY(QBrush rateBackground READ rateBackground WRITE setRateBackground)
+    Q_PROPERTY(int maximum READ maximum WRITE setMaximum)
+    Q_PROPERTY(int minimum READ minimum WRITE setMinimum)
+    Q_PROPERTY(int value READ value WRITE setValue USER true)
+    Q_PROPERTY(Qt::Orientation orientation READ orientation WRITE setOrientation)
 
 public:
     QCtmStageProgressBar(QWidget* parent);
@@ -73,6 +73,7 @@ public:
 
     void setRateBackground(const QBrush& brush);
     const QBrush& rateBackground() const;
+
 protected:
     void paintEvent(QPaintEvent* event) override;
     virtual void drawStage(QPainter* p, int index, const QRectF& rect, int value) const;
@@ -85,6 +86,7 @@ protected:
     QRectF doStageRect(int index) const;
     QRectF doTextRect(int index) const;
     void normalize();
+
 private:
     struct Impl;
     std::unique_ptr<Impl> m_impl;

@@ -21,27 +21,27 @@
 #include "Private/QCtmClassifyTreeNode_p.h"
 
 #include <QDebug>
+#include <QMouseEvent>
 #include <QPainter>
 #include <QScrollBar>
-#include <QMouseEvent>
 
 Q_DECLARE_METATYPE(QCtmClassifyTreeItem::ItemType)
 
-constexpr int groupHeight = 30;
+constexpr int groupHeight      = 30;
 constexpr int branchArrawWidth = 30;
-constexpr int itemIconSize = 16;
+constexpr int itemIconSize     = 16;
 
 struct QCtmClassifyTreeView::Impl
 {
-    int horizontalSpace{ 0 };
-    int verticalSpace{ 0 };
-    QSize iconNodeSize{ 32,32 };
+    int horizontalSpace { 0 };
+    int verticalSpace { 0 };
+    QSize iconNodeSize { 32, 32 };
     std::map<QModelIndex, QCtmClassifyTreeNodePtr> nodes;
     std::vector<QCtmClassifyTreeNodePtr> rootNodes;
-    int rangeMax{ 0 };
-    int indentation{ 20 };
+    int rangeMax { 0 };
+    int indentation { 20 };
     QModelIndex hoverIndex;
-    bool mousePressed{ false };
+    bool mousePressed { false };
 };
 
 /*!
@@ -59,9 +59,7 @@ struct QCtmClassifyTreeView::Impl
 /*!
     \brief      构造函数 \a parent.
 */
-QCtmClassifyTreeView::QCtmClassifyTreeView(QWidget* parent)
-    : QAbstractItemView(parent)
-    , m_impl(std::make_unique<Impl>())
+QCtmClassifyTreeView::QCtmClassifyTreeView(QWidget* parent) : QAbstractItemView(parent), m_impl(std::make_unique<Impl>())
 {
     this->setMouseTracking(true);
     setEditTriggers(QAbstractItemView::NoEditTriggers);
@@ -70,81 +68,55 @@ QCtmClassifyTreeView::QCtmClassifyTreeView(QWidget* parent)
 /*!
     \brief      析构函数.
 */
-QCtmClassifyTreeView::~QCtmClassifyTreeView()
-{
-}
+QCtmClassifyTreeView::~QCtmClassifyTreeView() {}
 
 /*!
     \brief      设置水平间隔像素 \a space.
     \sa         horizontalSpace
 */
-void QCtmClassifyTreeView::setHorizontalSpace(int space)
-{
-    m_impl->horizontalSpace = space;
-}
+void QCtmClassifyTreeView::setHorizontalSpace(int space) { m_impl->horizontalSpace = space; }
 
 /*!
     \brief      返回水平间隔像素.
     \sa         setHorizontalSpace
 */
-int QCtmClassifyTreeView::horizontalSpace() const
-{
-    return m_impl->horizontalSpace;
-}
+int QCtmClassifyTreeView::horizontalSpace() const { return m_impl->horizontalSpace; }
 
 /*!
     \brief      设置垂直间隔像素 \a space.
     \sa         verticalSpace
 */
-void QCtmClassifyTreeView::setVerticalSpace(int space)
-{
-    m_impl->verticalSpace = space;
-}
+void QCtmClassifyTreeView::setVerticalSpace(int space) { m_impl->verticalSpace = space; }
 
 /*!
     \brief      返回垂直间隔像素.
     \sa         setVerticalSpace
 */
-int QCtmClassifyTreeView::verticalSpace() const
-{
-    return m_impl->verticalSpace;
-}
+int QCtmClassifyTreeView::verticalSpace() const { return m_impl->verticalSpace; }
 
 /*!
     \brief      设置图标项目的大小 \a size.
     \sa         iconItemSize
 */
-void QCtmClassifyTreeView::setIconItemSize(const QSize& size)
-{
-    m_impl->iconNodeSize = size;
-}
+void QCtmClassifyTreeView::setIconItemSize(const QSize& size) { m_impl->iconNodeSize = size; }
 
 /*!
     \brief      返回图标项目的大小.
     \sa         setIconItemSize
 */
-QSize QCtmClassifyTreeView::iconItemSize() const
-{
-    return m_impl->iconNodeSize;
-}
+QSize QCtmClassifyTreeView::iconItemSize() const { return m_impl->iconNodeSize; }
 
 /*!
     \brief      设置缩进像素 \a i.
     \sa         indentation
 */
-void QCtmClassifyTreeView::setIndentation(int i)
-{
-    m_impl->indentation = i;
-}
+void QCtmClassifyTreeView::setIndentation(int i) { m_impl->indentation = i; }
 
 /*!
     \brief      返回缩进像素.
     \sa         setIndentation
 */
-int QCtmClassifyTreeView::indentation() const
-{
-    return m_impl->indentation;
-}
+int QCtmClassifyTreeView::indentation() const { return m_impl->indentation; }
 
 /*!
     \reimp
@@ -165,8 +137,8 @@ void QCtmClassifyTreeView::setModel(QAbstractItemModel* model)
 QModelIndex QCtmClassifyTreeView::indexAt(const QPoint& point) const
 {
     QPoint pos(point.x() + horizontalOffset(), point.y() + verticalOffset());
-    std::function<QCtmClassifyTreeNodePtr(const std::vector<QCtmClassifyTreeNodePtr>&)> visitor
-        = [&](const std::vector<QCtmClassifyTreeNodePtr>& children)->QCtmClassifyTreeNodePtr
+    std::function<QCtmClassifyTreeNodePtr(const std::vector<QCtmClassifyTreeNodePtr>&)> visitor =
+        [&](const std::vector<QCtmClassifyTreeNodePtr>& children) -> QCtmClassifyTreeNodePtr
     {
         for (auto node : children)
         {
@@ -197,9 +169,9 @@ QModelIndex QCtmClassifyTreeView::indexAt(const QPoint& point) const
 /*!
     \reimp
 */
-void QCtmClassifyTreeView::scrollTo([[maybe_unused]] const QModelIndex& index, [[maybe_unused]] QAbstractItemView::ScrollHint hint /*= EnsureVisible*/)
+void QCtmClassifyTreeView::scrollTo([[maybe_unused]] const QModelIndex& index,
+                                    [[maybe_unused]] QAbstractItemView::ScrollHint hint /*= EnsureVisible*/)
 {
-
 }
 
 /*!
@@ -310,23 +282,18 @@ void QCtmClassifyTreeView::collapse(const QModelIndex& index)
 /*!
     \reimp
 */
-int QCtmClassifyTreeView::horizontalOffset() const
-{
-    return 0;
-}
+int QCtmClassifyTreeView::horizontalOffset() const { return 0; }
 
 /*!
     \reimp
 */
-bool QCtmClassifyTreeView::isIndexHidden([[maybe_unused]] const QModelIndex& index) const
-{
-    return false;
-}
+bool QCtmClassifyTreeView::isIndexHidden([[maybe_unused]] const QModelIndex& index) const { return false; }
 
 /*!
     \reimp
 */
-QModelIndex QCtmClassifyTreeView::moveCursor([[maybe_unused]] QAbstractItemView::CursorAction cursorAction, [[maybe_unused]] Qt::KeyboardModifiers modifiers)
+QModelIndex QCtmClassifyTreeView::moveCursor([[maybe_unused]] QAbstractItemView::CursorAction cursorAction,
+                                             [[maybe_unused]] Qt::KeyboardModifiers modifiers)
 {
     return {};
 }
@@ -334,26 +301,17 @@ QModelIndex QCtmClassifyTreeView::moveCursor([[maybe_unused]] QAbstractItemView:
 /*!
     \reimp
 */
-void QCtmClassifyTreeView::setSelection([[maybe_unused]] const QRect& rect, [[maybe_unused]] QItemSelectionModel::SelectionFlags flags)
-{
-
-}
+void QCtmClassifyTreeView::setSelection([[maybe_unused]] const QRect& rect, [[maybe_unused]] QItemSelectionModel::SelectionFlags flags) {}
 
 /*!
     \reimp
 */
-int QCtmClassifyTreeView::verticalOffset() const
-{
-    return verticalScrollBar()->value();
-}
+int QCtmClassifyTreeView::verticalOffset() const { return verticalScrollBar()->value(); }
 
 /*!
     \reimp
 */
-QRegion QCtmClassifyTreeView::visualRegionForSelection([[maybe_unused]] const QItemSelection& selection) const
-{
-    return {};
-}
+QRegion QCtmClassifyTreeView::visualRegionForSelection([[maybe_unused]] const QItemSelection& selection) const { return {}; }
 
 /*!
     \reimp
@@ -370,13 +328,12 @@ void QCtmClassifyTreeView::resizeEvent(QResizeEvent* event)
 void QCtmClassifyTreeView::paintEvent([[maybe_unused]] QPaintEvent* event)
 {
     QPainter painter(viewport());
-    painter.translate(0 - horizontalScrollBar()->value(),
-        0 - verticalScrollBar()->value());
+    painter.translate(0 - horizontalScrollBar()->value(), 0 - verticalScrollBar()->value());
     std::function<void(const std::vector<QCtmClassifyTreeNodePtr>&)> drawer = [&](const std::vector<QCtmClassifyTreeNodePtr>& children)
     {
         for (auto node : children)
         {
-#if QT_VERSION < QT_VERSION_CHECK(6,0,0)
+#if QT_VERSION < QT_VERSION_CHECK(6, 0, 0)
             QStyleOptionViewItem opt = viewOptions();
 #else
             QStyleOptionViewItem opt;
@@ -387,7 +344,7 @@ void QCtmClassifyTreeView::paintEvent([[maybe_unused]] QPaintEvent* event)
             {
                 auto option = opt;
                 option.rect = QRect(opt.rect.left(), opt.rect.top(), branchArrawWidth, opt.rect.height());
-                opt.rect = QRect(option.rect.right(), opt.rect.top(), opt.rect.width() - option.rect.width(), opt.rect.height());
+                opt.rect    = QRect(option.rect.right(), opt.rect.top(), opt.rect.width() - option.rect.width(), opt.rect.height());
                 style()->drawPrimitive(QStyle::PE_PanelItemViewItem, &option, &painter, this);
                 style()->drawPrimitive(QStyle::PE_IndicatorBranch, &option, &painter, this);
             }
@@ -422,7 +379,7 @@ void QCtmClassifyTreeView::mousePressEvent(QMouseEvent* event)
     if (event->button() == Qt::LeftButton)
     {
         m_impl->mousePressed = true;
-        auto index = indexAt(event->pos());
+        auto index           = indexAt(event->pos());
         if (index.isValid())
         {
             if (auto it = m_impl->nodes.find(index); it != m_impl->nodes.end() && it->second->nodeType() == QCtmClassifyTreeItem::Group)
@@ -479,57 +436,61 @@ void QCtmClassifyTreeView::updateGeometries()
 */
 void QCtmClassifyTreeView::relayoutNodes()
 {
-    std::function<QCtmClassifyTreeNodePtr(const std::vector<QCtmClassifyTreeNodePtr>&, QCtmClassifyTreeNodePtr, int)> layouter
-        = [&](const std::vector<QCtmClassifyTreeNodePtr>& children, QCtmClassifyTreeNodePtr prevNode, int identation) ->QCtmClassifyTreeNodePtr
+    std::function<QCtmClassifyTreeNodePtr(const std::vector<QCtmClassifyTreeNodePtr>&, QCtmClassifyTreeNodePtr, int)> layouter =
+        [&](const std::vector<QCtmClassifyTreeNodePtr>& children,
+            QCtmClassifyTreeNodePtr prevNode,
+            int identation) -> QCtmClassifyTreeNodePtr
     {
         for (auto node : children)
         {
             if (node->nodeType() == QCtmClassifyTreeItem::Group)
             {
-                node->setRect(prevNode
-                    ? QRect(identation
-                        , prevNode->rect().y() + prevNode->rect().height() + (prevNode->nodeType() == QCtmClassifyTreeItem::Group ? 0 : m_impl->verticalSpace)
-                        , viewport()->width()
-                        , groupHeight)
-                    : QRect(identation
-                        , 0
-                        , viewport()->width()
-                        , groupHeight));
-                prevNode = node;
+                node->setRect(prevNode ? QRect(identation,
+                                               prevNode->rect().y() + prevNode->rect().height() +
+                                                   (prevNode->nodeType() == QCtmClassifyTreeItem::Group ? 0 : m_impl->verticalSpace),
+                                               viewport()->width(),
+                                               groupHeight)
+                                       : QRect(identation, 0, viewport()->width(), groupHeight));
+                prevNode   = node;
                 auto group = std::dynamic_pointer_cast<QCtmClassifyTreeGroup>(node);
                 if (!group->children().empty() && group->expand())
                 {
                     auto tmpNode = layouter(group->children(), node, identation + m_impl->indentation);
-                    prevNode = tmpNode ? tmpNode : prevNode;
+                    prevNode     = tmpNode ? tmpNode : prevNode;
                 }
             }
             else if (node->nodeType() == QCtmClassifyTreeItem::Icon)
             {
-                auto textSize = this->fontMetrics().size(Qt::TextSingleLine | Qt::TextDontClip, node->index().data(Qt::DisplayRole).toString());
+                auto textSize =
+                    this->fontMetrics().size(Qt::TextSingleLine | Qt::TextDontClip, node->index().data(Qt::DisplayRole).toString());
                 textSize.setWidth(textSize.width() + this->fontMetrics().averageCharWidth() * 2);
                 auto icon = std::dynamic_pointer_cast<QCtmClassifyTreeIcon>(node);
                 if (prevNode)
                 {
                     if (prevNode->nodeType() == QCtmClassifyTreeItem::Icon)
                     {
-                        icon->setRect({ QPoint(prevNode->rect().right() + m_impl->horizontalSpace, prevNode->rect().y())
-                            , QSize(qMax(m_impl->iconNodeSize.width(), textSize.width()), m_impl->iconNodeSize.height() + textSize.height()) });
+                        icon->setRect({ QPoint(prevNode->rect().right() + m_impl->horizontalSpace, prevNode->rect().y()),
+                                        QSize(qMax(m_impl->iconNodeSize.width(), textSize.width()),
+                                              m_impl->iconNodeSize.height() + textSize.height()) });
                         if (icon->rect().right() > viewport()->width())
                         {
-                            icon->setRect({ QPoint(identation, prevNode->rect().bottom() + m_impl->verticalSpace)
-                                , QSize(qMax(m_impl->iconNodeSize.width(), textSize.width()), m_impl->iconNodeSize.height() + textSize.height()) });
+                            icon->setRect({ QPoint(identation, prevNode->rect().bottom() + m_impl->verticalSpace),
+                                            QSize(qMax(m_impl->iconNodeSize.width(), textSize.width()),
+                                                  m_impl->iconNodeSize.height() + textSize.height()) });
                         }
                     }
                     else
                     {
-                        icon->setRect({ QPoint(identation, prevNode->rect().bottom() + m_impl->verticalSpace)
-                            , QSize(qMax(m_impl->iconNodeSize.width(), textSize.width()), m_impl->iconNodeSize.height() + textSize.height()) });
+                        icon->setRect({ QPoint(identation, prevNode->rect().bottom() + m_impl->verticalSpace),
+                                        QSize(qMax(m_impl->iconNodeSize.width(), textSize.width()),
+                                              m_impl->iconNodeSize.height() + textSize.height()) });
                     }
                 }
                 else
                 {
-                    icon->setRect({ QPoint(identation, 0)
-                        , QSize(qMax(m_impl->iconNodeSize.width(), textSize.width()), m_impl->iconNodeSize.height() + textSize.height()) });
+                    icon->setRect(
+                        { QPoint(identation, 0),
+                          QSize(qMax(m_impl->iconNodeSize.width(), textSize.width()), m_impl->iconNodeSize.height() + textSize.height()) });
                 }
                 prevNode = icon;
             }
@@ -549,7 +510,7 @@ void QCtmClassifyTreeView::relayoutNodes()
 */
 void QCtmClassifyTreeView::initStyleOption(QCtmClassifyTreeNode* node, QStyleOptionViewItem& option)
 {
-    auto index = node->index();
+    auto index  = node->index();
     option.rect = node->rect();
 
     if (index.flags().testFlag(Qt::ItemIsEnabled))
@@ -575,8 +536,8 @@ void QCtmClassifyTreeView::initStyleOption(QCtmClassifyTreeNode* node, QStyleOpt
     else if (node->nodeType() == QCtmClassifyTreeItem::ItemType::Icon)
     {
         option.showDecorationSelected = false;
-        option.decorationPosition = QStyleOptionViewItem::Top;
-        option.displayAlignment = Qt::AlignCenter;
+        option.decorationPosition     = QStyleOptionViewItem::Top;
+        option.displayAlignment       = Qt::AlignCenter;
     }
 }
 
@@ -589,8 +550,8 @@ void QCtmClassifyTreeView::createNodes()
     if (!model()->rowCount())
         return;
 
-    std::function<QCtmClassifyTreeNodePtr(const QModelIndex&, QCtmClassifyTreeGroup*)> creator
-        = [&](const QModelIndex& index, QCtmClassifyTreeGroup* parent) -> QCtmClassifyTreeNodePtr
+    std::function<QCtmClassifyTreeNodePtr(const QModelIndex&, QCtmClassifyTreeGroup*)> creator =
+        [&](const QModelIndex& index, QCtmClassifyTreeGroup* parent) -> QCtmClassifyTreeNodePtr
     {
         const auto& data = index.data(Role::NodeTypeRole);
         if (!data.isValid())
@@ -603,18 +564,18 @@ void QCtmClassifyTreeView::createNodes()
         switch (type)
         {
         case QCtmClassifyTreeItem::Group:
-        {
-            auto group = std::make_shared<QCtmClassifyTreeGroup>(index, parent);
-            if (model()->rowCount(index))
             {
-                for (int row = 0; row < model()->rowCount(index); row++)
+                auto group = std::make_shared<QCtmClassifyTreeGroup>(index, parent);
+                if (model()->rowCount(index))
                 {
-                    creator(model()->index(row, 0, index), group.get());
+                    for (int row = 0; row < model()->rowCount(index); row++)
+                    {
+                        creator(model()->index(row, 0, index), group.get());
+                    }
                 }
+                node = group;
+                break;
             }
-            node = group;
-            break;
-        }
         case QCtmClassifyTreeItem::Icon:
             node = std::make_shared<QCtmClassifyTreeIcon>(index, parent);
             break;

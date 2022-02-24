@@ -1,4 +1,4 @@
-/*********************************************************************************
+﻿/*********************************************************************************
 **                                                                              **
 **  Copyright (C) 2019-2020 LiLong                                              **
 **  This file is part of QCustomUi.                                             **
@@ -21,21 +21,14 @@
 
 #include <QPainter>
 
-QCtmSeparator::QCtmSeparator(Qt::Orientation orientation, QWidget* parent)
-    : QWidget(parent)
-    , m_orientation(orientation)
+QCtmSeparator::QCtmSeparator(Qt::Orientation orientation, QWidget* parent) : QWidget(parent), m_orientation(orientation)
 {
     setSizePolicy(QSizePolicy::Minimum, QSizePolicy::Minimum);
 }
 
-QCtmSeparator::~QCtmSeparator()
-{
-}
+QCtmSeparator::~QCtmSeparator() {}
 
-Qt::Orientation QCtmSeparator::orientation() const
-{
-    return m_orientation;
-}
+Qt::Orientation QCtmSeparator::orientation() const { return m_orientation; }
 
 QSize QCtmSeparator::sizeHint() const
 {
@@ -65,7 +58,4 @@ void QCtmSeparator::initStyleOption(QStyleOption* opt) const
     }
 }
 
-void QCtmSeparator::setOrientation(Qt::Orientation orientation)
-{
-    m_orientation = orientation;
-}
+void QCtmSeparator::setOrientation(Qt::Orientation orientation) { m_orientation = orientation; }

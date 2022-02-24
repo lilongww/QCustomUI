@@ -1,4 +1,4 @@
-/*********************************************************************************
+﻿/*********************************************************************************
 **                                                                              **
 **  Copyright (C) 2019-2020 LiLong                                              **
 **  This file is part of QCustomUi.                                             **
@@ -38,6 +38,7 @@ protected:
     QSize minimumSizeHint() const;
     QRect doTextRect(const QStyleOptionToolButton& opt) const;
     QRect doIconRect(const QStyleOptionToolButton& opt) const;
+
 private:
     struct Impl;
     std::unique_ptr<Impl> m_impl;

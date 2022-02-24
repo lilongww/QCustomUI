@@ -21,20 +21,20 @@
 #include "Private/QCtmActionGroup_p.h"
 #include "Private/QCtmWidgetItem_p.h"
 
+#include <QActionEvent>
 #include <QPainter>
 #include <QStyleOption>
 #include <QToolButton>
 #include <QVBoxLayout>
-#include <QActionEvent>
 
 static Q_CONSTEXPR const char* ActionPosProperty = "QCtm-ActionPosition";
 
 struct QCtmNavigationSideBar::Impl
 {
-    QVBoxLayout* layout{ nullptr };
-    QVBoxLayout* topLayout{ nullptr };
-    QVBoxLayout* bottomLayout{ nullptr };
-    QSize iconSize{ 25,25 };
+    QVBoxLayout* layout { nullptr };
+    QVBoxLayout* topLayout { nullptr };
+    QVBoxLayout* bottomLayout { nullptr };
+    QSize iconSize { 25, 25 };
     QList<QCtmWidgetItemPtr> topActions;
     QList<QCtmWidgetItemPtr> bottomActions;
 
@@ -100,9 +100,7 @@ struct QCtmNavigationSideBar::Impl
 /*!
     \brief      构造一个父窗口为 \a parent 的导航侧边栏对象.
 */
-QCtmNavigationSideBar::QCtmNavigationSideBar(QWidget* parent)
-    : QWidget(parent)
-    , m_impl(std::make_unique<Impl>())
+QCtmNavigationSideBar::QCtmNavigationSideBar(QWidget* parent) : QWidget(parent), m_impl(std::make_unique<Impl>())
 {
     m_impl->layout = new QVBoxLayout(this);
     m_impl->layout->setContentsMargins(0, 10, 0, 10);
@@ -124,9 +122,7 @@ QCtmNavigationSideBar::QCtmNavigationSideBar(QWidget* parent)
 /*!
     \brief      销毁该侧边栏对象.
 */
-QCtmNavigationSideBar::~QCtmNavigationSideBar()
-{
-}
+QCtmNavigationSideBar::~QCtmNavigationSideBar() {}
 
 /*!
     \overload   addAction
@@ -167,19 +163,13 @@ int QCtmNavigationSideBar::count(ActionPosition pos) const
     \brief      设置Action的图标大小 \a size.
     \sa         iconSize
 */
-void QCtmNavigationSideBar::setIconSize(const QSize& size)
-{
-    m_impl->iconSize = size;
-}
+void QCtmNavigationSideBar::setIconSize(const QSize& size) { m_impl->iconSize = size; }
 
 /*!
     \brief      返回Action的图标大小.
     \sa         setIconSize
 */
-const QSize& QCtmNavigationSideBar::iconSize() const
-{
-    return m_impl->iconSize;
-}
+const QSize& QCtmNavigationSideBar::iconSize() const { return m_impl->iconSize; }
 
 /*!
     \brief      返回位于 \a pos \a index 的Action.
@@ -219,9 +209,10 @@ void QCtmNavigationSideBar::actionEvent(QActionEvent* event)
     }
     if (event->type() == QEvent::ActionAdded)
     {
-        auto addItem = [](QCtmWidgetItemPtr item, QList<QCtmWidgetItemPtr>& items, QAction* before, QBoxLayout* layout) {
-            auto it = std::find_if(items.begin(), items.end(), [=](QCtmWidgetItemPtr item) { return item->action() == before; });
-            it = items.insert(it, item);
+        auto addItem = [](QCtmWidgetItemPtr item, QList<QCtmWidgetItemPtr>& items, QAction* before, QBoxLayout* layout)
+        {
+            auto it    = std::find_if(items.begin(), items.end(), [=](QCtmWidgetItemPtr item) { return item->action() == before; });
+            it         = items.insert(it, item);
             auto index = items.indexOf(*it);
             layout->insertWidget(index, item->widget());
             if (item->isCustomWidget())

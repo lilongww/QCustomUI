@@ -38,18 +38,12 @@ struct QCtmLogFilterModel::Impl
 /*!
     \brief      构造函数 \a parent.
 */
-QCtmLogFilterModel::QCtmLogFilterModel(QObject* parent)
-    : QSortFilterProxyModel(parent)
-    , m_impl(std::make_unique<Impl>())
-{
-}
+QCtmLogFilterModel::QCtmLogFilterModel(QObject* parent) : QSortFilterProxyModel(parent), m_impl(std::make_unique<Impl>()) {}
 
 /*!
     \brief      析构函数.
 */
-QCtmLogFilterModel::~QCtmLogFilterModel()
-{
-}
+QCtmLogFilterModel::~QCtmLogFilterModel() {}
 
 /*!
     \brief      查询关键字 \a keyword.
@@ -77,7 +71,4 @@ bool QCtmLogFilterModel::filterAcceptsRow(int sourceRow, [[maybe_unused]] const 
 /*!
     \brief      设置日志类型 \a type 是否显示 \a show.
 */
-void QCtmLogFilterModel::showLog(QtMsgType type, bool show)
-{
-    m_impl->showLogs[type] = show;
-}
+void QCtmLogFilterModel::showLog(QtMsgType type, bool show) { m_impl->showLogs[type] = show; }

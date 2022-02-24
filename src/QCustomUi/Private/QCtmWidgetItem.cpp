@@ -17,9 +17,9 @@
 **  along with QCustomUi.  If not, see <https://www.gnu.org/licenses/>.         **
 **********************************************************************************/
 
-#include "QCtmWidgetItem_p.h"
 #include "QCtmSeparator_p.h"
 #include "QCtmToolButton_p.h"
+#include "QCtmWidgetItem_p.h"
 
 #include <QWidgetAction>
 
@@ -40,35 +40,40 @@ inline void setToolButtonProperty(QAction* action, QCtmToolButton* btn)
     if (btn->parent())
         btn->setVisible(action->isVisible());
     setToolButtonStyle(action, btn);
-    QObject::connect(action, &QAction::changed, btn, [=]()
-        {
-            setToolButtonStyle(action, btn);
-            if (btn->parent())
-                btn->setVisible(action->isVisible());
-        });
-    QObject::connect(action, &QObject::objectNameChanged, btn, [=](const QString& name) {btn->setObjectName(name); });
+    QObject::connect(action,
+                     &QAction::changed,
+                     btn,
+                     [=]()
+                     {
+                         setToolButtonStyle(action, btn);
+                         if (btn->parent())
+                             btn->setVisible(action->isVisible());
+                     });
+    QObject::connect(action, &QObject::objectNameChanged, btn, [=](const QString& name) { btn->setObjectName(name); });
 };
 
 inline void setWidgetProperty(QAction* action, QWidget* widget)
 {
-    QObject::connect(action, &QAction::changed, widget, [=]()
-        {
-            if (widget->parent())
-                widget->setVisible(action->isVisible());
-        });
-    QObject::connect(action, &QObject::objectNameChanged, widget, [=](const QString& name) {widget->setObjectName(name); });
+    QObject::connect(action,
+                     &QAction::changed,
+                     widget,
+                     [=]()
+                     {
+                         if (widget->parent())
+                             widget->setVisible(action->isVisible());
+                     });
+    QObject::connect(action, &QObject::objectNameChanged, widget, [=](const QString& name) { widget->setObjectName(name); });
 }
 
 struct QCtmWidgetItem::Impl
 {
-    QAction* action{ nullptr };
-    QWidget* widget{ nullptr };
-    bool customWidget{ false };
+    QAction* action { nullptr };
+    QWidget* widget { nullptr };
+    bool customWidget { false };
 };
 
 QCtmWidgetItem::QCtmWidgetItem(QAction* action, Qt::Orientation orientation, const QSize& iconSize, QWidget* parent)
-    : QObject(parent)
-    , m_impl(std::make_unique<Impl>())
+    : QObject(parent), m_impl(std::make_unique<Impl>())
 {
     m_impl->action = action;
 
@@ -76,7 +81,7 @@ QCtmWidgetItem::QCtmWidgetItem(QAction* action, Qt::Orientation orientation, con
     if (wa && wa->defaultWidget())
     {
         m_impl->customWidget = true;
-        m_impl->widget = wa->defaultWidget();
+        m_impl->widget       = wa->defaultWidget();
         if (auto btn = qobject_cast<QCtmToolButton*>(m_impl->widget); btn)
         {
             setToolButtonProperty(action, btn);
@@ -92,9 +97,8 @@ QCtmWidgetItem::QCtmWidgetItem(QAction* action, Qt::Orientation orientation, con
         {
             m_impl->widget = new QCtmSeparator(orientation, parent);
             m_impl->widget->setObjectName(action->objectName());
-            QObject::connect(action, &QObject::objectNameChanged, m_impl->widget, [=](const QString& name) {
-                m_impl->widget->setObjectName(name);
-                });
+            QObject::connect(
+                action, &QObject::objectNameChanged, m_impl->widget, [=](const QString& name) { m_impl->widget->setObjectName(name); });
         }
         else
         {
@@ -119,17 +123,8 @@ void QCtmWidgetItem::release()
     m_impl->widget = nullptr;
 }
 
-QAction* QCtmWidgetItem::action() const
-{
-    return m_impl->action;
-}
+QAction* QCtmWidgetItem::action() const { return m_impl->action; }
 
-QWidget* QCtmWidgetItem::widget() const
-{
-    return m_impl->widget;
-}
+QWidget* QCtmWidgetItem::widget() const { return m_impl->widget; }
 
-bool QCtmWidgetItem::isCustomWidget() const
-{
-    return m_impl->customWidget;
-}
+bool QCtmWidgetItem::isCustomWidget() const { return m_impl->customWidget; }

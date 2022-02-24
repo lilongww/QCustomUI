@@ -37,11 +37,7 @@ struct QCtmClassifyTreeModel::Impl
 /*!
     \brief      构造函数 \a parent.
 */
-QCtmClassifyTreeModel::QCtmClassifyTreeModel(QObject* parent)
-    : QAbstractItemModel(parent)
-    , m_impl(std::make_unique<Impl>())
-{
-}
+QCtmClassifyTreeModel::QCtmClassifyTreeModel(QObject* parent) : QAbstractItemModel(parent), m_impl(std::make_unique<Impl>()) {}
 
 /*!
     \brief      析构函数.
@@ -56,10 +52,7 @@ QCtmClassifyTreeModel::~QCtmClassifyTreeModel()
     \brief      添加根节点 \a item.
     \sa         insertItem, removeItem
 */
-void QCtmClassifyTreeModel::addItem(QCtmClassifyTreeItem* item)
-{
-    insertItem(static_cast<int>(m_impl->items.size()), item);
-}
+void QCtmClassifyTreeModel::addItem(QCtmClassifyTreeItem* item) { insertItem(static_cast<int>(m_impl->items.size()), item); }
 
 /*!
     \brief      插入根节点 \a index, \a item.
@@ -80,7 +73,7 @@ void QCtmClassifyTreeModel::removeItem(QCtmClassifyTreeItem* item)
 {
     if (auto it = std::find(m_impl->items.begin(), m_impl->items.end(), item); it != m_impl->items.end())
     {
-        delete* it;
+        delete *it;
         m_impl->items.erase(it);
         reset();
     }
@@ -139,10 +132,7 @@ int QCtmClassifyTreeModel::rowCount(const QModelIndex& parent /*= QModelIndex()*
 /*!
     \reimp
 */
-int QCtmClassifyTreeModel::columnCount([[maybe_unused]] const QModelIndex& parnet /*= QModelIndex()*/) const
-{
-    return 1;
-}
+int QCtmClassifyTreeModel::columnCount([[maybe_unused]] const QModelIndex& parnet /*= QModelIndex()*/) const { return 1; }
 
 /*!
     \reimp

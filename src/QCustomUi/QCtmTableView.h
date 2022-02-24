@@ -1,4 +1,4 @@
-/*********************************************************************************
+﻿/*********************************************************************************
 **                                                                              **
 **  Copyright (C) 2019-2020 LiLong                                              **
 **  This file is part of QCustomUi.                                             **
@@ -30,12 +30,13 @@ class QCUSTOMUI_EXPORT QCtmTableView : public QTableView
     Q_OBJECT
 
 public:
-    QCtmTableView(QWidget *parent = nullptr);
+    QCtmTableView(QWidget* parent = nullptr);
     ~QCtmTableView();
 
 protected:
-    bool viewportEvent(QEvent *event) override;
+    bool viewportEvent(QEvent* event) override;
     virtual void setHoverIndex(const QModelIndex& index);
+
 private:
     QCtmTableItemDelegate* m_delegate;
     QModelIndex m_hover;

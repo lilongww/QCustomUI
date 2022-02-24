@@ -18,26 +18,26 @@
 **********************************************************************************/
 
 #include "QCtmMessageBox.h"
-#include "QCtmTitleBar.h"
 #include "Private/QCtmStyle_p.h"
+#include "QCtmTitleBar.h"
 
+#include <QApplication>
 #include <QDialogButtonBox>
 #include <QLabel>
-#include <QVBoxLayout>
 #include <QPushButton>
-#include <QStyle>
-#include <QApplication>
 #include <QScreen>
+#include <QStyle>
+#include <QVBoxLayout>
 
 struct QCtmMessageBox::Impl
 {
-    QLabel* label{ nullptr };
-    QLabel* iconLabel{ nullptr };
-    Icon icon{ Icon::NoIcon };
-    QDialogButtonBox* buttonBox{ nullptr };
-    QAbstractButton* clickedButton{ nullptr };
-    QAbstractButton* defaultButton{ nullptr };
-    QAbstractButton* escapeButton{ nullptr };
+    QLabel* label { nullptr };
+    QLabel* iconLabel { nullptr };
+    Icon icon { Icon::NoIcon };
+    QDialogButtonBox* buttonBox { nullptr };
+    QAbstractButton* clickedButton { nullptr };
+    QAbstractButton* defaultButton { nullptr };
+    QAbstractButton* escapeButton { nullptr };
 };
 
 /*!
@@ -162,22 +162,19 @@ struct QCtmMessageBox::Impl
 /*!
     \brief      构造函数 \a parent.
 */
-QCtmMessageBox::QCtmMessageBox(QWidget* parent)
-    : QCtmDialog(parent)
-    , m_impl(std::make_unique<Impl>())
-{
-    init();
-}
+QCtmMessageBox::QCtmMessageBox(QWidget* parent) : QCtmDialog(parent), m_impl(std::make_unique<Impl>()) { init(); }
 
 /*!
     \brief      构造函数，并指定显示图标 \a icon, 标题文本 \a title, 显示文本 \a text, 按钮集合 \a buttons, 父窗口 \a parent, 窗口风格 \a f.
 */
-QCtmMessageBox::QCtmMessageBox(Icon icon
-    , const QString& title
-    , const QString& text
-    , StandardButtons buttons /*= NoButton */
-    , QWidget* parent /*= Q_NULLPTR */
-    , Qt::WindowFlags f /*= Qt::Dialog | Qt::MSWindowsFixedSizeDialogHint*/)
+QCtmMessageBox::QCtmMessageBox(Icon icon,
+                               const QString& title,
+                               const QString& text,
+                               StandardButtons buttons /*= NoButton */
+                               ,
+                               QWidget* parent /*= Q_NULLPTR */
+                               ,
+                               Qt::WindowFlags f /*= Qt::Dialog | Qt::MSWindowsFixedSizeDialogHint*/)
     : QCtmMessageBox(parent)
 {
     m_impl->buttonBox->setStandardButtons(QDialogButtonBox::StandardButtons((int)buttons));
@@ -190,9 +187,7 @@ QCtmMessageBox::QCtmMessageBox(Icon icon
 /*!
     \brief      析构函数.
 */
-QCtmMessageBox::~QCtmMessageBox()
-{
-}
+QCtmMessageBox::~QCtmMessageBox() {}
 
 /*!
     \brief      设置按钮集合 \a buttons.
@@ -245,10 +240,7 @@ QCtmMessageBox::StandardButton QCtmMessageBox::defaultButton()
 /*!
     \brief      返回点击的按钮.
 */
-QAbstractButton* QCtmMessageBox::clickedButton() const
-{
-    return m_impl->clickedButton;
-}
+QAbstractButton* QCtmMessageBox::clickedButton() const { return m_impl->clickedButton; }
 
 /*!
     \brief      返回按钮对应的标准按钮 \a button.
@@ -313,28 +305,19 @@ void QCtmMessageBox::removeButton(QAbstractButton* button)
     \brief      设置显示文本 \a text.
     \sa         text()
 */
-void QCtmMessageBox::setText(const QString& text)
-{
-    m_impl->label->setText(text);
-}
+void QCtmMessageBox::setText(const QString& text) { m_impl->label->setText(text); }
 
 /*!
     \brief      返回显示文本.
     \sa         setText
 */
-QString QCtmMessageBox::text() const
-{
-    return m_impl->label->text();
-}
+QString QCtmMessageBox::text() const { return m_impl->label->text(); }
 
 /*!
     \brief      返回显示图标.
     \sa         setIcon
 */
-QCtmMessageBox::Icon QCtmMessageBox::icon() const
-{
-    return m_impl->icon;
-}
+QCtmMessageBox::Icon QCtmMessageBox::icon() const { return m_impl->icon; }
 
 /*!
     \brief      设置显示图标 \a icon.
@@ -366,10 +349,7 @@ void QCtmMessageBox::setIcon(Icon icon)
     \brief      返回图标.
     \sa         setIconPixmap
 */
-QPixmap QCtmMessageBox::iconPixmap() const
-{
-    return m_impl->iconLabel->pixmap(Qt::ReturnByValue);
-}
+QPixmap QCtmMessageBox::iconPixmap() const { return m_impl->iconLabel->pixmap(Qt::ReturnByValue); }
 
 /*!
     \brief      设置自定义的图标 \a pixmap, 并且 \l icon 将被设置为 Icon::NoIcon.
@@ -385,47 +365,36 @@ void QCtmMessageBox::setIconPixmap(const QPixmap& pixmap)
     \brief      返回文本格式.
     \sa         setTextFormat
 */
-Qt::TextFormat QCtmMessageBox::textFormat() const
-{
-    return m_impl->label->textFormat();
-}
+Qt::TextFormat QCtmMessageBox::textFormat() const { return m_impl->label->textFormat(); }
 
 /*!
     \brief      设置文本格式 \a format.
     \sa         textFormat()
 */
-void QCtmMessageBox::setTextFormat(Qt::TextFormat format)
-{
-    m_impl->label->setTextFormat(format);
-}
+void QCtmMessageBox::setTextFormat(Qt::TextFormat format) { m_impl->label->setTextFormat(format); }
 
 /*!
     \brief      设置文本交互方式 \a flags.
     \sa         textInteractionFlags()
 */
-void QCtmMessageBox::setTextInteractionFlags(Qt::TextInteractionFlags flags)
-{
-    m_impl->label->setTextInteractionFlags(flags);
-}
+void QCtmMessageBox::setTextInteractionFlags(Qt::TextInteractionFlags flags) { m_impl->label->setTextInteractionFlags(flags); }
 
 /*!
     \brief      返回文本交互方式.
     \sa         setTextInteractionFlags
 */
-Qt::TextInteractionFlags QCtmMessageBox::textInteractionFlags() const
-{
-    return m_impl->label->textInteractionFlags();
-}
+Qt::TextInteractionFlags QCtmMessageBox::textInteractionFlags() const { return m_impl->label->textInteractionFlags(); }
 
 /*!
-    \brief      构造一个错误消息弹窗，并指定标题文本 \a title, 显示文本 \a text, 按钮集合 \a buttons, 默认按钮 \a defaultButton, 父窗口 \a parent.
-    \sa         QMessageBox::critical
+    \brief      构造一个错误消息弹窗，并指定标题文本 \a title, 显示文本 \a text, 按钮集合 \a buttons, 默认按钮 \a defaultButton, 父窗口 \a
+   parent. \sa         QMessageBox::critical
 */
-QCtmMessageBox::StandardButton QCtmMessageBox::critical(QWidget* parent
-    , const QString& title
-    , const QString& text
-    , StandardButtons buttons /*= Ok */
-    , StandardButton defaultButton /*= NoButton*/)
+QCtmMessageBox::StandardButton QCtmMessageBox::critical(QWidget* parent,
+                                                        const QString& title,
+                                                        const QString& text,
+                                                        StandardButtons buttons /*= Ok */
+                                                        ,
+                                                        StandardButton defaultButton /*= NoButton*/)
 {
     QCtmMessageBox box(Icon::Critical, title, text, buttons, parent);
     box.setDefaultButton(defaultButton);
@@ -434,14 +403,15 @@ QCtmMessageBox::StandardButton QCtmMessageBox::critical(QWidget* parent
 }
 
 /*!
-    \brief      构造一个信息消息弹窗，并指定标题文本 \a title, 显示文本 \a text, 按钮集合 \a buttons, 默认按钮 \a defaultButton, 父窗口 \a parent.
-    \sa         QMessageBox::information
+    \brief      构造一个信息消息弹窗，并指定标题文本 \a title, 显示文本 \a text, 按钮集合 \a buttons, 默认按钮 \a defaultButton, 父窗口 \a
+   parent. \sa         QMessageBox::information
 */
-QCtmMessageBox::StandardButton QCtmMessageBox::information(QWidget* parent
-    , const QString& title
-    , const QString& text
-    , StandardButtons buttons /*= Ok */
-    , StandardButton defaultButton /*= NoButton*/)
+QCtmMessageBox::StandardButton QCtmMessageBox::information(QWidget* parent,
+                                                           const QString& title,
+                                                           const QString& text,
+                                                           StandardButtons buttons /*= Ok */
+                                                           ,
+                                                           StandardButton defaultButton /*= NoButton*/)
 {
     QCtmMessageBox box(Icon::Information, title, text, buttons, parent);
     box.setDefaultButton(defaultButton);
@@ -450,14 +420,15 @@ QCtmMessageBox::StandardButton QCtmMessageBox::information(QWidget* parent
 }
 
 /*!
-    \brief      构造一个询问消息弹窗，并指定标题文本 \a title, 显示文本 \a text, 按钮集合 \a buttons, 默认按钮 \a defaultButton, 父窗口 \a parent.
-    \sa         QMessageBox::question
+    \brief      构造一个询问消息弹窗，并指定标题文本 \a title, 显示文本 \a text, 按钮集合 \a buttons, 默认按钮 \a defaultButton, 父窗口 \a
+   parent. \sa         QMessageBox::question
 */
-QCtmMessageBox::StandardButton QCtmMessageBox::question(QWidget* parent
-    , const QString& title
-    , const QString& text
-    , StandardButtons buttons /*= StandardButtons(Yes | No) */
-    , StandardButton defaultButton /*= NoButton*/)
+QCtmMessageBox::StandardButton QCtmMessageBox::question(QWidget* parent,
+                                                        const QString& title,
+                                                        const QString& text,
+                                                        StandardButtons buttons /*= StandardButtons(Yes | No) */
+                                                        ,
+                                                        StandardButton defaultButton /*= NoButton*/)
 {
     QCtmMessageBox box(Icon::Question, title, text, buttons, parent);
     box.setDefaultButton(defaultButton);
@@ -466,14 +437,15 @@ QCtmMessageBox::StandardButton QCtmMessageBox::question(QWidget* parent
 }
 
 /*!
-    \brief      构造一个警告消息弹窗，并指定标题文本 \a title, 显示文本 \a text, 按钮集合 \a buttons, 默认按钮 \a defaultButton, 父窗口 \a parent.
-    \sa         QMessageBox::warning
+    \brief      构造一个警告消息弹窗，并指定标题文本 \a title, 显示文本 \a text, 按钮集合 \a buttons, 默认按钮 \a defaultButton, 父窗口 \a
+   parent. \sa         QMessageBox::warning
 */
-QCtmMessageBox::StandardButton QCtmMessageBox::warning(QWidget* parent
-    , const QString& title
-    , const QString& text
-    , StandardButtons buttons /*= Ok */
-    , StandardButton defaultButton /*= NoButton*/)
+QCtmMessageBox::StandardButton QCtmMessageBox::warning(QWidget* parent,
+                                                       const QString& title,
+                                                       const QString& text,
+                                                       StandardButtons buttons /*= Ok */
+                                                       ,
+                                                       StandardButton defaultButton /*= NoButton*/)
 {
     QCtmMessageBox box(Icon::Warning, title, text, buttons, parent);
     box.setDefaultButton(defaultButton);
@@ -498,9 +470,9 @@ void QCtmMessageBox::showEvent(QShowEvent* event)
 */
 void QCtmMessageBox::init()
 {
-    m_impl->label = new QLabel(this);
-    m_impl->iconLabel = new QLabel(this);
-    m_impl->buttonBox = new QDialogButtonBox(this);
+    m_impl->label       = new QLabel(this);
+    m_impl->iconLabel   = new QLabel(this);
+    m_impl->buttonBox   = new QDialogButtonBox(this);
     QVBoxLayout* layout = new QVBoxLayout(centralWidget());
 
     QHBoxLayout* msgLayout = new QHBoxLayout;
@@ -511,10 +483,7 @@ void QCtmMessageBox::init()
     layout->addLayout(msgLayout);
     layout->addWidget(m_impl->buttonBox);
 
-    connect(m_impl->buttonBox, &QDialogButtonBox::clicked, this, [=](QAbstractButton* button)
-        {
-            m_impl->clickedButton = button;
-        });
+    connect(m_impl->buttonBox, &QDialogButtonBox::clicked, this, [=](QAbstractButton* button) { m_impl->clickedButton = button; });
     connect(m_impl->buttonBox, &QDialogButtonBox::accepted, this, &QDialog::accept);
     connect(m_impl->buttonBox, &QDialogButtonBox::rejected, this, &QDialog::reject);
 }
@@ -557,7 +526,8 @@ void QCtmMessageBox::updateSize()
     m_impl->label->setWordWrap(false); // makes the label return min size
     int width = layoutMinimumWidth();
 
-    if (width > softLimit) {
+    if (width > softLimit)
+    {
         m_impl->label->setWordWrap(true);
         width = qMax(softLimit, layoutMinimumWidth());
     }
@@ -569,14 +539,12 @@ void QCtmMessageBox::updateSize()
 
     auto layout = centralWidget()->layout();
     layout->activate();
-    int height = (layout->hasHeightForWidth())
-        ? layout->totalHeightForWidth(width)
-        : layout->totalMinimumSize().height();
+    int height = (layout->hasHeightForWidth()) ? layout->totalHeightForWidth(width) : layout->totalMinimumSize().height();
 
-    const auto& margins = contentsMargins();
+    const auto& margins       = contentsMargins();
     const auto& layoutMargins = layout->contentsMargins();
-    setFixedSize(width + margins.left() + margins.right() + layoutMargins.left() + layoutMargins.right()
-        , height + this->titleBar()->height() + margins.bottom() + margins.top() + layoutMargins.top() + layoutMargins.bottom());
+    setFixedSize(width + margins.left() + margins.right() + layoutMargins.left() + layoutMargins.right(),
+                 height + this->titleBar()->height() + margins.bottom() + margins.top() + layoutMargins.top() + layoutMargins.bottom());
 }
 
 /*!
@@ -584,7 +552,8 @@ void QCtmMessageBox::updateSize()
 */
 void QCtmMessageBox::detectEscapeButton() const
 {
-    if (m_impl->escapeButton) { // escape button explicitly set
+    if (m_impl->escapeButton)
+    { // escape button explicitly set
         return;
     }
 
@@ -595,13 +564,15 @@ void QCtmMessageBox::detectEscapeButton() const
 
     // If there is only one button, make it the escape button
     const QList<QAbstractButton*> buttons = m_impl->buttonBox->buttons();
-    if (buttons.count() == 1) {
+    if (buttons.count() == 1)
+    {
         m_impl->escapeButton = buttons.first();
         return;
     }
 
     // if the message box has one RejectRole button, make it the escape button
-    for (auto* button : buttons) {
+    for (auto* button : buttons)
+    {
         if (m_impl->buttonBox->buttonRole(button) == QDialogButtonBox::RejectRole)
         {
             m_impl->escapeButton = button;
@@ -611,7 +582,8 @@ void QCtmMessageBox::detectEscapeButton() const
     }
 
     // if the message box has one NoRole button, make it the escape button
-    for (auto* button : buttons) {
+    for (auto* button : buttons)
+    {
         if (m_impl->buttonBox->buttonRole(button) == QDialogButtonBox::NoRole)
         {
             m_impl->escapeButton = button;

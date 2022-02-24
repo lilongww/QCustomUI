@@ -1,4 +1,4 @@
-/*********************************************************************************
+﻿/*********************************************************************************
 **                                                                              **
 **  Copyright (C) 2019-2020 LiLong                                              **
 **  This file is part of QCustomUi.                                             **
@@ -21,8 +21,8 @@
 
 #include "qcustomui_global.h"
 
-#include <QObject>
 #include <QColor>
+#include <QObject>
 
 class QCUSTOMUI_EXPORT QCtmColor : QObject
 {
@@ -31,16 +31,16 @@ public:
     QCtmColor() = delete;
     enum Colors
     {
-        Color0 = 0x2D74EA,
-        Color1 = 0x002050,
-        Color2 = 0x35888B,
-        Color3 = 0x4D4895,
-        Color4 = 0xAB742C,
-        Color5 = 0x783913,
-        Color6 = 0x55815D,
-        Color7 = 0x2D41A7,
-        Color8 = 0x19422B,
-        Color9 = 0x226546,
+        Color0  = 0x2D74EA,
+        Color1  = 0x002050,
+        Color2  = 0x35888B,
+        Color3  = 0x4D4895,
+        Color4  = 0xAB742C,
+        Color5  = 0x783913,
+        Color6  = 0x55815D,
+        Color7  = 0x2D41A7,
+        Color8  = 0x19422B,
+        Color9  = 0x226546,
         Color10 = 0x2AB0C8,
         Color11 = 0x4D4F51,
         Color12 = 0x288A33,

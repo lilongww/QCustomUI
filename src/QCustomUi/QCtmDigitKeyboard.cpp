@@ -22,23 +22,23 @@
 #include "ui_QCtmDigitKeyboard.h"
 
 #include <QDoubleSpinBox>
-#include <QSpinBox>
-#include <QLineEdit>
 #include <QKeyEvent>
+#include <QLineEdit>
+#include <QSpinBox>
 
 struct QCtmDigitKeyboard::Impl
 {
-    InputMode mode{ InputMode::IntInput };
+    InputMode mode { InputMode::IntInput };
     QVariant value;
     QVariant maximum;
     QVariant minimum;
     QVariant step;
     Units units;
-    int currentUnitIndex{ 0 };
+    int currentUnitIndex { 0 };
     Ui::QCtmDigitKeyboard ui;
-    QAbstractSpinBox* box{ nullptr };
-    int decimals{ 2 };
-    QAbstractSpinBox* bindedBox{ nullptr };
+    QAbstractSpinBox* box { nullptr };
+    int decimals { 2 };
+    QAbstractSpinBox* bindedBox { nullptr };
 };
 
 /*!
@@ -53,9 +53,7 @@ struct QCtmDigitKeyboard::Impl
 /*!
     \brief      构造函数 \a parent.
 */
-QCtmDigitKeyboard::QCtmDigitKeyboard(QWidget* parent /*= nullptr*/)
-    : QCtmDialog(parent)
-    , m_impl(std::make_unique<Impl>())
+QCtmDigitKeyboard::QCtmDigitKeyboard(QWidget* parent /*= nullptr*/) : QCtmDialog(parent), m_impl(std::make_unique<Impl>())
 {
     m_impl->ui.setupUi(centralWidget());
     init();
@@ -64,10 +62,7 @@ QCtmDigitKeyboard::QCtmDigitKeyboard(QWidget* parent /*= nullptr*/)
 /*!
     \brief      析构函数.
 */
-QCtmDigitKeyboard::~QCtmDigitKeyboard()
-{
-
-}
+QCtmDigitKeyboard::~QCtmDigitKeyboard() {}
 
 /*!
     \brief      设置输入模式 \a mode.
@@ -84,10 +79,7 @@ void QCtmDigitKeyboard::setInputMode(InputMode mode)
     \brief      返回输入模式.
     \sa         setInputMode
 */
-QCtmDigitKeyboard::InputMode QCtmDigitKeyboard::inputMode() const
-{
-    return m_impl->mode;
-}
+QCtmDigitKeyboard::InputMode QCtmDigitKeyboard::inputMode() const { return m_impl->mode; }
 
 /*!
     \brief      设置输入窗口中的值 \a value.
@@ -113,10 +105,7 @@ void QCtmDigitKeyboard::setValue(const QVariant& value)
     \brief      返回输入的值.
     \sa         setValue
 */
-QVariant QCtmDigitKeyboard::value() const
-{
-    return m_impl->box ? m_impl->box->property("value") : m_impl->value;
-}
+QVariant QCtmDigitKeyboard::value() const { return m_impl->box ? m_impl->box->property("value") : m_impl->value; }
 
 /*!
     \brief      设置输入最大值 \a max.
@@ -133,10 +122,7 @@ void QCtmDigitKeyboard::setMaximum(const QVariant& max)
     \brief      返回输入最大值.
     \sa         setMaximum
 */
-QVariant QCtmDigitKeyboard::maximum() const
-{
-    return m_impl->box ? m_impl->box->property("maximum") : m_impl->maximum;
-}
+QVariant QCtmDigitKeyboard::maximum() const { return m_impl->box ? m_impl->box->property("maximum") : m_impl->maximum; }
 
 /*!
     \brief      设置输入最小值 \a min.
@@ -153,10 +139,7 @@ void QCtmDigitKeyboard::setMinimum(const QVariant& min)
     \brief      返回输入最小值.
     \sa         setMinimum
 */
-QVariant QCtmDigitKeyboard::minimum() const
-{
-    return m_impl->box ? m_impl->box->property("minimum") : m_impl->minimum;
-}
+QVariant QCtmDigitKeyboard::minimum() const { return m_impl->box ? m_impl->box->property("minimum") : m_impl->minimum; }
 
 /*!
     \brief      设置输入范围 \a min, \a max.
@@ -183,10 +166,7 @@ void QCtmDigitKeyboard::setSingleStep(const QVariant& step)
     \brief      返回步进值.
     \sa         setSingleStep
 */
-QVariant QCtmDigitKeyboard::singleStep() const
-{
-    return m_impl->box ? m_impl->box->property("singleStep") : m_impl->step;
-}
+QVariant QCtmDigitKeyboard::singleStep() const { return m_impl->box ? m_impl->box->property("singleStep") : m_impl->step; }
 
 /*!
     \brief      设置可选单位列表 \a units.
@@ -206,10 +186,7 @@ void QCtmDigitKeyboard::setUnits(const Units& units)
     \brief      返回可选单位列表.
     \sa         setUnits
 */
-const QCtmDigitKeyboard::Units& QCtmDigitKeyboard::units() const
-{
-    return m_impl->units;
-}
+const QCtmDigitKeyboard::Units& QCtmDigitKeyboard::units() const { return m_impl->units; }
 
 /*!
     \brief      设置当前选中的单位序号 \a index.
@@ -229,10 +206,7 @@ void QCtmDigitKeyboard::setCurrentUnitIndex(int index)
     \brief      返回当前选中的单位序号.
     \sa         setCurrentUnitIndex
 */
-int QCtmDigitKeyboard::currentUnitIndex() const
-{
-    return m_impl->currentUnitIndex;
-}
+int QCtmDigitKeyboard::currentUnitIndex() const { return m_impl->currentUnitIndex; }
 
 /*!
     \brief      设置小数点后保留位数 \a decimals.
@@ -252,10 +226,7 @@ void QCtmDigitKeyboard::setDecimals(int decimals)
     \brief      返回小数点后保留位数.
     \sa         setDecimals
 */
-int QCtmDigitKeyboard::decimals() const
-{
-    return m_impl->decimals;
-}
+int QCtmDigitKeyboard::decimals() const { return m_impl->decimals; }
 
 /*!
     \brief      绑定到 QSpinBox/QDoubleSpinBox \a box.
@@ -266,7 +237,7 @@ void QCtmDigitKeyboard::bindBox(QAbstractSpinBox* box)
     if (m_impl->bindedBox)
         m_impl->bindedBox->findChild<QLineEdit*>()->removeEventFilter(this);
     m_impl->bindedBox = box;
-    connect(box, &QObject::destroyed, this, [=]() {m_impl->bindedBox = nullptr; });
+    connect(box, &QObject::destroyed, this, [=]() { m_impl->bindedBox = nullptr; });
     if (m_impl->mode == InputMode::IntInput)
     {
         connect(qobject_cast<QSpinBox*>(box), &QSpinBox::valueChanged, this, &QCtmDigitKeyboard::setValue);
@@ -351,10 +322,7 @@ void QCtmDigitKeyboard::ensureConnect()
             box->setSuffix(m_impl->units.at(m_impl->currentUnitIndex).unit);
         m_impl->box = box;
         setValue(box->value());
-        connect(box, &QSpinBox::valueChanged, this, [this](auto val)
-            {
-                emit valueChanged(val);
-            });
+        connect(box, &QSpinBox::valueChanged, this, [this](auto val) { emit valueChanged(val); });
     }
     else
     {
@@ -367,21 +335,20 @@ void QCtmDigitKeyboard::ensureConnect()
             box->setSuffix(m_impl->units.at(m_impl->currentUnitIndex).unit);
         m_impl->box = box;
         setValue(box->value());
-        connect(box, &QDoubleSpinBox::valueChanged, this, [this](auto val)
-            {
-                emit valueChanged(val);
-            });
+        connect(box, &QDoubleSpinBox::valueChanged, this, [this](auto val) { emit valueChanged(val); });
     }
     m_impl->ui.inputLayout->addWidget(m_impl->box);
 
     auto sendBox = [=](Qt::Key key)
     {
         {
-            auto evt = new QKeyEvent(QEvent::KeyPress, key, Qt::KeyboardModifier::NoModifier, key < Qt::Key_AsciiTilde ? QChar(key) : QString());
+            auto evt =
+                new QKeyEvent(QEvent::KeyPress, key, Qt::KeyboardModifier::NoModifier, key < Qt::Key_AsciiTilde ? QChar(key) : QString());
             qApp->postEvent(m_impl->box->findChild<QLineEdit*>(), evt);
         }
         {
-            auto evt = new QKeyEvent(QEvent::KeyRelease, key, Qt::KeyboardModifier::NoModifier, key < Qt::Key_AsciiTilde ? QChar(key) : QString());
+            auto evt =
+                new QKeyEvent(QEvent::KeyRelease, key, Qt::KeyboardModifier::NoModifier, key < Qt::Key_AsciiTilde ? QChar(key) : QString());
             qApp->postEvent(m_impl->box->findChild<QLineEdit*>(), evt);
         }
     };
@@ -392,7 +359,7 @@ void QCtmDigitKeyboard::ensureConnect()
         for (int col = 0; col < 3; col++)
         {
             char number = row * 3 + col + 1;
-            auto btn = qobject_cast<QPushButton*>(m_impl->ui.digitLayout->itemAtPosition(row, col)->widget());
+            auto btn    = qobject_cast<QPushButton*>(m_impl->ui.digitLayout->itemAtPosition(row, col)->widget());
             connect(btn, &QPushButton::clicked, m_impl->box, std::bind(sendBox, static_cast<Qt::Key>(Qt::Key_0 + number)));
         }
     }
@@ -405,10 +372,7 @@ void QCtmDigitKeyboard::ensureConnect()
     syncBindBox();
 }
 
-void QCtmDigitKeyboard::ensureConnect() const
-{
-    const_cast<QCtmDigitKeyboard*>(this)->ensureConnect();
-}
+void QCtmDigitKeyboard::ensureConnect() const { const_cast<QCtmDigitKeyboard*>(this)->ensureConnect(); }
 
 void QCtmDigitKeyboard::init()
 {
@@ -427,13 +391,16 @@ void QCtmDigitKeyboard::init()
     btn = new QPushButton(".", this);
     btn->setFocusPolicy(Qt::NoFocus);
     m_impl->ui.digitLayout->addWidget(btn, 3, 2);
-    connect(m_impl->ui.buttonBox, &QDialogButtonBox::accepted, this, [=]()
-        {
-            if (!m_impl->units.empty())
-                acceptUnit(m_impl->currentUnitIndex);
-            else
-                accept();
-        });
+    connect(m_impl->ui.buttonBox,
+            &QDialogButtonBox::accepted,
+            this,
+            [=]()
+            {
+                if (!m_impl->units.empty())
+                    acceptUnit(m_impl->currentUnitIndex);
+                else
+                    accept();
+            });
     connect(m_impl->ui.buttonBox, &QDialogButtonBox::rejected, this, &QCtmDialog::reject);
 }
 
@@ -474,10 +441,7 @@ void QCtmDigitKeyboard::createUnits()
 
 void QCtmDigitKeyboard::syncBindBox()
 {
-    auto pv = [=](const char* str)
-    {
-        return m_impl->bindedBox->property(str);
-    };
+    auto pv = [=](const char* str) { return m_impl->bindedBox->property(str); };
 
     if (m_impl->bindedBox)
     {
@@ -494,7 +458,7 @@ void QCtmDigitKeyboard::syncBindBox()
         else
         {
             auto unit = pv("suffix").toString();
-            auto it = std::find_if(m_impl->units.begin(), m_impl->units.end(), [&](const auto& u) {return u.unit == unit; });
+            auto it   = std::find_if(m_impl->units.begin(), m_impl->units.end(), [&](const auto& u) { return u.unit == unit; });
             if (it != m_impl->units.end())
             {
                 setCurrentUnitIndex(static_cast<int>(std::distance(m_impl->units.begin(), it)));
@@ -504,20 +468,24 @@ void QCtmDigitKeyboard::syncBindBox()
 
     if (m_impl->units.empty())
         return;
-    auto minIt = std::max_element(m_impl->units.begin(), m_impl->units.end(), [=](const auto& u1, const auto& u2)
-        {
-            if (m_impl->mode == InputMode::IntInput)
-                return u1.minimum.toInt() < u2.minimum.toInt();
-            else
-                return u1.minimum.toDouble() < u2.minimum.toDouble();
-        });
-    auto maxIt = std::max_element(m_impl->units.begin(), m_impl->units.end(), [=](const auto& u1, const auto& u2)
-        {
-            if (m_impl->mode == InputMode::IntInput)
-                return u1.maximum.toInt() < u2.maximum.toInt();
-            else
-                return u1.maximum.toDouble() < u2.maximum.toDouble();
-        });
+    auto minIt = std::max_element(m_impl->units.begin(),
+                                  m_impl->units.end(),
+                                  [=](const auto& u1, const auto& u2)
+                                  {
+                                      if (m_impl->mode == InputMode::IntInput)
+                                          return u1.minimum.toInt() < u2.minimum.toInt();
+                                      else
+                                          return u1.minimum.toDouble() < u2.minimum.toDouble();
+                                  });
+    auto maxIt = std::max_element(m_impl->units.begin(),
+                                  m_impl->units.end(),
+                                  [=](const auto& u1, const auto& u2)
+                                  {
+                                      if (m_impl->mode == InputMode::IntInput)
+                                          return u1.maximum.toInt() < u2.maximum.toInt();
+                                      else
+                                          return u1.maximum.toDouble() < u2.maximum.toDouble();
+                                  });
     if (m_impl->box)
     {
         m_impl->box->setProperty("minimum", minIt->minimum);
@@ -535,18 +503,18 @@ void QCtmDigitKeyboard::acceptUnit(int unitIndex)
     {
         if (m_impl->mode == InputMode::IntInput)
         {
-            auto v = value.toInt();
+            auto v   = value.toInt();
             auto max = unit.maximum.toInt();
             auto min = unit.minimum.toInt();
-            error = tr("%1%2 - %3%4").arg(min).arg(unit.unit).arg(max).arg(unit.unit);
+            error    = tr("%1%2 - %3%4").arg(min).arg(unit.unit).arg(max).arg(unit.unit);
             return min <= v && v <= max;
         }
         else
         {
-            auto v = value.toDouble();
+            auto v   = value.toDouble();
             auto max = unit.maximum.toDouble();
             auto min = unit.minimum.toDouble();
-            error = tr("%1%2 - %3%4").arg(min).arg(unit.unit).arg(max).arg(unit.unit);
+            error    = tr("%1%2 - %3%4").arg(min).arg(unit.unit).arg(max).arg(unit.unit);
             return min <= v && v <= max;
         }
     };

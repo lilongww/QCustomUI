@@ -19,23 +19,23 @@
 
 #include "QCtmStageProgressBar.h"
 
-#include <QPainter>
-#include <QStyleOption>
-#include <QPainterPath>
 #include <QDebug>
+#include <QPainter>
+#include <QPainterPath>
+#include <QStyleOption>
 
 struct QCtmStageProgressBar::Impl
 {
-    int stageCount{ 5 };
-    Qt::Orientation orientation{ Qt::Horizontal };
-    int minimum{ 0 };
-    int maximum{ 99 };
-    int value{ 0 };
-    bool textVisible{ false };
-    int stageCricleRadius{ 10 };
-    std::vector<QString> texts{ static_cast<size_t>(stageCount) };
-    QPen stageTextIndexPen{ Qt::white };
-    QBrush rateBrush{ QColor{0x3580ce} };
+    int stageCount { 5 };
+    Qt::Orientation orientation { Qt::Horizontal };
+    int minimum { 0 };
+    int maximum { 99 };
+    int value { 0 };
+    bool textVisible { false };
+    int stageCricleRadius { 10 };
+    std::vector<QString> texts { static_cast<size_t>(stageCount) };
+    QPen stageTextIndexPen { Qt::white };
+    QBrush rateBrush { QColor { 0x3580ce } };
 };
 
 /*!
@@ -53,9 +53,7 @@ struct QCtmStageProgressBar::Impl
 /*!
     \brief      构造函数 \a parent.
 */
-QCtmStageProgressBar::QCtmStageProgressBar(QWidget* parent)
-    : QWidget(parent)
-    , m_impl(std::make_unique<Impl>())
+QCtmStageProgressBar::QCtmStageProgressBar(QWidget* parent) : QWidget(parent), m_impl(std::make_unique<Impl>())
 {
     setOrientation(Qt::Horizontal);
     adjustSize();
@@ -64,9 +62,7 @@ QCtmStageProgressBar::QCtmStageProgressBar(QWidget* parent)
 /*!
     \brief      析构函数.
 */
-QCtmStageProgressBar::~QCtmStageProgressBar()
-{
-}
+QCtmStageProgressBar::~QCtmStageProgressBar() {}
 
 /*!
     \brief      设置进度条的朝向 \a orientation.
@@ -89,10 +85,7 @@ void QCtmStageProgressBar::setOrientation(Qt::Orientation orientation)
     \brief      返回进度条的朝向.
     \sa         setOrientation
 */
-Qt::Orientation QCtmStageProgressBar::orientation() const
-{
-    return m_impl->orientation;
-}
+Qt::Orientation QCtmStageProgressBar::orientation() const { return m_impl->orientation; }
 
 /*!
     \brief      设置阶段数量 \a count.
@@ -116,10 +109,7 @@ void QCtmStageProgressBar::setStageCount(int count)
     \brief      返回阶段数量.
     \sa         setStageCount
 */
-int QCtmStageProgressBar::stageCount() const
-{
-    return m_impl->stageCount;
-}
+int QCtmStageProgressBar::stageCount() const { return m_impl->stageCount; }
 
 /*!
     \brief      设置阶段节点圆形的半径像素 \a radius.
@@ -137,10 +127,7 @@ void QCtmStageProgressBar::setStageCircleRadius(int radius)
     \brief      返回阶段节点圆形的半径像素.
     \sa         setStageCircleRadius
 */
-int QCtmStageProgressBar::stageCricleRadius() const
-{
-    return m_impl->stageCricleRadius;
-}
+int QCtmStageProgressBar::stageCricleRadius() const { return m_impl->stageCricleRadius; }
 
 /*!
     \brief      设置阶段 \a stage 的文本 \a text.
@@ -185,10 +172,7 @@ void QCtmStageProgressBar::setTextVisible(bool flag)
     \brief      返回阶段文本是否可见.
     \sa         setTextVisible
 */
-bool QCtmStageProgressBar::textVisible() const
-{
-    return m_impl->textVisible;
-}
+bool QCtmStageProgressBar::textVisible() const { return m_impl->textVisible; }
 
 /*!
     \brief      设置当前进度值 \a value.
@@ -204,10 +188,7 @@ void QCtmStageProgressBar::setValue(int value)
     \brief      返回当前进度.
     \sa         setValue
 */
-int QCtmStageProgressBar::value() const
-{
-    return m_impl->value;
-}
+int QCtmStageProgressBar::value() const { return m_impl->value; }
 
 /*!
     \brief      设置最大值 \a maximum.
@@ -225,10 +206,7 @@ void QCtmStageProgressBar::setMaximum(int maximum)
     \brief      返回最大值.
     \sa         setMaximum
 */
-int QCtmStageProgressBar::maximum() const
-{
-    return m_impl->maximum;
-}
+int QCtmStageProgressBar::maximum() const { return m_impl->maximum; }
 
 /*!
     \brief      设置最小值 \a min.
@@ -246,10 +224,7 @@ void QCtmStageProgressBar::setMinimum(int min)
     \brief      返回最小值.
     \sa         setMinimum
 */
-int QCtmStageProgressBar::minimum() const
-{
-    return m_impl->minimum;
-}
+int QCtmStageProgressBar::minimum() const { return m_impl->minimum; }
 
 /*!
     \brief      设置阶段序号文本的画笔 \a pen.
@@ -265,10 +240,7 @@ void QCtmStageProgressBar::setStageIndexTextPen(const QPen& pen)
     \brief      返回阶段序号文本的画笔.
     \sa         setStageIndexTextPen
 */
-const QPen& QCtmStageProgressBar::stageIndexTextPen() const
-{
-    return m_impl->stageTextIndexPen;
-}
+const QPen& QCtmStageProgressBar::stageIndexTextPen() const { return m_impl->stageTextIndexPen; }
 
 /*!
     \brief      设置进度条背景色 \a brush.
@@ -284,10 +256,7 @@ void QCtmStageProgressBar::setRateBackground(const QBrush& brush)
     \brief      返回进度条背景色.
     \sa         setRateBackground
 */
-const QBrush& QCtmStageProgressBar::rateBackground() const
-{
-    return m_impl->rateBrush;
-}
+const QBrush& QCtmStageProgressBar::rateBackground() const { return m_impl->rateBrush; }
 
 /*!
     \reimp
@@ -319,8 +288,10 @@ void QCtmStageProgressBar::paintEvent([[maybe_unused]] QPaintEvent* event)
         {
             if (index == 0)
             {
-                channel.setLeft(m_impl->textVisible ? rect.center().x() - m_impl->stageCricleRadius / 4 : rect.center().x() + m_impl->stageCricleRadius / 4);
-                channel.setRight(m_impl->textVisible ? rect.center().x() + m_impl->stageCricleRadius / 4 : rect.center().x() - m_impl->stageCricleRadius / 4);
+                channel.setLeft(m_impl->textVisible ? rect.center().x() - m_impl->stageCricleRadius / 4
+                                                    : rect.center().x() + m_impl->stageCricleRadius / 4);
+                channel.setRight(m_impl->textVisible ? rect.center().x() + m_impl->stageCricleRadius / 4
+                                                     : rect.center().x() - m_impl->stageCricleRadius / 4);
                 channel.setBottom(rect.center().y());
             }
             else if (index == m_impl->stageCount - 1)
@@ -336,7 +307,7 @@ void QCtmStageProgressBar::paintEvent([[maybe_unused]] QPaintEvent* event)
     p.fillPath(path, this->palette().window());
 
     auto&& boundRect = path.boundingRect();
-    auto v = static_cast<double>(m_impl->value) / m_impl->maximum;
+    auto v           = static_cast<double>(m_impl->value) / m_impl->maximum;
     if (m_impl->orientation == Qt::Horizontal)
         boundRect.setWidth(boundRect.width() * v);
     else
@@ -381,10 +352,7 @@ void QCtmStageProgressBar::drawText(QPainter* p, [[maybe_unused]] int index, con
 /*!
     \reimp
 */
-QSize QCtmStageProgressBar::sizeHint() const
-{
-    return minimumSizeHint();
-}
+QSize QCtmStageProgressBar::sizeHint() const { return minimumSizeHint(); }
 
 /*!
     \reimp
@@ -410,11 +378,11 @@ void QCtmStageProgressBar::initStyleOption(QStyleOptionProgressBar* opt) const
 
     if (m_impl->orientation == Qt::Horizontal)
         opt->state |= QStyle::State_Horizontal;
-    opt->minimum = m_impl->minimum;
-    opt->maximum = m_impl->maximum;
-    opt->progress = m_impl->value;
+    opt->minimum       = m_impl->minimum;
+    opt->maximum       = m_impl->maximum;
+    opt->progress      = m_impl->value;
     opt->textAlignment = Qt::AlignCenter;
-    opt->textVisible = m_impl->textVisible;
+    opt->textVisible   = m_impl->textVisible;
 }
 
 /*!
@@ -425,16 +393,18 @@ int QCtmStageProgressBar::doMinimumWidth() const
 {
     if (Qt::Horizontal == m_impl->orientation)
     {
-        auto step = (m_impl->stageCricleRadius * 2 * m_impl->stageCount + m_impl->stageCricleRadius * 3 * (m_impl->stageCount - 1) - m_impl->stageCricleRadius) / m_impl->stageCount;
+        auto step = (m_impl->stageCricleRadius * 2 * m_impl->stageCount + m_impl->stageCricleRadius * 3 * (m_impl->stageCount - 1) -
+                     m_impl->stageCricleRadius) /
+                    m_impl->stageCount;
         if (m_impl->textVisible)
         {
-            int w{ 0 };
-            auto beginLen{ 0 };
-            auto endLen{ 0 };
+            int w { 0 };
+            auto beginLen { 0 };
+            auto endLen { 0 };
             for (int i = 0; i < m_impl->texts.size(); i++)
             {
                 const auto& text = m_impl->texts[i];
-                auto len = fontMetrics().horizontalAdvance(text);
+                auto len         = fontMetrics().horizontalAdvance(text);
                 if (w < len)
                     w = len;
                 if (i == 0)
@@ -443,8 +413,8 @@ int QCtmStageProgressBar::doMinimumWidth() const
                     endLen = len / 2 > m_impl->stageCricleRadius ? len / 2 - m_impl->stageCricleRadius : 0;
             }
             auto progressPadding = std::max(beginLen, endLen);
-            constexpr int space = 10;
-            step = step > w + space ? step : (w + space);
+            constexpr int space  = 10;
+            step                 = step > w + space ? step : (w + space);
             return step * (m_impl->stageCount - 2) + progressPadding * 2 + space;
         }
         else
@@ -476,10 +446,12 @@ int QCtmStageProgressBar::doMinimumHeight() const
         return m_impl->stageCricleRadius * 2 + (m_impl->textVisible ? fontMetrics().height() + fontMetrics().leading() : 0);
     else
     {
-        auto step = (m_impl->stageCricleRadius * 2 * m_impl->stageCount + m_impl->stageCricleRadius * 2 * (m_impl->stageCount - 1) - m_impl->stageCricleRadius) / m_impl->stageCount;
+        auto step = (m_impl->stageCricleRadius * 2 * m_impl->stageCount + m_impl->stageCricleRadius * 2 * (m_impl->stageCount - 1) -
+                     m_impl->stageCricleRadius) /
+                    m_impl->stageCount;
 
         int endLen = 0;
-        int len = 0;
+        int len    = 0;
         for (int i = 0; i < m_impl->texts.size(); i++)
         {
             len = qMax(len, fontMetrics().size(0, m_impl->texts[i]).height());
@@ -507,17 +479,23 @@ QRectF QCtmStageProgressBar::doStageRect(int index) const
         if (!m_impl->textVisible)
         {
             auto step = (rect.width() - m_impl->stageCricleRadius * 2) / static_cast<double>(m_impl->stageCount - 1);
-            return QRectF(index * step + rect.x(), rect.top() + rect.height() / 2 - m_impl->stageCricleRadius, m_impl->stageCricleRadius * 2, m_impl->stageCricleRadius * 2);
+            return QRectF(index * step + rect.x(),
+                          rect.top() + rect.height() / 2 - m_impl->stageCricleRadius,
+                          m_impl->stageCricleRadius * 2,
+                          m_impl->stageCricleRadius * 2);
         }
         else
         {
-            auto firstTextLen = fontMetrics().horizontalAdvance(*m_impl->texts.begin());
-            auto beginLen = firstTextLen / 2 > m_impl->stageCricleRadius ? firstTextLen / 2 - m_impl->stageCricleRadius : 0;
-            auto endTextLen = fontMetrics().horizontalAdvance(*m_impl->texts.rbegin());
-            auto endLen = endTextLen / 2 > m_impl->stageCricleRadius ? endTextLen / 2 - m_impl->stageCricleRadius : 0;
+            auto firstTextLen    = fontMetrics().horizontalAdvance(*m_impl->texts.begin());
+            auto beginLen        = firstTextLen / 2 > m_impl->stageCricleRadius ? firstTextLen / 2 - m_impl->stageCricleRadius : 0;
+            auto endTextLen      = fontMetrics().horizontalAdvance(*m_impl->texts.rbegin());
+            auto endLen          = endTextLen / 2 > m_impl->stageCricleRadius ? endTextLen / 2 - m_impl->stageCricleRadius : 0;
             auto progressPadding = std::max(beginLen, endLen);
             auto step = (rect.width() - m_impl->stageCricleRadius * 2 - progressPadding * 2) / static_cast<double>(m_impl->stageCount - 1);
-            return QRectF(index * step + rect.x() + progressPadding, rect.top() + rect.height() / 2 - minimumSizeHint().height() / 2, m_impl->stageCricleRadius * 2, m_impl->stageCricleRadius * 2);
+            return QRectF(index * step + rect.x() + progressPadding,
+                          rect.top() + rect.height() / 2 - minimumSizeHint().height() / 2,
+                          m_impl->stageCricleRadius * 2,
+                          m_impl->stageCricleRadius * 2);
         }
     }
     else
@@ -525,13 +503,20 @@ QRectF QCtmStageProgressBar::doStageRect(int index) const
         if (!m_impl->textVisible)
         {
             auto step = (rect.height() - m_impl->stageCricleRadius * 2) / static_cast<double>(m_impl->stageCount - 1);
-            return QRectF(rect.x() + rect.width() / 2 - m_impl->stageCricleRadius, index * step + rect.x(), m_impl->stageCricleRadius * 2, m_impl->stageCricleRadius * 2);
+            return QRectF(rect.x() + rect.width() / 2 - m_impl->stageCricleRadius,
+                          index * step + rect.x(),
+                          m_impl->stageCricleRadius * 2,
+                          m_impl->stageCricleRadius * 2);
         }
         else
         {
             auto endLen = fontMetrics().size(0, *m_impl->texts.begin()).height();
-            auto step = (rect.height() - qMax(endLen, m_impl->stageCricleRadius) - m_impl->stageCricleRadius) / static_cast<double>(m_impl->stageCount - 1);
-            return QRectF(rect.x(), rect.top() + step * (m_impl->stageCount - 1 - index), m_impl->stageCricleRadius * 2, m_impl->stageCricleRadius * 2);
+            auto step   = (rect.height() - qMax(endLen, m_impl->stageCricleRadius) - m_impl->stageCricleRadius) /
+                        static_cast<double>(m_impl->stageCount - 1);
+            return QRectF(rect.x(),
+                          rect.top() + step * (m_impl->stageCount - 1 - index),
+                          m_impl->stageCricleRadius * 2,
+                          m_impl->stageCricleRadius * 2);
         }
     }
 }
@@ -542,14 +527,11 @@ QRectF QCtmStageProgressBar::doStageRect(int index) const
 */
 QRectF QCtmStageProgressBar::doTextRect(int index) const
 {
-    const auto& size = fontMetrics().size(0, m_impl->texts[index]);
+    const auto& size      = fontMetrics().size(0, m_impl->texts[index]);
     const auto& stageRect = doStageRect(index);
     if (m_impl->orientation == Qt::Horizontal)
     {
-        return QRectF(stageRect.center().x() - size.width() / 2
-            , stageRect.bottom() + fontMetrics().leading()
-            , size.width()
-            , size.height());
+        return QRectF(stageRect.center().x() - size.width() / 2, stageRect.bottom() + fontMetrics().leading(), size.width(), size.height());
     }
     else
     {

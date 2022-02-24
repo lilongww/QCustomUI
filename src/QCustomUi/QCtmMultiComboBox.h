@@ -1,4 +1,4 @@
-/*********************************************************************************
+﻿/*********************************************************************************
 **                                                                              **
 **  Copyright (C) 2019-2020 LiLong                                              **
 **  This file is part of QCustomUi.                                             **
@@ -38,6 +38,7 @@ public:
 
     void setChecked(int index, bool checked);
     bool isChecked(int index) const;
+
 protected:
     void setModel(QAbstractItemModel* model);
 

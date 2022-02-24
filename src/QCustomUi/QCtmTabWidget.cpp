@@ -21,18 +21,18 @@
 #include "QCtmTabPage.h"
 
 #include <QDebug>
-#include <QPainter>
-#include <QStyleOption>
 #include <QEvent>
 #include <QHBoxLayout>
+#include <QPainter>
+#include <QStyleOption>
 #include <QToolButton>
 
 struct QCtmTabWidget::Impl
 {
-    QWidget* cornerWidget{ nullptr };
-    QHBoxLayout* cornerLayout{ nullptr };
-    QToolButton* closeBtn{ nullptr };
-    QSize iconSize{ 16,16 };
+    QWidget* cornerWidget { nullptr };
+    QHBoxLayout* cornerLayout { nullptr };
+    QToolButton* closeBtn { nullptr };
+    QSize iconSize { 16, 16 };
 
     void setPageCornerWidget(QWidget* widget)
     {
@@ -67,9 +67,7 @@ struct QCtmTabWidget::Impl
 /*!
     \brief      构造函数 \a parent.
 */
-QCtmTabWidget::QCtmTabWidget(QWidget* parent) :
-    QTabWidget(parent),
-    m_impl(std::make_unique<Impl>())
+QCtmTabWidget::QCtmTabWidget(QWidget* parent) : QTabWidget(parent), m_impl(std::make_unique<Impl>())
 {
     m_impl->cornerWidget = new QWidget(this);
     m_impl->cornerLayout = new QHBoxLayout(m_impl->cornerWidget);
@@ -88,20 +86,14 @@ QCtmTabWidget::QCtmTabWidget(QWidget* parent) :
 /*!
     \brief      析构函数.
 */
-QCtmTabWidget::~QCtmTabWidget()
-{
-
-}
+QCtmTabWidget::~QCtmTabWidget() {}
 
 /*!
     \overload   addTab
                 添加标题为 \a label 的子页面 \a widget.
     \sa         QCtmTabWidget::addTab
 */
-QCtmTabPage* QCtmTabWidget::addTab(QWidget* widget, const QString& label)
-{
-    return addTab(widget, QIcon(), label);
-}
+QCtmTabPage* QCtmTabWidget::addTab(QWidget* widget, const QString& label) { return addTab(widget, QIcon(), label); }
 
 /*!
     \overload   addTab
@@ -118,10 +110,7 @@ QCtmTabPage* QCtmTabWidget::addTab(QWidget* widget, const QIcon& icon, const QSt
                 在 \a index 的位置插入标题为 \a label 的子页面 \a widget.
     \sa         QCtmTabWidget::insertTab
 */
-QCtmTabPage* QCtmTabWidget::insertTab(int index, QWidget* widget, const QString& label)
-{
-    return insertTab(index, widget, QIcon(), label);
-}
+QCtmTabPage* QCtmTabWidget::insertTab(int index, QWidget* widget, const QString& label) { return insertTab(index, widget, QIcon(), label); }
 
 /*!
     \overload   insertTab
@@ -152,17 +141,14 @@ void QCtmTabWidget::setIconSize(const QSize& size)
     \brief      返回Action的图标大小.
     \sa         setIconSize
 */
-const QSize& QCtmTabWidget::iconSize() const
-{
-    return m_impl->iconSize;
-}
+const QSize& QCtmTabWidget::iconSize() const { return m_impl->iconSize; }
 
 /*!
     \brief      切换页面 \a index 时修改角落窗口的显示内容.
 */
 void QCtmTabWidget::onCurrentChanged(int index)
 {
-    auto w = this->widget(index);
+    auto w    = this->widget(index);
     auto page = qobject_cast<QCtmTabPage*>(w);
     if (page)
     {

@@ -18,19 +18,19 @@
 **********************************************************************************/
 
 #include "QCtmMessageTipButton.h"
+#include "Private/QCtmMessageTipHelper_p.h"
 #include "QCtmAbstractMessageTipModel.h"
 #include "QCtmAbstractMessageTipView.h"
-#include "Private/QCtmMessageTipHelper_p.h"
 
+#include <QApplication>
 #include <QPainter>
 #include <QStyleOption>
-#include <QApplication>
 
 struct QCtmMessageTipButton::Impl
 {
-    QCtmAbstractMessageTipModel* model{ nullptr };
-    QCtmAbstractMessageTipView* view{ nullptr };
-    QCtmMessageTipHelper* helper{ nullptr };
+    QCtmAbstractMessageTipModel* model { nullptr };
+    QCtmAbstractMessageTipView* view { nullptr };
+    QCtmMessageTipHelper* helper { nullptr };
 };
 
 /*!
@@ -50,9 +50,7 @@ struct QCtmMessageTipButton::Impl
 /*!
     \brief      构造一个父对象为 \a parent 的消息提示按钮.
 */
-QCtmMessageTipButton::QCtmMessageTipButton(QWidget* parent)
-    : QAbstractButton(parent)
-    , m_impl(std::make_unique<Impl>())
+QCtmMessageTipButton::QCtmMessageTipButton(QWidget* parent) : QAbstractButton(parent), m_impl(std::make_unique<Impl>())
 {
     m_impl->helper = new QCtmMessageTipHelper(this);
     connect(this, &QAbstractButton::clicked, this, &QCtmMessageTipButton::onClicked);
@@ -68,9 +66,7 @@ QCtmMessageTipButton::QCtmMessageTipButton(QWidget* parent)
 /*!
     \brief      销毁该消息提示按钮对象.
 */
-QCtmMessageTipButton::~QCtmMessageTipButton()
-{
-}
+QCtmMessageTipButton::~QCtmMessageTipButton() {}
 
 /*!
     \brief      设置消息提示按钮的数据来源 \a model.
@@ -97,10 +93,7 @@ void QCtmMessageTipButton::setModel(QCtmAbstractMessageTipModel* model)
     \brief      返回消息提示按钮的数据来源 model.
     \sa         setModel
 */
-QCtmAbstractMessageTipModel* QCtmMessageTipButton::model() const
-{
-    return m_impl->model;
-}
+QCtmAbstractMessageTipModel* QCtmMessageTipButton::model() const { return m_impl->model; }
 
 /*!
     \brief      设置消息提示按钮的拓展列表视图 \a view.
@@ -116,28 +109,19 @@ void QCtmMessageTipButton::setView(QCtmAbstractMessageTipView* view)
     \brief      返回消息提示按钮的拓展列表视图.
     \sa         setView
 */
-QCtmAbstractMessageTipView* QCtmMessageTipButton::view() const
-{
-    return m_impl->view;
-}
+QCtmAbstractMessageTipView* QCtmMessageTipButton::view() const { return m_impl->view; }
 
 /*!
     \brief      设置消息提示数量的颜色 \a color.
     \sa         tipColor()
 */
-void QCtmMessageTipButton::setTipColor(const QColor& color)
-{
-    m_impl->helper->setTipColor(color);
-}
+void QCtmMessageTipButton::setTipColor(const QColor& color) { m_impl->helper->setTipColor(color); }
 
 /*!
     \brief      返回消息提示数量的颜色.
     \sa         setTipColor
 */
-const QColor& QCtmMessageTipButton::tipColor() const
-{
-    return m_impl->helper->tipColor();
-}
+const QColor& QCtmMessageTipButton::tipColor() const { return m_impl->helper->tipColor(); }
 
 /*!
     \reimp
@@ -182,7 +166,7 @@ void QCtmMessageTipButton::connectView()
 */
 void QCtmMessageTipButton::initStyleOption(QStyleOptionButton* opt)
 {
-    opt->icon = this->icon();
+    opt->icon     = this->icon();
     opt->iconSize = this->iconSize();
     opt->features = QStyleOptionButton::DefaultButton;
 
@@ -211,7 +195,4 @@ void QCtmMessageTipButton::onClicked(bool)
 /*!
     \brief      消息变化时更新界面.
 */
-void QCtmMessageTipButton::onModelDataChanged()
-{
-    update();
-}
+void QCtmMessageTipButton::onModelDataChanged() { update(); }

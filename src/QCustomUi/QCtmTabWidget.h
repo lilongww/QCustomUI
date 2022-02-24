@@ -21,18 +21,18 @@
 
 #include "qcustomui_global.h"
 
-#include <QTabWidget>
-#include <QMap>
 #include <QAction>
+#include <QMap>
+#include <QTabWidget>
 
 #include <memory>
 
 class QCtmTabPage;
 
-class QCUSTOMUI_EXPORT QCtmTabWidget :public QTabWidget
+class QCUSTOMUI_EXPORT QCtmTabWidget : public QTabWidget
 {
     Q_OBJECT
-        Q_PROPERTY(QSize iconSize READ iconSize WRITE setIconSize NOTIFY iconSizeChanged)
+    Q_PROPERTY(QSize iconSize READ iconSize WRITE setIconSize NOTIFY iconSizeChanged)
 public:
     QCtmTabWidget(QWidget* parent = nullptr);
     ~QCtmTabWidget();

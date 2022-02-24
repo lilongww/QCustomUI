@@ -33,30 +33,54 @@ public:
     QCtmTitleBar* titleBar() const;
     void removeTitleBar();
 
-    static QString getText(QWidget* parent, const QString& title, const QString& label,
-        QLineEdit::EchoMode echo = QLineEdit::Normal,
-        const QString& text = QString(), bool* ok = nullptr,
-        Qt::WindowFlags flags = Qt::WindowFlags(),
-        Qt::InputMethodHints inputMethodHints = Qt::ImhNone);
-    static QString getMultiLineText(QWidget* parent, const QString& title, const QString& label,
-        const QString& text = QString(), bool* ok = nullptr,
-        Qt::WindowFlags flags = Qt::WindowFlags(),
-        Qt::InputMethodHints inputMethodHints = Qt::ImhNone);
-    static QString getItem(QWidget* parent, const QString& title, const QString& label,
-        const QStringList& items, int current = 0, bool editable = true,
-        bool* ok = nullptr, Qt::WindowFlags flags = Qt::WindowFlags(),
-        Qt::InputMethodHints inputMethodHints = Qt::ImhNone);
-    static int getInt(QWidget* parent, const QString& title, const QString& label, int value = 0,
-        int minValue = -2147483647, int maxValue = 2147483647,
-        int step = 1, bool* ok = nullptr, Qt::WindowFlags flags = Qt::WindowFlags());
-    static double getDouble(QWidget* parent, const QString& title, const QString& label, double value = 0,
-        double minValue = -2147483647, double maxValue = 2147483647,
-        int decimals = 1, bool* ok = nullptr, Qt::WindowFlags flags = Qt::WindowFlags(),
-        double step = 1);
+    static QString getText(QWidget* parent,
+                           const QString& title,
+                           const QString& label,
+                           QLineEdit::EchoMode echo              = QLineEdit::Normal,
+                           const QString& text                   = QString(),
+                           bool* ok                              = nullptr,
+                           Qt::WindowFlags flags                 = Qt::WindowFlags(),
+                           Qt::InputMethodHints inputMethodHints = Qt::ImhNone);
+    static QString getMultiLineText(QWidget* parent,
+                                    const QString& title,
+                                    const QString& label,
+                                    const QString& text                   = QString(),
+                                    bool* ok                              = nullptr,
+                                    Qt::WindowFlags flags                 = Qt::WindowFlags(),
+                                    Qt::InputMethodHints inputMethodHints = Qt::ImhNone);
+    static QString getItem(QWidget* parent,
+                           const QString& title,
+                           const QString& label,
+                           const QStringList& items,
+                           int current                           = 0,
+                           bool editable                         = true,
+                           bool* ok                              = nullptr,
+                           Qt::WindowFlags flags                 = Qt::WindowFlags(),
+                           Qt::InputMethodHints inputMethodHints = Qt::ImhNone);
+    static int getInt(QWidget* parent,
+                      const QString& title,
+                      const QString& label,
+                      int value             = 0,
+                      int minValue          = -2147483647,
+                      int maxValue          = 2147483647,
+                      int step              = 1,
+                      bool* ok              = nullptr,
+                      Qt::WindowFlags flags = Qt::WindowFlags());
+    static double getDouble(QWidget* parent,
+                            const QString& title,
+                            const QString& label,
+                            double value          = 0,
+                            double minValue       = -2147483647,
+                            double maxValue       = 2147483647,
+                            int decimals          = 1,
+                            bool* ok              = nullptr,
+                            Qt::WindowFlags flags = Qt::WindowFlags(),
+                            double step           = 1);
+
 protected:
     void hideEvent(QHideEvent*) override;
     void showEvent(QShowEvent* e) override;
-#if QT_VERSION < QT_VERSION_CHECK(6,0,0)
+#if QT_VERSION < QT_VERSION_CHECK(6, 0, 0)
     bool nativeEvent(const QByteArray& eventType, void* message, long* result) override;
 #else
     bool nativeEvent(const QByteArray& eventType, void* message, qintptr* result) override;

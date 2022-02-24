@@ -18,14 +18,14 @@
 **********************************************************************************/
 
 #include "QCtmApplication.h"
-#include "QCtmStyleSheet.h"
 #include "Private/QCtmFramelessDelegate_win.h"
+#include "QCtmStyleSheet.h"
 
+#include <QAbstractNativeEventFilter>
 #include <QLocalServer>
 #include <QLocalSocket>
 #include <QWidget>
 #include <QWindow>
-#include <QAbstractNativeEventFilter>
 
 #ifdef Q_OS_WIN
 #include <qt_windows.h>
@@ -33,7 +33,7 @@
 class WindowsEventFilter : public QAbstractNativeEventFilter
 {
 public:
-#if QT_VERSION < QT_VERSION_CHECK(6,0,0)
+#if QT_VERSION < QT_VERSION_CHECK(6, 0, 0)
     bool nativeEventFilter(const QByteArray& eventType, void* message, long* result) override
 #else
     bool nativeEventFilter(const QByteArray& eventType, void* message, qintptr* result) override
@@ -58,7 +58,7 @@ public:
     }
 };
 
-#endif //Q_OS_WIN
+#endif // Q_OS_WIN
 
 struct QCtmApplication::Impl
 {
@@ -79,9 +79,8 @@ struct QCtmApplication::Impl
 /*!
     \brief      构造函数 \a argc, \a argv, \a f, \a defaultStyle
 */
-QCtmApplication::QCtmApplication(int& argc, char** argv, int f/*= ApplicationFlags*/, bool defaultStyle)
-    : QApplication(argc, argv, f)
-    , m_impl(std::make_unique<Impl>())
+QCtmApplication::QCtmApplication(int& argc, char** argv, int f /*= ApplicationFlags*/, bool defaultStyle)
+    : QApplication(argc, argv, f), m_impl(std::make_unique<Impl>())
 {
     if (defaultStyle)
     {
@@ -89,15 +88,13 @@ QCtmApplication::QCtmApplication(int& argc, char** argv, int f/*= ApplicationFla
     }
 #ifdef Q_OS_WIN
     installNativeEventFilter(new WindowsEventFilter);
-#endif //Q_OS_WIN
+#endif // Q_OS_WIN
 }
 
 /*!
     \brief      析构函数.
 */
-QCtmApplication::~QCtmApplication()
-{
-}
+QCtmApplication::~QCtmApplication() {}
 
 /*!
     \brief      检测并返回其他程序是否持有相同的 \a key.
@@ -107,21 +104,25 @@ bool QCtmApplication::checkOtherProcess(const QString& key)
     if (key.isEmpty())
         return false;
 
-    connect(&m_impl->server, &QLocalServer::newConnection, this, [this]() {
-        const auto& ws = this->topLevelWindows();
-        if (!ws.isEmpty())
-        {
-            for (const auto& w : ws)
+    connect(&m_impl->server,
+            &QLocalServer::newConnection,
+            this,
+            [this]()
             {
-                if (w->isVisible())
+                const auto& ws = this->topLevelWindows();
+                if (!ws.isEmpty())
                 {
-                    w->show();
+                    for (const auto& w : ws)
+                    {
+                        if (w->isVisible())
+                        {
+                            w->show();
+                        }
+                        else
+                            w->raise();
+                    }
                 }
-                else
-                    w->raise();
-            }
-        }
-        });
+            });
 
     m_impl->client.connectToServer(key);
     if (m_impl->client.waitForConnected(100))

@@ -18,18 +18,18 @@
 **********************************************************************************/
 
 #include "QCtmWindow.h"
-#include "QCtmTitleBar.h"
-#include "QCtmNavigationBar.h"
-#include "ui_QCtmWindow.h"
 #include "Private/QCtmFramelessDelegate_p.h"
 #include "Private/QCtmFramelessDelegate_win.h"
+#include "QCtmNavigationBar.h"
+#include "QCtmTitleBar.h"
+#include "ui_QCtmWindow.h"
 
-#include <QVBoxLayout>
 #include <QEvent>
 #include <QLabel>
-#include <QStatusBar>
-#include <QSizeGrip>
 #include <QResizeEvent>
+#include <QSizeGrip>
+#include <QStatusBar>
+#include <QVBoxLayout>
 
 /*!
      \class     QCtmWindow
@@ -42,25 +42,22 @@
 
 struct QCtmWindow::Impl
 {
-    QCtmTitleBar* title{ nullptr };
-    QCtmNavigationBar* navigationMenuBar{ nullptr };
-    QStatusBar* statusBar{ nullptr };
-    QWidget* content{ nullptr };
+    QCtmTitleBar* title { nullptr };
+    QCtmNavigationBar* navigationMenuBar { nullptr };
+    QStatusBar* statusBar { nullptr };
+    QWidget* content { nullptr };
 
 #ifdef Q_OS_WIN
-    QCtmWinFramelessDelegate* delegate{ nullptr };
+    QCtmWinFramelessDelegate* delegate { nullptr };
 #else
-    QCtmFramelessDelegate* delegate{ nullptr };
+    QCtmFramelessDelegate* delegate { nullptr };
 #endif
 };
 
 /*!
     \brief      构造函数 \a parent.
 */
-QCtmWindow::QCtmWindow(QWidget* parent)
-    : QWidget(parent)
-    , m_impl(std::make_unique<Impl>())
-    , ui(new Ui::QCtmWindow)
+QCtmWindow::QCtmWindow(QWidget* parent) : QWidget(parent), m_impl(std::make_unique<Impl>()), ui(new Ui::QCtmWindow)
 {
     m_impl->title = new QCtmTitleBar(this);
     m_impl->title->installEventFilter(this);
@@ -82,10 +79,7 @@ QCtmWindow::QCtmWindow(QWidget* parent)
 /*!
     \brief      析构函数.
 */
-QCtmWindow::~QCtmWindow()
-{
-    delete ui;
-}
+QCtmWindow::~QCtmWindow() { delete ui; }
 
 /*!
     \brief      设置状态栏 \a statusBar.
@@ -102,10 +96,7 @@ void QCtmWindow::setStatusBar(QStatusBar* statusBar)
     \brief      返回状态栏.
     \sa         setStatusBar, removeStatusBar
 */
-QStatusBar* QCtmWindow::statusBar() const
-{
-    return m_impl->statusBar;
-}
+QStatusBar* QCtmWindow::statusBar() const { return m_impl->statusBar; }
 
 /*!
     \brief      移除状态栏.
@@ -174,10 +165,7 @@ void QCtmWindow::setNavigationBar(QCtmNavigationBar* bar)
     \brief      返回导航栏.
     \sa         setNavigationBar, removeNavigationBar
 */
-QCtmNavigationBar* QCtmWindow::navigationBar() const
-{
-    return m_impl->navigationMenuBar;
-}
+QCtmNavigationBar* QCtmWindow::navigationBar() const { return m_impl->navigationMenuBar; }
 
 /*!
     \brief      移除导航栏.
@@ -213,10 +201,7 @@ void QCtmWindow::setTitleBar(QCtmTitleBar* titleBar)
     \brief      返回标题栏.
     \sa         setTitleBar, removeTitleBar()
 */
-QCtmTitleBar* QCtmWindow::titleBar() const
-{
-    return m_impl->title;
-}
+QCtmTitleBar* QCtmWindow::titleBar() const { return m_impl->title; }
 
 /*!
     \brief      移除标题栏.
@@ -249,29 +234,20 @@ void QCtmWindow::setCentralWidget(QWidget* widget)
     \brief      返回中央窗口.
     \sa         setCentralWidget
 */
-QWidget* QCtmWindow::centralWidget() const
-{
-    return m_impl->content;
-}
+QWidget* QCtmWindow::centralWidget() const { return m_impl->content; }
 
 /*!
     \brief      添加移动窗口 \a moveBar, 移动窗口可通过鼠标拖动来拖动窗口.
     \note       移动窗口必须本身就是本窗口的子窗口.
     \sa         removeMoveBar
 */
-void QCtmWindow::addMoveBar(QWidget* moveBar)
-{
-    m_impl->delegate->addMoveBar(moveBar);
-}
+void QCtmWindow::addMoveBar(QWidget* moveBar) { m_impl->delegate->addMoveBar(moveBar); }
 
 /*!
     \brief      移除移动窗口 \a moveBar.
     \sa         addMoveBar
 */
-void QCtmWindow::removeMoveBar(QWidget* moveBar)
-{
-    m_impl->delegate->removeMoveBar(moveBar);
-}
+void QCtmWindow::removeMoveBar(QWidget* moveBar) { m_impl->delegate->removeMoveBar(moveBar); }
 
 #ifndef Q_OS_WIN
 
@@ -284,10 +260,7 @@ void QCtmWindow::removeMoveBar(QWidget* moveBar)
     \internal
     \endif
 */
-void QCtmWindow::setShadowless(bool flag)
-{
-    m_impl->delegate->setShadowless(flag);
-}
+void QCtmWindow::setShadowless(bool flag) { m_impl->delegate->setShadowless(flag); }
 
 /*!
     \if         !defined(Q_OS_WIN)
@@ -298,10 +271,7 @@ void QCtmWindow::setShadowless(bool flag)
     \internal
     \endif
 */
-bool QCtmWindow::shadowless() const
-{
-    return m_impl->delegate->shadowless();
-}
+bool QCtmWindow::shadowless() const { return m_impl->delegate->shadowless(); }
 #endif
 
 /*!
@@ -338,7 +308,7 @@ bool QCtmWindow::eventFilter(QObject* watched, QEvent* event)
 /*!
     \reimp
 */
-#if QT_VERSION < QT_VERSION_CHECK(6,0,0)
+#if QT_VERSION < QT_VERSION_CHECK(6, 0, 0)
 bool QCtmWindow::nativeEvent(const QByteArray& eventType, void* message, long* result)
 #else
 bool QCtmWindow::nativeEvent(const QByteArray& eventType, void* message, qintptr* result)

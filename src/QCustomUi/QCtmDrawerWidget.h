@@ -21,17 +21,17 @@
 
 #include "qcustomui_global.h"
 
-#include <QWidget>
-#include <QVBoxLayout>
-#include <QHBoxLayout>
-#include <QPushButton>
-#include <QLabel>
 #include <QAction>
+#include <QHBoxLayout>
+#include <QLabel>
 #include <QList>
-#include <QMouseEvent>
 #include <QMap>
+#include <QMouseEvent>
+#include <QPushButton>
 #include <QScrollArea>
 #include <QSplitter>
+#include <QVBoxLayout>
+#include <QWidget>
 
 #include <memory>
 
@@ -40,8 +40,8 @@ class QCtmDrawerItemWidget;
 class QCUSTOMUI_EXPORT QCtmDrawerWidget : public QWidget
 {
     Q_OBJECT
-        Q_PROPERTY(bool exclusive READ exclusive WRITE setExclusive)
-        Q_PROPERTY(QSize iconSize READ iconSize WRITE setIconSize NOTIFY iconSizeChanged)
+    Q_PROPERTY(bool exclusive READ exclusive WRITE setExclusive)
+    Q_PROPERTY(QSize iconSize READ iconSize WRITE setIconSize NOTIFY iconSizeChanged)
 public:
     QCtmDrawerWidget(QWidget* parent = nullptr);
     ~QCtmDrawerWidget();
@@ -64,8 +64,9 @@ signals:
 public slots:
     void expandAll();
     void collapseAll();
+
 protected:
-    bool allClosed()const;
+    bool allClosed() const;
     int total(const QList<int>& sizes) const;
     void showEvent(QShowEvent* event) override;
 private slots:
@@ -73,6 +74,7 @@ private slots:
     void doResize();
     void onItemExpand(bool expand);
     void onItemClicked(bool expand);
+
 private:
     struct Impl;
     std::unique_ptr<Impl> m_impl;

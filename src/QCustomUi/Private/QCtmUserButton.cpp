@@ -1,4 +1,4 @@
-/*********************************************************************************
+﻿/*********************************************************************************
 **                                                                              **
 **  Copyright (C) 2019-2020 LiLong                                              **
 **  This file is part of QCustomUi.                                             **
@@ -28,15 +28,9 @@ struct QCtmUserButton::Impl
 {
 };
 
-QCtmUserButton::QCtmUserButton(QWidget* parent)
-    : QCtmToolButton(parent)
-    , m_impl(std::make_unique<Impl>())
-{
-}
+QCtmUserButton::QCtmUserButton(QWidget* parent) : QCtmToolButton(parent), m_impl(std::make_unique<Impl>()) {}
 
-QCtmUserButton::~QCtmUserButton()
-{
-}
+QCtmUserButton::~QCtmUserButton() {}
 
 void QCtmUserButton::paintEvent(QPaintEvent*)
 {
@@ -59,10 +53,7 @@ void QCtmUserButton::paintEvent(QPaintEvent*)
 
     const auto& pm = this->icon().pixmap(this->windowHandle(), opt.rect.size().boundedTo(opt.iconSize), mode, state);
     this->style()->drawItemPixmap(&p, doIconRect(opt), Qt::AlignCenter, pm);
-    this->style()->drawItemText(&p
-        , doTextRect(opt)
-        , Qt::AlignCenter, opt.palette, opt.state.testFlag(QStyle::State_Enabled)
-        , this->text());
+    this->style()->drawItemText(&p, doTextRect(opt), Qt::AlignCenter, opt.palette, opt.state.testFlag(QStyle::State_Enabled), this->text());
 }
 
 QSize QCtmUserButton::sizeHint() const
@@ -70,19 +61,16 @@ QSize QCtmUserButton::sizeHint() const
     QStyleOptionToolButton opt;
     initStyleOption(&opt);
     const auto& rect = this->style()->subElementRect(QStyle::SE_FrameContents, &opt, this);
-    auto margin = this->width() - rect.width();
-    auto width = doTextRect(opt).width() + doIconRect(opt).width() + margin + Space;
+    auto margin      = this->width() - rect.width();
+    auto width       = doTextRect(opt).width() + doIconRect(opt).width() + margin + Space;
     return QSize(width, -1);
 }
 
-QSize QCtmUserButton::minimumSizeHint() const
-{
-    return sizeHint();
-}
+QSize QCtmUserButton::minimumSizeHint() const { return sizeHint(); }
 
 QRect QCtmUserButton::doTextRect(const QStyleOptionToolButton& opt) const
 {
-    const auto& rect = this->style()->subElementRect(QStyle::SE_FrameContents, &opt, this);
+    const auto& rect    = this->style()->subElementRect(QStyle::SE_FrameContents, &opt, this);
     auto&& boundingRect = opt.fontMetrics.boundingRect(rect, Qt::TextDontClip, this->text());
     boundingRect.moveLeft(this->iconSize().width() + Space + rect.left());
     boundingRect.setHeight(std::min(rect.height(), boundingRect.height()));

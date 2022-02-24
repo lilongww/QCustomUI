@@ -1,4 +1,4 @@
-/*********************************************************************************
+﻿/*********************************************************************************
 **                                                                              **
 **  Copyright (C) 2019-2020 LiLong                                              **
 **  This file is part of QCustomUi.                                             **
@@ -28,4 +28,3 @@ class QCUSTOMUI_EXPORT QCtmStyleSheet
 public:
     static QString defaultStyleSheet();
 };
-

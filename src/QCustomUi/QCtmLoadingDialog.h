@@ -42,12 +42,14 @@ public slots:
     void done();
     void cancel();
     Result exec();
+
 protected:
     void showEvent(QShowEvent*) override;
     void closeEvent(QCloseEvent* event) override;
     void hideEvent(QHideEvent* event) override;
     bool eventFilter(QObject* watched, QEvent* event);
     void keyPressEvent(QKeyEvent* event) override;
+
 private:
     struct Impl;
     std::unique_ptr<Impl> m_impl;

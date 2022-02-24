@@ -4,19 +4,19 @@
 #include <QCustomUi/QCtmToolBox.h>
 #include <QCustomUi/QCtmWindow.h>
 
-#include <QSplitter>
 #include <QHBoxLayout>
+#include <QSplitter>
 
 int main(int argc, char* argv[])
 {
     QCtmApplication a(argc, argv);
 
     QCtmToolBox* toolBox = new QCtmToolBox;
-    ToolBoxExample* w = new ToolBoxExample(toolBox);
+    ToolBoxExample* w    = new ToolBoxExample(toolBox);
     toolBox->addWidget(QObject::tr("Explorer"), w);
     QCtmWindow window;
     QSplitter* sp = new QSplitter(&window);
-    auto layout = new QHBoxLayout(window.centralWidget());
+    auto layout   = new QHBoxLayout(window.centralWidget());
     layout->setContentsMargins(0, 0, 0, 0);
     layout->addWidget(sp);
     sp->addWidget(toolBox);

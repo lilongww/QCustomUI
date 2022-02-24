@@ -1,4 +1,4 @@
-/*********************************************************************************
+﻿/*********************************************************************************
 **                                                                              **
 **  Copyright (C) 2019-2020 LiLong                                              **
 **  This file is part of QCustomUi.                                             **
@@ -22,17 +22,19 @@
 #include <QtCore/qglobal.h>
 
 #ifndef BUILD_STATIC
-# if defined(QCUSTOMUI_LIB)
-#  define QCUSTOMUI_EXPORT Q_DECL_EXPORT
-# else
-#  define QCUSTOMUI_EXPORT Q_DECL_IMPORT
-# endif
+#if defined(QCUSTOMUI_LIB)
+#define QCUSTOMUI_EXPORT Q_DECL_EXPORT
 #else
-# define QCUSTOMUI_EXPORT
+#define QCUSTOMUI_EXPORT Q_DECL_IMPORT
+#endif
+#else
+#define QCUSTOMUI_EXPORT
 #endif
 
 #ifdef QCUSTOMUI_USE_NAMESPACE
-#define QCUSTOMUI_BEGIN_NAMESPACE namespace QCustomUi {
+#define QCUSTOMUI_BEGIN_NAMESPACE                                                                                                          \
+    namespace QCustomUi                                                                                                                    \
+    {
 #define QCUSTOMUI_END_NAMESPACE }
 #else
 #define QCUSTOMUI_BEGIN_NAMESPACE

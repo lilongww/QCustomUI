@@ -1,4 +1,4 @@
-/*********************************************************************************
+﻿/*********************************************************************************
 **                                                                              **
 **  Copyright (C) 2019-2020 LiLong                                              **
 **  This file is part of QCustomUi.                                             **
@@ -36,6 +36,7 @@ public:
     void removeMoveBar(QWidget* widget);
     void setShadowless(bool flag);
     bool shadowless() const;
+
 protected:
     bool eventFilter(QObject* obj, QEvent* e) override;
     void resizeEvent(QResizeEvent* e);
@@ -47,9 +48,11 @@ protected:
     void paintShadow(QPainter& p, int shadowWidth);
     void styleChangeEvent(QEvent* e);
     void platformSurfaceEvent(QPlatformSurfaceEvent* e);
+
 private:
     void region(const QPoint& cursorGlobalPoint);
     void updateLayout();
+
 private:
     struct Impl;
     std::unique_ptr<Impl> m_impl;

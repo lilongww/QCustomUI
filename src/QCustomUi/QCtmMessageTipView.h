@@ -1,4 +1,4 @@
-/*********************************************************************************
+﻿/*********************************************************************************
 **                                                                              **
 **  Copyright (C) 2019-2020 LiLong                                              **
 **  This file is part of QCustomUi.                                             **
@@ -31,25 +31,25 @@ using QCtmMessageTipDataPtr = std::shared_ptr<class QCtmMessageTipData>;
 class QCUSTOMUI_EXPORT QCtmMessageTipView : public QCtmAbstractMessageTipView
 {
     Q_OBJECT
-        Q_PROPERTY(QColor decoration READ decoration WRITE setDecoration)
-        Q_PROPERTY(QColor titleColor READ titleColor WRITE setTitleColor)
-        Q_PROPERTY(QColor timeColor READ timeColor WRITE setTimeColor)
-        Q_PROPERTY(QPixmap closeButtonIcon READ closeButtonIcon WRITE setCloseButtonIcon)
-        Q_PROPERTY(bool touchControlStyle READ touchControlStyle WRITE setTouchControlStyle)
+    Q_PROPERTY(QColor decoration READ decoration WRITE setDecoration)
+    Q_PROPERTY(QColor titleColor READ titleColor WRITE setTitleColor)
+    Q_PROPERTY(QColor timeColor READ timeColor WRITE setTimeColor)
+    Q_PROPERTY(QPixmap closeButtonIcon READ closeButtonIcon WRITE setCloseButtonIcon)
+    Q_PROPERTY(bool touchControlStyle READ touchControlStyle WRITE setTouchControlStyle)
 public:
     QCtmMessageTipView(QCtmNavigationBar* parent);
     ~QCtmMessageTipView();
 
     virtual void setModel(QCtmAbstractMessageTipModel* model);
-    virtual QCtmAbstractMessageTipModel* model()const;
+    virtual QCtmAbstractMessageTipModel* model() const;
     void setDecoration(const QColor& color);
-    const QColor& decoration()const;
+    const QColor& decoration() const;
     void setTitleColor(const QColor& color);
-    const QColor& titleColor()const;
+    const QColor& titleColor() const;
     void setTimeColor(const QColor& color);
-    const QColor& timeColor()const;
+    const QColor& timeColor() const;
     void setCloseButtonIcon(const QPixmap& icon);
-    const QPixmap& closeButtonIcon()const;
+    const QPixmap& closeButtonIcon() const;
     void setTouchControlStyle(bool flag);
     bool touchControlStyle() const;
 signals:
@@ -59,6 +59,7 @@ signals:
     bool aboutToClearAllMessages();
 public slots:
     void clearAll();
+
 protected:
     void resizeEvent(QResizeEvent*) override;
     void showEvent(QShowEvent*) override;
@@ -67,6 +68,7 @@ protected:
 private slots:
     void onCloseButtonClicked(const QModelIndex& index);
     void onTitleClicked(const QModelIndex& index);
+
 private:
     struct Impl;
     std::unique_ptr<Impl> m_impl;

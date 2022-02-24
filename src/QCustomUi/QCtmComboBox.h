@@ -1,4 +1,4 @@
-/*********************************************************************************
+﻿/*********************************************************************************
 **                                                                              **
 **  Copyright (C) 2019-2020 LiLong                                              **
 **  This file is part of QCustomUi.                                             **
@@ -28,7 +28,7 @@ class QCUSTOMUI_EXPORT QCtmComboBox : public QComboBox
     Q_OBJECT
 
 public:
-    QCtmComboBox(QWidget *parent);
+    QCtmComboBox(QWidget* parent);
     ~QCtmComboBox();
 
 signals:

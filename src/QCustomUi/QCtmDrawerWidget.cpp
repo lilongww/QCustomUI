@@ -18,22 +18,22 @@
 **********************************************************************************/
 
 #include "QCtmDrawerWidget.h"
-#include "QCtmDrawerItemWidget.h"
 #include "Private/Util_p.h"
+#include "QCtmDrawerItemWidget.h"
 
-#include <QPainter>
-#include <QStyleOption>
-#include <QSplitter>
-#include <QVBoxLayout>
 #include <QDebug>
+#include <QPainter>
+#include <QSplitter>
+#include <QStyleOption>
+#include <QVBoxLayout>
 
 struct QCtmDrawerWidget::Impl
 {
-    QSplitter* splitter{ nullptr };
-    bool exclusive{ false };
-    bool resizeLator{ false };
+    QSplitter* splitter { nullptr };
+    bool exclusive { false };
+    bool resizeLator { false };
     QList<int> sizes;
-    QSize iconSize{ 16, 16 };
+    QSize iconSize { 16, 16 };
 };
 
 /*!
@@ -74,9 +74,7 @@ struct QCtmDrawerWidget::Impl
 /*!
     \brief      构造一个父窗口为 \a parent 的抽屉窗口对象.
 */
-QCtmDrawerWidget::QCtmDrawerWidget(QWidget* parent)
-    : QWidget(parent),
-    m_impl(std::make_unique<Impl>())
+QCtmDrawerWidget::QCtmDrawerWidget(QWidget* parent) : QWidget(parent), m_impl(std::make_unique<Impl>())
 {
     m_impl->splitter = new QSplitter(this);
     m_impl->splitter->setHandleWidth(0);
@@ -93,18 +91,13 @@ QCtmDrawerWidget::QCtmDrawerWidget(QWidget* parent)
 /*!
     \brief      销毁该抽屉窗口对象.
 */
-QCtmDrawerWidget::~QCtmDrawerWidget()
-{
-}
+QCtmDrawerWidget::~QCtmDrawerWidget() {}
 
 /*!
     \brief      添加并返回一个标题为 \a title 容纳窗口为 \a widget 的抽屉项.
     \sa         insertWidget, removeItem
 */
-QCtmDrawerItemWidget* QCtmDrawerWidget::addWidget(const QString& title, QWidget* widget)
-{
-    return insertWidget(count(), title, widget);
-}
+QCtmDrawerItemWidget* QCtmDrawerWidget::addWidget(const QString& title, QWidget* widget) { return insertWidget(count(), title, widget); }
 
 /*!
     \brief      在 \a index 位置插入并返回一个标题为 \a title 容纳窗口为 \a widget 的抽屉项.
@@ -129,19 +122,13 @@ QCtmDrawerItemWidget* QCtmDrawerWidget::insertWidget(int index, const QString& t
     \brief      移除给予的抽屉项 \a item.
     \sa         addWidget, insertWidget
 */
-void QCtmDrawerWidget::removeItem(QCtmDrawerItemWidget* item)
-{
-    delete item;
-}
+void QCtmDrawerWidget::removeItem(QCtmDrawerItemWidget* item) { delete item; }
 
 /*!
     \brief      返回抽屉项 \a item 所在的位置.
     \sa         item
 */
-int QCtmDrawerWidget::indexOf(QCtmDrawerItemWidget* item) const
-{
-    return m_impl->splitter->indexOf(item);
-}
+int QCtmDrawerWidget::indexOf(QCtmDrawerItemWidget* item) const { return m_impl->splitter->indexOf(item); }
 
 /*!
     \brief      返回 \a index 位置的抽屉项.
@@ -155,28 +142,19 @@ QCtmDrawerItemWidget* QCtmDrawerWidget::item(int index) const
 /*!
     \brief      返回抽屉项数量.
 */
-int QCtmDrawerWidget::count() const
-{
-    return m_impl->splitter->count();
-}
+int QCtmDrawerWidget::count() const { return m_impl->splitter->count(); }
 
 /*!
     \brief      设置抽屉项的展开状态是否互斥 \a exclusive.
     \sa         exclusive()
 */
-void QCtmDrawerWidget::setExclusive(bool exclusive)
-{
-    m_impl->exclusive = exclusive;
-}
+void QCtmDrawerWidget::setExclusive(bool exclusive) { m_impl->exclusive = exclusive; }
 
 /*!
     \brief      返回抽屉项的展开状态是否互斥.
     \sa         setExclusive
 */
-bool QCtmDrawerWidget::exclusive() const
-{
-    return m_impl->exclusive;
-}
+bool QCtmDrawerWidget::exclusive() const { return m_impl->exclusive; }
 
 /*!
     \brief      设置各抽屉项的大小 \a sizes.
@@ -212,10 +190,7 @@ void QCtmDrawerWidget::setIconSize(const QSize& size)
     \brief      返回Action的图标大小.
     \sa         setIconSize
 */
-const QSize& QCtmDrawerWidget::iconSize() const
-{
-    return m_impl->iconSize;
-}
+const QSize& QCtmDrawerWidget::iconSize() const { return m_impl->iconSize; }
 /*!
     \brief      计算各抽屉项的大小.
 */
@@ -227,7 +202,7 @@ void QCtmDrawerWidget::doResize()
     {
         for (int i = 0; i < sizes.size(); i++)
         {
-            auto w = qobject_cast<QCtmDrawerItemWidget*>(m_impl->splitter->widget(i));
+            auto w   = qobject_cast<QCtmDrawerItemWidget*>(m_impl->splitter->widget(i));
             sizes[i] = w->minimumSizeHint().height();
         }
         sizes.last() = this->height();
@@ -242,7 +217,7 @@ void QCtmDrawerWidget::doResize()
         {
             if (!w->isExpand())
             {
-                auto h = w->minimumSizeHint().height();
+                auto h   = w->minimumSizeHint().height();
                 sizes[i] = h;
             }
         }
@@ -387,10 +362,10 @@ void QCtmDrawerWidget::childExpandChanged(QCtmDrawerItemWidget* item, bool expan
                 {
                     m_impl->splitter->setStretchFactor(i, i == index ? 1 : 0);
                 }
-                auto total1 = total(sizes);
+                auto total1  = total(sizes);
                 sizes[index] = item->suggestSize();
-                auto total2 = total(sizes);
-                int s = total2 - total1;
+                auto total2  = total(sizes);
+                int s        = total2 - total1;
                 for (int i = index + 1; i < sizes.size(); i++)
                 {
                     if (s <= 0)
@@ -399,7 +374,7 @@ void QCtmDrawerWidget::childExpandChanged(QCtmDrawerItemWidget* item, bool expan
                     if (item->isExpand())
                     {
                         auto sub = item->height() - item->minimumSizeHint().height();
-                        auto h = s >= sub ? sub : s;
+                        auto h   = s >= sub ? sub : s;
                         s -= h;
                         sizes[i] -= h;
                     }
@@ -413,7 +388,7 @@ void QCtmDrawerWidget::childExpandChanged(QCtmDrawerItemWidget* item, bool expan
                     if (item->isExpand())
                     {
                         auto sub = item->height() - item->minimumSizeHint().height();
-                        auto h = s >= sub ? sub : s;
+                        auto h   = s >= sub ? sub : s;
                         s -= h;
                         sizes[i] -= h;
                     }

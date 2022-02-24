@@ -1,4 +1,4 @@
-/*********************************************************************************
+﻿/*********************************************************************************
 **                                                                              **
 **  Copyright (C) 2019-2020 LiLong                                              **
 **  This file is part of QCustomUi.                                             **
@@ -35,12 +35,14 @@ public:
 
     void setModel(QAbstractItemModel* model) override;
     void setReadOnly(int logicIndex, bool enable);
+
 protected:
     void paintSection(QPainter* painter, const QRect& rect, int logicalIndex) const override;
     void mousePressEvent(QMouseEvent* e) override;
     QRect doCheckBoxRect(int logicalIndex) const;
 private slots:
     void onModelReset();
+
 private:
     struct Impl;
     std::unique_ptr<Impl> m_impl;

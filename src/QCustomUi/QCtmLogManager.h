@@ -1,4 +1,4 @@
-/*********************************************************************************
+﻿/*********************************************************************************
 **                                                                              **
 **  Copyright (C) 2019-2020 LiLong                                              **
 **  This file is part of QCustomUi.                                             **
@@ -47,6 +47,7 @@ public:
     bool logTypeEnable(QtMsgType type) const;
     void setLogSizeLimit(qint64 size);
     qint64 logSizeLimit() const;
+
 protected:
     QCtmLogManager();
     ~QCtmLogManager();
@@ -58,6 +59,7 @@ protected:
     void unRegisterModel(QCtmAbstractLogModel* model);
 
     static QList<QString> parseObjectNames(QString& msg);
+
 private:
     struct Impl;
     std::unique_ptr<Impl> m_impl;
@@ -65,4 +67,3 @@ private:
     friend QCtmAbstractLogModel;
     friend void qtMessageHandle(QtMsgType, const QMessageLogContext&, const QString&);
 };
-

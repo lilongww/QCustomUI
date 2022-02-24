@@ -19,8 +19,8 @@
 
 #pragma once
 
-#include <QPushButton>
 #include <QIcon>
+#include <QPushButton>
 
 #include <memory>
 
@@ -29,8 +29,8 @@ class QCtmDrawerItemWidget;
 class QCtmDrawerItemTitle : public QPushButton
 {
     Q_OBJECT
-        Q_PROPERTY(QString text READ text WRITE setText)
-        Q_PROPERTY(QSize iconSize READ iconSize WRITE setIconSize NOTIFY iconSizeChanged)
+    Q_PROPERTY(QString text READ text WRITE setText)
+    Q_PROPERTY(QSize iconSize READ iconSize WRITE setIconSize NOTIFY iconSizeChanged)
 public:
     QCtmDrawerItemTitle(QCtmDrawerItemWidget* parent);
     ~QCtmDrawerItemTitle();
@@ -44,6 +44,7 @@ public:
     const QSize& iconSize() const;
 signals:
     void iconSizeChanged(const QSize& size);
+
 protected:
     void paintEvent(QPaintEvent* event) override;
     void actionEvent(QActionEvent* event) override;

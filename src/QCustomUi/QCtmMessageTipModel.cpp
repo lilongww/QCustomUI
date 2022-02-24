@@ -53,18 +53,12 @@ struct QCtmMessageTipModel::Impl
 /*!
     \brief      构造一个父对象为 \a parent 的消息model.
 */
-QCtmMessageTipModel::QCtmMessageTipModel(QObject* parent)
-    : QCtmAbstractMessageTipModel(parent)
-    , m_impl(std::make_unique<Impl>())
-{
-}
+QCtmMessageTipModel::QCtmMessageTipModel(QObject* parent) : QCtmAbstractMessageTipModel(parent), m_impl(std::make_unique<Impl>()) {}
 
 /*!
     \brief      销毁当前消息model对象.
 */
-QCtmMessageTipModel::~QCtmMessageTipModel()
-{
-}
+QCtmMessageTipModel::~QCtmMessageTipModel() {}
 
 /*!
     \reimp
@@ -109,9 +103,9 @@ QVariant QCtmMessageTipModel::data(const QModelIndex& index, int role) const
         else if (role == Qt::ToolTipRole)
         {
             d = QString("<html><head/><body><p><span style=\" font-weight:600;\">%1</span></p><p>%2</p><p>%3</p></body></html>")
-                .arg(msg->title())
-                .arg(msg->content())
-                .arg(msg->dateTime().toString("yyyy-MM-dd hh:mm:ss"));
+                    .arg(msg->title())
+                    .arg(msg->content())
+                    .arg(msg->dateTime().toString("yyyy-MM-dd hh:mm:ss"));
         }
     }
     return d;
@@ -129,42 +123,27 @@ int QCtmMessageTipModel::columnCount([[maybe_unused]] const QModelIndex& parent 
     \brief      设置消息标题的文本颜色 \a color.
     \sa         titleColor()
 */
-void QCtmMessageTipModel::setTitleColor(const QColor& color)
-{
-    m_impl->titleColor = color;
-}
+void QCtmMessageTipModel::setTitleColor(const QColor& color) { m_impl->titleColor = color; }
 
 /*!
     \brief      返回消息标题的文本颜色.
     \sa         setTitleColor
 */
-const QColor& QCtmMessageTipModel::titleColor() const
-{
-    return m_impl->titleColor;
-}
+const QColor& QCtmMessageTipModel::titleColor() const { return m_impl->titleColor; }
 
 /*!
     \brief      设置消息时间的文本颜色 \a color.
     \sa         timeColor()
 */
-void QCtmMessageTipModel::setTimeColor(const QColor& color)
-{
-    m_impl->timeColor = color;
-}
+void QCtmMessageTipModel::setTimeColor(const QColor& color) { m_impl->timeColor = color; }
 
 /*!
     \brief      返回消息时间的文本颜色.
     \sa         setTimeColor
 */
-const QColor& QCtmMessageTipModel::timeColor() const
-{
-    return m_impl->timeColor;
-}
+const QColor& QCtmMessageTipModel::timeColor() const { return m_impl->timeColor; }
 
 /*!
     \reimp
 */
-Qt::ItemFlags QCtmMessageTipModel::flags(const QModelIndex& index) const
-{
-    return Qt::ItemIsEnabled;
-}
+Qt::ItemFlags QCtmMessageTipModel::flags(const QModelIndex& index) const { return Qt::ItemIsEnabled; }

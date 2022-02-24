@@ -20,15 +20,15 @@
 #include "QCtmNavigationSidePane.h"
 #include "QCtmNavigationBar.h"
 
+#include <QApplication>
 #include <QEvent>
 #include <QHBoxLayout>
-#include <QPushButton>
 #include <QLabel>
-#include <QPainter>
 #include <QLinearGradient>
-#include <QStyleOption>
-#include <QApplication>
 #include <QMouseEvent>
+#include <QPainter>
+#include <QPushButton>
+#include <QStyleOption>
 #include <QTimer>
 
 #include <assert.h>
@@ -37,22 +37,22 @@ constexpr int margin = 8;
 
 struct QCtmNavigationSidePane::Impl
 {
-    DockArea dockArea{ DockArea::Left };
-    QAction* bindAction{ nullptr };
-    QCtmNavigationBar* navigationBar{ nullptr };
-    QScrollArea* area{ nullptr };
+    DockArea dockArea { DockArea::Left };
+    QAction* bindAction { nullptr };
+    QCtmNavigationBar* navigationBar { nullptr };
+    QScrollArea* area { nullptr };
 
-    QWidget* titleBar{ nullptr };
-    QPushButton* closeBtn{ nullptr };
-    QLabel* title{ nullptr };
-    bool popup{ true };
+    QWidget* titleBar { nullptr };
+    QPushButton* closeBtn { nullptr };
+    QLabel* title { nullptr };
+    bool popup { true };
 
     QWidget* initTitleBar(QWidget* parent)
     {
         titleBar = new QWidget(parent);
         titleBar->setObjectName("qcustomui_titleBar");
         QHBoxLayout* layout = new QHBoxLayout(titleBar);
-        closeBtn = new QPushButton(titleBar);
+        closeBtn            = new QPushButton(titleBar);
         layout->setContentsMargins(0, 0, 0, 0);
         closeBtn->setObjectName("qcustomui_closeBtn");
         title = new QLabel(titleBar);
@@ -96,13 +96,11 @@ struct QCtmNavigationSidePane::Impl
 /*!
     \brief      构造函数 \a parent.
 */
-QCtmNavigationSidePane::QCtmNavigationSidePane(QCtmNavigationBar* parent)
-    : QWidget(parent)
-    , m_impl(std::make_unique<Impl>())
+QCtmNavigationSidePane::QCtmNavigationSidePane(QCtmNavigationBar* parent) : QWidget(parent), m_impl(std::make_unique<Impl>())
 {
     setMinimumSize(10, 10);
     m_impl->navigationBar = parent;
-    m_impl->area = new QScrollArea(this);
+    m_impl->area          = new QScrollArea(this);
     m_impl->area->setAutoFillBackground(false);
     m_impl->area->setFrameStyle(QFrame::NoFrame);
     m_impl->area->viewport()->setAutoFillBackground(false);
@@ -124,8 +122,7 @@ QCtmNavigationSidePane::QCtmNavigationSidePane(QCtmNavigationBar* parent)
 /*!
     \brief      构造函数，构造时确定其停靠位置 \a area, \a parent.
 */
-QCtmNavigationSidePane::QCtmNavigationSidePane(DockArea area, QCtmNavigationBar* parent)
-    : QCtmNavigationSidePane(parent)
+QCtmNavigationSidePane::QCtmNavigationSidePane(DockArea area, QCtmNavigationBar* parent) : QCtmNavigationSidePane(parent)
 {
     setDockArea(area);
 }
@@ -133,9 +130,7 @@ QCtmNavigationSidePane::QCtmNavigationSidePane(DockArea area, QCtmNavigationBar*
 /*!
     \brief      析构函数.
 */
-QCtmNavigationSidePane::~QCtmNavigationSidePane()
-{
-}
+QCtmNavigationSidePane::~QCtmNavigationSidePane() {}
 
 /*!
     \brief      设置窗口停靠位置 \a area.
@@ -165,74 +160,50 @@ void QCtmNavigationSidePane::setDockArea(DockArea area)
     \brief      返回窗口停靠位置.
     \sa         setDockArea
 */
-QCtmNavigationSidePane::DockArea QCtmNavigationSidePane::dockArea() const
-{
-    return m_impl->dockArea;
-}
+QCtmNavigationSidePane::DockArea QCtmNavigationSidePane::dockArea() const { return m_impl->dockArea; }
 
 /*!
     \brief      设置要显示的窗口 \a widget.
     \note       \a widget 必须在设置前布局，设置窗口后再布局无效.
     \sa         widget()
 */
-void QCtmNavigationSidePane::setWidget(QWidget* widget)
-{
-    m_impl->area->setWidget(widget);
-}
+void QCtmNavigationSidePane::setWidget(QWidget* widget) { m_impl->area->setWidget(widget); }
 
 /*!
     \brief      返回设置的窗口.
     \sa         setWidget
 */
-QWidget* QCtmNavigationSidePane::widget() const
-{
-    return m_impl->area->widget();
-}
+QWidget* QCtmNavigationSidePane::widget() const { return m_impl->area->widget(); }
 
 /*!
     \brief      返回容器窗口.
     \sa         widget()
 */
-QScrollArea* QCtmNavigationSidePane::viewContainer() const
-{
-    return m_impl->area;
-}
+QScrollArea* QCtmNavigationSidePane::viewContainer() const { return m_impl->area; }
 
 /*!
     \brief      设置标题栏是否可见 \a visible.
     \sa         titleBarIsVisible()
 */
-void QCtmNavigationSidePane::setTitleBarVisible(bool visible)
-{
-    m_impl->titleBar->setVisible(visible);
-}
+void QCtmNavigationSidePane::setTitleBarVisible(bool visible) { m_impl->titleBar->setVisible(visible); }
 
 /*!
     \brief      返回标题栏是否可见.
     \sa         setTitleBarVisible
 */
-bool QCtmNavigationSidePane::titleBarIsVisible() const
-{
-    return m_impl->titleBar->isVisible();
-}
+bool QCtmNavigationSidePane::titleBarIsVisible() const { return m_impl->titleBar->isVisible(); }
 
 /*!
     \brief      设置标题栏文字 \a text.
     \sa         title()
 */
-void QCtmNavigationSidePane::setTitle(const QString& text)
-{
-    m_impl->title->setText(text);
-}
+void QCtmNavigationSidePane::setTitle(const QString& text) { m_impl->title->setText(text); }
 
 /*!
     \brief      返回标题栏文字.
     \sa         setTitle
 */
-QString QCtmNavigationSidePane::title() const
-{
-    return m_impl->title->text();
-}
+QString QCtmNavigationSidePane::title() const { return m_impl->title->text(); }
 
 /*!
     \brief      设置窗口是否以Popup方式显示 \a popup.
@@ -248,18 +219,12 @@ void QCtmNavigationSidePane::setPopup(bool popup)
     \brief      返回窗口是否以Popup方式显示.
     \sa         setPopup
 */
-bool QCtmNavigationSidePane::popup() const
-{
-    return m_impl->popup;
-}
+bool QCtmNavigationSidePane::popup() const { return m_impl->popup; }
 
 /*!
     \reimp
 */
-void QCtmNavigationSidePane::paintEvent([[maybe_unused]] QPaintEvent* event)
-{
-    paintShadow(margin);
-}
+void QCtmNavigationSidePane::paintEvent([[maybe_unused]] QPaintEvent* event) { paintShadow(margin); }
 
 /*!
     \reimp
@@ -276,10 +241,7 @@ void QCtmNavigationSidePane::showEvent([[maybe_unused]] QShowEvent* event)
 /*!
     \reimp
 */
-void QCtmNavigationSidePane::closeEvent([[maybe_unused]] QCloseEvent* event)
-{
-    emit paneClosed();
-}
+void QCtmNavigationSidePane::closeEvent([[maybe_unused]] QCloseEvent* event) { emit paneClosed(); }
 
 /*!
     \reimp
@@ -295,15 +257,15 @@ QSize QCtmNavigationSidePane::sizeHint() const
     \brief      根据 \a area 自动计算窗口显示大小.
     \sa         smartPosition
 */
-QSize QCtmNavigationSidePane::smartSize(DockArea area)const
+QSize QCtmNavigationSidePane::smartSize(DockArea area) const
 {
     const auto& oldSize = QWidget::sizeHint();
     if (!m_impl->navigationBar)
         return oldSize;
     QSize alignSize;
     const auto& bindActionRect = m_impl->navigationBar->actionRect(m_impl->bindAction);
-    auto topWidget = m_impl->navigationBar->window();
-    const auto& margins = topWidget->layout()->contentsMargins();
+    auto topWidget             = m_impl->navigationBar->window();
+    const auto& margins        = topWidget->layout()->contentsMargins();
     switch (area)
     {
     case DockArea::Left:
@@ -313,19 +275,21 @@ QSize QCtmNavigationSidePane::smartSize(DockArea area)const
         alignSize.setHeight(topWidget->height() - m_impl->navigationBar->y() - m_impl->navigationBar->height() - margins.bottom());
         break;
     case DockArea::Right:
-        alignSize.setWidth(oldSize.width() > m_impl->navigationBar->width() - bindActionRect.left() ? oldSize.width() : m_impl->navigationBar->width() - bindActionRect.left());
+        alignSize.setWidth(oldSize.width() > m_impl->navigationBar->width() - bindActionRect.left()
+                               ? oldSize.width()
+                               : m_impl->navigationBar->width() - bindActionRect.left());
         if (alignSize.width() > m_impl->navigationBar->width() / 2)
             alignSize.setWidth(m_impl->navigationBar->width() / 2);
         alignSize.setHeight(topWidget->height() - m_impl->navigationBar->y() - m_impl->navigationBar->height() - margins.bottom());
         break;
     case DockArea::Top:
     case DockArea::Bottom:
-    {
-        alignSize.setWidth(m_impl->navigationBar->width());
-        auto h = oldSize.height() > minimumHeight() ? oldSize.height() : minimumHeight();
-        alignSize.setHeight(h > topWidget->height() / 2 ? topWidget->height() / 2 : h);
-        break;
-    }
+        {
+            alignSize.setWidth(m_impl->navigationBar->width());
+            auto h = oldSize.height() > minimumHeight() ? oldSize.height() : minimumHeight();
+            alignSize.setHeight(h > topWidget->height() / 2 ? topWidget->height() / 2 : h);
+            break;
+        }
     }
     return alignSize.boundedTo(maximumSize());
 }
@@ -350,10 +314,7 @@ void QCtmNavigationSidePane::setNavigationBar(QCtmNavigationBar* bar)
     \brief      返回绑定的 QCtmNavigationBar.
     \sa         setNavigationBar, QCtmNavigationBar
 */
-QCtmNavigationBar* QCtmNavigationSidePane::navigationBar() const
-{
-    return m_impl->navigationBar;
-}
+QCtmNavigationBar* QCtmNavigationSidePane::navigationBar() const { return m_impl->navigationBar; }
 
 /*!
     \reimp
@@ -366,31 +327,31 @@ bool QCtmNavigationSidePane::eventFilter(QObject* o, QEvent* e)
         {
         case QEvent::Move:
         case QEvent::Resize:
-        {
-            auto pos = smartPosition(dockArea());
-            move(pos);
-            resize(sizeHint());
-            break;
-        }
-#if WIN32 //WIN10 最大化计算bugfix
+            {
+                auto pos = smartPosition(dockArea());
+                move(pos);
+                resize(sizeHint());
+                break;
+            }
+#if WIN32 // WIN10 最大化计算bugfix
         case QEvent::WindowStateChange:
-        {
-            QTimer::singleShot(1, [=]
-                {
-                    auto pos = smartPosition(dockArea());
-                    move(pos);
-                    resize(sizeHint());
-                });
-        }
-        break;
+            {
+                QTimer::singleShot(1,
+                                   [=]
+                                   {
+                                       auto pos = smartPosition(dockArea());
+                                       move(pos);
+                                       resize(sizeHint());
+                                   });
+            }
+            break;
 #endif
         default:
             break;
         }
-
-        }
-    return false;
     }
+    return false;
+}
 
 /*!
     \reimp
@@ -398,15 +359,18 @@ bool QCtmNavigationSidePane::eventFilter(QObject* o, QEvent* e)
 void QCtmNavigationSidePane::mousePressEvent(QMouseEvent* event)
 {
     event->ignore();
-    if ((windowType() == Qt::Popup)) {
+    if ((windowType() == Qt::Popup))
+    {
         event->accept();
         QWidget* w;
-        while ((w = QApplication::activePopupWidget()) && w != this) {
+        while ((w = QApplication::activePopupWidget()) && w != this)
+        {
             w->close();
             if (QApplication::activePopupWidget() == w) // widget does not want to disappear
-                w->hide(); // hide at least
+                w->hide();                              // hide at least
         }
-        if (!rect().contains(event->pos())) {
+        if (!rect().contains(event->pos()))
+        {
             close();
         }
     }
@@ -416,10 +380,7 @@ void QCtmNavigationSidePane::mousePressEvent(QMouseEvent* event)
     \brief      绑定到 QCtmNavigationBar 上的 \a action.
     \sa         QCtmNavigationBar
 */
-void QCtmNavigationSidePane::bindAction(QAction* action)
-{
-    m_impl->bindAction = action;
-}
+void QCtmNavigationSidePane::bindAction(QAction* action) { m_impl->bindAction = action; }
 
 /*!
     \brief      绘制阴影 \a shadowWidth.
@@ -476,19 +437,20 @@ QPoint QCtmNavigationSidePane::smartPosition(DockArea area) const
 {
     if (!m_impl->navigationBar)
         return QPoint(0, 0);
-    auto topWidget = m_impl->navigationBar->window();
-    auto pos = topWidget->mapToGlobal(m_impl->navigationBar->pos());
+    auto topWidget      = m_impl->navigationBar->window();
+    auto pos            = topWidget->mapToGlobal(m_impl->navigationBar->pos());
     const auto& margins = topWidget->layout()->contentsMargins();
     switch (area)
     {
     case DockArea::Left:
-        return{ pos.x(), pos.y() + m_impl->navigationBar->height() };
+        return { pos.x(), pos.y() + m_impl->navigationBar->height() };
     case DockArea::Right:
-        return{ pos.x() + topWidget->width() - sizeHint().width() - margins.left() - margins.right(), pos.y() + m_impl->navigationBar->height() };
+        return { pos.x() + topWidget->width() - sizeHint().width() - margins.left() - margins.right(),
+                 pos.y() + m_impl->navigationBar->height() };
     case DockArea::Top:
-        return{ pos.x(), pos.y() + m_impl->navigationBar->height() };
+        return { pos.x(), pos.y() + m_impl->navigationBar->height() };
     case DockArea::Bottom:
-        return{ pos.x(), topWidget->y() + topWidget->height() - sizeHint().height() - margins.bottom() };
+        return { pos.x(), topWidget->y() + topWidget->height() - sizeHint().height() - margins.bottom() };
     }
-    return{};
+    return {};
 }

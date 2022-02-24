@@ -1,4 +1,4 @@
-/*********************************************************************************
+﻿/*********************************************************************************
 **                                                                              **
 **  Copyright (C) 2019-2020 LiLong                                              **
 **  This file is part of QCustomUi.                                             **
@@ -35,6 +35,7 @@ public:
     bool filterAcceptsRow(int sourceRow, const QModelIndex& sourceParent) const override;
 public slots:
     void showLog(QtMsgType type, bool show);
+
 private:
     struct Impl;
     std::unique_ptr<Impl> m_impl;

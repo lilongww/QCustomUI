@@ -1,24 +1,17 @@
-#include "DrawerExample.h"
+﻿#include "DrawerExample.h"
 
-#include <QCustomUi/QCtmDrawerWidget.h>
 #include <QCustomUi/QCtmDrawerItemWidget.h>
+#include <QCustomUi/QCtmDrawerWidget.h>
 #include <QHBoxLayout>
 
-#include <QLabel>
-#include <QFileSystemModel>
-#include <QTreeView>
 #include <QDir>
+#include <QFileSystemModel>
+#include <QLabel>
+#include <QTreeView>
 
-DrawerExample::DrawerExample(QWidget *parent)
-    : QCtmWindow(parent)
-{
-    init();
-}
+DrawerExample::DrawerExample(QWidget* parent) : QCtmWindow(parent) { init(); }
 
-DrawerExample::~DrawerExample()
-{
-
-}
+DrawerExample::~DrawerExample() {}
 
 void DrawerExample::init()
 {
@@ -26,7 +19,7 @@ void DrawerExample::init()
     auto drawer = new QCtmDrawerWidget(this);
     layout->addWidget(drawer);
 
-    auto tree = new QTreeView(this);
+    auto tree  = new QTreeView(this);
     auto model = new QFileSystemModel(this);
     model->setRootPath(QDir::homePath());
     tree->setModel(model);
@@ -34,5 +27,5 @@ void DrawerExample::init()
     auto item1 = drawer->addWidget(tr("Example1"), new QLabel(tr("Example text")));
     item1->addAction(QIcon(":/DrawerExample/Resources/Edit.svg"));
     drawer->addWidget(tr("Example2"), tree);
-    //drawer->setExclusive(true);
+    // drawer->setExclusive(true);
 }

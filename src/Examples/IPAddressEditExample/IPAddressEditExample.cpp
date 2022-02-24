@@ -1,19 +1,12 @@
-#include "IPAddressEditExample.h"
+﻿#include "IPAddressEditExample.h"
 
 #include <QCustomUi/QCtmIPAddressEdit.h>
 
 #include <QHBoxLayout>
 
-IPAddressEditExample::IPAddressEditExample(QWidget *parent)
-    : QCtmWindow(parent)
-{
-    init();
-}
+IPAddressEditExample::IPAddressEditExample(QWidget* parent) : QCtmWindow(parent) { init(); }
 
-IPAddressEditExample::~IPAddressEditExample()
-{
-
-}
+IPAddressEditExample::~IPAddressEditExample() {}
 
 void IPAddressEditExample::init()
 {

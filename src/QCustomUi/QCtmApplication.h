@@ -34,6 +34,7 @@ public:
     ~QCtmApplication();
 
     bool checkOtherProcess(const QString& key);
+
 private:
     struct Impl;
     std::unique_ptr<Impl> m_impl;

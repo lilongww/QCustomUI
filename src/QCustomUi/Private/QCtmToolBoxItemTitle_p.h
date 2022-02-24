@@ -32,8 +32,10 @@ public:
     const QString& title() const;
     void setIcon(const QIcon& icon);
     const QIcon& icon() const;
+
 protected:
     void paintEvent(QPaintEvent* event) override;
+
 private:
     struct Impl;
     std::unique_ptr<Impl> m_impl;

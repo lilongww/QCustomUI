@@ -18,25 +18,25 @@
 **********************************************************************************/
 
 #include "QCtmNavigationBar.h"
-#include "QCtmNavigationSidePane.h"
-#include "QCtmMessageTipButton.h"
 #include "Private/QCtmNavigationImageButton_p.h"
+#include "Private/QCtmUserButton_p.h"
 #include "Private/QCtmWidgetItem_p.h"
 #include "Private/Util_p.h"
-#include "Private/QCtmUserButton_p.h"
+#include "QCtmMessageTipButton.h"
+#include "QCtmNavigationSidePane.h"
 
 #include <QAction>
-#include <QWidgetAction>
-#include <QPainter>
-#include <QStyleOption>
-#include <QStyle>
-#include <QMenu>
-#include <QToolButton>
+#include <QActionEvent>
+#include <QDesktopServices>
 #include <QFrame>
 #include <QHBoxLayout>
-#include <QDesktopServices>
+#include <QMenu>
+#include <QPainter>
+#include <QStyle>
+#include <QStyleOption>
+#include <QToolButton>
 #include <QUrl>
-#include <QActionEvent>
+#include <QWidgetAction>
 
 static Q_CONSTEXPR const char* ActionPosProperty = "QCtm_ActionPosition";
 
@@ -50,7 +50,7 @@ struct QCtmNavigationBar::Impl
     QHBoxLayout* centerLayout;
     QHBoxLayout* rightLayout;
 
-    QSize iconSize{ 16,16 };
+    QSize iconSize { 16, 16 };
 
     QCtmWidgetItemPtr find(QAction* action)
     {
@@ -141,9 +141,7 @@ struct QCtmNavigationBar::Impl
 /*!
     \brief      构造一个父对象为 \a parent 的QCtmNavigationBar.
 */
-QCtmNavigationBar::QCtmNavigationBar(QWidget* parent)
-    : QWidget(parent)
-    , m_impl(std::make_unique<Impl>())
+QCtmNavigationBar::QCtmNavigationBar(QWidget* parent) : QWidget(parent), m_impl(std::make_unique<Impl>())
 {
     setFixedHeight(50);
     QHBoxLayout* layout = new QHBoxLayout(this);
@@ -171,9 +169,7 @@ QCtmNavigationBar::QCtmNavigationBar(QWidget* parent)
 /*!
     \brief      销毁当前QCtmNavigationBar对象.
 */
-QCtmNavigationBar::~QCtmNavigationBar()
-{
-}
+QCtmNavigationBar::~QCtmNavigationBar() {}
 
 /*!
     \overload   addAction
@@ -182,11 +178,9 @@ QCtmNavigationBar::~QCtmNavigationBar()
 */
 void QCtmNavigationBar::addAction(QAction* action, ActionPosition pos)
 {
-    int index = pos == ActionPosition::Right
-        ? m_impl->rightItems.size()
-        : pos == ActionPosition::Center
-        ? m_impl->centerItems.size()
-        : m_impl->leftItems.size();
+    int index = pos == ActionPosition::Right    ? m_impl->rightItems.size()
+                : pos == ActionPosition::Center ? m_impl->centerItems.size()
+                                                : m_impl->leftItems.size();
     insertAction(index, action, pos);
 }
 
@@ -207,10 +201,7 @@ QAction* QCtmNavigationBar::addAction(const QIcon& icon, const QString& text, Ac
                 该重载函数创建并返回一个文本为 \a text 的action，并显示到 \a pos 位置.
     \sa         QCtmNavigationBar::addAction
 */
-QAction* QCtmNavigationBar::addAction(const QString& text, ActionPosition pos)
-{
-    return addAction(QIcon(), text, pos);
-}
+QAction* QCtmNavigationBar::addAction(const QString& text, ActionPosition pos) { return addAction(QIcon(), text, pos); }
 
 /*!
     \overload   insertAction
@@ -250,10 +241,7 @@ QAction* QCtmNavigationBar::insertAction(int index, const QString& text, ActionP
     \brief      在 \a pos 位置添加一个分隔符.
     \sa         insertSeparator
 */
-QAction* QCtmNavigationBar::addSeparator(ActionPosition pos)
-{
-    return insertSeparator(count(pos), pos);
-}
+QAction* QCtmNavigationBar::addSeparator(ActionPosition pos) { return insertSeparator(count(pos), pos); }
 
 /*!
     \brief      在 \a index, \a pos 位置插入一个分隔符.
@@ -298,7 +286,6 @@ QAction* QCtmNavigationBar::addPane(const QString& text, ActionPosition pos, QCt
     return addPane(QIcon(), text, pos, pane);
 }
 
-
 /*!
     \brief      插入一个 \a action 到 \a index 位置，显示到 \a pos 位置，并且与 \a pane 绑定.
     \sa         insertAction
@@ -315,15 +302,19 @@ void QCtmNavigationBar::insertPane(int index, QAction* action, ActionPosition po
     pane->bindAction(action);
     pane->hide();
 
-    connect(action, &QAction::toggled, this, [=](bool checked)
-        {
-            if (checked)
-                pane->show();
-            else
-                pane->hide();
-        });
+    connect(action,
+            &QAction::toggled,
+            this,
+            [=](bool checked)
+            {
+                if (checked)
+                    pane->show();
+                else
+                    pane->hide();
+            });
 
-    connect(pane, &QCtmNavigationSidePane::paneClosed, this, [=]() { action->setChecked(false); }, Qt::QueuedConnection);
+    connect(
+        pane, &QCtmNavigationSidePane::paneClosed, this, [=]() { action->setChecked(false); }, Qt::QueuedConnection);
 }
 
 /*!
@@ -365,9 +356,7 @@ QAction* QCtmNavigationBar::addHelp(const QUrl& filePath, const QIcon& icon, Act
 QAction* QCtmNavigationBar::insertHelp(int index, const QUrl& filePath, const QIcon& icon, ActionPosition pos /*= Right*/)
 {
     auto help = new QAction(icon, "", this);
-    connect(help, &QAction::triggered, this, [=]() {
-        QDesktopServices::openUrl(filePath);
-        });
+    connect(help, &QAction::triggered, this, [=]() { QDesktopServices::openUrl(filePath); });
     insertAction(index, help, pos);
     return help;
 }
@@ -417,7 +406,7 @@ QAction* QCtmNavigationBar::addUser(const QIcon& icon, const QString& text, Acti
 QAction* QCtmNavigationBar::insertUser(int index, const QIcon& icon, const QString& text, ActionPosition pos)
 {
     QWidgetAction* action = new QWidgetAction(this);
-    QCtmUserButton* btn = new QCtmUserButton;
+    QCtmUserButton* btn   = new QCtmUserButton;
     action->setDefaultWidget(btn);
     btn->setDefaultAction(action);
 
@@ -483,7 +472,7 @@ QAction* QCtmNavigationBar::actionAt(int index, ActionPosition pos) const
 {
     if (index < 0)
         return nullptr;
-    auto findAction = [index](const QList<QCtmWidgetItemPtr>& items) ->QAction*
+    auto findAction = [index](const QList<QCtmWidgetItemPtr>& items) -> QAction*
     {
         if (items.size() > index)
             return items.at(index)->action();
@@ -518,10 +507,7 @@ void QCtmNavigationBar::setIconSize(const QSize& size)
     \brief      返回Action图标的大小.
     \sa         setIconSize
 */
-const QSize& QCtmNavigationBar::iconSize() const
-{
-    return m_impl->iconSize;
-}
+const QSize& QCtmNavigationBar::iconSize() const { return m_impl->iconSize; }
 
 /*!
     \reimp

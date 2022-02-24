@@ -40,9 +40,10 @@ public:
     inline void setRect(const QRect& rect) { m_rect = rect; }
     inline QRect rect() const { return m_rect; }
     inline const QModelIndex& index() const { return m_index; }
+
 protected:
     QModelIndex m_index;
-    QCtmClassifyTreeGroup* m_parent{ nullptr };
+    QCtmClassifyTreeGroup* m_parent { nullptr };
     QRect m_rect;
 };
 
@@ -60,9 +61,10 @@ public:
     inline bool expand() const { return m_expand; }
 
     QCtmClassifyTreeItem::ItemType nodeType() const override { return QCtmClassifyTreeItem::ItemType::Group; }
+
 protected:
     std::vector<QCtmClassifyTreeNodePtr> m_children;
-    bool m_expand{ false };
+    bool m_expand { false };
 };
 
 class QCtmClassifyTreeIcon : public QCtmClassifyTreeNode

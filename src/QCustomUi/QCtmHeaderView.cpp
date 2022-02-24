@@ -19,10 +19,10 @@
 
 #include "QCtmHeaderView.h"
 
-#include <QStyleOptionButton>
-#include <QPainter>
-#include <QMouseEvent>
 #include <QDebug>
+#include <QMouseEvent>
+#include <QPainter>
+#include <QStyleOptionButton>
 
 #include <tuple>
 
@@ -47,18 +47,14 @@ struct QCtmHeaderView::Impl
     \brief      构造函数 \a orientation, \a parent.
 */
 QCtmHeaderView::QCtmHeaderView(Qt::Orientation orientation, QWidget* parent)
-    : QHeaderView(orientation, parent)
-    , m_impl(std::make_unique<Impl>())
+    : QHeaderView(orientation, parent), m_impl(std::make_unique<Impl>())
 {
-
 }
 
 /*!
     \brief      析构函数.
 */
-QCtmHeaderView::~QCtmHeaderView()
-{
-}
+QCtmHeaderView::~QCtmHeaderView() {}
 
 /*!
     \reimp
@@ -73,16 +69,16 @@ void QCtmHeaderView::setModel(QAbstractItemModel* model)
     connect(model, &QAbstractItemModel::columnsRemoved, this, &QCtmHeaderView::onModelReset);
     connect(model, &QAbstractItemModel::rowsRemoved, this, &QCtmHeaderView::onModelReset);
     connect(model, &QAbstractItemModel::modelReset, this, &QCtmHeaderView::onModelReset);
-    connect(model, &QAbstractItemModel::dataChanged, this
-        , [=]([[maybe_unused]] const QModelIndex& topLeft
-            , [[maybe_unused]] const QModelIndex& bottomRight
-            , const QVector<int>& roles)
-        {
-            if (roles.contains(Qt::CheckStateRole) || roles.isEmpty())
+    connect(model,
+            &QAbstractItemModel::dataChanged,
+            this,
+            [=]([[maybe_unused]] const QModelIndex& topLeft, [[maybe_unused]] const QModelIndex& bottomRight, const QVector<int>& roles)
             {
-                onModelReset();
-            }
-        });
+                if (roles.contains(Qt::CheckStateRole) || roles.isEmpty())
+                {
+                    onModelReset();
+                }
+            });
     onModelReset();
 }
 
@@ -130,7 +126,7 @@ void QCtmHeaderView::mousePressEvent(QMouseEvent* e)
 {
     if (e->button() == Qt::LeftButton)
     {
-        auto pos = orientation() == Qt::Horizontal ? e->x() : e->y();
+        auto pos          = orientation() == Qt::Horizontal ? e->x() : e->y();
         auto logicalIndex = logicalIndexAt(pos);
         if (logicalIndex < 0)
         {
@@ -166,9 +162,11 @@ void QCtmHeaderView::mousePressEvent(QMouseEvent* e)
             }
             model()->blockSignals(false);
             if (Qt::Horizontal == orientation())
-                emit model()->dataChanged(model()->index(0, logicalIndex), model()->index(model()->rowCount(), logicalIndex), { Qt::CheckStateRole });
+                emit model()->dataChanged(
+                    model()->index(0, logicalIndex), model()->index(model()->rowCount(), logicalIndex), { Qt::CheckStateRole });
             else
-                emit model()->dataChanged(model()->index(logicalIndex, 0), model()->index(logicalIndex, model()->columnCount()), { Qt::CheckStateRole });
+                emit model()->dataChanged(
+                    model()->index(logicalIndex, 0), model()->index(logicalIndex, model()->columnCount()), { Qt::CheckStateRole });
             return;
         }
     }
@@ -181,7 +179,7 @@ void QCtmHeaderView::mousePressEvent(QMouseEvent* e)
 QRect QCtmHeaderView::doCheckBoxRect(int logicalIndex) const
 {
     auto position = sectionPosition(logicalIndex);
-    auto size = sectionSize(logicalIndex);
+    auto size     = sectionSize(logicalIndex);
     QStyleOptionButton opt;
     if (orientation() == Qt::Horizontal)
     {
@@ -190,7 +188,7 @@ QRect QCtmHeaderView::doCheckBoxRect(int logicalIndex) const
     else
         opt.rect = QRect(QPoint(0, position), QSize(this->width(), size));
     const auto& rect = style()->subElementRect(QStyle::SE_CheckBoxIndicator, &opt, this);
-    return QRect{ rect.x() + checkboxMargin, rect.y(), rect.width(), rect.height() };
+    return QRect { rect.x() + checkboxMargin, rect.y(), rect.width(), rect.height() };
 }
 
 /*!
@@ -202,10 +200,10 @@ void QCtmHeaderView::onModelReset()
     int jCount = orientation() == Qt::Horizontal ? model()->columnCount() : model()->rowCount();
     for (int j = 0; j < jCount; j++)
     {
-        bool checkable{ false };
-        bool hasChecked{ false };
-        bool hasUnChecked{ false };
-        bool hasPartiallyChecked{ false };
+        bool checkable { false };
+        bool hasChecked { false };
+        bool hasUnChecked { false };
+        bool hasPartiallyChecked { false };
         int iCount = orientation() == Qt::Horizontal ? model()->rowCount() : model()->columnCount();
         for (int i = 0; i < iCount; i++)
         {

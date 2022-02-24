@@ -1,4 +1,4 @@
-/*********************************************************************************
+﻿/*********************************************************************************
 **                                                                              **
 **  Copyright (C) 2019-2020 LiLong                                              **
 **  This file is part of QCustomUi.                                             **
@@ -19,8 +19,8 @@
 
 #pragma once
 
-#include "qcustomui_global.h"
 #include "QCtmNavigationSidePane.h"
+#include "qcustomui_global.h"
 
 class QCtmAbstractMessageTipModel;
 class QCtmNavigationBar;
@@ -33,5 +33,5 @@ public:
     QCtmAbstractMessageTipView(QCtmNavigationBar* parent);
     ~QCtmAbstractMessageTipView();
     virtual void setModel(QCtmAbstractMessageTipModel* model) = 0;
-    virtual QCtmAbstractMessageTipModel* model() const = 0;
+    virtual QCtmAbstractMessageTipModel* model() const        = 0;
 };

@@ -35,18 +35,12 @@
     \brief      构造一个父窗口为 \a parent 的combobox对象.
 */
 
-QCtmComboBox::QCtmComboBox(QWidget* parent)
-    : QComboBox(parent)
-{
-    setView(new QListView(this));
-}
+QCtmComboBox::QCtmComboBox(QWidget* parent) : QComboBox(parent) { setView(new QListView(this)); }
 
 /*!
     \brief      销毁该combobox对象.
 */
-QCtmComboBox::~QCtmComboBox()
-{
-}
+QCtmComboBox::~QCtmComboBox() {}
 
 /*!
     \reimp

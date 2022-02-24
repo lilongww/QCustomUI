@@ -33,8 +33,7 @@
 /*!
     \brief      构造一个日志 model 设置 \a objectName 和父对象 \a parent.
 */
-QCtmAbstractLogModel::QCtmAbstractLogModel(const QString& objectName, QObject* parent)
-    : QAbstractTableModel(parent)
+QCtmAbstractLogModel::QCtmAbstractLogModel(const QString& objectName, QObject* parent) : QAbstractTableModel(parent)
 {
     setObjectName(objectName);
     QCtmLogManager::instance().registerModel(this);
@@ -43,10 +42,7 @@ QCtmAbstractLogModel::QCtmAbstractLogModel(const QString& objectName, QObject* p
 /*!
     \brief      析构函数.
 */
-QCtmAbstractLogModel::~QCtmAbstractLogModel()
-{
-    QCtmLogManager::instance().unRegisterModel(this);
-}
+QCtmAbstractLogModel::~QCtmAbstractLogModel() { QCtmLogManager::instance().unRegisterModel(this); }
 
 /*!
     \fn         void QCtmAbstractLogModel::clear()
@@ -96,18 +92,12 @@ bool QCtmAbstractLogModel::removeColumns(int column, int count, const QModelInde
 /*!
     \brief      日志事件 \a e.
 */
-void QCtmAbstractLogModel::logEvent(QCtmLogEvent* e)
-{
-    Q_UNUSED(e)
-}
+void QCtmAbstractLogModel::logEvent(QCtmLogEvent* e) { Q_UNUSED(e) }
 
 /*!
     \brief      重新翻译UI.
 */
-void QCtmAbstractLogModel::retranslateUi()
-{
-
-}
+void QCtmAbstractLogModel::retranslateUi() {}
 
 /*!
     \reimp

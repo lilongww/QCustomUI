@@ -34,18 +34,12 @@
 /*!
     \brief      构造函数 \a parent.
 */
-QCtmTableItemDelegate::QCtmTableItemDelegate(QTableView* parent)
-    : QStyledItemDelegate(parent)
-    , m_parent(parent)
-{
-}
+QCtmTableItemDelegate::QCtmTableItemDelegate(QTableView* parent) : QStyledItemDelegate(parent), m_parent(parent) {}
 
 /*!
     \brief      析构函数.
 */
-QCtmTableItemDelegate::~QCtmTableItemDelegate()
-{
-}
+QCtmTableItemDelegate::~QCtmTableItemDelegate() {}
 
 /*!
     \reimp

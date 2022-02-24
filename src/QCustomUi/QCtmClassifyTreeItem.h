@@ -28,7 +28,11 @@ class QCtmClassifyTreeModel;
 class QCUSTOMUI_EXPORT QCtmClassifyTreeItem
 {
 public:
-    enum ItemType { Group, Icon };
+    enum ItemType
+    {
+        Group,
+        Icon
+    };
     QCtmClassifyTreeItem();
     explicit QCtmClassifyTreeItem(const QString& text);
     explicit QCtmClassifyTreeItem(const QIcon& icon, const QString& text);
@@ -41,9 +45,11 @@ public:
     const QString& text() const;
     void setIcon(const QIcon& icon);
     const QIcon& icon() const;
+
 protected:
     void setModel(QCtmClassifyTreeModel* model);
     void setParent(QCtmClassifyTreeItem* parent);
+
 private:
     struct Impl;
     std::unique_ptr<Impl> m_impl;
@@ -73,6 +79,7 @@ public:
     int rowOf(const QCtmClassifyTreeItem* item) const;
     int count() const;
     void clear();
+
 private:
     struct Impl;
     std::unique_ptr<Impl> m_impl;

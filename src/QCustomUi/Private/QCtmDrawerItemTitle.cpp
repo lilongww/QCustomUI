@@ -17,45 +17,41 @@
 **  along with QCustomUi.  If not, see <https://www.gnu.org/licenses/>.         **
 **********************************************************************************/
 #include "QCtmDrawerItemTitle_p.h"
-#include "Util_p.h"
-#include "QCtmWidgetItem_p.h"
 #include "QCtmDrawerItemWidget.h"
+#include "QCtmWidgetItem_p.h"
+#include "Util_p.h"
 
+#include <QHBoxLayout>
+#include <QMouseEvent>
 #include <QPainter>
 #include <QStyleOption>
-#include <QMouseEvent>
-#include <QHBoxLayout>
 
 struct QCtmDrawerItemTitle::Impl
 {
-    bool expand{ false };
-    bool pressed{ false };
-    QHBoxLayout* layout{ nullptr };
-    QHBoxLayout* widgetLayout{ nullptr };
+    bool expand { false };
+    bool pressed { false };
+    QHBoxLayout* layout { nullptr };
+    QHBoxLayout* widgetLayout { nullptr };
     QList<QCtmWidgetItemPtr> items;
-    QCtmDrawerItemWidget* treeItem{ nullptr };
-    QSize iconSize{ 16,16 };
+    QCtmDrawerItemWidget* treeItem { nullptr };
+    QSize iconSize { 16, 16 };
 };
 
-QCtmDrawerItemTitle::QCtmDrawerItemTitle(QCtmDrawerItemWidget* parent)
-    : QPushButton(parent)
-    , m_impl(std::make_unique<Impl>())
+QCtmDrawerItemTitle::QCtmDrawerItemTitle(QCtmDrawerItemWidget* parent) : QPushButton(parent), m_impl(std::make_unique<Impl>())
 {
     m_impl->treeItem = parent;
-    m_impl->layout = new QHBoxLayout(this);
-    m_impl->layout->setContentsMargins(0,0,0,0);
+    m_impl->layout   = new QHBoxLayout(this);
+    m_impl->layout->setContentsMargins(0, 0, 0, 0);
     m_impl->layout->setSpacing(0);
     m_impl->layout->addStretch(1);
     m_impl->widgetLayout = new QHBoxLayout;
-    m_impl->widgetLayout->setContentsMargins(0,0,0,0);
+    m_impl->widgetLayout->setContentsMargins(0, 0, 0, 0);
     m_impl->widgetLayout->setSpacing(0);
     m_impl->layout->addLayout(m_impl->widgetLayout);
     m_impl->widgetLayout->setAlignment(Qt::AlignRight);
 }
 
-QCtmDrawerItemTitle::~QCtmDrawerItemTitle()
-{
-}
+QCtmDrawerItemTitle::~QCtmDrawerItemTitle() {}
 
 void QCtmDrawerItemTitle::setExpand(bool expand)
 {
@@ -64,10 +60,7 @@ void QCtmDrawerItemTitle::setExpand(bool expand)
         update();
 }
 
-bool QCtmDrawerItemTitle::isExpand() const
-{
-    return m_impl->expand;
-}
+bool QCtmDrawerItemTitle::isExpand() const { return m_impl->expand; }
 
 void QCtmDrawerItemTitle::insertAction(int index, QAction* action)
 {
@@ -98,10 +91,7 @@ void QCtmDrawerItemTitle::setIconSize(const QSize& size)
     emit iconSizeChanged(m_impl->iconSize);
 }
 
-const QSize& QCtmDrawerItemTitle::iconSize() const
-{
-    return m_impl->iconSize;
-}
+const QSize& QCtmDrawerItemTitle::iconSize() const { return m_impl->iconSize; }
 
 void QCtmDrawerItemTitle::paintEvent([[maybe_unused]] QPaintEvent* event)
 {
@@ -118,9 +108,9 @@ void QCtmDrawerItemTitle::paintEvent([[maybe_unused]] QPaintEvent* event)
     {
         if (!m_impl->treeItem->widget())
             break;
-        itemOpt.rect = QRect(0, 0, indent, height());
+        itemOpt.rect             = QRect(0, 0, indent, height());
         itemOpt.viewItemPosition = QStyleOptionViewItem::Beginning;
-        itemOpt.state = QStyle::State_Children;
+        itemOpt.state            = QStyle::State_Children;
         if (m_impl->expand)
             itemOpt.state |= QStyle::State_Open;
         style()->drawPrimitive(QStyle::PE_IndicatorBranch, &itemOpt, &p, this);

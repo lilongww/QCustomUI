@@ -28,7 +28,7 @@ class QCtmDrawerWidget;
 class QCUSTOMUI_EXPORT QCtmDrawerItemWidget : public QWidget
 {
     Q_OBJECT
-        Q_PROPERTY(QSize iconSize READ iconSize WRITE setIconSize NOTIFY iconSizeChanged)
+    Q_PROPERTY(QSize iconSize READ iconSize WRITE setIconSize NOTIFY iconSizeChanged)
 public:
     void setWidget(QWidget* widget);
     QWidget* widget() const;
@@ -36,7 +36,7 @@ public:
     void setTitle(const QString& title);
     QString title() const;
 
-    bool isExpand()const;
+    bool isExpand() const;
     void setExpand(bool expand);
 
     QAction* addAction(const QIcon& icon, const QString& text);
@@ -55,6 +55,7 @@ signals:
     void expandChanged(bool expand);
     void titleClicked(bool expand);
     void iconSizeChanged(const QSize& size);
+
 protected:
     QCtmDrawerItemWidget(const QString& title, QCtmDrawerWidget* parent);
     ~QCtmDrawerItemWidget();
@@ -64,9 +65,10 @@ private slots:
     void resizeEvent(QResizeEvent* event);
 
 private:
-    int suggestSize()const;
+    int suggestSize() const;
     void setSuggestSize(int size);
     void insertAction(int index, QAction* action);
+
 private:
     struct Impl;
     std::unique_ptr<Impl> m_impl;

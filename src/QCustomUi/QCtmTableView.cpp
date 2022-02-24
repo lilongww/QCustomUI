@@ -36,8 +36,7 @@
 /*!
     \brief      构造函数 \a parent.
 */
-QCtmTableView::QCtmTableView(QWidget* parent)
-    : QTableView(parent)
+QCtmTableView::QCtmTableView(QWidget* parent) : QTableView(parent)
 {
     horizontalHeader()->setObjectName("hHeader");
     verticalHeader()->setObjectName("vHeader");
@@ -51,9 +50,7 @@ QCtmTableView::QCtmTableView(QWidget* parent)
 /*!
     \brief      析构函数.
 */
-QCtmTableView::~QCtmTableView()
-{
-}
+QCtmTableView::~QCtmTableView() {}
 
 /*!
     \reimp

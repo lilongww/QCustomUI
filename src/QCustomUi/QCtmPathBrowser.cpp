@@ -18,11 +18,11 @@
 **********************************************************************************/
 #include "QCtmPathBrowser.h"
 
-#include <QPainter>
-#include <QStyleOption>
-#include <QStyle>
 #include <QHoverEvent>
 #include <QLineEdit>
+#include <QPainter>
+#include <QStyle>
+#include <QStyleOption>
 
 struct PathNode
 {
@@ -34,12 +34,12 @@ struct QCtmPathBrowser::Impl
 {
     QString path;
     std::vector<PathNode> nodes;
-    bool readOnly{ false };
-    bool frame{ true };
+    bool readOnly { false };
+    bool frame { true };
     QTextOption textOption;
-    int spliterWidth{ 18 };
-    int hoverNode{ -1 };
-    QLineEdit* editor{ nullptr };
+    int spliterWidth { 18 };
+    int hoverNode { -1 };
+    QLineEdit* editor { nullptr };
 };
 
 /*!
@@ -54,9 +54,7 @@ struct QCtmPathBrowser::Impl
 /*!
     \brief      构造函数 \a parent.
 */
-QCtmPathBrowser::QCtmPathBrowser(QWidget* parent /*= nullptr*/)
-    : QWidget(parent)
-    , m_impl(std::make_unique<Impl>())
+QCtmPathBrowser::QCtmPathBrowser(QWidget* parent /*= nullptr*/) : QWidget(parent), m_impl(std::make_unique<Impl>())
 {
     setSizePolicy(QSizePolicy(QSizePolicy::Expanding, QSizePolicy::Fixed, QSizePolicy::LineEdit));
     m_impl->textOption.setAlignment(Qt::AlignCenter);
@@ -67,10 +65,7 @@ QCtmPathBrowser::QCtmPathBrowser(QWidget* parent /*= nullptr*/)
 /*!
     \brief      析构函数.
 */
-QCtmPathBrowser::~QCtmPathBrowser()
-{
-
-}
+QCtmPathBrowser::~QCtmPathBrowser() {}
 
 /*!
     \brief      设置显示路径 \a path.
@@ -90,28 +85,19 @@ void QCtmPathBrowser::setPath(QString path)
     \brief      返回显示路径.
     \sa         setPath
 */
-QString QCtmPathBrowser::path() const
-{
-    return m_impl->path;
-}
+QString QCtmPathBrowser::path() const { return m_impl->path; }
 
 /*!
     \brief      设置是否只读 \a flag.
     \sa         readOnly
 */
-void QCtmPathBrowser::setReadOnly(bool flag)
-{
-    m_impl->readOnly = flag;
-}
+void QCtmPathBrowser::setReadOnly(bool flag) { m_impl->readOnly = flag; }
 
 /*!
     \brief      返回是否只读.
     \sa         setReadOnly
 */
-bool QCtmPathBrowser::readOnly() const
-{
-    return m_impl->readOnly;
-}
+bool QCtmPathBrowser::readOnly() const { return m_impl->readOnly; }
 
 /*!
     \brief      设置自定义的文本编辑器 \a editor.
@@ -125,21 +111,21 @@ void QCtmPathBrowser::setLineEdit(QLineEdit* editor)
     m_impl->editor = editor;
     m_impl->editor->installEventFilter(this);
     m_impl->editor->hide();
-    connect(m_impl->editor, &QLineEdit::editingFinished, this, [=]()
-        {
-            setPath(m_impl->editor->text());
-            m_impl->editor->hide();
-        });
+    connect(m_impl->editor,
+            &QLineEdit::editingFinished,
+            this,
+            [=]()
+            {
+                setPath(m_impl->editor->text());
+                m_impl->editor->hide();
+            });
 }
 
 /*!
     \brief      返回文本编辑器.
     \sa         setLineEdit
 */
-QLineEdit* QCtmPathBrowser::lineEdit() const
-{
-    return m_impl->editor;
-}
+QLineEdit* QCtmPathBrowser::lineEdit() const { return m_impl->editor; }
 
 /*!
     \reimp
@@ -176,10 +162,7 @@ void QCtmPathBrowser::paintEvent(QPaintEvent* event)
 /*!
     \reimp
 */
-QSize QCtmPathBrowser::sizeHint() const
-{
-    return minimumSizeHint();
-}
+QSize QCtmPathBrowser::sizeHint() const { return minimumSizeHint(); }
 
 /*!
     \reimp
@@ -187,9 +170,9 @@ QSize QCtmPathBrowser::sizeHint() const
 QSize QCtmPathBrowser::minimumSizeHint() const
 {
     ensurePolished();
-    const auto& fm = fontMetrics();
+    const auto& fm      = fontMetrics();
     const auto& margins = this->contentsMargins();
-    int h = fm.height() + fm.leading() + margins.top() + margins.bottom();
+    int h               = fm.height() + fm.leading() + margins.top() + margins.bottom();
     QStyleOptionFrame opt;
     initStyleOption(&opt);
     return style()->sizeFromContents(QStyle::CT_LineEdit, &opt, QSize(100, 30), this);
@@ -274,19 +257,18 @@ bool QCtmPathBrowser::event(QEvent* e)
         if (auto evt = dynamic_cast<QHoverEvent*>(e); evt)
         {
             int hoverNode = -1;
-            auto pos = evt->position().toPoint();
-            if (auto it = std::find_if(m_impl->nodes.begin(), m_impl->nodes.end(), [pos](const auto& node)
-                {
-                    return node.rect.contains(pos);
-                }); it != m_impl->nodes.end())
+            auto pos      = evt->position().toPoint();
+            if (auto it =
+                    std::find_if(m_impl->nodes.begin(), m_impl->nodes.end(), [pos](const auto& node) { return node.rect.contains(pos); });
+                it != m_impl->nodes.end())
             {
                 hoverNode = std::distance(m_impl->nodes.begin(), it);
             }
-                if (m_impl->hoverNode != hoverNode)
-                {
-                    m_impl->hoverNode = hoverNode;
-                    update();
-                }
+            if (m_impl->hoverNode != hoverNode)
+            {
+                m_impl->hoverNode = hoverNode;
+                update();
+            }
         }
     }
     if (e->type() == QEvent::Leave)
@@ -317,7 +299,7 @@ void QCtmPathBrowser::generatorNodes()
         {
             x += m_impl->spliterWidth;
         }
-        auto width = this->fontMetrics().horizontalAdvance(strs[i]) + 10;
+        auto width            = this->fontMetrics().horizontalAdvance(strs[i]) + 10;
         m_impl->nodes[i].text = strs[i];
         m_impl->nodes[i].rect = QRect(x, rect.top(), width, rect.height());
         x += width;
@@ -333,9 +315,8 @@ void QCtmPathBrowser::initStyleOption(QStyleOptionFrame* option) const
         return;
 
     option->initFrom(this);
-    option->rect = contentsRect();
-    option->lineWidth = m_impl->frame ? style()->pixelMetric(QStyle::PM_DefaultFrameWidth, option, this)
-        : 0;
+    option->rect         = contentsRect();
+    option->lineWidth    = m_impl->frame ? style()->pixelMetric(QStyle::PM_DefaultFrameWidth, option, this) : 0;
     option->midLineWidth = 0;
     option->state |= QStyle::State_Sunken;
     if (m_impl->readOnly)

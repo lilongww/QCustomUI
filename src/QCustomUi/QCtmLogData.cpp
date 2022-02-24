@@ -40,52 +40,35 @@
     \brief      构造函数 \a type, \a context, \a msg.
 */
 QCtmLogData::QCtmLogData(QtMsgType type, const QMessageLogContext& context, const QString& msg)
-    : m_type(type)
-    , m_msg(msg)
-    , m_dateTime(QDateTime::currentDateTime())
+    : m_type(type), m_msg(msg), m_dateTime(QDateTime::currentDateTime())
 {
     m_context.category = context.category;
-    m_context.file = context.file;
-    m_context.line = context.line;
+    m_context.file     = context.file;
+    m_context.line     = context.line;
     m_context.function = context.function;
 }
 
 /*!
     \brief      析构函数.
 */
-QCtmLogData::~QCtmLogData()
-{
-
-}
+QCtmLogData::~QCtmLogData() {}
 
 /*!
     \brief      返回日志类型.
 */
-QtMsgType QCtmLogData::type() const
-{
-    return m_type;
-}
+QtMsgType QCtmLogData::type() const { return m_type; }
 
 /*!
     \brief      返回日志上下文.
 */
-const QMessageLogContext& QCtmLogData::context() const
-{
-    return m_context;
-}
+const QMessageLogContext& QCtmLogData::context() const { return m_context; }
 
 /*!
     \brief      返回日志内容.
 */
-const QString& QCtmLogData::msg() const
-{
-    return m_msg;
-}
+const QString& QCtmLogData::msg() const { return m_msg; }
 
 /*!
     \brief      返回日志时间.
 */
-const QDateTime& QCtmLogData::dateTime() const
-{
-    return m_dateTime;
-}
+const QDateTime& QCtmLogData::dateTime() const { return m_dateTime; }
