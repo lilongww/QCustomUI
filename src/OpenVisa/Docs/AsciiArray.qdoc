@@ -1,0 +1,27 @@
+﻿/*!
+    \class      OpenVisa::AsciiArray
+    \brief      Visa返回Ascii文本类型数组时，使用该类进行解析.
+    \note       该类型仅用作中间件来转换，当其长期保存时，不能进行转换，只能在该值消亡时转换其中文本.
+    \ingroup    openvisa
+    \inmodule   InstrumentDrivers
+    \inheaderfile AsciiArray.h
+*/
+
+/*!
+    \fn         template<typename T> OpenVisa::AsciiArray<T>::AsciiArray(std::string&& buffer, std::size_t offset = 0)
+    \brief      从 \a buffer 构造文本数组解析器并接管 \a buffer 的生命周期，跳过前面 \a offset 个字符串进行解析.例如：
+    \code
+    AsciiArray<int>(readAll());
+    // or
+    std::string buf = readAll();
+    AsciiArray<double>(std::move(buf));
+    \endcode
+*/
+
+/*!
+    \fn         template<typename T> OpenVisa::AsciiArray<T>::operator std::vector<T>() const&&
+    \brief      隐式转换为vector.
+    \code
+    std::vector<double> vec = AsciiArray<vec>(readAll());
+    \endcode
+*/

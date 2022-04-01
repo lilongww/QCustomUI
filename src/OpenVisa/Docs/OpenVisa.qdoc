@@ -1,0 +1,6 @@
+﻿/*!
+    \namespace  OpenVisa
+    \brief      开源 Visa 通讯库.
+    \ingroup    openvisa
+    \inmodule   InstrumentDrivers
+*/

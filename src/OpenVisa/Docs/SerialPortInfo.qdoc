@@ -1,0 +1,70 @@
+﻿/*!
+    \class      OpenVisa::SerialPortInfo
+    \brief      串口信息类.
+    \note       现在仅支持windows平台.
+    \ingroup    openvisa
+    \inmodule   InstrumentDrivers
+    \inheaderfile SerialPortInfo.h
+*/
+
+/*!
+    \fn         OpenVisa::SerialPortInfo::SerialPortInfo()
+    \brief      构造函数.
+*/
+
+/*!
+    \fn         OpenVisa::SerialPortInfo::~SerialPortInfo()
+    \brief      析构函数.
+*/
+
+/*!
+    \fn         const std::string& OpenVisa::SerialPortInfo::portName() const noexcept
+    \brief      返回串口名称.
+*/
+
+/*!
+    \fn         const std::string& OpenVisa::SerialPortInfo::description() const noexcept
+    \brief      返回串口描述信息.
+*/
+
+/*!
+    \fn         const std::string& OpenVisa::SerialPortInfo::hardwareID() const noexcept
+    \brief      返回串口硬件ID.
+*/
+
+/*!
+    \fn         const std::string& OpenVisa::SerialPortInfo::manufacturer() const noexcept
+    \brief      返回串口生产商.
+*/
+
+/*!
+    \fn         bool OpenVisa::SerialPortInfo::hasVendorId() const noexcept
+    \brief      返回串口是否有 vendor id.
+*/
+
+/*!
+    \fn         unsigned short OpenVisa::SerialPortInfo::vendorId() const noexcept
+    \brief      返回串口的 vendor id.
+*/
+
+/*!
+    \fn         bool OpenVisa::SerialPortInfo::hasProductId() const noexcept
+    \brief      返回串口是否有 product id.
+*/
+
+/*!
+    \fn         unsigned short OpenVisa::SerialPortInfo::productId() const noexcept
+    \brief      返回串口的 product id.
+*/
+
+/*!
+    \fn         const std::string& OpenVisa::SerialPortInfo::serialNumber() const noexcept
+    \brief      返回串口的序列号.
+    \note       一般只在 vid 或者 pid 存在的情况下才有序列号.
+*/
+
+/*!
+    \fn         std::vector<SerialPortInfo> OpenVisa::SerialPortInfo::listPorts()
+    \brief      返回计算机上存在的串口列表.
+    \note       仅windows有效.
+*/
