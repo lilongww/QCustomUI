@@ -1,0 +1,47 @@
+# Format Style Options - Created with Clang Power Tools
+---
+AccessModifierOffset: -4
+AlignConsecutiveAssignments: Consecutive
+AlignConsecutiveBitFields: Consecutive
+AlignTrailingComments: true
+AllowAllParametersOfDeclarationOnNextLine: false
+AllowShortBlocksOnASingleLine: Empty
+AllowShortCaseLabelsOnASingleLine: false
+AllowShortLambdasOnASingleLine: All
+AllowShortEnumsOnASingleLine: true
+AllowShortFunctionsOnASingleLine: All
+AllowShortIfStatementsOnASingleLine: Never
+AllowShortLoopsOnASingleLine: false
+AlwaysBreakAfterDefinitionReturnType: None
+AlwaysBreakAfterReturnType: None
+BasedOnStyle: Mozilla
+BreakBeforeBraces: Allman
+BreakBeforeInheritanceComma: true
+BreakInheritanceList: BeforeComma
+BreakConstructorInitializers: BeforeComma
+ColumnLimit: 140
+CompactNamespaces: true
+ConstructorInitializerAllOnOneLineOrOnePerLine: true
+ConstructorInitializerIndentWidth : 4
+ContinuationIndentWidth: 4
+ExperimentalAutoDetectBinPacking: true
+FixNamespaceComments: true
+IndentCaseBlocks: true
+IndentCaseLabels: false
+IndentRequires: false
+IndentWidth: 4
+MaxEmptyLinesToKeep: 1
+PointerAlignment: Left
+ReflowComments: true
+SortIncludes: true
+SortUsingDeclarations: true
+SpaceBeforeCpp11BracedList: true
+Standard: Latest
+StatementAttributeLikeMacros: 
+  - Q_UNUSED
+  - QT_REQUIRE_VERSION
+StatementMacros: 
+  - Q_UNUSED
+  - QT_REQUIRE_VERSION
+UseTab: Never
+...
