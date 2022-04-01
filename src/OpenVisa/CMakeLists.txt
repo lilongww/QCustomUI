@@ -1,8 +1,8 @@
 ﻿set(TARGET_NAME OpenVisa)
 
-include_directories(${PROJECT_SOURCE_DIR}/lib/include)
+find_package(Boost COMPONENTS regex system REQUIRED)
 
-find_package(Boost COMPONENTS asio REQUIRED)
+include_directories(${PROJECT_SOURCE_DIR}/lib/include ${Boost_INCLUDE_DIRS} ${LIBUSB_INCLUDEDIR})
 
 file(GLOB HEADERS "*.h")
 file(GLOB PRIVATES "Private/*.h" "Private/*.cpp")
