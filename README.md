@@ -27,8 +27,10 @@
 
 ### 1. 第三方库
 
-* BOOST库
-* LIBUSB
+* boost
+* libusb
+
+>我并没有太多时间来验证各版本的boost和libusb是否存在编译问题，我用的boost版本为 1.78.0，libusb库为1.0.25，如果使用其它版本的第三方库出现问题时，可以给我反馈。
 
 ### 2. 环境变量设置
 
@@ -43,3 +45,52 @@
 * 设置 ```LIBUSB_LIBRARY``` 为 libusb-1.0.lib 文件所在的路径，如：```F:/3rd/libusb/x64/Release/lib/libusb-1.0.lib```
 
 如果编译时没有找到 libusb.h，请检查```LIBUSB_INCLUDEDIR```的设置是否正确，如果编译动态库时出现链接错误，请检查```LIBUSB_LIBRARY``` 
+
+## 四、使用
+
+### 1. TCP Raw Socket
+
+```cpp
+OpenVisa::Object visa;
+visa.connect(OpenVisa::Address<OpenVisa::AddressType::RawSocket>("192.168.0.111", 9999);
+visa.send("*IDN?");
+std::cout << visa.readAll();
+```
+
+### 2. 串口
+
+```cpp
+OpenVisa::Object visa;
+visa.connect(OpenVisa::Address<OpenVisa::AddressType::SerialPort>(
+                        "COM3",
+                        115200,
+                        OpenVisa::DataBits::Data8,
+                        OpenVisa::FlowControl::None,
+                        OpenVisa::Parity::None,
+                        OpenVisa::StopBits::One));
+visa.send("*IDN?");
+std::cout << visa.readAll();
+```
+
+### 3. USB
+
+```cpp
+OpenVisa::Object visa;
+visa.connect(OpenVisa::Address<OpenVisa::AddressType::USB>(0x0a69, 0x0651, "0000000000001"));
+visa.send("*IDN?");
+std::cout << visa.readAll();
+```
+
+> 注意：如果安装过NI-VISA驱动库，我们无法访问NI-VISA的驱动，可以尝试安装这个驱动：https://pan.baidu.com/s/1onVU5vPZAHbREZ_zEVLA0A，提取码9dmy，或者使用Zadig将驱动程序替换为WinUSB。
+
+### 4. VXI-11
+
+```cpp
+OpenVisa::Object visa;
+visa.connect(OpenVisa::Address<OpenVisa::AddressType::VXI11>("192.168.0.111"));
+visa.send("*IDN?");
+std::cout << visa.readAll();
+```
+
+
+
