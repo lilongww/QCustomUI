@@ -22,7 +22,7 @@
 
 namespace OpenVisa
 {
-class Object::Attribute
+class OPENVISA_EXPORT Object::Attribute
 {
 public:
     Attribute();

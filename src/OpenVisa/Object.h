@@ -20,6 +20,7 @@
 
 #include "Address.h"
 #include "AutoLink.h"
+#include "openvisa_global.h"
 
 #include <chrono>
 #include <format>
@@ -30,7 +31,7 @@ namespace OpenVisa
 template<typename T>
 concept IsAddress = IsVisaAddress<T>;
 
-class Object
+class OPENVISA_EXPORT Object
 {
 public:
     class CommonCommand;

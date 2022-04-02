@@ -18,9 +18,8 @@
 **********************************************************************************/
 #pragma once
 
-#ifndef OPEN_VISA_LIB
+#ifndef OPENVISA_LIB
 #ifdef _MSC_VER
-#pragma comment(lib, "libusb-1.0.lib")
 #ifdef _DEBUG
 #pragma comment(lib, "OpenVisad.lib")
 #else
@@ -29,5 +28,6 @@
 #endif
 #endif
 #ifdef WIN32
+#pragma comment(lib, "libusb-1.0.lib")
 #pragma comment(lib, "Setupapi.lib")
 #endif

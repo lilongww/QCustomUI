@@ -1,5 +1,15 @@
 ﻿set(TARGET_NAME OpenVisa)
 
+add_compile_definitions(OPENVISA_LIB)
+link_directories(${LIBUSB_LIBRARY})
+
+if(BUILD_OPENVISA_STATIC)
+    add_compile_definitions(BUILD_OPENVISA_STATIC)
+    set(OPENVISA_OPT)
+else()
+    set(OPENVISA_OPT SHARED)
+endif()
+
 find_package(Boost COMPONENTS regex system REQUIRED)
 
 include_directories(${PROJECT_SOURCE_DIR}/lib/include ${Boost_INCLUDE_DIRS} ${LIBUSB_INCLUDEDIR})
@@ -13,7 +23,7 @@ source_group("Sources" FILES ${SOURCES})
 source_group("Privates" FILES ${PRIVATES})
 source_group("Docs" FILES ${DOCS})
 
-add_library(${TARGET_NAME}
+add_library(${TARGET_NAME} ${OPENVISA_OPT}
     ${HEADERS}
     ${SOURCES}
     ${PRIVATES}
@@ -26,10 +36,12 @@ set_property(TARGET ${TARGET_NAME} PROPERTY FOLDER "Drivers")
 install(TARGETS ${TARGET_NAME}
     CONFIGURATIONS Debug
     ARCHIVE DESTINATION ${INSTALL_LIBRARYDIR}
+    RUNTIME DESTINATION ${INSTALL_BINDIR}
     PUBLIC_HEADER DESTINATION ${INSTALL_INCLUDEDIR}/${TARGET_NAME}
 )
 install(TARGETS ${TARGET_NAME}
     CONFIGURATIONS Release
     ARCHIVE DESTINATION ${INSTALL_LIBRARYDIR}
+    RUNTIME DESTINATION ${INSTALL_BINDIR}
     PUBLIC_HEADER DESTINATION ${INSTALL_INCLUDEDIR}/${TARGET_NAME}
 )

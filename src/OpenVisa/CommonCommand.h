@@ -24,7 +24,7 @@
 
 namespace OpenVisa
 {
-class Object::CommonCommand
+class OPENVISA_EXPORT Object::CommonCommand
 {
 public:
     void cls();

@@ -18,12 +18,14 @@
 **********************************************************************************/
 #pragma once
 
+#include "openvisa_global.h"
+
 #include <string>
 #include <vector>
 
 namespace OpenVisa
 {
-class SerialPortInfo
+class OPENVISA_EXPORT SerialPortInfo
 {
 public:
     inline SerialPortInfo() noexcept {}
