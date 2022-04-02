@@ -19,7 +19,6 @@
 #pragma once
 
 #include "Address.h"
-#include "AutoLink.h"
 #include "openvisa_global.h"
 
 #include <chrono>

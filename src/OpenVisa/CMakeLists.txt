@@ -30,6 +30,13 @@ add_library(${TARGET_NAME} ${OPENVISA_OPT}
     ${DOCS}
     )
 
+if(NOT BUILD_OPENVISA_STATIC)
+    if(WIN32)
+        target_link_libraries(${TARGET_NAME} PUBLIC ${LIBUSB_LIBRARY} Setupapi)
+    else()
+        target_link_libraries(${TARGET_NAME} PUBLIC ${LIBUSB_LIBRARY} Setupapi)
+    endif()
+endif()
 set_target_properties(${TARGET_NAME} PROPERTIES PUBLIC_HEADER "${HEADERS}")
 set_property(TARGET ${TARGET_NAME} PROPERTY FOLDER "Drivers")
 
