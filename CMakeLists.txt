@@ -25,8 +25,8 @@ if(MSVC)
   endif()
 endif()
 
-find_path(LIBUSB_INCLUDEDIR libusb/libusb.h DOC "Header directory for libusb." REQUIRED)
-find_library(LIBUSB_LIBRARY libusb-1.0 libusb DOC "libusb library file." REQUIRED)
+find_path(LIBUSB_INCLUDEDIR libusb.h PATH_SUFFIXES libusb DOC "Header directory for libusb." REQUIRED)
+find_file(LIBUSB_LIBRARY libusb-1.0 DOC "libusb library file." REQUIRED)
 
 option(BUILD_OPENVISA_STATIC "Build OpenVisa static library." false)
 

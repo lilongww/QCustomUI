@@ -2,7 +2,6 @@
 
 add_compile_definitions(OPENVISA_LIB)
 link_directories(${LIBUSB_LIBRARY})
-
 if(BUILD_OPENVISA_STATIC)
     add_compile_definitions(BUILD_OPENVISA_STATIC)
     set(OPENVISA_OPT)
