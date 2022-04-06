@@ -29,7 +29,7 @@ struct Object::Attribute::Impl
     \class      OpenVisa::Object::Attribute
     \brief      驱动属性集.
     \ingroup    openvisa
-    \inmodule   InstrumentDrivers
+    \inmodule   OpenVisa
     \inheaderfile Attribute.h
 */
 

@@ -3,7 +3,7 @@
     \brief      Visa返回Ascii文本类型数组时，使用该类进行解析.
     \note       该类型仅用作中间件来转换，当其长期保存时，不能进行转换，只能在该值消亡时转换其中文本.
     \ingroup    openvisa
-    \inmodule   InstrumentDrivers
+    \inmodule   OpenVisa
     \inheaderfile AsciiArray.h
 */
 

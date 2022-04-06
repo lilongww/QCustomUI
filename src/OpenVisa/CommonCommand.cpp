@@ -25,7 +25,7 @@ namespace OpenVisa
     \class      OpenVisa::Object::CommonCommand
     \brief      IEEE488.2公共指令集API接口.
     \ingroup    openvisa
-    \inmodule   InstrumentDrivers
+    \inmodule   OpenVisa
     \inheaderfile CommonCommand.h
 */
 

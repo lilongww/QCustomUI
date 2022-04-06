@@ -3,7 +3,7 @@
     \brief      串口信息类.
     \note       现在仅支持windows平台.
     \ingroup    openvisa
-    \inmodule   InstrumentDrivers
+    \inmodule   OpenVisa
     \inheaderfile SerialPortInfo.h
 */
 

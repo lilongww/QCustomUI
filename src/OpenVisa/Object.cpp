@@ -35,7 +35,7 @@ struct Object::Impl
     \class      OpenVisa::Object
     \brief      仪器通讯基础库.
     \ingroup    openvisa
-    \inmodule   InstrumentDrivers
+    \inmodule   OpenVisa
     \inheaderfile Object.h
 */
 

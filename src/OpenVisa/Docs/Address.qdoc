@@ -7,7 +7,7 @@
                 串口通信.
     \value      USB
                 USBTMC通信.
-    \note       注意，使用USB连接必须安装"InstrumentDrivers/doc/OpenVisa/USBTMC/USB Test and Measurement Device (IVI).zip"驱动程序.如果安装了其他驱动程序，比如NI-VISA的驱动程序，应先卸载并删除原有驱动程序。
+    \b          注意，使用USB连接必须安装USBTMC驱动程序.如果安装NI-VISA的USBTMC驱动程序是无法访问的，应安装其他USBTMC驱动程序，参考 \l{https://zadig.akeo.ie/}{Zadig}.
     \value      VXI11
                 使用VXI11通信协议与设备通信.
 */
@@ -91,6 +91,6 @@
                         \endlist
                 \endlist
     \ingroup    openvisa
-    \inmodule   InstrumentDrivers
+    \inmodule   OpenVisa
     \inheaderfile Address.h
 */
