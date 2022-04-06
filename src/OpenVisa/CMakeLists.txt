@@ -18,16 +18,19 @@ file(GLOB HEADERS "*.h")
 file(GLOB PRIVATES "Private/*.h" "Private/*.cpp")
 file(GLOB SOURCES "*.cpp")
 file(GLOB DOCS "Docs/*.qdoc")
+file(GLOB RESOURCES "*.rc")
 source_group("Headers" FILES ${HEADERS})
 source_group("Sources" FILES ${SOURCES})
 source_group("Privates" FILES ${PRIVATES})
 source_group("Docs" FILES ${DOCS})
+source_group("Resources" FILES ${RESOURCES})
 
 add_library(${TARGET_NAME} ${OPENVISA_OPT}
     ${HEADERS}
     ${SOURCES}
     ${PRIVATES}
     ${DOCS}
+    ${RESOURCES}
     )
 
 if(NOT BUILD_OPENVISA_STATIC)
