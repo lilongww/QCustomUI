@@ -91,7 +91,7 @@ std::string VisaAdl<int>::toScpi(int val) { return std::to_string(val); }
 
 std::string VisaAdl<bool>::toScpi(bool source) { return source ? "ON" : "OFF"; }
 
-std::vector<std::string> split(const std::string& source, const std::string& s)
+OPENVISA_EXPORT std::vector<std::string> split(const std::string& source, const std::string& s)
 {
     std::regex re { s };
     return std::vector<std::string> { std::sregex_token_iterator(source.begin(), source.end(), re, -1), std::sregex_token_iterator() };

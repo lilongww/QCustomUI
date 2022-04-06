@@ -80,7 +80,7 @@ void Object::close() noexcept
 }
 
 template<>
-void Object::connect<Address<AddressType::RawSocket>>(const Address<AddressType::RawSocket>& addr,
+OPENVISA_EXPORT void Object::connect<Address<AddressType::RawSocket>>(const Address<AddressType::RawSocket>& addr,
                                                       const std::chrono::milliseconds& openTimeout /*= 5000*/,
                                                       const std::chrono::milliseconds& commandTimeout /*= 5000*/)
 {
@@ -91,7 +91,7 @@ void Object::connect<Address<AddressType::RawSocket>>(const Address<AddressType:
 }
 
 template<>
-void Object::connect<Address<AddressType::SerialPort>>(const Address<AddressType::SerialPort>& addr,
+OPENVISA_EXPORT void Object::connect<Address<AddressType::SerialPort>>(const Address<AddressType::SerialPort>& addr,
                                                        const std::chrono::milliseconds& openTimeout /*= 5000*/,
                                                        const std::chrono::milliseconds& commandTimeout /*= 5000*/)
 {
@@ -102,7 +102,7 @@ void Object::connect<Address<AddressType::SerialPort>>(const Address<AddressType
 }
 
 template<>
-void Object::connect<Address<AddressType::USB>>(const Address<AddressType::USB>& addr,
+OPENVISA_EXPORT void Object::connect<Address<AddressType::USB>>(const Address<AddressType::USB>& addr,
                                                 const std::chrono::milliseconds& openTimeout /*= 5000*/,
                                                 const std::chrono::milliseconds& commandTimeout /*= 5000*/)
 {
@@ -113,7 +113,7 @@ void Object::connect<Address<AddressType::USB>>(const Address<AddressType::USB>&
 }
 
 template<>
-void Object::connect<Address<AddressType::VXI11>>(const Address<AddressType::VXI11>& addr,
+OPENVISA_EXPORT void Object::connect<Address<AddressType::VXI11>>(const Address<AddressType::VXI11>& addr,
                                                   const std::chrono::milliseconds& openTimeout /*= 5000*/,
                                                   const std::chrono::milliseconds& commandTimeout /*= 5000*/)
 {

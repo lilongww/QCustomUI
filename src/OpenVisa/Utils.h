@@ -33,7 +33,7 @@
 
 namespace OpenVisa
 {
-std::vector<std::string> split(const std::string& source, const std::string& s);
+OPENVISA_EXPORT std::vector<std::string> split(const std::string& source, const std::string& s);
 
 template<typename... Args>
 struct VisaAdl<std::tuple<Args...>>
@@ -49,21 +49,21 @@ struct VisaAdl<std::tuple<Args...>>
 };
 
 template<>
-struct VisaAdl<bool>
+struct OPENVISA_EXPORT VisaAdl<bool>
 {
     static void fromScpi(const std::string& ret, bool& val);
     static std::string toScpi(bool source);
 };
 
 template<>
-struct VisaAdl<double>
+struct OPENVISA_EXPORT VisaAdl<double>
 {
     static void fromScpi(const std::string& ret, double& val);
     static std::string toScpi(double source);
 };
 
 template<>
-struct VisaAdl<int>
+struct OPENVISA_EXPORT VisaAdl<int>
 {
     static void fromScpi(const std::string& ret, int& val);
     static std::string toScpi(int source);
