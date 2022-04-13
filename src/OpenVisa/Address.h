@@ -140,11 +140,13 @@ private:
 template<>
 struct Address<AddressType::VXI11>
 {
-    inline Address(std::string_view ip) noexcept : m_ip(ip) {}
+    inline Address(std::string_view ip, std::string_view subAddress = "inst0") noexcept : m_ip(ip), m_subAddress(subAddress) {}
     inline const std::string& ip() const noexcept { return m_ip; }
+    inline const std::string& subAddress() const noexcept { return m_subAddress; }
 
 private:
     std::string m_ip;
+    std::string m_subAddress;
 };
 
 template<>

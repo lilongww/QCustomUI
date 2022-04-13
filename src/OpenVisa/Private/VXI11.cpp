@@ -121,7 +121,7 @@ void VXI11::connect(const Address<AddressType::VXI11>& address,
     getPorts();
     m_impl->socket.close();
     m_impl->socket.connect(Address<AddressType::RawSocket>(address.ip(), m_impl->corePort), openTimeout, commandTimeout);
-    VXI::Req::CreateLink link(m_impl->generateXid(), m_impl->clientId, false, 0, "");
+    VXI::Req::CreateLink link(m_impl->generateXid(), m_impl->clientId, false, 0, address.subAddress());
     auto resp = m_impl->createLink(link);
     if (resp.error() == VXI::Resp::DeviceErrorCode::NoError)
     {
