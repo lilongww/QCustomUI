@@ -150,13 +150,18 @@ private:
 template<>
 struct Address<AddressType::HiSLIP>
 {
-    inline Address(std::string_view ip, unsigned short port = 4880) noexcept : m_ip(ip), m_port(port) {}
+    inline Address(std::string_view ip, std::string_view subAddress = "hislip0", unsigned short port = 4880) noexcept
+        : m_ip(ip), m_subAddress(subAddress), m_port(port)
+    {
+    }
     inline const std::string& ip() const noexcept { return m_ip; }
     inline unsigned short port() const noexcept { return m_port; }
+    inline const std::string& subAddress() const noexcept { return m_subAddress; }
 
 private:
     std::string m_ip;
     unsigned short m_port;
+    std::string m_subAddress;
 };
 
 template<typename T>

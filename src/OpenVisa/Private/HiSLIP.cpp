@@ -136,7 +136,7 @@ void HiSLIP::connect(const Address<AddressType::HiSLIP>& address,
                      const std::chrono::milliseconds& commandTimeout)
 {
     m_impl->socket.connect(Address<AddressType::RawSocket>(address.ip(), address.port()), openTimeout, commandTimeout);
-    initialize("hislip0");
+    initialize(address.subAddress());
     m_impl->asyncSocket.connect(Address<AddressType::RawSocket>(address.ip(), address.port()), openTimeout, commandTimeout);
     initializeAsync();
     m_impl->connected = true;
@@ -196,9 +196,17 @@ std::string HiSLIP::readAll() const
 
 std::string HiSLIP::read(size_t size) const { return {}; }
 
-void HiSLIP::close() noexcept { m_impl->connected = false; }
+void HiSLIP::close() noexcept
+{
+    if (m_impl->connected)
+    {
+        m_impl->connected = false;
+        m_impl->socket.close();
+        m_impl->asyncSocket.close();
+    }
+}
 
-bool HiSLIP::connected() const noexcept { return m_impl->connected && m_impl->socket.connected(); }
+bool HiSLIP::connected() const noexcept { return m_impl->connected && m_impl->socket.connected() && m_impl->asyncSocket.connected(); }
 
 size_t HiSLIP::avalible() const noexcept { return {}; }
 
