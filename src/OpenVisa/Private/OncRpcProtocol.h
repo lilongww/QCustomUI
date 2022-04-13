@@ -18,11 +18,10 @@
 **********************************************************************************/
 #pragma once
 
-#include <bit>
+#include "Endian.h"
+
 #include <type_traits>
 #include <variant>
-
-#include <boost/endian.hpp>
 
 namespace OpenVisa
 {
@@ -64,26 +63,6 @@ struct Maplist
     Mapping map;
     Maplist* next { nullptr };
 };
-
-template<typename T>
-constexpr T toBigEndian(const T src)
-{
-    if constexpr (std::endian::native == std::endian::big || sizeof(T) == 1)
-        return src;
-    else
-    {
-        return boost::endian::native_to_big(src);
-    }
-}
-
-template<typename T>
-constexpr T fromBigEndian(const T src)
-{
-    if constexpr (std::endian::native == std::endian::big || sizeof(T) == 1)
-        return src;
-    else
-        return boost::endian::big_to_native(src);
-}
 
 class OpaqueAuth;
 class RPCBuffer : public std::string

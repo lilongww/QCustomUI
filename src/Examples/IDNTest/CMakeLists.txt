@@ -1,0 +1,18 @@
+set(TARGET_NAME IDNTest)
+
+file(GLOB SOURCES "*.cpp")
+
+add_executable(${TARGET_NAME} ${SOURCES})
+
+target_link_libraries(${TARGET_NAME} PUBLIC OpenVisa)
+set_property(TARGET ${TARGET_NAME} PROPERTY FOLDER "Examples")
+
+install(TARGETS ${TARGET_NAME}
+    CONFIGURATIONS Debug
+    RUNTIME DESTINATION ${INSTALL_BINDIR}/Debug
+)
+
+install(TARGETS ${TARGET_NAME}
+    CONFIGURATIONS Release
+    RUNTIME DESTINATION ${INSTALL_BINDIR}/Release
+)
