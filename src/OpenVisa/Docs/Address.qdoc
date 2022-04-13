@@ -85,7 +85,7 @@
                         \endlist
                 \endlist
                 \list
-                    \li OpenVisa::Address<OpenVisa::AddressType::VXI11>(std::string_view ip)
+                    \li OpenVisa::Address<OpenVisa::AddressType::VXI11>(std::string_view ip, std::string_view subAddress = "inst0")
                         \list
                             \li VXI11连接.
                         \endlist
