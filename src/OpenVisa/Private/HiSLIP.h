@@ -18,6 +18,7 @@
 **********************************************************************************/
 #pragma once
 
+#include "HiSLIPProtocol.h"
 #include "IOBase.h"
 
 namespace OpenVisa
@@ -36,6 +37,11 @@ public:
     void close() noexcept override;
     bool connected() const noexcept override;
     size_t avalible() const noexcept override;
+
+private:
+    void initialize(std::string_view subAddr);
+    void initializeAsync();
+    void errorCheck(HS::HSBuffer& buffer) const;
 
 private:
     struct Impl;

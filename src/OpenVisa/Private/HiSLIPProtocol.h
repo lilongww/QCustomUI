@@ -21,6 +21,7 @@
 #include "Endian.h"
 
 #include <array>
+#include <string>
 
 namespace OpenVisa
 {
@@ -28,27 +29,6 @@ namespace HS
 {
 #pragma pack(push)
 #pragma pack(1)
-
-class HSBuffer : public std::string
-{
-public:
-    using std::string::basic_string;
-    template<typename T>
-    requires std::is_arithmetic_v<T> || std::is_enum_v<T>
-    inline void append(const T bytes)
-    {
-        auto val = toBigEndian(bytes);
-        std::string::append(reinterpret_cast<const char*>(&val), sizeof(T));
-    }
-    template<typename T>
-    requires std::is_arithmetic_v<T> || std::is_enum_v<T>
-    inline size_t take(T& val)
-    {
-        val = fromBigEndian(*reinterpret_cast<T*>(data()));
-        erase(begin(), begin() + sizeof(T));
-        return sizeof(T);
-    }
-};
 
 enum class MessageType : unsigned char
 {
@@ -80,6 +60,26 @@ enum class MessageType : unsigned char
     AsyncLockInfoResponse
 };
 
+enum class FatalErrorCode : unsigned char
+{
+    Unknown,
+    MessageHeaderError,
+    CommunicationWithoutBothChannel,
+    InvalidInitSequence,
+    ServerRefusedWithMaximumClients,
+    SecureConnectionFailed
+};
+
+enum class ErrorCode : unsigned char
+{
+    Unknown,
+    UnrecognizedMessageType,
+    UnrecognizedControlCode,
+    UnrecognizedVendorDefinedMessage,
+    MessageTooLarge,
+    AuthenticationFailed
+};
+
 struct MessageHeader
 {
     unsigned char prologue[2] { 'H', 'S' };
@@ -99,6 +99,43 @@ struct MessageHeader
 };
 
 static_assert(sizeof(MessageHeader) == 16);
+
+class HSBuffer : public std::string
+{
+public:
+    using std::string::basic_string;
+    template<typename T>
+    requires std::is_arithmetic_v<T> || std::is_enum_v<T>
+    inline void append(const T bytes)
+    {
+        auto val = toBigEndian(bytes);
+        std::string::append(reinterpret_cast<const char*>(&val), sizeof(T));
+    }
+    template<typename T>
+    requires std::is_arithmetic_v<T> || std::is_enum_v<T>
+    inline size_t take(T& val)
+    {
+        val = fromBigEndian(*reinterpret_cast<T*>(data()));
+        erase(begin(), begin() + sizeof(T));
+        return sizeof(T);
+    }
+    inline bool isVaild() const noexcept
+    {
+        if (size() >= 2)
+            return *c_str() == 'H' && *(c_str() + 1) == 'S';
+        return false;
+    }
+    inline MessageType messageType() const { return static_cast<MessageType>(*(c_str() + 2)); }
+    inline size_t payloadLength() const { return fromBigEndian(*reinterpret_cast<const size_t*>(&(c_str()[sizeof(MessageHeader) - 8]))); }
+    inline bool isEnough() const noexcept // 字节数足够
+    {
+        if (sizeof(MessageHeader) > size())
+            return false;
+        else if (sizeof(MessageHeader) + payloadLength() > size())
+            return false;
+        return true;
+    }
+};
 
 namespace Req
 {
@@ -200,26 +237,11 @@ template<MessageType type>
 class Response
 {
 public:
-    virtual bool parse(HSBuffer& buffer)
+    virtual void parse(HSBuffer& buffer)
     {
-        if (buffer.size() < sizeof(MessageHeader))
-            return false; // 小于消息头
-        auto dataLen = fromBigEndian(*reinterpret_cast<size_t*>(&buffer[sizeof(MessageHeader) - 8]));
-        if (buffer.size() < sizeof(MessageHeader) + dataLen)
-            return false; // 小于消息头+数据
         buffer.take(m_header.prologue[0]);
         buffer.take(m_header.prologue[1]);
-        if (m_header.prologue[0] != 'H' && m_header.prologue[1] != 'S')
-        {
-            buffer.clear(); // 不是HS开头
-            return false;
-        }
         buffer.take(m_header.messageType);
-        if (m_header.messageType != type)
-        {
-            buffer.clear(); // 不是请求的消息
-            return false;
-        }
         buffer.take(m_header.controlCode);
         buffer.take(m_header.messageParameter.value);
         buffer.take(m_header.payloadLength);
@@ -228,7 +250,6 @@ public:
             m_data = HSBuffer(buffer.begin(), buffer.begin() + m_header.payloadLength);
             buffer.erase(buffer.begin(), buffer.begin() + m_header.payloadLength);
         }
-        return true;
     }
 
 protected:
@@ -265,6 +286,18 @@ class DataEnd : public Response<MessageType::DataEnd>
 {
 public:
     inline HSBuffer data() const noexcept { return m_data; }
+};
+
+class FatalError : public Response<MessageType::FatalError>
+{
+public:
+    inline FatalErrorCode code() const noexcept { return static_cast<FatalErrorCode>(m_header.controlCode); }
+};
+
+class Error : public Response<MessageType::Error>
+{
+public:
+    inline ErrorCode code() const noexcept { return static_cast<ErrorCode>(m_header.controlCode); }
 };
 } // namespace Resp
 #pragma pack(pop)
