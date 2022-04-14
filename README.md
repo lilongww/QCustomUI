@@ -17,8 +17,8 @@ API文档：https://llongww.gitee.io/openvisadocument
 - [x] 串口 Ascii通信
 - [x] USBTMC
 - [x] VXI-11
+- [x] HiSLIP
 - [ ] GPIB
-- [ ] HiSLIP
 
 由于个人精力原因，上述开发仅实现了基本通信功能，并未实现全功能VISA，如VISA的Event等功能，虽然未来计划是跨平台的，但目前部分功能仅实现了Windows端。
 
@@ -88,10 +88,26 @@ std::cout << visa.readAll();
 
 ```cpp
 OpenVisa::Object visa;
-visa.connect(OpenVisa::Address<OpenVisa::AddressType::VXI11>("192.168.0.111"));
+visa.connect(OpenVisa::Address<OpenVisa::AddressType::VXI11>("192.168.0.111", "inst0"));
+visa.send("*IDN?");
+std::cout << visa.readAll();
+```
+
+### 5. HiSLIP
+
+```cpp
+OpenVisa::Object visa;
+visa.connect(OpenVisa::Address<OpenVisa::AddressType::HiSLIP>("192.168.0.111", "hislip0"));
 visa.send("*IDN?");
 std::cout << visa.readAll();
 ```
 
 
 
+## 五、参考
+
+* USBTMC: 《USBTMC_1_00.pdf》《USBTMC_usb488_subclass_1_00.pdf》 https://www.usb.org/document-library/test-measurement-class-specification
+
+* VXI-11: 《RFC1057》 https://www.rfc-editor.org/rfc/rfc1057.html
+
+* HiSLIP: 《IVI-6.1_HiSLIP-2.0-2020-04-23.pdf》 https://www.ivifoundation.org/specifications/default.aspx
