@@ -18,11 +18,10 @@
 **********************************************************************************/
 #pragma once
 
-#include <bit>
+#include "Endian.h"
+
 #include <type_traits>
 #include <variant>
-
-#include <boost/endian.hpp>
 
 namespace OpenVisa
 {
@@ -34,7 +33,14 @@ inline namespace RPC
 
 constexpr auto MAX_AUTH_BYTES      = 400;
 constexpr unsigned int PortMapProg = 100'000;
-constexpr unsigned SizeHeaderMask  = std::endian::native == std::endian::big ? 0x80'00'00'00 : 0x00'00'00'80;
+
+struct TcpHeader
+{
+    unsigned int size         : 31;
+    unsigned int lastFragment : 1;
+};
+static_assert(sizeof(TcpHeader) == 4);
+
 enum class PortMapProc : unsigned int
 {
     Null,    // void (void)
@@ -65,26 +71,6 @@ struct Maplist
     Maplist* next { nullptr };
 };
 
-template<typename T>
-constexpr T toBigEndian(const T src)
-{
-    if constexpr (std::endian::native == std::endian::big || sizeof(T) == 1)
-        return src;
-    else
-    {
-        return boost::endian::native_to_big(src);
-    }
-}
-
-template<typename T>
-constexpr T fromBigEndian(const T src)
-{
-    if constexpr (std::endian::native == std::endian::big || sizeof(T) == 1)
-        return src;
-    else
-        return boost::endian::big_to_native(src);
-}
-
 class OpaqueAuth;
 class RPCBuffer : public std::string
 {
@@ -106,6 +92,31 @@ public:
         return sizeof(T);
     }
     inline size_t take(OpaqueAuth& val);
+    // 仅TCP
+    inline bool isEnough() const noexcept
+    {
+        if (this->size() < 4)
+            return false;
+        size_t offset { 0 };
+        for (;;)
+        {
+            auto header = headerOf(c_str() + offset);
+            if (header.lastFragment)
+                return offset + header.size + 4 <= size();
+            else if (size() >= offset + header.size + 4)
+                offset += header.size + 4;
+            else
+                return false;
+        }
+    }
+    inline TcpHeader headerSize() const noexcept { return headerOf(c_str()); }
+
+private:
+    inline TcpHeader headerOf(const char* ptr) const
+    {
+        auto tmp = fromBigEndian(*reinterpret_cast<const unsigned int*>(ptr));
+        return reinterpret_cast<TcpHeader&>(tmp);
+    }
 };
 
 enum class AuthFlavor : unsigned int
@@ -281,15 +292,18 @@ public:
         buffer += m_cred;
         buffer += m_verf;
 
-        setSizeByte(buffer);
+        setSizeByte(buffer, true);
         return buffer;
     }
 
-    static inline void setSizeByte(RPCBuffer& buffer)
+    static inline void setSizeByte(RPCBuffer& buffer, bool lastFragment)
     {
         if constexpr (type == Proto::TCP)
         { // TCP首先发送负字节数
-            *reinterpret_cast<int*>(buffer.data()) = toBigEndian<int>((static_cast<int>(buffer.size()) - 4)) | SizeHeaderMask;
+            TcpHeader header;
+            header.lastFragment                    = lastFragment;
+            header.size                            = buffer.size() - 4;
+            *reinterpret_cast<int*>(buffer.data()) = toBigEndian<int>(*reinterpret_cast<int*>(&header));
         }
     }
 
@@ -325,7 +339,7 @@ public:
         buffer.append(m_mapping.vers);
         buffer.append(m_mapping.prot);
         buffer.append(m_mapping.port);
-        RpcCall<type>::setSizeByte(buffer);
+        RpcCall<type>::setSizeByte(buffer, true);
         return buffer;
     }
 
@@ -342,43 +356,63 @@ class RpcReply
 public:
     inline RpcReply() {}
     inline ~RpcReply() {}
-    virtual bool parse(RPCBuffer& buffer, unsigned int xid)
+    virtual void parse(RPCBuffer& buffer, unsigned int xid)
     {
-        size_t total = 0;
+        unsigned int size { 0 };
+        bool lastFragment { false };
         if (type == Proto::TCP)
         {
-            if (buffer.size() < 4)
-                return false;
-            auto tmp = *reinterpret_cast<int*>(buffer.data()) & ~SizeHeaderMask;
-            total    = fromBigEndian(tmp);
-            if (buffer.size() < total + 4)
-                return false;
+            size         = buffer.headerSize().size;
+            lastFragment = buffer.headerSize().lastFragment;
             buffer.erase(buffer.begin(), buffer.begin() + 4);
         }
         else
-            total = buffer.size();
-        auto size = buffer.take(m_xid);
-        size += buffer.take(m_type);
-        size += buffer.take(m_replyStat);
+            size = static_cast<unsigned int>(buffer.size());
+        auto offset = buffer.take(m_xid);
+        offset += buffer.take(m_type);
+        offset += buffer.take(m_replyStat);
+
         switch (m_replyStat)
         {
         case OpenVisa::RPC::ReplyStat::Accept:
             {
                 auto& accept = std::get<0>(m_reply);
-                size += buffer.take(accept.ar_verf);
-                size += buffer.take(accept.ar_stat);
+                offset += buffer.take(accept.ar_verf);
+                offset += buffer.take(accept.ar_stat);
                 switch (accept.ar_stat)
                 {
                 case AcceptState::Success:
-                    m_buffer                  = RPCBuffer(buffer.begin(), buffer.begin() + (total - size));
-                    accept.ru.AR_results.wh   = buffer.data();
-                    accept.ru.AR_results.size = static_cast<unsigned int>(buffer.size());
-                    buffer.erase(buffer.begin(), buffer.begin() + (total - size));
-                    return true;
-                case AcceptState::ProgMismatch:
-                    size += buffer.take(accept.ru.AR_versions.high);
-                    size += buffer.take(accept.ru.AR_versions.low);
+                    {
+                        m_dataSize                = static_cast<unsigned int>(size - offset);
+                        m_buffer                  = RPCBuffer(buffer.begin(), buffer.begin() + m_dataSize);
+                        accept.ru.AR_results.wh   = buffer.data();
+                        accept.ru.AR_results.size = static_cast<unsigned int>(buffer.size());
+                        buffer.erase(buffer.begin(), buffer.begin() + m_dataSize);
+                        while (!lastFragment)
+                        {
+                            auto header = buffer.headerSize();
+                            m_buffer.std::string::append(buffer.begin() + 4, buffer.begin() + header.size + 4);
+                            buffer.erase(buffer.begin(), buffer.begin() + 4 + header.size);
+                            lastFragment = header.lastFragment;
+                        }
+                        return;
+                    }
+                case AcceptState::ProgUnavailbe:
+                    throw std::exception("remote hasn't exported program.");
                     break;
+                case AcceptState::ProgMismatch:
+                    offset += buffer.take(accept.ru.AR_versions.high);
+                    offset += buffer.take(accept.ru.AR_versions.low);
+                    throw std::exception(std::format("remote can't support version, minimum version: {}, maximum version: {}.",
+                                                     accept.ru.AR_versions.low,
+                                                     accept.ru.AR_versions.high)
+                                             .c_str());
+                case AcceptState::ProcUnavailbe:
+                    throw std::exception("program can't support procedure.");
+                case AcceptState::GarbageArgs:
+                    throw std::exception("procedure can't decode params.");
+                default:
+                    throw std::exception("unknown OpenVisa::RPC::AcceptState.");
                 }
             }
             break;
@@ -386,15 +420,17 @@ public:
             {
                 m_reply      = rejected_reply {};
                 auto& reject = std::get<1>(m_reply);
-                size += buffer.take(reject.rj_stat);
+                offset += buffer.take(reject.rj_stat);
                 switch (reject.rj_stat)
                 {
                 case RejectState::AuthError:
-                    size += buffer.take(reject.ru.RJ_why);
+                    offset += buffer.take(reject.ru.RJ_why);
+                    throw std::exception("remote can't authenticate caller.");
                     break;
                 case RejectState::RpcMismatch:
-                    size += buffer.take(reject.ru.RJ_versions.high);
-                    size += buffer.take(reject.ru.RJ_versions.low);
+                    offset += buffer.take(reject.ru.RJ_versions.high);
+                    offset += buffer.take(reject.ru.RJ_versions.low);
+                    throw std::exception("RPC version number != 2.");
                     break;
                 }
             }
@@ -402,16 +438,12 @@ public:
         default:
             break;
         }
-        if (total != size)
-        {
-            buffer.erase(buffer.begin(), buffer.begin() + total - size);
-        }
-        return false;
     }
 
     inline const RPCBuffer& buffer() const noexcept { return m_buffer; }
 
 protected:
+    unsigned int m_dataSize { 0 };
     unsigned int m_xid;
     MsgType m_type;
     ReplyStat m_replyStat;
@@ -425,12 +457,10 @@ class GetPort : public RpcReply<type>
 {
 public:
     inline unsigned short port() const { return m_port; }
-    bool parse(RPCBuffer& buffer, unsigned int xid) override
+    void parse(RPCBuffer& buffer, unsigned int xid) override
     {
-        auto ret = RpcReply<type>::parse(buffer, xid);
-        if (ret)
-            m_port = fromBigEndian(*reinterpret_cast<const unsigned int*>(RpcReply<type>::buffer().c_str()));
-        return ret;
+        RpcReply<type>::parse(buffer, xid);
+        m_port = fromBigEndian(*reinterpret_cast<const unsigned int*>(RpcReply<type>::buffer().c_str()));
     }
 
 private:

@@ -1,1 +1,2 @@
 add_subdirectory(OpenVisa)
+add_subdirectory(Examples)

@@ -18,6 +18,7 @@
 **********************************************************************************/
 #include "Object.h"
 #include "Attribute.h"
+#include "Private/HiSLIP.h"
 #include "Private/RawSocket.h"
 #include "Private/SerialPort.h"
 #include "Private/UsbTmc.h"
@@ -81,8 +82,8 @@ void Object::close() noexcept
 
 template<>
 OPENVISA_EXPORT void Object::connect<Address<AddressType::RawSocket>>(const Address<AddressType::RawSocket>& addr,
-                                                      const std::chrono::milliseconds& openTimeout /*= 5000*/,
-                                                      const std::chrono::milliseconds& commandTimeout /*= 5000*/)
+                                                                      const std::chrono::milliseconds& openTimeout /*= 5000*/,
+                                                                      const std::chrono::milliseconds& commandTimeout /*= 5000*/)
 {
     auto socket = std::make_shared<RawSocket>(m_impl->attr);
     socket->connect(addr, openTimeout, commandTimeout);
@@ -92,8 +93,8 @@ OPENVISA_EXPORT void Object::connect<Address<AddressType::RawSocket>>(const Addr
 
 template<>
 OPENVISA_EXPORT void Object::connect<Address<AddressType::SerialPort>>(const Address<AddressType::SerialPort>& addr,
-                                                       const std::chrono::milliseconds& openTimeout /*= 5000*/,
-                                                       const std::chrono::milliseconds& commandTimeout /*= 5000*/)
+                                                                       const std::chrono::milliseconds& openTimeout /*= 5000*/,
+                                                                       const std::chrono::milliseconds& commandTimeout /*= 5000*/)
 {
     auto serialPort = std::make_shared<SerialPort>(m_impl->attr);
     serialPort->connect(addr, openTimeout, commandTimeout);
@@ -103,8 +104,8 @@ OPENVISA_EXPORT void Object::connect<Address<AddressType::SerialPort>>(const Add
 
 template<>
 OPENVISA_EXPORT void Object::connect<Address<AddressType::USB>>(const Address<AddressType::USB>& addr,
-                                                const std::chrono::milliseconds& openTimeout /*= 5000*/,
-                                                const std::chrono::milliseconds& commandTimeout /*= 5000*/)
+                                                                const std::chrono::milliseconds& openTimeout /*= 5000*/,
+                                                                const std::chrono::milliseconds& commandTimeout /*= 5000*/)
 {
     auto usb = std::make_shared<UsbTmc>(m_impl->attr);
     usb->connect(addr, openTimeout, commandTimeout);
@@ -114,12 +115,23 @@ OPENVISA_EXPORT void Object::connect<Address<AddressType::USB>>(const Address<Ad
 
 template<>
 OPENVISA_EXPORT void Object::connect<Address<AddressType::VXI11>>(const Address<AddressType::VXI11>& addr,
-                                                  const std::chrono::milliseconds& openTimeout /*= 5000*/,
-                                                  const std::chrono::milliseconds& commandTimeout /*= 5000*/)
+                                                                  const std::chrono::milliseconds& openTimeout /*= 5000*/,
+                                                                  const std::chrono::milliseconds& commandTimeout /*= 5000*/)
 {
     auto vxi11 = std::make_shared<VXI11>(m_impl->attr);
     vxi11->connect(addr, openTimeout, commandTimeout);
     m_impl->io = vxi11;
+    afterConnected();
+}
+
+template<>
+OPENVISA_EXPORT void Object::connect<Address<AddressType::HiSLIP>>(const Address<AddressType::HiSLIP>& addr,
+                                                                   const std::chrono::milliseconds& openTimeout /*= 5000*/,
+                                                                   const std::chrono::milliseconds& commandTimeout /*= 5000*/)
+{
+    auto hiSLIP = std::make_shared<HiSLIP>(m_impl->attr);
+    hiSLIP->connect(addr, openTimeout, commandTimeout);
+    m_impl->io = hiSLIP;
     afterConnected();
 }
 /*!
