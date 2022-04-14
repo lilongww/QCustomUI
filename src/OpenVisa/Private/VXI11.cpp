@@ -143,7 +143,7 @@ std::string VXI11::readAll() const
     std::string buffer;
     do
     {
-        buffer.append(read(1024000));
+        buffer.append(read(std::mega::num));
     } while (avalible());
     return buffer;
 }
@@ -166,14 +166,46 @@ std::string VXI11::read(size_t size) const
             VXI::Resp::DeviceRead resp;
             resp.parse(buffer, m_impl->xid);
 
-            if (resp.error() == VXI::Resp::DeviceErrorCode::NoError)
+            switch (resp.error())
             {
+            case VXI::Resp::DeviceErrorCode::NoError:
                 reqcnt          = resp.reason().reqcnt || resp.reason().end;
                 m_impl->avalibe = !resp.reason().end;
                 return std::move(resp).data();
+            case VXI::Resp::DeviceErrorCode::SyntaxError:
+                throw std::exception("Syntax error.");
+            case VXI::Resp::DeviceErrorCode::NotAccessible:
+                throw std::exception("device not accessible.");
+            case VXI::Resp::DeviceErrorCode::InvalidLinkId:
+                throw std::exception("invalid link identifier.");
+            case VXI::Resp::DeviceErrorCode::ParamError:
+                throw std::exception("parameter error.");
+            case VXI::Resp::DeviceErrorCode::ChannelNotEstablished:
+                throw std::exception("channel not established.");
+            case VXI::Resp::DeviceErrorCode::OperationNotSupported:
+                throw std::exception("operation not supported.");
+            case VXI::Resp::DeviceErrorCode::OutOfResources:
+                throw std::exception("out of resources.");
+            case VXI::Resp::DeviceErrorCode::DeviceLocked:
+                throw std::exception("device locked by another link.");
+            case VXI::Resp::DeviceErrorCode::NoLock:
+                throw std::exception("no lock held by this link.");
+            case VXI::Resp::DeviceErrorCode::Timeout:
+                throw std::exception("I/O timeout.");
+            case VXI::Resp::DeviceErrorCode::IOError:
+                throw std::exception("I/O error.");
+            case VXI::Resp::DeviceErrorCode::InvalidAddress:
+                throw std::exception("Invalid address.");
+            case VXI::Resp::DeviceErrorCode::Abort:
+                throw std::exception("abort.");
+            case VXI::Resp::DeviceErrorCode::ChannelAlreadyEstablished:
+                throw std::exception("channel already established.");
+            default:
+                throw std::exception("Unknown VXI::Resp::DeviceErrorCode.");
             }
         }
     }
+    throw std::exception("Unknown error for vxi read.");
 }
 
 void VXI11::close() noexcept
