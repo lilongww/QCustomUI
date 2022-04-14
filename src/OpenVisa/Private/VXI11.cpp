@@ -57,7 +57,6 @@ struct VXI11::Impl
     VXI::Resp::CreateLink createLink(const VXI::Req::CreateLink& link);
     VXI::Resp::DestroyLink destroyLink(const VXI::Req::DestroyLink& link);
     VXI::Resp::DeviceWrite deviceWrite(const VXI::Req::DeviceWrite& data);
-    VXI::Resp::DeviceRead deviceRead(const VXI::Req::DeviceRead& data);
 };
 
 VXI::Resp::CreateLink VXI11::Impl::createLink(const VXI::Req::CreateLink& link)
@@ -65,11 +64,8 @@ VXI::Resp::CreateLink VXI11::Impl::createLink(const VXI::Req::CreateLink& link)
     socket.send(link);
     auto buffer = read();
     VXI::Resp::CreateLink resp;
-    if (resp.parse(buffer, xid))
-    {
-        return resp;
-    }
-    throw std::exception("Parse CreateLink failed.");
+    resp.parse(buffer, xid);
+    return resp;
 }
 
 VXI::Resp::DestroyLink VXI11::Impl::destroyLink(const VXI::Req::DestroyLink& link)
@@ -77,11 +73,8 @@ VXI::Resp::DestroyLink VXI11::Impl::destroyLink(const VXI::Req::DestroyLink& lin
     socket.send(link);
     auto buffer = read();
     VXI::Resp::DestroyLink resp;
-    if (resp.parse(buffer, xid))
-    {
-        return resp;
-    }
-    throw std::exception("Parse DestroyLink failed.");
+    resp.parse(buffer, xid);
+    return resp;
 }
 
 VXI::Resp::DeviceWrite VXI11::Impl::deviceWrite(const VXI::Req::DeviceWrite& data)
@@ -89,23 +82,8 @@ VXI::Resp::DeviceWrite VXI11::Impl::deviceWrite(const VXI::Req::DeviceWrite& dat
     socket.send(data);
     auto buffer = read();
     VXI::Resp::DeviceWrite resp;
-    if (resp.parse(buffer, xid))
-    {
-        return resp;
-    }
-    throw std::exception("Parse DeviceWrite failed.");
-}
-
-VXI::Resp::DeviceRead VXI11::Impl::deviceRead(const VXI::Req::DeviceRead& data)
-{
-    socket.send(data);
-    auto buffer = read();
-    VXI::Resp::DeviceRead resp;
-    if (resp.parse(buffer, xid))
-    {
-        return resp;
-    }
-    throw std::exception("Parse DeviceRead failed.");
+    resp.parse(buffer, xid);
+    return resp;
 }
 
 VXI11::VXI11(Object::Attribute const& attr) : IOBase(attr), m_impl(std::make_unique<Impl>(attr)) {}
@@ -163,55 +141,39 @@ void VXI11::send(const std::string& buffer) const
 std::string VXI11::readAll() const
 {
     std::string buffer;
-    for (bool end { false }; !end;)
+    do
     {
-        VXI::Req::DeviceRead req(m_impl->generateXid(),
-                                 m_impl->linkId,
-                                 static_cast<unsigned long>(m_impl->maxBufferSize),
-                                 static_cast<unsigned long>(m_impl->ioTimeout.count()),
-                                 0);
-        auto resp = m_impl->deviceRead(req);
-        if (resp.error() == VXI::Resp::DeviceErrorCode::NoError)
-        {
-            end = resp.reason().end;
-            buffer.append(std::move(resp).data());
-        }
-        else
-        {
-            // TODO:
-            throw std::exception("readAll error.");
-        }
-    }
+        buffer.append(read(1024000));
+    } while (avalible());
     return buffer;
 }
 
 std::string VXI11::read(size_t size) const
 {
-    std::string buffer;
-    size_t total = 0;
-    for (bool end { false }; !end || total == size;)
+    std::string data;
+
+    VXI::Req::DeviceRead req(
+        m_impl->generateXid(), m_impl->linkId, static_cast<unsigned long>(size), static_cast<unsigned long>(m_impl->ioTimeout.count()), 0);
+
+    m_impl->socket.send(req);
+
+    RPCBuffer buffer;
+    for (bool reqcnt { false }; !reqcnt;)
     {
-        auto reqSize = size - total > m_impl->maxBufferSize ? m_impl->maxBufferSize : size;
-        VXI::Req::DeviceRead req(m_impl->generateXid(),
-                                 m_impl->linkId,
-                                 static_cast<unsigned long>(reqSize),
-                                 static_cast<unsigned long>(m_impl->ioTimeout.count()),
-                                 0);
-        auto resp = m_impl->deviceRead(req);
-        if (resp.error() == VXI::Resp::DeviceErrorCode::NoError)
+        buffer.std::string::append(m_impl->read());
+        if (buffer.isEnough())
         {
-            end             = resp.reason().end;
-            m_impl->avalibe = !end;
-            total += resp.size();
-            buffer.append(std::move(resp).data());
-        }
-        else
-        {
-            // TODO:
-            throw std::exception("read error.");
+            VXI::Resp::DeviceRead resp;
+            resp.parse(buffer, m_impl->xid);
+
+            if (resp.error() == VXI::Resp::DeviceErrorCode::NoError)
+            {
+                reqcnt          = resp.reason().reqcnt || resp.reason().end;
+                m_impl->avalibe = !resp.reason().end;
+                return std::move(resp).data();
+            }
         }
     }
-    return buffer;
 }
 
 void VXI11::close() noexcept
@@ -237,11 +199,8 @@ void VXI11::getPorts()
 
         RPC::Resp::GetPort<Proto::TCP> port;
         auto buffer = m_impl->read();
-        bool ret    = port.parse(buffer, m_impl->xid);
-        if (ret)
-            return port.port();
-        else
-            throw std::exception("Port Map failed");
+        port.parse(buffer, m_impl->xid);
+        return port.port();
     };
 
     m_impl->corePort = func(CoreChannel);

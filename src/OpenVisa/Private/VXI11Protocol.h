@@ -98,7 +98,7 @@ public:
             if (auto r = m_name.size() % 4; r)
                 buffer.resize(buffer.size() + (4 - r));
         }
-        setSizeByte(buffer);
+        setSizeByte(buffer, true);
         return buffer;
     }
 
@@ -121,7 +121,7 @@ public:
     {
         auto buffer = RPC::Req::RpcCall<Proto::TCP>::operator OpenVisa::RPC::RPCBuffer();
         buffer.append(m_linkId);
-        setSizeByte(buffer);
+        setSizeByte(buffer, true);
         return buffer;
     }
 
@@ -161,7 +161,7 @@ public:
             if (auto ret = m_data.size() % 4; ret)
                 buffer.resize(buffer.size() + (4 - ret));
         }
-        setSizeByte(buffer);
+        setSizeByte(buffer, true);
         return buffer;
     }
 
@@ -202,7 +202,7 @@ public:
         buffer.append(m_lockTimeout);
         buffer.append(*reinterpret_cast<const unsigned long*>(&m_flags));
         buffer.append(m_termChar);
-        setSizeByte(buffer);
+        setSizeByte(buffer, true);
         return buffer;
     }
 
@@ -240,10 +240,9 @@ enum class DeviceErrorCode : long
 class CreateLink : public RPC::Resp::RpcReply<Proto::TCP>
 {
 public:
-    bool parse(RPCBuffer& buffer, unsigned int xid) override
+    void parse(RPCBuffer& buffer, unsigned int xid) override
     {
-        bool ret = RPC::Resp::RpcReply<Proto::TCP>::parse(buffer, xid);
-        if (ret)
+        RPC::Resp::RpcReply<Proto::TCP>::parse(buffer, xid);
         {
             auto buffer = this->buffer();
             buffer.take(m_error);
@@ -251,7 +250,6 @@ public:
             buffer.take(m_abortPort);
             buffer.take(m_maxRecvSize);
         }
-        return ret;
     }
     inline DeviceErrorCode error() const noexcept { return m_error; }
     inline DeviceLink linkId() const noexcept { return m_lid; }
@@ -269,15 +267,13 @@ private:
 class DestroyLink : public RPC::Resp::RpcReply<Proto::TCP>
 {
 public:
-    bool parse(RPCBuffer& buffer, unsigned int xid) override
+    void parse(RPCBuffer& buffer, unsigned int xid) override
     {
-        auto ret = RPC::Resp::RpcReply<Proto::TCP>::parse(buffer, xid);
-        if (ret)
+        RPC::Resp::RpcReply<Proto::TCP>::parse(buffer, xid);
         {
             auto buffer = this->buffer();
             buffer.take(m_error);
         }
-        return ret;
     }
     inline DeviceErrorCode error() const noexcept { return m_error; }
 
@@ -288,16 +284,15 @@ private:
 class DeviceWrite : public RPC::Resp::RpcReply<RPC::Proto::TCP>
 {
 public:
-    bool parse(RPCBuffer& buffer, unsigned int xid) override
+    void parse(RPCBuffer& buffer, unsigned int xid) override
     {
-        auto ret = RPC::Resp::RpcReply<RPC::Proto::TCP>::parse(buffer, xid);
-        if (ret)
+        RPC::Resp::RpcReply<RPC::Proto::TCP>::parse(buffer, xid);
         {
+
             auto buffer = this->buffer();
             buffer.take(m_error);
             buffer.take(m_size);
         }
-        return ret;
     }
     inline DeviceErrorCode error() const noexcept { return m_error; }
     inline unsigned long size() const noexcept { return m_size; }
@@ -310,19 +305,18 @@ private:
 class DeviceRead : public RPC::Resp::RpcReply<RPC::Proto::TCP>
 {
 public:
-    bool parse(RPCBuffer& buffer, unsigned int xid) override
+    void parse(RPCBuffer& buffer, unsigned int xid) override
     {
-        auto ret = RPC::Resp::RpcReply<RPC::Proto::TCP>::parse(buffer, xid);
-        if (ret)
+        RPC::Resp::RpcReply<RPC::Proto::TCP>::parse(buffer, xid);
         {
             auto buffer = this->buffer();
-            buffer.take(m_error);
-            buffer.take(reinterpret_cast<long&>(m_reason));
-            unsigned long size;
-            buffer.take(size);
+            auto offset = buffer.take(m_error);
+            offset += buffer.take(reinterpret_cast<long&>(m_reason));
+            unsigned int size;
+            offset += buffer.take(size);
+            // 包大小
             m_buffer = std::string(buffer.begin(), buffer.begin() + size);
         }
-        return ret;
     }
     inline DeviceErrorCode error() const noexcept { return m_error; }
     inline DeviceReason reason() const noexcept { return m_reason; }
