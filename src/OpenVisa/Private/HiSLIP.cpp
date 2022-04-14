@@ -194,7 +194,7 @@ std::string HiSLIP::readAll() const
     }
 }
 
-std::string HiSLIP::read(size_t size) const { return {}; }
+std::string HiSLIP::read(size_t size) const { return readAll(); }
 
 void HiSLIP::close() noexcept
 {
