@@ -125,7 +125,7 @@ void VXI11::send(const std::string& buffer) const
             static_cast<unsigned long>(m_impl->ioTimeout.count()),
             0,
             std::string_view(buffer.c_str() + offset,
-                             (buffer.size() - offset) > m_impl->maxBufferSize ? m_impl->maxBufferSize : buffer.size()),
+                             (buffer.size() - offset) > m_impl->maxBufferSize ? m_impl->maxBufferSize : (buffer.size() - offset)),
             VXI::DeviceFlag { .end = buffer.size() - offset <= m_impl->maxBufferSize });
 
         auto resp = m_impl->deviceWrite(data);
