@@ -106,8 +106,10 @@ std::cout << visa.readAll();
 
 ## 五、参考
 
-* USBTMC: 《USBTMC_1_00.pdf》《USBTMC_usb488_subclass_1_00.pdf》 https://www.usb.org/document-library/test-measurement-class-specification
+* USBTMC: [USBTMC_1_00.pdf, USBTMC_usb488_subclass_1_00.pdf](https://www.usb.org/document-library/test-measurement-class-specification)
 
-* VXI-11: 《RFC1057》 https://www.rfc-editor.org/rfc/rfc1057.html
+* VXI-11: [vxi-11.pdf](http://www.vxibus.org/specifications.html)
 
-* HiSLIP: 《IVI-6.1_HiSLIP-2.0-2020-04-23.pdf》 https://www.ivifoundation.org/specifications/default.aspx
+* * ONC-RPC: [RFC1057](https://www.rfc-editor.org/rfc/rfc1057.html)
+
+* HiSLIP: [IVI-6.1_HiSLIP-2.0-2020-04-23.pdf](https://www.ivifoundation.org/specifications/default.aspx)
