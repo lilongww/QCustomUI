@@ -1,4 +1,4 @@
-#include <OpenVisa/Object.h>
+﻿#include <OpenVisa/Object.h>
 
 #include <iostream>
 
@@ -18,6 +18,7 @@ int main(int argc, char* argv[])
         auto str = std::to_string(1024 * 1024);
         obj.send("MMEM:CDIR 'C:\\R_S'");
         obj.send("MMEMory:DATA '1.txt',#{}{}{}", str.size(), str, buffer);
+        obj.query("*IDN?");
     }
     catch (const std::exception& e)
     {

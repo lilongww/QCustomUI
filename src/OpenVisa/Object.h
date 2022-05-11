@@ -68,7 +68,7 @@ private:
 template<typename... Args>
 inline void Object::send(std::string_view fmt, const Args&... args)
 {
-    sendImpl(std::format(fmt, std::forward<const Args&>(args)...));
+    sendImpl(std::vformat(fmt, std::make_format_args(std::forward<const Args&>(args)...)));
 }
 
 template<typename... Args>

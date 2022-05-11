@@ -7,9 +7,12 @@
                 串口通信.
     \value      USB
                 USBTMC通信.
-    \b          注意，使用USB连接必须安装USBTMC驱动程序.如果安装NI-VISA的USBTMC驱动程序是无法访问的，应安装其他USBTMC驱动程序，参考 \l{https://zadig.akeo.ie/}{Zadig}.
+    \b          注意，使用USB连接必须安装USBTMC驱动程序.如果安装NI-VISA的USBTMC驱动程序是无法访问的，应安装其他USBTMC驱动程序，参考
+                \l{https://zadig.akeo.ie/}{Zadig}.
     \value      VXI11
                 使用VXI11通信协议与设备通信.
+    \value      HiSLIP
+                使用HiSLIP通信协议与设备通信.
 */
 
 /*!
@@ -88,6 +91,12 @@
                     \li OpenVisa::Address<OpenVisa::AddressType::VXI11>(std::string_view ip, std::string_view subAddress = "inst0")
                         \list
                             \li VXI11连接.
+                        \endlist
+                \endlist
+                \list
+                    \li OpenVisa::Address<OpenVisa::AddressType::HiSLIP>(std::string_view ip, std::string_view subAddress = "hislip0")
+                        \list
+                            \li HiSLIP连接.
                         \endlist
                 \endlist
     \ingroup    openvisa
