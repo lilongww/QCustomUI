@@ -261,7 +261,7 @@ void UsbTmc::close() noexcept
 
 bool UsbTmc::connected() const noexcept { return m_impl->handle; }
 
-size_t UsbTmc::avalible() const noexcept { return 0; }
+size_t UsbTmc::avalible() const noexcept { return m_impl->avalibe; }
 
 void UsbTmc::init() { libusb_init(&m_impl->context); }
 
