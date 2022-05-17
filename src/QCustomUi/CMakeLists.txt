@@ -161,6 +161,10 @@ set(TOOLS_SOURCES
  "QCtmFile.cpp"
 )
 
+set(BUTTONS_HEADERS "QCtmSwitchButton.h")
+
+set(BUTTONS_SOURCES "QCtmSwitchButton.cpp")
+
 set(UI_PRIVATE
  "Private/QCtmToolBoxItem.ui")
 
@@ -177,6 +181,7 @@ source_group("Headers/MessageTip" FILES ${MESSAGETIP_HEADERS})
 source_group("Headers/Display Widgets" FILES ${DISPLAYWIDGETS_HEADERS})
 source_group("Headers/Views" FILES ${VIEW_HEADERS})
 source_group("Headers/Tools" FILES ${TOOLS_HEADERS})
+source_group("Headers/Buttons" FILES ${BUTTONS_HEADERS})
 
 source_group("Sources" FILES ${SOURCES})
 source_group("Sources/Log" FILES ${LOG_SOURCES})
@@ -187,6 +192,7 @@ source_group("Sources/MessageTip" FILES ${MESSAGETIP_SOURCES})
 source_group("Sources/Display Widgets" FILES ${DISPLAYWIDGETS_SOURCES})
 source_group("Sources/Views" FILES ${VIEW_SOURCES})
 source_group("Sources/Tools" FILES ${TOOLS_SOURCES})
+source_group("Sources/Buttons" FILES ${BUTTONS_SOURCES})
 
 source_group("UI" FILES ${UI})
 source_group("UI/Private" FILES ${UI_PRIVATE})
@@ -202,6 +208,7 @@ add_library(QCustomUi SHARED
  ${DISPLAYWIDGETS_HEADERS}
  ${VIEW_HEADERS}
  ${TOOLS_HEADERS}
+ ${BUTTONS_HEADERS}
 
  ${SOURCES}
  ${PRIVATRE_SOURCES}
@@ -212,6 +219,7 @@ add_library(QCustomUi SHARED
  ${DISPLAYWIDGETS_SOURCES}
  ${VIEW_SOURCES}
  ${TOOLS_SOURCES}
+ ${BUTTONS_SOURCES}
 
  ${UI}
  ${UI_PRIVATE}
