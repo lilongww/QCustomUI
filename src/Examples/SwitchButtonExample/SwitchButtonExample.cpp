@@ -22,6 +22,8 @@ SwitchButtonExample::SwitchButtonExample(QWidget* parent) : QCtmWindow(parent)
                        "qproperty-checkedHandleBrush: #2DB84D;"
                        "qproperty-checkedHandleBorderColor: transparent;"
                        "}");
+    // btn->setChecked(true);
+    // btn->setEnabled(false);
 }
 
 SwitchButtonExample::~SwitchButtonExample() {}

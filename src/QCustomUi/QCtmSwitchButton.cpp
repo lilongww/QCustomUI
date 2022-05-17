@@ -161,15 +161,25 @@ const QColor& QCtmSwitchButton::checkedHandleBorderColor() const { return m_impl
 
 void QCtmSwitchButton::paintEvent(QPaintEvent* e)
 {
+    QPixmap pixmap(this->width(), this->height());
+    pixmap.fill(Qt::transparent);
+    {
+        QPainter p(&pixmap);
+        p.setRenderHint(QPainter::Antialiasing);
+        auto checked = this->isChecked();
+        p.setPen(checked ? m_impl->checkedBackgroundBorder : m_impl->uncheckedBackgroundBorder);
+        p.setBrush(checked ? m_impl->checkedBackground : m_impl->uncheckedBackground);
+        auto roundRect = QRect(0, 0, width(), height());
+        p.drawRoundedRect(roundRect, height() / 2, height() / 2);
+        p.setPen(checked ? m_impl->checkedHandleBorder : m_impl->uncheckedHandleBorder);
+        p.setBrush(checked ? m_impl->checkedHandle : m_impl->uncheckedHandle);
+        p.drawEllipse(m_impl->ani.currentValue().toRect());
+    }
+    QStyleOption opt;
+    opt.initFrom(this);
     QPainter p(this);
-    p.setRenderHint(QPainter::Antialiasing);
-    auto checked = this->isChecked();
-    p.setPen(checked ? m_impl->checkedBackgroundBorder : m_impl->uncheckedBackgroundBorder);
-    p.setBrush(checked ? m_impl->checkedBackground : m_impl->uncheckedBackground);
-    p.drawRoundedRect(QRect(0, 0, width(), height()), height() / 2, height() / 2);
-    p.setPen(checked ? m_impl->checkedHandleBorder : m_impl->uncheckedHandleBorder);
-    p.setBrush(checked ? m_impl->checkedHandle : m_impl->uncheckedHandle);
-    p.drawEllipse(m_impl->ani.currentValue().toRect());
+    p.drawPixmap(QRect(0, 0, width(), height()),
+                 this->style()->generatedIconPixmap(isEnabled() ? QIcon::Mode::Normal : QIcon::Mode::Disabled, pixmap, &opt));
 }
 
 void QCtmSwitchButton::resizeEvent(QResizeEvent* event)
