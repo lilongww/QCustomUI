@@ -119,6 +119,7 @@ set(DISPLAYWIDGETS_HEADERS
  "QCtmLoadingDialog.h"
  "QCtmNavigationBar.h"
  "QCtmTitleBar.h"
+ "QCtmCircleProgressBar.h"
 )
 set(DISPLAYWIDGETS_SOURCES
  "QCtmEditLabel.cpp"
@@ -127,7 +128,7 @@ set(DISPLAYWIDGETS_SOURCES
  "QCtmLoadingDialog.cpp"
  "QCtmNavigationBar.cpp"
  "QCtmTitleBar.cpp"
-
+ "QCtmCircleProgressBar.cpp"
 )
 
 set(VIEW_HEADERS
