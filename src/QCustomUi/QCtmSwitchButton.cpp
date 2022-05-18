@@ -1,4 +1,22 @@
-﻿#include "QCtmSwitchButton.h"
+﻿/*********************************************************************************
+**                                                                              **
+**  Copyright (C) 2019-2022 LiLong                                              **
+**  This file is part of QCustomUi.                                             **
+**                                                                              **
+**  QCustomUi is free software: you can redistribute it and/or modify           **
+**  it under the terms of the GNU Lesser General Public License as published by **
+**  the Free Software Foundation, either version 3 of the License, or           **
+**  (at your option) any later version.                                         **
+**                                                                              **
+**  QCustomUi is distributed in the hope that it will be useful,                **
+**  but WITHOUT ANY WARRANTY; without even the implied warranty of              **
+**  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the               **
+**  GNU Lesser General Public License for more details.                         **
+**                                                                              **
+**  You should have received a copy of the GNU Lesser General Public License    **
+**  along with QCustomUi.  If not, see <https://www.gnu.org/licenses/>.         **
+**********************************************************************************/
+#include "QCtmSwitchButton.h"
 
 #include <QStyle>
 #include <QStyleOption>
@@ -31,42 +49,42 @@ struct QCtmSwitchButton::Impl
 */
 
 /*!
-    \property   uncheckedBackground
+    \property   QCtmSwitchButton::uncheckedBackground
     \brief      未选中状态的背景画刷.
 */
 
 /*!
-    \property   uncheckedBackgroundBorderColor
+    \property   QCtmSwitchButton::uncheckedBackgroundBorderColor
     \brief      未选中状态的背景边框颜色.
 */
 
 /*!
-    \property   uncheckedHandleBrush
+    \property   QCtmSwitchButton::uncheckedHandleBrush
     \brief      未选中状态的 handle 画刷.
 */
 
 /*!
-    \property   uncheckedHandleBorderColor
+    \property   QCtmSwitchButton::uncheckedHandleBorderColor
     \brief      未选中状态的 handle 边框颜色.
 */
 
 /*!
-    \property   checkedBackground
+    \property   QCtmSwitchButton::checkedBackground
     \brief      选中状态的背景画刷.
 */
 
 /*!
-    \property   checkedBackgroundBorderColor
+    \property   QCtmSwitchButton::checkedBackgroundBorderColor
     \brief      选中状态的背景边框颜色.
 */
 
 /*!
-    \property   checkedHandleBrush
+    \property   QCtmSwitchButton::checkedHandleBrush
     \brief      选中状态的 handle 画刷.
 */
 
 /*!
-    \property   checkedHandleBorderColor
+    \property   QCtmSwitchButton::checkedHandleBorderColor
     \brief      选中状态的 handle 边框颜色.
 */
 
@@ -159,6 +177,9 @@ void QCtmSwitchButton::setCheckedHandleBorderColor(const QColor& pen)
 
 const QColor& QCtmSwitchButton::checkedHandleBorderColor() const { return m_impl->checkedHandleBorder; }
 
+/*!
+    \reimp
+*/
 void QCtmSwitchButton::paintEvent(QPaintEvent* e)
 {
     QPixmap pixmap(this->width(), this->height());
@@ -182,6 +203,9 @@ void QCtmSwitchButton::paintEvent(QPaintEvent* e)
                  this->style()->generatedIconPixmap(isEnabled() ? QIcon::Mode::Normal : QIcon::Mode::Disabled, pixmap, &opt));
 }
 
+/*!
+    \reimp
+*/
 void QCtmSwitchButton::resizeEvent(QResizeEvent* event)
 {
     QAbstractButton::resizeEvent(event);
@@ -189,6 +213,9 @@ void QCtmSwitchButton::resizeEvent(QResizeEvent* event)
     m_impl->ani.setEndValue(QRect(width() - height() + 1, 1, height() - 2, height() - 2));
 }
 
+/*!
+    \reimp
+*/
 QSize QCtmSwitchButton::minimumSizeHint() const
 {
     if (!m_impl->sizeHint.isEmpty())
@@ -206,4 +233,7 @@ QSize QCtmSwitchButton::minimumSizeHint() const
     return m_impl->sizeHint;
 }
 
+/*!
+    \reimp
+*/
 QSize QCtmSwitchButton::sizeHint() const { return minimumSizeHint(); }
