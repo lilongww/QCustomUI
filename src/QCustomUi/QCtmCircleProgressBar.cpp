@@ -125,7 +125,8 @@ struct QCtmCircleProgressBar::Impl
 */
 QCtmCircleProgressBar::QCtmCircleProgressBar(QWidget* parent) : QWidget(parent), m_impl(std::make_unique<Impl>())
 {
-    m_impl->ani.setEndValue(m_impl->value);
+    m_impl->ani.setStartValue(m_impl->arc());
+    m_impl->ani.setEndValue(m_impl->arc());
     m_impl->rangeAni.setStartValue(-270 * 16);
     m_impl->rangeAni.setKeyValueAt(0.5, 0);
     m_impl->rangeAni.setEndValue(-270 * 16);
