@@ -1,120 +1,143 @@
 # QCustomUi
 
+[TOC]
+
+## 一、简介
+
 QCustomUi是一个自定义UI库，主要提供无边框窗口和一些自定义控件，方便Qt开发。
 当前库于Qt5.15.2和Qt6下编译通过。
 
 编译完成后，点击安装，会自动安装设计器插件到QtDesigner和QtCreator下。
 >注意：如果没有将Qt的运行库设置到PATH环境变量中，QtCreator可能缺乏某些QCustomUi依赖的Qt库而无法加载设计器插件。
 
-文档：https://llongww.gitee.io/qcustomuidocument
+API文档：https://llongww.gitee.io/qcustomuidocument
 
-**[1.8.0]**
-```
-1.添加QCtmPathBrowser；
-2.添加QCtmDigitKeyboard；
-3.优化部分代码，优化文档。
-```
+## 二、控件介绍
 
-**[1.7.0]**
-```
-1.QCtmNavigationBar添加ActionPosition::Center选项，可以将Action添加到中央位置；
-2.优化dialog最大化，关闭，打开，恢复正常大小时，大小依然为最大化大小的问题；
-3.重新实现QCtmLoadingDialog，优化流程较短时，loading窗口法起到阻塞效果的问题；
-4.MessageTip优化对触摸屏的显示，添加Clear All按钮，添加删除/清空消息的确认API, 优化背景色；
-5.优化QCtmToolBox样式，添加QCtmToolBox示例；
-6.bugfix：解决添加到QCtnNavigationBar的QWidgetAction为不显示时，添加后依然显示的问题；
-7.bugfix：解决dialog左右停靠时，关闭再打开失去交互的问题；
-8.bugfix：带native子窗口的QCtmWindow，点击任务栏图标显示/隐藏窗口时，显示异常；
-9.bugfix：native子窗口hover事件失效；
-10.bugfix：QCtmNavigationSidePane Left停靠时，阴影显示异常；
-11.bugfix：QCtmMessageTipButton 清空消息时未刷新；
-12.bugfix：QCtmInputDialog 垂直方向放大时，标题栏位移，现在使其与QInputDialog放大行为一致；
-13.bugfix：解决无边框窗口在双屏幕下的显示/拖拽问题。
-```
+### 1. 基本窗口
 
-**[1.6.1]**
+#### QCtmWindow
 
-```
-1.bugfix：QCtmDialog默认显示位置不正确；
-2.bugfix：解决窗口被ALT+F4快捷键关闭后，再次打开显示不正常的问题。
-```
+QCtmWindow 是一个顶层窗口类，默认带有自定义的标题栏，支持在标题栏上添加菜单，显示图标，添加控件，系统右键菜单等，另外支持windows窗口的屏幕编译拖拽效果：
 
+![image-20220519144218268](README.assets/image-20220519144218268.png)
 
+![image-20220519145002696](README.assets/image-20220519145002696.png)
 
-**[1.6.0]**
+![165294264943820225191524305](README.assets/165294264943820225191524305.gif)
 
-```
-1.QCtmMessageTipModel默认最新消息显示在前面;
-2.新增QCtmInputDialog，该弹窗继承于QInputDialog，实现了QCustomUi的窗口风格；
-3.删除冗余样式表；
-4.解决windows下的无边框窗口，在子窗口具备句柄的情况下无法拖拽的问题；
-5.QCtmApplication添加是否加载默认样式表的选项；
-6.解决QCtmDialog最大化后关闭，再次打开时窗口状态异常的问题；
-7.修改QCtmDialog的默认行为，不再默认具备最大化和最小化按钮；
-8.优化QCtmNavigationBar的Logo图标自适应；
-9.适配Qt6。
-```
-**[1.5.2]**
-```
-1.增加部分控件的iconSize属性和接口;
-2.修复字体改变后，QCtmMessageTipButton显示的数字不全的问题；
-3.修复QCtmIPAddressEdit字体大小设置无效的问题；
-4.修复QCtmTitleBar字体调整时，标题文字部分被覆盖的问题；
-```
-**[1.5.1]**
-```
-1.解决IP地址输入框在触摸屏下无法用软键盘输入的问题；
-2.添加QCtmComboBox下拉框弹出前的信号；
-3.优化CMake文件；
-4.解决MessageTip系列控件样式bug；
-5.解决QCtmNavigationSidePane在窗口最大化时，位置大小计算错误问题；
-6.添加MessageTipExample。
-```
+#### QCtmDialog
 
-**[1.5.0]**
-```
-1.添加部分常用控件的设计器插件，可以在设计器中直接拖拽和编辑这些控件，而不必使用“提升为”，提升开发效率；
-2.解决QCtmStageProgressBar最大值最小值和当前值可设置为不正确的范围的问题。
-```
+与QCtmWindow相似，为Dialog类型窗口的封装，支持windows窗口特效：
 
-**[1.4.1]**
-```
-1.解决QCtmMultiComboBox在disabled状态下依旧能够点击弹出下拉框的问题。
-```
+![165294336692220225191522254](README.assets/165294336692220225191522254.gif)
 
-**[1.4.0]**
-```
-1.添加QCtmFile工具类，提供文件读写便捷函数.
-```
+### 2. 按钮
 
-**[1.3.1]**
-```
-1.去掉样式表中对于输入框等类型控件的高度限制，让其可以根据字体大小调整；
-2.将QSpinBox左右箭头恢复为上下箭头，因为QSpinBox的大小调整后，左右箭头的高度在样式表中难以控制;
-3.安装时不再复制resource.h.
-```
-**[1.3.0]**
-```
-1.变更工程配置为cmake.
-```
+#### QCtmSwitchButton
 
-**[1.2.1]**
-```
-1.用户图标无法隐藏bugfix.
-```
+状态切换按钮
 
-**[1.2.0]**
-```
-1.添加QCtmLoadingDialog。
-```
+![165294410414120225191518431](README.assets/165294410414120225191518431.gif)
 
-**[1.1.3]**
-```
-1.QCtmStageProgressBar bugfix：设置文字隐藏无效，
-  文字隐藏后水平的进度条最小高度不正确，垂直的进度条显示异常。
-```
-**[1.1.2]**
-```
-1.添加QCtmClassifyTreeView，显示类似于设置了
-  IconMode的QListView，但添加了类似树形结构的分组功能。
-```
+### 3. 进度条
+
+#### QCtmStageProgressBar
+
+节点进度条
+
+![165294524356320225191528126](README.assets/165294524356320225191528126.gif)
+
+#### QCtmCircleProgressBar
+
+圆形进度条
+
+![image-20220519153100472](README.assets/image-20220519153100472.png)
+
+![165294551010920225191532407](README.assets/165294551010920225191532407.gif)
+
+### 4. 输入框
+
+#### QCtmInputDialog
+
+输入窗口
+
+与QInputDialog功能相同，为风格统一实现
+
+![image-20220519153539266](README.assets/image-20220519153539266.png)![image-20220519153556457](README.assets/image-20220519153556457.png)![image-20220519153609328](README.assets/image-20220519153609328.png)![image-20220519153617953](README.assets/image-20220519153617953.png)![image-20220519153626148](README.assets/image-20220519153626148.png)
+
+#### QCtmDigitKeyboard
+
+输入数字键盘窗口
+
+方便为带单位输入和触摸屏输入
+
+![image-20220519153749963](README.assets/image-20220519153749963.png)
+
+#### QCtmIPAddressEdit
+
+IP地址输入框
+
+与windows的IP地址输入框类似
+
+![image-20220519153904665](README.assets/image-20220519153904665.png)
+
+#### QCtmMultiComboBox
+
+可多选的combobox
+
+![image-20220519154416408](README.assets/image-20220519154416408.png)
+
+#### QCtmPathBrowser
+
+路径浏览器
+
+![image-20220519154531989](README.assets/image-20220519154531989.png)
+
+![image-20220519154603715](README.assets/image-20220519154603715.png)
+
+![image-20220519154616413](README.assets/image-20220519154616413.png)
+
+### 5.消息窗口
+
+#### QCtmMessageBox
+
+行为与QMessageBox一致
+
+![image-20220519155120304](README.assets/image-20220519155120304.png)![image-20220519155131669](README.assets/image-20220519155131669.png)![image-20220519155138884](README.assets/image-20220519155138884.png)![image-20220519155150157](README.assets/image-20220519155150157.png)
+
+#### QCtmMessageTipButton
+
+#### QCtmMessageTipView
+
+消息提示按钮和列表
+
+![image-20220519160009386](README.assets/image-20220519160009386.png)
+
+### 6.容器部件
+
+#### QCtmToolBox
+
+工具窗口
+
+![image-20220519160512835](README.assets/image-20220519160512835.png)
+
+#### QCtmDrawerWidget
+
+抽屉窗口
+
+![16529476089682022519167348](README.assets/16529476089682022519167348.gif)
+
+### 7.加载窗口
+
+#### QCtmLoadingDialog
+
+![165294782053120225191610569](README.assets/165294782053120225191610569.gif)
+
+### 8. 视图
+
+#### QCtmClassifyTreeView
+
+分类视图
+
+![image-20220519161302386](README.assets/image-20220519161302386.png)

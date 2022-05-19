@@ -25,13 +25,13 @@
 
 struct QCtmSwitchButton::Impl
 {
-    QBrush uncheckedBackground { 0xEDEDED };
-    QColor uncheckedBackgroundBorder { 0xE0E0E0 };
+    QBrush uncheckedBackground { 0xEEEEEE };
+    QColor uncheckedBackgroundBorder { 0xE3E3E3 };
     QBrush uncheckedHandle { 0xFFFFFF };
-    QColor uncheckedHandleBorder { 0xE4E4E4 };
-    QBrush checkedBackground { 0xFFFFFF };
+    QColor uncheckedHandleBorder { 0xDEDEDE };
+    QBrush checkedBackground { 0x326CF3 };
     QColor checkedBackgroundBorder { Qt::transparent };
-    QBrush checkedHandle { 0x42BF5F };
+    QBrush checkedHandle { 0xFFFFFF };
     QColor checkedHandleBorder { Qt::transparent };
 
     QVariantAnimation ani;

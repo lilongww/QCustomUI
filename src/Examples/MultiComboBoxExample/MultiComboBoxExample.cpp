@@ -15,6 +15,7 @@ MultiComboBoxExample::~MultiComboBoxExample() {}
 void MultiComboBoxExample::init()
 {
     auto layout = new QVBoxLayout(this->centralWidget());
+    layout->setAlignment(Qt::AlignCenter);
     layout->addStretch(1);
     {
         auto box = new QCtmMultiComboBox(this);

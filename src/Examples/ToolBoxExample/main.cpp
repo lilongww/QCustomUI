@@ -22,7 +22,7 @@ int main(int argc, char* argv[])
     sp->addWidget(toolBox);
     auto content = new QWidget(sp);
     sp->addWidget(content);
-    auto edit = new QLineEdit(content);
+    // auto edit = new QLineEdit(content);
     sp->setStretchFactor(1, 1);
     window.show();
     return a.exec();
