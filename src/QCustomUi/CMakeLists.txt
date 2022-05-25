@@ -162,6 +162,19 @@ set(TOOLS_SOURCES
  "QCtmFile.cpp"
 )
 
+set(GRAPH_HEADERS
+ "QCtmAbstractChartView.h"
+ "QCtmRadarChartView.h"
+ "QCtmRadarSeries.h"
+ "QCtmAbstractSeries.h"
+)
+
+set(GRAPH_SOURCES
+ "QCtmAbstractChartView.cpp"
+ "QCtmRadarChartView.cpp"
+ "QCtmRadarSeries.cpp"
+ "QCtmAbstractSeries.cpp")
+
 set(BUTTONS_HEADERS "QCtmSwitchButton.h")
 
 set(BUTTONS_SOURCES "QCtmSwitchButton.cpp")
@@ -183,6 +196,7 @@ source_group("Headers/Display Widgets" FILES ${DISPLAYWIDGETS_HEADERS})
 source_group("Headers/Views" FILES ${VIEW_HEADERS})
 source_group("Headers/Tools" FILES ${TOOLS_HEADERS})
 source_group("Headers/Buttons" FILES ${BUTTONS_HEADERS})
+source_group("Headers/Graphs" FILES ${GRAPH_HEADERS})
 
 source_group("Sources" FILES ${SOURCES})
 source_group("Sources/Log" FILES ${LOG_SOURCES})
@@ -194,6 +208,7 @@ source_group("Sources/Display Widgets" FILES ${DISPLAYWIDGETS_SOURCES})
 source_group("Sources/Views" FILES ${VIEW_SOURCES})
 source_group("Sources/Tools" FILES ${TOOLS_SOURCES})
 source_group("Sources/Buttons" FILES ${BUTTONS_SOURCES})
+source_group("Sources/Graphs" FILES ${GRAPH_SOURCES})
 
 source_group("UI" FILES ${UI})
 source_group("UI/Private" FILES ${UI_PRIVATE})
@@ -210,6 +225,7 @@ add_library(QCustomUi SHARED
  ${VIEW_HEADERS}
  ${TOOLS_HEADERS}
  ${BUTTONS_HEADERS}
+ ${GRAPH_HEADERS}
 
  ${SOURCES}
  ${PRIVATRE_SOURCES}
@@ -221,12 +237,13 @@ add_library(QCustomUi SHARED
  ${VIEW_SOURCES}
  ${TOOLS_SOURCES}
  ${BUTTONS_SOURCES}
+ ${GRAPH_SOURCES}
 
  ${UI}
  ${UI_PRIVATE}
  ${RESOURCES}
  ${DOCS}
-)
+ "QCtmAbstractSeries.cpp")
 
 if(WIN32)
     if(${QT_VERSION_MAJOR} EQUAL 5)
