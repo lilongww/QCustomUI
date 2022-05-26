@@ -306,7 +306,7 @@ std::string UsbTmc::read(size_t size) const
             throwLibusbError(code);
         }
         packs.append(pack.c_str(), transfered);
-    } while (!in.parse(packs, size));
+    } while (!in.parse(packs, size, m_impl->tag));
     m_impl->avalibe = !in.eom();
     return std::move(in);
 }
