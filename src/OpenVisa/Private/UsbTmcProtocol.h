@@ -138,13 +138,20 @@ public:
     inline operator std::string() noexcept
     {
         Header header;
-        header.m_tag          = ++m_tag;
+        header.m_tag          = calcTag();
         header.m_tagInverse   = ~header.m_tag;
         header.m_transferSize = m_transferSize;
         return std::string(reinterpret_cast<char*>(&header), sizeof(header));
     }
 
 private:
+    unsigned char calcTag()
+    {
+        m_tag++;
+        if (m_tag == 0)
+            m_tag++;
+        return m_tag;
+    }
     unsigned char& m_tag;
     unsigned int m_transferSize;
 };
@@ -169,7 +176,7 @@ public:
     inline BulkIn() noexcept {}
     inline ~BulkIn() noexcept {}
     // 字节数不足返回false，数据解析错误抛出异常
-    bool parse(std::string& buffer, size_t requestSize)
+    bool parse(std::string& buffer, size_t requestSize, unsigned char tag)
     {
         if (buffer.size() < sizeof(Header))
             return false;
@@ -177,11 +184,15 @@ public:
 
         if (header->m_transferSize + sizeof(Header) > buffer.size())
             return false;
-        m_buffer.append(buffer.c_str() + sizeof(Header), header->m_transferSize);
-        auto ret = header->m_bmTransfer || requestSize == m_buffer.size();
-        m_eom    = header->m_bmTransfer;
+        auto match = tag == header->m_tag;
+        if (match)
+        {
+            m_buffer.append(buffer.c_str() + sizeof(Header), header->m_transferSize);
+            auto ret = header->m_bmTransfer || requestSize == m_buffer.size();
+            m_eom    = header->m_bmTransfer;
+        }
         buffer.erase(buffer.begin(), buffer.begin() + header->m_transferSize + sizeof(Header));
-        return ret;
+        return match;
     }
 
     inline operator std::string() const&& { return std::move(m_buffer); }
