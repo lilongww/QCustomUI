@@ -272,26 +272,26 @@ std::string UsbTmc::readAll() const { return read(0xffffffff); }
 
 std::string UsbTmc::read(size_t size) const
 {
-    {
-        std::string buffer = BulkRequest(m_impl->tag, static_cast<unsigned int>(size));
-        if (auto code = transfer(m_impl->handle,
-                                 m_impl->endpoint_out,
-                                 reinterpret_cast<unsigned char*>(buffer.data()),
-                                 static_cast<int>(buffer.size()),
-                                 nullptr,
-                                 static_cast<unsigned int>(m_impl->timeout.count()));
-            code != LIBUSB_SUCCESS)
-        {
-            libusb_reset_device(m_impl->handle);
-            throwLibusbError(code);
-        }
-    }
-
     std::string packs;
     BulkIn in;
     int transfered;
     do
     {
+        {// req
+            std::string buffer = BulkRequest(m_impl->tag, static_cast<unsigned int>(size));
+            if (auto code = transfer(m_impl->handle,
+                                     m_impl->endpoint_out,
+                                     reinterpret_cast<unsigned char*>(buffer.data()),
+                                     static_cast<int>(buffer.size()),
+                                     nullptr,
+                                     static_cast<unsigned int>(m_impl->timeout.count()));
+                code != LIBUSB_SUCCESS)
+            {
+                libusb_reset_device(m_impl->handle);
+                throwLibusbError(code);
+            }
+        }
+
         std::string pack;
         pack.resize(m_impl->inMaxPacketSize);
         if (auto code = transfer(m_impl->handle,
