@@ -23,6 +23,7 @@
 #include "Private/SerialPort.h"
 #include "Private/UsbTmc.h"
 #include "Private/VXI11.h"
+#include "CommonCommand.h"
 
 namespace OpenVisa
 {
@@ -30,6 +31,9 @@ struct Object::Impl
 {
     std::shared_ptr<IOBase> io;
     Attribute attr;
+    CommonCommand commonCommand;
+
+    inline Impl(Object* obj) : commonCommand(obj) {}
 };
 
 /*!
@@ -61,7 +65,7 @@ struct Object::Impl
 /*!
     \brief      构造函数.
 */
-Object::Object() : m_impl(std::make_unique<Impl>()) {}
+Object::Object() : m_impl(std::make_unique<Impl>(this)) {}
 
 /*!
     \brief      析构函数.
@@ -172,6 +176,11 @@ bool Object::connected() const noexcept { return m_impl->io ? m_impl->io->connec
     \brief      返回属性设置.
 */
 Object::Attribute& Object::attribute() noexcept { return m_impl->attr; }
+
+/*!
+    \brief      IEEE488.2公共指令接口.
+*/
+Object::CommonCommand& Object::commonCommand() noexcept { return m_impl->commonCommand; }
 
 void Object::sendImpl(const std::string& scpi)
 {

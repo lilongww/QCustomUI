@@ -52,6 +52,7 @@ public:
     inline std::string query(std::string_view fmt, const Args&... args);
     bool connected() const noexcept;
     Attribute& attribute() noexcept;
+    CommonCommand& commonCommand() noexcept;
 
 protected:
     virtual void afterConnected() {};
