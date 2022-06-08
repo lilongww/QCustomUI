@@ -73,10 +73,16 @@ public:
 
 protected:
     void paintEvent(QPaintEvent* e) override;
+    virtual void drawTitle(QPainter* p, const QRectF& rect);
     virtual void drawGrid(QPainter* p, const QPointF& center, double step);
     virtual void drawValue(QPainter* p, const QBrush& brush, const QColor& borderColor, const QPolygonF& points);
     virtual void drawLabels(QPainter* p, const QPolygonF& points);
     virtual void drawLabel(QPainter* p, const QString& text, int index, int total, const QPointF& pos);
+    QSize minimumSizeHint() const override;
+    QSize sizeHint() const override;
+
+private:
+    QRectF titleRect() const;
 
 private:
     struct Impl;

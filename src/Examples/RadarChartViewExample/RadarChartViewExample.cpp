@@ -18,6 +18,7 @@ RadarChartViewExample::RadarChartViewExample(QWidget* parent /*= nullptr*/) : QC
                                 { QStringLiteral("物理"), { 0, 100 } },
                                 { QStringLiteral("化学"), { 0, 100 } },
                                 { QStringLiteral("生物"), { 0, 100 } } });
+    graphWidget->setTitle(QStringLiteral("成绩展示"));
     auto graph1 = graphWidget->addSeries();
     graph1->setValues({ 24, 40, 100, 50, 15, 100 });
 

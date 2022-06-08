@@ -151,12 +151,15 @@ void QCtmRadarChartView::paintEvent(QPaintEvent* e)
 {
     QPainter p(this);
     p.setRenderHint(QPainter::Antialiasing);
-    auto diameter = std::min(this->width(), this->height());
-    QRectF rect((width() - diameter) / 2, (height() - diameter) / 2, diameter, diameter);
+    auto titleRect = this->titleRect();
+
+    auto diameter = std::min(this->width(), static_cast<int>(this->height() - titleRect.height() - 10));
+    QRectF rect((width() - diameter) / 2, (height() - diameter) / 2 + titleRect.height() + 10, diameter, diameter);
     rect        = rect.marginsRemoved(m_impl->gridMargins);
     auto radius = rect.width() / 2.0;
     auto step   = radius / m_impl->stepCount;
 
+    drawTitle(&p, titleRect);
     drawGrid(&p, rect.center(), step);
     for (auto series : series())
     {
@@ -166,6 +169,15 @@ void QCtmRadarChartView::paintEvent(QPaintEvent* e)
         auto polygon = m_impl->fromValue(rect.center(), radius, radarSeries->values());
         drawValue(&p, radarSeries->brush(), radarSeries->borderColor(), polygon);
     }
+}
+
+void QCtmRadarChartView::drawTitle(QPainter* p, const QRectF& rect)
+{
+    p->setPen(titlePen());
+    p->setFont(titleFont());
+    QTextOption opt;
+    opt.setAlignment(Qt::AlignCenter);
+    p->drawText(rect, title(), opt);
 }
 
 void QCtmRadarChartView::drawGrid(QPainter* p, const QPointF& center, double step)
@@ -199,6 +211,7 @@ void QCtmRadarChartView::drawValue(QPainter* p, const QBrush& brush, const QColo
 
 void QCtmRadarChartView::drawLabels(QPainter* p, const QPolygonF& points)
 {
+    p->setFont(this->font());
     p->setPen(m_impl->labelColor);
     for (int i = 0; i < points.size(); i++)
     {
@@ -232,4 +245,21 @@ void QCtmRadarChartView::drawLabel(QPainter* p, const QString& text, int index, 
         opt.setAlignment(Qt::AlignRight | Qt::AlignCenter);
         p->drawText(QRectF(pos.x() - w, pos.y() - h / 2, w, h), text, opt);
     }
+}
+
+QSize QCtmRadarChartView::minimumSizeHint() const
+{
+    return QSize(100 + m_impl->gridMargins.left() + m_impl->gridMargins.right(),
+                 100 + titleRect().height() + m_impl->gridMargins.top() + m_impl->gridMargins.bottom());
+}
+
+QSize QCtmRadarChartView::sizeHint() const { return minimumSizeHint(); }
+
+QRectF QCtmRadarChartView::titleRect() const
+{
+    QFontMetricsF fm(titleFont());
+    return QRectF(m_impl->gridMargins.left(),
+                  m_impl->gridMargins.top(),
+                  width() - m_impl->gridMargins.left() - m_impl->gridMargins.right(),
+                  fm.height());
 }
