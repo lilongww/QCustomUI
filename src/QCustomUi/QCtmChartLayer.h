@@ -18,33 +18,26 @@
 **********************************************************************************/
 #pragma once
 
-#include "qcustomui_global.h"
+#include "QCtmChartItem.h"
 
-#include <QObject>
-#include <QRect>
-
-#include <memory>
-
-class QPainter;
-class QCtmAbstractChartView;
-class QCUSTOMUI_EXPORT QCtmChartItem : public QObject
+class QCtmChartLayout;
+class QCUSTOMUI_EXPORT QCtmChartLayer : public QCtmChartItem
 {
     Q_OBJECT
-
 public:
-    QCtmChartItem(QCtmAbstractChartView* parent);
-    ~QCtmChartItem();
-    void setGeometry(const QRect& rect);
-    const QRect& geometry() const;
+    QCtmChartLayer(QCtmAbstractChartView* parent);
+    ~QCtmChartLayer();
 
-    virtual QCtmAbstractChartView* chart() const;
-    virtual void draw(QPainter* p) = 0;
+    void setLayout(QCtmChartLayout* layout);
+    QCtmChartLayout* layout() const;
+    void replot();
 
 protected:
-    virtual void onResized(const QSize& size);
-    virtual void onMoved(const QPoint& point);
+    void onResized(const QSize& size) override;
+    void draw(QPainter* p) override;
 
 private:
     struct Impl;
     std::unique_ptr<Impl> m_impl;
+    friend QCtmAbstractChartView;
 };
