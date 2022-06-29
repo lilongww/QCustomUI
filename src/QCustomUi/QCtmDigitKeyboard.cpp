@@ -240,11 +240,11 @@ void QCtmDigitKeyboard::bindBox(QAbstractSpinBox* box)
     connect(box, &QObject::destroyed, this, [=]() { m_impl->bindedBox = nullptr; });
     if (m_impl->mode == InputMode::IntInput)
     {
-        connect(qobject_cast<QSpinBox*>(box), &QSpinBox::valueChanged, this, &QCtmDigitKeyboard::setValue);
+        connect(qobject_cast<QSpinBox*>(box), qOverload<int>(&QSpinBox::valueChanged), this, &QCtmDigitKeyboard::setValue);
     }
     else
     {
-        connect(qobject_cast<QDoubleSpinBox*>(box), &QDoubleSpinBox::valueChanged, this, &QCtmDigitKeyboard::setValue);
+        connect(qobject_cast<QDoubleSpinBox*>(box), qOverload<double>(&QDoubleSpinBox::valueChanged), this, &QCtmDigitKeyboard::setValue);
     }
     box->findChild<QLineEdit*>()->installEventFilter(this);
 }
@@ -322,7 +322,7 @@ void QCtmDigitKeyboard::ensureConnect()
             box->setSuffix(m_impl->units.at(m_impl->currentUnitIndex).unit);
         m_impl->box = box;
         setValue(box->value());
-        connect(box, &QSpinBox::valueChanged, this, [this](auto val) { emit valueChanged(val); });
+        connect(box, qOverload<int>(&QSpinBox::valueChanged), this, [this](auto val) { emit valueChanged(val); });
     }
     else
     {
@@ -335,7 +335,7 @@ void QCtmDigitKeyboard::ensureConnect()
             box->setSuffix(m_impl->units.at(m_impl->currentUnitIndex).unit);
         m_impl->box = box;
         setValue(box->value());
-        connect(box, &QDoubleSpinBox::valueChanged, this, [this](auto val) { emit valueChanged(val); });
+        connect(box, qOverload<double>(&QDoubleSpinBox::valueChanged), this, [this](auto val) { emit valueChanged(val); });
     }
     m_impl->ui.inputLayout->addWidget(m_impl->box);
 

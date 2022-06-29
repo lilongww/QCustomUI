@@ -2,17 +2,18 @@
 set(CMAKE_AUTOUIC ON)
 set(CMAKE_AUTORCC ON)
 
-find_package(QT NAMES Qt6 Qt5 REQUIRED)
+find_package(QT NAMES Qt6 Qt5 REQUIRED COMPONENTS Core)
 if(${QT_VERSION_MAJOR} EQUAL 5)
     find_package(Qt${QT_VERSION_MAJOR} COMPONENTS Core Gui Widgets Network WinExtras REQUIRED)
 else(${QT_VERSION_MAJOR} EQUAL 5)
     find_package(Qt${QT_VERSION_MAJOR} COMPONENTS Core Gui Widgets Network REQUIRED)
 endif(${QT_VERSION_MAJOR} EQUAL 5)
+file(REAL_PATH "${QT_DIR}/../../.." QTDIR)
 message("-- Found Qt ${QT_VERSION}")
 message("-- QTDIR: ${QTDIR}")
 include_directories("./")
 
-add_compile_definitions(QCUSTOMUI_LIB UNICODE)
+add_compile_definitions(QCUSTOMUI_LIB UNICODE _WIN32_WINNT=0x0600)
 
 file(GLOB PRIVATRE_HEADERS ./Private/*.h)
 file(GLOB PRIVATRE_SOURCES ./Private/*.cpp)
