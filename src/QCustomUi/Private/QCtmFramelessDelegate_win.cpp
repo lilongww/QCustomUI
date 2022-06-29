@@ -365,7 +365,13 @@ bool QCtmWinFramelessDelegate::onNCTitTest(MSG* msg, long* result)
 bool QCtmWinFramelessDelegate::onNCTitTest(MSG* msg, qintptr* result)
 #endif
 {
+#if QT_VERSION >= QT_VERSION_CHECK(6, 0, 0)
     auto [x, y] = QCursor::pos();
+#else
+    auto p = QCursor::pos();
+    auto x = p.x();
+    auto y = p.y();
+#endif
 
     auto borderX = GetSystemMetrics(SM_CXPADDEDBORDER);
     auto borderY = GetSystemMetrics(SM_CXPADDEDBORDER);
