@@ -40,6 +40,7 @@ public:
 
 protected:
     void calcSize(const QSize& size) override;
+    void draw(QPainter* p) override;
 
 private:
     struct Impl;

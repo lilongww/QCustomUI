@@ -18,6 +18,8 @@
 **********************************************************************************/
 #include "QCtmChartBoxLayout.h"
 
+#include <QDebug>
+
 struct LayoutItem
 {
     inline LayoutItem(QCtmChartItem* _item, int _stretch) : item(_item), stretch(_stretch) {}
@@ -77,6 +79,7 @@ void QCtmChartBoxLayout::calcSize(const QSize& size)
     bool hori    = m_impl->orientation == Qt::Horizontal;
     double total = (hori ? size.width() : size.height()) - (m_impl->items.size() - 1) * m_impl->spacing -
                    (hori ? m_impl->margins.left() + m_impl->margins.right() : m_impl->margins.top() + m_impl->margins.bottom());
+    double alloced = 0.0;
     // 分配最小
     std::vector<std::reference_wrapper<LayoutItem>> itemRefs;
     std::for_each(m_impl->items.begin(),
@@ -91,15 +94,18 @@ void QCtmChartBoxLayout::calcSize(const QSize& size)
                       {
                           li.finished = true;
                           li.size     = size;
+                          alloced += li.size;
                       }
                       else
                           itemRefs.push_back(li);
                   });
     auto totalStretch = std::accumulate(itemRefs.begin(), itemRefs.end(), 0.0, [](auto a, auto b) { return a + b.get().stretch; });
-    auto alloced      = std::accumulate(m_impl->items.begin(), m_impl->items.end(), 0.0, [](auto a, const auto& b) { return a + b.size; });
 
-    while (!itemRefs.empty() && alloced < total)
+    while (!itemRefs.empty())
     {
+        // 收回size
+        alloced =
+            std::accumulate(m_impl->items.begin(), m_impl->items.end(), 0.0, [](auto a, auto b) { return b.finished ? a + b.size : a; });
         bool hasFinished { false };
         // 先分配有stretch的
         if (totalStretch)
@@ -116,15 +122,32 @@ void QCtmChartBoxLayout::calcSize(const QSize& size)
                         item.get().size     = maxSize;
                         item.get().finished = true;
                         hasFinished         = true;
-                        alloced -= item.get().size;
+                        alloced += item.get().size;
                         totalStretch -= item.get().stretch;
                     }
+                    else
+                    {
+                        item.get().size = size;
+                    }
                 }
+                else
+                {
+                    item.get().size = hori ? item.get().item->minimumSize().width() : item.get().item->minimumSize().height();
+                    alloced += item.get().size;
+                }
+            }
+            if (!hasFinished)
+            {
+                for (auto item : itemRefs)
+                {
+                    item.get().finished = true;
+                }
+                hasFinished = true;
             }
         }
         else
         {
-            if (alloced <= 0)
+            if (total - alloced <= 0)
                 break;
             // 均分
             auto avarge = (total - alloced) / itemRefs.size();
@@ -137,6 +160,11 @@ void QCtmChartBoxLayout::calcSize(const QSize& size)
                     item.get().finished = true;
                     hasFinished         = true;
                     alloced -= size;
+                }
+                else
+                {
+                    item.get().size = avarge;
+                    alloced -= avarge;
                 }
             }
         }
@@ -169,5 +197,8 @@ void QCtmChartBoxLayout::calcSize(const QSize& size)
                       hori ? this->geometry().height() - m_impl->margins.top() - m_impl->margins.bottom() : total - offset));
         }
         offset += item.size + m_impl->spacing;
+        qDebug() << std::distance(m_impl->items.begin(), it) << item.item->geometry();
     }
 }
+
+void QCtmChartBoxLayout::draw(QPainter* p) {}
