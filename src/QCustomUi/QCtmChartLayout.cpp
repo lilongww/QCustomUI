@@ -25,3 +25,7 @@ struct QCtmChartLayout::Impl
 QCtmChartLayout::QCtmChartLayout(QCtmAbstractChartView* parent) : QCtmChartItem(parent), m_impl(std::make_unique<Impl>()) {}
 
 QCtmChartLayout::~QCtmChartLayout() {}
+
+void QCtmChartLayout::invalidate() { calcSize(this->geometry().size()); }
+
+void QCtmChartLayout::onResized(const QSize& size) { calcSize(size); }

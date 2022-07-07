@@ -27,6 +27,12 @@ public:
     QCtmChartLayout(QCtmAbstractChartView* parent);
     ~QCtmChartLayout();
 
+    void invalidate();
+
+protected:
+    void onResized(const QSize& size) override;
+    virtual void calcSize(const QSize& size) = 0;
+
 private:
     struct Impl;
     std::unique_ptr<Impl> m_impl;

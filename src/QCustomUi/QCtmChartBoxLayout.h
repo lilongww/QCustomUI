@@ -16,42 +16,32 @@
 **  You should have received a copy of the GNU Lesser General Public License    **
 **  along with QCustomUi.  If not, see <https://www.gnu.org/licenses/>.         **
 **********************************************************************************/
-#include "QCtmChartLayer.h"
 #include "QCtmChartLayout.h"
 
-#include <QImage>
-#include <QPainter>
-
-struct QCtmChartLayer::Impl
+class QCUSTOMUI_EXPORT QCtmChartBoxLayout : public QCtmChartLayout
 {
-    QCtmChartLayout* layout { nullptr };
-    QImage image;
+    Q_PROPERTY(Qt::Orientation orientation READ orientation)
+    Q_PROPERTY(int spacing READ spacing WRITE setSpacing)
+    Q_OBJECT
+public:
+    QCtmChartBoxLayout(Qt::Orientation orientation, QCtmAbstractChartView* parent);
+    ~QCtmChartBoxLayout();
+
+    Qt::Orientation orientation() const;
+    void addItem(QCtmChartItem* item, int stretch = 0);
+    void removeItem(QCtmChartItem* item);
+    QCtmChartItem* itemAt(int index) const;
+    void setStretch(int index, int stretch);
+    size_t count() const;
+    void setSpacing(int spacing);
+    int spacing() const;
+    void setMargin(const QMargins& margin);
+    const QMargins& margin() const;
+
+protected:
+    void calcSize(const QSize& size) override;
+
+private:
+    struct Impl;
+    std::unique_ptr<Impl> m_impl;
 };
-
-QCtmChartLayer::QCtmChartLayer(QCtmAbstractChartView* parent) : QCtmChartItem(parent), m_impl(std::make_unique<Impl>()) {}
-
-QCtmChartLayer::~QCtmChartLayer() {}
-
-void QCtmChartLayer::setLayout(QCtmChartLayout* layout) { m_impl->layout = layout; }
-
-QCtmChartLayout* QCtmChartLayer::layout() const { return m_impl->layout; }
-
-void QCtmChartLayer::replot()
-{
-    if (m_impl->layout)
-    {
-        QPainter p(&m_impl->image);
-        m_impl->layout->draw(&p);
-    }
-}
-
-void QCtmChartLayer::onResized(const QSize& size)
-{
-    m_impl->image = QImage(size.width(), size.height(), QImage::Format_ARGB32_Premultiplied);
-    m_impl->image.fill(Qt::transparent);
-    if (m_impl->layout)
-        m_impl->layout->setGeometry(QRect(0, 0, geometry().width(), geometry().height()));
-    replot();
-}
-
-void QCtmChartLayer::draw(QPainter* p) { p->drawImage(this->geometry(), m_impl->image); }

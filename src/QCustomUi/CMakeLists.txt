@@ -171,7 +171,7 @@ set(CHART_HEADERS
  "QCtmChartLayer.h"
  "QCtmChartItem.h"
  "QCtmChartLayout.h"
-)
+ "QCtmChartBoxLayout.h")
 
 set(CHART_SOURCES
  "QCtmAbstractChartView.cpp"
@@ -181,7 +181,7 @@ set(CHART_SOURCES
  "QCtmChartLayer.cpp"
  "QCtmChartItem.cpp"
  "QCtmChartLayout.cpp"
-)
+ "QCtmChartBoxLayout.cpp")
 
 set(BUTTONS_HEADERS "QCtmSwitchButton.h")
 

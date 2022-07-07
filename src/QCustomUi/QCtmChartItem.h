@@ -36,9 +36,14 @@ public:
     ~QCtmChartItem();
     void setGeometry(const QRect& rect);
     const QRect& geometry() const;
+    void setMinimumSize(const QSize& size);
+    const QSize& minimumSize() const;
+    void setMaximumSize(const QSize& size);
+    const QSize& maximumSize() const;
 
     virtual QCtmAbstractChartView* chart() const;
     virtual void draw(QPainter* p) = 0;
+    virtual QSize minimumSizeHint() const;
 
 protected:
     virtual void onResized(const QSize& size);
