@@ -201,4 +201,10 @@ void QCtmChartBoxLayout::calcSize(const QSize& size)
     }
 }
 
-void QCtmChartBoxLayout::draw(QPainter* p) {}
+void QCtmChartBoxLayout::draw(QPainter* p)
+{
+    for (const auto& item : m_impl->items)
+    {
+        item.item->draw(p);
+    }
+}
