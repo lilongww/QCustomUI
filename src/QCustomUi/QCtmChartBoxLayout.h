@@ -16,13 +16,15 @@
 **  You should have received a copy of the GNU Lesser General Public License    **
 **  along with QCustomUi.  If not, see <https://www.gnu.org/licenses/>.         **
 **********************************************************************************/
+#pragma once
+
 #include "QCtmChartLayout.h"
 
 class QCUSTOMUI_EXPORT QCtmChartBoxLayout : public QCtmChartLayout
 {
+    Q_OBJECT
     Q_PROPERTY(Qt::Orientation orientation READ orientation)
     Q_PROPERTY(int spacing READ spacing WRITE setSpacing)
-    Q_OBJECT
 public:
     QCtmChartBoxLayout(Qt::Orientation orientation, QCtmAbstractChartView* parent);
     ~QCtmChartBoxLayout();
@@ -35,8 +37,6 @@ public:
     size_t count() const;
     void setSpacing(int spacing);
     int spacing() const;
-    void setMargin(const QMargins& margin);
-    const QMargins& margin() const;
 
 protected:
     void calcSize(const QSize& size) override;

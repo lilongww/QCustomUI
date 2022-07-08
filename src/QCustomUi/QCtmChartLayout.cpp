@@ -20,6 +20,7 @@
 
 struct QCtmChartLayout::Impl
 {
+    QMargins margins { 0, 0, 0, 0 };
 };
 
 QCtmChartLayout::QCtmChartLayout(QCtmAbstractChartView* parent) : QCtmChartItem(parent), m_impl(std::make_unique<Impl>()) {}
@@ -27,5 +28,9 @@ QCtmChartLayout::QCtmChartLayout(QCtmAbstractChartView* parent) : QCtmChartItem(
 QCtmChartLayout::~QCtmChartLayout() {}
 
 void QCtmChartLayout::invalidate() { calcSize(this->geometry().size()); }
+
+void QCtmChartLayout::setMargins(const QMargins& margin) { m_impl->margins = margin; }
+
+const QMargins& QCtmChartLayout::margins() const { return m_impl->margins; }
 
 void QCtmChartLayout::onResized(const QSize& size) { calcSize(size); }

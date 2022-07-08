@@ -18,22 +18,21 @@
 **********************************************************************************/
 #pragma once
 
-#include "QCtmChartItem.h"
+#include "QCtmChartLayout.h"
 
-class QCtmAbstractChartView;
-class QCUSTOMUI_EXPORT QCtmAbstractSeries : public QCtmChartItem
+class QCUSTOMUI_EXPORT QCtmChartOverlayLayout : public QCtmChartLayout
 {
     Q_OBJECT
-    Q_PROPERTY(QString name READ name WRITE setName)
-    Q_PROPERTY(QColor color READ color WRITE setColor)
 public:
-    QCtmAbstractSeries(QCtmAbstractChartView* parent);
-    ~QCtmAbstractSeries();
+    QCtmChartOverlayLayout(QCtmAbstractChartView* parent);
+    ~QCtmChartOverlayLayout();
+    void addItem(QCtmChartItem* item);
+    void removeItem(QCtmChartItem* item);
+    QCtmChartItem* itemAt(int index) const;
 
-    void setName(const QString& name);
-    const QString& name() const;
-    virtual void setColor(const QColor& color);
-    virtual const QColor& color() const;
+protected:
+    void calcSize(const QSize& size) override;
+    void draw(QPainter* p) override;
 
 private:
     struct Impl;

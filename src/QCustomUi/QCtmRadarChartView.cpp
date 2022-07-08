@@ -1,4 +1,5 @@
 ﻿#include "QCtmRadarChartView.h"
+#include "QCtmChartHBoxLayout.h"
 #include "QCtmColor.h"
 #include "QCtmRadarSeries.h"
 
@@ -104,6 +105,8 @@ QCtmRadarSeries* QCtmRadarChartView::addSeries()
     addSeries(series);
     return series;
 }
+
+void QCtmRadarChartView::addSeries(QCtmAbstractSeries* series) { QCtmAbstractChartView::addSeries(series); }
 
 void QCtmRadarChartView::setLabelColor(const QColor& color)
 {

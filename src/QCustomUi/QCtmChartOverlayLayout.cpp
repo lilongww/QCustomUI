@@ -16,26 +16,37 @@
 **  You should have received a copy of the GNU Lesser General Public License    **
 **  along with QCustomUi.  If not, see <https://www.gnu.org/licenses/>.         **
 **********************************************************************************/
-#pragma once
 
-#include "QCtmChartItem.h"
+#include "QCtmChartOverlayLayout.h"
 
-class QCtmAbstractChartView;
-class QCUSTOMUI_EXPORT QCtmAbstractSeries : public QCtmChartItem
+struct QCtmChartOverlayLayout::Impl
 {
-    Q_OBJECT
-    Q_PROPERTY(QString name READ name WRITE setName)
-    Q_PROPERTY(QColor color READ color WRITE setColor)
-public:
-    QCtmAbstractSeries(QCtmAbstractChartView* parent);
-    ~QCtmAbstractSeries();
-
-    void setName(const QString& name);
-    const QString& name() const;
-    virtual void setColor(const QColor& color);
-    virtual const QColor& color() const;
-
-private:
-    struct Impl;
-    std::unique_ptr<Impl> m_impl;
+    std::vector<QCtmChartItem*> items;
 };
+
+QCtmChartOverlayLayout::QCtmChartOverlayLayout(QCtmAbstractChartView* parent) : QCtmChartLayout(parent), m_impl(std::make_unique<Impl>()) {}
+
+QCtmChartOverlayLayout::~QCtmChartOverlayLayout() {}
+
+void QCtmChartOverlayLayout::addItem(QCtmChartItem* item) { m_impl->items.push_back(item); }
+
+void QCtmChartOverlayLayout::removeItem(QCtmChartItem* item) { std::erase(m_impl->items, item); }
+
+QCtmChartItem* QCtmChartOverlayLayout::itemAt(int index) const { return m_impl->items.at(index); }
+
+void QCtmChartOverlayLayout::calcSize(const QSize& size)
+{
+    for (auto item : m_impl->items)
+    {
+        item->setGeometry(this->geometry());
+    }
+}
+
+void QCtmChartOverlayLayout::draw(QPainter* p)
+{
+    for (auto item : m_impl->items)
+    {
+        if (item->isVisible())
+            item->draw(p);
+    }
+}

@@ -30,17 +30,21 @@ class QCtmAbstractChartView;
 class QCUSTOMUI_EXPORT QCtmChartItem : public QObject
 {
     Q_OBJECT
-
+    Q_PROPERTY(bool visible READ isVisible WRITE setVisible)
 public:
     QCtmChartItem(QCtmAbstractChartView* parent);
     ~QCtmChartItem();
     void setGeometry(const QRect& rect);
+    inline void setGeometry(int x, int y, int width, int height) { setGeometry(QRect(x, y, width, height)); }
     const QRect& geometry() const;
     void setMinimumSize(const QSize& size);
+    inline void setMinimumSize(int width, int height) { setMinimumSize(QSize(width, height)); }
     const QSize& minimumSize() const;
     void setMaximumSize(const QSize& size);
+    inline void setMaximumSize(int width, int height) { setMaximumSize(QSize(width, height)); }
     const QSize& maximumSize() const;
-
+    void setVisible(bool visible);
+    bool isVisible() const;
     virtual QCtmAbstractChartView* chart() const;
     virtual void draw(QPainter* p) = 0;
     virtual QSize minimumSizeHint() const;

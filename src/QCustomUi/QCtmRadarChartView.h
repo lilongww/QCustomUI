@@ -70,8 +70,9 @@ public:
     const QBrush& alternateBrush() const;
     virtual QString label(int i) const;
     using QCtmAbstractChartView::addSeries;
-
+    
 protected:
+    void addSeries(QCtmAbstractSeries* series) override;
     void paintEvent(QPaintEvent* e) override;
     virtual void drawTitle(QPainter* p, const QRectF& rect);
     virtual void drawGrid(QPainter* p, const QPointF& center, double step);

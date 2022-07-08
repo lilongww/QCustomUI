@@ -34,7 +34,6 @@ struct QCtmChartBoxLayout::Impl
     Qt::Orientation orientation;
     std::vector<LayoutItem> items;
     int spacing { 0 };
-    QMargins margins { 0, 0, 0, 0 };
     inline Impl(Qt::Orientation o) : orientation(o) {}
 };
 
@@ -68,17 +67,14 @@ void QCtmChartBoxLayout::setSpacing(int spacing) { m_impl->spacing = spacing; }
 
 int QCtmChartBoxLayout::spacing() const { return m_impl->spacing; }
 
-void QCtmChartBoxLayout::setMargin(const QMargins& margin) { m_impl->margins = margin; }
-
-const QMargins& QCtmChartBoxLayout::margin() const { return m_impl->margins; }
-
 void QCtmChartBoxLayout::calcSize(const QSize& size)
 {
     if (m_impl->items.empty())
         return;
-    bool hori    = m_impl->orientation == Qt::Horizontal;
-    double total = (hori ? size.width() : size.height()) - (m_impl->items.size() - 1) * m_impl->spacing -
-                   (hori ? m_impl->margins.left() + m_impl->margins.right() : m_impl->margins.top() + m_impl->margins.bottom());
+    const auto margins = this->margins();
+    bool hori          = m_impl->orientation == Qt::Horizontal;
+    double total       = (hori ? size.width() : size.height()) - (m_impl->items.size() - 1) * m_impl->spacing -
+                   (hori ? margins.left() + margins.right() : margins.top() + margins.bottom());
     double alloced = 0.0;
     // 分配最小
     std::vector<std::reference_wrapper<LayoutItem>> itemRefs;
@@ -177,24 +173,23 @@ void QCtmChartBoxLayout::calcSize(const QSize& size)
             break;
     }
 
-    auto offset = hori ? m_impl->margins.left() : m_impl->margins.top();
+    auto offset = hori ? margins.left() : margins.top();
     for (auto it = m_impl->items.begin(); it != m_impl->items.end(); it++)
     {
         auto& item = *it;
         if (it != m_impl->items.rbegin().base())
         {
-            item.item->setGeometry(QRect(hori ? offset : m_impl->margins.left(),
-                                         hori ? m_impl->margins.top() : offset,
-                                         hori ? item.size : this->geometry().width() - m_impl->margins.left() - m_impl->margins.right(),
-                                         hori ? this->geometry().height() - m_impl->margins.top() - m_impl->margins.bottom() : item.size));
+            item.item->setGeometry(QRect(hori ? offset : margins.left(),
+                                         hori ? margins.top() : offset,
+                                         hori ? item.size : this->geometry().width() - margins.left() - margins.right(),
+                                         hori ? this->geometry().height() - margins.top() - margins.bottom() : item.size));
         }
         else
         {
-            item.item->setGeometry(
-                QRect(hori ? offset : m_impl->margins.left(),
-                      hori ? m_impl->margins.top() : offset,
-                      hori ? total - offset : this->geometry().width() - m_impl->margins.left() - m_impl->margins.right(),
-                      hori ? this->geometry().height() - m_impl->margins.top() - m_impl->margins.bottom() : total - offset));
+            item.item->setGeometry(QRect(hori ? offset : margins.left(),
+                                         hori ? margins.top() : offset,
+                                         hori ? total - offset : this->geometry().width() - margins.left() - margins.right(),
+                                         hori ? this->geometry().height() - margins.top() - margins.bottom() : total - offset));
         }
         offset += item.size + m_impl->spacing;
         qDebug() << std::distance(m_impl->items.begin(), it) << item.item->geometry();

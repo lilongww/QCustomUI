@@ -18,24 +18,11 @@
 **********************************************************************************/
 #pragma once
 
-#include "QCtmChartItem.h"
+#include "QCtmChartBoxLayout.h"
 
-class QCtmAbstractChartView;
-class QCUSTOMUI_EXPORT QCtmAbstractSeries : public QCtmChartItem
+class QCUSTOMUI_EXPORT QCtmChartHBoxLayout : public QCtmChartBoxLayout
 {
     Q_OBJECT
-    Q_PROPERTY(QString name READ name WRITE setName)
-    Q_PROPERTY(QColor color READ color WRITE setColor)
 public:
-    QCtmAbstractSeries(QCtmAbstractChartView* parent);
-    ~QCtmAbstractSeries();
-
-    void setName(const QString& name);
-    const QString& name() const;
-    virtual void setColor(const QColor& color);
-    virtual const QColor& color() const;
-
-private:
-    struct Impl;
-    std::unique_ptr<Impl> m_impl;
+    inline QCtmChartHBoxLayout(QCtmAbstractChartView* parent) : QCtmChartBoxLayout(Qt::Horizontal, parent) {}
 };

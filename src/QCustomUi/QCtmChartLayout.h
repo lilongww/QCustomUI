@@ -20,14 +20,19 @@
 
 #include "QCtmChartItem.h"
 
+#include <QMargins>
+
 class QCUSTOMUI_EXPORT QCtmChartLayout : public QCtmChartItem
 {
     Q_OBJECT
+    Q_PROPERTY(QMargins margins READ margins WRITE setMargins)
 public:
     QCtmChartLayout(QCtmAbstractChartView* parent);
     ~QCtmChartLayout();
 
     void invalidate();
+    void setMargins(const QMargins& margin);
+    const QMargins& margins() const;
 
 protected:
     void onResized(const QSize& size) override;

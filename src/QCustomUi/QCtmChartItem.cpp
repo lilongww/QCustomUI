@@ -24,6 +24,7 @@ struct QCtmChartItem::Impl
     QRect geometry { 0, 0, 0, 0 };
     QSize minimumSize { 0, 0 };
     QSize maximumSize { QWIDGETSIZE_MAX, QWIDGETSIZE_MAX };
+    bool visible { true };
 };
 
 QCtmChartItem::QCtmChartItem(QCtmAbstractChartView* parent) : QObject(parent), m_impl(std::make_unique<Impl>()) {}
@@ -45,6 +46,10 @@ const QSize& QCtmChartItem::minimumSize() const { return m_impl->minimumSize; }
 void QCtmChartItem::setMaximumSize(const QSize& size) { m_impl->maximumSize = size; }
 
 const QSize& QCtmChartItem::maximumSize() const { return m_impl->maximumSize; }
+
+void QCtmChartItem::setVisible(bool visible) { m_impl->visible = visible; }
+
+bool QCtmChartItem::isVisible() const { return m_impl->visible; }
 
 QCtmAbstractChartView* QCtmChartItem::chart() const { return qobject_cast<QCtmAbstractChartView*>(parent()); }
 
