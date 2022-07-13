@@ -257,7 +257,11 @@ bool QCtmPathBrowser::event(QEvent* e)
         if (auto evt = dynamic_cast<QHoverEvent*>(e); evt)
         {
             int hoverNode = -1;
-            auto pos      = evt->position().toPoint();
+#if QT_VERSION >= QT_VERSION_CHECK(6, 0, 0)
+            auto pos = evt->position().toPoint();
+#else
+            auto pos = evt->pos();
+#endif
             if (auto it =
                     std::find_if(m_impl->nodes.begin(), m_impl->nodes.end(), [pos](const auto& node) { return node.rect.contains(pos); });
                 it != m_impl->nodes.end())

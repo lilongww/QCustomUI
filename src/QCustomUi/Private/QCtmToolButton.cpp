@@ -23,6 +23,7 @@
 #include <QEvent>
 #include <QStyle>
 #include <QStyleOption>
+#include <QStylePainter>
 
 struct QCtmToolButton::Impl
 {
@@ -60,6 +61,7 @@ bool QCtmToolButton::showToolTips() const { return m_impl->showToolTip; }
 
 void QCtmToolButton::setSelected(bool select) { m_impl->selected = select; }
 
+#if (QT_VERSION >= QT_VERSION_CHECK(6, 0, 0))
 void QCtmToolButton::initStyleOption(QStyleOptionToolButton* option) const
 {
     QToolButton::initStyleOption(option);
@@ -67,7 +69,18 @@ void QCtmToolButton::initStyleOption(QStyleOptionToolButton* option) const
         option->icon = this->icon().pixmap(
             iconSize(), m_impl->selected ? QIcon::Mode::Selected : QIcon::Mode::Normal, isChecked() ? QIcon::State::On : QIcon::State::Off);
 }
-
+#else
+void QCtmToolButton::paintEvent(QPaintEvent*)
+{
+    QStylePainter p(this);
+    QStyleOptionToolButton opt;
+    initStyleOption(&opt);
+    if (m_impl->selected)
+        opt.icon = this->icon().pixmap(
+            iconSize(), m_impl->selected ? QIcon::Mode::Selected : QIcon::Mode::Normal, isChecked() ? QIcon::State::On : QIcon::State::Off);
+    p.drawComplexControl(QStyle::CC_ToolButton, opt);
+}
+#endif
 bool QCtmToolButton::event(QEvent* e)
 {
     if (e->type() == QEvent::ToolTip)

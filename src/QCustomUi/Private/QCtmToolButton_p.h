@@ -39,7 +39,11 @@ public:
 
 protected:
     bool event(QEvent* e) override;
+#if (QT_VERSION >= QT_VERSION_CHECK(6, 0, 0))
     void initStyleOption(QStyleOptionToolButton* option) const override;
+#else
+    void paintEvent(QPaintEvent*) override;
+#endif
 
 private:
     struct Impl;
