@@ -160,7 +160,7 @@ int QCtmCircleProgressBar::minimum() const { return m_impl->minimum; }
 
 /*!
     \brief      设置文本格式 \a format, 参考 QProgressBar 文本格式.
-    \sa         format.
+    \sa         format
 */
 void QCtmCircleProgressBar::setFormat(const QString& format)
 {
@@ -227,7 +227,7 @@ QString QCtmCircleProgressBar::text() const
 
 /*!
     \brief      设置值 \a value.
-    \sa         value.
+    \sa         value
 */
 void QCtmCircleProgressBar::setValue(int value)
 {
@@ -264,7 +264,7 @@ void QCtmCircleProgressBar::setMinimum(int minimum)
 
 /*!
     \brief      设置值范围 \a minimum, \a maximum.
-    \sa         setMaximum, setMinimum.
+    \sa         setMaximum, setMinimum
 */
 void QCtmCircleProgressBar::setRange(int minimum, int maximum)
 {
@@ -276,7 +276,7 @@ void QCtmCircleProgressBar::setRange(int minimum, int maximum)
 }
 
 /*!
-    \brief      设置画笔样式 style.
+    \brief      设置画笔样式 \a style.
     \sa         penCapStyle
 */
 void QCtmCircleProgressBar::setPenCapStyle(Qt::PenCapStyle style)
