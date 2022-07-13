@@ -1,4 +1,4 @@
-set(TARGET_NAME "QCustomUiDesignerPlugin")
+﻿set(TARGET_NAME "QCustomUiDesignerPlugin")
 
 set(HEADERS
  "QCustomUiWidgets.h"
@@ -8,7 +8,9 @@ set(HEADERS
  "ComboBox.h"
  "TableView.h"
  "ClassifyTreeView.h"
- "EditLabel.h")
+ "EditLabel.h"
+ "SwitchButton.h"
+ "CircleProgressBar.h")
 set(SOURCES 
  "QCustomUiWidgets.cpp"
  "StageProgressBar.cpp"
@@ -18,6 +20,8 @@ set(SOURCES
  "TableView.cpp"
  "ClassifyTreeView.cpp"
  "EditLabel.cpp"
+ "SwitchButton.cpp"
+ "CircleProgressBar.cpp"
 )
 
 file(GLOB RESOURCES *.qrc)
