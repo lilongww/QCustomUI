@@ -18,7 +18,7 @@ API文档：https://llongww.gitee.io/qcustomuidocument
 
 #### QCtmWindow
 
-QCtmWindow 是一个顶层窗口类，默认带有自定义的标题栏，支持在标题栏上添加菜单，显示图标，添加控件，系统右键菜单等，另外支持windows窗口的屏幕编译拖拽效果：
+QCtmWindow 是一个顶层窗口类，默认带有自定义的标题栏，支持在标题栏上添加菜单，显示图标，添加控件，系统右键菜单等，另外支持windows窗口的屏幕边缘拖拽效果：
 
 ![image-20220519144218268](README.assets/image-20220519144218268.png)
 
