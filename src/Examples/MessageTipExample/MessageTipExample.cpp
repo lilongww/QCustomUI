@@ -43,6 +43,15 @@ MessageTipExample::MessageTipExample(QWidget* parent) : QCtmWindow(parent)
             &QCtmMessageTipView::aboutToClearAllMessages,
             this,
             [=] { return QCtmMessageBox::Yes == QCtmMessageBox::question(this, tr("Tips"), QString("Clear all messages?")); });
+    connect(view,
+            &QCtmMessageTipView::messageClicked,
+            this,
+            [=](auto msg)
+            { return QCtmMessageBox::Yes == QCtmMessageBox::information(this, tr("Tips"), QString("Clicked message:\n%1\n%2\n%3")
+                                                                           .arg(msg->title())
+                                                                           .arg(msg->content())
+                                                                           .arg(msg->dateTime().toString("yyyy-MM-dd hh:mm:ss")));
+            });
 }
 
 MessageTipExample::~MessageTipExample() {}
