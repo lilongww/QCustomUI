@@ -19,7 +19,9 @@
 #pragma once
 
 #include <algorithm>
+#include <charconv>
 #include <ranges>
+#include <vector>
 
 namespace OpenVisa
 {
