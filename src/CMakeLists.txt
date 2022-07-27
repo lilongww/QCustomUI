@@ -1,2 +1,6 @@
-add_subdirectory(OpenVisa)
+﻿add_subdirectory(OpenVisa)
 add_subdirectory(Examples)
+if(BUILD_TEST)
+message("-- Build tests ON")
+add_subdirectory(Tests)
+endif(BUILD_TEST)

@@ -18,35 +18,21 @@
 **********************************************************************************/
 #pragma once
 
-#include "Object.h"
-#include "StatusByteRegister.h"
-
-#include <vector>
+#include "Flags.h"
 
 namespace OpenVisa
 {
-class OPENVISA_EXPORT Object::CommonCommand
+enum class StatusByteRegister : unsigned short
 {
-public:
-    void cls();
-    void setEse(int status);
-    int ese();
-    int esr();
-    std::string idn();
-    void setOpc();
-    bool opc();
-    std::vector<std::string> opt();
-    void rst();
-    void setSre(int status);
-    int sre();
-    StatusByteRegisters stb();
-    bool tst();
-    void wai();
-    void rcl(int i);
-
-private:
-    inline CommonCommand(Object* parent) : m_parent(parent) {};
-    friend Object;
-    Object* m_parent;
+    Unused1                  = 0x0001,
+    Unused2                  = 0x0002,
+    ErrorQueue               = 0x0004,
+    QuestionableDataSummary  = 0x0008,
+    MessageAvailable         = 0x0010,
+    StandardEventSummary     = 0x0020,
+    MasterSummary            = 0x0040,
+    StandardOperationSummary = 0x0080
 };
+
+using StatusByteRegisters = Flags<StatusByteRegister>;
 } // namespace OpenVisa

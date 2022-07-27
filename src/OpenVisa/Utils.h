@@ -19,6 +19,7 @@
 #pragma once
 
 #include "Object.h"
+#include "StatusByteRegister.h"
 #if __has_include("ADL.h")
 #include "ADL.h"
 #endif
@@ -67,6 +68,13 @@ struct OPENVISA_EXPORT VisaAdl<int>
 {
     static void fromScpi(const std::string& ret, int& val);
     static std::string toScpi(int source);
+};
+
+template<>
+struct OPENVISA_EXPORT VisaAdl<StatusByteRegisters>
+{
+    static void fromScpi(const std::string& ret, StatusByteRegisters& val);
+    static std::string toScpi(StatusByteRegisters source);
 };
 
 template<typename T>

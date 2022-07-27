@@ -28,7 +28,9 @@ class Flags
 {
 public:
     using Int = std::underlying_type_t<T>;
+    inline Flags() {}
     inline Flags(T ev) : m_flag(static_cast<Int>(ev)) {}
+    explicit inline Flags(Int value) : m_flag(value) {}
     inline Flags(const Flags& other) : m_flag(other.m_flag) {}
     inline ~Flags() {}
 
@@ -70,9 +72,6 @@ public:
                : other.m_flag < m_flag ? std::strong_ordering::less
                                        : std::strong_ordering::greater;
     }
-
-protected:
-    inline Flags(Int flag) : m_flag(flag) {}
 
 private:
     Int m_flag;

@@ -124,10 +124,10 @@ int Object::CommonCommand::sre()
                 查询状态字节寄存器组的条件寄存器并返回一个十进制值，该值等于寄存器中设置的所有位的二进制加权值总和。
                 条件寄存器可不间断地监控仪器的状态。 条件寄存器位实时更新；它们既不锁定亦无缓冲。
 */
-int Object::CommonCommand::stb()
+StatusByteRegisters Object::CommonCommand::stb()
 {
     m_parent->send("*STB?");
-    return OpenVisa::decode<int>(m_parent->readAll());
+    return OpenVisa::decode<StatusByteRegisters>(m_parent->readAll());
 }
 
 /*!
