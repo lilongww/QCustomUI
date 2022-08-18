@@ -8,17 +8,17 @@ class tst_QCtmIPAddressEdit : public QObject
 {
     Q_OBJECT
 private slots:
-    void testSetGet();
-    void testInvalidIP();
-    void testInput();
-    void testCursor();
-    void testReadOnly();
-    void testEditChanged();
-    void testEditFinished();
+    void taskSetGet();
+    void taskInvalidIP();
+    void taskInput();
+    void taskCursor();
+    void taskReadOnly();
+    void taskEditChanged();
+    void taskEditFinished();
 };
 
 // 测试设置和获取
-void tst_QCtmIPAddressEdit::testSetGet()
+void tst_QCtmIPAddressEdit::taskSetGet()
 {
     QString ip("192.168.0.1");
     QCtmIPAddressEdit edit(nullptr);
@@ -26,7 +26,7 @@ void tst_QCtmIPAddressEdit::testSetGet()
     QVERIFY(edit.ipAddress() == ip);
 }
 // 测试非法IP
-void tst_QCtmIPAddressEdit::testInvalidIP()
+void tst_QCtmIPAddressEdit::taskInvalidIP()
 {
     QCtmIPAddressEdit edit(nullptr);
     edit.setIPAddress("1.1.555.1");
@@ -35,7 +35,7 @@ void tst_QCtmIPAddressEdit::testInvalidIP()
     QVERIFY(edit.ipAddress() == "0.0.0.0");
 }
 // 输入测试
-void tst_QCtmIPAddressEdit::testInput()
+void tst_QCtmIPAddressEdit::taskInput()
 {
     {
         QCtmIPAddressEdit edit(nullptr);
@@ -63,7 +63,7 @@ void tst_QCtmIPAddressEdit::testInput()
 }
 
 // 测试游标
-void tst_QCtmIPAddressEdit::testCursor()
+void tst_QCtmIPAddressEdit::taskCursor()
 {
     QCtmIPAddressEdit edit(nullptr);
     edit.show();
@@ -72,7 +72,7 @@ void tst_QCtmIPAddressEdit::testCursor()
     QVERIFY(edit.ipAddress() == "0.1.1.1");
 }
 // 测试只读属性
-void tst_QCtmIPAddressEdit::testReadOnly()
+void tst_QCtmIPAddressEdit::taskReadOnly()
 {
     QCtmIPAddressEdit edit(nullptr);
     edit.show();
@@ -85,7 +85,7 @@ void tst_QCtmIPAddressEdit::testReadOnly()
 }
 
 // 测试editChanged信号
-void tst_QCtmIPAddressEdit::testEditChanged()
+void tst_QCtmIPAddressEdit::taskEditChanged()
 {
     QCtmIPAddressEdit edit(nullptr);
     edit.show();
@@ -95,7 +95,7 @@ void tst_QCtmIPAddressEdit::testEditChanged()
 }
 
 // 测试editFinished信号
-void tst_QCtmIPAddressEdit::testEditFinished()
+void tst_QCtmIPAddressEdit::taskEditFinished()
 {
     QWidget t(nullptr);
     QCtmIPAddressEdit edit(&t);

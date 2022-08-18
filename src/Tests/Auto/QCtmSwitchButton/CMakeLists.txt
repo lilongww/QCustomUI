@@ -1,6 +1,6 @@
-﻿qcustomui_internal_add_test(tst_QCtmIPAddressEdit
+qcustomui_internal_add_test(tst_QCtmSwitchButton
     SOURCES
-        tst_QCtmIPAddressEdit.cpp
+        tst_QCtmSwitchButton.cpp
     PUBLIC_LIBRARIES
         QCustomUi
     PRIVATE_LIBRARIES

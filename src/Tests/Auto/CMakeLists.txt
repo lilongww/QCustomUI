@@ -1,1 +1,2 @@
 add_subdirectory(QCtmIPAddressEdit)
+add_subdirectory(QCtmSwitchButton)
