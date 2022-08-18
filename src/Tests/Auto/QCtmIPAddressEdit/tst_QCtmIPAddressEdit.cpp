@@ -1,6 +1,7 @@
 ﻿#include <QCustomUi/QCtmIPAddressEdit.h>
 
 #include <QObject>
+#include <QSignalSpy>
 #include <QTest>
 
 class tst_QCtmIPAddressEdit : public QObject
@@ -10,6 +11,10 @@ private slots:
     void testSetGet();
     void testInvalidIP();
     void testInput();
+    void testCursor();
+    void testReadOnly();
+    void testEditChanged();
+    void testEditFinished();
 };
 
 // 测试设置和获取
@@ -55,6 +60,58 @@ void tst_QCtmIPAddressEdit::testInput()
         QTest::keyClicks(&edit, "19A21D6F81.1");
         QVERIFY(edit.ipAddress() == "192.168.1.1");
     }
+}
+
+// 测试游标
+void tst_QCtmIPAddressEdit::testCursor()
+{
+    QCtmIPAddressEdit edit(nullptr);
+    edit.show();
+    QTest::keyClick(&edit, Qt::Key_Right);
+    QTest::keyClicks(&edit, "1.1.1");
+    QVERIFY(edit.ipAddress() == "0.1.1.1");
+}
+// 测试只读属性
+void tst_QCtmIPAddressEdit::testReadOnly()
+{
+    QCtmIPAddressEdit edit(nullptr);
+    edit.show();
+    edit.setReadOnly(true);
+    QTest::keyClicks(&edit, "1.1.1.1");
+    QVERIFY(edit.ipAddress() == "0.0.0.0");
+    edit.setReadOnly(false);
+    QTest::keyClicks(&edit, "1.1.1.1");
+    QVERIFY(edit.ipAddress() == "1.1.1.1");
+}
+
+// 测试editChanged信号
+void tst_QCtmIPAddressEdit::testEditChanged()
+{
+    QCtmIPAddressEdit edit(nullptr);
+    edit.show();
+    QSignalSpy spy(&edit, SIGNAL(editChanged()));
+    QTest::keyClicks(&edit, "192.168.1.1");
+    QVERIFY(spy.count() == 8);
+}
+
+// 测试editFinished信号
+void tst_QCtmIPAddressEdit::testEditFinished()
+{
+    QWidget t(nullptr);
+    QCtmIPAddressEdit edit(&t);
+    QCtmIPAddressEdit edit2(&t);
+    t.show();
+    edit.setFocus();
+    QSignalSpy spy(&edit, SIGNAL(editingFinished()));
+    QTest::keyClicks(&edit, "192.168.1.1");
+    QTest::keyClick(&edit, Qt::Key_Enter);
+    QTest::keyClick(&edit, Qt::Key_Return);
+    QVERIFY(spy.count() == 2);
+    edit2.setFocus();
+    QTest::keyClicks(&edit2, "192.168.1.1");
+    QSignalSpy spy2(&edit2, SIGNAL(editingFinished()));
+    edit.setFocus();
+    QVERIFY(spy2.count() == 1);
 }
 
 // main

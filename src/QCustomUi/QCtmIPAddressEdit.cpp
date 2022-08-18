@@ -109,7 +109,7 @@ struct QCtmIPAddressEdit::Impl
 */
 
 /*!
-    \fn         void QCtmIPAddressEdit::editFinished()
+    \fn         void QCtmIPAddressEdit::editingFinished()
     \brief      编辑完成时发送该信号.
 */
 
@@ -492,6 +492,10 @@ void QCtmIPAddressEdit::keyPressEvent(QKeyEvent* event)
     {
         clearSelection();
     }
+    else if (event->key() == Qt::Key_Enter || event->key() == Qt::Key_Return)
+    {
+        emit editingFinished();
+    }
     update();
 }
 
@@ -609,7 +613,7 @@ void QCtmIPAddressEdit::focusOutEvent(QFocusEvent* event)
     if (reason != Qt::ActiveWindowFocusReason && reason != Qt::PopupFocusReason)
         clearSelection();
     update();
-    emit editFinished();
+    emit editingFinished();
 }
 
 /*!
