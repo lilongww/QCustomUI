@@ -1,0 +1,10 @@
+qcustomui_internal_add_test(tst_QCtmCircleProgressBar
+    SOURCES
+        tst_QCtmCircleProgressBar.cpp
+    PUBLIC_LIBRARIES
+        QCustomUi
+    PRIVATE_LIBRARIES
+        Qt::Gui
+        Qt::Widgets
+        Qt::Test
+)
