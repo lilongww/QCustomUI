@@ -274,12 +274,6 @@ void QCtmWindow::setShadowless(bool flag) { m_impl->delegate->setShadowless(flag
 bool QCtmWindow::shadowless() const { return m_impl->delegate->shadowless(); }
 #endif
 
-void QCtmWindow::resizeEvent(QResizeEvent* e)
-{
-    QWidget::resizeEvent(e);
-    this->layout()->update();
-}
-
 /*!
     \reimp
 */
