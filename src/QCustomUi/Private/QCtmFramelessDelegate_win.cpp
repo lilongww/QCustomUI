@@ -154,7 +154,8 @@ bool QCtmWinFramelessDelegate::nativeEvent(const QByteArray& eventType, void* me
                 NCCALCSIZE_PARAMS* ncParam = reinterpret_cast<NCCALCSIZE_PARAMS*>(msg->lParam);
                 if (ncParam->lppos->flags & SWP_FRAMECHANGED)
                 {
-                    m_impl->setNoMargins(msg->hwnd);
+                    QMetaObject::invokeMethod(
+                        this, [hwnd = msg->hwnd, this] { m_impl->setNoMargins(hwnd); }, Qt::QueuedConnection);
                 }
                 *result = 0;
                 return true;

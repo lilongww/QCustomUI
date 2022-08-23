@@ -63,6 +63,7 @@ public:
     bool shadowless() const;
 #endif
 protected:
+    void resizeEvent(QResizeEvent* e) override;
     bool eventFilter(QObject* watched, QEvent* event) override;
 #if QT_VERSION < QT_VERSION_CHECK(6, 0, 0)
     bool nativeEvent(const QByteArray& eventType, void* message, long* result) override;
