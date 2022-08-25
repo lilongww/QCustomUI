@@ -24,10 +24,10 @@
 #include <QBackingStore>
 #include <QDebug>
 #include <QFocusEvent>
-#include <QLayout>
 #include <QPainter>
 #include <QPen>
 #include <QScopeGuard>
+#include <QScreen>
 #include <QWindow>
 
 #ifdef Q_OS_WIN
@@ -67,18 +67,10 @@ struct QCtmWinFramelessDelegate::Impl
     QWidgetList moveBars;
     QWidget* parent { nullptr };
     bool firstShow { true };
-
-    inline void setNoMargins(HWND hwnd)
-    {
-        bool max    = IsZoomed(hwnd);
-        auto margin = dpiScale(8);
-        parent->layout()->setContentsMargins(max ? QMargins(margin, margin, margin, margin) : QMargins(0, 0, 0, 0));
-    };
+    WINDOWPLACEMENT wndPlaceMent;
 
     inline double dpiScale(double value) { return value / parent->devicePixelRatioF(); }
-
     inline double unDpiScale(double value) { return value * parent->devicePixelRatioF(); }
-    WINDOWPLACEMENT wndPlaceMent;
 };
 
 QCtmWinFramelessDelegate::QCtmWinFramelessDelegate(QWidget* parent, const QWidgetList& moveBars)
@@ -152,10 +144,18 @@ bool QCtmWinFramelessDelegate::nativeEvent(const QByteArray& eventType, void* me
             if (msg->wParam)
             {
                 NCCALCSIZE_PARAMS* ncParam = reinterpret_cast<NCCALCSIZE_PARAMS*>(msg->lParam);
-                if (ncParam->lppos->flags & SWP_FRAMECHANGED)
+                auto screen                = m_impl->parent->screen();
+                if (!screen)
+                    break;
+                if (IsZoomed(msg->hwnd))
                 {
-                    QMetaObject::invokeMethod(
-                        this, [hwnd = msg->hwnd, this] { m_impl->setNoMargins(hwnd); }, Qt::QueuedConnection);
+                    const QRect rc = screen->availableGeometry();
+                    auto real =
+                        QRect(ncParam->rgrc[0].left, ncParam->rgrc[0].top, ncParam->rgrc[0].right, ncParam->rgrc[0].bottom).intersected(rc);
+                    ncParam->rgrc[0].left   = real.left();
+                    ncParam->rgrc[0].top    = real.top();
+                    ncParam->rgrc[0].right  = real.right();
+                    ncParam->rgrc[0].bottom = real.bottom();
                 }
                 *result = 0;
                 return true;
@@ -183,6 +183,21 @@ bool QCtmWinFramelessDelegate::nativeEvent(const QByteArray& eventType, void* me
         break;
     case WM_NCHITTEST:
         return onNCTitTest(msg, result);
+    case WM_GETMINMAXINFO:
+        {
+            auto screen = m_impl->parent->screen();
+            if (!screen)
+                break;
+            const QRect rc     = screen->availableGeometry();
+            MINMAXINFO* p      = reinterpret_cast<MINMAXINFO*>(msg->lParam);
+            p->ptMaxPosition.x = 0;
+            p->ptMaxPosition.y = 0;
+            p->ptMaxSize.x     = rc.width();
+            p->ptMaxSize.y     = rc.height();
+            *result            = ::DefWindowProc(msg->hwnd, msg->message, msg->wParam, msg->lParam);
+            return true;
+        }
+        break;
     case WM_NCACTIVATE:
         {
             if (!isCompositionEnabled())
@@ -281,7 +296,7 @@ void QCtmWinFramelessDelegate::setWindowLong()
 
     if (isCompositionEnabled())
     {
-        extendFrameIntoClientArea(m_impl->parent->windowHandle(), 1, 1, 1, 1);
+        extendFrameIntoClientArea(m_impl->parent->windowHandle(), -1, -1, -1, -1);
     }
 
     SetWindowPos(hwnd, nullptr, 0, 0, 0, 0, SWP_FRAMECHANGED | SWP_NOMOVE | SWP_NOSIZE);
@@ -377,7 +392,8 @@ bool QCtmWinFramelessDelegate::onNCTitTest(MSG* msg, qintptr* result)
     auto borderX = GetSystemMetrics(SM_CXPADDEDBORDER);
     auto borderY = GetSystemMetrics(SM_CXPADDEDBORDER);
 
-    if (m_impl->parent->isMaximized())
+    bool maxSized = m_impl->parent->isMaximized();
+    if (maxSized)
     {
         borderX = 0;
         borderY = 0;
@@ -386,7 +402,7 @@ bool QCtmWinFramelessDelegate::onNCTitTest(MSG* msg, qintptr* result)
     {
         auto rect = m_impl->parent->geometry();
 
-        if (x >= rect.left() && x <= rect.left() + borderX)
+        if (!maxSized && x >= rect.left() && x <= rect.left() + borderX)
         {
             if (y >= rect.top() && y <= rect.top() + borderY)
             {
@@ -406,7 +422,7 @@ bool QCtmWinFramelessDelegate::onNCTitTest(MSG* msg, qintptr* result)
         }
         else if (x > rect.left() + borderX && x < rect.right() - borderX)
         {
-            if (y >= rect.top() && y <= rect.top() + borderY)
+            if (!maxSized && y >= rect.top() && y <= rect.top() + borderY)
             {
                 *result = HTTOP;
                 return true;
@@ -416,13 +432,13 @@ bool QCtmWinFramelessDelegate::onNCTitTest(MSG* msg, qintptr* result)
                 *result = HTCAPTION;
                 return true;
             }
-            if (y >= rect.bottom() - borderY && y <= rect.bottom())
+            if (!maxSized && y >= rect.bottom() - borderY && y <= rect.bottom())
             {
                 *result = HTBOTTOM;
                 return true;
             }
         }
-        else if (x >= rect.right() - borderX && x <= rect.right())
+        else if (!maxSized && x >= rect.right() - borderX && x <= rect.right())
         {
             if (y >= rect.top() && y <= rect.top() + borderY)
             {
