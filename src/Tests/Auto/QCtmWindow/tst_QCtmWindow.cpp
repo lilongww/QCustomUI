@@ -1,4 +1,4 @@
-#include <QCustomUi/QCtmWindow.h>
+﻿#include <QCustomUi/QCtmWindow.h>
 
 #include <QScreen>
 #include <QSignalSpy>
@@ -22,7 +22,7 @@ void tst_QCtmWindow::fixedSizeWidgetShowMaximumBug()
     w.showMaximized();
     qApp->processEvents();
     QVERIFY(QTest::qWaitForWindowExposed(&w));
-    QCOMPARE(w.size().shrunkBy(QMargins(8, 8, 8, 8)), w.screen()->availableSize());
+    QCOMPARE(w.size(), w.screen()->availableSize());
 }
 
 QTEST_MAIN(tst_QCtmWindow)

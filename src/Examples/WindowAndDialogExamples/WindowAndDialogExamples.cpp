@@ -15,7 +15,8 @@
 WindowAndDialogExamples::WindowAndDialogExamples(QWidget* parent) : QCtmWindow(parent)
 {
     ui.setupUi(this->centralWidget());
-    auto* dlg   = new QCtmDialog(this);
+    auto* dlg = new QCtmDialog(this);
+    dlg->setWindowFlag(Qt::WindowMaximizeButtonHint);
     auto layout = new QHBoxLayout(dlg->centralWidget());
     auto btn    = new QPushButton(dlg);
     layout->addWidget(btn);
