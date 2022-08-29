@@ -62,6 +62,27 @@ inline void extendFrameIntoClientArea(QWindow* window, int left, int top, int ri
 #endif
 }
 
+inline QRect getScreenNativeWorkRect(HWND hwnd)
+{
+    auto monitor = MonitorFromWindow(hwnd, MONITOR_DEFAULTTONULL);
+    MONITORINFO info;
+    ::ZeroMemory(&info, sizeof(info));
+    info.cbSize = sizeof(info);
+    GetMonitorInfo(monitor, &info);
+    return QRect(info.rcWork.left, info.rcWork.top, info.rcWork.right - info.rcWork.left, info.rcWork.bottom - info.rcWork.top);
+}
+
+inline QRect getScreenNativeRect(HWND hwnd)
+{
+    auto monitor = MonitorFromWindow(hwnd, MONITOR_DEFAULTTONULL);
+    MONITORINFO info;
+    ::ZeroMemory(&info, sizeof(info));
+    info.cbSize = sizeof(info);
+    GetMonitorInfo(monitor, &info);
+    return QRect(
+        info.rcMonitor.left, info.rcMonitor.top, info.rcMonitor.right - info.rcMonitor.left, info.rcMonitor.bottom - info.rcMonitor.top);
+}
+
 struct QCtmWinFramelessDelegate::Impl
 {
     QWidgetList moveBars;
@@ -71,13 +92,6 @@ struct QCtmWinFramelessDelegate::Impl
 
     inline double dpiScale(double value) { return value / parent->devicePixelRatioF(); }
     inline double unDpiScale(double value) { return value * parent->devicePixelRatioF(); }
-    inline QRect unDpiScale(const QRect& value)
-    {
-        return QRect(value.x() * parent->devicePixelRatioF(),
-                     value.y() * parent->devicePixelRatioF(),
-                     value.width() * parent->devicePixelRatioF(),
-                     value.height() * parent->devicePixelRatioF());
-    }
 };
 
 QCtmWinFramelessDelegate::QCtmWinFramelessDelegate(QWidget* parent, const QWidgetList& moveBars)
@@ -151,12 +165,9 @@ bool QCtmWinFramelessDelegate::nativeEvent(const QByteArray& eventType, void* me
             if (msg->wParam)
             {
                 NCCALCSIZE_PARAMS* ncParam = reinterpret_cast<NCCALCSIZE_PARAMS*>(msg->lParam);
-                auto screen                = m_impl->parent->screen();
-                if (!screen)
-                    break;
                 if (IsZoomed(msg->hwnd))
                 {
-                    const QRect& rc = m_impl->unDpiScale(screen->availableGeometry());
+                    const QRect& rc = getScreenNativeWorkRect(msg->hwnd);
                     auto real =
                         QRect(ncParam->rgrc[0].left, ncParam->rgrc[0].top, ncParam->rgrc[0].right, ncParam->rgrc[0].bottom).intersected(rc);
                     ncParam->rgrc[0].left   = real.left();
@@ -192,10 +203,7 @@ bool QCtmWinFramelessDelegate::nativeEvent(const QByteArray& eventType, void* me
         return onNCTitTest(msg, result);
     case WM_GETMINMAXINFO:
         {
-            auto screen = m_impl->parent->screen();
-            if (!screen)
-                break;
-            const QRect rc     = m_impl->unDpiScale(screen->availableGeometry());
+            const QRect rc     = m_impl->parent->isMaximized() ? getScreenNativeWorkRect(msg->hwnd) : getScreenNativeRect(msg->hwnd);
             MINMAXINFO* p      = reinterpret_cast<MINMAXINFO*>(msg->lParam);
             p->ptMaxPosition.x = rc.x();
             p->ptMaxPosition.y = rc.y();
@@ -399,7 +407,7 @@ bool QCtmWinFramelessDelegate::onNCTitTest(MSG* msg, qintptr* result)
     auto borderX = GetSystemMetrics(SM_CXPADDEDBORDER);
     auto borderY = GetSystemMetrics(SM_CXPADDEDBORDER);
 
-    bool maxSized = m_impl->parent->isMaximized();
+    bool maxSized = m_impl->parent->isMaximized() || m_impl->parent->isFullScreen();
     if (maxSized)
     {
         borderX = 0;
