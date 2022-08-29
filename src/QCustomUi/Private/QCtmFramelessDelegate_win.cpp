@@ -161,8 +161,8 @@ bool QCtmWinFramelessDelegate::nativeEvent(const QByteArray& eventType, void* me
                         QRect(ncParam->rgrc[0].left, ncParam->rgrc[0].top, ncParam->rgrc[0].right, ncParam->rgrc[0].bottom).intersected(rc);
                     ncParam->rgrc[0].left   = real.left();
                     ncParam->rgrc[0].top    = real.top();
-                    ncParam->rgrc[0].right  = real.right();
-                    ncParam->rgrc[0].bottom = real.bottom();
+                    ncParam->rgrc[0].right  = real.right() + 1;
+                    ncParam->rgrc[0].bottom = real.bottom() + 1;
                 }
                 *result = 0;
                 return true;
@@ -463,7 +463,7 @@ bool QCtmWinFramelessDelegate::onNCTitTest(MSG* msg, qintptr* result)
                 return true;
             }
         }
-        else
+        else if (!maxSized)
         {
             *result = HTNOWHERE;
             return true;
