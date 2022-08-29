@@ -22,6 +22,10 @@ void tst_QCtmWindow::fixedSizeWidgetShowMaximumBug()
     w.showMaximized();
     qApp->processEvents();
     QVERIFY(QTest::qWaitForWindowExposed(&w));
+    while (1)
+    {
+        qApp->processEvents();
+    }
     QCOMPARE(w.size().shrunkBy(QMargins(8, 8, 8, 8)), w.screen()->availableSize());
 }
 

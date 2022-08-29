@@ -71,6 +71,13 @@ struct QCtmWinFramelessDelegate::Impl
 
     inline double dpiScale(double value) { return value / parent->devicePixelRatioF(); }
     inline double unDpiScale(double value) { return value * parent->devicePixelRatioF(); }
+    inline QRect unDpiScale(const QRect& value)
+    {
+        return QRect(value.x() * parent->devicePixelRatioF(),
+                     value.y() * parent->devicePixelRatioF(),
+                     value.width() * parent->devicePixelRatioF(),
+                     value.height() * parent->devicePixelRatioF());
+    }
 };
 
 QCtmWinFramelessDelegate::QCtmWinFramelessDelegate(QWidget* parent, const QWidgetList& moveBars)
@@ -149,7 +156,7 @@ bool QCtmWinFramelessDelegate::nativeEvent(const QByteArray& eventType, void* me
                     break;
                 if (IsZoomed(msg->hwnd))
                 {
-                    const QRect rc = screen->availableGeometry();
+                    const QRect& rc = m_impl->unDpiScale(screen->availableGeometry());
                     auto real =
                         QRect(ncParam->rgrc[0].left, ncParam->rgrc[0].top, ncParam->rgrc[0].right, ncParam->rgrc[0].bottom).intersected(rc);
                     ncParam->rgrc[0].left   = real.left();
@@ -188,10 +195,10 @@ bool QCtmWinFramelessDelegate::nativeEvent(const QByteArray& eventType, void* me
             auto screen = m_impl->parent->screen();
             if (!screen)
                 break;
-            const QRect rc     = screen->availableGeometry();
+            const QRect rc     = m_impl->unDpiScale(screen->availableGeometry());
             MINMAXINFO* p      = reinterpret_cast<MINMAXINFO*>(msg->lParam);
-            p->ptMaxPosition.x = 0;
-            p->ptMaxPosition.y = 0;
+            p->ptMaxPosition.x = rc.x();
+            p->ptMaxPosition.y = rc.y();
             p->ptMaxSize.x     = rc.width();
             p->ptMaxSize.y     = rc.height();
             *result            = ::DefWindowProc(msg->hwnd, msg->message, msg->wParam, msg->lParam);
