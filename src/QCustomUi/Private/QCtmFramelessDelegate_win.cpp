@@ -62,9 +62,11 @@ inline void extendFrameIntoClientArea(QWindow* window, int left, int top, int ri
 #endif
 }
 
-inline QRect getScreenNativeWorkRect(HWND hwnd)
+inline std::optional<QRect> getScreenNativeWorkRect(HWND hwnd)
 {
     auto monitor = MonitorFromWindow(hwnd, MONITOR_DEFAULTTONULL);
+    if (!monitor)
+        return std::nullopt;
     MONITORINFO info;
     ::ZeroMemory(&info, sizeof(info));
     info.cbSize = sizeof(info);
@@ -72,9 +74,11 @@ inline QRect getScreenNativeWorkRect(HWND hwnd)
     return QRect(info.rcWork.left, info.rcWork.top, info.rcWork.right - info.rcWork.left, info.rcWork.bottom - info.rcWork.top);
 }
 
-inline QRect getScreenNativeRect(HWND hwnd)
+inline std::optional<QRect> getScreenNativeRect(HWND hwnd)
 {
     auto monitor = MonitorFromWindow(hwnd, MONITOR_DEFAULTTONULL);
+    if (!monitor)
+        return std::nullopt;
     MONITORINFO info;
     ::ZeroMemory(&info, sizeof(info));
     info.cbSize = sizeof(info);
@@ -89,7 +93,8 @@ struct QCtmWinFramelessDelegate::Impl
     QWidget* parent { nullptr };
     bool firstShow { true };
     WINDOWPLACEMENT wndPlaceMent;
-
+    std::optional<QRect> workRect;
+    std::optional<QRect> totalRect;
     inline double dpiScale(double value) { return value / parent->devicePixelRatioF(); }
     inline double unDpiScale(double value) { return value * parent->devicePixelRatioF(); }
 };
@@ -100,7 +105,17 @@ QCtmWinFramelessDelegate::QCtmWinFramelessDelegate(QWidget* parent, const QWidge
     m_impl->parent = parent;
     parent->setWindowFlags(parent->windowFlags() | Qt::FramelessWindowHint | Qt::WindowCloseButtonHint | Qt::WindowSystemMenuHint);
     parent->installEventFilter(this);
-    m_impl->moveBars = moveBars;
+    m_impl->moveBars  = moveBars;
+    m_impl->workRect  = getScreenNativeWorkRect(reinterpret_cast<HWND>(parent->winId()));
+    m_impl->totalRect = getScreenNativeRect(reinterpret_cast<HWND>(parent->winId()));
+    connect(parent->screen(),
+            &QScreen::availableGeometryChanged,
+            this,
+            [=](const QRect&)
+            {
+                m_impl->workRect  = getScreenNativeWorkRect(reinterpret_cast<HWND>(parent->winId()));
+                m_impl->totalRect = getScreenNativeRect(reinterpret_cast<HWND>(parent->winId()));
+            });
 }
 
 QCtmWinFramelessDelegate::QCtmWinFramelessDelegate(QWidget* parent, QWidget* title)
@@ -167,9 +182,11 @@ bool QCtmWinFramelessDelegate::nativeEvent(const QByteArray& eventType, void* me
                 NCCALCSIZE_PARAMS* ncParam = reinterpret_cast<NCCALCSIZE_PARAMS*>(msg->lParam);
                 if (IsZoomed(msg->hwnd))
                 {
-                    const QRect& rc = getScreenNativeWorkRect(msg->hwnd);
-                    auto real =
-                        QRect(ncParam->rgrc[0].left, ncParam->rgrc[0].top, ncParam->rgrc[0].right, ncParam->rgrc[0].bottom).intersected(rc);
+                    auto rc = m_impl->workRect;
+                    if (!rc)
+                        return false;
+                    auto real = QRect(ncParam->rgrc[0].left, ncParam->rgrc[0].top, ncParam->rgrc[0].right, ncParam->rgrc[0].bottom)
+                                    .intersected(*rc);
                     ncParam->rgrc[0].left   = real.left();
                     ncParam->rgrc[0].top    = real.top();
                     ncParam->rgrc[0].right  = real.right() + 1;
@@ -203,12 +220,14 @@ bool QCtmWinFramelessDelegate::nativeEvent(const QByteArray& eventType, void* me
         return onNCTitTest(msg, result);
     case WM_GETMINMAXINFO:
         {
-            const QRect rc     = m_impl->parent->isMaximized() ? getScreenNativeWorkRect(msg->hwnd) : getScreenNativeRect(msg->hwnd);
+            auto rc = m_impl->parent->isMaximized() ? m_impl->workRect : m_impl->totalRect;
+            if (!rc)
+                return false;
             MINMAXINFO* p      = reinterpret_cast<MINMAXINFO*>(msg->lParam);
-            p->ptMaxPosition.x = rc.x();
-            p->ptMaxPosition.y = rc.y();
-            p->ptMaxSize.x     = rc.width();
-            p->ptMaxSize.y     = rc.height();
+            p->ptMaxPosition.x = rc->x();
+            p->ptMaxPosition.y = rc->y();
+            p->ptMaxSize.x     = rc->width();
+            p->ptMaxSize.y     = rc->height();
             *result            = ::DefWindowProc(msg->hwnd, msg->message, msg->wParam, msg->lParam);
             return true;
         }
