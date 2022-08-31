@@ -103,7 +103,6 @@ QCtmWinFramelessDelegate::QCtmWinFramelessDelegate(QWidget* parent, const QWidge
     : QObject(parent), m_impl(std::make_unique<Impl>())
 {
     m_impl->parent = parent;
-    parent->setWindowFlags(parent->windowFlags() | Qt::FramelessWindowHint | Qt::WindowCloseButtonHint | Qt::WindowSystemMenuHint);
     parent->installEventFilter(this);
     m_impl->moveBars  = moveBars;
     m_impl->workRect  = getScreenNativeWorkRect(reinterpret_cast<HWND>(parent->winId()));
@@ -179,18 +178,18 @@ bool QCtmWinFramelessDelegate::nativeEvent(const QByteArray& eventType, void* me
         {
             if (msg->wParam)
             {
-                NCCALCSIZE_PARAMS* ncParam = reinterpret_cast<NCCALCSIZE_PARAMS*>(msg->lParam);
                 if (IsZoomed(msg->hwnd))
                 {
                     auto rc = m_impl->workRect;
                     if (!rc)
+                        rc = getScreenNativeWorkRect(msg->hwnd);
+                    if (!rc)
                         return false;
-                    auto real = QRect(ncParam->rgrc[0].left, ncParam->rgrc[0].top, ncParam->rgrc[0].right, ncParam->rgrc[0].bottom)
-                                    .intersected(*rc);
-                    ncParam->rgrc[0].left   = real.left();
-                    ncParam->rgrc[0].top    = real.top();
-                    ncParam->rgrc[0].right  = real.right() + 1;
-                    ncParam->rgrc[0].bottom = real.bottom() + 1;
+                    NCCALCSIZE_PARAMS* ncParam = reinterpret_cast<NCCALCSIZE_PARAMS*>(msg->lParam);
+                    ncParam->rgrc[0].left      = rc->left();
+                    ncParam->rgrc[0].top       = rc->top();
+                    ncParam->rgrc[0].right     = rc->right() + 1;
+                    ncParam->rgrc[0].bottom    = rc->bottom() + 1;
                 }
                 *result = 0;
                 return true;
@@ -218,27 +217,10 @@ bool QCtmWinFramelessDelegate::nativeEvent(const QByteArray& eventType, void* me
         break;
     case WM_NCHITTEST:
         return onNCTitTest(msg, result);
-    case WM_GETMINMAXINFO:
-        {
-            auto rc = m_impl->parent->isMaximized() ? m_impl->workRect : m_impl->totalRect;
-            if (!rc)
-                return false;
-            MINMAXINFO* p      = reinterpret_cast<MINMAXINFO*>(msg->lParam);
-            p->ptMaxPosition.x = rc->x();
-            p->ptMaxPosition.y = rc->y();
-            p->ptMaxSize.x     = rc->width();
-            p->ptMaxSize.y     = rc->height();
-            *result            = ::DefWindowProc(msg->hwnd, msg->message, msg->wParam, msg->lParam);
-            return true;
-        }
-        break;
     case WM_NCACTIVATE:
         {
-            if (!isCompositionEnabled())
-            {
-                *result = 1;
-                return true;
-            }
+            *result = 1;
+            return true;
         }
         break;
     case WM_NCLBUTTONDBLCLK:
@@ -255,6 +237,9 @@ bool QCtmWinFramelessDelegate::nativeEvent(const QByteArray& eventType, void* me
             *result = 0;
             return true;
         }
+    case WM_NCPAINT:
+        *result = 0;
+        return true;
     default:
         break;
     }
@@ -319,7 +304,7 @@ bool QCtmWinFramelessDelegate::eventFilter(QObject* watched, QEvent* event)
 void QCtmWinFramelessDelegate::setWindowLong()
 {
     auto hwnd  = reinterpret_cast<HWND>(m_impl->parent->winId());
-    long style = GetWindowLongPtr(hwnd, GWL_STYLE) | (isCompositionEnabled() ? AeroBorderlessFlag : BasicBorderlessFlag);
+    long style = isCompositionEnabled() ? AeroBorderlessFlag : BasicBorderlessFlag;
 
     if (!m_impl->parent->windowFlags().testFlag(Qt::WindowMinimizeButtonHint) ||
         m_impl->parent->maximumSize() != QSize(QWIDGETSIZE_MAX, QWIDGETSIZE_MAX))
@@ -332,8 +317,10 @@ void QCtmWinFramelessDelegate::setWindowLong()
     {
         extendFrameIntoClientArea(m_impl->parent->windowHandle(), -1, -1, -1, -1);
     }
-
-    SetWindowPos(hwnd, nullptr, 0, 0, 0, 0, SWP_FRAMECHANGED | SWP_NOMOVE | SWP_NOSIZE);
+    RECT rect;
+    GetWindowRect(hwnd, &rect);
+    SetWindowPos(
+        hwnd, nullptr, rect.left, rect.top, rect.right - rect.left, rect.bottom - rect.top, SWP_FRAMECHANGED | SWP_NOMOVE | SWP_NOSIZE);
 }
 
 void QCtmWinFramelessDelegate::showSystemMenu(const QPoint& pos)
