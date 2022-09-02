@@ -33,7 +33,6 @@ struct SerialPort::Impl
     boost::asio::serial_port serialPort { io };
     boost::asio::io_context::work worker { io };
     std::jthread thread;
-    std::chrono::milliseconds timeout;
     std::string writeBuffer;
     boost::asio::streambuf readBuffer;
 };
@@ -54,11 +53,8 @@ SerialPort::~SerialPort() noexcept
     }
 }
 
-void SerialPort::connect(const Address<AddressType::SerialPort>& addr,
-                         const std::chrono::milliseconds& openTimeout,
-                         const std::chrono::milliseconds& commandTimeout)
+void SerialPort::connect(const Address<AddressType::SerialPort>& addr, const std::chrono::milliseconds& openTimeout)
 {
-    m_impl->timeout = commandTimeout;
     m_impl->serialPort.open(addr.portName());
     m_impl->serialPort.set_option(boost::asio::serial_port::baud_rate { addr.baud() });
     m_impl->serialPort.set_option(boost::asio::serial_port::character_size { static_cast<unsigned int>(addr.dataBits()) });
@@ -86,7 +82,7 @@ void SerialPort::send(const std::string& buffer) const
                                                 });
         });
 
-    if (!mutex->try_lock_for(m_impl->timeout))
+    if (!mutex->try_lock_for(m_attr.timeout()))
     {
         m_impl->serialPort.cancel();
         throw std::exception("send timeout");
@@ -118,7 +114,7 @@ std::string SerialPort::readAll() const
                                           });
         });
 
-    if (!mutex->try_lock_for(m_impl->timeout))
+    if (!mutex->try_lock_for(m_attr.timeout()))
     {
         m_impl->serialPort.cancel();
         throw std::exception("read timeout");
@@ -152,7 +148,7 @@ std::string SerialPort::read(size_t size) const
                                                });
         });
 
-    if (!mutex->try_lock_for(m_impl->timeout))
+    if (!mutex->try_lock_for(m_attr.timeout()))
     {
         m_impl->serialPort.cancel();
         throw std::exception("read timeout");

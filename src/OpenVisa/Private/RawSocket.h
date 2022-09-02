@@ -32,9 +32,7 @@ public:
     RawSocket(Object::Attribute const& attr);
     ~RawSocket() noexcept;
 
-    void connect(const Address<AddressType::RawSocket>& addr,
-                 const std::chrono::milliseconds& openTimeout,
-                 const std::chrono::milliseconds& commandTimeout);
+    void connect(const Address<AddressType::RawSocket>& addr, const std::chrono::milliseconds& openTimeout);
     void send(const std::string& buffer) const override;
     std::string readAll() const override;
     std::string read(size_t size) const override;

@@ -100,7 +100,6 @@ struct UsbTmc::Impl
     uint8_t tag { 0 };
     int outMaxPacketSize { 0 };
     int inMaxPacketSize { 0 };
-    std::chrono::milliseconds timeout;
 
     libusb_device_handle* findAndOpenDevice(const Address<AddressType::USB>& addr)
     {
@@ -158,12 +157,8 @@ UsbTmc::UsbTmc(Object::Attribute const& attr) : IOBase(attr), m_impl(std::make_u
 
 UsbTmc::~UsbTmc() { libusb_exit(m_impl->context); }
 
-void UsbTmc::connect(const Address<AddressType::USB>& addr,
-                     const std::chrono::milliseconds& openTimeout,
-                     const std::chrono::milliseconds& commandTimeout)
+void UsbTmc::connect(const Address<AddressType::USB>& addr, const std::chrono::milliseconds& openTimeout)
 {
-    m_impl->timeout = commandTimeout;
-
     m_impl->handle = m_impl->findAndOpenDevice(addr);
 
     if (!m_impl->handle)
@@ -259,7 +254,7 @@ void UsbTmc::send(const std::string& buffer) const
                                  reinterpret_cast<unsigned char*>(msg.data()),
                                  static_cast<int>(msg.size()),
                                  nullptr,
-                                 static_cast<unsigned int>(m_impl->timeout.count()));
+                                 static_cast<unsigned int>(m_attr.timeout().count()));
             code != LIBUSB_SUCCESS)
         {
             libusb_reset_device(m_impl->handle);
@@ -277,14 +272,14 @@ std::string UsbTmc::read(size_t size) const
     int transfered;
     do
     {
-        {// req
+        { // req
             std::string buffer = BulkRequest(m_impl->tag, static_cast<unsigned int>(size));
             if (auto code = transfer(m_impl->handle,
                                      m_impl->endpoint_out,
                                      reinterpret_cast<unsigned char*>(buffer.data()),
                                      static_cast<int>(buffer.size()),
                                      nullptr,
-                                     static_cast<unsigned int>(m_impl->timeout.count()));
+                                     static_cast<unsigned int>(m_attr.timeout().count()));
                 code != LIBUSB_SUCCESS)
             {
                 libusb_reset_device(m_impl->handle);
@@ -299,7 +294,7 @@ std::string UsbTmc::read(size_t size) const
                                  reinterpret_cast<unsigned char*>(pack.data()),
                                  static_cast<int>(pack.size()),
                                  &transfered,
-                                 static_cast<unsigned int>(m_impl->timeout.count()));
+                                 static_cast<unsigned int>(m_attr.timeout().count()));
             code != LIBUSB_SUCCESS)
         {
             libusb_reset_device(m_impl->handle);

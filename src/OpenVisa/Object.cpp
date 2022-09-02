@@ -18,12 +18,12 @@
 **********************************************************************************/
 #include "Object.h"
 #include "Attribute.h"
+#include "CommonCommand.h"
 #include "Private/HiSLIP.h"
 #include "Private/RawSocket.h"
 #include "Private/SerialPort.h"
 #include "Private/UsbTmc.h"
 #include "Private/VXI11.h"
-#include "CommonCommand.h"
 
 namespace OpenVisa
 {
@@ -89,8 +89,9 @@ OPENVISA_EXPORT void Object::connect<Address<AddressType::RawSocket>>(const Addr
                                                                       const std::chrono::milliseconds& openTimeout /*= 5000*/,
                                                                       const std::chrono::milliseconds& commandTimeout /*= 5000*/)
 {
+    m_impl->attr.setTimeout(commandTimeout);
     auto socket = std::make_shared<RawSocket>(m_impl->attr);
-    socket->connect(addr, openTimeout, commandTimeout);
+    socket->connect(addr, openTimeout);
     m_impl->io = socket;
     afterConnected();
 }
@@ -100,8 +101,9 @@ OPENVISA_EXPORT void Object::connect<Address<AddressType::SerialPort>>(const Add
                                                                        const std::chrono::milliseconds& openTimeout /*= 5000*/,
                                                                        const std::chrono::milliseconds& commandTimeout /*= 5000*/)
 {
+    m_impl->attr.setTimeout(commandTimeout);
     auto serialPort = std::make_shared<SerialPort>(m_impl->attr);
-    serialPort->connect(addr, openTimeout, commandTimeout);
+    serialPort->connect(addr, openTimeout);
     m_impl->io = serialPort;
     afterConnected();
 }
@@ -111,8 +113,9 @@ OPENVISA_EXPORT void Object::connect<Address<AddressType::USB>>(const Address<Ad
                                                                 const std::chrono::milliseconds& openTimeout /*= 5000*/,
                                                                 const std::chrono::milliseconds& commandTimeout /*= 5000*/)
 {
+    m_impl->attr.setTimeout(commandTimeout);
     auto usb = std::make_shared<UsbTmc>(m_impl->attr);
-    usb->connect(addr, openTimeout, commandTimeout);
+    usb->connect(addr, openTimeout);
     m_impl->io = usb;
     afterConnected();
 }
@@ -122,8 +125,9 @@ OPENVISA_EXPORT void Object::connect<Address<AddressType::VXI11>>(const Address<
                                                                   const std::chrono::milliseconds& openTimeout /*= 5000*/,
                                                                   const std::chrono::milliseconds& commandTimeout /*= 5000*/)
 {
+    m_impl->attr.setTimeout(commandTimeout);
     auto vxi11 = std::make_shared<VXI11>(m_impl->attr);
-    vxi11->connect(addr, openTimeout, commandTimeout);
+    vxi11->connect(addr, openTimeout);
     m_impl->io = vxi11;
     afterConnected();
 }
@@ -133,8 +137,9 @@ OPENVISA_EXPORT void Object::connect<Address<AddressType::HiSLIP>>(const Address
                                                                    const std::chrono::milliseconds& openTimeout /*= 5000*/,
                                                                    const std::chrono::milliseconds& commandTimeout /*= 5000*/)
 {
+    m_impl->attr.setTimeout(commandTimeout);
     auto hiSLIP = std::make_shared<HiSLIP>(m_impl->attr);
-    hiSLIP->connect(addr, openTimeout, commandTimeout);
+    hiSLIP->connect(addr, openTimeout);
     m_impl->io = hiSLIP;
     afterConnected();
 }

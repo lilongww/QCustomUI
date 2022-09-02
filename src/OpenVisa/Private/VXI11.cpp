@@ -90,15 +90,12 @@ VXI11::VXI11(Object::Attribute const& attr) : IOBase(attr), m_impl(std::make_uni
 
 VXI11::~VXI11() {}
 
-void VXI11::connect(const Address<AddressType::VXI11>& address,
-                    const std::chrono::milliseconds& openTimeout,
-                    const std::chrono::milliseconds& commandTimeout)
+void VXI11::connect(const Address<AddressType::VXI11>& address, const std::chrono::milliseconds& openTimeout)
 {
-    m_impl->ioTimeout = commandTimeout;
-    m_impl->socket.connect(Address<AddressType::RawSocket>(address.ip(), 111), openTimeout, commandTimeout);
+    m_impl->socket.connect(Address<AddressType::RawSocket>(address.ip(), 111), openTimeout);
     getPorts();
     m_impl->socket.close();
-    m_impl->socket.connect(Address<AddressType::RawSocket>(address.ip(), m_impl->corePort), openTimeout, commandTimeout);
+    m_impl->socket.connect(Address<AddressType::RawSocket>(address.ip(), m_impl->corePort), openTimeout);
     VXI::Req::CreateLink link(m_impl->generateXid(), m_impl->clientId, false, 0, address.subAddress());
     auto resp = m_impl->createLink(link);
     if (resp.error() == VXI::Resp::DeviceErrorCode::NoError)

@@ -27,9 +27,7 @@ class VXI11 : public IOBase
 public:
     VXI11(Object::Attribute const& attr);
     ~VXI11();
-    void connect(const Address<AddressType::VXI11>& address,
-                 const std::chrono::milliseconds& openTimeout,
-                 const std::chrono::milliseconds& commandTimeout);
+    void connect(const Address<AddressType::VXI11>& address, const std::chrono::milliseconds& openTimeout);
     void send(const std::string& buffer) const override;
     std::string readAll() const override;
     std::string read(size_t size) const override;

@@ -28,9 +28,7 @@ public:
     UsbTmc(Object::Attribute const& attr);
     ~UsbTmc();
 
-    void connect(const Address<AddressType::USB>& addr,
-                 const std::chrono::milliseconds& openTimeout,
-                 const std::chrono::milliseconds& commandTimeout);
+    void connect(const Address<AddressType::USB>& addr, const std::chrono::milliseconds& openTimeout);
     void send(const std::string& buffer) const override;
     std::string readAll() const override;
     std::string read(size_t size) const override;
