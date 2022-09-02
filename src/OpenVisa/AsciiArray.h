@@ -43,7 +43,7 @@ public:
                                [](const auto& str)
                                {
                                    Type value;
-                                   std::from_chars(str.data(), str.data() + str.size(), value);
+                                   std::from_chars(str.starts_with('+') ? str.data() + 1 : str.data(), str.data() + str.size(), value);
                                    return value;
                                });
         return vec;
