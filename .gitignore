@@ -364,3 +364,4 @@ FodyWeavers.xsd
 /test
 /build
 /CMakeSettings.json
+/src/OpenVisa/RCa12568
