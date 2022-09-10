@@ -1,4 +1,4 @@
-#include <QCustomUi/QCtmCircleProgressBar.h>
+﻿#include <QCustomUi/QCtmCircleProgressBar.h>
 
 #include <QEventLoop>
 #include <QSignalSpy>
@@ -14,6 +14,11 @@ private slots:
     void text();
     void textVisible();
     void format();
+    void penCapStyle();
+    void barWidth();
+    void barBrush();
+    void backgroundBrush();
+    void valueChanged();
 };
 
 class CircleProgressBar : public QCtmCircleProgressBar
@@ -124,6 +129,56 @@ void tst_QCtmCircleProgressBar::format()
     bar.setValue(0);
     bar.setRange(5, 5);
     QCOMPARE(bar.text(), QString());
+}
+
+void tst_QCtmCircleProgressBar::penCapStyle()
+{
+    CircleProgressBar bar { nullptr };
+    bar.setPenCapStyle(Qt::RoundCap);
+    QCOMPARE(bar.penCapStyle(), Qt::RoundCap);
+    bar.setPenCapStyle(Qt::FlatCap);
+    QCOMPARE(bar.penCapStyle(), Qt::FlatCap);
+}
+
+void tst_QCtmCircleProgressBar::barWidth()
+{
+    CircleProgressBar bar { nullptr };
+    bar.setBarWidth(5);
+    QCOMPARE(bar.barWidth(), 5);
+    bar.setBarWidth(1);
+    QCOMPARE(bar.barWidth(), 1);
+}
+
+void tst_QCtmCircleProgressBar::barBrush()
+{
+    CircleProgressBar bar { nullptr };
+    QBrush brush1(Qt::red);
+    QBrush brush2(Qt::green);
+    bar.setBarBrush(brush1);
+    QCOMPARE(bar.barBrush(), brush1);
+    bar.setBarBrush(brush2);
+    QCOMPARE(bar.barBrush(), brush2);
+}
+
+void tst_QCtmCircleProgressBar::backgroundBrush()
+{
+    CircleProgressBar bar { nullptr };
+    QBrush brush1(Qt::red);
+    QBrush brush2(Qt::green);
+    bar.setBackgroundBrush(brush1);
+    QCOMPARE(bar.backgroundBrush(), brush1);
+    bar.setBackgroundBrush(brush2);
+    QCOMPARE(bar.backgroundBrush(), brush2);
+}
+
+void tst_QCtmCircleProgressBar::valueChanged()
+{
+    CircleProgressBar bar { nullptr };
+    QSignalSpy spy(&bar, &CircleProgressBar::valueChanged);
+    bar.setValue(11);
+    bar.setValue(12);
+    bar.setValue(12);
+    QCOMPARE(spy.count(), 2);
 }
 
 QTEST_MAIN(tst_QCtmCircleProgressBar)
