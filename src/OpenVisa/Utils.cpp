@@ -28,6 +28,7 @@ namespace OpenVisa
 constexpr auto BoolalphaChars = "ONOFF10+"sv;
 constexpr auto DoubleView = std::views::take_while([](char ch) { return ch <= '9' && ch >= '0' || ch == '.' || ch == '+' || ch == '-'; });
 constexpr auto IntView    = std::views::take_while([](char ch) { return ch <= '9' && ch >= '0' || ch == '+' || ch == '-'; });
+constexpr auto UnsignedIntView = std::views::take_while([](char ch) { return ch <= '9' && ch >= '0' || ch == '+'; });
 void VisaAdl<bool>::fromScpi(const std::string& ret, bool& val)
 {
     std::string temp;
@@ -45,6 +46,8 @@ void VisaAdl<bool>::fromScpi(const std::string& ret, bool& val)
         throw std::exception((std::string("Visa::parseBool Unknown ret:") + temp).c_str());
 }
 
+std::string VisaAdl<bool>::toScpi(bool source) { return source ? "ON" : "OFF"; }
+
 void VisaAdl<double>::fromScpi(const std::string& ret, double& val)
 {
     std::string temp;
@@ -53,6 +56,24 @@ void VisaAdl<double>::fromScpi(const std::string& ret, double& val)
 }
 
 std::string VisaAdl<double>::toScpi(double val) { return std::to_string(val); }
+
+void VisaAdl<long double>::fromScpi(const std::string& ret, long double& val)
+{
+    std::string temp;
+    std::ranges::copy(ret | DoubleView, std::back_inserter(temp));
+    val = std::stold(temp);
+}
+
+std::string VisaAdl<long double>::toScpi(long double val) { return std::to_string(val); }
+
+void VisaAdl<float>::fromScpi(const std::string& ret, float& val)
+{
+    std::string temp;
+    std::ranges::copy(ret | DoubleView, std::back_inserter(temp));
+    val = std::stof(temp);
+}
+
+std::string VisaAdl<float>::toScpi(float val) { return std::to_string(val); }
 
 void VisaAdl<int>::fromScpi(const std::string& ret, int& val)
 {
@@ -63,7 +84,86 @@ void VisaAdl<int>::fromScpi(const std::string& ret, int& val)
 
 std::string VisaAdl<int>::toScpi(int val) { return std::to_string(val); }
 
-std::string VisaAdl<bool>::toScpi(bool source) { return source ? "ON" : "OFF"; }
+void VisaAdl<unsigned int>::fromScpi(const std::string& ret, unsigned int& val)
+{
+    std::string temp;
+    std::ranges::copy(ret | UnsignedIntView, std::back_inserter(temp));
+    val = static_cast<unsigned int>(std::stoul(ret));
+}
+
+std::string VisaAdl<unsigned int>::toScpi(unsigned int val) { return std::to_string(val); }
+
+void VisaAdl<long>::fromScpi(const std::string& ret, long& val)
+{
+    std::string temp;
+    std::ranges::copy(ret | IntView, std::back_inserter(temp));
+    val = std::stol(ret);
+}
+
+std::string VisaAdl<long>::toScpi(long val) { return std::to_string(val); }
+
+void VisaAdl<unsigned long>::fromScpi(const std::string& ret, unsigned long& val)
+{
+    std::string temp;
+    std::ranges::copy(ret | UnsignedIntView, std::back_inserter(temp));
+    val = std::stoul(ret);
+}
+
+std::string VisaAdl<unsigned long>::toScpi(unsigned long val) { return std::to_string(val); }
+
+void VisaAdl<long long>::fromScpi(const std::string& ret, long long& val)
+{
+    std::string temp;
+    std::ranges::copy(ret | IntView, std::back_inserter(temp));
+    val = std::stoll(ret);
+}
+
+std::string VisaAdl<long long>::toScpi(long long val) { return std::to_string(val); }
+
+void VisaAdl<unsigned long long>::fromScpi(const std::string& ret, unsigned long long& val)
+{
+    std::string temp;
+    std::ranges::copy(ret | UnsignedIntView, std::back_inserter(temp));
+    val = std::stoull(ret);
+}
+
+std::string VisaAdl<unsigned long long>::toScpi(unsigned long long val) { return std::to_string(val); }
+
+void VisaAdl<short>::fromScpi(const std::string& ret, short& val)
+{
+    std::string temp;
+    std::ranges::copy(ret | IntView, std::back_inserter(temp));
+    val = static_cast<short>(std::stoi(ret));
+}
+
+std::string VisaAdl<short>::toScpi(short val) { return std::to_string(val); }
+
+void VisaAdl<unsigned short>::fromScpi(const std::string& ret, unsigned short& val)
+{
+    std::string temp;
+    std::ranges::copy(ret | UnsignedIntView, std::back_inserter(temp));
+    val = static_cast<unsigned short>(std::stoul(ret));
+}
+
+std::string VisaAdl<unsigned short>::toScpi(unsigned short val) { return std::to_string(val); }
+
+void VisaAdl<char>::fromScpi(const std::string& ret, char& val)
+{
+    std::string temp;
+    std::ranges::copy(ret | IntView, std::back_inserter(temp));
+    val = static_cast<char>(std::stoi(ret));
+}
+
+std::string VisaAdl<char>::toScpi(char val) { return std::to_string(val); }
+
+void VisaAdl<unsigned char>::fromScpi(const std::string& ret, unsigned char& val)
+{
+    std::string temp;
+    std::ranges::copy(ret | UnsignedIntView, std::back_inserter(temp));
+    val = static_cast<unsigned char>(std::stoul(ret));
+}
+
+std::string VisaAdl<unsigned char>::toScpi(unsigned char val) { return std::to_string(val); }
 
 OPENVISA_EXPORT std::vector<std::string> split(const std::string& source, const std::string& s)
 {

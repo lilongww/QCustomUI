@@ -64,10 +64,87 @@ struct OPENVISA_EXPORT VisaAdl<double>
 };
 
 template<>
+struct OPENVISA_EXPORT VisaAdl<long double>
+{
+    static void fromScpi(const std::string& ret, long double& val);
+    static std::string toScpi(long double source);
+};
+
+template<>
+struct OPENVISA_EXPORT VisaAdl<float>
+{
+    static void fromScpi(const std::string& ret, float& val);
+    static std::string toScpi(float source);
+};
+
+template<>
 struct OPENVISA_EXPORT VisaAdl<int>
 {
     static void fromScpi(const std::string& ret, int& val);
     static std::string toScpi(int source);
+};
+
+template<>
+struct OPENVISA_EXPORT VisaAdl<unsigned int>
+{
+    static void fromScpi(const std::string& ret, unsigned int& val);
+    static std::string toScpi(unsigned int source);
+};
+
+template<>
+struct OPENVISA_EXPORT VisaAdl<long>
+{
+    static void fromScpi(const std::string& ret, long& val);
+    static std::string toScpi(long source);
+};
+
+template<>
+struct OPENVISA_EXPORT VisaAdl<unsigned long>
+{
+    static void fromScpi(const std::string& ret, unsigned long& val);
+    static std::string toScpi(unsigned long source);
+};
+
+template<>
+struct OPENVISA_EXPORT VisaAdl<long long>
+{
+    static void fromScpi(const std::string& ret, long long& val);
+    static std::string toScpi(long long source);
+};
+
+template<>
+struct OPENVISA_EXPORT VisaAdl<unsigned long long>
+{
+    static void fromScpi(const std::string& ret, unsigned long long& val);
+    static std::string toScpi(unsigned long long source);
+};
+
+template<>
+struct OPENVISA_EXPORT VisaAdl<short>
+{
+    static void fromScpi(const std::string& ret, short& val);
+    static std::string toScpi(short source);
+};
+
+template<>
+struct OPENVISA_EXPORT VisaAdl<unsigned short>
+{
+    static void fromScpi(const std::string& ret, unsigned short& val);
+    static std::string toScpi(unsigned short source);
+};
+
+template<>
+struct OPENVISA_EXPORT VisaAdl<char>
+{
+    static void fromScpi(const std::string& ret, char& val);
+    static std::string toScpi(char source);
+};
+
+template<>
+struct OPENVISA_EXPORT VisaAdl<unsigned char>
+{
+    static void fromScpi(const std::string& ret, unsigned char& val);
+    static std::string toScpi(unsigned char source);
 };
 
 template<>
