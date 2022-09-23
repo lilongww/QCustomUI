@@ -72,7 +72,7 @@ BEGIN
         BEGIN
             VALUE "CompanyName", "Open Source Visa Library"
             VALUE "FileDescription", "Open Source Visa Library"
-            VALUE "FileVersion", "0.3.0beta1"
+            VALUE "FileVersion", "0.3.0beta2"
 #ifdef _DEBUG
             VALUE "InternalName", "OpenVisad.dll"
 #else
@@ -85,7 +85,7 @@ BEGIN
             VALUE "OriginalFilename", "OpenVisa.dll"
 #endif
             VALUE "ProductName", "OpenVisa"
-            VALUE "ProductVersion", "0.3.0beta1"
+            VALUE "ProductVersion", "0.3.0beta2"
         END
     END
     BLOCK "VarFileInfo"
