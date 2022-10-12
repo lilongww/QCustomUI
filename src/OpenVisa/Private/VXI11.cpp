@@ -28,7 +28,6 @@ namespace OpenVisa
 struct VXI11::Impl
 {
     RawSocket socket;
-    std::chrono::milliseconds ioTimeout;
 
     unsigned short corePort { 0 };
     unsigned short abortPort { 0 };
@@ -43,7 +42,8 @@ struct VXI11::Impl
     VXI::DeviceLink linkId;
     size_t maxBufferSize;
     bool avalibe { false };
-    inline Impl(Object::Attribute const& attr) : socket(attr) {}
+    const Object::Attribute& attribute;
+    inline Impl(Object::Attribute const& attr) : socket(attr), attribute(attr) {}
     inline unsigned int generateXid() { return xid = uniform_dist(e1); }
     inline RPCBuffer read()
     {
@@ -119,7 +119,7 @@ void VXI11::send(const std::string& buffer) const
         VXI::Req::DeviceWrite data(
             m_impl->generateXid(),
             m_impl->linkId,
-            static_cast<unsigned long>(m_impl->ioTimeout.count()),
+            static_cast<unsigned long>(m_impl->attribute.timeout().count()),
             0,
             std::string_view(buffer.c_str() + offset,
                              (buffer.size() - offset) > m_impl->maxBufferSize ? m_impl->maxBufferSize : (buffer.size() - offset)),
@@ -149,8 +149,11 @@ std::string VXI11::read(size_t size) const
 {
     std::string data;
 
-    VXI::Req::DeviceRead req(
-        m_impl->generateXid(), m_impl->linkId, static_cast<unsigned long>(size), static_cast<unsigned long>(m_impl->ioTimeout.count()), 0);
+    VXI::Req::DeviceRead req(m_impl->generateXid(),
+                             m_impl->linkId,
+                             static_cast<unsigned long>(size),
+                             static_cast<unsigned long>(m_impl->attribute.timeout().count()),
+                             0);
 
     m_impl->socket.send(req);
 
