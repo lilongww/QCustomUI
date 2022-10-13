@@ -186,12 +186,14 @@ void UsbTmc::connect(const Address<AddressType::USB>& addr, const std::chrono::m
     {
         for (int j = 0; j < conf_desc->interface[i].num_altsetting; j++)
         {
-            if (conf_desc->interface[i].altsetting[j].bInterfaceClass != 0xFE &&
+            if (conf_desc->interface[i].altsetting[j].bLength == 0x09 && conf_desc->interface[i].altsetting[j].bDescriptorType == 0x04 &&
+                conf_desc->interface[i].altsetting[j].bInterfaceClass != 0xFE &&
                 conf_desc->interface[i].altsetting[j].bInterfaceSubClass != 0x03 &&
                 conf_desc->interface[i].altsetting[j].bInterfaceProtocol != 0x01) // USBTMC
                 continue;
-            isUSBTMC = true;
             ifs.push_back(i);
+            bool hasIn { false };
+            bool hasOut { false };
             for (int k = 0; k < conf_desc->interface[i].altsetting[i].bNumEndpoints; k++)
             {
                 auto endpoint = &conf_desc->interface[i].altsetting[j].endpoint[k];
@@ -202,6 +204,7 @@ void UsbTmc::connect(const Address<AddressType::USB>& addr, const std::chrono::m
                     {
                         if (!m_impl->endpoint_in)
                         {
+                            hasIn                   = true;
                             m_impl->endpoint_in     = endpoint->bEndpointAddress;
                             m_impl->inMaxPacketSize = endpoint->wMaxPacketSize;
                         }
@@ -210,6 +213,7 @@ void UsbTmc::connect(const Address<AddressType::USB>& addr, const std::chrono::m
                     {
                         if (!m_impl->endpoint_out)
                         {
+                            hasOut                   = true;
                             m_impl->endpoint_out     = endpoint->bEndpointAddress;
                             m_impl->outMaxPacketSize = endpoint->wMaxPacketSize;
                         }
@@ -224,6 +228,7 @@ void UsbTmc::connect(const Address<AddressType::USB>& addr, const std::chrono::m
                     }
                 }
             }
+            isUSBTMC = hasIn && hasOut;
         }
     }
     if (!isUSBTMC)
