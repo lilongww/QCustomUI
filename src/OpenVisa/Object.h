@@ -53,6 +53,8 @@ public:
     bool connected() const noexcept;
     Attribute& attribute() noexcept;
     CommonCommand& commonCommand() noexcept;
+    static std::vector<std::string> listSerialPorts();
+    static std::vector<Address<AddressType::USB>> listUSB();
 
 protected:
     virtual void afterConnected() {};

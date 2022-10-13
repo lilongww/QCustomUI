@@ -24,6 +24,7 @@
 #include "Private/SerialPort.h"
 #include "Private/UsbTmc.h"
 #include "Private/VXI11.h"
+#include "SerialPortInfo.h"
 
 namespace OpenVisa
 {
@@ -186,6 +187,22 @@ Object::Attribute& Object::attribute() noexcept { return m_impl->attr; }
     \brief      IEEE488.2公共指令接口.
 */
 Object::CommonCommand& Object::commonCommand() noexcept { return m_impl->commonCommand; }
+
+/*!
+    \brief      列出所有串口名称.
+*/
+std::vector<std::string> Object::listSerialPorts()
+{
+    auto ports = SerialPortInfo::listPorts();
+    std::vector<std::string> names(ports.size());
+    std::transform(ports.begin(), ports.end(), names.begin(), [](const auto& port) { return port.portName(); });
+    return names;
+}
+
+/*!
+    \brief      列出所有USBTMC驱动设备.
+*/
+std::vector<OpenVisa::Address<OpenVisa::AddressType::USB>> Object::listUSB() { return UsbTmc::listUSB(); }
 
 void Object::sendImpl(const std::string& scpi)
 {

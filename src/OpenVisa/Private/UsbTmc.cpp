@@ -181,6 +181,7 @@ void UsbTmc::connect(const Address<AddressType::USB>& addr, const std::chrono::m
                                               });
 
     std::vector<uint8_t> ifs;
+    bool isUSBTMC { false };
     for (int i = 0; i < conf_desc->bNumInterfaces; i++)
     {
         for (int j = 0; j < conf_desc->interface[i].num_altsetting; j++)
@@ -189,6 +190,7 @@ void UsbTmc::connect(const Address<AddressType::USB>& addr, const std::chrono::m
                 conf_desc->interface[i].altsetting[j].bInterfaceSubClass != 0x03 &&
                 conf_desc->interface[i].altsetting[j].bInterfaceProtocol != 0x01) // USBTMC
                 continue;
+            isUSBTMC = true;
             ifs.push_back(i);
             for (int k = 0; k < conf_desc->interface[i].altsetting[i].bNumEndpoints; k++)
             {
@@ -224,7 +226,11 @@ void UsbTmc::connect(const Address<AddressType::USB>& addr, const std::chrono::m
             }
         }
     }
-
+    if (!isUSBTMC)
+    {
+        close();
+        throw std::exception("USB device not found.");
+    }
     //获得通讯端点并声明内核接口
     {
         libusb_set_auto_detach_kernel_driver(m_impl->handle, 1);
@@ -319,6 +325,73 @@ void UsbTmc::close() noexcept
 bool UsbTmc::connected() const noexcept { return m_impl->handle; }
 
 size_t UsbTmc::avalible() const noexcept { return m_impl->avalibe; }
+
+std::vector<OpenVisa::Address<OpenVisa::AddressType::USB>> UsbTmc::listUSB()
+{
+    std::vector<OpenVisa::Address<OpenVisa::AddressType::USB>> address;
+
+    std::shared_ptr<libusb_context> context(std::invoke(
+                                                []
+                                                {
+                                                    libusb_context* context { nullptr };
+                                                    libusb_init(&context);
+                                                    return context;
+                                                }),
+                                            [](auto context) { libusb_exit(context); });
+    libusb_device** devs;
+
+    auto count = libusb_get_device_list(context.get(), &devs);
+    if (count < 0)
+        throwLibusbError(static_cast<int>(count));
+
+    auto devsScope = std::shared_ptr<int>(new int,
+                                          [&](int* p)
+                                          {
+                                              delete p;
+                                              libusb_free_device_list(devs, 1);
+                                          });
+
+    libusb_device_descriptor deviceDescription;
+    for (int i = 0; i < count; ++i)
+    {
+        if (libusb_get_device_descriptor(devs[i], &deviceDescription) != LIBUSB_SUCCESS)
+            continue;
+        auto vid = deviceDescription.idVendor;
+        auto pid = deviceDescription.idProduct;
+        libusb_device_handle* h;
+        if (libusb_open(devs[i], &h) != LIBUSB_SUCCESS)
+            continue;
+        if (auto ret = libusb_reset_device(h); ret != LIBUSB_SUCCESS)
+        {
+            libusb_close(h);
+            continue;
+        }
+        std::string sn;
+        try
+        {
+            sn = getStringDescriptor(h, deviceDescription.iSerialNumber);
+        }
+        catch (const std::exception&)
+        {
+            libusb_close(h);
+            continue;
+        }
+        libusb_close(h);
+        Address<AddressType::USB> addr(vid, pid, sn);
+        try
+        {
+            Object::Attribute attr;
+            UsbTmc tmc(attr);
+            tmc.connect(addr, std::chrono::milliseconds(500));
+            tmc.close();
+            address.push_back(addr);
+        }
+        catch (...)
+        {
+        }
+    }
+    return address;
+}
 
 void UsbTmc::init() { libusb_init(&m_impl->context); }
 
