@@ -36,6 +36,7 @@ public:
         std::vector<T> vec;
         auto li   = std::counted_iterator(m_temp.begin() + m_offset, m_temp.size() - m_offset);
         auto view = std::ranges::subrange(li, std::default_sentinel) | std::views::split(',') |
+                    std::views::filter([](auto view) { return !view.empty(); }) |
                     std::views::transform([](auto&& rng) { return std::string_view(&*rng.begin(), std::ranges::distance(rng)); });
 
         std::ranges::transform(view,

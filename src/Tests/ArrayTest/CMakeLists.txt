@@ -26,6 +26,7 @@ endfunction(int_test)
 
 int_test("1_1" "0" "123,456,789\n" "123 456 789")
 int_test("1_2" "4" "abc,123,456,789\n" "123 456 789")
+int_test("1_3" "0" "1,2,3,\n" "1 2 3")
 
 # OpenVisa::AsciiArray<double>
 function(double_test NUM OFFSET IN EXP)
@@ -35,6 +36,7 @@ endfunction(double_test)
 
 double_test("1_1" "0" "123.1,456.256,789.993\n" "123.1 456.256 789.993")
 double_test("1_2" "4" "abc,123.1,456.256,789.993\n" "123.1 456.256 789.993")
+double_test("1_3" "0" "1,2,3,\n" "1 2 3")
 
 # OpenVisa::BinaryArray<double>
 function(bin_int_test NUM EXP)
