@@ -219,8 +219,11 @@ bool QCtmWinFramelessDelegate::nativeEvent(const QByteArray& eventType, void* me
         return onNCTitTest(msg, result);
     case WM_NCACTIVATE:
         {
-            *result = 1;
-            return true;
+            if (!isCompositionEnabled())
+            {
+                *result = 1;
+                return true;
+            }
         }
         break;
     case WM_NCLBUTTONDBLCLK:
