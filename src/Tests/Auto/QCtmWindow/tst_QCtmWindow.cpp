@@ -11,6 +11,7 @@ class tst_QCtmWindow : public QObject
 private slots:
     void fixedSizeWidgetShowMaximumBug();
     void taskStatusBar();
+    void taskMenuBar();
 };
 
 void tst_QCtmWindow::fixedSizeWidgetShowMaximumBug()
@@ -26,8 +27,6 @@ void tst_QCtmWindow::fixedSizeWidgetShowMaximumBug()
     QCOMPARE(w.size(), w.screen()->availableSize());
 }
 
-QTEST_MAIN(tst_QCtmWindow)
-
 void tst_QCtmWindow::taskStatusBar()
 {
     QCtmWindow w;
@@ -40,5 +39,20 @@ void tst_QCtmWindow::taskStatusBar()
     w.setStatusBar(nullptr);
     QVERIFY(statusBar != w.statusBar());
 }
+
+void tst_QCtmWindow::taskMenuBar()
+{
+    QCtmWindow w;
+    auto menuBar = w.menuBar();
+    QVERIFY(menuBar);
+    delete menuBar;
+    menuBar = new QMenuBar;
+    w.setMenuBar(menuBar);
+    QVERIFY(menuBar == w.menuBar());
+    w.setMenuBar(nullptr);
+    QVERIFY(menuBar != w.menuBar());
+}
+
+QTEST_MAIN(tst_QCtmWindow)
 
 #include "tst_QCtmWindow.moc"

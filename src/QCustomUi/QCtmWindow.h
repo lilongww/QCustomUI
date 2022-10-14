@@ -46,7 +46,6 @@ public:
     QStatusBar* statusBar() const;
     void setMenuBar(QMenuBar* menuBar);
     QMenuBar* menuBar() const;
-    void removeMenuBar();
     void setNavigationBar(QCtmNavigationBar* menuBar);
     QCtmNavigationBar* navigationBar() const;
     void removeNavigationBar();

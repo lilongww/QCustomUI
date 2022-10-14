@@ -33,7 +33,7 @@ Q_CONSTEXPR int titleSpacing = 5;
 struct QCtmTitleBar::Impl
 {
     QPixmap windowIcon;
-    QMenuBar* menuBar { nullptr };
+    QPointer<QMenuBar> menuBar;
     bool showIcon { true };
     QList<QCtmWidgetItemPtr> items;
     QSize iconSize { 16, 16 };
@@ -78,36 +78,42 @@ QCtmTitleBar::~QCtmTitleBar() { delete ui; }
 
 /*!
     \brief      设置菜单栏 \a menu.
-    \sa         menuBar(), removeMenuBar()
+    \sa         menuBar
 */
 void QCtmTitleBar::setMenuBar(QMenuBar* menu)
 {
-    removeMenuBar();
-    menu->setAutoFillBackground(false);
-    menu->setSizePolicy(QSizePolicy(QSizePolicy::Minimum, QSizePolicy::Fixed));
+    if (menu == m_impl->menuBar)
+        return;
+    if (m_impl->menuBar)
+    {
+        m_impl->menuBar->hide();
+        m_impl->menuBar->setParent(nullptr);
+        m_impl->menuBar->deleteLater();
+    }
+    if (menu)
+    {
+        menu->setAutoFillBackground(false);
+        menu->setSizePolicy(QSizePolicy(QSizePolicy::Minimum, QSizePolicy::Fixed));
+        ui->horizontalLayout->insertWidget(0, menu);
+    }
     m_impl->menuBar = menu;
-    ui->horizontalLayout->insertWidget(0, menu);
     update();
 }
 
 /*!
     \brief      返回菜单栏.
-    \sa         setMenuBar, removeMenuBar()
+    \sa         setMenuBar
 */
-QMenuBar* QCtmTitleBar::menuBar() const { return m_impl->menuBar; }
-
-/*!
-    \brief      移除菜单栏.
-    \sa         setMenuBar, menuBar
-*/
-void QCtmTitleBar::removeMenuBar()
+QMenuBar* QCtmTitleBar::menuBar() const
 {
-    if (m_impl->menuBar)
+    auto menuBar = m_impl->menuBar;
+    if (!menuBar)
     {
-        delete m_impl->menuBar;
-        m_impl->menuBar = nullptr;
-        update();
+        auto self = const_cast<QCtmTitleBar*>(this);
+        menuBar   = new QMenuBar(self);
+        self->setMenuBar(menuBar);
     }
+    return menuBar;
 }
 
 /*!

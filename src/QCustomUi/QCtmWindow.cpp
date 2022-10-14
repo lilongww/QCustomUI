@@ -117,8 +117,8 @@ QStatusBar* QCtmWindow::statusBar() const
 }
 
 /*!
-    \brief      设置菜单栏 \a menuBar.
-    \sa         menuBar, removeMenuBar
+    \brief      设置菜单栏 \a menuBar, 设为nullptr时，删除菜单栏.
+    \sa         menuBar
 */
 void QCtmWindow::setMenuBar(QMenuBar* menuBar)
 {
@@ -129,26 +129,14 @@ void QCtmWindow::setMenuBar(QMenuBar* menuBar)
 }
 
 /*!
-    \brief      返回菜单栏.
-    \sa         setMenuBar, removeMenuBar
+    \brief      返回菜单栏, 如果菜单栏不存在，则自动创建并返回一个菜单栏对象.
+    \sa         setMenuBar
 */
 QMenuBar* QCtmWindow::menuBar() const
 {
     if (m_impl->title)
         return m_impl->title->menuBar();
     return nullptr;
-}
-
-/*!
-    \brief      移除菜单栏.
-    \sa         setMenuBar, menuBar
-*/
-void QCtmWindow::removeMenuBar()
-{
-    if (m_impl->title)
-    {
-        m_impl->title->removeMenuBar();
-    }
 }
 
 /*!
