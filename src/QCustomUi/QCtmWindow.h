@@ -1,6 +1,6 @@
 ﻿/*********************************************************************************
 **                                                                              **
-**  Copyright (C) 2019-2020 LiLong                                              **
+**  Copyright (C) 2019-2022 LiLong                                              **
 **  This file is part of QCustomUi.                                             **
 **                                                                              **
 **  QCustomUi is free software: you can redistribute it and/or modify           **
@@ -44,7 +44,6 @@ public:
 
     void setStatusBar(QStatusBar* statusBar);
     QStatusBar* statusBar() const;
-    void removeStatusBar();
     void setMenuBar(QMenuBar* menuBar);
     QMenuBar* menuBar() const;
     void removeMenuBar();

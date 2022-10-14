@@ -1,6 +1,6 @@
 ﻿/*********************************************************************************
 **                                                                              **
-**  Copyright (C) 2019-2020 LiLong                                              **
+**  Copyright (C) 2019-2022 LiLong                                              **
 **  This file is part of QCustomUi.                                             **
 **                                                                              **
 **  QCustomUi is free software: you can redistribute it and/or modify           **
@@ -44,7 +44,7 @@ struct QCtmWindow::Impl
 {
     QCtmTitleBar* title { nullptr };
     QCtmNavigationBar* navigationMenuBar { nullptr };
-    QStatusBar* statusBar { nullptr };
+    QPointer<QStatusBar> statusBar;
     QWidget* content { nullptr };
 
 #ifdef Q_OS_WIN
@@ -82,33 +82,38 @@ QCtmWindow::QCtmWindow(QWidget* parent) : QWidget(parent), m_impl(std::make_uniq
 QCtmWindow::~QCtmWindow() { delete ui; }
 
 /*!
-    \brief      设置状态栏 \a statusBar.
-    \sa         statusBar, removeStatusBar
+    \brief      设置状态栏 \a statusBar, 当设置 statusBar 为 nullptr 时将删除状态栏.
+    \sa         statusBar
 */
 void QCtmWindow::setStatusBar(QStatusBar* statusBar)
 {
-    removeStatusBar();
+    if (m_impl->statusBar == statusBar)
+        return;
+    if (m_impl->statusBar)
+    {
+        m_impl->statusBar->hide();
+        m_impl->statusBar->deleteLater();
+    }
     m_impl->statusBar = statusBar;
-    ui->statusBarLayout->addWidget(statusBar);
+    if (m_impl->statusBar)
+        ui->statusBarLayout->addWidget(statusBar);
 }
 
 /*!
-    \brief      返回状态栏.
-    \sa         setStatusBar, removeStatusBar
+    \brief      返回状态栏，如果状态栏对象不存在，QCtmWindow会自动创建一个状态栏对象返回.
+    \sa         setStatusBar
 */
-QStatusBar* QCtmWindow::statusBar() const { return m_impl->statusBar; }
-
-/*!
-    \brief      移除状态栏.
-    \sa         setStatusBar, statusBar
-*/
-void QCtmWindow::removeStatusBar()
+QStatusBar* QCtmWindow::statusBar() const
 {
-    if (m_impl->statusBar)
+    auto statusBar = m_impl->statusBar;
+    if (!statusBar)
     {
-        delete m_impl->statusBar;
-        m_impl->statusBar = nullptr;
+        auto self = const_cast<QCtmWindow*>(this);
+        statusBar = new QStatusBar(self);
+        statusBar->setSizePolicy(QSizePolicy::Ignored, QSizePolicy::Fixed);
+        self->setStatusBar(statusBar);
     }
+    return statusBar;
 }
 
 /*!

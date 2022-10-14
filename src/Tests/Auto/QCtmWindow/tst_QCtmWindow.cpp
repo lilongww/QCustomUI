@@ -10,6 +10,7 @@ class tst_QCtmWindow : public QObject
     Q_OBJECT
 private slots:
     void fixedSizeWidgetShowMaximumBug();
+    void taskStatusBar();
 };
 
 void tst_QCtmWindow::fixedSizeWidgetShowMaximumBug()
@@ -26,5 +27,18 @@ void tst_QCtmWindow::fixedSizeWidgetShowMaximumBug()
 }
 
 QTEST_MAIN(tst_QCtmWindow)
+
+void tst_QCtmWindow::taskStatusBar()
+{
+    QCtmWindow w;
+    auto statusBar = w.statusBar();
+    QVERIFY(statusBar);
+    delete statusBar;
+    statusBar = new QStatusBar;
+    w.setStatusBar(statusBar);
+    QVERIFY(statusBar == w.statusBar());
+    w.setStatusBar(nullptr);
+    QVERIFY(statusBar != w.statusBar());
+}
 
 #include "tst_QCtmWindow.moc"
