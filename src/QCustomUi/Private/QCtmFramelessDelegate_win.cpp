@@ -237,9 +237,6 @@ bool QCtmWinFramelessDelegate::nativeEvent(const QByteArray& eventType, void* me
             *result = 0;
             return true;
         }
-    case WM_NCPAINT:
-        *result = 0;
-        return true;
     default:
         break;
     }
