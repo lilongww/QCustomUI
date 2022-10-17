@@ -72,8 +72,8 @@ public:
     };
 #pragma pack(pop)
 
-    inline BulkOut(unsigned char& tag, unsigned char msgId, unsigned short maxPacketSize) noexcept
-        : m_refTag(tag), m_msgId(msgId), m_maxPacketSize(maxPacketSize)
+    inline BulkOut(unsigned char tag, unsigned char msgId, unsigned short maxPacketSize) noexcept
+        : m_tag(tag), m_msgId(msgId), m_maxPacketSize(maxPacketSize)
     {
     }
     inline ~BulkOut() noexcept {}
@@ -89,7 +89,7 @@ public:
         {
             bool lastPack    = i == loop - 1;
             auto currentSize = static_cast<int>(lastPack ? m_buffer.size() - i * realPackSize : realPackSize);
-            buffers[i].append(Header(m_msgId, calcTag(), currentSize, lastPack));
+            buffers[i].append(Header(m_msgId, m_tag, currentSize, lastPack));
             buffers[i].append(m_buffer.c_str() + i * realPackSize, currentSize);
             if (auto multiOf4 = buffers[i].size() % 4; multiOf4) //每包必须为4的倍数
             {
@@ -102,15 +102,8 @@ public:
     }
 
 private:
-    unsigned char calcTag()
-    {
-        m_refTag++;
-        if (m_refTag == 0)
-            m_refTag++;
-        return m_refTag;
-    }
     std::string m_buffer;
-    unsigned char& m_refTag;
+    unsigned char m_tag;
     unsigned char m_msgId;
     unsigned short m_maxPacketSize;
 };
@@ -122,37 +115,30 @@ class BulkRequest
     struct Header
     {
         unsigned char m_msgId { USBTMC_MSGID_REQUEST_DEV_DEP_MSG_IN };
-        unsigned char m_tag;                          // 每次发送增加1, 1<=tag<=255
-        unsigned char m_tagInverse;                   // m_tag的补码
-        unsigned char m_reserved1 { 0x00 };           // 必须为0x00s
-        unsigned int m_transferSize;                  // 要接收的数据大小，传输最大可传输字节时，必须为0
-        unsigned char m_bmTransferAttributes { 0x0 }; // 0x02 表示USBTMC传输必须终止在termchar上，否则忽略
-        unsigned char m_termChar { 0x0 };
+        unsigned char m_tag;                           // 每次发送增加1, 1<=tag<=255
+        unsigned char m_tagInverse;                    // m_tag的补码
+        unsigned char m_reserved1 { 0x00 };            // 必须为0x00s
+        unsigned int m_transferSize;                   // 要接收的数据大小，传输最大可传输字节时，必须为0
+        unsigned char m_bmTransferAttributes { 0x00 }; // 0x02 表示USBTMC传输必须终止在termchar上，否则忽略
+        unsigned char m_termChar { 0x00 };
         unsigned short m_reserved { 0x0 };
     };
 #pragma pack(pop)
 public:
-    inline BulkRequest(unsigned char& tag, unsigned int transferSize) : m_tag(tag), m_transferSize(transferSize) {}
+    inline BulkRequest(unsigned char tag, unsigned int transferSize) : m_tag(tag), m_transferSize(transferSize) {}
     inline ~BulkRequest() {}
 
     inline operator std::string() noexcept
     {
         Header header;
-        header.m_tag          = calcTag();
+        header.m_tag          = m_tag;
         header.m_tagInverse   = ~header.m_tag;
         header.m_transferSize = m_transferSize;
         return std::string(reinterpret_cast<char*>(&header), sizeof(header));
     }
 
 private:
-    unsigned char calcTag()
-    {
-        m_tag++;
-        if (m_tag == 0)
-            m_tag++;
-        return m_tag;
-    }
-    unsigned char& m_tag;
+    unsigned char m_tag;
     unsigned int m_transferSize;
 };
 

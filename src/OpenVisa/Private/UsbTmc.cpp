@@ -28,6 +28,7 @@ extern "C"
 }
 
 #include <array>
+#include <limits>
 
 namespace OpenVisa
 {
@@ -100,6 +101,12 @@ struct UsbTmc::Impl
     uint8_t tag { 0 };
     int outMaxPacketSize { 0 };
     int inMaxPacketSize { 0 };
+    void updateTag()
+    {
+        ++tag;
+        if (tag == 0)
+            ++tag;
+    }
 
     libusb_device_handle* findAndOpenDevice(const Address<AddressType::USB>& addr)
     {
@@ -253,6 +260,7 @@ void UsbTmc::connect(const Address<AddressType::USB>& addr, const std::chrono::m
 
 void UsbTmc::send(const std::string& buffer) const
 {
+    m_impl->updateTag();
     BulkOut bo(m_impl->tag, USBTMC_MSGID_DEV_DEP_MSG_OUT, m_impl->outMaxPacketSize);
     bo.append(buffer);
 
@@ -273,31 +281,31 @@ void UsbTmc::send(const std::string& buffer) const
         }
     }
 }
-
-std::string UsbTmc::readAll() const { return read(0xffffffff); }
+#undef max
+std::string UsbTmc::readAll() const { return read(std::numeric_limits<int>::max()); }
 
 std::string UsbTmc::read(size_t size) const
 {
     std::string packs;
     BulkIn in;
     int transfered;
+    m_impl->updateTag();
+    { // req
+        std::string buffer = BulkRequest(m_impl->tag, static_cast<unsigned int>(size));
+        if (auto code = transfer(m_impl->handle,
+                                 m_impl->endpoint_out,
+                                 reinterpret_cast<unsigned char*>(buffer.data()),
+                                 static_cast<int>(buffer.size()),
+                                 nullptr,
+                                 static_cast<unsigned int>(m_attr.timeout().count()));
+            code != LIBUSB_SUCCESS)
+        {
+            libusb_reset_device(m_impl->handle);
+            throwLibusbError(code);
+        }
+    }
     do
     {
-        { // req
-            std::string buffer = BulkRequest(m_impl->tag, static_cast<unsigned int>(size));
-            if (auto code = transfer(m_impl->handle,
-                                     m_impl->endpoint_out,
-                                     reinterpret_cast<unsigned char*>(buffer.data()),
-                                     static_cast<int>(buffer.size()),
-                                     nullptr,
-                                     static_cast<unsigned int>(m_attr.timeout().count()));
-                code != LIBUSB_SUCCESS)
-            {
-                libusb_reset_device(m_impl->handle);
-                throwLibusbError(code);
-            }
-        }
-
         std::string pack;
         pack.resize(m_impl->inMaxPacketSize);
         if (auto code = transfer(m_impl->handle,
