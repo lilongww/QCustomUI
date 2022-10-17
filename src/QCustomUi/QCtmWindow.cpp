@@ -1,6 +1,6 @@
 ﻿/*********************************************************************************
 **                                                                              **
-**  Copyright (C) 2019-2020 LiLong                                              **
+**  Copyright (C) 2019-2022 LiLong                                              **
 **  This file is part of QCustomUi.                                             **
 **                                                                              **
 **  QCustomUi is free software: you can redistribute it and/or modify           **
@@ -44,7 +44,7 @@ struct QCtmWindow::Impl
 {
     QCtmTitleBar* title { nullptr };
     QCtmNavigationBar* navigationMenuBar { nullptr };
-    QStatusBar* statusBar { nullptr };
+    QPointer<QStatusBar> statusBar;
     QWidget* content { nullptr };
 
 #ifdef Q_OS_WIN
@@ -82,38 +82,43 @@ QCtmWindow::QCtmWindow(QWidget* parent) : QWidget(parent), m_impl(std::make_uniq
 QCtmWindow::~QCtmWindow() { delete ui; }
 
 /*!
-    \brief      设置状态栏 \a statusBar.
-    \sa         statusBar, removeStatusBar
+    \brief      设置状态栏 \a statusBar, 当设置 statusBar 为 nullptr 时将删除状态栏.
+    \sa         statusBar
 */
 void QCtmWindow::setStatusBar(QStatusBar* statusBar)
 {
-    removeStatusBar();
-    m_impl->statusBar = statusBar;
-    ui->statusBarLayout->addWidget(statusBar);
-}
-
-/*!
-    \brief      返回状态栏.
-    \sa         setStatusBar, removeStatusBar
-*/
-QStatusBar* QCtmWindow::statusBar() const { return m_impl->statusBar; }
-
-/*!
-    \brief      移除状态栏.
-    \sa         setStatusBar, statusBar
-*/
-void QCtmWindow::removeStatusBar()
-{
+    if (m_impl->statusBar == statusBar)
+        return;
     if (m_impl->statusBar)
     {
-        delete m_impl->statusBar;
-        m_impl->statusBar = nullptr;
+        m_impl->statusBar->hide();
+        m_impl->statusBar->deleteLater();
     }
+    m_impl->statusBar = statusBar;
+    if (m_impl->statusBar)
+        ui->statusBarLayout->addWidget(statusBar);
 }
 
 /*!
-    \brief      设置菜单栏 \a menuBar.
-    \sa         menuBar, removeMenuBar
+    \brief      返回状态栏，如果状态栏对象不存在，QCtmWindow会自动创建一个状态栏对象返回.
+    \sa         setStatusBar
+*/
+QStatusBar* QCtmWindow::statusBar() const
+{
+    auto statusBar = m_impl->statusBar;
+    if (!statusBar)
+    {
+        auto self = const_cast<QCtmWindow*>(this);
+        statusBar = new QStatusBar(self);
+        statusBar->setSizePolicy(QSizePolicy::Ignored, QSizePolicy::Fixed);
+        self->setStatusBar(statusBar);
+    }
+    return statusBar;
+}
+
+/*!
+    \brief      设置菜单栏 \a menuBar, 设为nullptr时，删除菜单栏.
+    \sa         menuBar
 */
 void QCtmWindow::setMenuBar(QMenuBar* menuBar)
 {
@@ -124,26 +129,14 @@ void QCtmWindow::setMenuBar(QMenuBar* menuBar)
 }
 
 /*!
-    \brief      返回菜单栏.
-    \sa         setMenuBar, removeMenuBar
+    \brief      返回菜单栏, 如果菜单栏不存在，则自动创建并返回一个菜单栏对象.
+    \sa         setMenuBar
 */
 QMenuBar* QCtmWindow::menuBar() const
 {
     if (m_impl->title)
         return m_impl->title->menuBar();
     return nullptr;
-}
-
-/*!
-    \brief      移除菜单栏.
-    \sa         setMenuBar, menuBar
-*/
-void QCtmWindow::removeMenuBar()
-{
-    if (m_impl->title)
-    {
-        m_impl->title->removeMenuBar();
-    }
 }
 
 /*!

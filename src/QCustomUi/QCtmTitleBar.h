@@ -44,7 +44,6 @@ public:
 
     void setMenuBar(QMenuBar* menu);
     QMenuBar* menuBar() const;
-    void removeMenuBar();
     void setIconVisible(bool show);
     bool iconIsVisible() const;
     void setIconSize(const QSize& size);
