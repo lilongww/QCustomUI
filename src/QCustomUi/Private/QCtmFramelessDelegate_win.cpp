@@ -74,6 +74,7 @@ inline std::optional<QRect> getScreenNativeWorkRect(HWND hwnd)
     return QRect(info.rcWork.left, info.rcWork.top, info.rcWork.right - info.rcWork.left, info.rcWork.bottom - info.rcWork.top);
 }
 
+#if 0
 inline std::optional<QRect> getScreenNativeRect(HWND hwnd)
 {
     auto monitor = MonitorFromWindow(hwnd, MONITOR_DEFAULTTONULL);
@@ -86,6 +87,7 @@ inline std::optional<QRect> getScreenNativeRect(HWND hwnd)
     return QRect(
         info.rcMonitor.left, info.rcMonitor.top, info.rcMonitor.right - info.rcMonitor.left, info.rcMonitor.bottom - info.rcMonitor.top);
 }
+#endif
 
 struct QCtmWinFramelessDelegate::Impl
 {
@@ -94,9 +96,19 @@ struct QCtmWinFramelessDelegate::Impl
     bool firstShow { true };
     WINDOWPLACEMENT wndPlaceMent;
     std::optional<QRect> workRect;
-    std::optional<QRect> totalRect;
+    HMONITOR monitor { nullptr };
     inline double dpiScale(double value) { return value / parent->devicePixelRatioF(); }
     inline double unDpiScale(double value) { return value * parent->devicePixelRatioF(); }
+    inline void checkMonitorChanged()
+    {
+        auto hwnd       = reinterpret_cast<HWND>(parent->winId());
+        auto newMonitor = MonitorFromWindow(hwnd, MONITOR_DEFAULTTONULL);
+        if (newMonitor != monitor)
+        {
+            monitor  = newMonitor;
+            workRect = getScreenNativeWorkRect(hwnd);
+        }
+    }
 };
 
 QCtmWinFramelessDelegate::QCtmWinFramelessDelegate(QWidget* parent, const QWidgetList& moveBars)
@@ -104,17 +116,12 @@ QCtmWinFramelessDelegate::QCtmWinFramelessDelegate(QWidget* parent, const QWidge
 {
     m_impl->parent = parent;
     parent->installEventFilter(this);
-    m_impl->moveBars  = moveBars;
-    m_impl->workRect  = getScreenNativeWorkRect(reinterpret_cast<HWND>(parent->winId()));
-    m_impl->totalRect = getScreenNativeRect(reinterpret_cast<HWND>(parent->winId()));
+    m_impl->moveBars = moveBars;
+    m_impl->workRect = getScreenNativeWorkRect(reinterpret_cast<HWND>(parent->winId()));
     connect(parent->screen(),
             &QScreen::availableGeometryChanged,
             this,
-            [=](const QRect&)
-            {
-                m_impl->workRect  = getScreenNativeWorkRect(reinterpret_cast<HWND>(parent->winId()));
-                m_impl->totalRect = getScreenNativeRect(reinterpret_cast<HWND>(parent->winId()));
-            });
+            [=](const QRect&) { m_impl->workRect = getScreenNativeWorkRect(reinterpret_cast<HWND>(parent->winId())); });
 }
 
 QCtmWinFramelessDelegate::QCtmWinFramelessDelegate(QWidget* parent, QWidget* title)
@@ -180,9 +187,8 @@ bool QCtmWinFramelessDelegate::nativeEvent(const QByteArray& eventType, void* me
             {
                 if (IsZoomed(msg->hwnd))
                 {
+                    m_impl->checkMonitorChanged();
                     auto rc = m_impl->workRect;
-                    if (!rc)
-                        rc = getScreenNativeWorkRect(msg->hwnd);
                     if (!rc)
                         return false;
                     NCCALCSIZE_PARAMS* ncParam = reinterpret_cast<NCCALCSIZE_PARAMS*>(msg->lParam);
