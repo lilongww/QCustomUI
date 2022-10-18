@@ -18,6 +18,7 @@
 **********************************************************************************/
 #pragma once
 
+#include "Flags.h"
 #include "Object.h"
 #include "StatusByteRegister.h"
 #if __has_include("ADL.h")
@@ -36,6 +37,34 @@ namespace OpenVisa
 {
 OPENVISA_EXPORT std::vector<std::string> split(const std::string& source, const std::string& s);
 OPENVISA_EXPORT std::string join(const std::vector<std::string>& source, const std::string& delimiter);
+
+template<typename T>
+requires std::ranges::range<T>
+inline std::string join(const T& enums, const std::string& delimiter)
+{
+    std::string ret;
+    for (auto it = enums.begin(); it != enums.end(); ++it)
+    {
+        ret.append(encode(*it));
+        if (it + 1 != enums.end())
+            ret.append(delimiter);
+    }
+    return ret;
+}
+
+template<typename T>
+requires std::is_enum_v<T>
+inline std::string join(const std::vector<T>& enums, const std::string& delimiter)
+{
+    std::string ret;
+    for (auto it = enums.begin(); it != enums.end(); ++it)
+    {
+        ret.append(encode(*it));
+        if (it + 1 != enums.end())
+            ret.append(delimiter);
+    }
+    return ret;
+}
 
 template<typename... Args>
 struct VisaAdl<std::tuple<Args...>>

@@ -76,4 +76,9 @@ public:
 private:
     Int m_flag;
 };
+
+template<typename T>
+constexpr bool isFlag = false;
+template<typename T>
+constexpr bool isFlag<Flags<T>> = true;
 } // namespace OpenVisa
