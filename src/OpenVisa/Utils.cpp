@@ -171,6 +171,18 @@ OPENVISA_EXPORT std::vector<std::string> split(const std::string& source, const 
     return std::vector<std::string> { std::sregex_token_iterator(source.begin(), source.end(), re, -1), std::sregex_token_iterator() };
 }
 
+OPENVISA_EXPORT std::string join(const std::vector<std::string>& source, const std::string& delimiter)
+{
+    std::string ret;
+    for (auto it = source.begin(); it != source.end(); it++)
+    {
+        ret.append(*it);
+        if (it + 1 != source.end())
+            ret.append(delimiter);
+    }
+    return ret;
+}
+
 void VisaAdl<StatusByteRegisters>::fromScpi(const std::string& ret, StatusByteRegisters& val)
 {
     std::string temp;

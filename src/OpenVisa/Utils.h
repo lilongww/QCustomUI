@@ -35,6 +35,7 @@
 namespace OpenVisa
 {
 OPENVISA_EXPORT std::vector<std::string> split(const std::string& source, const std::string& s);
+OPENVISA_EXPORT std::string join(const std::vector<std::string>& source, const std::string& delimiter);
 
 template<typename... Args>
 struct VisaAdl<std::tuple<Args...>>
