@@ -28,6 +28,7 @@ extern "C"
 }
 
 #include <array>
+#include <limits>
 
 namespace OpenVisa
 {
@@ -100,7 +101,12 @@ struct UsbTmc::Impl
     uint8_t tag { 0 };
     int outMaxPacketSize { 0 };
     int inMaxPacketSize { 0 };
-    std::chrono::milliseconds timeout;
+    void updateTag()
+    {
+        ++tag;
+        if (tag == 0)
+            ++tag;
+    }
 
     libusb_device_handle* findAndOpenDevice(const Address<AddressType::USB>& addr)
     {
@@ -158,12 +164,8 @@ UsbTmc::UsbTmc(Object::Attribute const& attr) : IOBase(attr), m_impl(std::make_u
 
 UsbTmc::~UsbTmc() { libusb_exit(m_impl->context); }
 
-void UsbTmc::connect(const Address<AddressType::USB>& addr,
-                     const std::chrono::milliseconds& openTimeout,
-                     const std::chrono::milliseconds& commandTimeout)
+void UsbTmc::connect(const Address<AddressType::USB>& addr, const std::chrono::milliseconds& openTimeout)
 {
-    m_impl->timeout = commandTimeout;
-
     m_impl->handle = m_impl->findAndOpenDevice(addr);
 
     if (!m_impl->handle)
@@ -186,15 +188,19 @@ void UsbTmc::connect(const Address<AddressType::USB>& addr,
                                               });
 
     std::vector<uint8_t> ifs;
+    bool isUSBTMC { false };
     for (int i = 0; i < conf_desc->bNumInterfaces; i++)
     {
         for (int j = 0; j < conf_desc->interface[i].num_altsetting; j++)
         {
-            if (conf_desc->interface[i].altsetting[j].bInterfaceClass != 0xFE &&
+            if (conf_desc->interface[i].altsetting[j].bLength == 0x09 && conf_desc->interface[i].altsetting[j].bDescriptorType == 0x04 &&
+                conf_desc->interface[i].altsetting[j].bInterfaceClass != 0xFE &&
                 conf_desc->interface[i].altsetting[j].bInterfaceSubClass != 0x03 &&
                 conf_desc->interface[i].altsetting[j].bInterfaceProtocol != 0x01) // USBTMC
                 continue;
             ifs.push_back(i);
+            bool hasIn { false };
+            bool hasOut { false };
             for (int k = 0; k < conf_desc->interface[i].altsetting[i].bNumEndpoints; k++)
             {
                 auto endpoint = &conf_desc->interface[i].altsetting[j].endpoint[k];
@@ -205,6 +211,7 @@ void UsbTmc::connect(const Address<AddressType::USB>& addr,
                     {
                         if (!m_impl->endpoint_in)
                         {
+                            hasIn                   = true;
                             m_impl->endpoint_in     = endpoint->bEndpointAddress;
                             m_impl->inMaxPacketSize = endpoint->wMaxPacketSize;
                         }
@@ -213,6 +220,7 @@ void UsbTmc::connect(const Address<AddressType::USB>& addr,
                     {
                         if (!m_impl->endpoint_out)
                         {
+                            hasOut                   = true;
                             m_impl->endpoint_out     = endpoint->bEndpointAddress;
                             m_impl->outMaxPacketSize = endpoint->wMaxPacketSize;
                         }
@@ -227,9 +235,14 @@ void UsbTmc::connect(const Address<AddressType::USB>& addr,
                     }
                 }
             }
+            isUSBTMC = hasIn && hasOut;
         }
     }
-
+    if (!isUSBTMC)
+    {
+        close();
+        throw std::exception("USB device not found.");
+    }
     //获得通讯端点并声明内核接口
     {
         libusb_set_auto_detach_kernel_driver(m_impl->handle, 1);
@@ -247,6 +260,7 @@ void UsbTmc::connect(const Address<AddressType::USB>& addr,
 
 void UsbTmc::send(const std::string& buffer) const
 {
+    m_impl->updateTag();
     BulkOut bo(m_impl->tag, USBTMC_MSGID_DEV_DEP_MSG_OUT, m_impl->outMaxPacketSize);
     bo.append(buffer);
 
@@ -259,7 +273,7 @@ void UsbTmc::send(const std::string& buffer) const
                                  reinterpret_cast<unsigned char*>(msg.data()),
                                  static_cast<int>(msg.size()),
                                  nullptr,
-                                 static_cast<unsigned int>(m_impl->timeout.count()));
+                                 static_cast<unsigned int>(m_attr.timeout().count()));
             code != LIBUSB_SUCCESS)
         {
             libusb_reset_device(m_impl->handle);
@@ -267,31 +281,31 @@ void UsbTmc::send(const std::string& buffer) const
         }
     }
 }
-
-std::string UsbTmc::readAll() const { return read(0xffffffff); }
+#undef max
+std::string UsbTmc::readAll() const { return read(std::numeric_limits<int>::max()); }
 
 std::string UsbTmc::read(size_t size) const
 {
     std::string packs;
     BulkIn in;
     int transfered;
+    m_impl->updateTag();
+    { // req
+        std::string buffer = BulkRequest(m_impl->tag, static_cast<unsigned int>(size));
+        if (auto code = transfer(m_impl->handle,
+                                 m_impl->endpoint_out,
+                                 reinterpret_cast<unsigned char*>(buffer.data()),
+                                 static_cast<int>(buffer.size()),
+                                 nullptr,
+                                 static_cast<unsigned int>(m_attr.timeout().count()));
+            code != LIBUSB_SUCCESS)
+        {
+            libusb_reset_device(m_impl->handle);
+            throwLibusbError(code);
+        }
+    }
     do
     {
-        {// req
-            std::string buffer = BulkRequest(m_impl->tag, static_cast<unsigned int>(size));
-            if (auto code = transfer(m_impl->handle,
-                                     m_impl->endpoint_out,
-                                     reinterpret_cast<unsigned char*>(buffer.data()),
-                                     static_cast<int>(buffer.size()),
-                                     nullptr,
-                                     static_cast<unsigned int>(m_impl->timeout.count()));
-                code != LIBUSB_SUCCESS)
-            {
-                libusb_reset_device(m_impl->handle);
-                throwLibusbError(code);
-            }
-        }
-
         std::string pack;
         pack.resize(m_impl->inMaxPacketSize);
         if (auto code = transfer(m_impl->handle,
@@ -299,7 +313,7 @@ std::string UsbTmc::read(size_t size) const
                                  reinterpret_cast<unsigned char*>(pack.data()),
                                  static_cast<int>(pack.size()),
                                  &transfered,
-                                 static_cast<unsigned int>(m_impl->timeout.count()));
+                                 static_cast<unsigned int>(m_attr.timeout().count()));
             code != LIBUSB_SUCCESS)
         {
             libusb_reset_device(m_impl->handle);
@@ -324,6 +338,73 @@ void UsbTmc::close() noexcept
 bool UsbTmc::connected() const noexcept { return m_impl->handle; }
 
 size_t UsbTmc::avalible() const noexcept { return m_impl->avalibe; }
+
+std::vector<OpenVisa::Address<OpenVisa::AddressType::USB>> UsbTmc::listUSB()
+{
+    std::vector<OpenVisa::Address<OpenVisa::AddressType::USB>> address;
+
+    std::shared_ptr<libusb_context> context(std::invoke(
+                                                []
+                                                {
+                                                    libusb_context* context { nullptr };
+                                                    libusb_init(&context);
+                                                    return context;
+                                                }),
+                                            [](auto context) { libusb_exit(context); });
+    libusb_device** devs;
+
+    auto count = libusb_get_device_list(context.get(), &devs);
+    if (count < 0)
+        throwLibusbError(static_cast<int>(count));
+
+    auto devsScope = std::shared_ptr<int>(new int,
+                                          [&](int* p)
+                                          {
+                                              delete p;
+                                              libusb_free_device_list(devs, 1);
+                                          });
+
+    libusb_device_descriptor deviceDescription;
+    for (int i = 0; i < count; ++i)
+    {
+        if (libusb_get_device_descriptor(devs[i], &deviceDescription) != LIBUSB_SUCCESS)
+            continue;
+        auto vid = deviceDescription.idVendor;
+        auto pid = deviceDescription.idProduct;
+        libusb_device_handle* h;
+        if (libusb_open(devs[i], &h) != LIBUSB_SUCCESS)
+            continue;
+        if (auto ret = libusb_reset_device(h); ret != LIBUSB_SUCCESS)
+        {
+            libusb_close(h);
+            continue;
+        }
+        std::string sn;
+        try
+        {
+            sn = getStringDescriptor(h, deviceDescription.iSerialNumber);
+        }
+        catch (const std::exception&)
+        {
+            libusb_close(h);
+            continue;
+        }
+        libusb_close(h);
+        Address<AddressType::USB> addr(vid, pid, sn);
+        try
+        {
+            Object::Attribute attr;
+            UsbTmc tmc(attr);
+            tmc.connect(addr, std::chrono::milliseconds(500));
+            tmc.close();
+            address.push_back(addr);
+        }
+        catch (...)
+        {
+        }
+    }
+    return address;
+}
 
 void UsbTmc::init() { libusb_init(&m_impl->context); }
 

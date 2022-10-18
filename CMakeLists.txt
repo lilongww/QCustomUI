@@ -1,5 +1,6 @@
 ﻿cmake_minimum_required(VERSION 3.20)
 project(OpenVisa)
+enable_testing()
 
 set(CMAKE_BUILD_WITH_INSTALL_RPATH TRUE)
 set(CMAKE_INSTALL_PREFIX ${CMAKE_CURRENT_LIST_DIR}/build)
@@ -29,5 +30,6 @@ find_path(LIBUSB_INCLUDEDIR libusb.h PATH_SUFFIXES libusb DOC "Header directory 
 find_file(LIBUSB_LIBRARY libusb-1.0 DOC "libusb library file." REQUIRED)
 
 option(BUILD_OPENVISA_STATIC "Build OpenVisa static library." false)
+option(BUILD_TEST "Build test applications." true)
 
 add_subdirectory(src)

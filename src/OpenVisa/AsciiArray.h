@@ -19,7 +19,12 @@
 #pragma once
 
 #include <algorithm>
+#include <charconv>
+#include <cmath>
+#include <optional>
 #include <ranges>
+#include <system_error>
+#include <vector>
 
 namespace OpenVisa
 {
@@ -34,16 +39,18 @@ public:
         std::vector<T> vec;
         auto li   = std::counted_iterator(m_temp.begin() + m_offset, m_temp.size() - m_offset);
         auto view = std::ranges::subrange(li, std::default_sentinel) | std::views::split(',') |
-                    std::views::transform([](auto&& rng) { return std::string_view(&*rng.begin(), std::ranges::distance(rng)); });
-
-        std::ranges::transform(view,
-                               std::back_inserter(vec),
-                               [](const auto& str)
-                               {
-                                   Type value;
-                                   std::from_chars(str.starts_with('+') ? str.data() + 1 : str.data(), str.data() + str.size(), value);
-                                   return value;
-                               });
+                    std::views::transform(
+                        [](auto&& rng) -> std::optional<T>
+                        {
+                            auto str = std::string_view(&*rng.begin(), std::ranges::distance(rng));
+                            Type value;
+                            auto ret = std::from_chars(str.starts_with('+') ? str.data() + 1 : str.data(), str.data() + str.size(), value);
+                            if (std::make_error_code(ret.ec))
+                                return std::nullopt;
+                            return value;
+                        }) |
+                    std::views::filter([](auto v) { return v.has_value(); });
+        std::ranges::transform(view, std::back_inserter(vec), [](auto value) { return *value; });
         return vec;
     }
 

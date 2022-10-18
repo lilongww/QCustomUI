@@ -131,13 +131,11 @@ HiSLIP::HiSLIP(Object::Attribute const& attr) : IOBase(attr), m_impl(std::make_u
 
 HiSLIP::~HiSLIP() {}
 
-void HiSLIP::connect(const Address<AddressType::HiSLIP>& address,
-                     const std::chrono::milliseconds& openTimeout,
-                     const std::chrono::milliseconds& commandTimeout)
+void HiSLIP::connect(const Address<AddressType::HiSLIP>& address, const std::chrono::milliseconds& openTimeout)
 {
-    m_impl->socket.connect(Address<AddressType::RawSocket>(address.ip(), address.port()), openTimeout, commandTimeout);
+    m_impl->socket.connect(Address<AddressType::RawSocket>(address.ip(), address.port()), openTimeout);
     initialize(address.subAddress());
-    m_impl->asyncSocket.connect(Address<AddressType::RawSocket>(address.ip(), address.port()), openTimeout, commandTimeout);
+    m_impl->asyncSocket.connect(Address<AddressType::RawSocket>(address.ip(), address.port()), openTimeout);
     initializeAsync();
     m_impl->connected = true;
 }

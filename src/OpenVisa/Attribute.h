@@ -20,6 +20,8 @@
 
 #include "Object.h"
 
+#include <chrono>
+
 namespace OpenVisa
 {
 class OPENVISA_EXPORT Object::Attribute
@@ -30,6 +32,8 @@ public:
 
     void setTerminalChars(std::string_view chars);
     const std::string& terminalChars() const;
+    void setTimeout(const std::chrono::milliseconds& timeout);
+    const std::chrono::milliseconds& timeout() const;
 
 private:
     struct Impl;

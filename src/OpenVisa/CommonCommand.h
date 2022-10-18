@@ -19,6 +19,7 @@
 #pragma once
 
 #include "Object.h"
+#include "StatusByteRegister.h"
 
 #include <vector>
 
@@ -38,7 +39,7 @@ public:
     void rst();
     void setSre(int status);
     int sre();
-    int stb();
+    StatusByteRegisters stb();
     bool tst();
     void wai();
     void rcl(int i);

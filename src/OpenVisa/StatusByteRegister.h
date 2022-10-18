@@ -1,4 +1,4 @@
-/*********************************************************************************
+﻿/*********************************************************************************
 **                                                                              **
 **  Copyright (C) 2022 LiLong                                                   **
 **  This file is part of OpenVisa.                                              **
@@ -18,31 +18,21 @@
 **********************************************************************************/
 #pragma once
 
-#include "HiSLIPProtocol.h"
-#include "IOBase.h"
+#include "Flags.h"
 
 namespace OpenVisa
 {
-class HiSLIP : public IOBase
+enum class StatusByteRegister : unsigned short
 {
-public:
-    HiSLIP(Object::Attribute const& attr);
-    ~HiSLIP();
-    void connect(const Address<AddressType::HiSLIP>& address, const std::chrono::milliseconds& openTimeout);
-    void send(const std::string& buffer) const override;
-    std::string readAll() const override;
-    std::string read(size_t size) const override;
-    void close() noexcept override;
-    bool connected() const noexcept override;
-    size_t avalible() const noexcept override;
-
-private:
-    void initialize(std::string_view subAddr);
-    void initializeAsync();
-    void errorCheck(HS::HSBuffer& buffer) const;
-
-private:
-    struct Impl;
-    std::unique_ptr<Impl> m_impl;
+    Unused1                  = 0x0001,
+    Unused2                  = 0x0002,
+    ErrorQueue               = 0x0004,
+    QuestionableDataSummary  = 0x0008,
+    MessageAvailable         = 0x0010,
+    StandardEventSummary     = 0x0020,
+    MasterSummary            = 0x0040,
+    StandardOperationSummary = 0x0080
 };
+
+using StatusByteRegisters = Flags<StatusByteRegister>;
 } // namespace OpenVisa

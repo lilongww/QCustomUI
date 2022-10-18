@@ -23,6 +23,7 @@ namespace OpenVisa
 struct Object::Attribute::Impl
 {
     std::string termChars { "\n" };
+    std::chrono::milliseconds timeout { 2000 };
 };
 
 /*!
@@ -54,5 +55,17 @@ void Object::Attribute::setTerminalChars(std::string_view chars) { m_impl->termC
     \sa         setTerminalChars
 */
 const std::string& Object::Attribute::terminalChars() const { return m_impl->termChars; }
+
+/*!
+    \brief      设置通信超时时间 \a timeout.
+    \sa         timeout
+*/
+void Object::Attribute::setTimeout(const std::chrono::milliseconds& timeout) { m_impl->timeout = timeout; }
+
+/*!
+    \brief      返回通信超时时间.
+    \sa         setTimeout
+*/
+const std::chrono::milliseconds& Object::Attribute::timeout() const { return m_impl->timeout; }
 
 } // namespace OpenVisa

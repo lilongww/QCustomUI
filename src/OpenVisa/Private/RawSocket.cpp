@@ -31,7 +31,6 @@ struct RawSocket::Impl
     boost::asio::ip::tcp::socket socket { io };
     boost::asio::io_context::work worker { io };
     std::jthread thread;
-    std::chrono::milliseconds timeout;
     std::string writeBuffer;
     boost::asio::streambuf readBuffer;
 };
@@ -52,12 +51,8 @@ RawSocket::~RawSocket() noexcept
     }
 }
 
-void RawSocket::connect(const Address<AddressType::RawSocket>& addr,
-                        const std::chrono::milliseconds& openTimeout,
-                        const std::chrono::milliseconds& commandTimeout)
+void RawSocket::connect(const Address<AddressType::RawSocket>& addr, const std::chrono::milliseconds& openTimeout)
 {
-    m_impl->timeout = commandTimeout;
-
     auto error = std::make_shared<boost::system::error_code>();
     auto mutex = std::make_shared<std::timed_mutex>();
     mutex->lock();
@@ -100,7 +95,7 @@ void RawSocket::send(const std::string& buffer) const
                                             });
         });
 
-    if (!mutex->try_lock_for(m_impl->timeout))
+    if (!mutex->try_lock_for(m_attr.timeout()))
     {
         m_impl->socket.cancel();
         throw std::exception("send timeout");
@@ -132,7 +127,7 @@ std::string RawSocket::readAll() const
                                           });
         });
 
-    if (!mutex->try_lock_for(m_impl->timeout))
+    if (!mutex->try_lock_for(m_attr.timeout()))
     {
         m_impl->socket.cancel();
         throw std::exception("read timeout");
@@ -166,7 +161,7 @@ std::string RawSocket::read(size_t size) const
                                            });
         });
 
-    if (!mutex->try_lock_for(m_impl->timeout))
+    if (!mutex->try_lock_for(m_attr.timeout()))
     {
         m_impl->socket.cancel();
         throw std::exception("read timeout");
