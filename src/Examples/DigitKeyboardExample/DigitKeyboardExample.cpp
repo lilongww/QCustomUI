@@ -32,4 +32,5 @@ DigitKeyboardExample::DigitKeyboardExample(QWidget* parent) : QCtmWindow(parent)
     auto keyboard3 = new QCtmDigitKeyboard(this);
     keyboard3->bindBox(sp);
     sp->setValue(10000);
+    connect(spinbox, &QSpinBox::textChanged, this, [=](auto text) { qDebug() << text; });
 }
