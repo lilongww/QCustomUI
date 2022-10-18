@@ -26,8 +26,9 @@ using namespace std::literals::string_view_literals;
 namespace OpenVisa
 {
 constexpr auto BoolalphaChars = "ONOFF10+"sv;
-constexpr auto DoubleView = std::views::take_while([](char ch) { return ch <= '9' && ch >= '0' || ch == '.' || ch == '+' || ch == '-'; });
-constexpr auto IntView    = std::views::take_while([](char ch) { return ch <= '9' && ch >= '0' || ch == '+' || ch == '-'; });
+constexpr auto DoubleView =
+    std::views::take_while([](char ch) { return ch <= '9' && ch >= '0' || ch == '.' || ch == '+' || ch == '-' || ch == 'E' || ch == 'e'; });
+constexpr auto IntView         = std::views::take_while([](char ch) { return ch <= '9' && ch >= '0' || ch == '+' || ch == '-'; });
 constexpr auto UnsignedIntView = std::views::take_while([](char ch) { return ch <= '9' && ch >= '0' || ch == '+'; });
 void VisaAdl<bool>::fromScpi(const std::string& ret, bool& val)
 {

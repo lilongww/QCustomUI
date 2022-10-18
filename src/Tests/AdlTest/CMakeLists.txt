@@ -50,6 +50,8 @@ double_test("2_2" "-0.1\r\n" "-0.1")
 double_test("3_1" "+0.1\n" "0.1")
 double_test("3_2" "+0.1\r\n" "0.1")
 double_test("4" "100A" "100")
+double_test("5" "1.8E-01" "0.18")
+double_test("6" "1.8e-01" "0.18")
 
 # OpenVisa::decode<int>
 function(int_test NUM IN EXP)
