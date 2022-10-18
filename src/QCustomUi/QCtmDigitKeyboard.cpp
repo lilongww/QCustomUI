@@ -26,6 +26,8 @@
 #include <QLineEdit>
 #include <QSpinBox>
 
+#define QTBUG_107745
+
 struct QCtmDigitKeyboard::Impl
 {
     InputMode mode { InputMode::IntInput };
@@ -199,6 +201,9 @@ void QCtmDigitKeyboard::setCurrentUnitIndex(int index)
     {
         const auto& unit = m_impl->units[m_impl->currentUnitIndex];
         m_impl->box->setProperty("suffix", unit.unit);
+#ifdef QTBUG_107745
+        QMetaObject::invokeMethod(m_impl->box, "textChanged", Q_ARG(QString, m_impl->box->text()));
+#endif
     }
 }
 
@@ -289,6 +294,9 @@ bool QCtmDigitKeyboard::eventFilter(QObject* obj, QEvent* event)
                     }
                     m_impl->bindedBox->setProperty("value", value());
                     m_impl->bindedBox->setProperty("suffix", m_impl->box->property("suffix"));
+#ifdef QTBUG_107745
+                    QMetaObject::invokeMethod(m_impl->box, "textChanged", Q_ARG(QString, m_impl->box->text()));
+#endif
                 }
             }
         }
@@ -319,7 +327,12 @@ void QCtmDigitKeyboard::ensureConnect()
         box->setRange(m_impl->minimum.toInt(), m_impl->maximum.toInt());
         box->setValue(m_impl->value.toDouble());
         if (!m_impl->units.empty())
+        {
             box->setSuffix(m_impl->units.at(m_impl->currentUnitIndex).unit);
+#ifdef QTBUG_107745
+            emit box->textChanged(box->text());
+#endif
+        }
         m_impl->box = box;
         setValue(box->value());
         connect(box, qOverload<int>(&QSpinBox::valueChanged), this, [this](auto val) { emit valueChanged(val); });
@@ -332,7 +345,12 @@ void QCtmDigitKeyboard::ensureConnect()
         box->setDecimals(m_impl->decimals);
         box->setValue(m_impl->value.toDouble());
         if (!m_impl->units.empty())
+        {
             box->setSuffix(m_impl->units.at(m_impl->currentUnitIndex).unit);
+#ifdef QTBUG_107745
+            emit box->textChanged(box->text());
+#endif
+        }
         m_impl->box = box;
         setValue(box->value());
         connect(box, qOverload<double>(&QDoubleSpinBox::valueChanged), this, [this](auto val) { emit valueChanged(val); });
@@ -407,7 +425,12 @@ void QCtmDigitKeyboard::init()
 void QCtmDigitKeyboard::clearUnits()
 {
     if (m_impl->box)
+    {
         m_impl->box->setProperty("suffix", "");
+#ifdef QTBUG_107745
+        QMetaObject::invokeMethod(m_impl->box, "textChanged", Q_ARG(QString, m_impl->box->text()));
+#endif
+    }
     for (int row = m_impl->ui.unitsLayout->rowCount() - 1; row >= 0; row--)
     {
         for (int col = m_impl->ui.unitsLayout->columnCount() - 1; col >= 0; col--)
@@ -454,6 +477,9 @@ void QCtmDigitKeyboard::syncBindBox()
         if (m_impl->units.empty())
         {
             m_impl->box->setProperty("suffix", pv("suffix"));
+#ifdef QTBUG_107745
+            QMetaObject::invokeMethod(m_impl->box, "textChanged", Q_ARG(QString, m_impl->box->text()));
+#endif
         }
         else
         {
