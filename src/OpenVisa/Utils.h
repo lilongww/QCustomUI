@@ -39,6 +39,9 @@ OPENVISA_EXPORT std::vector<std::string> split(const std::string& source, const 
 OPENVISA_EXPORT std::string join(const std::vector<std::string>& source, const std::string& delimiter);
 
 template<typename T>
+extern std::string encode(const T& arg);
+
+template<typename T>
 requires std::ranges::range<T>
 inline std::string join(const T& enums, const std::string& delimiter)
 {
