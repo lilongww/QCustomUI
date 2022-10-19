@@ -284,12 +284,14 @@ bool QCtmDigitKeyboard::eventFilter(QObject* obj, QEvent* event)
                 setValue(m_impl->bindedBox->property("value"));
                 if (exec() == QDialog::Accepted)
                 {
+                    auto val = value();
                     if (!m_impl->units.empty())
                     {
                         m_impl->bindedBox->setProperty("minimum", m_impl->units[m_impl->currentUnitIndex].minimum);
                         m_impl->bindedBox->setProperty("maximum", m_impl->units[m_impl->currentUnitIndex].maximum);
                     }
-                    m_impl->bindedBox->setProperty("value", value());
+                    qDebug() << val;
+                    m_impl->bindedBox->setProperty("value", val);
                     m_impl->bindedBox->setProperty("suffix", m_impl->box->property("suffix"));
 #ifdef QTBUG_107745
                     QMetaObject::invokeMethod(m_impl->bindedBox, "textChanged", Q_ARG(QString, m_impl->box->text()));
@@ -477,28 +479,26 @@ void QCtmDigitKeyboard::syncBindBox()
         }
     }
 
-    if (m_impl->units.empty())
-        return;
-    auto minIt = std::max_element(m_impl->units.begin(),
-                                  m_impl->units.end(),
-                                  [=](const auto& u1, const auto& u2)
-                                  {
-                                      if (m_impl->mode == InputMode::IntInput)
-                                          return u1.minimum.toInt() < u2.minimum.toInt();
-                                      else
-                                          return u1.minimum.toDouble() < u2.minimum.toDouble();
-                                  });
-    auto maxIt = std::max_element(m_impl->units.begin(),
-                                  m_impl->units.end(),
-                                  [=](const auto& u1, const auto& u2)
-                                  {
-                                      if (m_impl->mode == InputMode::IntInput)
-                                          return u1.maximum.toInt() < u2.maximum.toInt();
-                                      else
-                                          return u1.maximum.toDouble() < u2.maximum.toDouble();
-                                  });
-    if (m_impl->box)
+    if (m_impl->box && !m_impl->units.empty())
     {
+        auto minIt = std::min_element(m_impl->units.begin(),
+                                      m_impl->units.end(),
+                                      [=](const auto& u1, const auto& u2)
+                                      {
+                                          if (m_impl->mode == InputMode::IntInput)
+                                              return u1.minimum.toInt() < u2.minimum.toInt();
+                                          else
+                                              return u1.minimum.toDouble() < u2.minimum.toDouble();
+                                      });
+        auto maxIt = std::max_element(m_impl->units.begin(),
+                                      m_impl->units.end(),
+                                      [=](const auto& u1, const auto& u2)
+                                      {
+                                          if (m_impl->mode == InputMode::IntInput)
+                                              return u1.maximum.toInt() < u2.maximum.toInt();
+                                          else
+                                              return u1.maximum.toDouble() < u2.maximum.toDouble();
+                                      });
         m_impl->box->setProperty("minimum", minIt->minimum);
         m_impl->box->setProperty("maximum", maxIt->maximum);
     }
@@ -536,5 +536,6 @@ void QCtmDigitKeyboard::acceptUnit(int unitIndex)
         m_impl->box->selectAll();
         return;
     }
+    qDebug() << m_impl->box->property("value");
     accept();
 }

@@ -1,4 +1,6 @@
-﻿#include <QCustomUi/QCtmWindow.h>
+﻿#include <QCustomUi/QCtmNavigationBar.h>
+#include <QCustomUi/QCtmTitleBar.h>
+#include <QCustomUi/QCtmWindow.h>
 
 #include <QScreen>
 #include <QSignalSpy>
@@ -12,6 +14,8 @@ private slots:
     void fixedSizeWidgetShowMaximumBug();
     void taskStatusBar();
     void taskMenuBar();
+    void taskNavigationBar();
+    void taskTitleBar();
 };
 
 void tst_QCtmWindow::fixedSizeWidgetShowMaximumBug()
@@ -51,6 +55,33 @@ void tst_QCtmWindow::taskMenuBar()
     QVERIFY(menuBar == w.menuBar());
     w.setMenuBar(nullptr);
     QVERIFY(menuBar != w.menuBar());
+}
+
+void tst_QCtmWindow::taskNavigationBar()
+{
+    QCtmWindow w;
+    auto navigationBar = w.navigationBar();
+    QVERIFY(navigationBar);
+    delete navigationBar;
+    navigationBar = new QCtmNavigationBar(&w);
+    w.setNavigationBar(navigationBar);
+    QVERIFY(navigationBar == w.navigationBar());
+    w.setNavigationBar(nullptr);
+    QVERIFY(navigationBar != w.navigationBar());
+}
+
+void tst_QCtmWindow::taskTitleBar()
+{
+    QCtmWindow w;
+    QPointer<QCtmTitleBar> oldbar = w.titleBar();
+    delete oldbar;
+    auto bar = w.titleBar();
+    QVERIFY(bar != oldbar);
+    bar = new QCtmTitleBar(&w);
+    w.setTitleBar(bar);
+    QVERIFY(bar == w.titleBar());
+    w.setTitleBar(nullptr);
+    QVERIFY(bar != w.titleBar());
 }
 
 QTEST_MAIN(tst_QCtmWindow)
