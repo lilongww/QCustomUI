@@ -1,11 +1,11 @@
-/*!
-    \enum       StatusByteRegister
-                ×´Ì¬×Ö½Ú.
-    \value      Unused1                     Î´Ê¹ÓÃ
-    \value      Unused2                     Î´Ê¹ÓÃ
-    \value      ErrorQueue                  Ò»¸ö»ò¶à¸ö´íÎó´æÔÚÓÚ¶ÓÁĞÖĞ£¬Ê¹ÓÃSYSTem:ERRor?¶ÁÈ¡ºÍÉ¾³ı´íÎó.
+ï»¿/*!
+    \enum       OpenVisa::StatusByteRegister
+                çŠ¶æ€å­—èŠ‚.
+    \value      Unused1                     æœªä½¿ç”¨
+    \value      Unused2                     æœªä½¿ç”¨
+    \value      ErrorQueue                  ä¸€ä¸ªæˆ–å¤šä¸ªé”™è¯¯å­˜åœ¨äºé˜Ÿåˆ—ä¸­ï¼Œä½¿ç”¨SYSTem:ERRor?è¯»å–å’Œåˆ é™¤é”™è¯¯.
     \value      QuestionableDataSummary     One or more bits are set in the Questionable Data Register (bits must be enabled, see STATus:QUEStionable:ENABle ).
-    \value      MessageAvailable            Êı¾İµ½´ïÉè±¸µÄÊä³ö»º´æ.
+    \value      MessageAvailable            æ•°æ®åˆ°è¾¾è®¾å¤‡çš„è¾“å‡ºç¼“å­˜.
     \value      StandardEventSummary        One or more bits are set in the Standard Event Register (bits must be enabled, see *ESE).
     \value      MasterSummary               One or more bits are set in the Status Byte Register and may generate a Request for Service (RQS). Bits must be enabled using *SRE.
     \value      StandardOperationSummary    One or more bits are set in the Operation Status Register. Bits are enabled using STATus:OPERation:ENABle.

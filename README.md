@@ -113,3 +113,5 @@ std::cout << visa.readAll();
 * * ONC-RPC: [RFC1057](https://www.rfc-editor.org/rfc/rfc1057.html)
 
 * HiSLIP: [IVI-6.1_HiSLIP-2.0-2020-04-23.pdf](https://www.ivifoundation.org/specifications/default.aspx)
+
+* IEEE488.2: [ANSI/IEEE Std 488.2-1987](https://ieeexplore.ieee.org/document/213762/)
