@@ -290,7 +290,6 @@ bool QCtmDigitKeyboard::eventFilter(QObject* obj, QEvent* event)
                         m_impl->bindedBox->setProperty("minimum", m_impl->units[m_impl->currentUnitIndex].minimum);
                         m_impl->bindedBox->setProperty("maximum", m_impl->units[m_impl->currentUnitIndex].maximum);
                     }
-                    qDebug() << val;
                     m_impl->bindedBox->setProperty("value", val);
                     m_impl->bindedBox->setProperty("suffix", m_impl->box->property("suffix"));
 #ifdef QTBUG_107745
@@ -536,6 +535,5 @@ void QCtmDigitKeyboard::acceptUnit(int unitIndex)
         m_impl->box->selectAll();
         return;
     }
-    qDebug() << m_impl->box->property("value");
     accept();
 }
