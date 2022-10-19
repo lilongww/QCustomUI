@@ -48,10 +48,8 @@ public:
     QMenuBar* menuBar() const;
     void setNavigationBar(QCtmNavigationBar* menuBar);
     QCtmNavigationBar* navigationBar() const;
-    void removeNavigationBar();
     void setTitleBar(QCtmTitleBar* titleBar);
     QCtmTitleBar* titleBar() const;
-    void removeTitleBar();
     void setCentralWidget(QWidget* widget);
     QWidget* centralWidget() const;
     void addMoveBar(QWidget* moveBar);
