@@ -29,7 +29,7 @@
 
 struct QCtmDialog::Impl
 {
-    QCtmTitleBar* title { nullptr };
+    QPointer<QCtmTitleBar> title;
     QWidget* content { nullptr };
     QVBoxLayout* layout { nullptr };
 #ifdef Q_OS_WIN
@@ -79,66 +79,71 @@ QCtmDialog::QCtmDialog(QWidget* parent) : QDialog(parent), m_impl(std::make_uniq
 QCtmDialog::~QCtmDialog() {}
 
 /*!
-    \brief      设置 \a widget 为窗口的中央部件.
-    \sa centralWidget
+    \brief      设置 \a widget 为窗口的中央窗口, 当 \a widget 为nullptr时删除中央窗口.
+    \sa         centralWidget
  */
 void QCtmDialog::setCentralWidget(QWidget* widget)
 {
-    delete m_impl->content;
-    m_impl->content = widget;
-    layout()->addWidget(widget);
-    QVBoxLayout* l = qobject_cast<QVBoxLayout*>(layout());
-    if (l)
+    if (widget == m_impl->content)
+        return;
+    if (m_impl->content)
     {
-        l->setStretch(0, 0);
-        l->setStretch(1, 1);
+        m_impl->content->hide();
+        m_impl->content->deleteLater();
     }
-    setWindowTitle(widget->windowTitle());
-    m_impl->content->installEventFilter(this);
+    m_impl->content = widget;
+    if (widget)
+    {
+        QVBoxLayout* l = qobject_cast<QVBoxLayout*>(layout());
+        l->addWidget(widget, 1);
+        setWindowTitle(widget->windowTitle());
+        m_impl->content->installEventFilter(this);
+    }
 }
 
 /*!
-    \brief      返回中央部件地址.
+    \brief      返回中央窗口地址, 如果中央窗口不存在则返回nullptr.
     \sa         setCentralWidget
 */
 QWidget* QCtmDialog::centralWidget() const { return m_impl->content; }
 
 /*!
-    \brief      设置标题栏 \a titleBar.
-    \sa         titleBar(), removeTitleBar()
+    \brief      设置标题栏 \a titleBar, 当 \a titleBar 为 nullptr 时删除标题栏.
+    \sa         titleBar
 */
 void QCtmDialog::setTitleBar(QCtmTitleBar* titleBar)
 {
+    if (m_impl->title == titleBar)
+        return;
+
     if (m_impl->title)
     {
-        m_impl->layout->replaceWidget(m_impl->title, titleBar);
-        delete m_impl->title;
+        m_impl->delegate->removeMoveBar(m_impl->title);
+        m_impl->title->hide();
+        m_impl->title->deleteLater();
     }
-    else
-    {
-        m_impl->layout->insertWidget(0, titleBar);
-    }
-    m_impl->delegate->addMoveBar(titleBar);
     m_impl->title = titleBar;
+    if (titleBar)
+    {
+        m_impl->layout->insertWidget(0, titleBar, 0);
+        m_impl->delegate->addMoveBar(titleBar);
+    }
 }
 
 /*!
-    \brief      返回窗口的标题栏.
-    \sa         setTitleBar, removeTitleBar()
+    \brief      返回窗口的标题栏，如果标题栏不存在，自动创建并返回一个新的标题栏.
+    \sa         setTitleBar
 */
-QCtmTitleBar* QCtmDialog::titleBar() const { return m_impl->title; }
-
-/*!
-    \brief      移除窗口的标题栏.
-    \sa         setTitleBar, titleBar()
-*/
-void QCtmDialog::removeTitleBar()
+QCtmTitleBar* QCtmDialog::titleBar() const
 {
-    if (m_impl->title)
+    auto title = m_impl->title;
+    if (!title)
     {
-        delete m_impl->title;
-        m_impl->title = nullptr;
+        auto self = const_cast<QCtmDialog*>(this);
+        title     = new QCtmTitleBar(self);
+        self->setTitleBar(title);
     }
+    return title;
 }
 
 /*!
