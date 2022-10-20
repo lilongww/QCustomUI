@@ -1,6 +1,6 @@
 ﻿/*********************************************************************************
 **                                                                              **
-**  Copyright (C) 2019-2020 LiLong                                              **
+**  Copyright (C) 2019-2022 LiLong                                              **
 **  This file is part of QCustomUi.                                             **
 **                                                                              **
 **  QCustomUi is free software: you can redistribute it and/or modify           **
@@ -32,7 +32,7 @@ struct QCtmStageProgressBar::Impl
     int maximum { 99 };
     int value { 0 };
     bool textVisible { false };
-    int stageCricleRadius { 10 };
+    int stageCircleRadius { 10 };
     std::vector<QString> texts { static_cast<size_t>(stageCount) };
     QPen stageTextIndexPen { Qt::white };
     QBrush rateBrush { QColor { 0x3580ce } };
@@ -48,6 +48,12 @@ struct QCtmStageProgressBar::Impl
 
     \b          {截图:}
     \image      QCtmStageProgressBarDetail.png
+*/
+
+/*!
+    \fn         void QCtmStageProgressBar::valueChanged(int value)
+    \brief      当值 \a value 变化时发送该信号.
+    \sa         setValue
 */
 
 /*!
@@ -117,9 +123,9 @@ int QCtmStageProgressBar::stageCount() const { return m_impl->stageCount; }
 */
 void QCtmStageProgressBar::setStageCircleRadius(int radius)
 {
-    if (m_impl->stageCricleRadius == radius)
+    if (m_impl->stageCircleRadius == radius)
         return;
-    m_impl->stageCricleRadius = radius;
+    m_impl->stageCircleRadius = radius;
     updateGeometry();
 }
 
@@ -127,7 +133,7 @@ void QCtmStageProgressBar::setStageCircleRadius(int radius)
     \brief      返回阶段节点圆形的半径像素.
     \sa         setStageCircleRadius
 */
-int QCtmStageProgressBar::stageCricleRadius() const { return m_impl->stageCricleRadius; }
+int QCtmStageProgressBar::stageCircleRadius() const { return m_impl->stageCircleRadius; }
 
 /*!
     \brief      设置阶段 \a stage 的文本 \a text.
@@ -164,6 +170,8 @@ QString QCtmStageProgressBar::text(int stage) const
 */
 void QCtmStageProgressBar::setTextVisible(bool flag)
 {
+    if (flag == m_impl->textVisible)
+        return;
     m_impl->textVisible = flag;
     updateGeometry();
 }
@@ -175,13 +183,18 @@ void QCtmStageProgressBar::setTextVisible(bool flag)
 bool QCtmStageProgressBar::textVisible() const { return m_impl->textVisible; }
 
 /*!
-    \brief      设置当前进度值 \a value.
-    \sa         value()
+    \brief      设置当前进度值 \a value, \a value 为范围外则无效.
+    \sa         value
 */
 void QCtmStageProgressBar::setValue(int value)
 {
+    if (m_impl->value == value)
+        return;
+    if (value < m_impl->minimum || value > m_impl->maximum)
+        return;
     m_impl->value = value;
-    normalize();
+    emit valueChanged(m_impl->value);
+    repaint();
 }
 
 /*!
@@ -191,16 +204,25 @@ void QCtmStageProgressBar::setValue(int value)
 int QCtmStageProgressBar::value() const { return m_impl->value; }
 
 /*!
-    \brief      设置最大值 \a maximum.
-    \sa         maximum()
+    \brief      设置进度条值范围 \a minimum, \a maximum.
+    \sa         setMaximum, setMinimum
 */
-void QCtmStageProgressBar::setMaximum(int maximum)
+void QCtmStageProgressBar::setRange(int minimum, int maximum)
 {
-    if (m_impl->minimum > maximum)
-        m_impl->minimum = maximum;
-    m_impl->maximum = maximum;
-    normalize();
+    if (m_impl->minimum != minimum || m_impl->maximum != maximum)
+    {
+        m_impl->minimum = minimum;
+        m_impl->maximum = std::max(maximum, minimum);
+        setValue(std::clamp(m_impl->value, m_impl->minimum, m_impl->maximum));
+        update();
+    }
 }
+
+/*!
+    \brief      设置最大值 \a maximum.
+    \sa         maximum
+*/
+void QCtmStageProgressBar::setMaximum(int maximum) { setRange(std::min(m_impl->minimum, maximum), maximum); }
 
 /*!
     \brief      返回最大值.
@@ -210,15 +232,9 @@ int QCtmStageProgressBar::maximum() const { return m_impl->maximum; }
 
 /*!
     \brief      设置最小值 \a min.
-    \sa         minimum()
+    \sa         minimum
 */
-void QCtmStageProgressBar::setMinimum(int min)
-{
-    if (m_impl->maximum < min)
-        m_impl->maximum = min;
-    m_impl->minimum = min;
-    normalize();
-}
+void QCtmStageProgressBar::setMinimum(int min) { setRange(min, std::max(min, m_impl->maximum)); }
 
 /*!
     \brief      返回最小值.
@@ -276,8 +292,8 @@ void QCtmStageProgressBar::paintEvent([[maybe_unused]] QPaintEvent* event)
             if (index == 0)
             {
                 channel.setLeft(rect.center().x());
-                channel.setTop(rect.center().y() - m_impl->stageCricleRadius / 4);
-                channel.setBottom(rect.center().y() + m_impl->stageCricleRadius / 4);
+                channel.setTop(rect.center().y() - m_impl->stageCircleRadius / 4);
+                channel.setBottom(rect.center().y() + m_impl->stageCircleRadius / 4);
             }
             else if (index == m_impl->stageCount - 1)
             {
@@ -288,10 +304,10 @@ void QCtmStageProgressBar::paintEvent([[maybe_unused]] QPaintEvent* event)
         {
             if (index == 0)
             {
-                channel.setLeft(m_impl->textVisible ? rect.center().x() - m_impl->stageCricleRadius / 4
-                                                    : rect.center().x() + m_impl->stageCricleRadius / 4);
-                channel.setRight(m_impl->textVisible ? rect.center().x() + m_impl->stageCricleRadius / 4
-                                                     : rect.center().x() - m_impl->stageCricleRadius / 4);
+                channel.setLeft(m_impl->textVisible ? rect.center().x() - m_impl->stageCircleRadius / 4
+                                                    : rect.center().x() + m_impl->stageCircleRadius / 4);
+                channel.setRight(m_impl->textVisible ? rect.center().x() + m_impl->stageCircleRadius / 4
+                                                     : rect.center().x() - m_impl->stageCircleRadius / 4);
                 channel.setBottom(rect.center().y());
             }
             else if (index == m_impl->stageCount - 1)
@@ -393,8 +409,8 @@ int QCtmStageProgressBar::doMinimumWidth() const
 {
     if (Qt::Horizontal == m_impl->orientation)
     {
-        auto step = (m_impl->stageCricleRadius * 2 * m_impl->stageCount + m_impl->stageCricleRadius * 3 * (m_impl->stageCount - 1) -
-                     m_impl->stageCricleRadius) /
+        auto step = (m_impl->stageCircleRadius * 2 * m_impl->stageCount + m_impl->stageCircleRadius * 3 * (m_impl->stageCount - 1) -
+                     m_impl->stageCircleRadius) /
                     m_impl->stageCount;
         if (m_impl->textVisible)
         {
@@ -408,9 +424,9 @@ int QCtmStageProgressBar::doMinimumWidth() const
                 if (w < len)
                     w = len;
                 if (i == 0)
-                    beginLen = len / 2 > m_impl->stageCricleRadius ? len / 2 - m_impl->stageCricleRadius : 0;
+                    beginLen = len / 2 > m_impl->stageCircleRadius ? len / 2 - m_impl->stageCircleRadius : 0;
                 if (i == m_impl->texts.size() - 1)
-                    endLen = len / 2 > m_impl->stageCricleRadius ? len / 2 - m_impl->stageCricleRadius : 0;
+                    endLen = len / 2 > m_impl->stageCircleRadius ? len / 2 - m_impl->stageCircleRadius : 0;
             }
             auto progressPadding = std::max(beginLen, endLen);
             constexpr int space  = 10;
@@ -427,11 +443,11 @@ int QCtmStageProgressBar::doMinimumWidth() const
             int len = 0;
             for (const auto& text : m_impl->texts)
                 len = qMax(len, fontMetrics().size(0, text).width());
-            return len + m_impl->stageCricleRadius * 2 + 10;
+            return len + m_impl->stageCircleRadius * 2 + 10;
         }
         else
         {
-            return m_impl->stageCricleRadius * 2;
+            return m_impl->stageCircleRadius * 2;
         }
     }
 }
@@ -443,11 +459,11 @@ int QCtmStageProgressBar::doMinimumWidth() const
 int QCtmStageProgressBar::doMinimumHeight() const
 {
     if (Qt::Horizontal == m_impl->orientation)
-        return m_impl->stageCricleRadius * 2 + (m_impl->textVisible ? fontMetrics().height() + fontMetrics().leading() : 0);
+        return m_impl->stageCircleRadius * 2 + (m_impl->textVisible ? fontMetrics().height() + fontMetrics().leading() : 0);
     else
     {
-        auto step = (m_impl->stageCricleRadius * 2 * m_impl->stageCount + m_impl->stageCricleRadius * 2 * (m_impl->stageCount - 1) -
-                     m_impl->stageCricleRadius) /
+        auto step = (m_impl->stageCircleRadius * 2 * m_impl->stageCount + m_impl->stageCircleRadius * 2 * (m_impl->stageCount - 1) -
+                     m_impl->stageCircleRadius) /
                     m_impl->stageCount;
 
         int endLen = 0;
@@ -459,7 +475,7 @@ int QCtmStageProgressBar::doMinimumHeight() const
                 endLen = len;
         }
         step = step < len + fontMetrics().leading() * 2 ? len + fontMetrics().leading() * 2 : step;
-        return step * m_impl->stageCount + (endLen > m_impl->stageCricleRadius ? endLen - m_impl->stageCricleRadius : 0);
+        return step * m_impl->stageCount + (endLen > m_impl->stageCircleRadius ? endLen - m_impl->stageCircleRadius : 0);
     }
 }
 
@@ -478,45 +494,45 @@ QRectF QCtmStageProgressBar::doStageRect(int index) const
     {
         if (!m_impl->textVisible)
         {
-            auto step = (rect.width() - m_impl->stageCricleRadius * 2) / static_cast<double>(m_impl->stageCount - 1);
+            auto step = (rect.width() - m_impl->stageCircleRadius * 2) / static_cast<double>(m_impl->stageCount - 1);
             return QRectF(index * step + rect.x(),
-                          rect.top() + rect.height() / 2 - m_impl->stageCricleRadius,
-                          m_impl->stageCricleRadius * 2,
-                          m_impl->stageCricleRadius * 2);
+                          rect.top() + rect.height() / 2 - m_impl->stageCircleRadius,
+                          m_impl->stageCircleRadius * 2,
+                          m_impl->stageCircleRadius * 2);
         }
         else
         {
             auto firstTextLen    = fontMetrics().horizontalAdvance(*m_impl->texts.begin());
-            auto beginLen        = firstTextLen / 2 > m_impl->stageCricleRadius ? firstTextLen / 2 - m_impl->stageCricleRadius : 0;
+            auto beginLen        = firstTextLen / 2 > m_impl->stageCircleRadius ? firstTextLen / 2 - m_impl->stageCircleRadius : 0;
             auto endTextLen      = fontMetrics().horizontalAdvance(*m_impl->texts.rbegin());
-            auto endLen          = endTextLen / 2 > m_impl->stageCricleRadius ? endTextLen / 2 - m_impl->stageCricleRadius : 0;
+            auto endLen          = endTextLen / 2 > m_impl->stageCircleRadius ? endTextLen / 2 - m_impl->stageCircleRadius : 0;
             auto progressPadding = std::max(beginLen, endLen);
-            auto step = (rect.width() - m_impl->stageCricleRadius * 2 - progressPadding * 2) / static_cast<double>(m_impl->stageCount - 1);
+            auto step = (rect.width() - m_impl->stageCircleRadius * 2 - progressPadding * 2) / static_cast<double>(m_impl->stageCount - 1);
             return QRectF(index * step + rect.x() + progressPadding,
                           rect.top() + rect.height() / 2 - minimumSizeHint().height() / 2,
-                          m_impl->stageCricleRadius * 2,
-                          m_impl->stageCricleRadius * 2);
+                          m_impl->stageCircleRadius * 2,
+                          m_impl->stageCircleRadius * 2);
         }
     }
     else
     {
         if (!m_impl->textVisible)
         {
-            auto step = (rect.height() - m_impl->stageCricleRadius * 2) / static_cast<double>(m_impl->stageCount - 1);
-            return QRectF(rect.x() + rect.width() / 2 - m_impl->stageCricleRadius,
+            auto step = (rect.height() - m_impl->stageCircleRadius * 2) / static_cast<double>(m_impl->stageCount - 1);
+            return QRectF(rect.x() + rect.width() / 2 - m_impl->stageCircleRadius,
                           index * step + rect.x(),
-                          m_impl->stageCricleRadius * 2,
-                          m_impl->stageCricleRadius * 2);
+                          m_impl->stageCircleRadius * 2,
+                          m_impl->stageCircleRadius * 2);
         }
         else
         {
             auto endLen = fontMetrics().size(0, *m_impl->texts.begin()).height();
-            auto step   = (rect.height() - qMax(endLen, m_impl->stageCricleRadius) - m_impl->stageCricleRadius) /
+            auto step   = (rect.height() - qMax(endLen, m_impl->stageCircleRadius) - m_impl->stageCircleRadius) /
                         static_cast<double>(m_impl->stageCount - 1);
             return QRectF(rect.x(),
                           rect.top() + step * (m_impl->stageCount - 1 - index),
-                          m_impl->stageCricleRadius * 2,
-                          m_impl->stageCricleRadius * 2);
+                          m_impl->stageCircleRadius * 2,
+                          m_impl->stageCircleRadius * 2);
         }
     }
 }
@@ -535,18 +551,6 @@ QRectF QCtmStageProgressBar::doTextRect(int index) const
     }
     else
     {
-        return QRectF(stageRect.right() + 10, stageRect.top(), size.width(), qMax(size.height(), m_impl->stageCricleRadius * 2));
+        return QRectF(stageRect.right() + 10, stageRect.top(), size.width(), qMax(size.height(), m_impl->stageCircleRadius * 2));
     }
-}
-
-/*!
-    \brief      使最大值，最小值，当前值合法.
-*/
-void QCtmStageProgressBar::normalize()
-{
-    if (m_impl->value > m_impl->maximum)
-        m_impl->value = m_impl->maximum;
-    else if (m_impl->value < m_impl->minimum)
-        m_impl->value = m_impl->minimum;
-    update();
 }
