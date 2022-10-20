@@ -42,6 +42,7 @@ struct QCtmTitleBar::Impl
 /*!
     \class      QCtmTitleBar
     \brief      QCtmWindow 和 QCtmDialog 的自定义标题栏.
+    \note       最大化，最小化，关闭按钮等显示控制由 QWidget::windowFlags 决定，图标显示由 QWidget::windowIcon 控制，标题栏文字由centralWidget的QWidget::windowTitle决定.
     \inherits   QWidget
     \ingroup    QCustomUi
     \inmodule   QCustomUi
@@ -77,7 +78,7 @@ QCtmTitleBar::QCtmTitleBar(QWidget* parent) : QWidget(parent), ui(new Ui::QCtmTi
 QCtmTitleBar::~QCtmTitleBar() { delete ui; }
 
 /*!
-    \brief      设置菜单栏 \a menu.
+    \brief      设置菜单栏 \a menu, 当 \a menu 为nullptr时删除菜单栏.
     \sa         menuBar
 */
 void QCtmTitleBar::setMenuBar(QMenuBar* menu)
@@ -101,7 +102,7 @@ void QCtmTitleBar::setMenuBar(QMenuBar* menu)
 }
 
 /*!
-    \brief      返回菜单栏.
+    \brief      返回菜单栏, 当菜单栏对象不存在时，自动创建并返回一个新的菜单栏.
     \sa         setMenuBar
 */
 QMenuBar* QCtmTitleBar::menuBar() const
