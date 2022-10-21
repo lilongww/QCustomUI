@@ -198,10 +198,23 @@ bool QCtmWinFramelessDelegate::nativeEvent(const QByteArray& eventType, void* me
                     ncParam->rgrc[0].right     = rc->right() + 1;
                     ncParam->rgrc[0].bottom    = rc->bottom() + 1;
                 }
-                m_impl->parent->layout()->invalidate();
-                *result = 0;
-                return true;
+                else // 优化窗口大小调整闪烁问题
+                {
+                    const auto clientRect = reinterpret_cast<LPRECT>(msg->lParam);
+                    const auto before     = *clientRect;
+                    if (auto ret = DefWindowProcW(msg->hwnd, WM_NCCALCSIZE, msg->wParam, msg->lParam); ret)
+                    {
+                        *result = ret;
+                        return true;
+                    }
+                    clientRect->top   = before.top;
+                    clientRect->left  = before.left;
+                    clientRect->right = before.right;
+                }
+                m_impl->parent->layout()->invalidate(); // QCtmDialog部分情况下变为空白的问题。
             }
+            *result = 0;
+            return true;
         }
         break;
     case WM_SYSCOMMAND:
