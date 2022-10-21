@@ -20,8 +20,10 @@ ToolBoxExample::ToolBoxExample(QWidget* parent) : QWidget(parent), m_impl(std::m
     auto action = new QAction(icon, "", this);
     addAction(action);
     connect(action, &QAction::triggered, this, [=]() { QCtmMessageBox::information(this, tr("Tips"), tr("New Folder")); });
+    // TEST DIALOG BUG
     m_impl->dialog = new TestDialog(this);
     connect(ui.toolButton, &QToolButton::clicked, this, [=]() { m_impl->dialog->exec(); });
+    // end
 }
 
 ToolBoxExample::~ToolBoxExample() {}
