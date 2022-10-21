@@ -207,9 +207,10 @@ bool QCtmWinFramelessDelegate::nativeEvent(const QByteArray& eventType, void* me
                         *result = ret;
                         return true;
                     }
-                    clientRect->top   = before.top;
-                    clientRect->left  = before.left;
-                    clientRect->right = before.right;
+                    clientRect->top    = before.top;
+                    clientRect->left   = before.left;
+                    clientRect->right  = before.right;
+                    clientRect->bottom = before.bottom + 1;
                 }
                 m_impl->parent->layout()->invalidate(); // QCtmDialog部分情况下变为空白的问题。
             }
