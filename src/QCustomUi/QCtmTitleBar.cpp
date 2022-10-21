@@ -26,6 +26,7 @@
 #include <QPainter>
 #include <QResizeEvent>
 #include <QStyleOption>
+#include <QPointer>
 
 Q_CONSTEXPR int leftMargin   = 5;
 Q_CONSTEXPR int titleSpacing = 5;

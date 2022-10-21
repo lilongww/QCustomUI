@@ -30,6 +30,7 @@
 #include <QSizeGrip>
 #include <QStatusBar>
 #include <QVBoxLayout>
+#include <QPointer>
 
 /*!
      \class     QCtmWindow

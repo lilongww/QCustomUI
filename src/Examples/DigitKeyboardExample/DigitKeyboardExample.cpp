@@ -5,6 +5,7 @@
 #include <QDoubleSpinBox>
 #include <QSpinBox>
 #include <QVBoxLayout>
+#include <QDebug>
 
 #include <ratio>
 
