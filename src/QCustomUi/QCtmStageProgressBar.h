@@ -1,6 +1,6 @@
 ﻿/*********************************************************************************
 **                                                                              **
-**  Copyright (C) 2019-2020 LiLong                                              **
+**  Copyright (C) 2019-2022 LiLong                                              **
 **  This file is part of QCustomUi.                                             **
 **                                                                              **
 **  QCustomUi is free software: you can redistribute it and/or modify           **
@@ -37,42 +37,36 @@ class QCUSTOMUI_EXPORT QCtmStageProgressBar : public QWidget
     Q_PROPERTY(QBrush rateBackground READ rateBackground WRITE setRateBackground)
     Q_PROPERTY(int maximum READ maximum WRITE setMaximum)
     Q_PROPERTY(int minimum READ minimum WRITE setMinimum)
-    Q_PROPERTY(int value READ value WRITE setValue USER true)
+    Q_PROPERTY(int value READ value WRITE setValue NOTIFY valueChanged)
     Q_PROPERTY(Qt::Orientation orientation READ orientation WRITE setOrientation)
 
 public:
     QCtmStageProgressBar(QWidget* parent);
     ~QCtmStageProgressBar();
-
-    void setOrientation(Qt::Orientation orientation);
     Qt::Orientation orientation() const;
-
     void setStageCount(int count);
     int stageCount() const;
-
     void setStageCircleRadius(int radius);
-    int stageCricleRadius() const;
-
+    int stageCircleRadius() const;
     void setText(int stage, const QString& text);
     QString text(int stage) const;
-
-    void setTextVisible(bool flag);
     bool textVisible() const;
-
-    void setValue(int value);
     int value() const;
-
-    void setMaximum(int maximum);
     int maximum() const;
-
-    void setMinimum(int min);
     int minimum() const;
-
     void setStageIndexTextPen(const QPen& pen);
     const QPen& stageIndexTextPen() const;
-
     void setRateBackground(const QBrush& brush);
     const QBrush& rateBackground() const;
+signals:
+    void valueChanged(int value);
+public slots:
+    void setOrientation(Qt::Orientation orientation);
+    void setValue(int value);
+    void setRange(int minimum, int maximum);
+    void setTextVisible(bool flag);
+    void setMaximum(int maximum);
+    void setMinimum(int min);
 
 protected:
     void paintEvent(QPaintEvent* event) override;
@@ -85,7 +79,6 @@ protected:
     int doMinimumHeight() const;
     QRectF doStageRect(int index) const;
     QRectF doTextRect(int index) const;
-    void normalize();
 
 private:
     struct Impl;

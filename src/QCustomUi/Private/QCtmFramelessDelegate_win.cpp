@@ -24,6 +24,7 @@
 #include <QBackingStore>
 #include <QDebug>
 #include <QFocusEvent>
+#include <QLayout>
 #include <QPainter>
 #include <QPen>
 #include <QScopeGuard>
@@ -197,6 +198,7 @@ bool QCtmWinFramelessDelegate::nativeEvent(const QByteArray& eventType, void* me
                     ncParam->rgrc[0].right     = rc->right() + 1;
                     ncParam->rgrc[0].bottom    = rc->bottom() + 1;
                 }
+                m_impl->parent->layout()->invalidate();
                 *result = 0;
                 return true;
             }
