@@ -39,8 +39,7 @@
 #include <windows.h>
 #include <windowsx.h>
 
-constexpr long AeroBorderlessFlag  = WS_POPUP | WS_THICKFRAME | WS_CAPTION | WS_SYSMENU | WS_MAXIMIZEBOX | WS_MINIMIZEBOX;
-constexpr long BasicBorderlessFlag = WS_POPUP | WS_THICKFRAME | WS_SYSMENU | WS_MAXIMIZEBOX | WS_MINIMIZEBOX;
+constexpr long BorderlessFlag = WS_POPUP | WS_THICKFRAME | WS_CAPTION | WS_SYSMENU | WS_MAXIMIZEBOX | WS_MINIMIZEBOX;
 
 inline bool isCompositionEnabled()
 {
@@ -170,6 +169,14 @@ bool QCtmWinFramelessDelegate::nativeEvent(const QByteArray& eventType, void* me
     {
     case WM_NCMOUSEMOVE:
         break;
+    case WM_NCPAINT:
+        if (!isCompositionEnabled())
+        {
+            *result = 0;
+            return true;
+        }
+        else
+            break;
     case WM_SETFOCUS:
         {
             Qt::FocusReason reason;
@@ -194,11 +201,14 @@ bool QCtmWinFramelessDelegate::nativeEvent(const QByteArray& eventType, void* me
                     auto rc = m_impl->workRect;
                     if (!rc)
                         return false;
+                    if (auto ret = DefWindowProcW(msg->hwnd, WM_NCCALCSIZE, msg->wParam, msg->lParam); ret)
+                    {
+                        *result = ret;
+                        return true;
+                    }
                     NCCALCSIZE_PARAMS* ncParam = reinterpret_cast<NCCALCSIZE_PARAMS*>(msg->lParam);
-                    ncParam->rgrc[0].left      = rc->left();
                     ncParam->rgrc[0].top       = rc->top();
-                    ncParam->rgrc[0].right     = rc->right() + 1;
-                    ncParam->rgrc[0].bottom    = rc->bottom() + 1;
+                    ncParam->rgrc[0].bottom    = rc->bottom();
                 }
                 else // 优化窗口大小调整闪烁问题
                 {
@@ -210,10 +220,13 @@ bool QCtmWinFramelessDelegate::nativeEvent(const QByteArray& eventType, void* me
                         return true;
                     }
                     clientRect->top    = before.top;
+                    clientRect->left   = before.left;
+                    clientRect->right  = before.right;
+                    clientRect->bottom = before.bottom;
                 }
                 m_impl->parent->layout()->invalidate(); // QCtmDialog部分情况下变为空白的问题。
             }
-            *result = 0;
+            *result = WVR_REDRAW;
             return true;
         }
         break;
@@ -325,7 +338,7 @@ bool QCtmWinFramelessDelegate::eventFilter(QObject* watched, QEvent* event)
 void QCtmWinFramelessDelegate::setWindowLong()
 {
     auto hwnd  = reinterpret_cast<HWND>(m_impl->parent->winId());
-    long style = isCompositionEnabled() ? AeroBorderlessFlag : BasicBorderlessFlag;
+    long style = BorderlessFlag;
 
     if (!m_impl->parent->windowFlags().testFlag(Qt::WindowMinimizeButtonHint) ||
         m_impl->parent->maximumSize() != QSize(QWIDGETSIZE_MAX, QWIDGETSIZE_MAX))
