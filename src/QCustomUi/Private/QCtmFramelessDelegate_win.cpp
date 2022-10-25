@@ -168,6 +168,8 @@ bool QCtmWinFramelessDelegate::nativeEvent(const QByteArray& eventType, void* me
     MSG* msg = static_cast<MSG*>(message);
     switch (msg->message)
     {
+    case WM_NCMOUSEMOVE:
+        break;
     case WM_SETFOCUS:
         {
             Qt::FocusReason reason;
@@ -208,9 +210,6 @@ bool QCtmWinFramelessDelegate::nativeEvent(const QByteArray& eventType, void* me
                         return true;
                     }
                     clientRect->top    = before.top;
-                    clientRect->left   = before.left;
-                    clientRect->right  = before.right;
-                    clientRect->bottom = before.bottom + 1;
                 }
                 m_impl->parent->layout()->invalidate(); // QCtmDialog部分情况下变为空白的问题。
             }
@@ -337,7 +336,7 @@ void QCtmWinFramelessDelegate::setWindowLong()
 
     if (isCompositionEnabled())
     {
-        extendFrameIntoClientArea(m_impl->parent->windowHandle(), -1, -1, -1, -1);
+        extendFrameIntoClientArea(m_impl->parent->windowHandle(), 1, 0, 0, 0);
     }
     RECT rect;
     GetWindowRect(hwnd, &rect);
@@ -545,6 +544,11 @@ bool QCtmWinFramelessDelegate::onNCTitTest(MSG* msg, qintptr* result)
             if (it != w->children().end() && w->metaObject()->className() != QString("QWidget") &&
                 w->metaObject()->className() != QString("QLabel"))
             {
+                if ((*it)->property("qcustomui_maximumSizeButton").isValid())
+                {
+                    *result = HTMAXBUTTON;
+                    return false;
+                }
                 *result = HTCLIENT;
                 return false;
             }

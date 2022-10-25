@@ -24,9 +24,9 @@
 
 #include <QMenuBar>
 #include <QPainter>
+#include <QPointer>
 #include <QResizeEvent>
 #include <QStyleOption>
-#include <QPointer>
 
 Q_CONSTEXPR int leftMargin   = 5;
 Q_CONSTEXPR int titleSpacing = 5;
@@ -66,6 +66,7 @@ QCtmTitleBar::QCtmTitleBar(QWidget* parent) : QWidget(parent), ui(new Ui::QCtmTi
     connect(ui->closeBtn, &QPushButton::clicked, this, &QCtmTitleBar::onCloseBtn);
     connect(ui->minimumSizeBtn, &QPushButton::clicked, this, &QCtmTitleBar::onMinimumSizeBtn);
     connect(ui->maximumSizeBtn, &QPushButton::clicked, this, &QCtmTitleBar::onMaximumSizeBtn);
+    ui->maximumSizeBtn->setProperty("qcustomui_maximumSizeButton", true);
 
     parent->installEventFilter(this);
     setAttribute(Qt::WA_StyledBackground);
@@ -146,6 +147,7 @@ void QCtmTitleBar::setIconSize(const QSize& size) { m_impl->iconSize = size; }
     \sa         setIconSize
 */
 const QSize& QCtmTitleBar::iconSize() const { return m_impl->iconSize; }
+
 /*!
     \brief      响应关闭按钮.
     \sa         onMaximumSizeBtn(), onMinimumSizeBtn()
