@@ -105,8 +105,9 @@ struct QCtmWinFramelessDelegate::Impl
         auto newMonitor = MonitorFromWindow(hwnd, MONITOR_DEFAULTTONULL);
         if (newMonitor != monitor)
         {
-            monitor  = newMonitor;
-            workRect = getScreenNativeWorkRect(hwnd);
+            monitor = newMonitor;
+            if (auto ret = getScreenNativeWorkRect(hwnd); ret)
+                workRect = ret;
         }
     }
 };
@@ -209,6 +210,8 @@ bool QCtmWinFramelessDelegate::nativeEvent(const QByteArray& eventType, void* me
                     NCCALCSIZE_PARAMS* ncParam = reinterpret_cast<NCCALCSIZE_PARAMS*>(msg->lParam);
                     ncParam->rgrc[0].top       = rc->top();
                     ncParam->rgrc[0].bottom    = rc->bottom();
+                    *result                    = 0;
+                    return true;
                 }
                 else // 优化窗口大小调整闪烁问题
                 {
@@ -223,7 +226,7 @@ bool QCtmWinFramelessDelegate::nativeEvent(const QByteArray& eventType, void* me
                         *clientRect = before;
                     else
                     {
-                        clientRect->top    = before.top;
+                        clientRect->top = before.top;
                     }
                 }
                 m_impl->parent->layout()->invalidate(); // QCtmDialog部分情况下变为空白的问题。
