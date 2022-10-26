@@ -209,7 +209,7 @@ bool QCtmWinFramelessDelegate::nativeEvent(const QByteArray& eventType, void* me
                     }
                     NCCALCSIZE_PARAMS* ncParam = reinterpret_cast<NCCALCSIZE_PARAMS*>(msg->lParam);
                     ncParam->rgrc[0].top       = rc->top();
-                    ncParam->rgrc[0].bottom    = rc->bottom();
+                    ncParam->rgrc[0].bottom    = rc->bottom() + 1;
                     *result                    = 0;
                     return true;
                 }
@@ -232,9 +232,8 @@ bool QCtmWinFramelessDelegate::nativeEvent(const QByteArray& eventType, void* me
                         clientRect->bottom = before.bottom + 1;
                     }
                 }
-                m_impl->parent->layout()->invalidate(); // QCtmDialog部分情况下变为空白的问题。
             }
-            *result = WVR_REDRAW;
+            *result = !msg->wParam ? 0 : WVR_REDRAW;
             return true;
         }
         break;
