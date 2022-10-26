@@ -134,6 +134,10 @@ QCtmWinFramelessDelegate::~QCtmWinFramelessDelegate() {}
 
 void QCtmWinFramelessDelegate::addMoveBar(QWidget* w)
 {
+    if (!isCompositionEnabled() && qobject_cast<QCtmTitleBar*>(w)) // for win7 解决出现默认关闭按钮等问题.
+    {
+        w->winId();
+    }
     if (!m_impl->moveBars.contains(w))
         m_impl->moveBars.append(w);
 }
@@ -223,7 +227,9 @@ bool QCtmWinFramelessDelegate::nativeEvent(const QByteArray& eventType, void* me
                         return true;
                     }
                     if (!isCompositionEnabled())
+                    {
                         *clientRect = before;
+                    }
                     else
                     {
                         clientRect->top    = before.top;
@@ -564,11 +570,11 @@ bool QCtmWinFramelessDelegate::onNCTitTest(MSG* msg, qintptr* result)
             if (it != w->children().end() && w->metaObject()->className() != QString("QWidget") &&
                 w->metaObject()->className() != QString("QLabel"))
             {
-                if ((*it)->property("qcustomui_maximumSizeButton").isValid())
-                {
-                    *result = HTMAXBUTTON;
-                    return false;
-                }
+                // if ((*it)->property("qcustomui_maximumSizeButton").isValid())
+                //{
+                //     *result = HTMAXBUTTON;
+                //     return false;
+                // }
                 *result = HTCLIENT;
                 return false;
             }
