@@ -22,6 +22,7 @@
 #include "QCtmStyleSheet.h"
 
 #include <QAbstractNativeEventFilter>
+#include <QLayout>
 #include <QLocalServer>
 #include <QLocalSocket>
 #include <QWidget>
@@ -82,6 +83,7 @@ struct QCtmApplication::Impl
 QCtmApplication::QCtmApplication(int& argc, char** argv, int f /*= ApplicationFlags*/, bool defaultStyle)
     : QApplication(argc, argv, f), m_impl(std::make_unique<Impl>())
 {
+    setAttribute(Qt::AA_DontCreateNativeWidgetSiblings);
     if (defaultStyle)
     {
         setStyleSheet(QCtmStyleSheet::defaultStyleSheet());

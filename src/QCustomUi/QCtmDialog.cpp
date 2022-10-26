@@ -26,6 +26,7 @@
 #include <QMoveEvent>
 #include <QScreen>
 #include <QVBoxLayout>
+#include <QPointer>
 
 struct QCtmDialog::Impl
 {

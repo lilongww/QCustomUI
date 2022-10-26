@@ -26,6 +26,7 @@
 
 #include <QEvent>
 #include <QLabel>
+#include <QPointer>
 #include <QResizeEvent>
 #include <QSizeGrip>
 #include <QStatusBar>
@@ -190,6 +191,7 @@ void QCtmWindow::setTitleBar(QCtmTitleBar* titleBar)
     if (m_impl->title)
     {
         m_impl->title->hide();
+        m_impl->delegate->removeMoveBar(m_impl->title);
         m_impl->title->deleteLater();
     }
     m_impl->title = titleBar;
