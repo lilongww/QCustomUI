@@ -274,7 +274,7 @@ QSize QCtmDigitKeyboard::minimumSizeHint() const
 */
 bool QCtmDigitKeyboard::eventFilter(QObject* obj, QEvent* event)
 {
-    if (m_impl->bindedBox && obj == m_impl->bindedBox->findChild<QLineEdit*>())
+    if (m_impl->bindedBox && m_impl->bindedBox->isEnabled() && obj == m_impl->bindedBox->findChild<QLineEdit*>())
     {
         if (event->type() == QEvent::MouseButtonPress)
         {
