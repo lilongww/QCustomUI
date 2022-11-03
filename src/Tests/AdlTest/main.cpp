@@ -2,8 +2,6 @@
 #include <OpenVisa/Utils.h>
 #include <gtest/gtest.h>
 
-#include <iostream>
-
 enum class EnumTest
 {
     MLinear,
