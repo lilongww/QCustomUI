@@ -1,5 +1,6 @@
 ﻿#include <OpenVisa/Object.h>
 #include <OpenVisa/Utils.h>
+#include <gtest/gtest.h>
 
 #include <iostream>
 
@@ -7,67 +8,69 @@ enum class EnumTest
 {
     MLinear,
     MLogArithmic,
-    Phase,
-    UPhase,
-    ImagInary,
-    Real,
-    Polar,
-    Smith,
-    SAdmittance,
-    Swr,
-    GDelay,
-    Kelvin,
-    Fahrenheit,
-    Celsius,
-    PPhase
+    Phase
 };
 
 namespace OpenVisa
 {
-VISA_ENUM_ADL_DECLARE(EnumTest::MLinear,
-                      EnumTest::PPhase,
-                      "MLIN",
-                      "MLOG",
-                      "PHAS",
-                      "UPH",
-                      "IMAG",
-                      "REAL",
-                      "POL",
-                      "SMIT",
-                      "SADM",
-                      "SWR",
-                      "GDEL",
-                      "KELV",
-                      "FAHR",
-                      "CELS",
-                      "PPH");
+VISA_ENUM_ADL_DECLARE(EnumTest::MLinear, EnumTest::Phase, "MLIN", "MLOG", "PHAS", );
 }
+
+TEST(AdlTest, bool)
+{
+    EXPECT_TRUE(OpenVisa::decode<bool>("ON"));
+    EXPECT_TRUE(OpenVisa::decode<bool>("ON\n"));
+    EXPECT_TRUE(OpenVisa::decode<bool>("ON\r\n"));
+    EXPECT_FALSE(OpenVisa::decode<bool>("OFF"));
+    EXPECT_FALSE(OpenVisa::decode<bool>("OFF\n"));
+    EXPECT_FALSE(OpenVisa::decode<bool>("OFF\r\n"));
+    EXPECT_TRUE(OpenVisa::decode<bool>("1"));
+    EXPECT_TRUE(OpenVisa::decode<bool>("1\n"));
+    EXPECT_TRUE(OpenVisa::decode<bool>("1\r\n"));
+    EXPECT_TRUE(OpenVisa::decode<bool>("+1"));
+    EXPECT_TRUE(OpenVisa::decode<bool>("+1\n"));
+    EXPECT_TRUE(OpenVisa::decode<bool>("+1\r\n"));
+    EXPECT_FALSE(OpenVisa::decode<bool>("0"));
+    EXPECT_FALSE(OpenVisa::decode<bool>("0\n"));
+    EXPECT_FALSE(OpenVisa::decode<bool>("0\r\n"));
+    EXPECT_ANY_THROW(OpenVisa::decode<bool>("NFF\n"));
+}
+
+TEST(AdlTest, double)
+{
+    EXPECT_EQ(0.1, OpenVisa::decode<double>("0.1\n"));
+    EXPECT_EQ(0.1, OpenVisa::decode<double>("0.1\r\n"));
+    EXPECT_EQ(-0.1, OpenVisa::decode<double>("-0.1\n"));
+    EXPECT_EQ(-0.1, OpenVisa::decode<double>("-0.1\r\n"));
+    EXPECT_EQ(0.1, OpenVisa::decode<double>("+0.1\n"));
+    EXPECT_EQ(0.1, OpenVisa::decode<double>("+0.1\r\n"));
+    EXPECT_EQ(100, OpenVisa::decode<double>("100A"));
+    EXPECT_EQ(0.18, OpenVisa::decode<double>("1.8E-01"));
+    EXPECT_EQ(0.18, OpenVisa::decode<double>("1.8e-01"));
+    EXPECT_EQ(18, OpenVisa::decode<double>("1.8E+01"));
+    EXPECT_EQ(18, OpenVisa::decode<double>("1.8e+01"));
+}
+
+TEST(AdlTest, int)
+{
+    EXPECT_EQ(1, OpenVisa::decode<int>("1\n"));
+    EXPECT_EQ(1, OpenVisa::decode<int>("1\r\n"));
+    EXPECT_EQ(-1, OpenVisa::decode<int>("-1\n"));
+    EXPECT_EQ(-1, OpenVisa::decode<int>("-1\r\n"));
+    EXPECT_EQ(1, OpenVisa::decode<int>("+1\n"));
+    EXPECT_EQ(1, OpenVisa::decode<int>("+1\r\n"));
+    EXPECT_EQ(100, OpenVisa::decode<int>("100.100"));
+}
+
+TEST(AdlTest, enum)
+{
+    EXPECT_EQ(EnumTest::MLinear, OpenVisa::decode<EnumTest>("MLIN\n"));
+    EXPECT_EQ(EnumTest::MLogArithmic, OpenVisa::decode<EnumTest>("MLOG\n"));
+    EXPECT_EQ(EnumTest::Phase, OpenVisa::decode<EnumTest>("PHAS\n"));
+}
+
 int main(int argc, char* argv[])
 {
-    try
-    {
-        if (argc < 3)
-            return 0;
-        auto test = std::stoi(argv[1]);
-        switch (test)
-        {
-        case 0:
-            std::cout << std::boolalpha << OpenVisa::decode<bool>(argv[2]);
-            break;
-        case 1:
-            std::cout << OpenVisa::decode<double>(argv[2]);
-            break;
-        case 2:
-            std::cout << OpenVisa::decode<int>(argv[2]);
-            break;
-        case 3:
-            std::cout << static_cast<int>(OpenVisa::decode<EnumTest>(argv[2]));
-            break;
-        }
-    }
-    catch (const std::exception&)
-    {
-        std::cout << "exception";
-    }
-    return 0;
+    testing::InitGoogleTest(&argc, argv);
+    return RUN_ALL_TESTS();
 }
