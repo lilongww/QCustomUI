@@ -36,7 +36,7 @@ struct QCtmCircleProgressBar::Impl
     QBrush barBrush { 0x326CF3 };
     QBrush backgroundBrush { 0xEEEEEE };
     Qt::PenCapStyle penCapStyle { Qt::FlatCap };
-    inline double persent() const { return minimum == maximum ? 0 : (static_cast<double>(value) - minimum) / (maximum - minimum); }
+    inline double persent() const { return minimum == maximum ? 1.00 : (static_cast<double>(value) - minimum) / (maximum - minimum); }
     inline int arc() const { return -360 * 16 * persent(); }
     inline void startAni()
     {
@@ -219,10 +219,12 @@ const QBrush& QCtmCircleProgressBar::backgroundBrush() const { return m_impl->ba
 */
 QString QCtmCircleProgressBar::text() const
 {
+    if (m_impl->value < m_impl->minimum || m_impl->value > m_impl->maximum)
+        return {};
     return QString(m_impl->textFormat)
         .replace("%p", QString::number(static_cast<int>(m_impl->persent() * 100.0)))
         .replace("%v", QString::number(m_impl->value))
-        .replace("%m", QString::number(m_impl->maximum));
+        .replace("%m", QString::number(m_impl->maximum - m_impl->minimum));
 }
 
 /*!
@@ -337,6 +339,8 @@ void QCtmCircleProgressBar::paintEvent(QPaintEvent* event)
     }
     if (m_impl->maximum)
     {
+        if (m_impl->value < m_impl->minimum || m_impl->value > m_impl->maximum)
+            return;
         { // draw bar
             QPen pen;
             pen.setWidth(m_impl->barWidth);

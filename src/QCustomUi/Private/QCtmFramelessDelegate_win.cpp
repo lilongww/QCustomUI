@@ -1,6 +1,6 @@
 ﻿/*********************************************************************************
 **                                                                              **
-**  Copyright (C) 2019-2020 LiLong                                              **
+**  Copyright (C) 2019-2022 LiLong                                              **
 **  This file is part of QCustomUi.                                             **
 **                                                                              **
 **  QCustomUi is free software: you can redistribute it and/or modify           **
@@ -28,6 +28,7 @@
 #include <QPainter>
 #include <QPen>
 #include <QScopeGuard>
+#include <QScreen>
 #include <QWindow>
 
 #ifdef Q_OS_WIN
@@ -38,8 +39,7 @@
 #include <windows.h>
 #include <windowsx.h>
 
-constexpr long AeroBorderlessFlag  = WS_POPUP | WS_THICKFRAME | WS_CAPTION | WS_SYSMENU | WS_MAXIMIZEBOX | WS_MINIMIZEBOX;
-constexpr long BasicBorderlessFlag = WS_POPUP | WS_THICKFRAME | WS_SYSMENU | WS_MAXIMIZEBOX | WS_MINIMIZEBOX;
+constexpr long BorderlessFlag = WS_POPUP | WS_THICKFRAME | WS_CAPTION | WS_SYSMENU | WS_MAXIMIZEBOX | WS_MINIMIZEBOX;
 
 inline bool isCompositionEnabled()
 {
@@ -62,32 +62,67 @@ inline void extendFrameIntoClientArea(QWindow* window, int left, int top, int ri
 #endif
 }
 
+inline std::optional<QRect> getScreenNativeWorkRect(HWND hwnd)
+{
+    auto monitor = MonitorFromWindow(hwnd, MONITOR_DEFAULTTONULL);
+    if (!monitor)
+        return std::nullopt;
+    MONITORINFO info;
+    ::ZeroMemory(&info, sizeof(info));
+    info.cbSize = sizeof(info);
+    GetMonitorInfo(monitor, &info);
+    return QRect(info.rcWork.left, info.rcWork.top, info.rcWork.right - info.rcWork.left, info.rcWork.bottom - info.rcWork.top);
+}
+
+#if 0
+inline std::optional<QRect> getScreenNativeRect(HWND hwnd)
+{
+    auto monitor = MonitorFromWindow(hwnd, MONITOR_DEFAULTTONULL);
+    if (!monitor)
+        return std::nullopt;
+    MONITORINFO info;
+    ::ZeroMemory(&info, sizeof(info));
+    info.cbSize = sizeof(info);
+    GetMonitorInfo(monitor, &info);
+    return QRect(
+        info.rcMonitor.left, info.rcMonitor.top, info.rcMonitor.right - info.rcMonitor.left, info.rcMonitor.bottom - info.rcMonitor.top);
+}
+#endif
+
 struct QCtmWinFramelessDelegate::Impl
 {
     QWidgetList moveBars;
     QWidget* parent { nullptr };
     bool firstShow { true };
-
-    inline void setNoMargins(HWND hwnd)
-    {
-        bool max    = IsZoomed(hwnd);
-        auto margin = dpiScale(8);
-        parent->layout()->setContentsMargins(max ? QMargins(margin, margin, margin, margin) : QMargins(0, 0, 0, 0));
-    };
-
-    inline double dpiScale(double value) { return value / parent->devicePixelRatioF(); }
-
-    inline double unDpiScale(double value) { return value * parent->devicePixelRatioF(); }
     WINDOWPLACEMENT wndPlaceMent;
+    std::optional<QRect> workRect;
+    HMONITOR monitor { nullptr };
+    inline double dpiScale(double value) { return value / parent->devicePixelRatioF(); }
+    inline double unDpiScale(double value) { return value * parent->devicePixelRatioF(); }
+    inline void checkMonitorChanged()
+    {
+        auto hwnd       = reinterpret_cast<HWND>(parent->winId());
+        auto newMonitor = MonitorFromWindow(hwnd, MONITOR_DEFAULTTONULL);
+        if (newMonitor != monitor)
+        {
+            monitor = newMonitor;
+            if (auto ret = getScreenNativeWorkRect(hwnd); ret)
+                workRect = ret;
+        }
+    }
 };
 
 QCtmWinFramelessDelegate::QCtmWinFramelessDelegate(QWidget* parent, const QWidgetList& moveBars)
     : QObject(parent), m_impl(std::make_unique<Impl>())
 {
     m_impl->parent = parent;
-    parent->setWindowFlags(parent->windowFlags() | Qt::FramelessWindowHint | Qt::WindowCloseButtonHint | Qt::WindowSystemMenuHint);
     parent->installEventFilter(this);
     m_impl->moveBars = moveBars;
+    m_impl->workRect = getScreenNativeWorkRect(reinterpret_cast<HWND>(parent->winId()));
+    connect(parent->screen(),
+            &QScreen::availableGeometryChanged,
+            this,
+            [=](const QRect&) { m_impl->workRect = getScreenNativeWorkRect(reinterpret_cast<HWND>(parent->winId())); });
 }
 
 QCtmWinFramelessDelegate::QCtmWinFramelessDelegate(QWidget* parent, QWidget* title)
@@ -99,6 +134,10 @@ QCtmWinFramelessDelegate::~QCtmWinFramelessDelegate() {}
 
 void QCtmWinFramelessDelegate::addMoveBar(QWidget* w)
 {
+    if (!isCompositionEnabled() && qobject_cast<QCtmTitleBar*>(w)) // for win7 解决出现默认关闭按钮等问题.
+    {
+        w->winId();
+    }
     if (!m_impl->moveBars.contains(w))
         m_impl->moveBars.append(w);
 }
@@ -133,6 +172,16 @@ bool QCtmWinFramelessDelegate::nativeEvent(const QByteArray& eventType, void* me
     MSG* msg = static_cast<MSG*>(message);
     switch (msg->message)
     {
+    case WM_NCMOUSEMOVE:
+        break;
+    case WM_NCPAINT:
+        if (!isCompositionEnabled())
+        {
+            *result = 0;
+            return true;
+        }
+        else
+            break;
     case WM_SETFOCUS:
         {
             Qt::FocusReason reason;
@@ -151,14 +200,47 @@ bool QCtmWinFramelessDelegate::nativeEvent(const QByteArray& eventType, void* me
         {
             if (msg->wParam)
             {
-                NCCALCSIZE_PARAMS* ncParam = reinterpret_cast<NCCALCSIZE_PARAMS*>(msg->lParam);
-                if (ncParam->lppos->flags & SWP_FRAMECHANGED)
+                if (IsZoomed(msg->hwnd))
                 {
-                    m_impl->setNoMargins(msg->hwnd);
+                    m_impl->checkMonitorChanged();
+                    auto rc = m_impl->workRect;
+                    if (!rc)
+                        return false;
+                    if (auto ret = DefWindowProcW(msg->hwnd, WM_NCCALCSIZE, msg->wParam, msg->lParam); ret)
+                    {
+                        *result = ret;
+                        return true;
+                    }
+                    NCCALCSIZE_PARAMS* ncParam = reinterpret_cast<NCCALCSIZE_PARAMS*>(msg->lParam);
+                    ncParam->rgrc[0].top       = rc->top();
+                    ncParam->rgrc[0].bottom    = rc->bottom() + 1;
+                    *result                    = 0;
+                    return true;
                 }
-                *result = 0;
-                return true;
+                else // 优化窗口大小调整闪烁问题
+                {
+                    const auto clientRect = reinterpret_cast<LPRECT>(msg->lParam);
+                    const auto before     = *clientRect;
+                    if (auto ret = DefWindowProcW(msg->hwnd, WM_NCCALCSIZE, msg->wParam, msg->lParam); ret)
+                    {
+                        *result = ret;
+                        return true;
+                    }
+                    if (!isCompositionEnabled())
+                    {
+                        *clientRect = before;
+                    }
+                    else
+                    {
+                        clientRect->top    = before.top;
+                        clientRect->left   = before.left;
+                        clientRect->right  = before.right;
+                        clientRect->bottom = before.bottom + 1;
+                    }
+                }
             }
+            *result = !msg->wParam ? 0 : WVR_REDRAW;
+            return true;
         }
         break;
     case WM_SYSCOMMAND:
@@ -269,7 +351,7 @@ bool QCtmWinFramelessDelegate::eventFilter(QObject* watched, QEvent* event)
 void QCtmWinFramelessDelegate::setWindowLong()
 {
     auto hwnd  = reinterpret_cast<HWND>(m_impl->parent->winId());
-    long style = GetWindowLongPtr(hwnd, GWL_STYLE) | (isCompositionEnabled() ? AeroBorderlessFlag : BasicBorderlessFlag);
+    long style = BorderlessFlag;
 
     if (!m_impl->parent->windowFlags().testFlag(Qt::WindowMinimizeButtonHint) ||
         m_impl->parent->maximumSize() != QSize(QWIDGETSIZE_MAX, QWIDGETSIZE_MAX))
@@ -280,10 +362,12 @@ void QCtmWinFramelessDelegate::setWindowLong()
 
     if (isCompositionEnabled())
     {
-        extendFrameIntoClientArea(m_impl->parent->windowHandle(), 1, 1, 1, 1);
+        extendFrameIntoClientArea(m_impl->parent->windowHandle(), 1, 0, 0, 0);
     }
-
-    SetWindowPos(hwnd, nullptr, 0, 0, 0, 0, SWP_FRAMECHANGED | SWP_NOMOVE | SWP_NOSIZE);
+    RECT rect;
+    GetWindowRect(hwnd, &rect);
+    SetWindowPos(
+        hwnd, nullptr, rect.left, rect.top, rect.right - rect.left, rect.bottom - rect.top, SWP_FRAMECHANGED | SWP_NOMOVE | SWP_NOSIZE);
 }
 
 void QCtmWinFramelessDelegate::showSystemMenu(const QPoint& pos)
@@ -376,7 +460,8 @@ bool QCtmWinFramelessDelegate::onNCTitTest(MSG* msg, qintptr* result)
     auto borderX = GetSystemMetrics(SM_CXPADDEDBORDER);
     auto borderY = GetSystemMetrics(SM_CXPADDEDBORDER);
 
-    if (m_impl->parent->isMaximized())
+    bool maxSized = m_impl->parent->isMaximized() || m_impl->parent->isFullScreen();
+    if (maxSized)
     {
         borderX = 0;
         borderY = 0;
@@ -385,7 +470,7 @@ bool QCtmWinFramelessDelegate::onNCTitTest(MSG* msg, qintptr* result)
     {
         auto rect = m_impl->parent->geometry();
 
-        if (x >= rect.left() && x <= rect.left() + borderX)
+        if (!maxSized && x >= rect.left() && x <= rect.left() + borderX)
         {
             if (y >= rect.top() && y <= rect.top() + borderY)
             {
@@ -405,7 +490,7 @@ bool QCtmWinFramelessDelegate::onNCTitTest(MSG* msg, qintptr* result)
         }
         else if (x > rect.left() + borderX && x < rect.right() - borderX)
         {
-            if (y >= rect.top() && y <= rect.top() + borderY)
+            if (!maxSized && y >= rect.top() && y <= rect.top() + borderY)
             {
                 *result = HTTOP;
                 return true;
@@ -415,13 +500,13 @@ bool QCtmWinFramelessDelegate::onNCTitTest(MSG* msg, qintptr* result)
                 *result = HTCAPTION;
                 return true;
             }
-            if (y >= rect.bottom() - borderY && y <= rect.bottom())
+            if (!maxSized && y >= rect.bottom() - borderY && y <= rect.bottom())
             {
                 *result = HTBOTTOM;
                 return true;
             }
         }
-        else if (x >= rect.right() - borderX && x <= rect.right())
+        else if (!maxSized && x >= rect.right() - borderX && x <= rect.right())
         {
             if (y >= rect.top() && y <= rect.top() + borderY)
             {
@@ -439,7 +524,7 @@ bool QCtmWinFramelessDelegate::onNCTitTest(MSG* msg, qintptr* result)
                 return true;
             }
         }
-        else
+        else if (!maxSized)
         {
             *result = HTNOWHERE;
             return true;
@@ -485,6 +570,11 @@ bool QCtmWinFramelessDelegate::onNCTitTest(MSG* msg, qintptr* result)
             if (it != w->children().end() && w->metaObject()->className() != QString("QWidget") &&
                 w->metaObject()->className() != QString("QLabel"))
             {
+                // if ((*it)->property("qcustomui_maximumSizeButton").isValid())
+                //{
+                //     *result = HTMAXBUTTON;
+                //     return false;
+                // }
                 *result = HTCLIENT;
                 return false;
             }

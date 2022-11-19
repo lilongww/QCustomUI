@@ -26,6 +26,8 @@
 #include <QLineEdit>
 #include <QSpinBox>
 
+#define QTBUG_107745
+
 struct QCtmDigitKeyboard::Impl
 {
     InputMode mode { InputMode::IntInput };
@@ -272,7 +274,7 @@ QSize QCtmDigitKeyboard::minimumSizeHint() const
 */
 bool QCtmDigitKeyboard::eventFilter(QObject* obj, QEvent* event)
 {
-    if (m_impl->bindedBox && obj == m_impl->bindedBox->findChild<QLineEdit*>())
+    if (m_impl->bindedBox && m_impl->bindedBox->isEnabled() && obj == m_impl->bindedBox->findChild<QLineEdit*>())
     {
         if (event->type() == QEvent::MouseButtonPress)
         {
@@ -282,13 +284,17 @@ bool QCtmDigitKeyboard::eventFilter(QObject* obj, QEvent* event)
                 setValue(m_impl->bindedBox->property("value"));
                 if (exec() == QDialog::Accepted)
                 {
+                    auto val = value();
                     if (!m_impl->units.empty())
                     {
                         m_impl->bindedBox->setProperty("minimum", m_impl->units[m_impl->currentUnitIndex].minimum);
                         m_impl->bindedBox->setProperty("maximum", m_impl->units[m_impl->currentUnitIndex].maximum);
                     }
-                    m_impl->bindedBox->setProperty("value", value());
+                    m_impl->bindedBox->setProperty("value", val);
                     m_impl->bindedBox->setProperty("suffix", m_impl->box->property("suffix"));
+#ifdef QTBUG_107745
+                    QMetaObject::invokeMethod(m_impl->bindedBox, "textChanged", Q_ARG(QString, m_impl->box->text()));
+#endif
                 }
             }
         }
@@ -319,7 +325,9 @@ void QCtmDigitKeyboard::ensureConnect()
         box->setRange(m_impl->minimum.toInt(), m_impl->maximum.toInt());
         box->setValue(m_impl->value.toDouble());
         if (!m_impl->units.empty())
+        {
             box->setSuffix(m_impl->units.at(m_impl->currentUnitIndex).unit);
+        }
         m_impl->box = box;
         setValue(box->value());
         connect(box, qOverload<int>(&QSpinBox::valueChanged), this, [this](auto val) { emit valueChanged(val); });
@@ -332,7 +340,9 @@ void QCtmDigitKeyboard::ensureConnect()
         box->setDecimals(m_impl->decimals);
         box->setValue(m_impl->value.toDouble());
         if (!m_impl->units.empty())
+        {
             box->setSuffix(m_impl->units.at(m_impl->currentUnitIndex).unit);
+        }
         m_impl->box = box;
         setValue(box->value());
         connect(box, qOverload<double>(&QDoubleSpinBox::valueChanged), this, [this](auto val) { emit valueChanged(val); });
@@ -407,7 +417,9 @@ void QCtmDigitKeyboard::init()
 void QCtmDigitKeyboard::clearUnits()
 {
     if (m_impl->box)
+    {
         m_impl->box->setProperty("suffix", "");
+    }
     for (int row = m_impl->ui.unitsLayout->rowCount() - 1; row >= 0; row--)
     {
         for (int col = m_impl->ui.unitsLayout->columnCount() - 1; col >= 0; col--)
@@ -466,28 +478,26 @@ void QCtmDigitKeyboard::syncBindBox()
         }
     }
 
-    if (m_impl->units.empty())
-        return;
-    auto minIt = std::max_element(m_impl->units.begin(),
-                                  m_impl->units.end(),
-                                  [=](const auto& u1, const auto& u2)
-                                  {
-                                      if (m_impl->mode == InputMode::IntInput)
-                                          return u1.minimum.toInt() < u2.minimum.toInt();
-                                      else
-                                          return u1.minimum.toDouble() < u2.minimum.toDouble();
-                                  });
-    auto maxIt = std::max_element(m_impl->units.begin(),
-                                  m_impl->units.end(),
-                                  [=](const auto& u1, const auto& u2)
-                                  {
-                                      if (m_impl->mode == InputMode::IntInput)
-                                          return u1.maximum.toInt() < u2.maximum.toInt();
-                                      else
-                                          return u1.maximum.toDouble() < u2.maximum.toDouble();
-                                  });
-    if (m_impl->box)
+    if (m_impl->box && !m_impl->units.empty())
     {
+        auto minIt = std::min_element(m_impl->units.begin(),
+                                      m_impl->units.end(),
+                                      [=](const auto& u1, const auto& u2)
+                                      {
+                                          if (m_impl->mode == InputMode::IntInput)
+                                              return u1.minimum.toInt() < u2.minimum.toInt();
+                                          else
+                                              return u1.minimum.toDouble() < u2.minimum.toDouble();
+                                      });
+        auto maxIt = std::max_element(m_impl->units.begin(),
+                                      m_impl->units.end(),
+                                      [=](const auto& u1, const auto& u2)
+                                      {
+                                          if (m_impl->mode == InputMode::IntInput)
+                                              return u1.maximum.toInt() < u2.maximum.toInt();
+                                          else
+                                              return u1.maximum.toDouble() < u2.maximum.toDouble();
+                                      });
         m_impl->box->setProperty("minimum", minIt->minimum);
         m_impl->box->setProperty("maximum", maxIt->maximum);
     }

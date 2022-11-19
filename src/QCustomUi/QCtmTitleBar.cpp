@@ -24,6 +24,7 @@
 
 #include <QMenuBar>
 #include <QPainter>
+#include <QPointer>
 #include <QResizeEvent>
 #include <QStyleOption>
 
@@ -33,7 +34,7 @@ Q_CONSTEXPR int titleSpacing = 5;
 struct QCtmTitleBar::Impl
 {
     QPixmap windowIcon;
-    QMenuBar* menuBar { nullptr };
+    QPointer<QMenuBar> menuBar;
     bool showIcon { true };
     QList<QCtmWidgetItemPtr> items;
     QSize iconSize { 16, 16 };
@@ -42,10 +43,9 @@ struct QCtmTitleBar::Impl
 /*!
     \class      QCtmTitleBar
     \brief      QCtmWindow 和 QCtmDialog 的自定义标题栏.
-    \inherits   QWidget
-    \ingroup    QCustomUi
-    \inmodule   QCustomUi
-    \inheaderfile QCtmTitleBar.h
+    \note       最大化，最小化，关闭按钮等显示控制由 QWidget::windowFlags 决定，图标显示由 QWidget::windowIcon
+   控制，标题栏文字由centralWidget的QWidget::windowTitle决定. \inherits   QWidget \ingroup    QCustomUi \inmodule   QCustomUi \inheaderfile
+   QCtmTitleBar.h
 
     \b          {截图:}
     \image      QCtmTitleBarDetail.png
@@ -66,6 +66,7 @@ QCtmTitleBar::QCtmTitleBar(QWidget* parent) : QWidget(parent), ui(new Ui::QCtmTi
     connect(ui->closeBtn, &QPushButton::clicked, this, &QCtmTitleBar::onCloseBtn);
     connect(ui->minimumSizeBtn, &QPushButton::clicked, this, &QCtmTitleBar::onMinimumSizeBtn);
     connect(ui->maximumSizeBtn, &QPushButton::clicked, this, &QCtmTitleBar::onMaximumSizeBtn);
+    ui->maximumSizeBtn->setProperty("qcustomui_maximumSizeButton", true);
 
     parent->installEventFilter(this);
     setAttribute(Qt::WA_StyledBackground);
@@ -77,37 +78,43 @@ QCtmTitleBar::QCtmTitleBar(QWidget* parent) : QWidget(parent), ui(new Ui::QCtmTi
 QCtmTitleBar::~QCtmTitleBar() { delete ui; }
 
 /*!
-    \brief      设置菜单栏 \a menu.
-    \sa         menuBar(), removeMenuBar()
+    \brief      设置菜单栏 \a menu, 当 \a menu 为nullptr时删除菜单栏.
+    \sa         menuBar
 */
 void QCtmTitleBar::setMenuBar(QMenuBar* menu)
 {
-    removeMenuBar();
-    menu->setAutoFillBackground(false);
-    menu->setSizePolicy(QSizePolicy(QSizePolicy::Minimum, QSizePolicy::Fixed));
+    if (menu == m_impl->menuBar)
+        return;
+    if (m_impl->menuBar)
+    {
+        m_impl->menuBar->hide();
+        m_impl->menuBar->setParent(nullptr);
+        m_impl->menuBar->deleteLater();
+    }
+    if (menu)
+    {
+        menu->setAutoFillBackground(false);
+        menu->setSizePolicy(QSizePolicy(QSizePolicy::Minimum, QSizePolicy::Fixed));
+        ui->horizontalLayout->insertWidget(0, menu);
+    }
     m_impl->menuBar = menu;
-    ui->horizontalLayout->insertWidget(0, menu);
     update();
 }
 
 /*!
-    \brief      返回菜单栏.
-    \sa         setMenuBar, removeMenuBar()
+    \brief      返回菜单栏, 当菜单栏对象不存在时，自动创建并返回一个新的菜单栏.
+    \sa         setMenuBar
 */
-QMenuBar* QCtmTitleBar::menuBar() const { return m_impl->menuBar; }
-
-/*!
-    \brief      移除菜单栏.
-    \sa         setMenuBar, menuBar
-*/
-void QCtmTitleBar::removeMenuBar()
+QMenuBar* QCtmTitleBar::menuBar() const
 {
-    if (m_impl->menuBar)
+    auto menuBar = m_impl->menuBar;
+    if (!menuBar)
     {
-        delete m_impl->menuBar;
-        m_impl->menuBar = nullptr;
-        update();
+        auto self = const_cast<QCtmTitleBar*>(this);
+        menuBar   = new QMenuBar(self);
+        self->setMenuBar(menuBar);
     }
+    return menuBar;
 }
 
 /*!
@@ -140,6 +147,7 @@ void QCtmTitleBar::setIconSize(const QSize& size) { m_impl->iconSize = size; }
     \sa         setIconSize
 */
 const QSize& QCtmTitleBar::iconSize() const { return m_impl->iconSize; }
+
 /*!
     \brief      响应关闭按钮.
     \sa         onMaximumSizeBtn(), onMinimumSizeBtn()

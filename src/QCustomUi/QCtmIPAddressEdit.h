@@ -44,7 +44,7 @@ public:
     bool isReadOnly() const;
 signals:
     void editChanged();
-    void editFinished();
+    void editingFinished();
 
 protected:
     void paintEvent(QPaintEvent* event) override;

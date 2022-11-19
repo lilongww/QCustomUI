@@ -1,0 +1,6 @@
+﻿add_subdirectory(QCtmIPAddressEdit)
+add_subdirectory(QCtmSwitchButton)
+add_subdirectory(QCtmCircleProgressBar)
+add_subdirectory(QCtmWindow)
+add_subdirectory(QCtmDialog)
+add_subdirectory(QCtmStageProgressBar)

@@ -1,0 +1,10 @@
+﻿qcustomui_internal_add_test(tst_QCtmStageProgressBar
+    SOURCES
+        tst_QCtmStageProgressBar.cpp
+    PUBLIC_LIBRARIES
+        QCustomUi
+    PRIVATE_LIBRARIES
+        Qt::Gui
+        Qt::Widgets
+        Qt::Test
+)

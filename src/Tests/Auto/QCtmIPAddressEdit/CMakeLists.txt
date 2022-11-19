@@ -1,0 +1,10 @@
+﻿qcustomui_internal_add_test(tst_QCtmIPAddressEdit
+    SOURCES
+        tst_QCtmIPAddressEdit.cpp
+    PUBLIC_LIBRARIES
+        QCustomUi
+    PRIVATE_LIBRARIES
+        Qt::Gui
+        Qt::Widgets
+        Qt::Test
+)

@@ -1,0 +1,17 @@
+set(CMAKE_AUTOMOC ON)
+set(CMAKE_AUTOUIC ON)
+set(CMAKE_AUTORCC ON)
+
+find_package(QT NAMES Qt5 Qt6 REQUIRED)
+find_package(Qt${QT_VERSION_MAJOR} COMPONENTS Core Gui Widgets Test REQUIRED)
+
+function(qcustomui_internal_add_test name)
+    set(multiopts SOURCES PRIVATE_LIBRARIES PUBLIC_LIBRARIES)
+    cmake_parse_arguments(arg "${flags}" "${options}" "${multiopts}" ${ARGN})
+    include_directories(${PROJECT_SOURCE_DIR}/src)
+    add_executable(${name} ${arg_SOURCES})
+    target_link_libraries(${name} PUBLIC ${arg_PUBLIC_LIBRARIES} PRIVATE "${arg_PRIVATE_LIBRARIES}")
+    set_target_properties(${name} PROPERTIES "FOLDER" "Tests")
+    install(TARGETS ${name} RUNTIME DESTINATION ${INSTALL_BINDIR}/${CMAKE_BUILD_TYPE})
+    add_test(NAME "${name}" COMMAND ${name} WORKING_DIRECTORY ${INSTALL_BINDIR}/${CMAKE_BUILD_TYPE})
+endfunction(qcustomui_internal_add_test)

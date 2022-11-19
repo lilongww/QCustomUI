@@ -18,6 +18,13 @@
     <widget class="QLineEdit" name="lineEdit"/>
    </item>
    <item>
+    <widget class="QToolButton" name="toolButton">
+     <property name="text">
+      <string>dialopg</string>
+     </property>
+    </widget>
+   </item>
+   <item>
     <widget class="QTreeWidget" name="treeWidget">
      <attribute name="headerVisible">
       <bool>false</bool>
