@@ -56,6 +56,35 @@ QCtmMultiPageStringListModel::QCtmMultiPageStringListModel(QStringList&& strings
 QCtmMultiPageStringListModel::~QCtmMultiPageStringListModel() {}
 
 /*!
+    \brief      设置字符串列表 \a strings.
+    \sa         stringList
+*/
+void QCtmMultiPageStringListModel::setStringList(const QStringList& strings)
+{
+    beginResetModel();
+    m_impl->strings = strings;
+    endResetModel();
+}
+
+/*!
+    \overload
+                设置字符串列表 \a strings.
+    \sa         setStringList
+*/
+void QCtmMultiPageStringListModel::setStringList(QStringList&& strings)
+{
+    beginResetModel();
+    m_impl->strings = std::move(strings);
+    endResetModel();
+}
+
+/*!
+    \brief      返回字符串列表.
+    \sa         setStringList
+*/
+const QStringList& QCtmMultiPageStringListModel::stringList() const { return m_impl->strings; }
+
+/*!
     \reimp
 */
 int QCtmMultiPageStringListModel::rowCount(const QModelIndex& parent /* = QModelIndex() */) const

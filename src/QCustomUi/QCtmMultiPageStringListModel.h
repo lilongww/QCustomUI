@@ -27,7 +27,9 @@ public:
     explicit QCtmMultiPageStringListModel(const QStringList& strings, QObject* parent = nullptr);
     explicit QCtmMultiPageStringListModel(QStringList&& strings, QObject* parent = nullptr);
     ~QCtmMultiPageStringListModel();
-
+    void setStringList(const QStringList& strings);
+    void setStringList(QStringList&& strings);
+    const QStringList& stringList() const;
     int rowCount(const QModelIndex& parent /* = QModelIndex() */) const override;
     int columnCount(const QModelIndex& parent /* = QModelIndex() */) const override;
     QVariant data(const QModelIndex& index, int role /* = Qt::DisplayRole */) const override;
