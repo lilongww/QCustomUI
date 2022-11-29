@@ -17,3 +17,30 @@
 **  along with QCustomUi.  If not, see <https://www.gnu.org/licenses/>.         **
 **********************************************************************************/
 #pragma once
+
+#include "qcustomui_global.h"
+
+#include <QWidget>
+
+class QCtmAbstractMultiPageItemModel;
+class QCtmMultiPageButtonBox : public QWidget
+{
+    Q_OBJECT
+public:
+    explicit QCtmMultiPageButtonBox(QWidget* parent);
+    ~QCtmMultiPageButtonBox();
+    virtual void setModel(QCtmAbstractMultiPageItemModel* model);
+    QCtmAbstractMultiPageItemModel* model() const;
+    void setPageButtonCount(int buttonCount);
+    int pageButtonCount() const;
+    void setPageButtonVisible(bool visible);
+    bool pageButtonVisible() const;
+
+private:
+    void init();
+    void generatePageButtons();
+
+private:
+    struct Impl;
+    std::unique_ptr<Impl> m_impl;
+};
