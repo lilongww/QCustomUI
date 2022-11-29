@@ -16,42 +16,4 @@
 **  You should have received a copy of the GNU Lesser General Public License    **
 **  along with QCustomUi.  If not, see <https://www.gnu.org/licenses/>.         **
 **********************************************************************************/
-
-#include "QCtmAbstractMessageTipView.h"
-#include "QCtmAbstractMessageTipModel.h"
-
-#include <QEvent>
-
-/*!
-    \class      QCtmAbstractMessageTipView
-    \brief      消息提示视图接口类.
-    \inherits   QCtmNavigationSidePane
-    \ingroup    QCustomUi
-    \inmodule   QCustomUi
-    \inheaderfile QCtmAbstractMessageTipView.h
-*/
-
-/*!
-    \brief      构造函数 \a parent.
-*/
-QCtmAbstractMessageTipView::QCtmAbstractMessageTipView(QCtmNavigationBar* parent) : QCtmNavigationSidePane(parent)
-{
-    this->setDockArea(QCtmNavigationSidePane::DockArea::Right);
-}
-
-/*!
-    \brief      析构函数.
-*/
-QCtmAbstractMessageTipView::~QCtmAbstractMessageTipView() {}
-
-/*!
-    \fn         void QCtmAbstractMessageTipView::setModel(QCtmAbstractMessageTipModel* model)
-    \brief      设置消息提示 \a model.
-    \sa         model()
-*/
-
-/*!
-    \fn         QCtmAbstractMessageTipModel* QCtmAbstractMessageTipView::model() const
-    \brief      返回消息提示 model.
-    \sa         setModel
-*/
+#include "QCtmMultiPageButtonBox.cpp"
