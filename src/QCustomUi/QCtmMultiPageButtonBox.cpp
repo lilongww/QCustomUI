@@ -92,8 +92,8 @@ QCtmAbstractMultiPageItemModel* QCtmMultiPageButtonBox::model() const { return m
 
 /*!
     \brief      设置页面按钮数量 \a buttonCount，如果实际页面数量少于/设置的数量，则显示的页面按钮数量为实际数量，
-                如果实际页面的数量多于页面按钮数量，则显示页面按钮的数量为设置的数量.
-    \sa
+                如果实际页面的数量多于页面按钮数量，则显示页面按钮的数量为设置的数量，将页面按钮数量设为0时，不显示页面按钮.
+    \sa         pageButtonCount
 */
 void QCtmMultiPageButtonBox::setPageButtonCount(int buttonCount)
 {
@@ -106,7 +106,7 @@ void QCtmMultiPageButtonBox::setPageButtonCount(int buttonCount)
 
 /*!
     \brief      返回页面按钮的设置数量.
-    \sa
+    \sa         setPageButtonCount
 */
 int QCtmMultiPageButtonBox::pageButtonCount() const { return m_impl->pageButtonCount; }
 
