@@ -41,6 +41,7 @@ private:
 private slots:
     void onPageCountChanged();
     void onCurrentPageChanged();
+    void onModelReset();
     void updateState();
 
 private:

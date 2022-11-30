@@ -14,11 +14,17 @@
    <string>MultiPageViewExample</string>
   </property>
   <layout class="QGridLayout" name="gridLayout">
+   <item row="1" column="0">
+    <widget class="QCtmMultiPageButtonBox" name="btnBox" native="true"/>
+   </item>
    <item row="0" column="0">
     <widget class="QListView" name="listView"/>
    </item>
-   <item row="1" column="0">
-    <widget class="QCtmMultiPageButtonBox" name="btnBox" native="true"/>
+   <item row="0" column="1">
+    <widget class="QTableView" name="tableView"/>
+   </item>
+   <item row="1" column="1">
+    <widget class="QCtmMultiPageButtonBox" name="btnBox_2" native="true"/>
    </item>
   </layout>
  </widget>

@@ -1,4 +1,5 @@
 ﻿#include "MultiPageViewExample.h"
+#include "MultiPageTableModel.h"
 
 MultiPageViewExample::MultiPageViewExample()
 {
@@ -13,6 +14,16 @@ MultiPageViewExample::MultiPageViewExample()
     ui.listView->setModel(listModel);
     ui.btnBox->setModel(listModel);
     listModel->setPageRowCount(50);
+
+    auto tableModel = new MultiPageTableModel(this);
+    ui.tableView->setModel(tableModel);
+    ui.btnBox_2->setModel(tableModel);
+    QVector<Data> datas;
+    for (int i = 0; i < 999; ++i)
+    {
+        datas.push_back(Data { QString("col %1").arg(i), i, i });
+    }
+    tableModel->setTestDatas(datas);
 }
 
 MultiPageViewExample::~MultiPageViewExample() {}

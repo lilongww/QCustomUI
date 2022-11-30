@@ -71,12 +71,14 @@ void QCtmMultiPageButtonBox::setModel(QCtmAbstractMultiPageItemModel* model)
     {
         disconnect(m_impl->model, &QCtmAbstractMultiPageItemModel::pageCountChanged, this, &QCtmMultiPageButtonBox::onPageCountChanged);
         disconnect(m_impl->model, &QCtmAbstractMultiPageItemModel::currentPageChanged, this, &QCtmMultiPageButtonBox::onCurrentPageChanged);
+        disconnect(model, &QCtmAbstractMultiPageItemModel::modelReset, this, &QCtmMultiPageButtonBox::onModelReset);
     }
     m_impl->model = model;
     if (model)
     {
         connect(model, &QCtmAbstractMultiPageItemModel::pageCountChanged, this, &QCtmMultiPageButtonBox::onPageCountChanged);
         connect(model, &QCtmAbstractMultiPageItemModel::currentPageChanged, this, &QCtmMultiPageButtonBox::onCurrentPageChanged);
+        connect(model, &QCtmAbstractMultiPageItemModel::modelReset, this, &QCtmMultiPageButtonBox::onModelReset);
     }
     onPageCountChanged();
     onCurrentPageChanged();
@@ -249,6 +251,12 @@ void QCtmMultiPageButtonBox::onCurrentPageChanged()
     m_impl->currentPage->blockSignals(false);
 
     updateState();
+}
+
+void QCtmMultiPageButtonBox::onModelReset()
+{
+    onPageCountChanged();
+    onCurrentPageChanged();
 }
 
 void QCtmMultiPageButtonBox::updateState()
