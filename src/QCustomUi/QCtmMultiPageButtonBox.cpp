@@ -127,6 +127,18 @@ void QCtmMultiPageButtonBox::setPageButtonVisible(bool visible)
 */
 bool QCtmMultiPageButtonBox::pageButtonVisible() const { return m_impl->pageButtonVisible; }
 
+/*!
+    \brief      返回上一页按钮的地址.
+    \sa         nextButton
+*/
+QPushButton* QCtmMultiPageButtonBox::prevButton() const { return m_impl->prev; }
+
+/*!
+    \brief      返回下一页按钮的地址.
+    \sa         prevButton
+*/
+QPushButton* QCtmMultiPageButtonBox::nextButton() const { return m_impl->next; }
+
 void QCtmMultiPageButtonBox::init()
 {
     this->setSizePolicy(QSizePolicy(QSizePolicy::Expanding, QSizePolicy::Fixed, QSizePolicy::ButtonBox));

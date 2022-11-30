@@ -22,6 +22,7 @@
 
 #include <QWidget>
 
+class QPushButton;
 class QCtmAbstractMultiPageItemModel;
 class QCUSTOMUI_EXPORT QCtmMultiPageButtonBox : public QWidget
 {
@@ -35,6 +36,8 @@ public:
     int pageButtonCount() const;
     void setPageButtonVisible(bool visible);
     bool pageButtonVisible() const;
+    QPushButton* prevButton() const;
+    QPushButton* nextButton() const;
 
 private:
     void init();
