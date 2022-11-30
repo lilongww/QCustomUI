@@ -87,8 +87,13 @@ int QCtmAbstractMultiPageItemModel::offset() const { return m_impl->currentPage 
 */
 void QCtmAbstractMultiPageItemModel::setCurrentPage(int page)
 {
+    if (page < 0)
+        return;
+    if (page == m_impl->currentPage)
+        return;
     m_impl->currentPage = page;
     emit dataChanged(index(0, 0), index(columnCount() - 1, rowCount() - 1));
+    emit currentPageChanged(page);
 }
 
 /*!
@@ -107,4 +112,24 @@ void QCtmAbstractMultiPageItemModel::setPageRowCount(int rowCount)
         m_impl->pageCountCache = pc;
         emit pageCountChanged(m_impl->pageCountCache);
     }
+}
+
+/*!
+    \brief      转到上一页.
+    \sa         next
+*/
+void QCtmAbstractMultiPageItemModel::prev()
+{
+    if (m_impl->currentPage > 0)
+        setCurrentPage(m_impl->currentPage - 1);
+}
+
+/*!
+    \brief      转到下一页.
+    \sa         prev
+*/
+void QCtmAbstractMultiPageItemModel::next()
+{
+    if (m_impl->currentPage + 1 < pageCount())
+        setCurrentPage(m_impl->currentPage + 1);
 }

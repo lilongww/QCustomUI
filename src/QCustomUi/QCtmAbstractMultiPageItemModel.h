@@ -22,19 +22,21 @@
 
 #include <QAbstractItemModel>
 
-class QCtmAbstractMultiPageItemModel : public QAbstractItemModel
+class QCUSTOMUI_EXPORT QCtmAbstractMultiPageItemModel : public QAbstractItemModel
 {
     Q_OBJECT
 public:
     explicit QCtmAbstractMultiPageItemModel(QObject* parent = nullptr);
     ~QCtmAbstractMultiPageItemModel();
-    Q_INVOKABLE int currentPage() const;
-    Q_INVOKABLE int pageRowCount() const;
+    int currentPage() const;
+    int pageRowCount() const;
     virtual int pageCount() const = 0;
     int offset() const;
 public slots:
     virtual void setCurrentPage(int page);
     virtual void setPageRowCount(int rowCount);
+    virtual void prev();
+    virtual void next();
 signals:
     void currentPageChanged(int page);
     void pageCountChanged(int count);

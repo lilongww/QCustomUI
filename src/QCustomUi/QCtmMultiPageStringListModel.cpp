@@ -21,6 +21,7 @@
 struct QCtmMultiPageStringListModel::Impl
 {
     QStringList strings;
+    inline Impl() {}
     inline Impl(const QStringList& ss) : strings(ss) {}
     inline Impl(QStringList&& ss) : strings(std::forward<QStringList&&>(ss)) {}
 };
@@ -49,6 +50,11 @@ QCtmMultiPageStringListModel::QCtmMultiPageStringListModel(QStringList&& strings
     : QCtmAbstractMultiPageTableModel(parent), m_impl(std::make_unique<Impl>(std::forward<QStringList&&>(strings)))
 {
 }
+
+/*!
+    \brief      构造函数 \a parent.
+*/
+QCtmMultiPageStringListModel::QCtmMultiPageStringListModel(QObject* parent /*= nullptr*/) : m_impl(std::make_unique<Impl>()) {}
 
 /*!
     \brief      析构函数.
@@ -103,6 +109,8 @@ int QCtmMultiPageStringListModel::columnCount(const QModelIndex& parent /* = QMo
 QVariant QCtmMultiPageStringListModel::data(const QModelIndex& index, int role /* = Qt::DisplayRole */) const
 {
     auto row = offset() + index.row();
+    if (row < 0 || row >= m_impl->strings.size())
+        return {};
     if (role == Qt::DisplayRole || role == Qt::EditRole)
     {
         return m_impl->strings[row];
@@ -126,4 +134,12 @@ bool QCtmMultiPageStringListModel::setData(const QModelIndex& index, const QVari
         return true;
     }
     return false;
+}
+
+/*!
+    \reimp
+*/
+int QCtmMultiPageStringListModel::pageCount() const
+{
+    return m_impl->strings.size() / pageRowCount() + static_cast<bool>(m_impl->strings.size() % pageRowCount());
 }

@@ -24,6 +24,7 @@ class QCUSTOMUI_EXPORT QCtmMultiPageStringListModel : public QCtmAbstractMultiPa
 {
     Q_OBJECT
 public:
+    explicit QCtmMultiPageStringListModel(QObject* parent = nullptr);
     explicit QCtmMultiPageStringListModel(const QStringList& strings, QObject* parent = nullptr);
     explicit QCtmMultiPageStringListModel(QStringList&& strings, QObject* parent = nullptr);
     ~QCtmMultiPageStringListModel();
@@ -34,6 +35,7 @@ public:
     int columnCount(const QModelIndex& parent /* = QModelIndex() */) const override;
     QVariant data(const QModelIndex& index, int role /* = Qt::DisplayRole */) const override;
     bool setData(const QModelIndex& index, const QVariant& value, int role /* = Qt::EditRole */) override;
+    int pageCount() const override;
 
 private:
     struct Impl;

@@ -23,7 +23,7 @@
 #include <QWidget>
 
 class QCtmAbstractMultiPageItemModel;
-class QCtmMultiPageButtonBox : public QWidget
+class QCUSTOMUI_EXPORT QCtmMultiPageButtonBox : public QWidget
 {
     Q_OBJECT
 public:
@@ -38,7 +38,10 @@ public:
 
 private:
     void init();
-    void generatePageButtons();
+private slots:
+    void onPageCountChanged();
+    void onCurrentPageChanged();
+    void updateState();
 
 private:
     struct Impl;

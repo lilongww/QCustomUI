@@ -17,22 +17,27 @@
 **  along with QCustomUi.  If not, see <https://www.gnu.org/licenses/>.         **
 **********************************************************************************/
 #include "QCtmMultiPageButtonBox.h"
+#include "QCtmAbstractMultiPageItemModel.h"
 
+#include <QButtonGroup>
 #include <QHBoxLayout>
 #include <QLabel>
 #include <QPushButton>
 #include <QSpinBox>
+#include <QToolButton>
 
 struct QCtmMultiPageButtonBox::Impl
 {
     QCtmAbstractMultiPageItemModel* model { nullptr };
     int pageButtonCount { 5 };
     bool pageButtonVisible { true };
+    int pageButtonBeginIndex { 0 };
     QPushButton* prev { nullptr };
     QPushButton* next { nullptr };
     QHBoxLayout* pageButtonLayout { nullptr };
     QLabel* total { nullptr };
     QSpinBox* currentPage { nullptr };
+    QButtonGroup* pageButtonGroup { nullptr };
 };
 
 /*!
@@ -62,6 +67,19 @@ void QCtmMultiPageButtonBox::setModel(QCtmAbstractMultiPageItemModel* model)
 {
     if (m_impl->model == model)
         return;
+    if (m_impl->model)
+    {
+        disconnect(m_impl->model, &QCtmAbstractMultiPageItemModel::pageCountChanged, this, &QCtmMultiPageButtonBox::onPageCountChanged);
+        disconnect(m_impl->model, &QCtmAbstractMultiPageItemModel::currentPageChanged, this, &QCtmMultiPageButtonBox::onCurrentPageChanged);
+    }
+    m_impl->model = model;
+    if (model)
+    {
+        connect(model, &QCtmAbstractMultiPageItemModel::pageCountChanged, this, &QCtmMultiPageButtonBox::onPageCountChanged);
+        connect(model, &QCtmAbstractMultiPageItemModel::currentPageChanged, this, &QCtmMultiPageButtonBox::onCurrentPageChanged);
+    }
+    onPageCountChanged();
+    onCurrentPageChanged();
 }
 
 /*!
@@ -80,6 +98,8 @@ void QCtmMultiPageButtonBox::setPageButtonCount(int buttonCount)
     m_impl->pageButtonCount = buttonCount;
     if (!m_impl->pageButtonVisible)
         return;
+    onPageCountChanged();
+    onCurrentPageChanged();
 }
 
 /*!
@@ -107,6 +127,7 @@ bool QCtmMultiPageButtonBox::pageButtonVisible() const { return m_impl->pageButt
 
 void QCtmMultiPageButtonBox::init()
 {
+    this->setSizePolicy(QSizePolicy(QSizePolicy::Expanding, QSizePolicy::Fixed, QSizePolicy::ButtonBox));
     auto layout = new QHBoxLayout(this);
     layout->addStretch(1);
     layout->addWidget(m_impl->prev = new QPushButton("<", this));
@@ -116,6 +137,123 @@ void QCtmMultiPageButtonBox::init()
     m_impl->currentPage->setRange(0, 0);
     layout->addWidget(new QLabel("/"));
     layout->addWidget(m_impl->total = new QLabel("0"));
+    m_impl->pageButtonGroup = new QButtonGroup(this);
+    m_impl->pageButtonGroup->setExclusive(true);
+    connect(m_impl->currentPage,
+            &QSpinBox::editingFinished,
+            this,
+            [=]
+            {
+                if (m_impl->model)
+                {
+                    m_impl->model->setCurrentPage(m_impl->currentPage->value() - 1);
+                }
+            });
+    connect(m_impl->pageButtonGroup,
+            &QButtonGroup::idToggled,
+            this,
+            [=](auto id, bool checked)
+            {
+                if (m_impl->model && checked)
+                {
+                    m_impl->model->setCurrentPage(id + m_impl->pageButtonBeginIndex);
+                }
+            });
+    connect(m_impl->prev,
+            &QPushButton::clicked,
+            this,
+            [=]
+            {
+                if (m_impl->model)
+                    m_impl->model->prev();
+            });
+    connect(m_impl->next,
+            &QPushButton::clicked,
+            this,
+            [=]
+            {
+                if (m_impl->model)
+                    m_impl->model->next();
+            });
 }
 
-void QCtmMultiPageButtonBox::generatePageButtons() {}
+void QCtmMultiPageButtonBox::onPageCountChanged()
+{
+    if (!m_impl->model)
+    {
+        m_impl->currentPage->setRange(0, 0);
+        m_impl->total->setText("0");
+        auto btns = m_impl->pageButtonGroup->buttons();
+        for (auto btn : btns)
+        {
+            m_impl->pageButtonLayout->removeWidget(btn);
+            m_impl->pageButtonGroup->removeButton(btn);
+            btn->hide();
+            btn->deleteLater();
+        }
+        return;
+    }
+    auto beforeButtonCount = m_impl->pageButtonGroup->buttons().size();
+    auto afterButtonCount  = std::min(m_impl->model->pageCount(), m_impl->pageButtonCount);
+    if (beforeButtonCount < afterButtonCount)
+    {
+        for (int i = beforeButtonCount; i < afterButtonCount; ++i)
+        {
+            auto btn = new QToolButton(this);
+            btn->setCheckable(true);
+            m_impl->pageButtonGroup->addButton(btn, m_impl->pageButtonGroup->buttons().size());
+            m_impl->pageButtonLayout->addWidget(btn);
+        }
+    }
+    else
+    {
+        for (int i = afterButtonCount; i < beforeButtonCount; ++i)
+        {
+            auto btn = m_impl->pageButtonGroup->buttons().last();
+            m_impl->pageButtonGroup->removeButton(btn);
+            m_impl->pageButtonLayout->removeWidget(btn);
+            btn->hide();
+            btn->deleteLater();
+        }
+    }
+
+    m_impl->currentPage->setRange(m_impl->model->pageCount() ? 1 : 0, m_impl->model->pageCount());
+    m_impl->total->setText(QString::number(m_impl->model->pageCount()));
+}
+
+void QCtmMultiPageButtonBox::onCurrentPageChanged()
+{
+    if (!m_impl->model)
+        return;
+    auto halfRange  = m_impl->pageButtonCount / 2;
+    bool even       = !(m_impl->pageButtonCount % 2);
+    auto rightCount = std::min(m_impl->model->pageCount() - m_impl->model->currentPage() - 1 + even, halfRange);
+    auto leftCount  = std::min(halfRange + (halfRange - rightCount), m_impl->model->currentPage());
+
+    m_impl->pageButtonBeginIndex = m_impl->model->currentPage() - leftCount;
+    auto end = m_impl->pageButtonBeginIndex + std::min(m_impl->model->pageCount() - m_impl->pageButtonBeginIndex, m_impl->pageButtonCount);
+    m_impl->pageButtonGroup->blockSignals(true);
+    for (int i = m_impl->pageButtonBeginIndex; i < end; i++)
+    {
+        auto btn = m_impl->pageButtonGroup->buttons()[i - m_impl->pageButtonBeginIndex];
+        btn->setText(QString::number(i + 1));
+        if (i == m_impl->model->currentPage())
+        {
+            btn->setChecked(true);
+        }
+    }
+    m_impl->pageButtonGroup->blockSignals(false);
+
+    m_impl->currentPage->blockSignals(true);
+    m_impl->currentPage->setValue(m_impl->model ? m_impl->model->currentPage() + 1 : 0);
+    m_impl->currentPage->blockSignals(false);
+
+    updateState();
+}
+
+void QCtmMultiPageButtonBox::updateState()
+{
+    m_impl->next->setDisabled(m_impl->model && m_impl->model->currentPage() + 1 >= m_impl->model->pageCount());
+    m_impl->prev->setEnabled(m_impl->model && m_impl->model->currentPage());
+    m_impl->currentPage->setEnabled(m_impl->model);
+}
