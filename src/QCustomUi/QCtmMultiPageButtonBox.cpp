@@ -111,23 +111,6 @@ void QCtmMultiPageButtonBox::setPageButtonCount(int buttonCount)
 int QCtmMultiPageButtonBox::pageButtonCount() const { return m_impl->pageButtonCount; }
 
 /*!
-    \brief      设置页面按钮是否可见 \a visible.
-    \sa         pageButtonVisible
-*/
-void QCtmMultiPageButtonBox::setPageButtonVisible(bool visible)
-{
-    if (visible == m_impl->pageButtonVisible)
-        return;
-    m_impl->pageButtonVisible = visible;
-}
-
-/*!
-    \brief      返回页面按钮是否可见.
-    \sa         setPageButtonVisible
-*/
-bool QCtmMultiPageButtonBox::pageButtonVisible() const { return m_impl->pageButtonVisible; }
-
-/*!
     \brief      返回上一页按钮的地址.
     \sa         nextButton
 */

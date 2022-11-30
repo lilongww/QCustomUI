@@ -34,8 +34,6 @@ public:
     QCtmAbstractMultiPageItemModel* model() const;
     void setPageButtonCount(int buttonCount);
     int pageButtonCount() const;
-    void setPageButtonVisible(bool visible);
-    bool pageButtonVisible() const;
     QPushButton* prevButton() const;
     QPushButton* nextButton() const;
 

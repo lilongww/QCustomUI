@@ -14,6 +14,7 @@ MultiPageViewExample::MultiPageViewExample()
     ui.listView->setModel(listModel);
     ui.btnBox->setModel(listModel);
     listModel->setPageRowCount(50);
+    ui.btnBox->setPageButtonCount(0);
 
     auto tableModel = new MultiPageTableModel(this);
     ui.tableView->setModel(tableModel);
