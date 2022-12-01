@@ -69,12 +69,12 @@ BEGIN
         BEGIN
             VALUE "CompanyName", "QCustomUi"
             VALUE "FileDescription", "QCustomUi"
-            VALUE "FileVersion", "1.10.0 beta"
+            VALUE "FileVersion", "1.10.0 beta 2"
             VALUE "InternalName", "QCustomUi.dll"
             VALUE "LegalCopyright", "Copyright (C) 2022"
             VALUE "OriginalFilename", "QCustomUi.dll"
             VALUE "ProductName", "QCustomUi"
-            VALUE "ProductVersion", "1.10.0 beta"
+            VALUE "ProductVersion", "1.10.0 beta 2"
         END
     END
     BLOCK "VarFileInfo"
