@@ -139,6 +139,10 @@ set(VIEW_HEADERS
  "QCtmClassifyTreeModel.h"
  "QCtmClassifyTreeItem.h"
  "QCtmHeaderView.h"
+ "QCtmAbstractMultiPageItemModel.h"
+ "QCtmAbstractMultiPageTableModel.h"
+ "QCtmMultiPageStringListModel.h"
+ "QCtmMultiPageButtonBox.h"
 )
 set(VIEW_SOURCES
  "QCtmTableItemDelegate.cpp"
@@ -147,6 +151,10 @@ set(VIEW_SOURCES
  "QCtmClassifyTreeModel.cpp"
  "QCtmClassifyTreeItem.cpp"
  "QCtmHeaderView.cpp"
+ "QCtmAbstractMultiPageItemModel.cpp"
+ "QCtmAbstractMultiPageTableModel.cpp"
+ "QCtmMultiPageStringListModel.cpp"
+ "QCtmMultiPageButtonBox.cpp"
 )
 
 set(TOOLS_HEADERS

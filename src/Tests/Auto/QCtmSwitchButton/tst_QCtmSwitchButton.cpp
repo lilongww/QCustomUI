@@ -1,4 +1,4 @@
-#include <QCustomUi/QCtmSwitchButton.h>
+ï»¿#include <QCustomUi/QCtmSwitchButton.h>
 
 #include <QSignalSpy>
 #include <QTest>
@@ -10,7 +10,7 @@ private slots:
     void taskGetSet();
 };
 
-// ²âÊÔGet Set
+// æµ‹è¯•Get Set
 void tst_QCtmSwitchButton::taskGetSet()
 {
     QCtmSwitchButton btn(nullptr);

@@ -1,6 +1,6 @@
 ﻿/*********************************************************************************
 **                                                                              **
-**  Copyright (C) 2019-2020 LiLong                                              **
+**  Copyright (C) 2019-2022 LiLong                                              **
 **  This file is part of QCustomUi.                                             **
 **                                                                              **
 **  QCustomUi is free software: you can redistribute it and/or modify           **
@@ -385,7 +385,10 @@ QAction* QCtmNavigationBar::insertLogo(int index, const QIcon& icon, ActionPosit
     action->setDefaultWidget(imageBtn);
     imageBtn->setDefaultAction(action);
 
-    QObject::connect(action, &QAction::objectNameChanged, imageBtn, &QCtmNavigationImageButton::setObjectName);
+    QObject::connect(action,
+                     &QAction::objectNameChanged,
+                     imageBtn,
+                     static_cast<void (QObject::*)(const QString&)>(&QCtmNavigationImageButton::setObjectName));
     insertAction(index, action, pos);
     return action;
 }
@@ -414,7 +417,7 @@ QAction* QCtmNavigationBar::insertUser(int index, const QIcon& icon, const QStri
     action->setIcon(icon);
     btn->setSizePolicy(QSizePolicy::Minimum, QSizePolicy::Minimum);
 
-    connect(action, &QAction::objectNameChanged, btn, &QObject::setObjectName);
+    connect(action, &QAction::objectNameChanged, btn, static_cast<void (QObject::*)(const QString&)>(&QObject::setObjectName));
     insertAction(index, action, pos);
     return action;
 }

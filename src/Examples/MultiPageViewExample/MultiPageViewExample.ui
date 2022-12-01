@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MultiPageViewExample</class>
+ <widget class="QWidget" name="MultiPageViewExample">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>780</width>
+    <height>550</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>MultiPageViewExample</string>
+  </property>
+  <layout class="QGridLayout" name="gridLayout">
+   <item row="1" column="0">
+    <widget class="QCtmMultiPageButtonBox" name="btnBox" native="true"/>
+   </item>
+   <item row="0" column="0">
+    <widget class="QListView" name="listView"/>
+   </item>
+   <item row="0" column="1">
+    <widget class="QTableView" name="tableView"/>
+   </item>
+   <item row="1" column="1">
+    <widget class="QCtmMultiPageButtonBox" name="btnBox_2" native="true"/>
+   </item>
+  </layout>
+ </widget>
+ <customwidgets>
+  <customwidget>
+   <class>QCtmMultiPageButtonBox</class>
+   <extends>QWidget</extends>
+   <header>QCustomUi/QCtmMultiPageButtonBox.h</header>
+   <container>1</container>
+  </customwidget>
+ </customwidgets>
+ <resources/>
+ <connections/>
+</ui>
