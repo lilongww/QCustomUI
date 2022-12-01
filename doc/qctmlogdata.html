@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+<!-- QCtmLogData.cpp -->
+  <title>QCtmLogData Class | QCustomUi 1.10.0-beta.2</title>
+  <link rel="stylesheet" type="text/css" href="style/offline-simple.css" />
+  <script type="text/javascript">
+    document.getElementsByTagName("link").item(0).setAttribute("href", "style/offline.css");
+    // loading style sheet breaks anchors that were jumped to before
+    // so force jumping to anchor again
+    setTimeout(function() {
+        var anchor = location.hash;
+        // need to jump to different anchor first (e.g. none)
+        location.hash = "#";
+        setTimeout(function() {
+            location.hash = anchor;
+        }, 0);
+    }, 0);
+  </script>
+</head>
+<body>
+<div class="header" id="qtdocheader">
+    <div class="main">
+    <div class="main-rounded">
+        <div class="navigationbar">
+        <ul>
+<li><a href="index.html">QCustomUi 1.10.0-beta.2</a></li>
+<li><a href="index.html">QCustomUi</a></li>
+<li>QCtmLogData</li>
+<li id="buildversion">QCustomUi 1.10.0-beta.2 Reference Documentation</li>
+    </ul>
+    </div>
+</div>
+<div class="content">
+<div class="line">
+<div class="content mainContent">
+<div class="sidebar">
+<div class="toc">
+<h3 id="toc">Contents</h3>
+<ul>
+<li class="level1"><a href="#public-types">Public Types</a></li>
+<li class="level1"><a href="#public-functions">Public Functions</a></li>
+<li class="level1"><a href="#details">Detailed Description</a></li>
+</ul>
+</div>
+<div class="sidebar-content" id="sidebar-content"></div></div>
+<h1 class="title">QCtmLogData Class</h1>
+<!-- $$$QCtmLogData-brief -->
+<p>日志消息结构定义. <a href="#details">More...</a></p>
+<!-- @@@QCtmLogData -->
+<div class="table"><table class="alignedsummary">
+<tr><td class="memItemLeft rightAlign topAlign"> Header:</td><td class="memItemRight bottomAlign">  <span class="preprocessor">#include &lt;QCtmLogData.h&gt;</span>
+</td></tr></table></div>
+<ul>
+<li><a href="qctmlogdata-members.html">List of all members, including inherited members</a></li>
+</ul>
+<h2 id="public-types">Public Types</h2>
+<div class="table"><table class="alignedsummary">
+<tr><td class="memItemLeft rightAlign topAlign"> enum </td><td class="memItemRight bottomAlign"><b><a href="qctmlogdata.html#LogInsertPolicy-enum">LogInsertPolicy</a></b> { ASC, DESC }</td></tr>
+</table></div>
+<h2 id="public-functions">Public Functions</h2>
+<div class="table"><table class="alignedsummary">
+<tr><td class="memItemLeft rightAlign topAlign"> </td><td class="memItemRight bottomAlign"><b><a href="qctmlogdata.html#QCtmLogData">QCtmLogData</a></b>(QtMsgType <i>type</i>, const QMessageLogContext &amp;<i>context</i>, const QString &amp;<i>msg</i>)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> </td><td class="memItemRight bottomAlign"><b><a href="qctmlogdata.html#dtor.QCtmLogData">~QCtmLogData</a></b>()</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> const QMessageLogContext &amp;</td><td class="memItemRight bottomAlign"><b><a href="qctmlogdata.html#context">context</a></b>() const</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> const QDateTime &amp;</td><td class="memItemRight bottomAlign"><b><a href="qctmlogdata.html#dateTime">dateTime</a></b>() const</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> const QString &amp;</td><td class="memItemRight bottomAlign"><b><a href="qctmlogdata.html#msg">msg</a></b>() const</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> QtMsgType </td><td class="memItemRight bottomAlign"><b><a href="qctmlogdata.html#type">type</a></b>() const</td></tr>
+</table></div>
+<!-- $$$QCtmLogData-description -->
+<div class="descr">
+<h2 id="details">Detailed Description</h2>
+</div>
+<!-- @@@QCtmLogData -->
+<div class="types">
+<h2>Member Type Documentation</h2>
+<!-- $$$LogInsertPolicy$$$ASC$$$DESC -->
+<h3 class="fn" id="LogInsertPolicy-enum">enum QCtmLogData::<span class="name">LogInsertPolicy</span></h3>
+<p>日志插入策略.</p>
+<div class="table"><table class="valuelist"><tr valign="top" class="odd"><th class="tblConst">Constant</th><th class="tblval">Value</th><th class="tbldscr">Description</th></tr>
+<tr><td class="topAlign"><code>QCtmLogData::ASC</code></td><td class="topAlign tblval"><code>0</code></td><td class="topAlign">正序插入.</td></tr>
+<tr><td class="topAlign"><code>QCtmLogData::DESC</code></td><td class="topAlign tblval"><code>1</code></td><td class="topAlign">逆序插入.</td></tr>
+</table></div>
+<!-- @@@LogInsertPolicy -->
+</div>
+<div class="func">
+<h2>Member Function Documentation</h2>
+<!-- $$$QCtmLogData[overload1]$$$QCtmLogDataQtMsgTypeconstQMessageLogContext&constQString& -->
+<h3 class="fn" id="QCtmLogData">QCtmLogData::<span class="name">QCtmLogData</span>(<span class="type"><a href="https://doc.qt.io/qt/qtglobal.html#QtMsgType-enum">QtMsgType</a></span> <i>type</i>, const <span class="type"><a href="https://doc.qt.io/qt/qmessagelogcontext.html">QMessageLogContext</a></span> &amp;<i>context</i>, const <span class="type"><a href="https://doc.qt.io/qt/qstring.html">QString</a></span> &amp;<i>msg</i>)</h3>
+<p>构造函数 <i>type</i>, <i>context</i>, <i>msg</i>.</p>
+<!-- @@@QCtmLogData -->
+<!-- $$$~QCtmLogData[overload1]$$$~QCtmLogData -->
+<h3 class="fn" id="dtor.QCtmLogData">QCtmLogData::<span class="name">~QCtmLogData</span>()</h3>
+<p>析构函数.</p>
+<!-- @@@~QCtmLogData -->
+<!-- $$$context[overload1]$$$context -->
+<h3 class="fn" id="context">const <span class="type"><a href="https://doc.qt.io/qt/qmessagelogcontext.html">QMessageLogContext</a></span> &amp;QCtmLogData::<span class="name">context</span>() const</h3>
+<p>返回日志上下文.</p>
+<!-- @@@context -->
+<!-- $$$dateTime[overload1]$$$dateTime -->
+<h3 class="fn" id="dateTime">const <span class="type"><a href="https://doc.qt.io/qt/qdatetime.html">QDateTime</a></span> &amp;QCtmLogData::<span class="name">dateTime</span>() const</h3>
+<p>返回日志时间.</p>
+<!-- @@@dateTime -->
+<!-- $$$msg[overload1]$$$msg -->
+<h3 class="fn" id="msg">const <span class="type"><a href="https://doc.qt.io/qt/qstring.html">QString</a></span> &amp;QCtmLogData::<span class="name">msg</span>() const</h3>
+<p>返回日志内容.</p>
+<!-- @@@msg -->
+<!-- $$$type[overload1]$$$type -->
+<h3 class="fn" id="type"><span class="type"><a href="https://doc.qt.io/qt/qtglobal.html#QtMsgType-enum">QtMsgType</a></span> QCtmLogData::<span class="name">type</span>() const</h3>
+<p>返回日志类型.</p>
+<!-- @@@type -->
+</div>
+        </div>
+       </div>
+   </div>
+   </div>
+</div>
+<div class="footer">
+   <p>
+   <acronym title="Copyright">&copy;</acronym> QCustomUi
+   Documentation contributions included herein are the copyrights of
+   their respective owners.<br/>    The documentation provided herein is licensed under the terms of the    <a href="http://www.gnu.org/licenses/fdl.html">GNU Free Documentation    License version 1.3</a> as published by the Free Software Foundation.<br/> </div>
+</body>
+</html>

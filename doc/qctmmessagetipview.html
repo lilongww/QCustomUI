@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+<!-- QCtmMessageTipView.cpp -->
+  <title>QCtmMessageTipView Class | QCustomUi 1.10.0-beta.2</title>
+  <link rel="stylesheet" type="text/css" href="style/offline-simple.css" />
+  <script type="text/javascript">
+    document.getElementsByTagName("link").item(0).setAttribute("href", "style/offline.css");
+    // loading style sheet breaks anchors that were jumped to before
+    // so force jumping to anchor again
+    setTimeout(function() {
+        var anchor = location.hash;
+        // need to jump to different anchor first (e.g. none)
+        location.hash = "#";
+        setTimeout(function() {
+            location.hash = anchor;
+        }, 0);
+    }, 0);
+  </script>
+</head>
+<body>
+<div class="header" id="qtdocheader">
+    <div class="main">
+    <div class="main-rounded">
+        <div class="navigationbar">
+        <ul>
+<li><a href="index.html">QCustomUi 1.10.0-beta.2</a></li>
+<li><a href="index.html">QCustomUi</a></li>
+<li>QCtmMessageTipView</li>
+<li id="buildversion">QCustomUi 1.10.0-beta.2 Reference Documentation</li>
+    </ul>
+    </div>
+</div>
+<div class="content">
+<div class="line">
+<div class="content mainContent">
+<div class="sidebar">
+<div class="toc">
+<h3 id="toc">Contents</h3>
+<ul>
+<li class="level1"><a href="#properties">Properties</a></li>
+<li class="level1"><a href="#public-functions">Public Functions</a></li>
+<li class="level1"><a href="#reimplemented-public-functions">Reimplemented Public Functions</a></li>
+<li class="level1"><a href="#public-slots">Public Slots</a></li>
+<li class="level1"><a href="#signals">Signals</a></li>
+<li class="level1"><a href="#reimplemented-protected-functions">Reimplemented Protected Functions</a></li>
+<li class="level1"><a href="#details">Detailed Description</a></li>
+</ul>
+</div>
+<div class="sidebar-content" id="sidebar-content"></div></div>
+<h1 class="title">QCtmMessageTipView Class</h1>
+<!-- $$$QCtmMessageTipView-brief -->
+<p>QCtmMessageTipView 是显示具体消息的列表. <a href="#details">More...</a></p>
+<!-- @@@QCtmMessageTipView -->
+<div class="table"><table class="alignedsummary">
+<tr><td class="memItemLeft rightAlign topAlign"> Header:</td><td class="memItemRight bottomAlign">  <span class="preprocessor">#include &lt;QCtmMessageTipView.h&gt;</span>
+</td></tr><tr><td class="memItemLeft rightAlign topAlign"> Inherits:</td><td class="memItemRight bottomAlign"> <a href="qctmabstractmessagetipview.html">QCtmAbstractMessageTipView</a></td></tr></table></div>
+<ul>
+<li><a href="qctmmessagetipview-members.html">List of all members, including inherited members</a></li>
+</ul>
+<h2 id="properties">Properties</h2>
+<ul>
+<li class="fn"><b><a href="qctmmessagetipview.html#closeButtonIcon-prop">closeButtonIcon</a></b> : QPixmap</li>
+<li class="fn"><b><a href="qctmmessagetipview.html#decoration-prop">decoration</a></b> : QColor</li>
+<li class="fn"><b><a href="qctmmessagetipview.html#timeColor-prop">timeColor</a></b> : QColor</li>
+<li class="fn"><b><a href="qctmmessagetipview.html#titleColor-prop">titleColor</a></b> : QColor</li>
+</ul>
+<h2 id="public-functions">Public Functions</h2>
+<div class="table"><table class="alignedsummary">
+<tr><td class="memItemLeft rightAlign topAlign"> </td><td class="memItemRight bottomAlign"><b><a href="qctmmessagetipview.html#QCtmMessageTipView">QCtmMessageTipView</a></b>(QCtmNavigationBar *<i>parent</i>)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> virtual </td><td class="memItemRight bottomAlign"><b><a href="qctmmessagetipview.html#dtor.QCtmMessageTipView">~QCtmMessageTipView</a></b>()</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> const QPixmap &amp;</td><td class="memItemRight bottomAlign"><b><a href="qctmmessagetipview.html#closeButtonIcon">closeButtonIcon</a></b>() const</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> const QColor &amp;</td><td class="memItemRight bottomAlign"><b><a href="qctmmessagetipview.html#decoration">decoration</a></b>() const</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> void </td><td class="memItemRight bottomAlign"><b><a href="qctmmessagetipview.html#setCloseButtonIcon">setCloseButtonIcon</a></b>(const QPixmap &amp;<i>icon</i>)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> void </td><td class="memItemRight bottomAlign"><b><a href="qctmmessagetipview.html#setDecoration">setDecoration</a></b>(const QColor &amp;<i>color</i>)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> void </td><td class="memItemRight bottomAlign"><b><a href="qctmmessagetipview.html#setTimeColor">setTimeColor</a></b>(const QColor &amp;<i>color</i>)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> void </td><td class="memItemRight bottomAlign"><b><a href="qctmmessagetipview.html#setTitleColor">setTitleColor</a></b>(const QColor &amp;<i>color</i>)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> void </td><td class="memItemRight bottomAlign"><b><a href="qctmmessagetipview.html#setTouchControlStyle">setTouchControlStyle</a></b>(bool <i>flag</i>)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> const QColor &amp;</td><td class="memItemRight bottomAlign"><b><a href="qctmmessagetipview.html#timeColor">timeColor</a></b>() const</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> const QColor &amp;</td><td class="memItemRight bottomAlign"><b><a href="qctmmessagetipview.html#titleColor">titleColor</a></b>() const</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> bool </td><td class="memItemRight bottomAlign"><b><a href="qctmmessagetipview.html#touchControlStyle">touchControlStyle</a></b>() const</td></tr>
+</table></div>
+<h2 id="reimplemented-public-functions">Reimplemented Public Functions</h2>
+<div class="table"><table class="alignedsummary">
+<tr><td class="memItemLeft rightAlign topAlign"> virtual QCtmAbstractMessageTipModel *</td><td class="memItemRight bottomAlign"><b><a href="qctmmessagetipview.html#model">model</a></b>() const override</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> virtual void </td><td class="memItemRight bottomAlign"><b><a href="qctmmessagetipview.html#setModel">setModel</a></b>(QCtmAbstractMessageTipModel *<i>model</i>) override</td></tr>
+</table></div>
+<h2 id="public-slots">Public Slots</h2>
+<div class="table"><table class="alignedsummary">
+<tr><td class="memItemLeft rightAlign topAlign"> void </td><td class="memItemRight bottomAlign"><b><a href="qctmmessagetipview.html#clearAll">clearAll</a></b>()</td></tr>
+</table></div>
+<h2 id="signals">Signals</h2>
+<div class="table"><table class="alignedsummary">
+<tr><td class="memItemLeft rightAlign topAlign"> bool </td><td class="memItemRight bottomAlign"><b><a href="qctmmessagetipview.html#aboutToClearAllMessages">aboutToClearAllMessages</a></b>()</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> bool </td><td class="memItemRight bottomAlign"><b><a href="qctmmessagetipview.html#aboutToCloseMessage">aboutToCloseMessage</a></b>(QCtmMessageTipDataPtr <i>message</i>)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> void </td><td class="memItemRight bottomAlign"><b><a href="qctmmessagetipview.html#closeButtonClicked">closeButtonClicked</a></b>(const QModelIndex &amp;<i>index</i>)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> void </td><td class="memItemRight bottomAlign"><b><a href="qctmmessagetipview.html#messageClicked">messageClicked</a></b>(QCtmMessageTipDataPtr <i>message</i>)</td></tr>
+</table></div>
+<h2 id="reimplemented-protected-functions">Reimplemented Protected Functions</h2>
+<div class="table"><table class="alignedsummary">
+<tr><td class="memItemLeft rightAlign topAlign"> virtual bool </td><td class="memItemRight bottomAlign"><b><a href="qctmmessagetipview.html#eventFilter">eventFilter</a></b>(QObject *<i>o</i>, QEvent *<i>e</i>) override</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> virtual void </td><td class="memItemRight bottomAlign"><b><a href="qctmmessagetipview.html#resizeEvent">resizeEvent</a></b>(QResizeEvent *<i>e</i>) override</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> virtual void </td><td class="memItemRight bottomAlign"><b><a href="qctmmessagetipview.html#showEvent">showEvent</a></b>(QShowEvent *<i>e</i>) override</td></tr>
+</table></div>
+<!-- $$$QCtmMessageTipView-description -->
+<div class="descr">
+<h2 id="details">Detailed Description</h2>
+</div>
+<!-- @@@QCtmMessageTipView -->
+<div class="prop">
+<h2>Property Documentation</h2>
+<!-- $$$closeButtonIcon-prop$$$closeButtonIcon$$$setCloseButtonIconconstQPixmap& -->
+<h3 class="fn" id="closeButtonIcon-prop"><span class="name">closeButtonIcon</span> : <span class="type"><a href="https://doc.qt.io/qt/qpixmap.html">QPixmap</a></span></h3>
+<p>关闭按钮的图标.</p>
+<p><b>Access functions:</b></p>
+<div class="table"><table class="alignedsummary">
+<tr><td class="memItemLeft topAlign rightAlign"> const QPixmap &amp;</td><td class="memItemRight bottomAlign"><span class="name"><b><a href="qctmmessagetipview.html#closeButtonIcon">closeButtonIcon</a></b></span>() const</td></tr>
+<tr><td class="memItemLeft topAlign rightAlign"> void </td><td class="memItemRight bottomAlign"><span class="name"><b><a href="qctmmessagetipview.html#setCloseButtonIcon">setCloseButtonIcon</a></b></span>(const QPixmap &amp;<i>icon</i>)</td></tr>
+</table></div>
+<!-- @@@closeButtonIcon -->
+<!-- $$$decoration-prop$$$decoration$$$setDecorationconstQColor& -->
+<h3 class="fn" id="decoration-prop"><span class="name">decoration</span> : <span class="type"><a href="https://doc.qt.io/qt/qcolor.html">QColor</a></span></h3>
+<p>装饰条的颜色.</p>
+<p><b>Access functions:</b></p>
+<div class="table"><table class="alignedsummary">
+<tr><td class="memItemLeft topAlign rightAlign"> const QColor &amp;</td><td class="memItemRight bottomAlign"><span class="name"><b><a href="qctmmessagetipview.html#decoration">decoration</a></b></span>() const</td></tr>
+<tr><td class="memItemLeft topAlign rightAlign"> void </td><td class="memItemRight bottomAlign"><span class="name"><b><a href="qctmmessagetipview.html#setDecoration">setDecoration</a></b></span>(const QColor &amp;<i>color</i>)</td></tr>
+</table></div>
+<!-- @@@decoration -->
+<!-- $$$timeColor-prop$$$timeColor$$$setTimeColorconstQColor& -->
+<h3 class="fn" id="timeColor-prop"><span class="name">timeColor</span> : <span class="type"><a href="https://doc.qt.io/qt/qcolor.html">QColor</a></span></h3>
+<p>时间的颜色.</p>
+<p><b>Access functions:</b></p>
+<div class="table"><table class="alignedsummary">
+<tr><td class="memItemLeft topAlign rightAlign"> const QColor &amp;</td><td class="memItemRight bottomAlign"><span class="name"><b><a href="qctmmessagetipview.html#timeColor">timeColor</a></b></span>() const</td></tr>
+<tr><td class="memItemLeft topAlign rightAlign"> void </td><td class="memItemRight bottomAlign"><span class="name"><b><a href="qctmmessagetipview.html#setTimeColor">setTimeColor</a></b></span>(const QColor &amp;<i>color</i>)</td></tr>
+</table></div>
+<!-- @@@timeColor -->
+<!-- $$$titleColor-prop$$$titleColor$$$setTitleColorconstQColor& -->
+<h3 class="fn" id="titleColor-prop"><span class="name">titleColor</span> : <span class="type"><a href="https://doc.qt.io/qt/qcolor.html">QColor</a></span></h3>
+<p>消息标题的颜色.</p>
+<p><b>Access functions:</b></p>
+<div class="table"><table class="alignedsummary">
+<tr><td class="memItemLeft topAlign rightAlign"> const QColor &amp;</td><td class="memItemRight bottomAlign"><span class="name"><b><a href="qctmmessagetipview.html#titleColor">titleColor</a></b></span>() const</td></tr>
+<tr><td class="memItemLeft topAlign rightAlign"> void </td><td class="memItemRight bottomAlign"><span class="name"><b><a href="qctmmessagetipview.html#setTitleColor">setTitleColor</a></b></span>(const QColor &amp;<i>color</i>)</td></tr>
+</table></div>
+<!-- @@@titleColor -->
+</div>
+<div class="func">
+<h2>Member Function Documentation</h2>
+<!-- $$$QCtmMessageTipView[overload1]$$$QCtmMessageTipViewQCtmNavigationBar* -->
+<h3 class="fn" id="QCtmMessageTipView">QCtmMessageTipView::<span class="name">QCtmMessageTipView</span>(<span class="type"><a href="qctmnavigationbar.html">QCtmNavigationBar</a></span> *<i>parent</i>)</h3>
+<p>构造一个父对象为 <i>parent</i> 的消息列表.</p>
+<!-- @@@QCtmMessageTipView -->
+<!-- $$$aboutToClearAllMessages[overload1]$$$aboutToClearAllMessages -->
+<h3 class="fn" id="aboutToClearAllMessages"><code>[signal] </code><span class="type">bool</span> QCtmMessageTipView::<span class="name">aboutToClearAllMessages</span>()</h3>
+<p>如果要在清除所有消息时，弹出确认窗口，连接该信号，并在槽函数中返回是否删除.</p>
+<!-- @@@aboutToClearAllMessages -->
+<!-- $$$aboutToCloseMessage[overload1]$$$aboutToCloseMessageQCtmMessageTipDataPtr -->
+<h3 class="fn" id="aboutToCloseMessage"><code>[signal] </code><span class="type">bool</span> QCtmMessageTipView::<span class="name">aboutToCloseMessage</span>(<span class="type">QCtmMessageTipDataPtr</span> <i>message</i>)</h3>
+<p>如果要在关闭消息时，弹出确认窗口，连接该信号，并在槽函数中返回是否删除 <i>message</i>.</p>
+<!-- @@@aboutToCloseMessage -->
+<!-- $$$clearAll[overload1]$$$clearAll -->
+<h3 class="fn" id="clearAll"><code>[slot] </code><span class="type">void</span> QCtmMessageTipView::<span class="name">clearAll</span>()</h3>
+<p>清空所有消息.</p>
+<!-- @@@clearAll -->
+<!-- $$$closeButtonClicked[overload1]$$$closeButtonClickedconstQModelIndex& -->
+<h3 class="fn" id="closeButtonClicked"><code>[signal] </code><span class="type">void</span> QCtmMessageTipView::<span class="name">closeButtonClicked</span>(const <span class="type"><a href="https://doc.qt.io/qt/qmodelindex.html">QModelIndex</a></span> &amp;<i>index</i>)</h3>
+<p>当 <i>index</i> 位置的消息的关闭按钮被点击时，发送该信号.</p>
+<p><b>See also </b><a href="qctmmessagetipview.html#messageClicked">messageClicked</a>.</p>
+<!-- @@@closeButtonClicked -->
+<!-- $$$messageClicked[overload1]$$$messageClickedQCtmMessageTipDataPtr -->
+<h3 class="fn" id="messageClicked"><code>[signal] </code><span class="type">void</span> QCtmMessageTipView::<span class="name">messageClicked</span>(<span class="type">QCtmMessageTipDataPtr</span> <i>message</i>)</h3>
+<p>当消息被点击时，发送该信号 <i>message</i>.</p>
+<p><b>See also </b><a href="qctmmessagetipview.html#closeButtonClicked">closeButtonClicked</a>.</p>
+<!-- @@@messageClicked -->
+<!-- $$$~QCtmMessageTipView[overload1]$$$~QCtmMessageTipView -->
+<h3 class="fn" id="dtor.QCtmMessageTipView"><code>[virtual] </code>QCtmMessageTipView::<span class="name">~QCtmMessageTipView</span>()</h3>
+<p>销毁该消息列表.</p>
+<!-- @@@~QCtmMessageTipView -->
+<!-- $$$closeButtonIcon -->
+<h3 class="fn" id="closeButtonIcon">const <span class="type"><a href="https://doc.qt.io/qt/qpixmap.html">QPixmap</a></span> &amp;QCtmMessageTipView::<span class="name">closeButtonIcon</span>() const</h3>
+<p>返回关闭按钮图标.</p>
+<p><b>Note: </b>Getter function for property closeButtonIcon. </p>
+<p><b>See also </b><a href="qctmmessagetipview.html#setCloseButtonIcon">setCloseButtonIcon</a>.</p>
+<!-- @@@closeButtonIcon -->
+<!-- $$$decoration -->
+<h3 class="fn" id="decoration">const <span class="type"><a href="https://doc.qt.io/qt/qcolor.html">QColor</a></span> &amp;QCtmMessageTipView::<span class="name">decoration</span>() const</h3>
+<p>返回装饰颜色.</p>
+<p><b>Note: </b>Getter function for property decoration. </p>
+<p><b>See also </b><a href="qctmmessagetipview.html#setDecoration">setDecoration</a>.</p>
+<!-- @@@decoration -->
+<!-- $$$eventFilter[overload1]$$$eventFilterQObject*QEvent* -->
+<h3 class="fn" id="eventFilter"><code>[override virtual protected] </code><span class="type">bool</span> QCtmMessageTipView::<span class="name">eventFilter</span>(<span class="type"><a href="https://doc.qt.io/qt/qobject.html#QObject">QObject</a></span> *<i>o</i>, <span class="type"><a href="https://doc.qt.io/qt/qevent.html">QEvent</a></span> *<i>e</i>)</h3>
+<p>Reimplements: <a href="qctmnavigationsidepane.html#eventFilter">QCtmNavigationSidePane::eventFilter</a>(QObject *o, QEvent *e).</p>
+<!-- @@@eventFilter -->
+<!-- $$$model[overload1]$$$model -->
+<h3 class="fn" id="model"><code>[override virtual] </code><span class="type"><a href="qctmabstractmessagetipmodel.html">QCtmAbstractMessageTipModel</a></span> *QCtmMessageTipView::<span class="name">model</span>() const</h3>
+<p>Reimplements: <a href="qctmabstractmessagetipview.html#model">QCtmAbstractMessageTipView::model() const</a>.</p>
+<p>返回消息 model.</p>
+<p><b>See also </b><a href="qctmmessagetipview.html#setModel">setModel</a>.</p>
+<!-- @@@model -->
+<!-- $$$resizeEvent[overload1]$$$resizeEventQResizeEvent* -->
+<h3 class="fn" id="resizeEvent"><code>[override virtual protected] </code><span class="type">void</span> QCtmMessageTipView::<span class="name">resizeEvent</span>(<span class="type"><a href="https://doc.qt.io/qt/qresizeevent.html">QResizeEvent</a></span> *<i>e</i>)</h3>
+<!-- @@@resizeEvent -->
+<!-- $$$setCloseButtonIcon -->
+<h3 class="fn" id="setCloseButtonIcon"><span class="type">void</span> QCtmMessageTipView::<span class="name">setCloseButtonIcon</span>(const <span class="type"><a href="https://doc.qt.io/qt/qpixmap.html">QPixmap</a></span> &amp;<i>icon</i>)</h3>
+<p>设置关闭按钮图标 <i>icon</i>.</p>
+<p><b>Note: </b>Setter function for property <a href="qctmmessagetipview.html#closeButtonIcon">closeButtonIcon</a>. </p>
+<p><b>See also </b><a href="qctmmessagetipview.html#closeButtonIcon">closeButtonIcon</a>().</p>
+<!-- @@@setCloseButtonIcon -->
+<!-- $$$setDecoration -->
+<h3 class="fn" id="setDecoration"><span class="type">void</span> QCtmMessageTipView::<span class="name">setDecoration</span>(const <span class="type"><a href="https://doc.qt.io/qt/qcolor.html">QColor</a></span> &amp;<i>color</i>)</h3>
+<p>设置装饰颜色 <i>color</i>.</p>
+<p><b>Note: </b>Setter function for property <a href="qctmmessagetipview.html#decoration">decoration</a>. </p>
+<p><b>See also </b><a href="qctmmessagetipview.html#decoration">decoration</a>().</p>
+<!-- @@@setDecoration -->
+<!-- $$$setModel[overload1]$$$setModelQCtmAbstractMessageTipModel* -->
+<h3 class="fn" id="setModel"><code>[override virtual] </code><span class="type">void</span> QCtmMessageTipView::<span class="name">setModel</span>(<span class="type"><a href="qctmabstractmessagetipmodel.html">QCtmAbstractMessageTipModel</a></span> *<i>model</i>)</h3>
+<p>Reimplements: <a href="qctmabstractmessagetipview.html#setModel">QCtmAbstractMessageTipView::setModel</a>(QCtmAbstractMessageTipModel *model).</p>
+<p>设置消息 <i>model</i>.</p>
+<p><b>See also </b><a href="qctmmessagetipview.html#model">model</a>().</p>
+<!-- @@@setModel -->
+<!-- $$$setTimeColor -->
+<h3 class="fn" id="setTimeColor"><span class="type">void</span> QCtmMessageTipView::<span class="name">setTimeColor</span>(const <span class="type"><a href="https://doc.qt.io/qt/qcolor.html">QColor</a></span> &amp;<i>color</i>)</h3>
+<p>设置时间颜色 <i>color</i>.</p>
+<p><b>Note: </b>Setter function for property <a href="qctmmessagetipview.html#timeColor">timeColor</a>. </p>
+<p><b>See also </b><a href="qctmmessagetipview.html#timeColor">timeColor</a>().</p>
+<!-- @@@setTimeColor -->
+<!-- $$$setTitleColor -->
+<h3 class="fn" id="setTitleColor"><span class="type">void</span> QCtmMessageTipView::<span class="name">setTitleColor</span>(const <span class="type"><a href="https://doc.qt.io/qt/qcolor.html">QColor</a></span> &amp;<i>color</i>)</h3>
+<p>设置标题栏颜色 <i>color</i>.</p>
+<p><b>Note: </b>Setter function for property <a href="qctmmessagetipview.html#titleColor">titleColor</a>. </p>
+<p><b>See also </b><a href="qctmmessagetipview.html#titleColor">titleColor</a>().</p>
+<!-- @@@setTitleColor -->
+<!-- $$$setTouchControlStyle -->
+<h3 class="fn" id="setTouchControlStyle"><span class="type">void</span> QCtmMessageTipView::<span class="name">setTouchControlStyle</span>(<span class="type">bool</span> <i>flag</i>)</h3>
+<p>设置为触控外观，即一直显示标题超链接样式和关闭按钮，默认为 false <i>flag</i>.</p>
+<p><b>Note: </b>Setter function for property <a href="qctmmessagetipview.html#touchControlStyle">touchControlStyle</a>. </p>
+<p><b>See also </b><a href="qctmmessagetipview.html#touchControlStyle">touchControlStyle</a>.</p>
+<!-- @@@setTouchControlStyle -->
+<!-- $$$showEvent[overload1]$$$showEventQShowEvent* -->
+<h3 class="fn" id="showEvent"><code>[override virtual protected] </code><span class="type">void</span> QCtmMessageTipView::<span class="name">showEvent</span>(<span class="type"><a href="https://doc.qt.io/qt/qshowevent.html">QShowEvent</a></span> *<i>e</i>)</h3>
+<p>Reimplements: <a href="qctmnavigationsidepane.html#showEvent">QCtmNavigationSidePane::showEvent</a>(QShowEvent *event).</p>
+<!-- @@@showEvent -->
+<!-- $$$timeColor -->
+<h3 class="fn" id="timeColor">const <span class="type"><a href="https://doc.qt.io/qt/qcolor.html">QColor</a></span> &amp;QCtmMessageTipView::<span class="name">timeColor</span>() const</h3>
+<p>返回时间颜色.</p>
+<p><b>Note: </b>Getter function for property timeColor. </p>
+<p><b>See also </b><a href="qctmmessagetipview.html#setTimeColor">setTimeColor</a>.</p>
+<!-- @@@timeColor -->
+<!-- $$$titleColor -->
+<h3 class="fn" id="titleColor">const <span class="type"><a href="https://doc.qt.io/qt/qcolor.html">QColor</a></span> &amp;QCtmMessageTipView::<span class="name">titleColor</span>() const</h3>
+<p>返回标题栏颜色.</p>
+<p><b>Note: </b>Getter function for property titleColor. </p>
+<p><b>See also </b><a href="qctmmessagetipview.html#setTitleColor">setTitleColor</a>.</p>
+<!-- @@@titleColor -->
+<!-- $$$touchControlStyle -->
+<h3 class="fn" id="touchControlStyle"><span class="type">bool</span> QCtmMessageTipView::<span class="name">touchControlStyle</span>() const</h3>
+<p>返回是否为触控外观.</p>
+<p><b>Note: </b>Getter function for property touchControlStyle. </p>
+<p><b>See also </b><a href="qctmmessagetipview.html#setTouchControlStyle">setTouchControlStyle</a>.</p>
+<!-- @@@touchControlStyle -->
+</div>
+        </div>
+       </div>
+   </div>
+   </div>
+</div>
+<div class="footer">
+   <p>
+   <acronym title="Copyright">&copy;</acronym> QCustomUi
+   Documentation contributions included herein are the copyrights of
+   their respective owners.<br/>    The documentation provided herein is licensed under the terms of the    <a href="http://www.gnu.org/licenses/fdl.html">GNU Free Documentation    License version 1.3</a> as published by the Free Software Foundation.<br/> </div>
+</body>
+</html>

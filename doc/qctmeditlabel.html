@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+<!-- QCtmEditLabel.cpp -->
+  <title>QCtmEditLabel Class | QCustomUi 1.10.0-beta.2</title>
+  <link rel="stylesheet" type="text/css" href="style/offline-simple.css" />
+  <script type="text/javascript">
+    document.getElementsByTagName("link").item(0).setAttribute("href", "style/offline.css");
+    // loading style sheet breaks anchors that were jumped to before
+    // so force jumping to anchor again
+    setTimeout(function() {
+        var anchor = location.hash;
+        // need to jump to different anchor first (e.g. none)
+        location.hash = "#";
+        setTimeout(function() {
+            location.hash = anchor;
+        }, 0);
+    }, 0);
+  </script>
+</head>
+<body>
+<div class="header" id="qtdocheader">
+    <div class="main">
+    <div class="main-rounded">
+        <div class="navigationbar">
+        <ul>
+<li><a href="index.html">QCustomUi 1.10.0-beta.2</a></li>
+<li><a href="index.html">QCustomUi</a></li>
+<li>QCtmEditLabel</li>
+<li id="buildversion">QCustomUi 1.10.0-beta.2 Reference Documentation</li>
+    </ul>
+    </div>
+</div>
+<div class="content">
+<div class="line">
+<div class="content mainContent">
+<div class="sidebar">
+<div class="toc">
+<h3 id="toc">Contents</h3>
+<ul>
+<li class="level1"><a href="#properties">Properties</a></li>
+<li class="level1"><a href="#public-functions">Public Functions</a></li>
+<li class="level1"><a href="#signals">Signals</a></li>
+<li class="level1"><a href="#reimplemented-protected-functions">Reimplemented Protected Functions</a></li>
+<li class="level1"><a href="#details">Detailed Description</a></li>
+</ul>
+</div>
+<div class="sidebar-content" id="sidebar-content"></div></div>
+<h1 class="title">QCtmEditLabel Class</h1>
+<!-- $$$QCtmEditLabel-brief -->
+<p><a href="https://doc.qt.io/qt/qlabel.html">QLabel</a>的扩展，可进行编辑. <a href="#details">More...</a></p>
+<!-- @@@QCtmEditLabel -->
+<div class="table"><table class="alignedsummary">
+<tr><td class="memItemLeft rightAlign topAlign"> Header:</td><td class="memItemRight bottomAlign">  <span class="preprocessor">#include &lt;QCtmEditLabel.h&gt;</span>
+</td></tr><tr><td class="memItemLeft rightAlign topAlign"> Inherits:</td><td class="memItemRight bottomAlign"> <a href="https://doc.qt.io/qt/qlabel.html">QLabel</a></td></tr></table></div>
+<ul>
+<li><a href="qctmeditlabel-members.html">List of all members, including inherited members</a></li>
+</ul>
+<h2 id="properties">Properties</h2>
+<ul>
+<li class="fn"><b><a href="qctmeditlabel.html#editButtonIcon-prop">editButtonIcon</a></b> : QIcon</li>
+<li class="fn"><b><a href="qctmeditlabel.html#readOnly-prop">readOnly</a></b> : bool</li>
+</ul>
+<h2 id="public-functions">Public Functions</h2>
+<div class="table"><table class="alignedsummary">
+<tr><td class="memItemLeft rightAlign topAlign"> </td><td class="memItemRight bottomAlign"><b><a href="qctmeditlabel.html#QCtmEditLabel-1">QCtmEditLabel</a></b>(const QString &amp;<i>text</i>, QWidget *<i>parent</i> = nullptr, Qt::WindowFlags <i>f</i> = Qt::WindowFlags())</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> </td><td class="memItemRight bottomAlign"><b><a href="qctmeditlabel.html#QCtmEditLabel">QCtmEditLabel</a></b>(QWidget *<i>parent</i> = nullptr, Qt::WindowFlags <i>f</i> = Qt::WindowFlags())</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> virtual </td><td class="memItemRight bottomAlign"><b><a href="qctmeditlabel.html#dtor.QCtmEditLabel">~QCtmEditLabel</a></b>()</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> QIcon </td><td class="memItemRight bottomAlign"><b><a href="qctmeditlabel.html#editButtonIcon">editButtonIcon</a></b>() const</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> QIcon </td><td class="memItemRight bottomAlign"><b><a href="qctmeditlabel.html#finishButtonIcon">finishButtonIcon</a></b>() const</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> bool </td><td class="memItemRight bottomAlign"><b><a href="qctmeditlabel.html#isReadOnly">isReadOnly</a></b>() const</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> QIcon </td><td class="memItemRight bottomAlign"><b><a href="qctmeditlabel.html#revertButtonIcon">revertButtonIcon</a></b>() const</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> void </td><td class="memItemRight bottomAlign"><b><a href="qctmeditlabel.html#setEditButtonIcon">setEditButtonIcon</a></b>(const QIcon &amp;<i>icon</i>)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> void </td><td class="memItemRight bottomAlign"><b><a href="qctmeditlabel.html#setFinishButtonIcon">setFinishButtonIcon</a></b>(const QIcon &amp;<i>icon</i>)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> void </td><td class="memItemRight bottomAlign"><b><a href="qctmeditlabel.html#setReadOnly">setReadOnly</a></b>(bool <i>flag</i>)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> void </td><td class="memItemRight bottomAlign"><b><a href="qctmeditlabel.html#setRevertButtonIcon">setRevertButtonIcon</a></b>(const QIcon &amp;<i>icon</i>)</td></tr>
+</table></div>
+<h2 id="signals">Signals</h2>
+<div class="table"><table class="alignedsummary">
+<tr><td class="memItemLeft rightAlign topAlign"> void </td><td class="memItemRight bottomAlign"><b><a href="qctmeditlabel.html#editFinished">editFinished</a></b>()</td></tr>
+</table></div>
+<h2 id="reimplemented-protected-functions">Reimplemented Protected Functions</h2>
+<div class="table"><table class="alignedsummary">
+<tr><td class="memItemLeft rightAlign topAlign"> virtual bool </td><td class="memItemRight bottomAlign"><b><a href="qctmeditlabel.html#event">event</a></b>(QEvent *<i>e</i>) override</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> virtual QSize </td><td class="memItemRight bottomAlign"><b><a href="qctmeditlabel.html#minimumSizeHint">minimumSizeHint</a></b>() const override</td></tr>
+</table></div>
+<!-- $$$QCtmEditLabel-description -->
+<div class="descr">
+<h2 id="details">Detailed Description</h2>
+<p><b>截图:</b></p>
+<p class="centerAlign"><img src="images/QCtmEditLabelDetail.png" alt="" /></p></div>
+<!-- @@@QCtmEditLabel -->
+<div class="prop">
+<h2>Property Documentation</h2>
+<!-- $$$editButtonIcon-prop$$$editButtonIcon$$$setEditButtonIconconstQIcon& -->
+<h3 class="fn" id="editButtonIcon-prop"><span class="name">editButtonIcon</span> : <span class="type"><a href="https://doc.qt.io/qt/qicon.html">QIcon</a></span></h3>
+<p>编辑按钮的图标.</p>
+<p><b>Access functions:</b></p>
+<div class="table"><table class="alignedsummary">
+<tr><td class="memItemLeft topAlign rightAlign"> QIcon </td><td class="memItemRight bottomAlign"><span class="name"><b><a href="qctmeditlabel.html#editButtonIcon">editButtonIcon</a></b></span>() const</td></tr>
+<tr><td class="memItemLeft topAlign rightAlign"> void </td><td class="memItemRight bottomAlign"><span class="name"><b><a href="qctmeditlabel.html#setEditButtonIcon">setEditButtonIcon</a></b></span>(const QIcon &amp;<i>icon</i>)</td></tr>
+</table></div>
+<!-- @@@editButtonIcon -->
+<!-- $$$readOnly-prop$$$isReadOnly$$$setReadOnlybool -->
+<h3 class="fn" id="readOnly-prop"><span class="name">readOnly</span> : <span class="type">bool</span></h3>
+<p>是否只读.</p>
+<p><b>Access functions:</b></p>
+<div class="table"><table class="alignedsummary">
+<tr><td class="memItemLeft topAlign rightAlign"> bool </td><td class="memItemRight bottomAlign"><span class="name"><b><a href="qctmeditlabel.html#isReadOnly">isReadOnly</a></b></span>() const</td></tr>
+<tr><td class="memItemLeft topAlign rightAlign"> void </td><td class="memItemRight bottomAlign"><span class="name"><b><a href="qctmeditlabel.html#setReadOnly">setReadOnly</a></b></span>(bool <i>flag</i>)</td></tr>
+</table></div>
+<!-- @@@readOnly -->
+</div>
+<div class="func">
+<h2>Member Function Documentation</h2>
+<!-- $$$QCtmEditLabel$$$QCtmEditLabelconstQString&QWidget*Qt::WindowFlags -->
+<h3 class="fn" id="QCtmEditLabel-1">QCtmEditLabel::<span class="name">QCtmEditLabel</span>(const <span class="type"><a href="https://doc.qt.io/qt/qstring.html">QString</a></span> &amp;<i>text</i>, <span class="type"><a href="https://doc.qt.io/qt/qwidget.html#QWidget">QWidget</a></span> *<i>parent</i> = nullptr, <span class="type"><a href="https://doc.qt.io/qt/qt.html#WindowType-enum">Qt::WindowFlags</a></span> <i>f</i> = Qt::WindowFlags())</h3>
+<p>构造函数，并设置显示文字 <i>text</i>, <i>parent</i>, <i>f</i>.</p>
+<!-- @@@QCtmEditLabel -->
+<!-- $$$QCtmEditLabel[overload1]$$$QCtmEditLabelQWidget*Qt::WindowFlags -->
+<h3 class="fn" id="QCtmEditLabel">QCtmEditLabel::<span class="name">QCtmEditLabel</span>(<span class="type"><a href="https://doc.qt.io/qt/qwidget.html#QWidget">QWidget</a></span> *<i>parent</i> = nullptr, <span class="type"><a href="https://doc.qt.io/qt/qt.html#WindowType-enum">Qt::WindowFlags</a></span> <i>f</i> = Qt::WindowFlags())</h3>
+<p>构造函数 <i>parent</i>, <i>f</i>.</p>
+<!-- @@@QCtmEditLabel -->
+<!-- $$$editFinished[overload1]$$$editFinished -->
+<h3 class="fn" id="editFinished"><code>[signal] </code><span class="type">void</span> QCtmEditLabel::<span class="name">editFinished</span>()</h3>
+<p>编辑完成时发送该信号.</p>
+<!-- @@@editFinished -->
+<!-- $$$~QCtmEditLabel[overload1]$$$~QCtmEditLabel -->
+<h3 class="fn" id="dtor.QCtmEditLabel"><code>[virtual] </code>QCtmEditLabel::<span class="name">~QCtmEditLabel</span>()</h3>
+<p>析构函数.</p>
+<!-- @@@~QCtmEditLabel -->
+<!-- $$$editButtonIcon -->
+<h3 class="fn" id="editButtonIcon"><span class="type"><a href="https://doc.qt.io/qt/qicon.html">QIcon</a></span> QCtmEditLabel::<span class="name">editButtonIcon</span>() const</h3>
+<p>返回编辑按钮图标.</p>
+<p><b>Note: </b>Getter function for property editButtonIcon. </p>
+<p><b>See also </b><a href="qctmeditlabel.html#setEditButtonIcon">setEditButtonIcon</a>().</p>
+<!-- @@@editButtonIcon -->
+<!-- $$$event[overload1]$$$eventQEvent* -->
+<h3 class="fn" id="event"><code>[override virtual protected] </code><span class="type">bool</span> QCtmEditLabel::<span class="name">event</span>(<span class="type"><a href="https://doc.qt.io/qt/qevent.html">QEvent</a></span> *<i>e</i>)</h3>
+<p>Reimplements: <a href="https://doc.qt.io/qt/qlabel.html#event">QLabel::event</a>(QEvent *e).</p>
+<!-- @@@event -->
+<!-- $$$finishButtonIcon -->
+<h3 class="fn" id="finishButtonIcon"><span class="type"><a href="https://doc.qt.io/qt/qicon.html">QIcon</a></span> QCtmEditLabel::<span class="name">finishButtonIcon</span>() const</h3>
+<p>返回编辑完成按钮图标.</p>
+<p><b>Note: </b>Getter function for property finishButtonIcon. </p>
+<p><b>See also </b><a href="qctmeditlabel.html#setFinishButtonIcon">setFinishButtonIcon</a>.</p>
+<!-- @@@finishButtonIcon -->
+<!-- $$$isReadOnly -->
+<h3 class="fn" id="isReadOnly"><span class="type">bool</span> QCtmEditLabel::<span class="name">isReadOnly</span>() const</h3>
+<p>返回是否只读.</p>
+<p><b>Note: </b>Getter function for property <a href="qctmeditlabel.html#readOnly-prop">readOnly</a>. </p>
+<p><b>See also </b><a href="qctmeditlabel.html#setReadOnly">setReadOnly</a>.</p>
+<!-- @@@isReadOnly -->
+<!-- $$$minimumSizeHint[overload1]$$$minimumSizeHint -->
+<h3 class="fn" id="minimumSizeHint"><code>[override virtual protected] </code><span class="type"><a href="https://doc.qt.io/qt/qsize.html">QSize</a></span> QCtmEditLabel::<span class="name">minimumSizeHint</span>() const</h3>
+<p>Reimplements: <a href="https://doc.qt.io/qt/qlabel.html#minimumSizeHint">QLabel::minimumSizeHint() const</a>.</p>
+<!-- @@@minimumSizeHint -->
+<!-- $$$revertButtonIcon -->
+<h3 class="fn" id="revertButtonIcon"><span class="type"><a href="https://doc.qt.io/qt/qicon.html">QIcon</a></span> QCtmEditLabel::<span class="name">revertButtonIcon</span>() const</h3>
+<p>返回回退按钮图标.</p>
+<p><b>Note: </b>Getter function for property revertButtonIcon. </p>
+<p><b>See also </b><a href="qctmeditlabel.html#setRevertButtonIcon">setRevertButtonIcon</a>.</p>
+<!-- @@@revertButtonIcon -->
+<!-- $$$setEditButtonIcon -->
+<h3 class="fn" id="setEditButtonIcon"><span class="type">void</span> QCtmEditLabel::<span class="name">setEditButtonIcon</span>(const <span class="type"><a href="https://doc.qt.io/qt/qicon.html">QIcon</a></span> &amp;<i>icon</i>)</h3>
+<p>设置编辑按钮图标 <i>icon</i>.</p>
+<p><b>Note: </b>Setter function for property <a href="qctmeditlabel.html#editButtonIcon">editButtonIcon</a>. </p>
+<p><b>See also </b><a href="qctmeditlabel.html#editButtonIcon">editButtonIcon</a>.</p>
+<!-- @@@setEditButtonIcon -->
+<!-- $$$setFinishButtonIcon -->
+<h3 class="fn" id="setFinishButtonIcon"><span class="type">void</span> QCtmEditLabel::<span class="name">setFinishButtonIcon</span>(const <span class="type"><a href="https://doc.qt.io/qt/qicon.html">QIcon</a></span> &amp;<i>icon</i>)</h3>
+<p>设置编辑完成按钮图标 <i>icon</i>.</p>
+<p><b>Note: </b>Setter function for property <a href="qctmeditlabel.html#finishButtonIcon">finishButtonIcon</a>. </p>
+<p><b>See also </b><a href="qctmeditlabel.html#finishButtonIcon">finishButtonIcon</a>().</p>
+<!-- @@@setFinishButtonIcon -->
+<!-- $$$setReadOnly -->
+<h3 class="fn" id="setReadOnly"><span class="type">void</span> QCtmEditLabel::<span class="name">setReadOnly</span>(<span class="type">bool</span> <i>flag</i>)</h3>
+<p>设置是否只读 <i>flag</i>.</p>
+<p><b>Note: </b>Setter function for property <a href="qctmeditlabel.html#readOnly-prop">readOnly</a>. </p>
+<p><b>See also </b><a href="qctmeditlabel.html#isReadOnly">isReadOnly</a>.</p>
+<!-- @@@setReadOnly -->
+<!-- $$$setRevertButtonIcon -->
+<h3 class="fn" id="setRevertButtonIcon"><span class="type">void</span> QCtmEditLabel::<span class="name">setRevertButtonIcon</span>(const <span class="type"><a href="https://doc.qt.io/qt/qicon.html">QIcon</a></span> &amp;<i>icon</i>)</h3>
+<p>设置回退按钮图标 <i>icon</i>.</p>
+<p><b>Note: </b>Setter function for property <a href="qctmeditlabel.html#revertButtonIcon">revertButtonIcon</a>. </p>
+<p><b>See also </b><a href="qctmeditlabel.html#revertButtonIcon">revertButtonIcon</a>().</p>
+<!-- @@@setRevertButtonIcon -->
+</div>
+        </div>
+       </div>
+   </div>
+   </div>
+</div>
+<div class="footer">
+   <p>
+   <acronym title="Copyright">&copy;</acronym> QCustomUi
+   Documentation contributions included herein are the copyrights of
+   their respective owners.<br/>    The documentation provided herein is licensed under the terms of the    <a href="http://www.gnu.org/licenses/fdl.html">GNU Free Documentation    License version 1.3</a> as published by the Free Software Foundation.<br/> </div>
+</body>
+</html>

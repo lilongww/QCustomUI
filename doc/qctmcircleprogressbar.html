@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+<!-- QCtmCircleProgressBar.cpp -->
+  <title>QCtmCircleProgressBar Class | QCustomUi 1.10.0-beta.2</title>
+  <link rel="stylesheet" type="text/css" href="style/offline-simple.css" />
+  <script type="text/javascript">
+    document.getElementsByTagName("link").item(0).setAttribute("href", "style/offline.css");
+    // loading style sheet breaks anchors that were jumped to before
+    // so force jumping to anchor again
+    setTimeout(function() {
+        var anchor = location.hash;
+        // need to jump to different anchor first (e.g. none)
+        location.hash = "#";
+        setTimeout(function() {
+            location.hash = anchor;
+        }, 0);
+    }, 0);
+  </script>
+</head>
+<body>
+<div class="header" id="qtdocheader">
+    <div class="main">
+    <div class="main-rounded">
+        <div class="navigationbar">
+        <ul>
+<li><a href="index.html">QCustomUi 1.10.0-beta.2</a></li>
+<li><a href="index.html">QCustomUi</a></li>
+<li>QCtmCircleProgressBar</li>
+<li id="buildversion">QCustomUi 1.10.0-beta.2 Reference Documentation</li>
+    </ul>
+    </div>
+</div>
+<div class="content">
+<div class="line">
+<div class="content mainContent">
+<div class="sidebar">
+<div class="toc">
+<h3 id="toc">Contents</h3>
+<ul>
+<li class="level1"><a href="#properties">Properties</a></li>
+<li class="level1"><a href="#public-functions">Public Functions</a></li>
+<li class="level1"><a href="#public-slots">Public Slots</a></li>
+<li class="level1"><a href="#signals">Signals</a></li>
+<li class="level1"><a href="#reimplemented-protected-functions">Reimplemented Protected Functions</a></li>
+<li class="level1"><a href="#details">Detailed Description</a></li>
+</ul>
+</div>
+<div class="sidebar-content" id="sidebar-content"></div></div>
+<h1 class="title">QCtmCircleProgressBar Class</h1>
+<!-- $$$QCtmCircleProgressBar-brief -->
+<p>圆形进度条. <a href="#details">More...</a></p>
+<!-- @@@QCtmCircleProgressBar -->
+<div class="table"><table class="alignedsummary">
+<tr><td class="memItemLeft rightAlign topAlign"> Header:</td><td class="memItemRight bottomAlign">  <span class="preprocessor">#include &lt;QCtmCircleProgressBar.h&gt;</span>
+</td></tr><tr><td class="memItemLeft rightAlign topAlign"> Inherits:</td><td class="memItemRight bottomAlign"> QWidget</td></tr></table></div>
+<ul>
+<li><a href="qctmcircleprogressbar-members.html">List of all members, including inherited members</a></li>
+</ul>
+<h2 id="properties">Properties</h2>
+<div class="table"><table class="propsummary">
+<tr><td class="topAlign"><ul>
+<li class="fn"><b><a href="qctmcircleprogressbar.html#backgroundBrush-prop">backgroundBrush</a></b> : QBrush</li>
+<li class="fn"><b><a href="qctmcircleprogressbar.html#barBrush-prop">barBrush</a></b> : QBrush</li>
+<li class="fn"><b><a href="qctmcircleprogressbar.html#barWidth-prop">barWidth</a></b> : int</li>
+<li class="fn"><b><a href="qctmcircleprogressbar.html#format-prop">format</a></b> : QString</li>
+<li class="fn"><b><a href="qctmcircleprogressbar.html#maximum-prop">maximum</a></b> : int</li>
+</ul></td><td class="topAlign"><ul>
+<li class="fn"><b><a href="qctmcircleprogressbar.html#minimum-prop">minimum</a></b> : int</li>
+<li class="fn"><b><a href="qctmcircleprogressbar.html#penCapStyle-prop">penCapStyle</a></b> : Qt::PenCapStyle</li>
+<li class="fn"><b><a href="qctmcircleprogressbar.html#text-prop">text</a></b> : const QString</li>
+<li class="fn"><b><a href="qctmcircleprogressbar.html#textVisible-prop">textVisible</a></b> : bool</li>
+<li class="fn"><b><a href="qctmcircleprogressbar.html#value-prop">value</a></b> : int</li>
+</ul>
+</td></tr>
+</table></div>
+<h2 id="public-functions">Public Functions</h2>
+<div class="table"><table class="alignedsummary">
+<tr><td class="memItemLeft rightAlign topAlign"> </td><td class="memItemRight bottomAlign"><b><a href="qctmcircleprogressbar.html#QCtmCircleProgressBar">QCtmCircleProgressBar</a></b>(QWidget *<i>parent</i>)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> virtual </td><td class="memItemRight bottomAlign"><b><a href="qctmcircleprogressbar.html#dtor.QCtmCircleProgressBar">~QCtmCircleProgressBar</a></b>()</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> const QBrush &amp;</td><td class="memItemRight bottomAlign"><b><a href="qctmcircleprogressbar.html#backgroundBrush">backgroundBrush</a></b>() const</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> const QBrush &amp;</td><td class="memItemRight bottomAlign"><b><a href="qctmcircleprogressbar.html#barBrush">barBrush</a></b>() const</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> int </td><td class="memItemRight bottomAlign"><b><a href="qctmcircleprogressbar.html#barWidth">barWidth</a></b>() const</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> const QString &amp;</td><td class="memItemRight bottomAlign"><b><a href="qctmcircleprogressbar.html#format">format</a></b>() const</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> bool </td><td class="memItemRight bottomAlign"><b><a href="qctmcircleprogressbar.html#isTextVisible">isTextVisible</a></b>() const</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> int </td><td class="memItemRight bottomAlign"><b><a href="qctmcircleprogressbar.html#maximum">maximum</a></b>() const</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> int </td><td class="memItemRight bottomAlign"><b><a href="qctmcircleprogressbar.html#minimum">minimum</a></b>() const</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> Qt::PenCapStyle </td><td class="memItemRight bottomAlign"><b><a href="qctmcircleprogressbar.html#penCapStyle">penCapStyle</a></b>() const</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> void </td><td class="memItemRight bottomAlign"><b><a href="qctmcircleprogressbar.html#setFormat">setFormat</a></b>(const QString &amp;<i>format</i>)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> void </td><td class="memItemRight bottomAlign"><b><a href="qctmcircleprogressbar.html#setTextVisible">setTextVisible</a></b>(bool <i>visible</i>)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> virtual QString </td><td class="memItemRight bottomAlign"><b><a href="qctmcircleprogressbar.html#text">text</a></b>() const</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> int </td><td class="memItemRight bottomAlign"><b><a href="qctmcircleprogressbar.html#value">value</a></b>() const</td></tr>
+</table></div>
+<h2 id="public-slots">Public Slots</h2>
+<div class="table"><table class="alignedsummary">
+<tr><td class="memItemLeft rightAlign topAlign"> void </td><td class="memItemRight bottomAlign"><b><a href="qctmcircleprogressbar.html#setBackgroundBrush">setBackgroundBrush</a></b>(const QBrush &amp;<i>brush</i>)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> void </td><td class="memItemRight bottomAlign"><b><a href="qctmcircleprogressbar.html#setBarBrush">setBarBrush</a></b>(const QBrush &amp;<i>brush</i>)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> void </td><td class="memItemRight bottomAlign"><b><a href="qctmcircleprogressbar.html#setBarWidth">setBarWidth</a></b>(int <i>width</i>)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> void </td><td class="memItemRight bottomAlign"><b><a href="qctmcircleprogressbar.html#setMaximum">setMaximum</a></b>(int <i>maximum</i>)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> void </td><td class="memItemRight bottomAlign"><b><a href="qctmcircleprogressbar.html#setMinimum">setMinimum</a></b>(int <i>minimum</i>)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> void </td><td class="memItemRight bottomAlign"><b><a href="qctmcircleprogressbar.html#setPenCapStyle">setPenCapStyle</a></b>(Qt::PenCapStyle <i>style</i>)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> void </td><td class="memItemRight bottomAlign"><b><a href="qctmcircleprogressbar.html#setRange">setRange</a></b>(int <i>minimum</i>, int <i>maximum</i>)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> void </td><td class="memItemRight bottomAlign"><b><a href="qctmcircleprogressbar.html#setValue">setValue</a></b>(int <i>value</i>)</td></tr>
+</table></div>
+<h2 id="signals">Signals</h2>
+<div class="table"><table class="alignedsummary">
+<tr><td class="memItemLeft rightAlign topAlign"> void </td><td class="memItemRight bottomAlign"><b><a href="qctmcircleprogressbar.html#value-prop">valueChanged</a></b>(int <i>value</i>)</td></tr>
+</table></div>
+<h2 id="reimplemented-protected-functions">Reimplemented Protected Functions</h2>
+<div class="table"><table class="alignedsummary">
+<tr><td class="memItemLeft rightAlign topAlign"> virtual QSize </td><td class="memItemRight bottomAlign"><b><a href="qctmcircleprogressbar.html#minimumSizeHint">minimumSizeHint</a></b>() const override</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> virtual void </td><td class="memItemRight bottomAlign"><b><a href="qctmcircleprogressbar.html#paintEvent">paintEvent</a></b>(QPaintEvent *<i>event</i>) override</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> virtual QSize </td><td class="memItemRight bottomAlign"><b><a href="qctmcircleprogressbar.html#sizeHint">sizeHint</a></b>() const override</td></tr>
+</table></div>
+<!-- $$$QCtmCircleProgressBar-description -->
+<div class="descr">
+<h2 id="details">Detailed Description</h2>
+</div>
+<!-- @@@QCtmCircleProgressBar -->
+<div class="prop">
+<h2>Property Documentation</h2>
+<!-- $$$backgroundBrush-prop$$$backgroundBrush$$$setBackgroundBrushconstQBrush& -->
+<h3 class="fn" id="backgroundBrush-prop"><span class="name">backgroundBrush</span> : <span class="type"><a href="https://doc.qt.io/qt/qbrush.html">QBrush</a></span></h3>
+<p>进度条背景色画刷.</p>
+<p><b>Access functions:</b></p>
+<div class="table"><table class="alignedsummary">
+<tr><td class="memItemLeft topAlign rightAlign"> const QBrush &amp;</td><td class="memItemRight bottomAlign"><span class="name"><b><a href="qctmcircleprogressbar.html#backgroundBrush">backgroundBrush</a></b></span>() const</td></tr>
+<tr><td class="memItemLeft topAlign rightAlign"> void </td><td class="memItemRight bottomAlign"><span class="name"><b><a href="qctmcircleprogressbar.html#setBackgroundBrush">setBackgroundBrush</a></b></span>(const QBrush &amp;<i>brush</i>)</td></tr>
+</table></div>
+<!-- @@@backgroundBrush -->
+<!-- $$$barBrush-prop$$$barBrush$$$setBarBrushconstQBrush& -->
+<h3 class="fn" id="barBrush-prop"><span class="name">barBrush</span> : <span class="type"><a href="https://doc.qt.io/qt/qbrush.html">QBrush</a></span></h3>
+<p>进度条前景色画刷.</p>
+<p><b>Access functions:</b></p>
+<div class="table"><table class="alignedsummary">
+<tr><td class="memItemLeft topAlign rightAlign"> const QBrush &amp;</td><td class="memItemRight bottomAlign"><span class="name"><b><a href="qctmcircleprogressbar.html#barBrush">barBrush</a></b></span>() const</td></tr>
+<tr><td class="memItemLeft topAlign rightAlign"> void </td><td class="memItemRight bottomAlign"><span class="name"><b><a href="qctmcircleprogressbar.html#setBarBrush">setBarBrush</a></b></span>(const QBrush &amp;<i>brush</i>)</td></tr>
+</table></div>
+<!-- @@@barBrush -->
+<!-- $$$barWidth-prop$$$barWidth$$$setBarWidthint -->
+<h3 class="fn" id="barWidth-prop"><span class="name">barWidth</span> : <span class="type">int</span></h3>
+<p>进度条宽度.</p>
+<p><b>Access functions:</b></p>
+<div class="table"><table class="alignedsummary">
+<tr><td class="memItemLeft topAlign rightAlign"> int </td><td class="memItemRight bottomAlign"><span class="name"><b><a href="qctmcircleprogressbar.html#barWidth">barWidth</a></b></span>() const</td></tr>
+<tr><td class="memItemLeft topAlign rightAlign"> void </td><td class="memItemRight bottomAlign"><span class="name"><b><a href="qctmcircleprogressbar.html#setBarWidth">setBarWidth</a></b></span>(int <i>width</i>)</td></tr>
+</table></div>
+<!-- @@@barWidth -->
+<!-- $$$format-prop$$$format$$$setFormatconstQString& -->
+<h3 class="fn" id="format-prop"><span class="name">format</span> : <span class="type"><a href="https://doc.qt.io/qt/qstring.html">QString</a></span></h3>
+<p>文本格式, 参考 <a href="https://doc.qt.io/qt/qprogressbar.html">QProgressBar</a>.</p>
+<p><b>Access functions:</b></p>
+<div class="table"><table class="alignedsummary">
+<tr><td class="memItemLeft topAlign rightAlign"> const QString &amp;</td><td class="memItemRight bottomAlign"><span class="name"><b><a href="qctmcircleprogressbar.html#format">format</a></b></span>() const</td></tr>
+<tr><td class="memItemLeft topAlign rightAlign"> void </td><td class="memItemRight bottomAlign"><span class="name"><b><a href="qctmcircleprogressbar.html#setFormat">setFormat</a></b></span>(const QString &amp;<i>format</i>)</td></tr>
+</table></div>
+<!-- @@@format -->
+<!-- $$$maximum-prop$$$maximum$$$setMaximumint -->
+<h3 class="fn" id="maximum-prop"><span class="name">maximum</span> : <span class="type">int</span></h3>
+<p>最大值.</p>
+<p><b>Access functions:</b></p>
+<div class="table"><table class="alignedsummary">
+<tr><td class="memItemLeft topAlign rightAlign"> int </td><td class="memItemRight bottomAlign"><span class="name"><b><a href="qctmcircleprogressbar.html#maximum">maximum</a></b></span>() const</td></tr>
+<tr><td class="memItemLeft topAlign rightAlign"> void </td><td class="memItemRight bottomAlign"><span class="name"><b><a href="qctmcircleprogressbar.html#setMaximum">setMaximum</a></b></span>(int <i>maximum</i>)</td></tr>
+</table></div>
+<!-- @@@maximum -->
+<!-- $$$minimum-prop$$$minimum$$$setMinimumint -->
+<h3 class="fn" id="minimum-prop"><span class="name">minimum</span> : <span class="type">int</span></h3>
+<p>最小值.</p>
+<p><b>Access functions:</b></p>
+<div class="table"><table class="alignedsummary">
+<tr><td class="memItemLeft topAlign rightAlign"> int </td><td class="memItemRight bottomAlign"><span class="name"><b><a href="qctmcircleprogressbar.html#minimum">minimum</a></b></span>() const</td></tr>
+<tr><td class="memItemLeft topAlign rightAlign"> void </td><td class="memItemRight bottomAlign"><span class="name"><b><a href="qctmcircleprogressbar.html#setMinimum">setMinimum</a></b></span>(int <i>minimum</i>)</td></tr>
+</table></div>
+<!-- @@@minimum -->
+<!-- $$$penCapStyle-prop$$$penCapStyle$$$setPenCapStyleQt::PenCapStyle -->
+<h3 class="fn" id="penCapStyle-prop"><span class="name">penCapStyle</span> : <span class="type"><a href="https://doc.qt.io/qt/qt.html#PenCapStyle-enum">Qt::PenCapStyle</a></span></h3>
+<p>画笔端点样式.</p>
+<p><b>Access functions:</b></p>
+<div class="table"><table class="alignedsummary">
+<tr><td class="memItemLeft topAlign rightAlign"> Qt::PenCapStyle </td><td class="memItemRight bottomAlign"><span class="name"><b><a href="qctmcircleprogressbar.html#penCapStyle">penCapStyle</a></b></span>() const</td></tr>
+<tr><td class="memItemLeft topAlign rightAlign"> void </td><td class="memItemRight bottomAlign"><span class="name"><b><a href="qctmcircleprogressbar.html#setPenCapStyle">setPenCapStyle</a></b></span>(Qt::PenCapStyle <i>style</i>)</td></tr>
+</table></div>
+<!-- @@@penCapStyle -->
+<!-- $$$text-prop$$$text -->
+<h3 class="fn" id="text-prop"><code>[read-only] </code><span class="name">text</span> : const <span class="type"><a href="https://doc.qt.io/qt/qstring.html">QString</a></span></h3>
+<p>进度条文本.</p>
+<p><b>Access functions:</b></p>
+<div class="table"><table class="alignedsummary">
+<tr><td class="memItemLeft topAlign rightAlign"> virtual QString </td><td class="memItemRight bottomAlign"><span class="name"><b><a href="qctmcircleprogressbar.html#text">text</a></b></span>() const</td></tr>
+</table></div>
+<!-- @@@text -->
+<!-- $$$textVisible-prop$$$isTextVisible$$$setTextVisiblebool -->
+<h3 class="fn" id="textVisible-prop"><span class="name">textVisible</span> : <span class="type">bool</span></h3>
+<p>文本是否可见.</p>
+<p><b>Access functions:</b></p>
+<div class="table"><table class="alignedsummary">
+<tr><td class="memItemLeft topAlign rightAlign"> bool </td><td class="memItemRight bottomAlign"><span class="name"><b><a href="qctmcircleprogressbar.html#isTextVisible">isTextVisible</a></b></span>() const</td></tr>
+<tr><td class="memItemLeft topAlign rightAlign"> void </td><td class="memItemRight bottomAlign"><span class="name"><b><a href="qctmcircleprogressbar.html#setTextVisible">setTextVisible</a></b></span>(bool <i>visible</i>)</td></tr>
+</table></div>
+<!-- @@@textVisible -->
+<!-- $$$value-prop$$$value$$$setValueint$$$valueChangedint -->
+<h3 class="fn" id="value-prop"><span class="name">value</span> : <span class="type">int</span></h3>
+<p>当前进度值.</p>
+<p><b>Access functions:</b></p>
+<div class="table"><table class="alignedsummary">
+<tr><td class="memItemLeft topAlign rightAlign"> int </td><td class="memItemRight bottomAlign"><span class="name"><b><a href="qctmcircleprogressbar.html#value">value</a></b></span>() const</td></tr>
+<tr><td class="memItemLeft topAlign rightAlign"> void </td><td class="memItemRight bottomAlign"><span class="name"><b><a href="qctmcircleprogressbar.html#setValue">setValue</a></b></span>(int <i>value</i>)</td></tr>
+</table></div>
+<p><b>Notifier signal:</b></p>
+<div class="table"><table class="alignedsummary">
+<tr><td class="memItemLeft topAlign rightAlign"> void </td><td class="memItemRight bottomAlign"><span class="name"><b>valueChanged</b></span>(int <i>value</i>)</td></tr>
+</table></div>
+<!-- @@@value -->
+</div>
+<div class="func">
+<h2>Member Function Documentation</h2>
+<!-- $$$QCtmCircleProgressBar[overload1]$$$QCtmCircleProgressBarQWidget* -->
+<h3 class="fn" id="QCtmCircleProgressBar">QCtmCircleProgressBar::<span class="name">QCtmCircleProgressBar</span>(<span class="type">QWidget</span> *<i>parent</i>)</h3>
+<p>构造函数 <i>parent</i>.</p>
+<!-- @@@QCtmCircleProgressBar -->
+<!-- $$$setBackgroundBrush -->
+<h3 class="fn" id="setBackgroundBrush"><code>[slot] </code><span class="type">void</span> QCtmCircleProgressBar::<span class="name">setBackgroundBrush</span>(const <span class="type"><a href="https://doc.qt.io/qt/qbrush.html">QBrush</a></span> &amp;<i>brush</i>)</h3>
+<p>设置背景画刷 <i>brush</i>.</p>
+<p><b>Note: </b>Setter function for property <a href="qctmcircleprogressbar.html#backgroundBrush">backgroundBrush</a>. </p>
+<p><b>See also </b><a href="qctmcircleprogressbar.html#backgroundBrush">backgroundBrush</a>.</p>
+<!-- @@@setBackgroundBrush -->
+<!-- $$$setBarBrush -->
+<h3 class="fn" id="setBarBrush"><code>[slot] </code><span class="type">void</span> QCtmCircleProgressBar::<span class="name">setBarBrush</span>(const <span class="type"><a href="https://doc.qt.io/qt/qbrush.html">QBrush</a></span> &amp;<i>brush</i>)</h3>
+<p>设置进度条画刷 <i>brush</i>.</p>
+<p><b>Note: </b>Setter function for property <a href="qctmcircleprogressbar.html#barBrush">barBrush</a>. </p>
+<p><b>See also </b><a href="qctmcircleprogressbar.html#barBrush">barBrush</a>.</p>
+<!-- @@@setBarBrush -->
+<!-- $$$setBarWidth -->
+<h3 class="fn" id="setBarWidth"><code>[slot] </code><span class="type">void</span> QCtmCircleProgressBar::<span class="name">setBarWidth</span>(<span class="type">int</span> <i>width</i>)</h3>
+<p>设置进度条宽度 <i>width</i>.</p>
+<p><b>Note: </b>Setter function for property <a href="qctmcircleprogressbar.html#barWidth">barWidth</a>. </p>
+<p><b>See also </b><a href="qctmcircleprogressbar.html#barWidth">barWidth</a>.</p>
+<!-- @@@setBarWidth -->
+<!-- $$$setMaximum -->
+<h3 class="fn" id="setMaximum"><code>[slot] </code><span class="type">void</span> QCtmCircleProgressBar::<span class="name">setMaximum</span>(<span class="type">int</span> <i>maximum</i>)</h3>
+<p>设置最大值 <i>maximum</i>.</p>
+<p><b>Note: </b>Setter function for property <a href="qctmcircleprogressbar.html#maximum">maximum</a>. </p>
+<p><b>See also </b><a href="qctmcircleprogressbar.html#maximum">maximum</a> and <a href="qctmcircleprogressbar.html#setRange">setRange</a>.</p>
+<!-- @@@setMaximum -->
+<!-- $$$setMinimum -->
+<h3 class="fn" id="setMinimum"><code>[slot] </code><span class="type">void</span> QCtmCircleProgressBar::<span class="name">setMinimum</span>(<span class="type">int</span> <i>minimum</i>)</h3>
+<p>设置最小值 <i>minimum</i>.</p>
+<p><b>Note: </b>Setter function for property <a href="qctmcircleprogressbar.html#minimum">minimum</a>. </p>
+<p><b>See also </b><a href="qctmcircleprogressbar.html#minimum">minimum</a> and <a href="qctmcircleprogressbar.html#setRange">setRange</a>.</p>
+<!-- @@@setMinimum -->
+<!-- $$$setPenCapStyle -->
+<h3 class="fn" id="setPenCapStyle"><code>[slot] </code><span class="type">void</span> QCtmCircleProgressBar::<span class="name">setPenCapStyle</span>(<span class="type"><a href="https://doc.qt.io/qt/qt.html#PenCapStyle-enum">Qt::PenCapStyle</a></span> <i>style</i>)</h3>
+<p>设置画笔样式 <i>style</i>.</p>
+<p><b>Note: </b>Setter function for property <a href="qctmcircleprogressbar.html#penCapStyle">penCapStyle</a>. </p>
+<p><b>See also </b><a href="qctmcircleprogressbar.html#penCapStyle">penCapStyle</a>.</p>
+<!-- @@@setPenCapStyle -->
+<!-- $$$setRange[overload1]$$$setRangeintint -->
+<h3 class="fn" id="setRange"><code>[slot] </code><span class="type">void</span> QCtmCircleProgressBar::<span class="name">setRange</span>(<span class="type">int</span> <i>minimum</i>, <span class="type">int</span> <i>maximum</i>)</h3>
+<p>设置值范围 <i>minimum</i>, <i>maximum</i>.</p>
+<p><b>See also </b><a href="qctmcircleprogressbar.html#setMaximum">setMaximum</a> and <a href="qctmcircleprogressbar.html#setMinimum">setMinimum</a>.</p>
+<!-- @@@setRange -->
+<!-- $$$setValue -->
+<h3 class="fn" id="setValue"><code>[slot] </code><span class="type">void</span> QCtmCircleProgressBar::<span class="name">setValue</span>(<span class="type">int</span> <i>value</i>)</h3>
+<p>设置值 <i>value</i>.</p>
+<p><b>Note: </b>Setter function for property <a href="qctmcircleprogressbar.html#value">value</a>. </p>
+<p><b>See also </b><a href="qctmcircleprogressbar.html#value">value</a>.</p>
+<!-- @@@setValue -->
+<!-- $$$~QCtmCircleProgressBar[overload1]$$$~QCtmCircleProgressBar -->
+<h3 class="fn" id="dtor.QCtmCircleProgressBar"><code>[virtual] </code>QCtmCircleProgressBar::<span class="name">~QCtmCircleProgressBar</span>()</h3>
+<p>析构函数.</p>
+<!-- @@@~QCtmCircleProgressBar -->
+<!-- $$$backgroundBrush -->
+<h3 class="fn" id="backgroundBrush">const <span class="type"><a href="https://doc.qt.io/qt/qbrush.html">QBrush</a></span> &amp;QCtmCircleProgressBar::<span class="name">backgroundBrush</span>() const</h3>
+<p>返回背景画刷.</p>
+<p><b>Note: </b>Getter function for property backgroundBrush. </p>
+<p><b>See also </b><a href="qctmcircleprogressbar.html#setBackgroundBrush">setBackgroundBrush</a>.</p>
+<!-- @@@backgroundBrush -->
+<!-- $$$barBrush -->
+<h3 class="fn" id="barBrush">const <span class="type"><a href="https://doc.qt.io/qt/qbrush.html">QBrush</a></span> &amp;QCtmCircleProgressBar::<span class="name">barBrush</span>() const</h3>
+<p>返回进度条画刷.</p>
+<p><b>Note: </b>Getter function for property barBrush. </p>
+<p><b>See also </b><a href="qctmcircleprogressbar.html#setBarBrush">setBarBrush</a>.</p>
+<!-- @@@barBrush -->
+<!-- $$$barWidth -->
+<h3 class="fn" id="barWidth"><span class="type">int</span> QCtmCircleProgressBar::<span class="name">barWidth</span>() const</h3>
+<p>返回进度条宽度.</p>
+<p><b>Note: </b>Getter function for property barWidth. </p>
+<p><b>See also </b><a href="qctmcircleprogressbar.html#setBarWidth">setBarWidth</a>.</p>
+<!-- @@@barWidth -->
+<!-- $$$format -->
+<h3 class="fn" id="format">const <span class="type"><a href="https://doc.qt.io/qt/qstring.html">QString</a></span> &amp;QCtmCircleProgressBar::<span class="name">format</span>() const</h3>
+<p>返回文本格式.</p>
+<p><b>Note: </b>Getter function for property format. </p>
+<p><b>See also </b><a href="qctmcircleprogressbar.html#setFormat">setFormat</a>.</p>
+<!-- @@@format -->
+<!-- $$$isTextVisible -->
+<h3 class="fn" id="isTextVisible"><span class="type">bool</span> QCtmCircleProgressBar::<span class="name">isTextVisible</span>() const</h3>
+<p>返回文本是否可见.</p>
+<p><b>Note: </b>Getter function for property <a href="qctmcircleprogressbar.html#textVisible-prop">textVisible</a>. </p>
+<p><b>See also </b><a href="qctmcircleprogressbar.html#setTextVisible">setTextVisible</a>.</p>
+<!-- @@@isTextVisible -->
+<!-- $$$maximum -->
+<h3 class="fn" id="maximum"><span class="type">int</span> QCtmCircleProgressBar::<span class="name">maximum</span>() const</h3>
+<p>返回最大值.</p>
+<p><b>Note: </b>Getter function for property maximum. </p>
+<p><b>See also </b><a href="qctmcircleprogressbar.html#setMaximum">setMaximum</a> and <a href="qctmcircleprogressbar.html#setRange">setRange</a>.</p>
+<!-- @@@maximum -->
+<!-- $$$minimum -->
+<h3 class="fn" id="minimum"><span class="type">int</span> QCtmCircleProgressBar::<span class="name">minimum</span>() const</h3>
+<p>返回最小值.</p>
+<p><b>Note: </b>Getter function for property minimum. </p>
+<p><b>See also </b><a href="qctmcircleprogressbar.html#setMinimum">setMinimum</a> and <a href="qctmcircleprogressbar.html#setRange">setRange</a>.</p>
+<!-- @@@minimum -->
+<!-- $$$minimumSizeHint[overload1]$$$minimumSizeHint -->
+<h3 class="fn" id="minimumSizeHint"><code>[override virtual protected] </code><span class="type"><a href="https://doc.qt.io/qt/qsize.html">QSize</a></span> QCtmCircleProgressBar::<span class="name">minimumSizeHint</span>() const</h3>
+<!-- @@@minimumSizeHint -->
+<!-- $$$paintEvent[overload1]$$$paintEventQPaintEvent* -->
+<h3 class="fn" id="paintEvent"><code>[override virtual protected] </code><span class="type">void</span> QCtmCircleProgressBar::<span class="name">paintEvent</span>(<span class="type"><a href="https://doc.qt.io/qt/qpaintevent.html">QPaintEvent</a></span> *<i>event</i>)</h3>
+<!-- @@@paintEvent -->
+<!-- $$$penCapStyle -->
+<h3 class="fn" id="penCapStyle"><span class="type"><a href="https://doc.qt.io/qt/qt.html#PenCapStyle-enum">Qt::PenCapStyle</a></span> QCtmCircleProgressBar::<span class="name">penCapStyle</span>() const</h3>
+<p>返回画笔样式.</p>
+<p><b>Note: </b>Getter function for property penCapStyle. </p>
+<p><b>See also </b><a href="qctmcircleprogressbar.html#setPenCapStyle">setPenCapStyle</a>.</p>
+<!-- @@@penCapStyle -->
+<!-- $$$setFormat -->
+<h3 class="fn" id="setFormat"><span class="type">void</span> QCtmCircleProgressBar::<span class="name">setFormat</span>(const <span class="type"><a href="https://doc.qt.io/qt/qstring.html">QString</a></span> &amp;<i>format</i>)</h3>
+<p>设置文本格式 <i>format</i>, 参考 <a href="https://doc.qt.io/qt/qprogressbar.html">QProgressBar</a> 文本格式.</p>
+<p><b>Note: </b>Setter function for property <a href="qctmcircleprogressbar.html#format">format</a>. </p>
+<p><b>See also </b><a href="qctmcircleprogressbar.html#format">format</a>.</p>
+<!-- @@@setFormat -->
+<!-- $$$setTextVisible -->
+<h3 class="fn" id="setTextVisible"><span class="type">void</span> QCtmCircleProgressBar::<span class="name">setTextVisible</span>(<span class="type">bool</span> <i>visible</i>)</h3>
+<p>设置文本是否可见 <i>visible</i>.</p>
+<p><b>Note: </b>Setter function for property <a href="qctmcircleprogressbar.html#textVisible-prop">textVisible</a>. </p>
+<p><b>See also </b><a href="qctmcircleprogressbar.html#isTextVisible">isTextVisible</a>.</p>
+<!-- @@@setTextVisible -->
+<!-- $$$sizeHint[overload1]$$$sizeHint -->
+<h3 class="fn" id="sizeHint"><code>[override virtual protected] </code><span class="type"><a href="https://doc.qt.io/qt/qsize.html">QSize</a></span> QCtmCircleProgressBar::<span class="name">sizeHint</span>() const</h3>
+<!-- @@@sizeHint -->
+<!-- $$$text -->
+<h3 class="fn" id="text"><code>[virtual] </code><span class="type"><a href="https://doc.qt.io/qt/qstring.html">QString</a></span> QCtmCircleProgressBar::<span class="name">text</span>() const</h3>
+<p>返回文本字符串.</p>
+<p><b>Note: </b>Getter function for property text. </p>
+<!-- @@@text -->
+<!-- $$$value -->
+<h3 class="fn" id="value"><span class="type">int</span> QCtmCircleProgressBar::<span class="name">value</span>() const</h3>
+<p>返回当前值.</p>
+<p><b>Note: </b>Getter function for property value. </p>
+<p><b>See also </b><a href="qctmcircleprogressbar.html#setValue">setValue</a>.</p>
+<!-- @@@value -->
+</div>
+        </div>
+       </div>
+   </div>
+   </div>
+</div>
+<div class="footer">
+   <p>
+   <acronym title="Copyright">&copy;</acronym> QCustomUi
+   Documentation contributions included herein are the copyrights of
+   their respective owners.<br/>    The documentation provided herein is licensed under the terms of the    <a href="http://www.gnu.org/licenses/fdl.html">GNU Free Documentation    License version 1.3</a> as published by the Free Software Foundation.<br/> </div>
+</body>
+</html>
