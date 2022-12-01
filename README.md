@@ -10,8 +10,6 @@ QCustomUi是一个自定义UI库，主要提供无边框窗口和一些自定义
 编译完成后，点击安装，会自动安装设计器插件到QtDesigner和QtCreator下。
 >注意：如果没有将Qt的运行库设置到PATH环境变量中，QtCreator可能缺乏某些QCustomUi依赖的Qt库而无法加载设计器插件。
 
-API文档：https://llongww.gitee.io/qcustomuidocument
-
 ## 二、控件介绍
 
 ### 1. 基本窗口
