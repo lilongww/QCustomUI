@@ -314,7 +314,7 @@ void QCtmFramelessDelegate::mousePressEvent(QMouseEvent* e)
 #if QT_VERSION < QT_VERSION_CHECK(6, 0, 0)
         m_impl->mousePressPos = e->globalPos();
 #else
-        m_impl->mousePressPos = e->screenPos();
+        m_impl->mousePressPos = e->globalPosition();
 #endif
     }
 }
@@ -400,7 +400,11 @@ void QCtmFramelessDelegate::mouseReleaseEvent(QMouseEvent* e)
         m_impl->mousePressed = false;
         if (m_impl->direction != NONE)
         {
+#if QT_VERSION < QT_VERSION_CHECK(6, 0, 0)
             region(e->globalPos());
+#else
+            region(e->globalPosition().toPoint());
+#endif
             if (m_impl->direction == NONE)
             {
                 if (m_impl->shadowless)
