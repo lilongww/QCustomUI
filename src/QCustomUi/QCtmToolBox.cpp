@@ -102,18 +102,6 @@ void QCtmToolBox::removeWidget(QWidget* widget)
 }
 
 /*!
-    \overload
-                移除第 \a index 个子窗口.
-    \sa         removeWidget
-*/
-void QCtmToolBox::removeWidget(int index)
-{
-    auto w = m_impl->vSplitter->widget(index);
-    if (w)
-        delete w;
-}
-
-/*!
     \brief      返回 \a widget 的序号.
     \sa         widget
 */
