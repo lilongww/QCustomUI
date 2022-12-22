@@ -28,7 +28,6 @@
 struct QCtmLoadingDialog::Impl
 {
     Ui::QCtmLoadingDialog* ui { new Ui::QCtmLoadingDialog };
-    QMovie* movie { nullptr };
     ~Impl() { delete ui; }
     QEventLoop loop;
     Result result { Result::Cancel };
@@ -45,15 +44,24 @@ struct QCtmLoadingDialog::Impl
 */
 
 /*!
+    \enum       QCtmLoadingDialog::Result
+                loading窗口退出状态.
+    \value      Cancel
+                loading窗口以取消或中止状态退出.
+    \value      Done
+                loading窗口以完成状态退出.
+*/
+
+/*!
     \brief      构造函数，在 \a parent 的顶层窗口上覆盖加载窗口.
 */
 QCtmLoadingDialog::QCtmLoadingDialog(QWidget* parent) : QWidget(parent->topLevelWidget()), m_impl(std::make_unique<Impl>())
 {
     setFocusPolicy(Qt::FocusPolicy::StrongFocus);
     m_impl->ui->setupUi(this);
-    m_impl->movie = new QMovie(this);
-    m_impl->movie->setFileName(":/QCustomUi/Resources/loading.gif");
-    m_impl->ui->label->setMovie(m_impl->movie);
+    auto movie = new QMovie(this);
+    movie->setFileName(":/QCustomUi/Resources/loading.gif");
+    m_impl->ui->label->setMovie(movie);
     setVisible(false);
     parent->topLevelWidget()->installEventFilter(this);
 }
@@ -74,6 +82,25 @@ void QCtmLoadingDialog::setCancelEnable(bool flag) { m_impl->cancelEnable = flag
     \sa         setCancelEnable
 */
 bool QCtmLoadingDialog::cancelEnable() const { return m_impl->cancelEnable; }
+
+/*!
+    \brief      设置动画 \a movie.
+    \sa         movie
+*/
+void QCtmLoadingDialog::setMovie(QMovie* movie)
+{
+    if (auto old = m_impl->ui->label->movie(); old)
+    {
+        delete old;
+    }
+    m_impl->ui->label->setMovie(movie);
+}
+
+/*!
+    \brief      返回动画指针.
+    \sa         setMovie
+*/
+QMovie* QCtmLoadingDialog::movie() const { return m_impl->ui->label->movie(); }
 
 /*!
     \brief      Loading 窗口加载完成时调用该函数，测试exec返回Done.
@@ -127,7 +154,11 @@ void QCtmLoadingDialog::showEvent(QShowEvent* e)
     this->setGeometry(QRect(QPoint(0, 0), tl->size()));
     raise();
     setFocus();
-    m_impl->movie->start();
+    if (auto movie = m_impl->ui->label->movie(); movie)
+    {
+        movie->start();
+    }
+    QWidget::showEvent(e);
 }
 
 /*!
@@ -137,6 +168,7 @@ void QCtmLoadingDialog::closeEvent(QCloseEvent* event)
 {
     if (m_impl->loop.isRunning())
         m_impl->loop.quit();
+    QWidget::closeEvent(event);
 }
 
 /*!
@@ -146,6 +178,7 @@ void QCtmLoadingDialog::hideEvent(QHideEvent* event)
 {
     if (m_impl->loop.isRunning())
         m_impl->loop.quit();
+    QWidget::hideEvent(event);
 }
 
 /*!
