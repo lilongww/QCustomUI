@@ -1,0 +1,34 @@
+﻿/*!
+    \headerfile <Version.h>
+    \title      Version
+    \brief      OpenVisa版本宏标识，供编程版本判断.
+    \inmodule   OpenVisa
+*/
+
+/*!
+    \macro      OPENVISA_VERSION_MAJOR
+    \relates    <Version.h>
+
+    OpenVisa 主要版本号，该版本号变化表示 OpenVisa 的功能或API发生重大变化或达到某设定目标.
+*/
+
+/*!
+    \macro      OPENVISA_VERSION_MINOR
+    \relates    <Version.h>
+
+    OpenVisa 次要版本号，该版本号变化表示 OpenVisa 的功能或API发生变化.
+*/
+
+/*!
+    \macro      OPENVISA_VERSION_MICRO
+    \relates    <Version.h>
+
+    OpenVisa 末端版本号，该版本号变化表示 OpenVisa 的bug修复，功能和API未发生变化.
+*/
+
+/*!
+    \macro      OPENVISA_VERSION
+    \relates    <Version.h>
+
+    OpenVisa 版本号字符串.
+*/
