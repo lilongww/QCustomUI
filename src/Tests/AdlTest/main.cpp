@@ -1,5 +1,6 @@
 ﻿#include <OpenVisa/Object.h>
 #include <OpenVisa/Utils.h>
+#include <OpenVisa/Version.h>
 #include <gtest/gtest.h>
 
 enum class EnumTest
@@ -69,6 +70,7 @@ TEST(AdlTest, enum)
 
 int main(int argc, char* argv[])
 {
+    std::cout << std::string("OpenVisa Version:") + OPENVISA_VERSION << std::endl;
     testing::InitGoogleTest(&argc, argv);
     return RUN_ALL_TESTS();
 }

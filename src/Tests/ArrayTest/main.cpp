@@ -1,6 +1,7 @@
 ﻿#include <OpenVisa/AsciiArray.h>
 #include <OpenVisa/BinaryArray.h>
 #include <OpenVisa/Object.h>
+#include <OpenVisa/Version.h>
 #include <gtest/gtest.h>
 
 TEST(ArrayTest, AsciiArray_int)
@@ -39,6 +40,7 @@ TEST(ArrayTest, BinaryArray_double)
 
 int main(int argc, char* argv[])
 {
+    std::cout << std::string("OpenVisa Version:") + OPENVISA_VERSION << std::endl;
     testing::InitGoogleTest(&argc, argv);
     return RUN_ALL_TESTS();
 }
