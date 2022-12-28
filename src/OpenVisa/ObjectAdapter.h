@@ -26,9 +26,6 @@ namespace OpenVisa
 class ObjectAdapter
 {
 public:
-    inline ObjectAdapter(Object& object) {}
-    virtual ~ObjectAdapter() {}
-
     Object& object() { return m_object; }
     template<typename... Args>
     inline void send(std::string_view fmt, const Args&... args)
@@ -43,8 +40,12 @@ public:
     {
         return m_object.query(fmt, std::forward<const Args&>(args)...);
     }
-    inline Attribute& attribute() noexcept { return m_object.attribute(); }
-    inline CommonCommand& commonCommand() noexcept { return m_object.commonCommand(); }
+    inline Object::Attribute& attribute() noexcept { return m_object.attribute(); }
+    inline Object::CommonCommand& commonCommand() noexcept { return m_object.commonCommand(); }
+
+protected:
+    inline ObjectAdapter(Object& object) : m_object(object) {}
+    virtual ~ObjectAdapter() {}
 
 private:
     Object& m_object;
