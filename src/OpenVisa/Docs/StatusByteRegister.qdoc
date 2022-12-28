@@ -1,12 +1,12 @@
-/*!
-    \enum       StatusByteRegister
-                ״̬�ֽ�.
-    \value      Unused1                     δʹ��
-    \value      Unused2                     δʹ��
-    \value      ErrorQueue                  һ��������������ڶ����У�ʹ��SYSTem:ERRor?��ȡ��ɾ������.
-    \value      QuestionableDataSummary     One or more bits are set in the Questionable Data Register (bits must be enabled, see STATus:QUEStionable:ENABle ).
-    \value      MessageAvailable            ���ݵ����豸���������.
-    \value      StandardEventSummary        One or more bits are set in the Standard Event Register (bits must be enabled, see *ESE).
-    \value      MasterSummary               One or more bits are set in the Status Byte Register and may generate a Request for Service (RQS). Bits must be enabled using *SRE.
-    \value      StandardOperationSummary    One or more bits are set in the Operation Status Register. Bits are enabled using STATus:OPERation:ENABle.
+﻿/*!
+    \enum       OpenVisa::StatusByteRegister
+                状态字节.
+    \value      Unused1                     未使用
+    \value      Unused2                     未使用
+    \value      ErrorQueue                  一个或多个错误存在于队列中，使用SYSTem:ERRor?读取和删除错误.
+    \value      QuestionableDataSummary     在可疑数据寄存器中设置一个或多个位（必须启用这些位，请参见 STATus:QUEStionable:ENABle）.
+    \value      MessageAvailable            仪器输出缓冲区中的数据可用.
+    \value      StandardEventSummary        在标准事件寄存器中设置一个或多个位（必须启用这些位，请参见 *ESE）.
+    \value      MasterSummary               一个或多个位在状态字节寄存器中设置且可能生成服务请求 (RQS)。 必须使用 *SRE 启用位.
+    \value      StandardOperationSummary    在标准操作寄存器中设置一个或多个位（必须启用这些位，请参见 STATus:OPERation:ENABle）.
 */

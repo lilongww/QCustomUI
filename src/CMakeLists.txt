@@ -1,6 +1,8 @@
 ﻿add_subdirectory(OpenVisa)
 add_subdirectory(Examples)
 if(BUILD_TEST)
+include(${PROJECT_SOURCE_DIR}/cmake/Test.cmake)
 message("-- Build tests ON")
 add_subdirectory(Tests)
+add_subdirectory(3rd)
 endif(BUILD_TEST)

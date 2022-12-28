@@ -4,6 +4,7 @@
 // clang-format off
 
 #include "resource.h"
+#include "Version.h"
 
 #define APSTUDIO_READONLY_SYMBOLS
 /////////////////////////////////////////////////////////////////////////////
@@ -54,8 +55,8 @@ END
 //
 
 VS_VERSION_INFO VERSIONINFO
- FILEVERSION 0,3,0,0
- PRODUCTVERSION 0,3,0,0
+ FILEVERSION OPENVISA_VERSION_MAJOR,OPENVISA_VERSION_MINOR,OPENVISA_VERSION_MICRO,0
+ PRODUCTVERSION OPENVISA_VERSION_MAJOR,OPENVISA_VERSION_MINOR,OPENVISA_VERSION_MICRO,0
  FILEFLAGSMASK 0x3fL
 #ifdef _DEBUG
  FILEFLAGS 0x1L
@@ -72,7 +73,7 @@ BEGIN
         BEGIN
             VALUE "CompanyName", "Open Source Visa Library"
             VALUE "FileDescription", "Open Source Visa Library"
-            VALUE "FileVersion", "0.3.0"
+            VALUE "FileVersion", OPENVISA_VERSION
 #ifdef _DEBUG
             VALUE "InternalName", "OpenVisad.dll"
 #else
@@ -85,7 +86,7 @@ BEGIN
             VALUE "OriginalFilename", "OpenVisa.dll"
 #endif
             VALUE "ProductName", "OpenVisa"
-            VALUE "ProductVersion", "0.3.0"
+            VALUE "ProductVersion", OPENVISA_VERSION
         END
     END
     BLOCK "VarFileInfo"
