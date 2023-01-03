@@ -444,7 +444,7 @@ void QCtmDigitKeyboard::createUnits()
 
     if (!m_impl->units.empty() && m_impl->units.size() < 4)
     {
-        for (int i = m_impl->units.size(); i < 4; i++)
+        for (int i = static_cast<int>(m_impl->units.size()); i < 4; i++)
         {
             m_impl->ui.unitsLayout->addItem(new QSpacerItem(0, 0), i % 4, i / 4, Qt::AlignTop);
         }

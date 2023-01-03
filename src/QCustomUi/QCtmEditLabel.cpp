@@ -195,10 +195,11 @@ void QCtmEditLabel::onEditButtonClicked()
     edit->setFont(this->font());
     edit->setText(this->text());
     layout->addWidget(edit);
-    auto applayBtn = new QToolButton(editBase);
-    applayBtn->setFixedSize(EditButtonSize, EditButtonSize);
-    applayBtn->setIcon(m_impl->finishButtonIcon);
-    connect(applayBtn,
+    auto applyBtn = new QToolButton(editBase);
+    applyBtn->setObjectName("QCtmEditLabel_applyBtn");
+    applyBtn->setFixedSize(EditButtonSize, EditButtonSize);
+    applyBtn->setIcon(m_impl->finishButtonIcon);
+    connect(applyBtn,
             &QToolButton::clicked,
             this,
             [=]()
@@ -207,8 +208,9 @@ void QCtmEditLabel::onEditButtonClicked()
                 editBase->close();
                 emit editFinished();
             });
-    layout->addWidget(applayBtn);
+    layout->addWidget(applyBtn);
     auto cancelBtn = new QToolButton(editBase);
+    cancelBtn->setObjectName("QCtmEditLabel_cancelBtn");
     cancelBtn->setFixedSize(EditButtonSize, EditButtonSize);
     cancelBtn->setIcon(m_impl->revertButtonIcon);
     connect(cancelBtn, &QToolButton::clicked, this, [=]() { editBase->close(); });

@@ -34,18 +34,15 @@ class QCUSTOMUI_EXPORT QCtmEditLabel : public QLabel
     Q_PROPERTY(QIcon finishButtonIcon READ finishButtonIcon WRITE setFinishButtonIcon)
     Q_PROPERTY(QIcon revertButtonIcon READ revertButtonIcon WRITE setRevertButtonIcon)
 public:
-    QCtmEditLabel(QWidget* parent = nullptr, Qt::WindowFlags f = Qt::WindowFlags());
-    QCtmEditLabel(const QString& text, QWidget* parent = nullptr, Qt::WindowFlags f = Qt::WindowFlags());
+    explicit QCtmEditLabel(QWidget* parent = nullptr, Qt::WindowFlags f = Qt::WindowFlags());
+    explicit QCtmEditLabel(const QString& text, QWidget* parent = nullptr, Qt::WindowFlags f = Qt::WindowFlags());
     ~QCtmEditLabel();
     void setReadOnly(bool flag);
     bool isReadOnly() const;
-
     void setEditButtonIcon(const QIcon& icon);
     QIcon editButtonIcon() const;
-
     void setFinishButtonIcon(const QIcon& icon);
     QIcon finishButtonIcon() const;
-
     void setRevertButtonIcon(const QIcon& icon);
     QIcon revertButtonIcon() const;
 signals:

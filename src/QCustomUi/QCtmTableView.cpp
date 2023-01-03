@@ -61,7 +61,11 @@ bool QCtmTableView::viewportEvent(QEvent* event)
     {
     case QEvent::HoverMove:
     case QEvent::HoverEnter:
+#if QT_VERSION < QT_VERSION_CHECK(6, 0, 0)
         setHoverIndex(indexAt(static_cast<QHoverEvent*>(event)->pos()));
+#else
+        setHoverIndex(indexAt(static_cast<QHoverEvent*>(event)->position().toPoint()));
+#endif
         break;
     case QEvent::HoverLeave:
     case QEvent::Leave:
@@ -83,21 +87,29 @@ void QCtmTableView::setHoverIndex(const QModelIndex& index)
 {
     if (!model())
         return;
+
+    auto delegate = [this](const QModelIndex& index)
+    {
+#if QT_VERSION < QT_VERSION_CHECK(6, 0, 0)
+        return qobject_cast<QCtmTableItemDelegate*>(itemDelegate(index));
+#else
+        return qobject_cast<QCtmTableItemDelegate*>(itemDelegateForIndex(index));
+#endif
+    };
+
     if (m_hover.isValid())
     {
         if (this->selectionBehavior() == QAbstractItemView::SelectRows)
         {
             for (int i = 0; i < this->model()->columnCount(); i++)
             {
-                auto itd = qobject_cast<QCtmTableItemDelegate*>(itemDelegate(model()->index(m_hover.row(), i)));
-                if (itd)
+                if (auto itd = delegate(model()->index(m_hover.row(), i)); itd)
                     itd->setHoverIndex(QModelIndex());
             }
         }
         else
         {
-            auto itd = qobject_cast<QCtmTableItemDelegate*>(itemDelegate(m_hover));
-            if (itd)
+            if (auto itd = delegate(m_hover); itd)
                 itd->setHoverIndex(QModelIndex());
         }
     }
@@ -108,15 +120,13 @@ void QCtmTableView::setHoverIndex(const QModelIndex& index)
         {
             for (int i = 0; i < this->model()->columnCount(); i++)
             {
-                auto itd = qobject_cast<QCtmTableItemDelegate*>(itemDelegate(model()->index(m_hover.row(), i)));
-                if (itd)
+                if (auto itd = delegate(model()->index(m_hover.row(), i)); itd)
                     itd->setHoverIndex(m_hover);
             }
         }
         else
         {
-            auto itd = qobject_cast<QCtmTableItemDelegate*>(itemDelegate(m_hover));
-            if (itd)
+            if (auto itd = delegate(m_hover); itd)
                 itd->setHoverIndex(m_hover);
         }
     }

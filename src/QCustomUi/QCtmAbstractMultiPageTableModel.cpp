@@ -18,6 +18,7 @@
 **********************************************************************************/
 #include "QCtmAbstractMultiPageTableModel.h"
 
+#include <QDataStream>
 #include <QMimeData>
 
 /*!
@@ -62,7 +63,11 @@ bool QCtmAbstractMultiPageTableModel::dropMimeData(const QMimeData* data,
         return false;
 
     QByteArray encoded = data->data(format);
+#if QT_VERSION >= QT_VERSION_CHECK(6, 0, 0)
     QDataStream stream(&encoded, QDataStream::ReadOnly);
+#else
+    QDataStream stream(&encoded, QIODevice::ReadOnly);
+#endif
 
     // if the drop is on an item, replace the data in the items
     if (parent.isValid() && row == -1 && column == -1)

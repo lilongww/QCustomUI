@@ -27,6 +27,8 @@
 #include <QStyleOption>
 #include <QVBoxLayout>
 
+#include <algorithm>
+
 struct QCtmDrawerWidget::Impl
 {
     QSplitter* splitter { nullptr };
@@ -198,7 +200,7 @@ void QCtmDrawerWidget::doResize()
 {
     auto sizes = m_impl->splitter->sizes();
 
-    if (allClosed())
+    if (isAllCollapsed())
     {
         for (int i = 0; i < sizes.size(); i++)
         {
@@ -229,7 +231,7 @@ void QCtmDrawerWidget::doResize()
         {
             if (w->isExpand())
             {
-                sizes[i] += m_impl->splitter->height() - this->total(sizes);
+                sizes[i] += m_impl->splitter->height() - this->totalSize(sizes);
                 break;
             }
         }
@@ -303,7 +305,7 @@ void QCtmDrawerWidget::collapseAll()
 /*!
     \brief      返回所有的抽屉项是否都关闭了.
 */
-bool QCtmDrawerWidget::allClosed() const
+bool QCtmDrawerWidget::isAllCollapsed() const
 {
     for (int i = 0; i < m_impl->splitter->count(); i++)
     {
@@ -317,15 +319,7 @@ bool QCtmDrawerWidget::allClosed() const
 /*!
     \brief      返回 \a sizes 的总和.
 */
-int QCtmDrawerWidget::total(const QList<int>& sizes) const
-{
-    int total = 0;
-    for (auto size : sizes)
-    {
-        total += size;
-    }
-    return total;
-}
+int QCtmDrawerWidget::totalSize(const QList<int>& sizes) const { return std::accumulate(sizes.begin(), sizes.end(), 0); }
 
 /*!
     \reimp
@@ -362,9 +356,9 @@ void QCtmDrawerWidget::childExpandChanged(QCtmDrawerItemWidget* item, bool expan
                 {
                     m_impl->splitter->setStretchFactor(i, i == index ? 1 : 0);
                 }
-                auto total1  = total(sizes);
+                auto total1  = totalSize(sizes);
                 sizes[index] = item->suggestSize();
-                auto total2  = total(sizes);
+                auto total2  = totalSize(sizes);
                 int s        = total2 - total1;
                 for (int i = index + 1; i < sizes.size(); i++)
                 {

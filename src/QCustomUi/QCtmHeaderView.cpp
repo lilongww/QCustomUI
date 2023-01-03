@@ -126,8 +126,12 @@ void QCtmHeaderView::mousePressEvent(QMouseEvent* e)
 {
     if (e->button() == Qt::LeftButton)
     {
-        auto pos          = orientation() == Qt::Horizontal ? e->x() : e->y();
-        auto logicalIndex = logicalIndexAt(pos);
+#if QT_VERSION < QT_VERSION_CHECK(6, 0, 0)
+        auto pos = orientation() == Qt::Horizontal ? e->x() : e->y();
+#else
+        auto pos = orientation() == Qt::Horizontal ? e->position().x() : e->position().y();
+#endif
+        auto logicalIndex = logicalIndexAt(static_cast<int>(pos));
         if (logicalIndex < 0)
         {
             QHeaderView::mousePressEvent(e);

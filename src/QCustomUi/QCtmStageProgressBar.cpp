@@ -119,7 +119,7 @@ int QCtmStageProgressBar::stageCount() const { return m_impl->stageCount; }
 
 /*!
     \brief      设置阶段节点圆形的半径像素 \a radius.
-    \sa         stageCricleRadius()
+    \sa         stageCircleRadius
 */
 void QCtmStageProgressBar::setStageCircleRadius(int radius)
 {

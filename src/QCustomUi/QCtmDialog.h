@@ -32,7 +32,7 @@ class QCUSTOMUI_EXPORT QCtmDialog : public QDialog
     Q_OBJECT
 
 public:
-    QCtmDialog(QWidget* parent = nullptr);
+    explicit QCtmDialog(QWidget* parent = nullptr);
     ~QCtmDialog();
 
     void setCentralWidget(QWidget* widget);
