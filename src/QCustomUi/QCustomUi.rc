@@ -69,12 +69,12 @@ BEGIN
         BEGIN
             VALUE "CompanyName", "QCustomUi"
             VALUE "FileDescription", "QCustomUi"
-            VALUE "FileVersion", "1.10.0 beta 2"
+            VALUE "FileVersion", "1.10.0.0-beta3"
             VALUE "InternalName", "QCustomUi.dll"
-            VALUE "LegalCopyright", "Copyright (C) 2022"
+            VALUE "LegalCopyright", "Copyright (C) 2019-2023 QCustomUi"
             VALUE "OriginalFilename", "QCustomUi.dll"
             VALUE "ProductName", "QCustomUi"
-            VALUE "ProductVersion", "1.10.0 beta 2"
+            VALUE "ProductVersion", "1.10.0.0-beta3"
         END
     END
     BLOCK "VarFileInfo"
@@ -97,4 +97,4 @@ END
 
 /////////////////////////////////////////////////////////////////////////////
 #endif    // not APSTUDIO_INVOKED
-    // clang-format on
+// clang-format on

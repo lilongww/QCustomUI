@@ -1,6 +1,6 @@
 ﻿/*********************************************************************************
 **                                                                              **
-**  Copyright (C) 2019-2022 LiLong                                              **
+**  Copyright (C) 2019-2023 LiLong                                              **
 **  This file is part of QCustomUi.                                             **
 **                                                                              **
 **  QCustomUi is free software: you can redistribute it and/or modify           **
@@ -28,13 +28,12 @@ class QCUSTOMUI_EXPORT QCtmToolBox : public QWidget
     Q_OBJECT
     Q_PROPERTY(QSize iconSize READ iconSize WRITE setIconSize NOTIFY iconSizeChanged)
 public:
-    QCtmToolBox(QWidget* parent = nullptr);
+    explicit QCtmToolBox(QWidget* parent = nullptr);
     ~QCtmToolBox();
 
     void addWidget(const QString& title, QWidget* widget);
     void insertWidget(int index, const QString& title, QWidget* widget);
     void removeWidget(QWidget* widget);
-    void removeWidget(int index);
     int indexOf(QWidget* widget) const;
     QWidget* widget(int index) const;
     void setStretchFactor(int index, int stretch);

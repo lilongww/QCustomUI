@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <QtHelpProject version="1.0">
-    <namespace>com.qcustomui.1.10.0-beta.2</namespace>
+    <namespace>com.qcustomui.1.10.0-beta.3</namespace>
     <virtualFolder>qcustomui</virtualFolder>
     <metaData name="version" value=""/>
     <customFilter name="QCustomUi">
@@ -223,6 +223,9 @@
             <keyword name="QCtmIPAddressEdit" id="QCtmIPAddressEdit" ref="qctmipaddressedit.html"/>
             <keyword name="QCtmInputDialog" id="QCtmInputDialog" ref="qctminputdialog.html"/>
             <keyword name="QCtmLoadingDialog" id="QCtmLoadingDialog" ref="qctmloadingdialog.html"/>
+            <keyword name="QCtmLoadingDialog::Cancel" id="QCtmLoadingDialog::Cancel" ref="qctmloadingdialog.html#Result-enum"/>
+            <keyword name="QCtmLoadingDialog::Done" id="QCtmLoadingDialog::Done" ref="qctmloadingdialog.html#Result-enum"/>
+            <keyword name="QCtmLoadingDialog::Result" id="QCtmLoadingDialog::Result" ref="qctmloadingdialog.html#Result-enum"/>
             <keyword name="QCtmLogData" id="QCtmLogData" ref="qctmlogdata.html"/>
             <keyword name="QCtmLogData::ASC" id="QCtmLogData::ASC" ref="qctmlogdata.html#LogInsertPolicy-enum"/>
             <keyword name="QCtmLogData::DESC" id="QCtmLogData::DESC" ref="qctmlogdata.html#LogInsertPolicy-enum"/>
@@ -344,7 +347,6 @@
             <keyword name="addUser" id="QCtmNavigationBar::addUser" ref="qctmnavigationbar.html#addUser"/>
             <keyword name="addWidget" id="QCtmDrawerWidget::addWidget" ref="qctmdrawerwidget.html#addWidget"/>
             <keyword name="addWidget" id="QCtmToolBox::addWidget" ref="qctmtoolbox.html#addWidget"/>
-            <keyword name="allClosed" id="QCtmDrawerWidget::allClosed" ref="qctmdrawerwidget.html#allClosed"/>
             <keyword name="backgroundBrush" id="QCtmCircleProgressBar::backgroundBrush" ref="qctmcircleprogressbar.html#backgroundBrush"/>
             <keyword name="backgroundBrush" id="QCtmCircleProgressBar::backgroundBrush" ref="qctmcircleprogressbar.html#backgroundBrush-prop"/>
             <keyword name="barBrush" id="QCtmCircleProgressBar::barBrush" ref="qctmcircleprogressbar.html#barBrush"/>
@@ -539,6 +541,7 @@
             <keyword name="insertWidget" id="QCtmToolBox::insertWidget" ref="qctmtoolbox.html#insertWidget"/>
             <keyword name="instance" id="QCtmLogManager::instance" ref="qctmlogmanager.html#instance"/>
             <keyword name="ipAddress" id="QCtmIPAddressEdit::ipAddress" ref="qctmipaddressedit.html#ipAddress"/>
+            <keyword name="isAllCollapsed" id="QCtmDrawerWidget::isAllCollapsed" ref="qctmdrawerwidget.html#isAllCollapsed"/>
             <keyword name="isChecked" id="QCtmMultiComboBox::isChecked" ref="qctmmulticombobox.html#isChecked"/>
             <keyword name="isExpand" id="QCtmDrawerItemWidget::isExpand" ref="qctmdraweritemwidget.html#isExpand"/>
             <keyword name="isIndexHidden" id="QCtmClassifyTreeView::isIndexHidden" ref="qctmclassifytreeview.html#isIndexHidden"/>
@@ -605,6 +608,7 @@
             <keyword name="mouseReleaseEvent" id="QCtmIPAddressEdit::mouseReleaseEvent" ref="qctmipaddressedit.html#mouseReleaseEvent"/>
             <keyword name="mouseReleaseEvent" id="QCtmPathBrowser::mouseReleaseEvent" ref="qctmpathbrowser.html#mouseReleaseEvent"/>
             <keyword name="moveCursor" id="QCtmClassifyTreeView::moveCursor" ref="qctmclassifytreeview.html#moveCursor"/>
+            <keyword name="movie" id="QCtmLoadingDialog::movie" ref="qctmloadingdialog.html#movie"/>
             <keyword name="msg" id="QCtmLogData::msg" ref="qctmlogdata.html#msg"/>
             <keyword name="nativeEvent" id="QCtmDialog::nativeEvent" ref="qctmdialog.html#nativeEvent"/>
             <keyword name="nativeEvent" id="QCtmInputDialog::nativeEvent" ref="qctminputdialog.html#nativeEvent"/>
@@ -757,6 +761,7 @@
             <keyword name="setModel" id="QCtmMessageTipView::setModel" ref="qctmmessagetipview.html#setModel"/>
             <keyword name="setModel" id="QCtmMultiComboBox::setModel" ref="qctmmulticombobox.html#setModel"/>
             <keyword name="setModel" id="QCtmMultiPageButtonBox::setModel" ref="qctmmultipagebuttonbox.html#setModel"/>
+            <keyword name="setMovie" id="QCtmLoadingDialog::setMovie" ref="qctmloadingdialog.html#setMovie"/>
             <keyword name="setNavigationBar" id="QCtmNavigationSidePane::setNavigationBar" ref="qctmnavigationsidepane.html#setNavigationBar"/>
             <keyword name="setNavigationBar" id="QCtmWindow::setNavigationBar" ref="qctmwindow.html#setNavigationBar"/>
             <keyword name="setOrientation" id="QCtmStageProgressBar::setOrientation" ref="qctmstageprogressbar.html#setOrientation"/>
@@ -882,7 +887,7 @@
             <keyword name="titleColor" id="QCtmMessageTipModel::titleColor" ref="qctmmessagetipmodel.html#titleColor-prop"/>
             <keyword name="titleColor" id="QCtmMessageTipView::titleColor" ref="qctmmessagetipview.html#titleColor"/>
             <keyword name="titleColor" id="QCtmMessageTipView::titleColor" ref="qctmmessagetipview.html#titleColor-prop"/>
-            <keyword name="total" id="QCtmDrawerWidget::total" ref="qctmdrawerwidget.html#total"/>
+            <keyword name="totalSize" id="QCtmDrawerWidget::totalSize" ref="qctmdrawerwidget.html#totalSize"/>
             <keyword name="touchControlStyle" id="QCtmMessageTipView::touchControlStyle" ref="qctmmessagetipview.html#touchControlStyle"/>
             <keyword name="type" id="QCtmLogData::type" ref="qctmlogdata.html#type"/>
             <keyword name="unRegisterModel" id="QCtmLogManager::unRegisterModel" ref="qctmlogmanager.html#unRegisterModel"/>

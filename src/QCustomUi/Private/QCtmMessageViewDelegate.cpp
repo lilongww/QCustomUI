@@ -1,6 +1,6 @@
 ﻿/*********************************************************************************
 **                                                                              **
-**  Copyright (C) 2019-2022 LiLong                                              **
+**  Copyright (C) 2019-2023 LiLong                                              **
 **  This file is part of QCustomUi.                                             **
 **                                                                              **
 **  QCustomUi is free software: you can redistribute it and/or modify           **
@@ -254,7 +254,12 @@ bool QCtmMessageViewDelegate::editorEvent(QEvent* event,
                     auto list = dynamic_cast<const QListView*>(option.widget);
                     if (list)
                     {
+#if QT_VERSION < QT_VERSION_CHECK(6, 4, 0)
                         QMouseEvent* e = new QMouseEvent(QEvent::MouseMove, evt->pos(), Qt::NoButton, Qt::NoButton, Qt::NoModifier);
+#else
+                        QMouseEvent* e = new QMouseEvent(
+                            QEvent::MouseMove, evt->pos(), evt->globalPosition(), Qt::NoButton, Qt::NoButton, Qt::NoModifier);
+#endif
                         qApp->postEvent(list->viewport(), e);
                     }
                 }

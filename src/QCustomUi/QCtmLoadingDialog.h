@@ -1,6 +1,6 @@
 ﻿/*********************************************************************************
 **                                                                              **
-**  Copyright (C) 2019-2022 LiLong                                              **
+**  Copyright (C) 2019-2023 LiLong                                              **
 **  This file is part of QCustomUi.                                             **
 **                                                                              **
 **  QCustomUi is free software: you can redistribute it and/or modify           **
@@ -22,11 +22,12 @@
 #include "qcustomui_global.h"
 
 #include <QDialog>
+#include <QMovie>
 
 class QCUSTOMUI_EXPORT QCtmLoadingDialog : public QWidget
 {
     Q_OBJECT
-
+    Q_PROPERTY(bool cancelEnable READ cancelEnable WRITE setCancelEnable)
 public:
     enum class Result
     {
@@ -38,6 +39,8 @@ public:
 
     void setCancelEnable(bool flag);
     bool cancelEnable() const;
+    void setMovie(QMovie* movie);
+    QMovie* movie() const;
 public slots:
     void done();
     void cancel();

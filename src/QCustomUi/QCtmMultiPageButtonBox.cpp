@@ -1,6 +1,6 @@
 ﻿/*********************************************************************************
 **                                                                              **
-**  Copyright (C) 2019-2022 LiLong                                              **
+**  Copyright (C) 2019-2023 LiLong                                              **
 **  This file is part of QCustomUi.                                             **
 **                                                                              **
 **  QCustomUi is free software: you can redistribute it and/or modify           **
@@ -91,7 +91,7 @@ void QCtmMultiPageButtonBox::setModel(QCtmAbstractMultiPageItemModel* model)
 QCtmAbstractMultiPageItemModel* QCtmMultiPageButtonBox::model() const { return m_impl->model; }
 
 /*!
-    \brief      设置页面按钮数量 \a buttonCount，如果实际页面数量少于/设置的数量，则显示的页面按钮数量为实际数量，
+    \brief      设置页面按钮数量 \a buttonCount, 如果实际页面数量少于/设置的数量，则显示的页面按钮数量为实际数量，
                 如果实际页面的数量多于页面按钮数量，则显示页面按钮的数量为设置的数量，将页面按钮数量设为0时，不显示页面按钮.
     \sa         pageButtonCount
 */

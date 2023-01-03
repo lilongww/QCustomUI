@@ -1,6 +1,6 @@
 ﻿/*********************************************************************************
 **                                                                              **
-**  Copyright (C) 2019-2022 LiLong                                              **
+**  Copyright (C) 2019-2023 LiLong                                              **
 **  This file is part of QCustomUi.                                             **
 **                                                                              **
 **  QCustomUi is free software: you can redistribute it and/or modify           **
@@ -34,7 +34,7 @@ class QCUSTOMUI_EXPORT QCtmSwitchButton : public QAbstractButton
     Q_PROPERTY(QBrush checkedHandleBrush READ checkedHandleBrush WRITE setCheckedHandleBrush)
     Q_PROPERTY(QColor checkedHandleBorderColor READ checkedHandleBorderColor WRITE setCheckedHandleBorderColor)
 public:
-    QCtmSwitchButton(QWidget* parent);
+    explicit QCtmSwitchButton(QWidget* parent);
     ~QCtmSwitchButton();
 
     void setUncheckedBackground(const QBrush& brush);

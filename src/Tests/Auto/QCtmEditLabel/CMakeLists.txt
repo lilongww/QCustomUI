@@ -1,0 +1,10 @@
+﻿qcustomui_internal_add_test(tst_QCtmEditLabel
+    SOURCES
+        tst_QCtmEditLabel.cpp
+    PUBLIC_LIBRARIES
+        QCustomUi
+    PRIVATE_LIBRARIES
+        Qt::Gui
+        Qt::Widgets
+        Qt::Test
+)

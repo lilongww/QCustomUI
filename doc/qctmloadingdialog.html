@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
 <!-- QCtmLoadingDialog.cpp -->
-  <title>QCtmLoadingDialog Class | QCustomUi 1.10.0-beta.2</title>
+  <title>QCtmLoadingDialog Class | QCustomUi 1.10.0-beta.3</title>
   <link rel="stylesheet" type="text/css" href="style/offline-simple.css" />
   <script type="text/javascript">
     document.getElementsByTagName("link").item(0).setAttribute("href", "style/offline.css");
@@ -25,10 +25,10 @@
     <div class="main-rounded">
         <div class="navigationbar">
         <ul>
-<li><a href="index.html">QCustomUi 1.10.0-beta.2</a></li>
+<li><a href="index.html">QCustomUi 1.10.0-beta.3</a></li>
 <li><a href="index.html">QCustomUi</a></li>
 <li>QCtmLoadingDialog</li>
-<li id="buildversion">QCustomUi 1.10.0-beta.2 Reference Documentation</li>
+<li id="buildversion">QCustomUi 1.10.0-beta.3 Reference Documentation</li>
     </ul>
     </div>
 </div>
@@ -39,6 +39,7 @@
 <div class="toc">
 <h3 id="toc">Contents</h3>
 <ul>
+<li class="level1"><a href="#public-types">Public Types</a></li>
 <li class="level1"><a href="#public-functions">Public Functions</a></li>
 <li class="level1"><a href="#public-slots">Public Slots</a></li>
 <li class="level1"><a href="#reimplemented-protected-functions">Reimplemented Protected Functions</a></li>
@@ -56,12 +57,18 @@
 <ul>
 <li><a href="qctmloadingdialog-members.html">List of all members, including inherited members</a></li>
 </ul>
+<h2 id="public-types">Public Types</h2>
+<div class="table"><table class="alignedsummary">
+<tr><td class="memItemLeft rightAlign topAlign"> enum class </td><td class="memItemRight bottomAlign"><b><a href="qctmloadingdialog.html#Result-enum">Result</a></b> { Cancel, Done }</td></tr>
+</table></div>
 <h2 id="public-functions">Public Functions</h2>
 <div class="table"><table class="alignedsummary">
 <tr><td class="memItemLeft rightAlign topAlign"> </td><td class="memItemRight bottomAlign"><b><a href="qctmloadingdialog.html#QCtmLoadingDialog">QCtmLoadingDialog</a></b>(QWidget *<i>parent</i>)</td></tr>
 <tr><td class="memItemLeft rightAlign topAlign"> virtual </td><td class="memItemRight bottomAlign"><b><a href="qctmloadingdialog.html#dtor.QCtmLoadingDialog">~QCtmLoadingDialog</a></b>()</td></tr>
 <tr><td class="memItemLeft rightAlign topAlign"> bool </td><td class="memItemRight bottomAlign"><b><a href="qctmloadingdialog.html#cancelEnable">cancelEnable</a></b>() const</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> QMovie *</td><td class="memItemRight bottomAlign"><b><a href="qctmloadingdialog.html#movie">movie</a></b>() const</td></tr>
 <tr><td class="memItemLeft rightAlign topAlign"> void </td><td class="memItemRight bottomAlign"><b><a href="qctmloadingdialog.html#setCancelEnable">setCancelEnable</a></b>(bool <i>flag</i>)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> void </td><td class="memItemRight bottomAlign"><b><a href="qctmloadingdialog.html#setMovie">setMovie</a></b>(QMovie *<i>movie</i>)</td></tr>
 </table></div>
 <h2 id="public-slots">Public Slots</h2>
 <div class="table"><table class="alignedsummary">
@@ -82,6 +89,17 @@
 <h2 id="details">Detailed Description</h2>
 </div>
 <!-- @@@QCtmLoadingDialog -->
+<div class="types">
+<h2>Member Type Documentation</h2>
+<!-- $$$Result$$$Cancel$$$Done -->
+<h3 class="fn" id="Result-enum">enum class QCtmLoadingDialog::<span class="name">Result</span></h3>
+<p>loading窗口退出状态.</p>
+<div class="table"><table class="valuelist"><tr valign="top" class="odd"><th class="tblConst">Constant</th><th class="tblval">Value</th><th class="tbldscr">Description</th></tr>
+<tr><td class="topAlign"><code>QCtmLoadingDialog::Result::Cancel</code></td><td class="topAlign tblval"><code>0</code></td><td class="topAlign">loading窗口以取消或中止状态退出.</td></tr>
+<tr><td class="topAlign"><code>QCtmLoadingDialog::Result::Done</code></td><td class="topAlign tblval"><code>1</code></td><td class="topAlign">loading窗口以完成状态退出.</td></tr>
+</table></div>
+<!-- @@@Result -->
+</div>
 <div class="func">
 <h2>Member Function Documentation</h2>
 <!-- $$$QCtmLoadingDialog[overload1]$$$QCtmLoadingDialogQWidget* -->
@@ -99,7 +117,7 @@
 <p><b>See also </b><a href="qctmloadingdialog.html#cancel">cancel</a>.</p>
 <!-- @@@done -->
 <!-- $$$exec[overload1]$$$exec -->
-<h3 class="fn" id="exec"><code>[slot] </code><span class="type">QCtmLoadingDialog::Result</span> QCtmLoadingDialog::<span class="name">exec</span>()</h3>
+<h3 class="fn" id="exec"><code>[slot] </code><span class="type"><a href="qctmloadingdialog.html#Result-enum">QCtmLoadingDialog::Result</a></span> QCtmLoadingDialog::<span class="name">exec</span>()</h3>
 <p>阻塞并显示 loading 窗口.</p>
 <div class="admonition note">
 <p><b>Note: </b>不应使用show来显示loading.</p>
@@ -109,9 +127,10 @@
 <h3 class="fn" id="dtor.QCtmLoadingDialog"><code>[virtual] </code>QCtmLoadingDialog::<span class="name">~QCtmLoadingDialog</span>()</h3>
 <p>析构该窗口对象.</p>
 <!-- @@@~QCtmLoadingDialog -->
-<!-- $$$cancelEnable[overload1]$$$cancelEnable -->
+<!-- $$$cancelEnable -->
 <h3 class="fn" id="cancelEnable"><span class="type">bool</span> QCtmLoadingDialog::<span class="name">cancelEnable</span>() const</h3>
 <p>是否可以按ESC键取消显示loading窗口.</p>
+<p><b>Note: </b>Getter function for property cancelEnable. </p>
 <p><b>See also </b><a href="qctmloadingdialog.html#setCancelEnable">setCancelEnable</a>.</p>
 <!-- @@@cancelEnable -->
 <!-- $$$closeEvent[overload1]$$$closeEventQCloseEvent* -->
@@ -127,11 +146,22 @@
 <!-- $$$keyPressEvent[overload1]$$$keyPressEventQKeyEvent* -->
 <h3 class="fn" id="keyPressEvent"><code>[override virtual protected] </code><span class="type">void</span> QCtmLoadingDialog::<span class="name">keyPressEvent</span>(<span class="type"><a href="https://doc.qt.io/qt/qkeyevent.html">QKeyEvent</a></span> *<i>event</i>)</h3>
 <!-- @@@keyPressEvent -->
-<!-- $$$setCancelEnable[overload1]$$$setCancelEnablebool -->
+<!-- $$$movie[overload1]$$$movie -->
+<h3 class="fn" id="movie"><span class="type"><a href="https://doc.qt.io/qt/qmovie.html">QMovie</a></span> *QCtmLoadingDialog::<span class="name">movie</span>() const</h3>
+<p>返回动画指针.</p>
+<p><b>See also </b><a href="qctmloadingdialog.html#setMovie">setMovie</a>.</p>
+<!-- @@@movie -->
+<!-- $$$setCancelEnable -->
 <h3 class="fn" id="setCancelEnable"><span class="type">void</span> QCtmLoadingDialog::<span class="name">setCancelEnable</span>(<span class="type">bool</span> <i>flag</i>)</h3>
 <p>设置是否可以按ESC键取消 <i>flag</i>.</p>
+<p><b>Note: </b>Setter function for property <a href="qctmloadingdialog.html#cancelEnable">cancelEnable</a>. </p>
 <p><b>See also </b><a href="qctmloadingdialog.html#cancelEnable">cancelEnable</a>.</p>
 <!-- @@@setCancelEnable -->
+<!-- $$$setMovie[overload1]$$$setMovieQMovie* -->
+<h3 class="fn" id="setMovie"><span class="type">void</span> QCtmLoadingDialog::<span class="name">setMovie</span>(<span class="type"><a href="https://doc.qt.io/qt/qmovie.html">QMovie</a></span> *<i>movie</i>)</h3>
+<p>设置动画 <i>movie</i>.</p>
+<p><b>See also </b><a href="qctmloadingdialog.html#movie">movie</a>.</p>
+<!-- @@@setMovie -->
 <!-- $$$showEvent[overload1]$$$showEventQShowEvent* -->
 <h3 class="fn" id="showEvent"><code>[override virtual protected] </code><span class="type">void</span> QCtmLoadingDialog::<span class="name">showEvent</span>(<span class="type"><a href="https://doc.qt.io/qt/qshowevent.html">QShowEvent</a></span> *<i>e</i>)</h3>
 <!-- @@@showEvent -->

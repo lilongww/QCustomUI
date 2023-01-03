@@ -1,6 +1,6 @@
 ﻿/*********************************************************************************
 **                                                                              **
-**  Copyright (C) 2019-2022 LiLong                                              **
+**  Copyright (C) 2019-2023 LiLong                                              **
 **  This file is part of QCustomUi.                                             **
 **                                                                              **
 **  QCustomUi is free software: you can redistribute it and/or modify           **
@@ -32,20 +32,16 @@ class QCUSTOMUI_EXPORT QCtmDrawerItemWidget : public QWidget
 public:
     void setWidget(QWidget* widget);
     QWidget* widget() const;
-
     void setTitle(const QString& title);
     QString title() const;
-
     bool isExpand() const;
     void setExpand(bool expand);
-
     QAction* addAction(const QIcon& icon, const QString& text);
     QAction* addAction(const QIcon& icon);
     QAction* addAction(const QString& text);
     QAction* insertAction(int index, const QIcon& icon, const QString& text);
     QAction* insertAction(int index, const QString& text);
     void removeAction(QAction* action);
-
     int count() const;
     int indexOf(QAction* action);
     QAction* actionAt(int index);

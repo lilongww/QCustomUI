@@ -1,6 +1,6 @@
 ﻿/*********************************************************************************
 **                                                                              **
-**  Copyright (C) 2019-2022 LiLong                                              **
+**  Copyright (C) 2019-2023 LiLong                                              **
 **  This file is part of QCustomUi.                                             **
 **                                                                              **
 **  QCustomUi is free software: you can redistribute it and/or modify           **
@@ -119,7 +119,7 @@ int QCtmStageProgressBar::stageCount() const { return m_impl->stageCount; }
 
 /*!
     \brief      设置阶段节点圆形的半径像素 \a radius.
-    \sa         stageCricleRadius()
+    \sa         stageCircleRadius
 */
 void QCtmStageProgressBar::setStageCircleRadius(int radius)
 {

@@ -1,6 +1,6 @@
 ﻿/*********************************************************************************
 **                                                                              **
-**  Copyright (C) 2019-2022 LiLong                                              **
+**  Copyright (C) 2019-2023 LiLong                                              **
 **  This file is part of QCustomUi.                                             **
 **                                                                              **
 **  QCustomUi is free software: you can redistribute it and/or modify           **
@@ -50,8 +50,11 @@ void QCtmUserButton::paintEvent(QPaintEvent*)
         mode = QIcon::Active;
     else
         mode = QIcon::Normal;
-
+#if QT_VERSION >= QT_VERSION_CHECK(6, 0, 0)
+    const auto& pm = this->icon().pixmap(opt.rect.size().boundedTo(opt.iconSize), this->devicePixelRatioF(), mode, state);
+#else
     const auto& pm = this->icon().pixmap(this->windowHandle(), opt.rect.size().boundedTo(opt.iconSize), mode, state);
+#endif
     this->style()->drawItemPixmap(&p, doIconRect(opt), Qt::AlignCenter, pm);
     this->style()->drawItemText(&p, doTextRect(opt), Qt::AlignCenter, opt.palette, opt.state.testFlag(QStyle::State_Enabled), this->text());
 }

@@ -1,6 +1,6 @@
 ﻿/*********************************************************************************
 **                                                                              **
-**  Copyright (C) 2019-2022 LiLong                                              **
+**  Copyright (C) 2019-2023 LiLong                                              **
 **  This file is part of QCustomUi.                                             **
 **                                                                              **
 **  QCustomUi is free software: you can redistribute it and/or modify           **
@@ -32,7 +32,7 @@ class QCUSTOMUI_EXPORT QCtmDialog : public QDialog
     Q_OBJECT
 
 public:
-    QCtmDialog(QWidget* parent = nullptr);
+    explicit QCtmDialog(QWidget* parent = nullptr);
     ~QCtmDialog();
 
     void setCentralWidget(QWidget* widget);

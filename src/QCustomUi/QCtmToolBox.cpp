@@ -1,6 +1,6 @@
 ﻿/*********************************************************************************
 **                                                                              **
-**  Copyright (C) 2019-2022 LiLong                                              **
+**  Copyright (C) 2019-2023 LiLong                                              **
 **  This file is part of QCustomUi.                                             **
 **                                                                              **
 **  QCustomUi is free software: you can redistribute it and/or modify           **
@@ -99,18 +99,6 @@ void QCtmToolBox::removeWidget(QWidget* widget)
             delete item;
         }
     }
-}
-
-/*!
-    \overload
-                移除第 \a index 个子窗口.
-    \sa         removeWidget
-*/
-void QCtmToolBox::removeWidget(int index)
-{
-    auto w = m_impl->vSplitter->widget(index);
-    if (w)
-        delete w;
 }
 
 /*!

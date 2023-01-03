@@ -1,6 +1,6 @@
 ﻿/*********************************************************************************
 **                                                                              **
-**  Copyright (C) 2019-2022 LiLong                                              **
+**  Copyright (C) 2019-2023 LiLong                                              **
 **  This file is part of QCustomUi.                                             **
 **                                                                              **
 **  QCustomUi is free software: you can redistribute it and/or modify           **
@@ -97,7 +97,8 @@ const QStringList& QCtmMultiPageStringListModel::stringList() const { return m_i
 */
 int QCtmMultiPageStringListModel::rowCount(const QModelIndex& parent /* = QModelIndex() */) const
 {
-    return std::min<size_t>(std::max<size_t>(m_impl->strings.size() - currentPage() * pageRowCount(), 0LL), pageRowCount());
+    return static_cast<int>(
+        std::min<size_t>(std::max<size_t>(m_impl->strings.size() - currentPage() * pageRowCount(), 0LL), pageRowCount()));
 }
 
 /*!

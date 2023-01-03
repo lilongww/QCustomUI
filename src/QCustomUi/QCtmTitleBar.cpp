@@ -1,6 +1,6 @@
 ﻿/*********************************************************************************
 **                                                                              **
-**  Copyright (C) 2019-2022 LiLong                                              **
+**  Copyright (C) 2019-2023 LiLong                                              **
 **  This file is part of QCustomUi.                                             **
 **                                                                              **
 **  QCustomUi is free software: you can redistribute it and/or modify           **
@@ -44,8 +44,11 @@ struct QCtmTitleBar::Impl
     \class      QCtmTitleBar
     \brief      QCtmWindow 和 QCtmDialog 的自定义标题栏.
     \note       最大化，最小化，关闭按钮等显示控制由 QWidget::windowFlags 决定，图标显示由 QWidget::windowIcon
-   控制，标题栏文字由centralWidget的QWidget::windowTitle决定. \inherits   QWidget \ingroup    QCustomUi \inmodule   QCustomUi \inheaderfile
-   QCtmTitleBar.h
+                控制，标题栏文字由centralWidget的QWidget::windowTitle决定.
+    \inherits   QWidget
+    \ingroup    QCustomUi
+    \inmodule   QCustomUi
+    \inheaderfile QCtmTitleBar.h
 
     \b          {截图:}
     \image      QCtmTitleBarDetail.png
