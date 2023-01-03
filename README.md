@@ -12,7 +12,11 @@ QCustomUi是一个自定义UI库，主要提供无边框窗口和一些自定义
 
 API文档：https://llongww.gitee.io/qcustomuidocument
 
-## 二、控件介绍
+## 二、编译
+
+现在QCustomUi默认仅编译QCustomUi本身，若需要编译Examples，则在CMake中将**BUILD_EXAMPLES**选项激活，若要编译Tests，则在CMake中将**BUILD_TESTS**选项激活，若要编译Qt设计器插件，则在CMake中将**BUILD_DESIGNER**选项激活。
+
+## 三、控件介绍
 
 ### 1. 基本窗口
 
