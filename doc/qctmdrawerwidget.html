@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
 <!-- QCtmDrawerWidget.cpp -->
-  <title>QCtmDrawerWidget Class | QCustomUi 1.10.0-beta.2</title>
+  <title>QCtmDrawerWidget Class | QCustomUi 1.10.0-beta.3</title>
   <link rel="stylesheet" type="text/css" href="style/offline-simple.css" />
   <script type="text/javascript">
     document.getElementsByTagName("link").item(0).setAttribute("href", "style/offline.css");
@@ -25,10 +25,10 @@
     <div class="main-rounded">
         <div class="navigationbar">
         <ul>
-<li><a href="index.html">QCustomUi 1.10.0-beta.2</a></li>
+<li><a href="index.html">QCustomUi 1.10.0-beta.3</a></li>
 <li><a href="index.html">QCustomUi</a></li>
 <li>QCtmDrawerWidget</li>
-<li id="buildversion">QCustomUi 1.10.0-beta.2 Reference Documentation</li>
+<li id="buildversion">QCustomUi 1.10.0-beta.3 Reference Documentation</li>
     </ul>
     </div>
 </div>
@@ -92,8 +92,8 @@
 </table></div>
 <h2 id="protected-functions">Protected Functions</h2>
 <div class="table"><table class="alignedsummary">
-<tr><td class="memItemLeft rightAlign topAlign"> bool </td><td class="memItemRight bottomAlign"><b><a href="qctmdrawerwidget.html#allClosed">allClosed</a></b>() const</td></tr>
-<tr><td class="memItemLeft rightAlign topAlign"> int </td><td class="memItemRight bottomAlign"><b><a href="qctmdrawerwidget.html#total">total</a></b>(const QList&lt;int&gt; &amp;<i>sizes</i>) const</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> bool </td><td class="memItemRight bottomAlign"><b><a href="qctmdrawerwidget.html#isAllCollapsed">isAllCollapsed</a></b>() const</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> int </td><td class="memItemRight bottomAlign"><b><a href="qctmdrawerwidget.html#totalSize">totalSize</a></b>(const QList&lt;int&gt; &amp;<i>sizes</i>) const</td></tr>
 </table></div>
 <h2 id="reimplemented-protected-functions">Reimplemented Protected Functions</h2>
 <div class="table"><table class="alignedsummary">
@@ -158,10 +158,6 @@
 <p>添加并返回一个标题为 <i>title</i> 容纳窗口为 <i>widget</i> 的抽屉项.</p>
 <p><b>See also </b><a href="qctmdrawerwidget.html#insertWidget">insertWidget</a> and <a href="qctmdrawerwidget.html#removeItem">removeItem</a>.</p>
 <!-- @@@addWidget -->
-<!-- $$$allClosed[overload1]$$$allClosed -->
-<h3 class="fn" id="allClosed"><code>[protected] </code><span class="type">bool</span> QCtmDrawerWidget::<span class="name">allClosed</span>() const</h3>
-<p>返回所有的抽屉项是否都关闭了.</p>
-<!-- @@@allClosed -->
 <!-- $$$count[overload1]$$$count -->
 <h3 class="fn" id="count"><span class="type">int</span> QCtmDrawerWidget::<span class="name">count</span>() const</h3>
 <p>返回抽屉项数量.</p>
@@ -188,6 +184,10 @@
 <p>在 <i>index</i> 位置插入并返回一个标题为 <i>title</i> 容纳窗口为 <i>widget</i> 的抽屉项.</p>
 <p><b>See also </b><a href="qctmdrawerwidget.html#addWidget">addWidget</a> and <a href="qctmdrawerwidget.html#removeItem">removeItem</a>.</p>
 <!-- @@@insertWidget -->
+<!-- $$$isAllCollapsed[overload1]$$$isAllCollapsed -->
+<h3 class="fn" id="isAllCollapsed"><code>[protected] </code><span class="type">bool</span> QCtmDrawerWidget::<span class="name">isAllCollapsed</span>() const</h3>
+<p>返回所有的抽屉项是否都关闭了.</p>
+<!-- @@@isAllCollapsed -->
 <!-- $$$item[overload1]$$$itemint -->
 <h3 class="fn" id="item"><span class="type"><a href="qctmdraweritemwidget.html">QCtmDrawerItemWidget</a></span> *QCtmDrawerWidget::<span class="name">item</span>(<span class="type">int</span> <i>index</i>) const</h3>
 <p>返回 <i>index</i> 位置的抽屉项.</p>
@@ -217,10 +217,10 @@
 <!-- $$$showEvent[overload1]$$$showEventQShowEvent* -->
 <h3 class="fn" id="showEvent"><code>[override virtual protected] </code><span class="type">void</span> QCtmDrawerWidget::<span class="name">showEvent</span>(<span class="type"><a href="https://doc.qt.io/qt/qshowevent.html">QShowEvent</a></span> *<i>event</i>)</h3>
 <!-- @@@showEvent -->
-<!-- $$$total[overload1]$$$totalconstQList<int>& -->
-<h3 class="fn" id="total"><code>[protected] </code><span class="type">int</span> QCtmDrawerWidget::<span class="name">total</span>(const <span class="type"><a href="https://doc.qt.io/qt/qlist.html">QList</a></span>&lt;<span class="type">int</span>&gt; &amp;<i>sizes</i>) const</h3>
+<!-- $$$totalSize[overload1]$$$totalSizeconstQList<int>& -->
+<h3 class="fn" id="totalSize"><code>[protected] </code><span class="type">int</span> QCtmDrawerWidget::<span class="name">totalSize</span>(const <span class="type"><a href="https://doc.qt.io/qt/qlist.html">QList</a></span>&lt;<span class="type">int</span>&gt; &amp;<i>sizes</i>) const</h3>
 <p>返回 <i>sizes</i> 的总和.</p>
-<!-- @@@total -->
+<!-- @@@totalSize -->
 </div>
         </div>
        </div>
