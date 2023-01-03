@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+<!-- QCtmStageProgressBar.cpp -->
+  <title>QCtmStageProgressBar Class | QCustomUi 1.10.0-beta.2</title>
+  <link rel="stylesheet" type="text/css" href="style/offline-simple.css" />
+  <script type="text/javascript">
+    document.getElementsByTagName("link").item(0).setAttribute("href", "style/offline.css");
+    // loading style sheet breaks anchors that were jumped to before
+    // so force jumping to anchor again
+    setTimeout(function() {
+        var anchor = location.hash;
+        // need to jump to different anchor first (e.g. none)
+        location.hash = "#";
+        setTimeout(function() {
+            location.hash = anchor;
+        }, 0);
+    }, 0);
+  </script>
+</head>
+<body>
+<div class="header" id="qtdocheader">
+    <div class="main">
+    <div class="main-rounded">
+        <div class="navigationbar">
+        <ul>
+<li><a href="index.html">QCustomUi 1.10.0-beta.2</a></li>
+<li><a href="index.html">QCustomUi</a></li>
+<li>QCtmStageProgressBar</li>
+<li id="buildversion">QCustomUi 1.10.0-beta.2 Reference Documentation</li>
+    </ul>
+    </div>
+</div>
+<div class="content">
+<div class="line">
+<div class="content mainContent">
+<div class="sidebar">
+<div class="toc">
+<h3 id="toc">Contents</h3>
+<ul>
+<li class="level1"><a href="#public-functions">Public Functions</a></li>
+<li class="level1"><a href="#public-slots">Public Slots</a></li>
+<li class="level1"><a href="#signals">Signals</a></li>
+<li class="level1"><a href="#protected-functions">Protected Functions</a></li>
+<li class="level1"><a href="#reimplemented-protected-functions">Reimplemented Protected Functions</a></li>
+<li class="level1"><a href="#details">Detailed Description</a></li>
+</ul>
+</div>
+<div class="sidebar-content" id="sidebar-content"></div></div>
+<h1 class="title">QCtmStageProgressBar Class</h1>
+<!-- $$$QCtmStageProgressBar-brief -->
+<p>阶段进度条. <a href="#details">More...</a></p>
+<!-- @@@QCtmStageProgressBar -->
+<div class="table"><table class="alignedsummary">
+<tr><td class="memItemLeft rightAlign topAlign"> Header:</td><td class="memItemRight bottomAlign">  <span class="preprocessor">#include &lt;QCtmStageProgressBar.h&gt;</span>
+</td></tr><tr><td class="memItemLeft rightAlign topAlign"> Inherits:</td><td class="memItemRight bottomAlign"> QWidget</td></tr></table></div>
+<ul>
+<li><a href="qctmstageprogressbar-members.html">List of all members, including inherited members</a></li>
+</ul>
+<h2 id="public-functions">Public Functions</h2>
+<div class="table"><table class="alignedsummary">
+<tr><td class="memItemLeft rightAlign topAlign"> </td><td class="memItemRight bottomAlign"><b><a href="qctmstageprogressbar.html#QCtmStageProgressBar">QCtmStageProgressBar</a></b>(QWidget *<i>parent</i>)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> virtual </td><td class="memItemRight bottomAlign"><b><a href="qctmstageprogressbar.html#dtor.QCtmStageProgressBar">~QCtmStageProgressBar</a></b>()</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> int </td><td class="memItemRight bottomAlign"><b><a href="qctmstageprogressbar.html#maximum">maximum</a></b>() const</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> int </td><td class="memItemRight bottomAlign"><b><a href="qctmstageprogressbar.html#minimum">minimum</a></b>() const</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> Qt::Orientation </td><td class="memItemRight bottomAlign"><b><a href="qctmstageprogressbar.html#orientation">orientation</a></b>() const</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> const QBrush &amp;</td><td class="memItemRight bottomAlign"><b><a href="qctmstageprogressbar.html#rateBackground">rateBackground</a></b>() const</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> void </td><td class="memItemRight bottomAlign"><b><a href="qctmstageprogressbar.html#setRateBackground">setRateBackground</a></b>(const QBrush &amp;<i>brush</i>)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> void </td><td class="memItemRight bottomAlign"><b><a href="qctmstageprogressbar.html#setStageCircleRadius">setStageCircleRadius</a></b>(int <i>radius</i>)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> void </td><td class="memItemRight bottomAlign"><b><a href="qctmstageprogressbar.html#setStageCount">setStageCount</a></b>(int <i>count</i>)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> void </td><td class="memItemRight bottomAlign"><b><a href="qctmstageprogressbar.html#setStageIndexTextPen">setStageIndexTextPen</a></b>(const QPen &amp;<i>pen</i>)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> void </td><td class="memItemRight bottomAlign"><b><a href="qctmstageprogressbar.html#setText">setText</a></b>(int <i>stage</i>, const QString &amp;<i>text</i>)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> int </td><td class="memItemRight bottomAlign"><b><a href="qctmstageprogressbar.html#stageCircleRadius">stageCircleRadius</a></b>() const</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> int </td><td class="memItemRight bottomAlign"><b><a href="qctmstageprogressbar.html#stageCount">stageCount</a></b>() const</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> const QPen &amp;</td><td class="memItemRight bottomAlign"><b><a href="qctmstageprogressbar.html#stageIndexTextPen">stageIndexTextPen</a></b>() const</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> QString </td><td class="memItemRight bottomAlign"><b><a href="qctmstageprogressbar.html#text">text</a></b>(int <i>stage</i>) const</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> bool </td><td class="memItemRight bottomAlign"><b><a href="qctmstageprogressbar.html#textVisible">textVisible</a></b>() const</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> int </td><td class="memItemRight bottomAlign"><b><a href="qctmstageprogressbar.html#value">value</a></b>() const</td></tr>
+</table></div>
+<h2 id="public-slots">Public Slots</h2>
+<div class="table"><table class="alignedsummary">
+<tr><td class="memItemLeft rightAlign topAlign"> void </td><td class="memItemRight bottomAlign"><b><a href="qctmstageprogressbar.html#setMaximum">setMaximum</a></b>(int <i>maximum</i>)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> void </td><td class="memItemRight bottomAlign"><b><a href="qctmstageprogressbar.html#setMinimum">setMinimum</a></b>(int <i>min</i>)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> void </td><td class="memItemRight bottomAlign"><b><a href="qctmstageprogressbar.html#setOrientation">setOrientation</a></b>(Qt::Orientation <i>orientation</i>)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> void </td><td class="memItemRight bottomAlign"><b><a href="qctmstageprogressbar.html#setRange">setRange</a></b>(int <i>minimum</i>, int <i>maximum</i>)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> void </td><td class="memItemRight bottomAlign"><b><a href="qctmstageprogressbar.html#setTextVisible">setTextVisible</a></b>(bool <i>flag</i>)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> void </td><td class="memItemRight bottomAlign"><b><a href="qctmstageprogressbar.html#setValue">setValue</a></b>(int <i>value</i>)</td></tr>
+</table></div>
+<h2 id="signals">Signals</h2>
+<div class="table"><table class="alignedsummary">
+<tr><td class="memItemLeft rightAlign topAlign"> void </td><td class="memItemRight bottomAlign"><b><a href="qctmstageprogressbar.html#valueChanged">valueChanged</a></b>(int <i>value</i>)</td></tr>
+</table></div>
+<h2 id="protected-functions">Protected Functions</h2>
+<div class="table"><table class="alignedsummary">
+<tr><td class="memItemLeft rightAlign topAlign"> int </td><td class="memItemRight bottomAlign"><b><a href="qctmstageprogressbar.html#doMinimumHeight">doMinimumHeight</a></b>() const</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> int </td><td class="memItemRight bottomAlign"><b><a href="qctmstageprogressbar.html#doMinimumWidth">doMinimumWidth</a></b>() const</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> QRectF </td><td class="memItemRight bottomAlign"><b><a href="qctmstageprogressbar.html#doStageRect">doStageRect</a></b>(int <i>index</i>) const</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> QRectF </td><td class="memItemRight bottomAlign"><b><a href="qctmstageprogressbar.html#doTextRect">doTextRect</a></b>(int <i>index</i>) const</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> virtual void </td><td class="memItemRight bottomAlign"><b><a href="qctmstageprogressbar.html#drawStage">drawStage</a></b>(QPainter *<i>p</i>, int <i>index</i>, const QRectF &amp;<i>rect</i>, int <i>value</i>) const</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> virtual void </td><td class="memItemRight bottomAlign"><b><a href="qctmstageprogressbar.html#drawText">drawText</a></b>(QPainter *<i>p</i>, int <i>index</i>, const QRectF &amp;<i>rect</i>, const QString &amp;<i>text</i>) const</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> virtual void </td><td class="memItemRight bottomAlign"><b><a href="qctmstageprogressbar.html#initStyleOption">initStyleOption</a></b>(QStyleOptionProgressBar *<i>opt</i>) const</td></tr>
+</table></div>
+<h2 id="reimplemented-protected-functions">Reimplemented Protected Functions</h2>
+<div class="table"><table class="alignedsummary">
+<tr><td class="memItemLeft rightAlign topAlign"> virtual QSize </td><td class="memItemRight bottomAlign"><b><a href="qctmstageprogressbar.html#minimumSizeHint">minimumSizeHint</a></b>() const override</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> virtual void </td><td class="memItemRight bottomAlign"><b><a href="qctmstageprogressbar.html#paintEvent">paintEvent</a></b>(QPaintEvent *<i>event</i>) override</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> virtual QSize </td><td class="memItemRight bottomAlign"><b><a href="qctmstageprogressbar.html#sizeHint">sizeHint</a></b>() const override</td></tr>
+</table></div>
+<!-- $$$QCtmStageProgressBar-description -->
+<div class="descr">
+<h2 id="details">Detailed Description</h2>
+<p><b>截图:</b></p>
+<p class="centerAlign"><img src="images/QCtmStageProgressBarDetail.png" alt="" /></p></div>
+<!-- @@@QCtmStageProgressBar -->
+<div class="func">
+<h2>Member Function Documentation</h2>
+<!-- $$$QCtmStageProgressBar[overload1]$$$QCtmStageProgressBarQWidget* -->
+<h3 class="fn" id="QCtmStageProgressBar">QCtmStageProgressBar::<span class="name">QCtmStageProgressBar</span>(<span class="type">QWidget</span> *<i>parent</i>)</h3>
+<p>构造函数 <i>parent</i>.</p>
+<!-- @@@QCtmStageProgressBar -->
+<!-- $$$setMaximum -->
+<h3 class="fn" id="setMaximum"><code>[slot] </code><span class="type">void</span> QCtmStageProgressBar::<span class="name">setMaximum</span>(<span class="type">int</span> <i>maximum</i>)</h3>
+<p>设置最大值 <i>maximum</i>.</p>
+<p><b>Note: </b>Setter function for property <a href="qctmstageprogressbar.html#maximum">maximum</a>. </p>
+<p><b>See also </b><a href="qctmstageprogressbar.html#maximum">maximum</a>.</p>
+<!-- @@@setMaximum -->
+<!-- $$$setMinimum -->
+<h3 class="fn" id="setMinimum"><code>[slot] </code><span class="type">void</span> QCtmStageProgressBar::<span class="name">setMinimum</span>(<span class="type">int</span> <i>min</i>)</h3>
+<p>设置最小值 <i>min</i>.</p>
+<p><b>Note: </b>Setter function for property <a href="qctmstageprogressbar.html#minimum">minimum</a>. </p>
+<p><b>See also </b><a href="qctmstageprogressbar.html#minimum">minimum</a>.</p>
+<!-- @@@setMinimum -->
+<!-- $$$setOrientation -->
+<h3 class="fn" id="setOrientation"><code>[slot] </code><span class="type">void</span> QCtmStageProgressBar::<span class="name">setOrientation</span>(<span class="type"><a href="https://doc.qt.io/qt/qt.html#Orientation-enum">Qt::Orientation</a></span> <i>orientation</i>)</h3>
+<p>设置进度条的朝向 <i>orientation</i>.</p>
+<p><b>Note: </b>Setter function for property <a href="qctmstageprogressbar.html#orientation">orientation</a>. </p>
+<p><b>See also </b><a href="qctmstageprogressbar.html#orientation">orientation</a>().</p>
+<!-- @@@setOrientation -->
+<!-- $$$setRange[overload1]$$$setRangeintint -->
+<h3 class="fn" id="setRange"><code>[slot] </code><span class="type">void</span> QCtmStageProgressBar::<span class="name">setRange</span>(<span class="type">int</span> <i>minimum</i>, <span class="type">int</span> <i>maximum</i>)</h3>
+<p>设置进度条值范围 <i>minimum</i>, <i>maximum</i>.</p>
+<p><b>See also </b><a href="qctmstageprogressbar.html#setMaximum">setMaximum</a> and <a href="qctmstageprogressbar.html#setMinimum">setMinimum</a>.</p>
+<!-- @@@setRange -->
+<!-- $$$setTextVisible -->
+<h3 class="fn" id="setTextVisible"><code>[slot] </code><span class="type">void</span> QCtmStageProgressBar::<span class="name">setTextVisible</span>(<span class="type">bool</span> <i>flag</i>)</h3>
+<p>设置阶段文本是否可见 <i>flag</i>.</p>
+<p><b>Note: </b>Setter function for property <a href="qctmstageprogressbar.html#textVisible">textVisible</a>. </p>
+<p><b>See also </b><a href="qctmstageprogressbar.html#textVisible">textVisible</a>().</p>
+<!-- @@@setTextVisible -->
+<!-- $$$setValue -->
+<h3 class="fn" id="setValue"><code>[slot] </code><span class="type">void</span> QCtmStageProgressBar::<span class="name">setValue</span>(<span class="type">int</span> <i>value</i>)</h3>
+<p>设置当前进度值 <i>value</i>, <i>value</i> 为范围外则无效.</p>
+<p><b>Note: </b>Setter function for property <a href="qctmstageprogressbar.html#value">value</a>. </p>
+<p><b>See also </b><a href="qctmstageprogressbar.html#value">value</a>.</p>
+<!-- @@@setValue -->
+<!-- $$$valueChanged -->
+<h3 class="fn" id="valueChanged"><code>[signal] </code><span class="type">void</span> QCtmStageProgressBar::<span class="name">valueChanged</span>(<span class="type">int</span> <i>value</i>)</h3>
+<p>当值 <i>value</i> 变化时发送该信号.</p>
+<p><b>Note: </b>Notifier signal for property <a href="qctmstageprogressbar.html#value">value</a>. </p>
+<p><b>See also </b><a href="qctmstageprogressbar.html#setValue">setValue</a>.</p>
+<!-- @@@valueChanged -->
+<!-- $$$~QCtmStageProgressBar[overload1]$$$~QCtmStageProgressBar -->
+<h3 class="fn" id="dtor.QCtmStageProgressBar"><code>[virtual] </code>QCtmStageProgressBar::<span class="name">~QCtmStageProgressBar</span>()</h3>
+<p>析构函数.</p>
+<!-- @@@~QCtmStageProgressBar -->
+<!-- $$$doMinimumHeight[overload1]$$$doMinimumHeight -->
+<h3 class="fn" id="doMinimumHeight"><code>[protected] </code><span class="type">int</span> QCtmStageProgressBar::<span class="name">doMinimumHeight</span>() const</h3>
+<p>计算最小高度.</p>
+<p><b>See also </b><a href="qctmstageprogressbar.html#doMinimumWidth">doMinimumWidth</a>().</p>
+<!-- @@@doMinimumHeight -->
+<!-- $$$doMinimumWidth[overload1]$$$doMinimumWidth -->
+<h3 class="fn" id="doMinimumWidth"><code>[protected] </code><span class="type">int</span> QCtmStageProgressBar::<span class="name">doMinimumWidth</span>() const</h3>
+<p>计算最小宽度.</p>
+<p><b>See also </b><a href="qctmstageprogressbar.html#doMinimumHeight">doMinimumHeight</a>().</p>
+<!-- @@@doMinimumWidth -->
+<!-- $$$doStageRect[overload1]$$$doStageRectint -->
+<h3 class="fn" id="doStageRect"><code>[protected] </code><span class="type"><a href="https://doc.qt.io/qt/qrectf.html">QRectF</a></span> QCtmStageProgressBar::<span class="name">doStageRect</span>(<span class="type">int</span> <i>index</i>) const</h3>
+<p>计算阶段圆形包围盒 <i>index</i>.</p>
+<p><b>See also </b><a href="qctmstageprogressbar.html#doTextRect">doTextRect</a>.</p>
+<!-- @@@doStageRect -->
+<!-- $$$doTextRect[overload1]$$$doTextRectint -->
+<h3 class="fn" id="doTextRect"><code>[protected] </code><span class="type"><a href="https://doc.qt.io/qt/qrectf.html">QRectF</a></span> QCtmStageProgressBar::<span class="name">doTextRect</span>(<span class="type">int</span> <i>index</i>) const</h3>
+<p>计算阶段文本包围盒 <i>index</i>.</p>
+<p><b>See also </b><a href="qctmstageprogressbar.html#doStageRect">doStageRect</a>.</p>
+<!-- @@@doTextRect -->
+<!-- $$$drawStage[overload1]$$$drawStageQPainter*intconstQRectF&int -->
+<h3 class="fn" id="drawStage"><code>[virtual protected] </code><span class="type">void</span> QCtmStageProgressBar::<span class="name">drawStage</span>(<span class="type"><a href="https://doc.qt.io/qt/qpainter.html">QPainter</a></span> *<i>p</i>, <span class="type">int</span> <i>index</i>, const <span class="type"><a href="https://doc.qt.io/qt/qrectf.html">QRectF</a></span> &amp;<i>rect</i>, <span class="type">int</span> <i>value</i>) const</h3>
+<p>绘制阶段序号文本 <i>p</i>, <i>index</i>, <i>rect</i>, <i>value</i>.</p>
+<p><b>See also </b><a href="qctmstageprogressbar.html#drawText">drawText</a>.</p>
+<!-- @@@drawStage -->
+<!-- $$$drawText[overload1]$$$drawTextQPainter*intconstQRectF&constQString& -->
+<h3 class="fn" id="drawText"><code>[virtual protected] </code><span class="type">void</span> QCtmStageProgressBar::<span class="name">drawText</span>(<span class="type"><a href="https://doc.qt.io/qt/qpainter.html">QPainter</a></span> *<i>p</i>, <span class="type">int</span> <i>index</i>, const <span class="type"><a href="https://doc.qt.io/qt/qrectf.html">QRectF</a></span> &amp;<i>rect</i>, const <span class="type"><a href="https://doc.qt.io/qt/qstring.html">QString</a></span> &amp;<i>text</i>) const</h3>
+<p>绘制阶段文本 <i>p</i>, <i>index</i>, <i>rect</i>, <i>text</i>.</p>
+<p><b>See also </b><a href="qctmstageprogressbar.html#drawStage">drawStage</a>.</p>
+<!-- @@@drawText -->
+<!-- $$$initStyleOption[overload1]$$$initStyleOptionQStyleOptionProgressBar* -->
+<h3 class="fn" id="initStyleOption"><code>[virtual protected] </code><span class="type">void</span> QCtmStageProgressBar::<span class="name">initStyleOption</span>(<span class="type"><a href="https://doc.qt.io/qt/qstyleoptionprogressbar.html">QStyleOptionProgressBar</a></span> *<i>opt</i>) const</h3>
+<p>初始化样式选项 <i>opt</i>.</p>
+<!-- @@@initStyleOption -->
+<!-- $$$maximum -->
+<h3 class="fn" id="maximum"><span class="type">int</span> QCtmStageProgressBar::<span class="name">maximum</span>() const</h3>
+<p>返回最大值.</p>
+<p><b>Note: </b>Getter function for property maximum. </p>
+<p><b>See also </b><a href="qctmstageprogressbar.html#setMaximum">setMaximum</a>.</p>
+<!-- @@@maximum -->
+<!-- $$$minimum -->
+<h3 class="fn" id="minimum"><span class="type">int</span> QCtmStageProgressBar::<span class="name">minimum</span>() const</h3>
+<p>返回最小值.</p>
+<p><b>Note: </b>Getter function for property minimum. </p>
+<p><b>See also </b><a href="qctmstageprogressbar.html#setMinimum">setMinimum</a>.</p>
+<!-- @@@minimum -->
+<!-- $$$minimumSizeHint[overload1]$$$minimumSizeHint -->
+<h3 class="fn" id="minimumSizeHint"><code>[override virtual protected] </code><span class="type"><a href="https://doc.qt.io/qt/qsize.html">QSize</a></span> QCtmStageProgressBar::<span class="name">minimumSizeHint</span>() const</h3>
+<!-- @@@minimumSizeHint -->
+<!-- $$$orientation -->
+<h3 class="fn" id="orientation"><span class="type"><a href="https://doc.qt.io/qt/qt.html#Orientation-enum">Qt::Orientation</a></span> QCtmStageProgressBar::<span class="name">orientation</span>() const</h3>
+<p>返回进度条的朝向.</p>
+<p><b>Note: </b>Getter function for property orientation. </p>
+<p><b>See also </b><a href="qctmstageprogressbar.html#setOrientation">setOrientation</a>.</p>
+<!-- @@@orientation -->
+<!-- $$$paintEvent[overload1]$$$paintEventQPaintEvent* -->
+<h3 class="fn" id="paintEvent"><code>[override virtual protected] </code><span class="type">void</span> QCtmStageProgressBar::<span class="name">paintEvent</span>(<span class="type"><a href="https://doc.qt.io/qt/qpaintevent.html">QPaintEvent</a></span> *<i>event</i>)</h3>
+<!-- @@@paintEvent -->
+<!-- $$$rateBackground -->
+<h3 class="fn" id="rateBackground">const <span class="type"><a href="https://doc.qt.io/qt/qbrush.html">QBrush</a></span> &amp;QCtmStageProgressBar::<span class="name">rateBackground</span>() const</h3>
+<p>返回进度条背景色.</p>
+<p><b>Note: </b>Getter function for property rateBackground. </p>
+<p><b>See also </b><a href="qctmstageprogressbar.html#setRateBackground">setRateBackground</a>.</p>
+<!-- @@@rateBackground -->
+<!-- $$$setRateBackground -->
+<h3 class="fn" id="setRateBackground"><span class="type">void</span> QCtmStageProgressBar::<span class="name">setRateBackground</span>(const <span class="type"><a href="https://doc.qt.io/qt/qbrush.html">QBrush</a></span> &amp;<i>brush</i>)</h3>
+<p>设置进度条背景色 <i>brush</i>.</p>
+<p><b>Note: </b>Setter function for property <a href="qctmstageprogressbar.html#rateBackground">rateBackground</a>. </p>
+<p><b>See also </b><a href="qctmstageprogressbar.html#rateBackground">rateBackground</a>().</p>
+<!-- @@@setRateBackground -->
+<!-- $$$setStageCircleRadius[overload1]$$$setStageCircleRadiusint -->
+<h3 class="fn" id="setStageCircleRadius"><span class="type">void</span> QCtmStageProgressBar::<span class="name">setStageCircleRadius</span>(<span class="type">int</span> <i>radius</i>)</h3>
+<p>设置阶段节点圆形的半径像素 <i>radius</i>.</p>
+<p><b>See also </b><a href="qctmstageprogressbar.html#stageCircleRadius">stageCircleRadius</a>.</p>
+<!-- @@@setStageCircleRadius -->
+<!-- $$$setStageCount -->
+<h3 class="fn" id="setStageCount"><span class="type">void</span> QCtmStageProgressBar::<span class="name">setStageCount</span>(<span class="type">int</span> <i>count</i>)</h3>
+<p>设置阶段数量 <i>count</i>.</p>
+<p><b>Note: </b>Setter function for property <a href="qctmstageprogressbar.html#stageCount">stageCount</a>. </p>
+<p><b>See also </b><a href="qctmstageprogressbar.html#stageCount">stageCount</a>().</p>
+<!-- @@@setStageCount -->
+<!-- $$$setStageIndexTextPen -->
+<h3 class="fn" id="setStageIndexTextPen"><span class="type">void</span> QCtmStageProgressBar::<span class="name">setStageIndexTextPen</span>(const <span class="type"><a href="https://doc.qt.io/qt/qpen.html">QPen</a></span> &amp;<i>pen</i>)</h3>
+<p>设置阶段序号文本的画笔 <i>pen</i>.</p>
+<p><b>Note: </b>Setter function for property <a href="qctmstageprogressbar.html#stageIndexTextPen">stageIndexTextPen</a>. </p>
+<p><b>See also </b><a href="qctmstageprogressbar.html#stageIndexTextPen">stageIndexTextPen</a>().</p>
+<!-- @@@setStageIndexTextPen -->
+<!-- $$$setText[overload1]$$$setTextintconstQString& -->
+<h3 class="fn" id="setText"><span class="type">void</span> QCtmStageProgressBar::<span class="name">setText</span>(<span class="type">int</span> <i>stage</i>, const <span class="type"><a href="https://doc.qt.io/qt/qstring.html">QString</a></span> &amp;<i>text</i>)</h3>
+<p>设置阶段 <i>stage</i> 的文本 <i>text</i>.</p>
+<p><b>See also </b><a href="qctmstageprogressbar.html#text">text</a>().</p>
+<!-- @@@setText -->
+<!-- $$$sizeHint[overload1]$$$sizeHint -->
+<h3 class="fn" id="sizeHint"><code>[override virtual protected] </code><span class="type"><a href="https://doc.qt.io/qt/qsize.html">QSize</a></span> QCtmStageProgressBar::<span class="name">sizeHint</span>() const</h3>
+<!-- @@@sizeHint -->
+<!-- $$$stageCircleRadius[overload1]$$$stageCircleRadius -->
+<h3 class="fn" id="stageCircleRadius"><span class="type">int</span> QCtmStageProgressBar::<span class="name">stageCircleRadius</span>() const</h3>
+<p>返回阶段节点圆形的半径像素.</p>
+<p><b>See also </b><a href="qctmstageprogressbar.html#setStageCircleRadius">setStageCircleRadius</a>.</p>
+<!-- @@@stageCircleRadius -->
+<!-- $$$stageCount -->
+<h3 class="fn" id="stageCount"><span class="type">int</span> QCtmStageProgressBar::<span class="name">stageCount</span>() const</h3>
+<p>返回阶段数量.</p>
+<p><b>Note: </b>Getter function for property stageCount. </p>
+<p><b>See also </b><a href="qctmstageprogressbar.html#setStageCount">setStageCount</a>.</p>
+<!-- @@@stageCount -->
+<!-- $$$stageIndexTextPen -->
+<h3 class="fn" id="stageIndexTextPen">const <span class="type"><a href="https://doc.qt.io/qt/qpen.html">QPen</a></span> &amp;QCtmStageProgressBar::<span class="name">stageIndexTextPen</span>() const</h3>
+<p>返回阶段序号文本的画笔.</p>
+<p><b>Note: </b>Getter function for property stageIndexTextPen. </p>
+<p><b>See also </b><a href="qctmstageprogressbar.html#setStageIndexTextPen">setStageIndexTextPen</a>.</p>
+<!-- @@@stageIndexTextPen -->
+<!-- $$$text[overload1]$$$textint -->
+<h3 class="fn" id="text"><span class="type"><a href="https://doc.qt.io/qt/qstring.html">QString</a></span> QCtmStageProgressBar::<span class="name">text</span>(<span class="type">int</span> <i>stage</i>) const</h3>
+<p>返回阶段 <i>stage</i> 的文本.</p>
+<p><b>See also </b><a href="qctmstageprogressbar.html#setText">setText</a>.</p>
+<!-- @@@text -->
+<!-- $$$textVisible -->
+<h3 class="fn" id="textVisible"><span class="type">bool</span> QCtmStageProgressBar::<span class="name">textVisible</span>() const</h3>
+<p>返回阶段文本是否可见.</p>
+<p><b>Note: </b>Getter function for property textVisible. </p>
+<p><b>See also </b><a href="qctmstageprogressbar.html#setTextVisible">setTextVisible</a>.</p>
+<!-- @@@textVisible -->
+<!-- $$$value -->
+<h3 class="fn" id="value"><span class="type">int</span> QCtmStageProgressBar::<span class="name">value</span>() const</h3>
+<p>返回当前进度.</p>
+<p><b>Note: </b>Getter function for property value. </p>
+<p><b>See also </b><a href="qctmstageprogressbar.html#setValue">setValue</a>.</p>
+<!-- @@@value -->
+</div>
+        </div>
+       </div>
+   </div>
+   </div>
+</div>
+<div class="footer">
+   <p>
+   <acronym title="Copyright">&copy;</acronym> QCustomUi
+   Documentation contributions included herein are the copyrights of
+   their respective owners.<br/>    The documentation provided herein is licensed under the terms of the    <a href="http://www.gnu.org/licenses/fdl.html">GNU Free Documentation    License version 1.3</a> as published by the Free Software Foundation.<br/> </div>
+</body>
+</html>

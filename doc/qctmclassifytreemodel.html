@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+<!-- QCtmClassifyTreeModel.cpp -->
+  <title>QCtmClassifyTreeModel Class | QCustomUi 1.10.0-beta.2</title>
+  <link rel="stylesheet" type="text/css" href="style/offline-simple.css" />
+  <script type="text/javascript">
+    document.getElementsByTagName("link").item(0).setAttribute("href", "style/offline.css");
+    // loading style sheet breaks anchors that were jumped to before
+    // so force jumping to anchor again
+    setTimeout(function() {
+        var anchor = location.hash;
+        // need to jump to different anchor first (e.g. none)
+        location.hash = "#";
+        setTimeout(function() {
+            location.hash = anchor;
+        }, 0);
+    }, 0);
+  </script>
+</head>
+<body>
+<div class="header" id="qtdocheader">
+    <div class="main">
+    <div class="main-rounded">
+        <div class="navigationbar">
+        <ul>
+<li><a href="index.html">QCustomUi 1.10.0-beta.2</a></li>
+<li><a href="index.html">QCustomUi</a></li>
+<li>QCtmClassifyTreeModel</li>
+<li id="buildversion">QCustomUi 1.10.0-beta.2 Reference Documentation</li>
+    </ul>
+    </div>
+</div>
+<div class="content">
+<div class="line">
+<div class="content mainContent">
+<div class="sidebar">
+<div class="toc">
+<h3 id="toc">Contents</h3>
+<ul>
+<li class="level1"><a href="#public-functions">Public Functions</a></li>
+<li class="level1"><a href="#reimplemented-public-functions">Reimplemented Public Functions</a></li>
+<li class="level1"><a href="#details">Detailed Description</a></li>
+</ul>
+</div>
+<div class="sidebar-content" id="sidebar-content"></div></div>
+<h1 class="title">QCtmClassifyTreeModel Class</h1>
+<!-- $$$QCtmClassifyTreeModel-brief -->
+<p>标准归类树 model. <a href="#details">More...</a></p>
+<!-- @@@QCtmClassifyTreeModel -->
+<div class="table"><table class="alignedsummary">
+<tr><td class="memItemLeft rightAlign topAlign"> Header:</td><td class="memItemRight bottomAlign">  <span class="preprocessor">#include &lt;QCtmClassifyTreeModel.h&gt;</span>
+</td></tr><tr><td class="memItemLeft rightAlign topAlign"> Inherits:</td><td class="memItemRight bottomAlign"> <a href="https://doc.qt.io/qt/qabstractitemmodel.html">QAbstractItemModel</a></td></tr></table></div>
+<ul>
+<li><a href="qctmclassifytreemodel-members.html">List of all members, including inherited members</a></li>
+</ul>
+<h2 id="public-functions">Public Functions</h2>
+<div class="table"><table class="alignedsummary">
+<tr><td class="memItemLeft rightAlign topAlign"> </td><td class="memItemRight bottomAlign"><b><a href="qctmclassifytreemodel.html#QCtmClassifyTreeModel">QCtmClassifyTreeModel</a></b>(QObject *<i>parent</i>)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> virtual </td><td class="memItemRight bottomAlign"><b><a href="qctmclassifytreemodel.html#dtor.QCtmClassifyTreeModel">~QCtmClassifyTreeModel</a></b>()</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> void </td><td class="memItemRight bottomAlign"><b><a href="qctmclassifytreemodel.html#addItem">addItem</a></b>(QCtmClassifyTreeItem *<i>item</i>)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> QModelIndex </td><td class="memItemRight bottomAlign"><b><a href="qctmclassifytreemodel.html#indexFromItem">indexFromItem</a></b>(const QCtmClassifyTreeItem *<i>item</i>) const</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> void </td><td class="memItemRight bottomAlign"><b><a href="qctmclassifytreemodel.html#insertItem">insertItem</a></b>(int <i>index</i>, QCtmClassifyTreeItem *<i>item</i>)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> void </td><td class="memItemRight bottomAlign"><b><a href="qctmclassifytreemodel.html#removeItem">removeItem</a></b>(QCtmClassifyTreeItem *<i>item</i>)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> void </td><td class="memItemRight bottomAlign"><b><a href="qctmclassifytreemodel.html#reset">reset</a></b>()</td></tr>
+</table></div>
+<h2 id="reimplemented-public-functions">Reimplemented Public Functions</h2>
+<div class="table"><table class="alignedsummary">
+<tr><td class="memItemLeft rightAlign topAlign"> virtual int </td><td class="memItemRight bottomAlign"><b><a href="qctmclassifytreemodel.html#columnCount">columnCount</a></b>(const QModelIndex &amp;<i>parnet</i> = QModelIndex()) const override</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> virtual QVariant </td><td class="memItemRight bottomAlign"><b><a href="qctmclassifytreemodel.html#data">data</a></b>(const QModelIndex &amp;<i>index</i>, int <i>role</i>) const override</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> virtual QModelIndex </td><td class="memItemRight bottomAlign"><b><a href="qctmclassifytreemodel.html#index">index</a></b>(int <i>row</i>, int <i>column</i>, const QModelIndex &amp;<i>parent</i> = QModelIndex()) const override</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> virtual QModelIndex </td><td class="memItemRight bottomAlign"><b><a href="qctmclassifytreemodel.html#parent">parent</a></b>(const QModelIndex &amp;<i>child</i>) const override</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> virtual int </td><td class="memItemRight bottomAlign"><b><a href="qctmclassifytreemodel.html#rowCount">rowCount</a></b>(const QModelIndex &amp;<i>parent</i> = QModelIndex()) const override</td></tr>
+</table></div>
+<!-- $$$QCtmClassifyTreeModel-description -->
+<div class="descr">
+<h2 id="details">Detailed Description</h2>
+</div>
+<!-- @@@QCtmClassifyTreeModel -->
+<div class="func">
+<h2>Member Function Documentation</h2>
+<!-- $$$QCtmClassifyTreeModel[overload1]$$$QCtmClassifyTreeModelQObject* -->
+<h3 class="fn" id="QCtmClassifyTreeModel">QCtmClassifyTreeModel::<span class="name">QCtmClassifyTreeModel</span>(<span class="type"><a href="https://doc.qt.io/qt/qobject.html#QObject">QObject</a></span> *<i>parent</i>)</h3>
+<p>构造函数 <i>parent</i>.</p>
+<!-- @@@QCtmClassifyTreeModel -->
+<!-- $$$~QCtmClassifyTreeModel[overload1]$$$~QCtmClassifyTreeModel -->
+<h3 class="fn" id="dtor.QCtmClassifyTreeModel"><code>[virtual] </code>QCtmClassifyTreeModel::<span class="name">~QCtmClassifyTreeModel</span>()</h3>
+<p>析构函数.</p>
+<!-- @@@~QCtmClassifyTreeModel -->
+<!-- $$$addItem[overload1]$$$addItemQCtmClassifyTreeItem* -->
+<h3 class="fn" id="addItem"><span class="type">void</span> QCtmClassifyTreeModel::<span class="name">addItem</span>(<span class="type"><a href="qctmclassifytreeitem.html">QCtmClassifyTreeItem</a></span> *<i>item</i>)</h3>
+<p>添加根节点 <i>item</i>.</p>
+<p><b>See also </b><a href="qctmclassifytreemodel.html#insertItem">insertItem</a> and <a href="qctmclassifytreemodel.html#removeItem">removeItem</a>.</p>
+<!-- @@@addItem -->
+<!-- $$$columnCount[overload1]$$$columnCountconstQModelIndex& -->
+<h3 class="fn" id="columnCount"><code>[override virtual] </code><span class="type">int</span> QCtmClassifyTreeModel::<span class="name">columnCount</span>(const <span class="type"><a href="https://doc.qt.io/qt/qmodelindex.html">QModelIndex</a></span> &amp;<i>parnet</i> = QModelIndex()) const</h3>
+<p>Reimplements: <a href="https://doc.qt.io/qt/qabstractitemmodel.html#columnCount">QAbstractItemModel::columnCount(const QModelIndex &amp;parent) const</a>.</p>
+<!-- @@@columnCount -->
+<!-- $$$data[overload1]$$$dataconstQModelIndex&int -->
+<h3 class="fn" id="data"><code>[override virtual] </code><span class="type"><a href="https://doc.qt.io/qt/qvariant.html">QVariant</a></span> QCtmClassifyTreeModel::<span class="name">data</span>(const <span class="type"><a href="https://doc.qt.io/qt/qmodelindex.html">QModelIndex</a></span> &amp;<i>index</i>, <span class="type">int</span> <i>role</i>) const</h3>
+<p>Reimplements: <a href="https://doc.qt.io/qt/qabstractitemmodel.html#data">QAbstractItemModel::data(const QModelIndex &amp;index, int role) const</a>.</p>
+<!-- @@@data -->
+<!-- $$$index[overload1]$$$indexintintconstQModelIndex& -->
+<h3 class="fn" id="index"><code>[override virtual] </code><span class="type"><a href="https://doc.qt.io/qt/qmodelindex.html">QModelIndex</a></span> QCtmClassifyTreeModel::<span class="name">index</span>(<span class="type">int</span> <i>row</i>, <span class="type">int</span> <i>column</i>, const <span class="type"><a href="https://doc.qt.io/qt/qmodelindex.html">QModelIndex</a></span> &amp;<i>parent</i> = QModelIndex()) const</h3>
+<p>Reimplements: <a href="https://doc.qt.io/qt/qabstractitemmodel.html#index">QAbstractItemModel::index(int row, int column, const QModelIndex &amp;parent) const</a>.</p>
+<!-- @@@index -->
+<!-- $$$indexFromItem[overload1]$$$indexFromItemconstQCtmClassifyTreeItem* -->
+<h3 class="fn" id="indexFromItem"><span class="type"><a href="https://doc.qt.io/qt/qmodelindex.html">QModelIndex</a></span> QCtmClassifyTreeModel::<span class="name">indexFromItem</span>(const <span class="type"><a href="qctmclassifytreeitem.html">QCtmClassifyTreeItem</a></span> *<i>item</i>) const</h3>
+<p>返回 <i>item</i> 的 index.</p>
+<!-- @@@indexFromItem -->
+<!-- $$$insertItem[overload1]$$$insertItemintQCtmClassifyTreeItem* -->
+<h3 class="fn" id="insertItem"><span class="type">void</span> QCtmClassifyTreeModel::<span class="name">insertItem</span>(<span class="type">int</span> <i>index</i>, <span class="type"><a href="qctmclassifytreeitem.html">QCtmClassifyTreeItem</a></span> *<i>item</i>)</h3>
+<p>插入根节点 <i>index</i>, <i>item</i>.</p>
+<p><b>See also </b><a href="qctmclassifytreemodel.html#addItem">addItem</a> and <a href="qctmclassifytreemodel.html#removeItem">removeItem</a>.</p>
+<!-- @@@insertItem -->
+<!-- $$$parent[overload1]$$$parentconstQModelIndex& -->
+<h3 class="fn" id="parent"><code>[override virtual] </code><span class="type"><a href="https://doc.qt.io/qt/qmodelindex.html">QModelIndex</a></span> QCtmClassifyTreeModel::<span class="name">parent</span>(const <span class="type"><a href="https://doc.qt.io/qt/qmodelindex.html">QModelIndex</a></span> &amp;<i>child</i>) const</h3>
+<p>Reimplements: <a href="https://doc.qt.io/qt/qabstractitemmodel.html#parent">QAbstractItemModel::parent(const QModelIndex &amp;index) const</a>.</p>
+<!-- @@@parent -->
+<!-- $$$removeItem[overload1]$$$removeItemQCtmClassifyTreeItem* -->
+<h3 class="fn" id="removeItem"><span class="type">void</span> QCtmClassifyTreeModel::<span class="name">removeItem</span>(<span class="type"><a href="qctmclassifytreeitem.html">QCtmClassifyTreeItem</a></span> *<i>item</i>)</h3>
+<p>移除根节点 <i>item</i>.</p>
+<p><b>See also </b><a href="qctmclassifytreemodel.html#addItem">addItem</a> and <a href="qctmclassifytreemodel.html#insertItem">insertItem</a>.</p>
+<!-- @@@removeItem -->
+<!-- $$$reset[overload1]$$$reset -->
+<h3 class="fn" id="reset"><span class="type">void</span> QCtmClassifyTreeModel::<span class="name">reset</span>()</h3>
+<p>重置 model.</p>
+<!-- @@@reset -->
+<!-- $$$rowCount[overload1]$$$rowCountconstQModelIndex& -->
+<h3 class="fn" id="rowCount"><code>[override virtual] </code><span class="type">int</span> QCtmClassifyTreeModel::<span class="name">rowCount</span>(const <span class="type"><a href="https://doc.qt.io/qt/qmodelindex.html">QModelIndex</a></span> &amp;<i>parent</i> = QModelIndex()) const</h3>
+<p>Reimplements: <a href="https://doc.qt.io/qt/qabstractitemmodel.html#rowCount">QAbstractItemModel::rowCount(const QModelIndex &amp;parent) const</a>.</p>
+<!-- @@@rowCount -->
+</div>
+        </div>
+       </div>
+   </div>
+   </div>
+</div>
+<div class="footer">
+   <p>
+   <acronym title="Copyright">&copy;</acronym> QCustomUi
+   Documentation contributions included herein are the copyrights of
+   their respective owners.<br/>    The documentation provided herein is licensed under the terms of the    <a href="http://www.gnu.org/licenses/fdl.html">GNU Free Documentation    License version 1.3</a> as published by the Free Software Foundation.<br/> </div>
+</body>
+</html>

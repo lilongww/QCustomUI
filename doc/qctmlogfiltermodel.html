@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+<!-- QCtmLogFilterModel.cpp -->
+  <title>QCtmLogFilterModel Class | QCustomUi 1.10.0-beta.2</title>
+  <link rel="stylesheet" type="text/css" href="style/offline-simple.css" />
+  <script type="text/javascript">
+    document.getElementsByTagName("link").item(0).setAttribute("href", "style/offline.css");
+    // loading style sheet breaks anchors that were jumped to before
+    // so force jumping to anchor again
+    setTimeout(function() {
+        var anchor = location.hash;
+        // need to jump to different anchor first (e.g. none)
+        location.hash = "#";
+        setTimeout(function() {
+            location.hash = anchor;
+        }, 0);
+    }, 0);
+  </script>
+</head>
+<body>
+<div class="header" id="qtdocheader">
+    <div class="main">
+    <div class="main-rounded">
+        <div class="navigationbar">
+        <ul>
+<li><a href="index.html">QCustomUi 1.10.0-beta.2</a></li>
+<li><a href="index.html">QCustomUi</a></li>
+<li>QCtmLogFilterModel</li>
+<li id="buildversion">QCustomUi 1.10.0-beta.2 Reference Documentation</li>
+    </ul>
+    </div>
+</div>
+<div class="content">
+<div class="line">
+<div class="content mainContent">
+<div class="sidebar">
+<div class="toc">
+<h3 id="toc">Contents</h3>
+<ul>
+<li class="level1"><a href="#public-functions">Public Functions</a></li>
+<li class="level1"><a href="#reimplemented-public-functions">Reimplemented Public Functions</a></li>
+<li class="level1"><a href="#public-slots">Public Slots</a></li>
+<li class="level1"><a href="#details">Detailed Description</a></li>
+</ul>
+</div>
+<div class="sidebar-content" id="sidebar-content"></div></div>
+<h1 class="title">QCtmLogFilterModel Class</h1>
+<!-- $$$QCtmLogFilterModel-brief -->
+<p>日志筛选 model. <a href="#details">More...</a></p>
+<!-- @@@QCtmLogFilterModel -->
+<div class="table"><table class="alignedsummary">
+<tr><td class="memItemLeft rightAlign topAlign"> Header:</td><td class="memItemRight bottomAlign">  <span class="preprocessor">#include &lt;QCtmLogFilterModel.h&gt;</span>
+</td></tr><tr><td class="memItemLeft rightAlign topAlign"> Inherits:</td><td class="memItemRight bottomAlign"> <a href="https://doc.qt.io/qt/qsortfilterproxymodel.html">QSortFilterProxyModel</a></td></tr></table></div>
+<ul>
+<li><a href="qctmlogfiltermodel-members.html">List of all members, including inherited members</a></li>
+</ul>
+<h2 id="public-functions">Public Functions</h2>
+<div class="table"><table class="alignedsummary">
+<tr><td class="memItemLeft rightAlign topAlign"> </td><td class="memItemRight bottomAlign"><b><a href="qctmlogfiltermodel.html#QCtmLogFilterModel">QCtmLogFilterModel</a></b>(QObject *<i>parent</i>)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> virtual </td><td class="memItemRight bottomAlign"><b><a href="qctmlogfiltermodel.html#dtor.QCtmLogFilterModel">~QCtmLogFilterModel</a></b>()</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> void </td><td class="memItemRight bottomAlign"><b><a href="qctmlogfiltermodel.html#search">search</a></b>(const QString &amp;<i>keyword</i>)</td></tr>
+</table></div>
+<h2 id="reimplemented-public-functions">Reimplemented Public Functions</h2>
+<div class="table"><table class="alignedsummary">
+<tr><td class="memItemLeft rightAlign topAlign"> virtual bool </td><td class="memItemRight bottomAlign"><b><a href="qctmlogfiltermodel.html#filterAcceptsRow">filterAcceptsRow</a></b>(int <i>sourceRow</i>, const QModelIndex &amp;<i>sourceParent</i>) const override</td></tr>
+</table></div>
+<h2 id="public-slots">Public Slots</h2>
+<div class="table"><table class="alignedsummary">
+<tr><td class="memItemLeft rightAlign topAlign"> void </td><td class="memItemRight bottomAlign"><b><a href="qctmlogfiltermodel.html#showLog">showLog</a></b>(QtMsgType <i>type</i>, bool <i>show</i>)</td></tr>
+</table></div>
+<!-- $$$QCtmLogFilterModel-description -->
+<div class="descr">
+<h2 id="details">Detailed Description</h2>
+</div>
+<!-- @@@QCtmLogFilterModel -->
+<div class="func">
+<h2>Member Function Documentation</h2>
+<!-- $$$QCtmLogFilterModel[overload1]$$$QCtmLogFilterModelQObject* -->
+<h3 class="fn" id="QCtmLogFilterModel">QCtmLogFilterModel::<span class="name">QCtmLogFilterModel</span>(<span class="type"><a href="https://doc.qt.io/qt/qobject.html#QObject">QObject</a></span> *<i>parent</i>)</h3>
+<p>构造函数 <i>parent</i>.</p>
+<!-- @@@QCtmLogFilterModel -->
+<!-- $$$showLog[overload1]$$$showLogQtMsgTypebool -->
+<h3 class="fn" id="showLog"><code>[slot] </code><span class="type">void</span> QCtmLogFilterModel::<span class="name">showLog</span>(<span class="type"><a href="https://doc.qt.io/qt/qtglobal.html#QtMsgType-enum">QtMsgType</a></span> <i>type</i>, <span class="type">bool</span> <i>show</i>)</h3>
+<p>设置日志类型 <i>type</i> 是否显示 <i>show</i>.</p>
+<!-- @@@showLog -->
+<!-- $$$~QCtmLogFilterModel[overload1]$$$~QCtmLogFilterModel -->
+<h3 class="fn" id="dtor.QCtmLogFilterModel"><code>[virtual] </code>QCtmLogFilterModel::<span class="name">~QCtmLogFilterModel</span>()</h3>
+<p>析构函数.</p>
+<!-- @@@~QCtmLogFilterModel -->
+<!-- $$$filterAcceptsRow[overload1]$$$filterAcceptsRowintconstQModelIndex& -->
+<h3 class="fn" id="filterAcceptsRow"><code>[override virtual] </code><span class="type">bool</span> QCtmLogFilterModel::<span class="name">filterAcceptsRow</span>(<span class="type">int</span> <i>sourceRow</i>, const <span class="type"><a href="https://doc.qt.io/qt/qmodelindex.html">QModelIndex</a></span> &amp;<i>sourceParent</i>) const</h3>
+<p>Reimplements: <a href="https://doc.qt.io/qt/qsortfilterproxymodel.html#filterAcceptsRow">QSortFilterProxyModel::filterAcceptsRow(int source_row, const QModelIndex &amp;source_parent) const</a>.</p>
+<!-- @@@filterAcceptsRow -->
+<!-- $$$search[overload1]$$$searchconstQString& -->
+<h3 class="fn" id="search"><span class="type">void</span> QCtmLogFilterModel::<span class="name">search</span>(const <span class="type"><a href="https://doc.qt.io/qt/qstring.html">QString</a></span> &amp;<i>keyword</i>)</h3>
+<p>查询关键字 <i>keyword</i>.</p>
+<!-- @@@search -->
+</div>
+        </div>
+       </div>
+   </div>
+   </div>
+</div>
+<div class="footer">
+   <p>
+   <acronym title="Copyright">&copy;</acronym> QCustomUi
+   Documentation contributions included herein are the copyrights of
+   their respective owners.<br/>    The documentation provided herein is licensed under the terms of the    <a href="http://www.gnu.org/licenses/fdl.html">GNU Free Documentation    License version 1.3</a> as published by the Free Software Foundation.<br/> </div>
+</body>
+</html>

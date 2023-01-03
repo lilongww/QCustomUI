@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+<!-- QCtmMessageTipData.cpp -->
+  <title>QCtmMessageTipData Class | QCustomUi 1.10.0-beta.2</title>
+  <link rel="stylesheet" type="text/css" href="style/offline-simple.css" />
+  <script type="text/javascript">
+    document.getElementsByTagName("link").item(0).setAttribute("href", "style/offline.css");
+    // loading style sheet breaks anchors that were jumped to before
+    // so force jumping to anchor again
+    setTimeout(function() {
+        var anchor = location.hash;
+        // need to jump to different anchor first (e.g. none)
+        location.hash = "#";
+        setTimeout(function() {
+            location.hash = anchor;
+        }, 0);
+    }, 0);
+  </script>
+</head>
+<body>
+<div class="header" id="qtdocheader">
+    <div class="main">
+    <div class="main-rounded">
+        <div class="navigationbar">
+        <ul>
+<li><a href="index.html">QCustomUi 1.10.0-beta.2</a></li>
+<li><a href="index.html">QCustomUi</a></li>
+<li>QCtmMessageTipData</li>
+<li id="buildversion">QCustomUi 1.10.0-beta.2 Reference Documentation</li>
+    </ul>
+    </div>
+</div>
+<div class="content">
+<div class="line">
+<div class="content mainContent">
+<div class="sidebar">
+<div class="toc">
+<h3 id="toc">Contents</h3>
+<ul>
+<li class="level1"><a href="#public-functions">Public Functions</a></li>
+<li class="level1"><a href="#details">Detailed Description</a></li>
+</ul>
+</div>
+<div class="sidebar-content" id="sidebar-content"></div></div>
+<h1 class="title">QCtmMessageTipData Class</h1>
+<!-- $$$QCtmMessageTipData-brief -->
+<p>标准消息提示数据结构定义. <a href="#details">More...</a></p>
+<!-- @@@QCtmMessageTipData -->
+<div class="table"><table class="alignedsummary">
+<tr><td class="memItemLeft rightAlign topAlign"> Header:</td><td class="memItemRight bottomAlign">  <span class="preprocessor">#include &lt;QCtmMessageTipData.h&gt;</span>
+</td></tr><tr><td class="memItemLeft rightAlign topAlign"> Inherits:</td><td class="memItemRight bottomAlign"> <a href="qctmabstractmessagetipdata.html">QCtmAbstractMessageTipData</a></td></tr></table></div>
+<ul>
+<li><a href="qctmmessagetipdata-members.html">List of all members, including inherited members</a></li>
+</ul>
+<h2 id="public-functions">Public Functions</h2>
+<div class="table"><table class="alignedsummary">
+<tr><td class="memItemLeft rightAlign topAlign"> </td><td class="memItemRight bottomAlign"><b><a href="qctmmessagetipdata.html#QCtmMessageTipData">QCtmMessageTipData</a></b>(const QString &amp;<i>title</i>, const QString &amp;<i>content</i>, const QDateTime &amp;<i>time</i>)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> virtual </td><td class="memItemRight bottomAlign"><b><a href="qctmmessagetipdata.html#dtor.QCtmMessageTipData">~QCtmMessageTipData</a></b>()</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> const QString &amp;</td><td class="memItemRight bottomAlign"><b><a href="qctmmessagetipdata.html#content">content</a></b>() const</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> const QDateTime &amp;</td><td class="memItemRight bottomAlign"><b><a href="qctmmessagetipdata.html#dateTime">dateTime</a></b>() const</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> void </td><td class="memItemRight bottomAlign"><b><a href="qctmmessagetipdata.html#setContent">setContent</a></b>(const QString &amp;<i>content</i>)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> void </td><td class="memItemRight bottomAlign"><b><a href="qctmmessagetipdata.html#setDateTime">setDateTime</a></b>(const QDateTime &amp;<i>time</i>)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> void </td><td class="memItemRight bottomAlign"><b><a href="qctmmessagetipdata.html#setTitle">setTitle</a></b>(const QString &amp;<i>title</i>)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> const QString &amp;</td><td class="memItemRight bottomAlign"><b><a href="qctmmessagetipdata.html#title">title</a></b>() const</td></tr>
+</table></div>
+<!-- $$$QCtmMessageTipData-description -->
+<div class="descr">
+<h2 id="details">Detailed Description</h2>
+</div>
+<!-- @@@QCtmMessageTipData -->
+<div class="func">
+<h2>Member Function Documentation</h2>
+<!-- $$$QCtmMessageTipData[overload1]$$$QCtmMessageTipDataconstQString&constQString&constQDateTime& -->
+<h3 class="fn" id="QCtmMessageTipData">QCtmMessageTipData::<span class="name">QCtmMessageTipData</span>(const <span class="type"><a href="https://doc.qt.io/qt/qstring.html">QString</a></span> &amp;<i>title</i>, const <span class="type"><a href="https://doc.qt.io/qt/qstring.html">QString</a></span> &amp;<i>content</i>, const <span class="type"><a href="https://doc.qt.io/qt/qdatetime.html">QDateTime</a></span> &amp;<i>time</i>)</h3>
+<p>构造函数 <i>title</i>, <i>content</i>, <i>time</i>.</p>
+<!-- @@@QCtmMessageTipData -->
+<!-- $$$~QCtmMessageTipData[overload1]$$$~QCtmMessageTipData -->
+<h3 class="fn" id="dtor.QCtmMessageTipData"><code>[virtual] </code>QCtmMessageTipData::<span class="name">~QCtmMessageTipData</span>()</h3>
+<p>析构函数.</p>
+<!-- @@@~QCtmMessageTipData -->
+<!-- $$$content[overload1]$$$content -->
+<h3 class="fn" id="content">const <span class="type"><a href="https://doc.qt.io/qt/qstring.html">QString</a></span> &amp;QCtmMessageTipData::<span class="name">content</span>() const</h3>
+<p>返回消息内容.</p>
+<p><b>See also </b><a href="qctmmessagetipdata.html#setContent">setContent</a>.</p>
+<!-- @@@content -->
+<!-- $$$dateTime[overload1]$$$dateTime -->
+<h3 class="fn" id="dateTime">const <span class="type"><a href="https://doc.qt.io/qt/qdatetime.html">QDateTime</a></span> &amp;QCtmMessageTipData::<span class="name">dateTime</span>() const</h3>
+<p>返回消息时间.</p>
+<p><b>See also </b><a href="qctmmessagetipdata.html#setDateTime">setDateTime</a>.</p>
+<!-- @@@dateTime -->
+<!-- $$$setContent[overload1]$$$setContentconstQString& -->
+<h3 class="fn" id="setContent"><span class="type">void</span> QCtmMessageTipData::<span class="name">setContent</span>(const <span class="type"><a href="https://doc.qt.io/qt/qstring.html">QString</a></span> &amp;<i>content</i>)</h3>
+<p>设置消息内容 <i>content</i>.</p>
+<p><b>See also </b><a href="qctmmessagetipdata.html#content">content</a>.</p>
+<!-- @@@setContent -->
+<!-- $$$setDateTime[overload1]$$$setDateTimeconstQDateTime& -->
+<h3 class="fn" id="setDateTime"><span class="type">void</span> QCtmMessageTipData::<span class="name">setDateTime</span>(const <span class="type"><a href="https://doc.qt.io/qt/qdatetime.html">QDateTime</a></span> &amp;<i>time</i>)</h3>
+<p>设置消息时间 <i>time</i>.</p>
+<p><b>See also </b><a href="qctmmessagetipdata.html#dateTime">dateTime</a>().</p>
+<!-- @@@setDateTime -->
+<!-- $$$setTitle[overload1]$$$setTitleconstQString& -->
+<h3 class="fn" id="setTitle"><span class="type">void</span> QCtmMessageTipData::<span class="name">setTitle</span>(const <span class="type"><a href="https://doc.qt.io/qt/qstring.html">QString</a></span> &amp;<i>title</i>)</h3>
+<p>设置标题 <i>title</i>.</p>
+<p><b>See also </b><a href="qctmmessagetipdata.html#title">title</a>().</p>
+<!-- @@@setTitle -->
+<!-- $$$title[overload1]$$$title -->
+<h3 class="fn" id="title">const <span class="type"><a href="https://doc.qt.io/qt/qstring.html">QString</a></span> &amp;QCtmMessageTipData::<span class="name">title</span>() const</h3>
+<p>返回标题.</p>
+<p><b>See also </b><a href="qctmmessagetipdata.html#setTitle">setTitle</a>.</p>
+<!-- @@@title -->
+</div>
+        </div>
+       </div>
+   </div>
+   </div>
+</div>
+<div class="footer">
+   <p>
+   <acronym title="Copyright">&copy;</acronym> QCustomUi
+   Documentation contributions included herein are the copyrights of
+   their respective owners.<br/>    The documentation provided herein is licensed under the terms of the    <a href="http://www.gnu.org/licenses/fdl.html">GNU Free Documentation    License version 1.3</a> as published by the Free Software Foundation.<br/> </div>
+</body>
+</html>

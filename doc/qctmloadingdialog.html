@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+<!-- QCtmLoadingDialog.cpp -->
+  <title>QCtmLoadingDialog Class | QCustomUi 1.10.0-beta.2</title>
+  <link rel="stylesheet" type="text/css" href="style/offline-simple.css" />
+  <script type="text/javascript">
+    document.getElementsByTagName("link").item(0).setAttribute("href", "style/offline.css");
+    // loading style sheet breaks anchors that were jumped to before
+    // so force jumping to anchor again
+    setTimeout(function() {
+        var anchor = location.hash;
+        // need to jump to different anchor first (e.g. none)
+        location.hash = "#";
+        setTimeout(function() {
+            location.hash = anchor;
+        }, 0);
+    }, 0);
+  </script>
+</head>
+<body>
+<div class="header" id="qtdocheader">
+    <div class="main">
+    <div class="main-rounded">
+        <div class="navigationbar">
+        <ul>
+<li><a href="index.html">QCustomUi 1.10.0-beta.2</a></li>
+<li><a href="index.html">QCustomUi</a></li>
+<li>QCtmLoadingDialog</li>
+<li id="buildversion">QCustomUi 1.10.0-beta.2 Reference Documentation</li>
+    </ul>
+    </div>
+</div>
+<div class="content">
+<div class="line">
+<div class="content mainContent">
+<div class="sidebar">
+<div class="toc">
+<h3 id="toc">Contents</h3>
+<ul>
+<li class="level1"><a href="#public-functions">Public Functions</a></li>
+<li class="level1"><a href="#public-slots">Public Slots</a></li>
+<li class="level1"><a href="#reimplemented-protected-functions">Reimplemented Protected Functions</a></li>
+<li class="level1"><a href="#details">Detailed Description</a></li>
+</ul>
+</div>
+<div class="sidebar-content" id="sidebar-content"></div></div>
+<h1 class="title">QCtmLoadingDialog Class</h1>
+<!-- $$$QCtmLoadingDialog-brief -->
+<p>等待加载窗口. <a href="#details">More...</a></p>
+<!-- @@@QCtmLoadingDialog -->
+<div class="table"><table class="alignedsummary">
+<tr><td class="memItemLeft rightAlign topAlign"> Header:</td><td class="memItemRight bottomAlign">  <span class="preprocessor">#include &lt;QCtmLoadingDialog.h&gt;</span>
+</td></tr><tr><td class="memItemLeft rightAlign topAlign"> Inherits:</td><td class="memItemRight bottomAlign"> QWidget</td></tr></table></div>
+<ul>
+<li><a href="qctmloadingdialog-members.html">List of all members, including inherited members</a></li>
+</ul>
+<h2 id="public-functions">Public Functions</h2>
+<div class="table"><table class="alignedsummary">
+<tr><td class="memItemLeft rightAlign topAlign"> </td><td class="memItemRight bottomAlign"><b><a href="qctmloadingdialog.html#QCtmLoadingDialog">QCtmLoadingDialog</a></b>(QWidget *<i>parent</i>)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> virtual </td><td class="memItemRight bottomAlign"><b><a href="qctmloadingdialog.html#dtor.QCtmLoadingDialog">~QCtmLoadingDialog</a></b>()</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> bool </td><td class="memItemRight bottomAlign"><b><a href="qctmloadingdialog.html#cancelEnable">cancelEnable</a></b>() const</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> void </td><td class="memItemRight bottomAlign"><b><a href="qctmloadingdialog.html#setCancelEnable">setCancelEnable</a></b>(bool <i>flag</i>)</td></tr>
+</table></div>
+<h2 id="public-slots">Public Slots</h2>
+<div class="table"><table class="alignedsummary">
+<tr><td class="memItemLeft rightAlign topAlign"> void </td><td class="memItemRight bottomAlign"><b><a href="qctmloadingdialog.html#cancel">cancel</a></b>()</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> void </td><td class="memItemRight bottomAlign"><b><a href="qctmloadingdialog.html#done">done</a></b>()</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> QCtmLoadingDialog::Result </td><td class="memItemRight bottomAlign"><b><a href="qctmloadingdialog.html#exec">exec</a></b>()</td></tr>
+</table></div>
+<h2 id="reimplemented-protected-functions">Reimplemented Protected Functions</h2>
+<div class="table"><table class="alignedsummary">
+<tr><td class="memItemLeft rightAlign topAlign"> virtual void </td><td class="memItemRight bottomAlign"><b><a href="qctmloadingdialog.html#closeEvent">closeEvent</a></b>(QCloseEvent *<i>event</i>) override</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> virtual bool </td><td class="memItemRight bottomAlign"><b><a href="qctmloadingdialog.html#eventFilter">eventFilter</a></b>(QObject *<i>watched</i>, QEvent *<i>event</i>) override</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> virtual void </td><td class="memItemRight bottomAlign"><b><a href="qctmloadingdialog.html#hideEvent">hideEvent</a></b>(QHideEvent *<i>event</i>) override</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> virtual void </td><td class="memItemRight bottomAlign"><b><a href="qctmloadingdialog.html#keyPressEvent">keyPressEvent</a></b>(QKeyEvent *<i>event</i>) override</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> virtual void </td><td class="memItemRight bottomAlign"><b><a href="qctmloadingdialog.html#showEvent">showEvent</a></b>(QShowEvent *<i>e</i>) override</td></tr>
+</table></div>
+<!-- $$$QCtmLoadingDialog-description -->
+<div class="descr">
+<h2 id="details">Detailed Description</h2>
+</div>
+<!-- @@@QCtmLoadingDialog -->
+<div class="func">
+<h2>Member Function Documentation</h2>
+<!-- $$$QCtmLoadingDialog[overload1]$$$QCtmLoadingDialogQWidget* -->
+<h3 class="fn" id="QCtmLoadingDialog">QCtmLoadingDialog::<span class="name">QCtmLoadingDialog</span>(<span class="type">QWidget</span> *<i>parent</i>)</h3>
+<p>构造函数，在 <i>parent</i> 的顶层窗口上覆盖加载窗口.</p>
+<!-- @@@QCtmLoadingDialog -->
+<!-- $$$cancel[overload1]$$$cancel -->
+<h3 class="fn" id="cancel"><code>[slot] </code><span class="type">void</span> QCtmLoadingDialog::<span class="name">cancel</span>()</h3>
+<p>Loading 窗口加载未完成时调用该函数，此时exec返回Cancel.</p>
+<p><b>See also </b><a href="qctmloadingdialog.html#done">done</a>.</p>
+<!-- @@@cancel -->
+<!-- $$$done[overload1]$$$done -->
+<h3 class="fn" id="done"><code>[slot] </code><span class="type">void</span> QCtmLoadingDialog::<span class="name">done</span>()</h3>
+<p>Loading 窗口加载完成时调用该函数，测试exec返回Done.</p>
+<p><b>See also </b><a href="qctmloadingdialog.html#cancel">cancel</a>.</p>
+<!-- @@@done -->
+<!-- $$$exec[overload1]$$$exec -->
+<h3 class="fn" id="exec"><code>[slot] </code><span class="type">QCtmLoadingDialog::Result</span> QCtmLoadingDialog::<span class="name">exec</span>()</h3>
+<p>阻塞并显示 loading 窗口.</p>
+<div class="admonition note">
+<p><b>Note: </b>不应使用show来显示loading.</p>
+</div>
+<!-- @@@exec -->
+<!-- $$$~QCtmLoadingDialog[overload1]$$$~QCtmLoadingDialog -->
+<h3 class="fn" id="dtor.QCtmLoadingDialog"><code>[virtual] </code>QCtmLoadingDialog::<span class="name">~QCtmLoadingDialog</span>()</h3>
+<p>析构该窗口对象.</p>
+<!-- @@@~QCtmLoadingDialog -->
+<!-- $$$cancelEnable[overload1]$$$cancelEnable -->
+<h3 class="fn" id="cancelEnable"><span class="type">bool</span> QCtmLoadingDialog::<span class="name">cancelEnable</span>() const</h3>
+<p>是否可以按ESC键取消显示loading窗口.</p>
+<p><b>See also </b><a href="qctmloadingdialog.html#setCancelEnable">setCancelEnable</a>.</p>
+<!-- @@@cancelEnable -->
+<!-- $$$closeEvent[overload1]$$$closeEventQCloseEvent* -->
+<h3 class="fn" id="closeEvent"><code>[override virtual protected] </code><span class="type">void</span> QCtmLoadingDialog::<span class="name">closeEvent</span>(<span class="type"><a href="https://doc.qt.io/qt/qcloseevent.html">QCloseEvent</a></span> *<i>event</i>)</h3>
+<!-- @@@closeEvent -->
+<!-- $$$eventFilter[overload1]$$$eventFilterQObject*QEvent* -->
+<h3 class="fn" id="eventFilter"><code>[override virtual protected] </code><span class="type">bool</span> QCtmLoadingDialog::<span class="name">eventFilter</span>(<span class="type"><a href="https://doc.qt.io/qt/qobject.html#QObject">QObject</a></span> *<i>watched</i>, <span class="type"><a href="https://doc.qt.io/qt/qevent.html">QEvent</a></span> *<i>event</i>)</h3>
+<p>Reimplements: <a href="https://doc.qt.io/qt/qobject.html#eventFilter">QObject::eventFilter</a>(QObject *watched, QEvent *event).</p>
+<!-- @@@eventFilter -->
+<!-- $$$hideEvent[overload1]$$$hideEventQHideEvent* -->
+<h3 class="fn" id="hideEvent"><code>[override virtual protected] </code><span class="type">void</span> QCtmLoadingDialog::<span class="name">hideEvent</span>(<span class="type"><a href="https://doc.qt.io/qt/qhideevent.html">QHideEvent</a></span> *<i>event</i>)</h3>
+<!-- @@@hideEvent -->
+<!-- $$$keyPressEvent[overload1]$$$keyPressEventQKeyEvent* -->
+<h3 class="fn" id="keyPressEvent"><code>[override virtual protected] </code><span class="type">void</span> QCtmLoadingDialog::<span class="name">keyPressEvent</span>(<span class="type"><a href="https://doc.qt.io/qt/qkeyevent.html">QKeyEvent</a></span> *<i>event</i>)</h3>
+<!-- @@@keyPressEvent -->
+<!-- $$$setCancelEnable[overload1]$$$setCancelEnablebool -->
+<h3 class="fn" id="setCancelEnable"><span class="type">void</span> QCtmLoadingDialog::<span class="name">setCancelEnable</span>(<span class="type">bool</span> <i>flag</i>)</h3>
+<p>设置是否可以按ESC键取消 <i>flag</i>.</p>
+<p><b>See also </b><a href="qctmloadingdialog.html#cancelEnable">cancelEnable</a>.</p>
+<!-- @@@setCancelEnable -->
+<!-- $$$showEvent[overload1]$$$showEventQShowEvent* -->
+<h3 class="fn" id="showEvent"><code>[override virtual protected] </code><span class="type">void</span> QCtmLoadingDialog::<span class="name">showEvent</span>(<span class="type"><a href="https://doc.qt.io/qt/qshowevent.html">QShowEvent</a></span> *<i>e</i>)</h3>
+<!-- @@@showEvent -->
+</div>
+        </div>
+       </div>
+   </div>
+   </div>
+</div>
+<div class="footer">
+   <p>
+   <acronym title="Copyright">&copy;</acronym> QCustomUi
+   Documentation contributions included herein are the copyrights of
+   their respective owners.<br/>    The documentation provided herein is licensed under the terms of the    <a href="http://www.gnu.org/licenses/fdl.html">GNU Free Documentation    License version 1.3</a> as published by the Free Software Foundation.<br/> </div>
+</body>
+</html>

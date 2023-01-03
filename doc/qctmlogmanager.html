@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+<!-- QCtmLogManager.cpp -->
+  <title>QCtmLogManager Class | QCustomUi 1.10.0-beta.2</title>
+  <link rel="stylesheet" type="text/css" href="style/offline-simple.css" />
+  <script type="text/javascript">
+    document.getElementsByTagName("link").item(0).setAttribute("href", "style/offline.css");
+    // loading style sheet breaks anchors that were jumped to before
+    // so force jumping to anchor again
+    setTimeout(function() {
+        var anchor = location.hash;
+        // need to jump to different anchor first (e.g. none)
+        location.hash = "#";
+        setTimeout(function() {
+            location.hash = anchor;
+        }, 0);
+    }, 0);
+  </script>
+</head>
+<body>
+<div class="header" id="qtdocheader">
+    <div class="main">
+    <div class="main-rounded">
+        <div class="navigationbar">
+        <ul>
+<li><a href="index.html">QCustomUi 1.10.0-beta.2</a></li>
+<li><a href="index.html">QCustomUi</a></li>
+<li>QCtmLogManager</li>
+<li id="buildversion">QCustomUi 1.10.0-beta.2 Reference Documentation</li>
+    </ul>
+    </div>
+</div>
+<div class="content">
+<div class="line">
+<div class="content mainContent">
+<div class="sidebar">
+<div class="toc">
+<h3 id="toc">Contents</h3>
+<ul>
+<li class="level1"><a href="#public-types">Public Types</a></li>
+<li class="level1"><a href="#public-functions">Public Functions</a></li>
+<li class="level1"><a href="#static-public-members">Static Public Members</a></li>
+<li class="level1"><a href="#protected-functions">Protected Functions</a></li>
+<li class="level1"><a href="#static-protected-members">Static Protected Members</a></li>
+<li class="level1"><a href="#details">Detailed Description</a></li>
+</ul>
+</div>
+<div class="sidebar-content" id="sidebar-content"></div></div>
+<h1 class="title">QCtmLogManager Class</h1>
+<!-- $$$QCtmLogManager-brief -->
+<p>日志管理器. <a href="#details">More...</a></p>
+<!-- @@@QCtmLogManager -->
+<div class="table"><table class="alignedsummary">
+<tr><td class="memItemLeft rightAlign topAlign"> Header:</td><td class="memItemRight bottomAlign">  <span class="preprocessor">#include &lt;QCtmLogManager.h&gt;</span>
+</td></tr></table></div>
+<ul>
+<li><a href="qctmlogmanager-members.html">List of all members, including inherited members</a></li>
+</ul>
+<h2 id="public-types">Public Types</h2>
+<div class="table"><table class="alignedsummary">
+<tr><td class="memItemLeft rightAlign topAlign"> enum </td><td class="memItemRight bottomAlign"><b><a href="qctmlogmanager.html#LogSavePolicy-enum">LogSavePolicy</a></b> { Date, Size }</td></tr>
+</table></div>
+<h2 id="public-functions">Public Functions</h2>
+<div class="table"><table class="alignedsummary">
+<tr><td class="memItemLeft rightAlign topAlign"> const QString &amp;</td><td class="memItemRight bottomAlign"><b><a href="qctmlogmanager.html#logFilePath">logFilePath</a></b>() const</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> QCtmLogManager::LogSavePolicy </td><td class="memItemRight bottomAlign"><b><a href="qctmlogmanager.html#logSavePolicy">logSavePolicy</a></b>() const</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> qint64 </td><td class="memItemRight bottomAlign"><b><a href="qctmlogmanager.html#logSizeLimit">logSizeLimit</a></b>() const</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> bool </td><td class="memItemRight bottomAlign"><b><a href="qctmlogmanager.html#logTypeEnable">logTypeEnable</a></b>(QtMsgType <i>type</i>) const</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> void </td><td class="memItemRight bottomAlign"><b><a href="qctmlogmanager.html#setLogFilePath">setLogFilePath</a></b>(const QString &amp;<i>path</i>)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> void </td><td class="memItemRight bottomAlign"><b><a href="qctmlogmanager.html#setLogSavePolicy">setLogSavePolicy</a></b>(QCtmLogManager::LogSavePolicy <i>policy</i>)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> void </td><td class="memItemRight bottomAlign"><b><a href="qctmlogmanager.html#setLogSizeLimit">setLogSizeLimit</a></b>(qint64 <i>size</i>)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> void </td><td class="memItemRight bottomAlign"><b><a href="qctmlogmanager.html#setLogTypeEnable">setLogTypeEnable</a></b>(QtMsgType <i>type</i>, bool <i>save</i>)</td></tr>
+</table></div>
+<h2 id="static-public-members">Static Public Members</h2>
+<div class="table"><table class="alignedsummary">
+<tr><td class="memItemLeft rightAlign topAlign"> void </td><td class="memItemRight bottomAlign"><b><a href="qctmlogmanager.html#initBeforeApp">initBeforeApp</a></b>()</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> QCtmLogManager &amp;</td><td class="memItemRight bottomAlign"><b><a href="qctmlogmanager.html#instance">instance</a></b>()</td></tr>
+</table></div>
+<h2 id="protected-functions">Protected Functions</h2>
+<div class="table"><table class="alignedsummary">
+<tr><td class="memItemLeft rightAlign topAlign"> </td><td class="memItemRight bottomAlign"><b><a href="qctmlogmanager.html#QCtmLogManager">QCtmLogManager</a></b>()</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> </td><td class="memItemRight bottomAlign"><b><a href="qctmlogmanager.html#dtor.QCtmLogManager">~QCtmLogManager</a></b>()</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> virtual bool </td><td class="memItemRight bottomAlign"><b><a href="qctmlogmanager.html#checkFile">checkFile</a></b>()</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> void </td><td class="memItemRight bottomAlign"><b><a href="qctmlogmanager.html#registerModel">registerModel</a></b>(QCtmAbstractLogModel *<i>model</i>)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> void </td><td class="memItemRight bottomAlign"><b><a href="qctmlogmanager.html#unRegisterModel">unRegisterModel</a></b>(QCtmAbstractLogModel *<i>model</i>)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> virtual void </td><td class="memItemRight bottomAlign"><b><a href="qctmlogmanager.html#writeLog">writeLog</a></b>(QCtmLogDataPtr <i>data</i>)</td></tr>
+</table></div>
+<h2 id="static-protected-members">Static Protected Members</h2>
+<div class="table"><table class="alignedsummary">
+<tr><td class="memItemLeft rightAlign topAlign"> QList&lt;QString&gt; </td><td class="memItemRight bottomAlign"><b><a href="qctmlogmanager.html#parseObjectNames">parseObjectNames</a></b>(QString &amp;<i>msg</i>)</td></tr>
+</table></div>
+<!-- $$$QCtmLogManager-description -->
+<div class="descr">
+<h2 id="details">Detailed Description</h2>
+</div>
+<!-- @@@QCtmLogManager -->
+<div class="types">
+<h2>Member Type Documentation</h2>
+<!-- $$$LogSavePolicy$$$Date$$$Size -->
+<h3 class="fn" id="LogSavePolicy-enum">enum QCtmLogManager::<span class="name">LogSavePolicy</span></h3>
+<p>日志保存策略.</p>
+<div class="table"><table class="valuelist"><tr valign="top" class="odd"><th class="tblConst">Constant</th><th class="tblval">Value</th><th class="tbldscr">Description</th></tr>
+<tr><td class="topAlign"><code>QCtmLogManager::Date</code></td><td class="topAlign tblval"><code>0</code></td><td class="topAlign">按日期保存.</td></tr>
+<tr><td class="topAlign"><code>QCtmLogManager::Size</code></td><td class="topAlign tblval"><code>1</code></td><td class="topAlign">按大小保存.</td></tr>
+</table></div>
+<!-- @@@LogSavePolicy -->
+</div>
+<div class="func">
+<h2>Member Function Documentation</h2>
+<!-- $$$QCtmLogManager[overload1]$$$QCtmLogManager -->
+<h3 class="fn" id="QCtmLogManager"><code>[protected] </code>QCtmLogManager::<span class="name">QCtmLogManager</span>()</h3>
+<p>构造函数.</p>
+<!-- @@@QCtmLogManager -->
+<!-- $$$~QCtmLogManager[overload1]$$$~QCtmLogManager -->
+<h3 class="fn" id="dtor.QCtmLogManager"><code>[protected] </code>QCtmLogManager::<span class="name">~QCtmLogManager</span>()</h3>
+<p>析构函数.</p>
+<!-- @@@~QCtmLogManager -->
+<!-- $$$checkFile[overload1]$$$checkFile -->
+<h3 class="fn" id="checkFile"><code>[virtual protected] </code><span class="type">bool</span> QCtmLogManager::<span class="name">checkFile</span>()</h3>
+<p>检测日志文件，根据日志保存策略重新保存日志.</p>
+<!-- @@@checkFile -->
+<!-- $$$initBeforeApp[overload1]$$$initBeforeApp -->
+<h3 class="fn" id="initBeforeApp"><code>[static] </code><span class="type">void</span> QCtmLogManager::<span class="name">initBeforeApp</span>()</h3>
+<p>在 <a href="https://doc.qt.io/qt/qapplication.html#qApp">qApp</a> 初始化之前调用该函数重定向日志句柄，如果在初始化之后调用则无法获取日志.</p>
+<!-- @@@initBeforeApp -->
+<!-- $$$instance[overload1]$$$instance -->
+<h3 class="fn" id="instance"><code>[static] </code><span class="type"><a href="qctmlogmanager.html#QCtmLogManager">QCtmLogManager</a></span> &amp;QCtmLogManager::<span class="name">instance</span>()</h3>
+<p>返回单例.</p>
+<!-- @@@instance -->
+<!-- $$$logFilePath[overload1]$$$logFilePath -->
+<h3 class="fn" id="logFilePath">const <span class="type"><a href="https://doc.qt.io/qt/qstring.html">QString</a></span> &amp;QCtmLogManager::<span class="name">logFilePath</span>() const</h3>
+<p>返回日志保存路径.</p>
+<p><b>See also </b><a href="qctmlogmanager.html#setLogFilePath">setLogFilePath</a>.</p>
+<!-- @@@logFilePath -->
+<!-- $$$logSavePolicy[overload1]$$$logSavePolicy -->
+<h3 class="fn" id="logSavePolicy"><span class="type"><a href="qctmlogmanager.html#LogSavePolicy-enum">QCtmLogManager::LogSavePolicy</a></span> QCtmLogManager::<span class="name">logSavePolicy</span>() const</h3>
+<p>返回日志保存策略.</p>
+<p><b>See also </b><a href="qctmlogmanager.html#setLogSavePolicy">setLogSavePolicy</a>.</p>
+<!-- @@@logSavePolicy -->
+<!-- $$$logSizeLimit[overload1]$$$logSizeLimit -->
+<h3 class="fn" id="logSizeLimit"><span class="type"><a href="https://doc.qt.io/qt/qtglobal.html#qint64-typedef">qint64</a></span> QCtmLogManager::<span class="name">logSizeLimit</span>() const</h3>
+<p>返回日志大小限制.</p>
+<p><b>See also </b><a href="qctmlogmanager.html#setLogSizeLimit">setLogSizeLimit</a>.</p>
+<!-- @@@logSizeLimit -->
+<!-- $$$logTypeEnable[overload1]$$$logTypeEnableQtMsgType -->
+<h3 class="fn" id="logTypeEnable"><span class="type">bool</span> QCtmLogManager::<span class="name">logTypeEnable</span>(<span class="type"><a href="https://doc.qt.io/qt/qtglobal.html#QtMsgType-enum">QtMsgType</a></span> <i>type</i>) const</h3>
+<p>返回日志类型 <i>type</i> 是否保存.</p>
+<p><b>See also </b><a href="qctmlogmanager.html#setLogTypeEnable">setLogTypeEnable</a>.</p>
+<!-- @@@logTypeEnable -->
+<!-- $$$parseObjectNames[overload1]$$$parseObjectNamesQString& -->
+<h3 class="fn" id="parseObjectNames"><code>[static protected] </code><span class="type"><a href="https://doc.qt.io/qt/qlist.html">QList</a></span>&lt;<span class="type"><a href="https://doc.qt.io/qt/qstring.html">QString</a></span>&gt; QCtmLogManager::<span class="name">parseObjectNames</span>(<span class="type"><a href="https://doc.qt.io/qt/qstring.html">QString</a></span> &amp;<i>msg</i>)</h3>
+<p>解析日志 <i>msg</i>.</p>
+<!-- @@@parseObjectNames -->
+<!-- $$$registerModel[overload1]$$$registerModelQCtmAbstractLogModel* -->
+<h3 class="fn" id="registerModel"><code>[protected] </code><span class="type">void</span> QCtmLogManager::<span class="name">registerModel</span>(<span class="type"><a href="qctmabstractlogmodel.html">QCtmAbstractLogModel</a></span> *<i>model</i>)</h3>
+<p>设置日志 <i>model</i>.</p>
+<p><b>See also </b><a href="qctmlogmanager.html#unRegisterModel">unRegisterModel</a>.</p>
+<!-- @@@registerModel -->
+<!-- $$$setLogFilePath[overload1]$$$setLogFilePathconstQString& -->
+<h3 class="fn" id="setLogFilePath"><span class="type">void</span> QCtmLogManager::<span class="name">setLogFilePath</span>(const <span class="type"><a href="https://doc.qt.io/qt/qstring.html">QString</a></span> &amp;<i>path</i>)</h3>
+<p>设置日志保存路径 <i>path</i>.</p>
+<p><b>See also </b><a href="qctmlogmanager.html#logFilePath">logFilePath</a>.</p>
+<!-- @@@setLogFilePath -->
+<!-- $$$setLogSavePolicy[overload1]$$$setLogSavePolicyQCtmLogManager::LogSavePolicy -->
+<h3 class="fn" id="setLogSavePolicy"><span class="type">void</span> QCtmLogManager::<span class="name">setLogSavePolicy</span>(<span class="type"><a href="qctmlogmanager.html#LogSavePolicy-enum">QCtmLogManager::LogSavePolicy</a></span> <i>policy</i>)</h3>
+<p>设置日志保存策略 <i>policy</i>.</p>
+<p><b>See also </b><a href="qctmlogmanager.html#logSavePolicy">logSavePolicy</a>.</p>
+<!-- @@@setLogSavePolicy -->
+<!-- $$$setLogSizeLimit[overload1]$$$setLogSizeLimitqint64 -->
+<h3 class="fn" id="setLogSizeLimit"><span class="type">void</span> QCtmLogManager::<span class="name">setLogSizeLimit</span>(<span class="type"><a href="https://doc.qt.io/qt/qtglobal.html#qint64-typedef">qint64</a></span> <i>size</i>)</h3>
+<p>设置日志大小限制 <i>size</i>.</p>
+<p><b>See also </b><a href="qctmlogmanager.html#logSizeLimit">logSizeLimit</a>.</p>
+<!-- @@@setLogSizeLimit -->
+<!-- $$$setLogTypeEnable[overload1]$$$setLogTypeEnableQtMsgTypebool -->
+<h3 class="fn" id="setLogTypeEnable"><span class="type">void</span> QCtmLogManager::<span class="name">setLogTypeEnable</span>(<span class="type"><a href="https://doc.qt.io/qt/qtglobal.html#QtMsgType-enum">QtMsgType</a></span> <i>type</i>, <span class="type">bool</span> <i>save</i>)</h3>
+<p>设置日志类型 <i>type</i> 是否保存 <i>save</i>.</p>
+<p><b>See also </b><a href="qctmlogmanager.html#logTypeEnable">logTypeEnable</a>.</p>
+<!-- @@@setLogTypeEnable -->
+<!-- $$$unRegisterModel[overload1]$$$unRegisterModelQCtmAbstractLogModel* -->
+<h3 class="fn" id="unRegisterModel"><code>[protected] </code><span class="type">void</span> QCtmLogManager::<span class="name">unRegisterModel</span>(<span class="type"><a href="qctmabstractlogmodel.html">QCtmAbstractLogModel</a></span> *<i>model</i>)</h3>
+<p>移除日志 <i>model</i>.</p>
+<p><b>See also </b><a href="qctmlogmanager.html#registerModel">registerModel</a>.</p>
+<!-- @@@unRegisterModel -->
+<!-- $$$writeLog[overload1]$$$writeLogQCtmLogDataPtr -->
+<h3 class="fn" id="writeLog"><code>[virtual protected] </code><span class="type">void</span> QCtmLogManager::<span class="name">writeLog</span>(<span class="type">QCtmLogDataPtr</span> <i>data</i>)</h3>
+<p>写入日志 <i>data</i>.</p>
+<!-- @@@writeLog -->
+</div>
+        </div>
+       </div>
+   </div>
+   </div>
+</div>
+<div class="footer">
+   <p>
+   <acronym title="Copyright">&copy;</acronym> QCustomUi
+   Documentation contributions included herein are the copyrights of
+   their respective owners.<br/>    The documentation provided herein is licensed under the terms of the    <a href="http://www.gnu.org/licenses/fdl.html">GNU Free Documentation    License version 1.3</a> as published by the Free Software Foundation.<br/> </div>
+</body>
+</html>

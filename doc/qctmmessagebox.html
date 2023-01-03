@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+<!-- QCtmMessageBox.cpp -->
+  <title>QCtmMessageBox Class | QCustomUi 1.10.0-beta.2</title>
+  <link rel="stylesheet" type="text/css" href="style/offline-simple.css" />
+  <script type="text/javascript">
+    document.getElementsByTagName("link").item(0).setAttribute("href", "style/offline.css");
+    // loading style sheet breaks anchors that were jumped to before
+    // so force jumping to anchor again
+    setTimeout(function() {
+        var anchor = location.hash;
+        // need to jump to different anchor first (e.g. none)
+        location.hash = "#";
+        setTimeout(function() {
+            location.hash = anchor;
+        }, 0);
+    }, 0);
+  </script>
+</head>
+<body>
+<div class="header" id="qtdocheader">
+    <div class="main">
+    <div class="main-rounded">
+        <div class="navigationbar">
+        <ul>
+<li><a href="index.html">QCustomUi 1.10.0-beta.2</a></li>
+<li><a href="index.html">QCustomUi</a></li>
+<li>QCtmMessageBox</li>
+<li id="buildversion">QCustomUi 1.10.0-beta.2 Reference Documentation</li>
+    </ul>
+    </div>
+</div>
+<div class="content">
+<div class="line">
+<div class="content mainContent">
+<div class="sidebar">
+<div class="toc">
+<h3 id="toc">Contents</h3>
+<ul>
+<li class="level1"><a href="#public-types">Public Types</a></li>
+<li class="level1"><a href="#properties">Properties</a></li>
+<li class="level1"><a href="#public-functions">Public Functions</a></li>
+<li class="level1"><a href="#static-public-members">Static Public Members</a></li>
+<li class="level1"><a href="#reimplemented-protected-functions">Reimplemented Protected Functions</a></li>
+<li class="level1"><a href="#details">Detailed Description</a></li>
+</ul>
+</div>
+<div class="sidebar-content" id="sidebar-content"></div></div>
+<h1 class="title">QCtmMessageBox Class</h1>
+<!-- $$$QCtmMessageBox-brief -->
+<p>自定义外观的消息框，用法参考 <a href="https://doc.qt.io/qt/qmessagebox.html">QMessageBox</a>. <a href="#details">More...</a></p>
+<!-- @@@QCtmMessageBox -->
+<div class="table"><table class="alignedsummary">
+<tr><td class="memItemLeft rightAlign topAlign"> Header:</td><td class="memItemRight bottomAlign">  <span class="preprocessor">#include &lt;QCtmMessageBox.h&gt;</span>
+</td></tr><tr><td class="memItemLeft rightAlign topAlign"> Inherits:</td><td class="memItemRight bottomAlign"> <a href="qctmdialog.html">QCtmDialog</a></td></tr></table></div>
+<ul>
+<li><a href="qctmmessagebox-members.html">List of all members, including inherited members</a></li>
+</ul>
+<h2 id="public-types">Public Types</h2>
+<div class="table"><table class="alignedsummary">
+<tr><td class="memItemLeft rightAlign topAlign"> enum </td><td class="memItemRight bottomAlign"><b><a href="qctmmessagebox.html#ButtonRole-enum">ButtonRole</a></b> { InvalidRole, AcceptRole, RejectRole, DestructiveRole, ActionRole, &hellip;, ResetRole }</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> enum </td><td class="memItemRight bottomAlign"><b><a href="qctmmessagebox.html#Icon-enum">Icon</a></b> { NoIcon, Question, Information, Warning, Critical }</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> enum </td><td class="memItemRight bottomAlign"><b><a href="qctmmessagebox.html#StandardButton-enum">StandardButton</a></b> { Ok, Open, Save, Cancel, Close, &hellip;, NoButton }</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> flags </td><td class="memItemRight bottomAlign"><b><a href="qctmmessagebox.html#StandardButton-enum">StandardButtons</a></b></td></tr>
+</table></div>
+<h2 id="properties">Properties</h2>
+<div class="table"><table class="propsummary">
+<tr><td class="topAlign"><ul>
+<li class="fn"><b><a href="qctmmessagebox.html#icon-prop">icon</a></b> : Icon</li>
+<li class="fn"><b><a href="qctmmessagebox.html#iconPixmap-prop">iconPixmap</a></b> : QPixmap</li>
+<li class="fn"><b><a href="qctmmessagebox.html#standardButtons-prop">standardButtons</a></b> : StandardButtons</li>
+</ul></td><td class="topAlign"><ul>
+<li class="fn"><b><a href="qctmmessagebox.html#text-prop">text</a></b> : QString</li>
+<li class="fn"><b><a href="qctmmessagebox.html#textFormat-prop">textFormat</a></b> : Qt::TextFormat</li>
+<li class="fn"><b><a href="qctmmessagebox.html#textInteractionFlags-prop">textInteractionFlags</a></b> : Qt::TextInteractionFlags</li>
+</ul>
+</td></tr>
+</table></div>
+<h2 id="public-functions">Public Functions</h2>
+<div class="table"><table class="alignedsummary">
+<tr><td class="memItemLeft rightAlign topAlign"> </td><td class="memItemRight bottomAlign"><b><a href="qctmmessagebox.html#QCtmMessageBox-1">QCtmMessageBox</a></b>(QCtmMessageBox::Icon <i>icon</i>, const QString &amp;<i>title</i>, const QString &amp;<i>text</i>, QCtmMessageBox::StandardButtons <i>buttons</i> = NoButton, QWidget *<i>parent</i> = Q_NULLPTR, Qt::WindowFlags <i>f</i> = Qt::Dialog | Qt::MSWindowsFixedSizeDialogHint)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> </td><td class="memItemRight bottomAlign"><b><a href="qctmmessagebox.html#QCtmMessageBox">QCtmMessageBox</a></b>(QWidget *<i>parent</i> = Q_NULLPTR)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> virtual </td><td class="memItemRight bottomAlign"><b><a href="qctmmessagebox.html#dtor.QCtmMessageBox">~QCtmMessageBox</a></b>()</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> void </td><td class="memItemRight bottomAlign"><b><a href="qctmmessagebox.html#addButton">addButton</a></b>(QAbstractButton *<i>button</i>, QCtmMessageBox::ButtonRole <i>role</i>)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> QPushButton *</td><td class="memItemRight bottomAlign"><b><a href="qctmmessagebox.html#addButton-1">addButton</a></b>(const QString &amp;<i>text</i>, QCtmMessageBox::ButtonRole <i>role</i>)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> QPushButton *</td><td class="memItemRight bottomAlign"><b><a href="qctmmessagebox.html#addButton-2">addButton</a></b>(QCtmMessageBox::StandardButton <i>button</i>)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> QAbstractButton *</td><td class="memItemRight bottomAlign"><b><a href="qctmmessagebox.html#clickedButton">clickedButton</a></b>() const</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> QCtmMessageBox::StandardButton </td><td class="memItemRight bottomAlign"><b><a href="qctmmessagebox.html#defaultButton">defaultButton</a></b>()</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> QCtmMessageBox::Icon </td><td class="memItemRight bottomAlign"><b><a href="qctmmessagebox.html#icon">icon</a></b>() const</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> QPixmap </td><td class="memItemRight bottomAlign"><b><a href="qctmmessagebox.html#iconPixmap">iconPixmap</a></b>() const</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> void </td><td class="memItemRight bottomAlign"><b><a href="qctmmessagebox.html#removeButton">removeButton</a></b>(QAbstractButton *<i>button</i>)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> void </td><td class="memItemRight bottomAlign"><b><a href="qctmmessagebox.html#setDefaultButton">setDefaultButton</a></b>(QCtmMessageBox::StandardButton <i>button</i>)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> void </td><td class="memItemRight bottomAlign"><b><a href="qctmmessagebox.html#setIcon">setIcon</a></b>(QCtmMessageBox::Icon <i>icon</i>)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> void </td><td class="memItemRight bottomAlign"><b><a href="qctmmessagebox.html#setIconPixmap">setIconPixmap</a></b>(const QPixmap &amp;<i>pixmap</i>)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> void </td><td class="memItemRight bottomAlign"><b><a href="qctmmessagebox.html#setStandardButtons">setStandardButtons</a></b>(QCtmMessageBox::StandardButtons <i>buttons</i>)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> void </td><td class="memItemRight bottomAlign"><b><a href="qctmmessagebox.html#setText">setText</a></b>(const QString &amp;<i>text</i>)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> void </td><td class="memItemRight bottomAlign"><b><a href="qctmmessagebox.html#setTextFormat">setTextFormat</a></b>(Qt::TextFormat <i>format</i>)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> void </td><td class="memItemRight bottomAlign"><b><a href="qctmmessagebox.html#setTextInteractionFlags">setTextInteractionFlags</a></b>(Qt::TextInteractionFlags <i>flags</i>)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> QCtmMessageBox::StandardButton </td><td class="memItemRight bottomAlign"><b><a href="qctmmessagebox.html#standardButton">standardButton</a></b>(QAbstractButton *<i>button</i>) const</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> QCtmMessageBox::StandardButtons </td><td class="memItemRight bottomAlign"><b><a href="qctmmessagebox.html#standardButtons">standardButtons</a></b>() const</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> QString </td><td class="memItemRight bottomAlign"><b><a href="qctmmessagebox.html#text">text</a></b>() const</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> Qt::TextFormat </td><td class="memItemRight bottomAlign"><b><a href="qctmmessagebox.html#textFormat">textFormat</a></b>() const</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> Qt::TextInteractionFlags </td><td class="memItemRight bottomAlign"><b><a href="qctmmessagebox.html#textInteractionFlags">textInteractionFlags</a></b>() const</td></tr>
+</table></div>
+<h2 id="static-public-members">Static Public Members</h2>
+<div class="table"><table class="alignedsummary">
+<tr><td class="memItemLeft rightAlign topAlign"> QCtmMessageBox::StandardButton </td><td class="memItemRight bottomAlign"><b><a href="qctmmessagebox.html#critical">critical</a></b>(QWidget *<i>parent</i>, const QString &amp;<i>title</i>, const QString &amp;<i>text</i>, QCtmMessageBox::StandardButtons <i>buttons</i> = Ok, QCtmMessageBox::StandardButton <i>defaultButton</i> = NoButton)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> QCtmMessageBox::StandardButton </td><td class="memItemRight bottomAlign"><b><a href="qctmmessagebox.html#information">information</a></b>(QWidget *<i>parent</i>, const QString &amp;<i>title</i>, const QString &amp;<i>text</i>, QCtmMessageBox::StandardButtons <i>buttons</i> = Ok, QCtmMessageBox::StandardButton <i>defaultButton</i> = NoButton)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> QCtmMessageBox::StandardButton </td><td class="memItemRight bottomAlign"><b><a href="qctmmessagebox.html#question">question</a></b>(QWidget *<i>parent</i>, const QString &amp;<i>title</i>, const QString &amp;<i>text</i>, QCtmMessageBox::StandardButtons <i>buttons</i> = StandardButtons(Yes | No), QCtmMessageBox::StandardButton <i>defaultButton</i> = NoButton)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> QCtmMessageBox::StandardButton </td><td class="memItemRight bottomAlign"><b><a href="qctmmessagebox.html#warning">warning</a></b>(QWidget *<i>parent</i>, const QString &amp;<i>title</i>, const QString &amp;<i>text</i>, QCtmMessageBox::StandardButtons <i>buttons</i> = Ok, QCtmMessageBox::StandardButton <i>defaultButton</i> = NoButton)</td></tr>
+</table></div>
+<h2 id="reimplemented-protected-functions">Reimplemented Protected Functions</h2>
+<div class="table"><table class="alignedsummary">
+<tr><td class="memItemLeft rightAlign topAlign"> virtual void </td><td class="memItemRight bottomAlign"><b><a href="qctmmessagebox.html#showEvent">showEvent</a></b>(QShowEvent *<i>event</i>) override</td></tr>
+</table></div>
+<!-- $$$QCtmMessageBox-description -->
+<div class="descr">
+<h2 id="details">Detailed Description</h2>
+<p><b>截图:</b></p>
+<p class="centerAlign"><img src="images/QCtmMessageBoxDetail.png" alt="" /></p></div>
+<p><b>See also </b><a href="https://doc.qt.io/qt/qmessagebox.html">QMessageBox</a>.</p>
+<!-- @@@QCtmMessageBox -->
+<div class="types">
+<h2>Member Type Documentation</h2>
+<!-- $$$ButtonRole$$$InvalidRole$$$AcceptRole$$$RejectRole$$$DestructiveRole$$$ActionRole$$$HelpRole$$$YesRole$$$NoRole$$$ResetRole$$$ApplyRole$$$NRoles -->
+<h3 class="fn" id="ButtonRole-enum">enum QCtmMessageBox::<span class="name">ButtonRole</span></h3>
+<p>按钮角色.</p>
+<div class="table"><table class="valuelist"><tr valign="top" class="odd"><th class="tblConst">Constant</th><th class="tblval">Value</th><th class="tbldscr">Description</th></tr>
+<tr><td class="topAlign"><code>QCtmMessageBox::InvalidRole</code></td><td class="topAlign tblval"><code>-1</code></td><td class="topAlign">无效按钮.</td></tr>
+<tr><td class="topAlign"><code>QCtmMessageBox::AcceptRole</code></td><td class="topAlign tblval"><code>0</code></td><td class="topAlign">点击按钮将使窗口以 Accepted 关闭，例如：“确定” 按钮.</td></tr>
+<tr><td class="topAlign"><code>QCtmMessageBox::RejectRole</code></td><td class="topAlign tblval"><code>1</code></td><td class="topAlign">点击按钮将使窗口以 Rejected 关闭，例如：“取消” 按钮.</td></tr>
+<tr><td class="topAlign"><code>QCtmMessageBox::DestructiveRole</code></td><td class="topAlign tblval"><code>2</code></td><td class="topAlign">点击按钮将取消更改并关闭弹窗，例如：“放弃更改” 按钮.</td></tr>
+<tr><td class="topAlign"><code>QCtmMessageBox::ActionRole</code></td><td class="topAlign tblval"><code>3</code></td><td class="topAlign">点击该按钮将导致对话框中的元素发生更改.</td></tr>
+<tr><td class="topAlign"><code>QCtmMessageBox::HelpRole</code></td><td class="topAlign tblval"><code>4</code></td><td class="topAlign">点击按钮请求帮助.</td></tr>
+<tr><td class="topAlign"><code>QCtmMessageBox::YesRole</code></td><td class="topAlign tblval"><code>5</code></td><td class="topAlign">类似于 “是” 按钮.</td></tr>
+<tr><td class="topAlign"><code>QCtmMessageBox::NoRole</code></td><td class="topAlign tblval"><code>6</code></td><td class="topAlign">类似于 “否” 按钮.</td></tr>
+<tr><td class="topAlign"><code>QCtmMessageBox::ApplyRole</code></td><td class="topAlign tblval"><code>8</code></td><td class="topAlign">类似于 “应用” 按钮.</td></tr>
+<tr><td class="topAlign"><code>QCtmMessageBox::ResetRole</code></td><td class="topAlign tblval"><code>7</code></td><td class="topAlign">类似于 “恢复默认” 按钮.</td></tr>
+</table></div>
+<p><b>See also </b><a href="qctmmessagebox.html#StandardButton-enum">StandardButton</a>.</p>
+<!-- @@@ButtonRole -->
+<!-- $$$Icon$$$NoIcon$$$Information$$$Warning$$$Critical$$$Question -->
+<h3 class="fn" id="Icon-enum">enum QCtmMessageBox::<span class="name">Icon</span></h3>
+<p>显示图标.</p>
+<div class="table"><table class="valuelist"><tr valign="top" class="odd"><th class="tblConst">Constant</th><th class="tblval">Value</th><th class="tbldscr">Description</th></tr>
+<tr><td class="topAlign"><code>QCtmMessageBox::NoIcon</code></td><td class="topAlign tblval"><code>0</code></td><td class="topAlign">无图标.</td></tr>
+<tr><td class="topAlign"><code>QCtmMessageBox::Question</code></td><td class="topAlign tblval"><code>4</code></td><td class="topAlign">询问图标.</td></tr>
+<tr><td class="topAlign"><code>QCtmMessageBox::Information</code></td><td class="topAlign tblval"><code>1</code></td><td class="topAlign">信息图标.</td></tr>
+<tr><td class="topAlign"><code>QCtmMessageBox::Warning</code></td><td class="topAlign tblval"><code>2</code></td><td class="topAlign">警告图标.</td></tr>
+<tr><td class="topAlign"><code>QCtmMessageBox::Critical</code></td><td class="topAlign tblval"><code>3</code></td><td class="topAlign">错误图标.</td></tr>
+</table></div>
+<!-- @@@Icon -->
+<!-- $$$StandardButton$$$NoButton$$$Ok$$$Save$$$SaveAll$$$Open$$$Yes$$$YesToAll$$$No$$$NoToAll$$$Abort$$$Retry$$$Ignore$$$Close$$$Cancel$$$Discard$$$Help$$$Apply$$$Reset$$$RestoreDefaults$$$FirstButton$$$LastButton -->
+<h3 class="flags" id="StandardButton-enum">enum QCtmMessageBox::<span class="name">StandardButton</span><br/>flags QCtmMessageBox::<span class="name">StandardButtons</span></h3>
+<p>这些枚举描述了标准按钮的标志。每个按钮有一个对应的 <a href="qctmmessagebox.html#ButtonRole-enum">ButtonRole</a>.</p>
+<div class="table"><table class="valuelist"><tr valign="top" class="odd"><th class="tblConst">Constant</th><th class="tblval">Value</th><th class="tbldscr">Description</th></tr>
+<tr><td class="topAlign"><code>QCtmMessageBox::Ok</code></td><td class="topAlign tblval"><code>0x00000400</code></td><td class="topAlign">“确定” 按钮，对应 <a href="qctmmessagebox.html#ButtonRole-enum">AcceptRole</a>.</td></tr>
+<tr><td class="topAlign"><code>QCtmMessageBox::Open</code></td><td class="topAlign tblval"><code>0x00002000</code></td><td class="topAlign">“打开” 按钮，对应 <a href="qctmmessagebox.html#ButtonRole-enum">AcceptRole</a>.</td></tr>
+<tr><td class="topAlign"><code>QCtmMessageBox::Save</code></td><td class="topAlign tblval"><code>0x00000800</code></td><td class="topAlign">“保存” 按钮，对应 <a href="qctmmessagebox.html#ButtonRole-enum">AcceptRole</a>.</td></tr>
+<tr><td class="topAlign"><code>QCtmMessageBox::Cancel</code></td><td class="topAlign tblval"><code>0x00400000</code></td><td class="topAlign">“取消” 按钮，对应 <a href="qctmmessagebox.html#ButtonRole-enum">RejectRole</a>.</td></tr>
+<tr><td class="topAlign"><code>QCtmMessageBox::Close</code></td><td class="topAlign tblval"><code>0x00200000</code></td><td class="topAlign">“关闭” 按钮，对应 <a href="qctmmessagebox.html#ButtonRole-enum">RejectRole</a>.</td></tr>
+<tr><td class="topAlign"><code>QCtmMessageBox::Discard</code></td><td class="topAlign tblval"><code>0x00800000</code></td><td class="topAlign">“放弃更改” 按钮，对应 <a href="qctmmessagebox.html#ButtonRole-enum">DestructiveRole</a>.</td></tr>
+<tr><td class="topAlign"><code>QCtmMessageBox::Apply</code></td><td class="topAlign tblval"><code>0x02000000</code></td><td class="topAlign">“应用” 按钮，对应 <a href="qctmmessagebox.html#ButtonRole-enum">ApplyRole</a>.</td></tr>
+<tr><td class="topAlign"><code>QCtmMessageBox::Reset</code></td><td class="topAlign tblval"><code>0x04000000</code></td><td class="topAlign">“重置” 按钮，对应 <a href="qctmmessagebox.html#ButtonRole-enum">ResetRole</a>.</td></tr>
+<tr><td class="topAlign"><code>QCtmMessageBox::RestoreDefaults</code></td><td class="topAlign tblval"><code>0x08000000</code></td><td class="topAlign">“恢复默认” 按钮，对应 <a href="qctmmessagebox.html#ButtonRole-enum">ResetRole</a>.</td></tr>
+<tr><td class="topAlign"><code>QCtmMessageBox::Help</code></td><td class="topAlign tblval"><code>0x01000000</code></td><td class="topAlign">“帮助” 按钮，对应 <a href="qctmmessagebox.html#ButtonRole-enum">HelpRole</a>.</td></tr>
+<tr><td class="topAlign"><code>QCtmMessageBox::SaveAll</code></td><td class="topAlign tblval"><code>0x00001000</code></td><td class="topAlign">“全部保存” 按钮，对应 <a href="qctmmessagebox.html#ButtonRole-enum">AcceptRole</a>.</td></tr>
+<tr><td class="topAlign"><code>QCtmMessageBox::Yes</code></td><td class="topAlign tblval"><code>0x00004000</code></td><td class="topAlign">“是” 按钮，对应 <a href="qctmmessagebox.html#ButtonRole-enum">YesRole</a>.</td></tr>
+<tr><td class="topAlign"><code>QCtmMessageBox::YesToAll</code></td><td class="topAlign tblval"><code>0x00008000</code></td><td class="topAlign">“全部是” 按钮，对应 <a href="qctmmessagebox.html#ButtonRole-enum">YesRole</a>.</td></tr>
+<tr><td class="topAlign"><code>QCtmMessageBox::No</code></td><td class="topAlign tblval"><code>0x00010000</code></td><td class="topAlign">“否” 按钮，对应 <a href="qctmmessagebox.html#ButtonRole-enum">NoRole</a>.</td></tr>
+<tr><td class="topAlign"><code>QCtmMessageBox::NoToAll</code></td><td class="topAlign tblval"><code>0x00020000</code></td><td class="topAlign">“全部否” 按钮，对应 <a href="qctmmessagebox.html#ButtonRole-enum">NoRole</a>.</td></tr>
+<tr><td class="topAlign"><code>QCtmMessageBox::Abort</code></td><td class="topAlign tblval"><code>0x00040000</code></td><td class="topAlign">“中止” 按钮，对应 <a href="qctmmessagebox.html#ButtonRole-enum">RejectRole</a>.</td></tr>
+<tr><td class="topAlign"><code>QCtmMessageBox::Retry</code></td><td class="topAlign tblval"><code>0x00080000</code></td><td class="topAlign">“重试” 按钮，对应 <a href="qctmmessagebox.html#ButtonRole-enum">AcceptRole</a>.</td></tr>
+<tr><td class="topAlign"><code>QCtmMessageBox::Ignore</code></td><td class="topAlign tblval"><code>0x00100000</code></td><td class="topAlign">“忽略” 按钮，对应 <a href="qctmmessagebox.html#ButtonRole-enum">AcceptRole</a>.</td></tr>
+<tr><td class="topAlign"><code>QCtmMessageBox::NoButton</code></td><td class="topAlign tblval"><code>0x00000000</code></td><td class="topAlign">无效按钮.</td></tr>
+</table></div>
+<p>The StandardButtons type is a typedef for <a href="https://doc.qt.io/qt/qflags.html">QFlags</a>&lt;StandardButton&gt;. It stores an OR combination of StandardButton values.</p>
+<p><b>See also </b><a href="qctmmessagebox.html#ButtonRole-enum">ButtonRole</a> and <a href="qctmmessagebox.html#standardButtons">standardButtons</a>.</p>
+<!-- @@@StandardButton -->
+</div>
+<div class="prop">
+<h2>Property Documentation</h2>
+<!-- $$$icon-prop$$$icon$$$setIconQCtmMessageBox::Icon -->
+<h3 class="fn" id="icon-prop"><span class="name">icon</span> : <span class="type"><a href="qctmmessagebox.html#Icon-enum">Icon</a></span></h3>
+<p>消息弹窗的图标.</p>
+<p>这些图标可以是下面的任意一个:</p>
+<ul>
+<li><a href="qctmmessagebox.html#Icon-enum">QCtmMessageBox::NoIcon</a></li>
+<li><a href="qctmmessagebox.html#Icon-enum">QCtmMessageBox::Question</a></li>
+<li><a href="qctmmessagebox.html#Icon-enum">QCtmMessageBox::Information</a></li>
+<li><a href="qctmmessagebox.html#Icon-enum">QCtmMessageBox::Warning</a></li>
+<li><a href="qctmmessagebox.html#Icon-enum">QCtmMessageBox::Critical</a></li>
+</ul>
+<p>默认为 <a href="qctmmessagebox.html#Icon-enum">QCtmMessageBox::NoIcon</a>.</p>
+<p><b>Access functions:</b></p>
+<div class="table"><table class="alignedsummary">
+<tr><td class="memItemLeft topAlign rightAlign"> QCtmMessageBox::Icon </td><td class="memItemRight bottomAlign"><span class="name"><b><a href="qctmmessagebox.html#icon">icon</a></b></span>() const</td></tr>
+<tr><td class="memItemLeft topAlign rightAlign"> void </td><td class="memItemRight bottomAlign"><span class="name"><b><a href="qctmmessagebox.html#setIcon">setIcon</a></b></span>(QCtmMessageBox::Icon <i>icon</i>)</td></tr>
+</table></div>
+<p><b>See also </b><a href="qctmmessagebox.html#iconPixmap">iconPixmap</a>.</p>
+<!-- @@@icon -->
+<!-- $$$iconPixmap-prop$$$iconPixmap$$$setIconPixmapconstQPixmap& -->
+<h3 class="fn" id="iconPixmap-prop"><span class="name">iconPixmap</span> : <span class="type"><a href="https://doc.qt.io/qt/qpixmap.html">QPixmap</a></span></h3>
+<p>当前显示图标.</p>
+<p><b>Access functions:</b></p>
+<div class="table"><table class="alignedsummary">
+<tr><td class="memItemLeft topAlign rightAlign"> QPixmap </td><td class="memItemRight bottomAlign"><span class="name"><b><a href="qctmmessagebox.html#iconPixmap">iconPixmap</a></b></span>() const</td></tr>
+<tr><td class="memItemLeft topAlign rightAlign"> void </td><td class="memItemRight bottomAlign"><span class="name"><b><a href="qctmmessagebox.html#setIconPixmap">setIconPixmap</a></b></span>(const QPixmap &amp;<i>pixmap</i>)</td></tr>
+</table></div>
+<p><b>See also </b><a href="qctmmessagebox.html#icon">icon</a>.</p>
+<!-- @@@iconPixmap -->
+<!-- $$$standardButtons-prop$$$standardButtons$$$setStandardButtonsQCtmMessageBox::StandardButtons -->
+<h3 class="fn" id="standardButtons-prop"><span class="name">standardButtons</span> : <span class="type"><a href="qctmmessagebox.html#StandardButton-enum">StandardButtons</a></span></h3>
+<p>消息弹窗的按钮集合.</p>
+<p><b>Access functions:</b></p>
+<div class="table"><table class="alignedsummary">
+<tr><td class="memItemLeft topAlign rightAlign"> QCtmMessageBox::StandardButtons </td><td class="memItemRight bottomAlign"><span class="name"><b><a href="qctmmessagebox.html#standardButtons">standardButtons</a></b></span>() const</td></tr>
+<tr><td class="memItemLeft topAlign rightAlign"> void </td><td class="memItemRight bottomAlign"><span class="name"><b><a href="qctmmessagebox.html#setStandardButtons">setStandardButtons</a></b></span>(QCtmMessageBox::StandardButtons <i>buttons</i>)</td></tr>
+</table></div>
+<p><b>See also </b><a href="qctmmessagebox.html#addButton">addButton</a>.</p>
+<!-- @@@standardButtons -->
+<!-- $$$text-prop$$$text$$$setTextconstQString& -->
+<h3 class="fn" id="text-prop"><span class="name">text</span> : <span class="type"><a href="https://doc.qt.io/qt/qstring.html">QString</a></span></h3>
+<p>消息弹窗的显示文本.</p>
+<p><b>Access functions:</b></p>
+<div class="table"><table class="alignedsummary">
+<tr><td class="memItemLeft topAlign rightAlign"> QString </td><td class="memItemRight bottomAlign"><span class="name"><b><a href="qctmmessagebox.html#text">text</a></b></span>() const</td></tr>
+<tr><td class="memItemLeft topAlign rightAlign"> void </td><td class="memItemRight bottomAlign"><span class="name"><b><a href="qctmmessagebox.html#setText">setText</a></b></span>(const QString &amp;<i>text</i>)</td></tr>
+</table></div>
+<!-- @@@text -->
+<!-- $$$textFormat-prop$$$textFormat$$$setTextFormatQt::TextFormat -->
+<h3 class="fn" id="textFormat-prop"><span class="name">textFormat</span> : <span class="type"><a href="https://doc.qt.io/qt/qt.html#TextFormat-enum">Qt::TextFormat</a></span></h3>
+<p>消息框显示的文本格式.</p>
+<p><b>Access functions:</b></p>
+<div class="table"><table class="alignedsummary">
+<tr><td class="memItemLeft topAlign rightAlign"> Qt::TextFormat </td><td class="memItemRight bottomAlign"><span class="name"><b><a href="qctmmessagebox.html#textFormat">textFormat</a></b></span>() const</td></tr>
+<tr><td class="memItemLeft topAlign rightAlign"> void </td><td class="memItemRight bottomAlign"><span class="name"><b><a href="qctmmessagebox.html#setTextFormat">setTextFormat</a></b></span>(Qt::TextFormat <i>format</i>)</td></tr>
+</table></div>
+<p><b>See also </b><a href="qctmmessagebox.html#setText">setText</a>().</p>
+<!-- @@@textFormat -->
+<!-- $$$textInteractionFlags-prop$$$textInteractionFlags$$$setTextInteractionFlagsQt::TextInteractionFlags -->
+<h3 class="fn" id="textInteractionFlags-prop"><span class="name">textInteractionFlags</span> : <span class="type"><a href="https://doc.qt.io/qt/qt.html#TextInteractionFlag-enum">Qt::TextInteractionFlags</a></span></h3>
+<p>指定消息框的标签应如何与用户交互输入。</p>
+<p><b>Access functions:</b></p>
+<div class="table"><table class="alignedsummary">
+<tr><td class="memItemLeft topAlign rightAlign"> Qt::TextInteractionFlags </td><td class="memItemRight bottomAlign"><span class="name"><b><a href="qctmmessagebox.html#textInteractionFlags">textInteractionFlags</a></b></span>() const</td></tr>
+<tr><td class="memItemLeft topAlign rightAlign"> void </td><td class="memItemRight bottomAlign"><span class="name"><b><a href="qctmmessagebox.html#setTextInteractionFlags">setTextInteractionFlags</a></b></span>(Qt::TextInteractionFlags <i>flags</i>)</td></tr>
+</table></div>
+<!-- @@@textInteractionFlags -->
+</div>
+<div class="func">
+<h2>Member Function Documentation</h2>
+<!-- $$$QCtmMessageBox$$$QCtmMessageBoxQCtmMessageBox::IconconstQString&constQString&QCtmMessageBox::StandardButtonsQWidget*Qt::WindowFlags -->
+<h3 class="fn" id="QCtmMessageBox-1">QCtmMessageBox::<span class="name">QCtmMessageBox</span>(<span class="type"><a href="qctmmessagebox.html#Icon-enum">QCtmMessageBox::Icon</a></span> <i>icon</i>, const <span class="type"><a href="https://doc.qt.io/qt/qstring.html">QString</a></span> &amp;<i>title</i>, const <span class="type"><a href="https://doc.qt.io/qt/qstring.html">QString</a></span> &amp;<i>text</i>, <span class="type"><a href="qctmmessagebox.html#StandardButton-enum">QCtmMessageBox::StandardButtons</a></span> <i>buttons</i> = NoButton, <span class="type"><a href="https://doc.qt.io/qt/qwidget.html#QWidget">QWidget</a></span> *<i>parent</i> = Q_NULLPTR, <span class="type"><a href="https://doc.qt.io/qt/qt.html#WindowType-enum">Qt::WindowFlags</a></span> <i>f</i> = Qt::Dialog | Qt::MSWindowsFixedSizeDialogHint)</h3>
+<p>构造函数，并指定显示图标 <i>icon</i>, 标题文本 <i>title</i>, 显示文本 <i>text</i>, 按钮集合 <i>buttons</i>, 父窗口 <i>parent</i>, 窗口风格 <i>f</i>.</p>
+<!-- @@@QCtmMessageBox -->
+<!-- $$$QCtmMessageBox[overload1]$$$QCtmMessageBoxQWidget* -->
+<h3 class="fn" id="QCtmMessageBox">QCtmMessageBox::<span class="name">QCtmMessageBox</span>(<span class="type"><a href="https://doc.qt.io/qt/qwidget.html#QWidget">QWidget</a></span> *<i>parent</i> = Q_NULLPTR)</h3>
+<p>构造函数 <i>parent</i>.</p>
+<!-- @@@QCtmMessageBox -->
+<!-- $$$~QCtmMessageBox[overload1]$$$~QCtmMessageBox -->
+<h3 class="fn" id="dtor.QCtmMessageBox"><code>[virtual] </code>QCtmMessageBox::<span class="name">~QCtmMessageBox</span>()</h3>
+<p>析构函数.</p>
+<!-- @@@~QCtmMessageBox -->
+<!-- $$$addButton[overload1]$$$addButtonQAbstractButton*QCtmMessageBox::ButtonRole -->
+<h3 class="fn" id="addButton"><span class="type">void</span> QCtmMessageBox::<span class="name">addButton</span>(<span class="type"><a href="https://doc.qt.io/qt/qabstractbutton.html">QAbstractButton</a></span> *<i>button</i>, <span class="type"><a href="qctmmessagebox.html#ButtonRole-enum">QCtmMessageBox::ButtonRole</a></span> <i>role</i>)</h3>
+<p>添加按钮 <i>button</i> 并指定其角色 <i>role</i>.</p>
+<p><b>See also </b><a href="qctmmessagebox.html#removeButton">removeButton</a>.</p>
+<!-- @@@addButton -->
+<!-- $$$addButton$$$addButtonconstQString&QCtmMessageBox::ButtonRole -->
+<h3 class="fn" id="addButton-1"><span class="type"><a href="https://doc.qt.io/qt/qpushbutton.html">QPushButton</a></span> *QCtmMessageBox::<span class="name">addButton</span>(const <span class="type"><a href="https://doc.qt.io/qt/qstring.html">QString</a></span> &amp;<i>text</i>, <span class="type"><a href="qctmmessagebox.html#ButtonRole-enum">QCtmMessageBox::ButtonRole</a></span> <i>role</i>)</h3>
+<p>创建文本为 <i>text</i> 的按钮并指定其角色 <i>role</i>. <p>This function overloads addButton.</p>
+</p>
+<p><b>See also </b><a href="qctmmessagebox.html#removeButton">removeButton</a>.</p>
+<!-- @@@addButton -->
+<!-- $$$addButton$$$addButtonQCtmMessageBox::StandardButton -->
+<h3 class="fn" id="addButton-2"><span class="type"><a href="https://doc.qt.io/qt/qpushbutton.html">QPushButton</a></span> *QCtmMessageBox::<span class="name">addButton</span>(<span class="type"><a href="qctmmessagebox.html#StandardButton-enum">QCtmMessageBox::StandardButton</a></span> <i>button</i>)</h3>
+<p>添加标准按钮 <i>button</i>. <p>This function overloads addButton.</p>
+</p>
+<p><b>See also </b><a href="qctmmessagebox.html#removeButton">removeButton</a>.</p>
+<!-- @@@addButton -->
+<!-- $$$clickedButton[overload1]$$$clickedButton -->
+<h3 class="fn" id="clickedButton"><span class="type"><a href="https://doc.qt.io/qt/qabstractbutton.html">QAbstractButton</a></span> *QCtmMessageBox::<span class="name">clickedButton</span>() const</h3>
+<p>返回点击的按钮.</p>
+<!-- @@@clickedButton -->
+<!-- $$$critical[overload1]$$$criticalQWidget*constQString&constQString&QCtmMessageBox::StandardButtonsQCtmMessageBox::StandardButton -->
+<h3 class="fn" id="critical"><code>[static] </code><span class="type"><a href="qctmmessagebox.html#StandardButton-enum">QCtmMessageBox::StandardButton</a></span> QCtmMessageBox::<span class="name">critical</span>(<span class="type"><a href="https://doc.qt.io/qt/qwidget.html#QWidget">QWidget</a></span> *<i>parent</i>, const <span class="type"><a href="https://doc.qt.io/qt/qstring.html">QString</a></span> &amp;<i>title</i>, const <span class="type"><a href="https://doc.qt.io/qt/qstring.html">QString</a></span> &amp;<i>text</i>, <span class="type"><a href="qctmmessagebox.html#StandardButton-enum">QCtmMessageBox::StandardButtons</a></span> <i>buttons</i> = Ok, <span class="type"><a href="qctmmessagebox.html#StandardButton-enum">QCtmMessageBox::StandardButton</a></span> <i>defaultButton</i> = NoButton)</h3>
+<p>构造一个错误消息弹窗，并指定标题文本 <i>title</i>, 显示文本 <i>text</i>, 按钮集合 <i>buttons</i>, 默认按钮 <i>defaultButton</i>, 父窗口 <i>parent</i>.</p>
+<p><b>See also </b><a href="https://doc.qt.io/qt/qmessagebox.html#critical">QMessageBox::critical</a>.</p>
+<!-- @@@critical -->
+<!-- $$$defaultButton[overload1]$$$defaultButton -->
+<h3 class="fn" id="defaultButton"><span class="type"><a href="qctmmessagebox.html#StandardButton-enum">QCtmMessageBox::StandardButton</a></span> QCtmMessageBox::<span class="name">defaultButton</span>()</h3>
+<p>返回默认按钮.</p>
+<p><b>See also </b><a href="qctmmessagebox.html#setDefaultButton">setDefaultButton</a>.</p>
+<!-- @@@defaultButton -->
+<!-- $$$icon -->
+<h3 class="fn" id="icon"><span class="type"><a href="qctmmessagebox.html#Icon-enum">QCtmMessageBox::Icon</a></span> QCtmMessageBox::<span class="name">icon</span>() const</h3>
+<p>返回显示图标.</p>
+<p><b>Note: </b>Getter function for property icon. </p>
+<p><b>See also </b><a href="qctmmessagebox.html#setIcon">setIcon</a>.</p>
+<!-- @@@icon -->
+<!-- $$$iconPixmap -->
+<h3 class="fn" id="iconPixmap"><span class="type"><a href="https://doc.qt.io/qt/qpixmap.html">QPixmap</a></span> QCtmMessageBox::<span class="name">iconPixmap</span>() const</h3>
+<p>返回图标.</p>
+<p><b>Note: </b>Getter function for property iconPixmap. </p>
+<p><b>See also </b><a href="qctmmessagebox.html#setIconPixmap">setIconPixmap</a>.</p>
+<!-- @@@iconPixmap -->
+<!-- $$$information[overload1]$$$informationQWidget*constQString&constQString&QCtmMessageBox::StandardButtonsQCtmMessageBox::StandardButton -->
+<h3 class="fn" id="information"><code>[static] </code><span class="type"><a href="qctmmessagebox.html#StandardButton-enum">QCtmMessageBox::StandardButton</a></span> QCtmMessageBox::<span class="name">information</span>(<span class="type"><a href="https://doc.qt.io/qt/qwidget.html#QWidget">QWidget</a></span> *<i>parent</i>, const <span class="type"><a href="https://doc.qt.io/qt/qstring.html">QString</a></span> &amp;<i>title</i>, const <span class="type"><a href="https://doc.qt.io/qt/qstring.html">QString</a></span> &amp;<i>text</i>, <span class="type"><a href="qctmmessagebox.html#StandardButton-enum">QCtmMessageBox::StandardButtons</a></span> <i>buttons</i> = Ok, <span class="type"><a href="qctmmessagebox.html#StandardButton-enum">QCtmMessageBox::StandardButton</a></span> <i>defaultButton</i> = NoButton)</h3>
+<p>构造一个信息消息弹窗，并指定标题文本 <i>title</i>, 显示文本 <i>text</i>, 按钮集合 <i>buttons</i>, 默认按钮 <i>defaultButton</i>, 父窗口 <i>parent</i>.</p>
+<p><b>See also </b><a href="https://doc.qt.io/qt/qmessagebox.html#information">QMessageBox::information</a>.</p>
+<!-- @@@information -->
+<!-- $$$question[overload1]$$$questionQWidget*constQString&constQString&QCtmMessageBox::StandardButtonsQCtmMessageBox::StandardButton -->
+<h3 class="fn" id="question"><code>[static] </code><span class="type"><a href="qctmmessagebox.html#StandardButton-enum">QCtmMessageBox::StandardButton</a></span> QCtmMessageBox::<span class="name">question</span>(<span class="type"><a href="https://doc.qt.io/qt/qwidget.html#QWidget">QWidget</a></span> *<i>parent</i>, const <span class="type"><a href="https://doc.qt.io/qt/qstring.html">QString</a></span> &amp;<i>title</i>, const <span class="type"><a href="https://doc.qt.io/qt/qstring.html">QString</a></span> &amp;<i>text</i>, <span class="type"><a href="qctmmessagebox.html#StandardButton-enum">QCtmMessageBox::StandardButtons</a></span> <i>buttons</i> = StandardButtons(Yes | No), <span class="type"><a href="qctmmessagebox.html#StandardButton-enum">QCtmMessageBox::StandardButton</a></span> <i>defaultButton</i> = NoButton)</h3>
+<p>构造一个询问消息弹窗，并指定标题文本 <i>title</i>, 显示文本 <i>text</i>, 按钮集合 <i>buttons</i>, 默认按钮 <i>defaultButton</i>, 父窗口 <i>parent</i>.</p>
+<p><b>See also </b><a href="https://doc.qt.io/qt/qmessagebox.html#question">QMessageBox::question</a>.</p>
+<!-- @@@question -->
+<!-- $$$removeButton[overload1]$$$removeButtonQAbstractButton* -->
+<h3 class="fn" id="removeButton"><span class="type">void</span> QCtmMessageBox::<span class="name">removeButton</span>(<span class="type"><a href="https://doc.qt.io/qt/qabstractbutton.html">QAbstractButton</a></span> *<i>button</i>)</h3>
+<p>移除按钮 <i>button</i>.</p>
+<p><b>See also </b><a href="qctmmessagebox.html#addButton">addButton</a>.</p>
+<!-- @@@removeButton -->
+<!-- $$$setDefaultButton[overload1]$$$setDefaultButtonQCtmMessageBox::StandardButton -->
+<h3 class="fn" id="setDefaultButton"><span class="type">void</span> QCtmMessageBox::<span class="name">setDefaultButton</span>(<span class="type"><a href="qctmmessagebox.html#StandardButton-enum">QCtmMessageBox::StandardButton</a></span> <i>button</i>)</h3>
+<p>设置默认按钮 <i>button</i>.</p>
+<p><b>See also </b><a href="qctmmessagebox.html#defaultButton">defaultButton</a>.</p>
+<!-- @@@setDefaultButton -->
+<!-- $$$setIcon -->
+<h3 class="fn" id="setIcon"><span class="type">void</span> QCtmMessageBox::<span class="name">setIcon</span>(<span class="type"><a href="qctmmessagebox.html#Icon-enum">QCtmMessageBox::Icon</a></span> <i>icon</i>)</h3>
+<p>设置显示图标 <i>icon</i>.</p>
+<p><b>Note: </b>Setter function for property <a href="qctmmessagebox.html#icon">icon</a>. </p>
+<p><b>See also </b><a href="qctmmessagebox.html#icon">icon</a>().</p>
+<!-- @@@setIcon -->
+<!-- $$$setIconPixmap -->
+<h3 class="fn" id="setIconPixmap"><span class="type">void</span> QCtmMessageBox::<span class="name">setIconPixmap</span>(const <span class="type"><a href="https://doc.qt.io/qt/qpixmap.html">QPixmap</a></span> &amp;<i>pixmap</i>)</h3>
+<p>设置自定义的图标 <i>pixmap</i>, 并且 <a href="qctmmessagebox.html#icon">icon</a> 将被设置为 Icon::NoIcon.</p>
+<p><b>Note: </b>Setter function for property <a href="qctmmessagebox.html#iconPixmap">iconPixmap</a>. </p>
+<p><b>See also </b><a href="qctmmessagebox.html#iconPixmap">iconPixmap</a>.</p>
+<!-- @@@setIconPixmap -->
+<!-- $$$setStandardButtons -->
+<h3 class="fn" id="setStandardButtons"><span class="type">void</span> QCtmMessageBox::<span class="name">setStandardButtons</span>(<span class="type"><a href="qctmmessagebox.html#StandardButton-enum">QCtmMessageBox::StandardButtons</a></span> <i>buttons</i>)</h3>
+<p>设置按钮集合 <i>buttons</i>.</p>
+<p><b>Note: </b>Setter function for property <a href="qctmmessagebox.html#standardButtons">standardButtons</a>. </p>
+<p><b>See also </b><a href="qctmmessagebox.html#standardButtons">standardButtons</a>().</p>
+<!-- @@@setStandardButtons -->
+<!-- $$$setText -->
+<h3 class="fn" id="setText"><span class="type">void</span> QCtmMessageBox::<span class="name">setText</span>(const <span class="type"><a href="https://doc.qt.io/qt/qstring.html">QString</a></span> &amp;<i>text</i>)</h3>
+<p>设置显示文本 <i>text</i>.</p>
+<p><b>Note: </b>Setter function for property <a href="qctmmessagebox.html#text">text</a>. </p>
+<p><b>See also </b><a href="qctmmessagebox.html#text">text</a>().</p>
+<!-- @@@setText -->
+<!-- $$$setTextFormat -->
+<h3 class="fn" id="setTextFormat"><span class="type">void</span> QCtmMessageBox::<span class="name">setTextFormat</span>(<span class="type"><a href="https://doc.qt.io/qt/qt.html#TextFormat-enum">Qt::TextFormat</a></span> <i>format</i>)</h3>
+<p>设置文本格式 <i>format</i>.</p>
+<p><b>Note: </b>Setter function for property <a href="qctmmessagebox.html#textFormat">textFormat</a>. </p>
+<p><b>See also </b><a href="qctmmessagebox.html#textFormat">textFormat</a>().</p>
+<!-- @@@setTextFormat -->
+<!-- $$$setTextInteractionFlags -->
+<h3 class="fn" id="setTextInteractionFlags"><span class="type">void</span> QCtmMessageBox::<span class="name">setTextInteractionFlags</span>(<span class="type"><a href="https://doc.qt.io/qt/qt.html#TextInteractionFlag-enum">Qt::TextInteractionFlags</a></span> <i>flags</i>)</h3>
+<p>设置文本交互方式 <i>flags</i>.</p>
+<p><b>Note: </b>Setter function for property <a href="qctmmessagebox.html#textInteractionFlags">textInteractionFlags</a>. </p>
+<p><b>See also </b><a href="qctmmessagebox.html#textInteractionFlags">textInteractionFlags</a>().</p>
+<!-- @@@setTextInteractionFlags -->
+<!-- $$$showEvent[overload1]$$$showEventQShowEvent* -->
+<h3 class="fn" id="showEvent"><code>[override virtual protected] </code><span class="type">void</span> QCtmMessageBox::<span class="name">showEvent</span>(<span class="type"><a href="https://doc.qt.io/qt/qshowevent.html">QShowEvent</a></span> *<i>event</i>)</h3>
+<p>Reimplements: <a href="https://doc.qt.io/qt/qdialog.html#showEvent">QDialog::showEvent</a>(QShowEvent *event).</p>
+<!-- @@@showEvent -->
+<!-- $$$standardButton[overload1]$$$standardButtonQAbstractButton* -->
+<h3 class="fn" id="standardButton"><span class="type"><a href="qctmmessagebox.html#StandardButton-enum">QCtmMessageBox::StandardButton</a></span> QCtmMessageBox::<span class="name">standardButton</span>(<span class="type"><a href="https://doc.qt.io/qt/qabstractbutton.html">QAbstractButton</a></span> *<i>button</i>) const</h3>
+<p>返回按钮对应的标准按钮 <i>button</i>.</p>
+<!-- @@@standardButton -->
+<!-- $$$standardButtons -->
+<h3 class="fn" id="standardButtons"><span class="type"><a href="qctmmessagebox.html#StandardButton-enum">QCtmMessageBox::StandardButtons</a></span> QCtmMessageBox::<span class="name">standardButtons</span>() const</h3>
+<p>返回按钮集合.</p>
+<p><b>Note: </b>Getter function for property standardButtons. </p>
+<p><b>See also </b><a href="qctmmessagebox.html#setStandardButtons">setStandardButtons</a>.</p>
+<!-- @@@standardButtons -->
+<!-- $$$text -->
+<h3 class="fn" id="text"><span class="type"><a href="https://doc.qt.io/qt/qstring.html">QString</a></span> QCtmMessageBox::<span class="name">text</span>() const</h3>
+<p>返回显示文本.</p>
+<p><b>Note: </b>Getter function for property text. </p>
+<p><b>See also </b><a href="qctmmessagebox.html#setText">setText</a>.</p>
+<!-- @@@text -->
+<!-- $$$textFormat -->
+<h3 class="fn" id="textFormat"><span class="type"><a href="https://doc.qt.io/qt/qt.html#TextFormat-enum">Qt::TextFormat</a></span> QCtmMessageBox::<span class="name">textFormat</span>() const</h3>
+<p>返回文本格式.</p>
+<p><b>Note: </b>Getter function for property textFormat. </p>
+<p><b>See also </b><a href="qctmmessagebox.html#setTextFormat">setTextFormat</a>.</p>
+<!-- @@@textFormat -->
+<!-- $$$textInteractionFlags -->
+<h3 class="fn" id="textInteractionFlags"><span class="type"><a href="https://doc.qt.io/qt/qt.html#TextInteractionFlag-enum">Qt::TextInteractionFlags</a></span> QCtmMessageBox::<span class="name">textInteractionFlags</span>() const</h3>
+<p>返回文本交互方式.</p>
+<p><b>Note: </b>Getter function for property textInteractionFlags. </p>
+<p><b>See also </b><a href="qctmmessagebox.html#setTextInteractionFlags">setTextInteractionFlags</a>.</p>
+<!-- @@@textInteractionFlags -->
+<!-- $$$warning[overload1]$$$warningQWidget*constQString&constQString&QCtmMessageBox::StandardButtonsQCtmMessageBox::StandardButton -->
+<h3 class="fn" id="warning"><code>[static] </code><span class="type"><a href="qctmmessagebox.html#StandardButton-enum">QCtmMessageBox::StandardButton</a></span> QCtmMessageBox::<span class="name">warning</span>(<span class="type"><a href="https://doc.qt.io/qt/qwidget.html#QWidget">QWidget</a></span> *<i>parent</i>, const <span class="type"><a href="https://doc.qt.io/qt/qstring.html">QString</a></span> &amp;<i>title</i>, const <span class="type"><a href="https://doc.qt.io/qt/qstring.html">QString</a></span> &amp;<i>text</i>, <span class="type"><a href="qctmmessagebox.html#StandardButton-enum">QCtmMessageBox::StandardButtons</a></span> <i>buttons</i> = Ok, <span class="type"><a href="qctmmessagebox.html#StandardButton-enum">QCtmMessageBox::StandardButton</a></span> <i>defaultButton</i> = NoButton)</h3>
+<p>构造一个警告消息弹窗，并指定标题文本 <i>title</i>, 显示文本 <i>text</i>, 按钮集合 <i>buttons</i>, 默认按钮 <i>defaultButton</i>, 父窗口 <i>parent</i>.</p>
+<p><b>See also </b><a href="https://doc.qt.io/qt/qmessagebox.html#warning">QMessageBox::warning</a>.</p>
+<!-- @@@warning -->
+</div>
+        </div>
+       </div>
+   </div>
+   </div>
+</div>
+<div class="footer">
+   <p>
+   <acronym title="Copyright">&copy;</acronym> QCustomUi
+   Documentation contributions included herein are the copyrights of
+   their respective owners.<br/>    The documentation provided herein is licensed under the terms of the    <a href="http://www.gnu.org/licenses/fdl.html">GNU Free Documentation    License version 1.3</a> as published by the Free Software Foundation.<br/> </div>
+</body>
+</html>

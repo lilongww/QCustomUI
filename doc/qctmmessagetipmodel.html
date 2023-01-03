@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+<!-- QCtmMessageTipModel.cpp -->
+  <title>QCtmMessageTipModel Class | QCustomUi 1.10.0-beta.2</title>
+  <link rel="stylesheet" type="text/css" href="style/offline-simple.css" />
+  <script type="text/javascript">
+    document.getElementsByTagName("link").item(0).setAttribute("href", "style/offline.css");
+    // loading style sheet breaks anchors that were jumped to before
+    // so force jumping to anchor again
+    setTimeout(function() {
+        var anchor = location.hash;
+        // need to jump to different anchor first (e.g. none)
+        location.hash = "#";
+        setTimeout(function() {
+            location.hash = anchor;
+        }, 0);
+    }, 0);
+  </script>
+</head>
+<body>
+<div class="header" id="qtdocheader">
+    <div class="main">
+    <div class="main-rounded">
+        <div class="navigationbar">
+        <ul>
+<li><a href="index.html">QCustomUi 1.10.0-beta.2</a></li>
+<li><a href="index.html">QCustomUi</a></li>
+<li>QCtmMessageTipModel</li>
+<li id="buildversion">QCustomUi 1.10.0-beta.2 Reference Documentation</li>
+    </ul>
+    </div>
+</div>
+<div class="content">
+<div class="line">
+<div class="content mainContent">
+<div class="sidebar">
+<div class="toc">
+<h3 id="toc">Contents</h3>
+<ul>
+<li class="level1"><a href="#properties">Properties</a></li>
+<li class="level1"><a href="#public-functions">Public Functions</a></li>
+<li class="level1"><a href="#reimplemented-public-functions">Reimplemented Public Functions</a></li>
+<li class="level1"><a href="#details">Detailed Description</a></li>
+</ul>
+</div>
+<div class="sidebar-content" id="sidebar-content"></div></div>
+<h1 class="title">QCtmMessageTipModel Class</h1>
+<!-- $$$QCtmMessageTipModel-brief -->
+<p>消息提示model的一般实现. <a href="#details">More...</a></p>
+<!-- @@@QCtmMessageTipModel -->
+<div class="table"><table class="alignedsummary">
+<tr><td class="memItemLeft rightAlign topAlign"> Header:</td><td class="memItemRight bottomAlign">  <span class="preprocessor">#include &lt;QCtmMessageTipModel.h&gt;</span>
+</td></tr><tr><td class="memItemLeft rightAlign topAlign"> Inherits:</td><td class="memItemRight bottomAlign"> <a href="qctmabstractmessagetipmodel.html">QCtmAbstractMessageTipModel</a></td></tr></table></div>
+<ul>
+<li><a href="qctmmessagetipmodel-members.html">List of all members, including inherited members</a></li>
+</ul>
+<h2 id="properties">Properties</h2>
+<ul>
+<li class="fn"><b><a href="qctmmessagetipmodel.html#timeColor-prop">timeColor</a></b> : QColor</li>
+<li class="fn"><b><a href="qctmmessagetipmodel.html#titleColor-prop">titleColor</a></b> : QColor</li>
+</ul>
+<h2 id="public-functions">Public Functions</h2>
+<div class="table"><table class="alignedsummary">
+<tr><td class="memItemLeft rightAlign topAlign"> </td><td class="memItemRight bottomAlign"><b><a href="qctmmessagetipmodel.html#QCtmMessageTipModel">QCtmMessageTipModel</a></b>(QObject *<i>parent</i>)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> virtual </td><td class="memItemRight bottomAlign"><b><a href="qctmmessagetipmodel.html#dtor.QCtmMessageTipModel">~QCtmMessageTipModel</a></b>()</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> void </td><td class="memItemRight bottomAlign"><b><a href="qctmmessagetipmodel.html#setTimeColor">setTimeColor</a></b>(const QColor &amp;<i>color</i>)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> void </td><td class="memItemRight bottomAlign"><b><a href="qctmmessagetipmodel.html#setTitleColor">setTitleColor</a></b>(const QColor &amp;<i>color</i>)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> const QColor &amp;</td><td class="memItemRight bottomAlign"><b><a href="qctmmessagetipmodel.html#timeColor">timeColor</a></b>() const</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> const QColor &amp;</td><td class="memItemRight bottomAlign"><b><a href="qctmmessagetipmodel.html#titleColor">titleColor</a></b>() const</td></tr>
+</table></div>
+<h2 id="reimplemented-public-functions">Reimplemented Public Functions</h2>
+<div class="table"><table class="alignedsummary">
+<tr><td class="memItemLeft rightAlign topAlign"> virtual int </td><td class="memItemRight bottomAlign"><b><a href="qctmmessagetipmodel.html#columnCount">columnCount</a></b>(const QModelIndex &amp;<i>parent</i>) const override</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> virtual QVariant </td><td class="memItemRight bottomAlign"><b><a href="qctmmessagetipmodel.html#data">data</a></b>(const QModelIndex &amp;<i>index</i>, int <i>role</i>) const override</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> virtual Qt::ItemFlags </td><td class="memItemRight bottomAlign"><b><a href="qctmmessagetipmodel.html#flags">flags</a></b>(const QModelIndex &amp;<i>index</i>) const override</td></tr>
+</table></div>
+<!-- $$$QCtmMessageTipModel-description -->
+<div class="descr">
+<h2 id="details">Detailed Description</h2>
+</div>
+<p><b>See also </b><a href="qctmmessagetipdata.html">QCtmMessageTipData</a>.</p>
+<!-- @@@QCtmMessageTipModel -->
+<div class="prop">
+<h2>Property Documentation</h2>
+<!-- $$$timeColor-prop$$$timeColor$$$setTimeColorconstQColor& -->
+<h3 class="fn" id="timeColor-prop"><span class="name">timeColor</span> : <span class="type"><a href="https://doc.qt.io/qt/qcolor.html">QColor</a></span></h3>
+<p>消息时间的文本颜色.</p>
+<p><b>Access functions:</b></p>
+<div class="table"><table class="alignedsummary">
+<tr><td class="memItemLeft topAlign rightAlign"> const QColor &amp;</td><td class="memItemRight bottomAlign"><span class="name"><b><a href="qctmmessagetipmodel.html#timeColor">timeColor</a></b></span>() const</td></tr>
+<tr><td class="memItemLeft topAlign rightAlign"> void </td><td class="memItemRight bottomAlign"><span class="name"><b><a href="qctmmessagetipmodel.html#setTimeColor">setTimeColor</a></b></span>(const QColor &amp;<i>color</i>)</td></tr>
+</table></div>
+<p><b>See also </b><a href="qctmmessagetipmodel.html#setTimeColor">setTimeColor</a> and <a href="qctmmessagetipmodel.html#timeColor">timeColor</a>.</p>
+<!-- @@@timeColor -->
+<!-- $$$titleColor-prop$$$titleColor$$$setTitleColorconstQColor& -->
+<h3 class="fn" id="titleColor-prop"><span class="name">titleColor</span> : <span class="type"><a href="https://doc.qt.io/qt/qcolor.html">QColor</a></span></h3>
+<p>消息标题的文本颜色.</p>
+<p><b>Access functions:</b></p>
+<div class="table"><table class="alignedsummary">
+<tr><td class="memItemLeft topAlign rightAlign"> const QColor &amp;</td><td class="memItemRight bottomAlign"><span class="name"><b><a href="qctmmessagetipmodel.html#titleColor">titleColor</a></b></span>() const</td></tr>
+<tr><td class="memItemLeft topAlign rightAlign"> void </td><td class="memItemRight bottomAlign"><span class="name"><b><a href="qctmmessagetipmodel.html#setTitleColor">setTitleColor</a></b></span>(const QColor &amp;<i>color</i>)</td></tr>
+</table></div>
+<p><b>See also </b><a href="qctmmessagetipmodel.html#setTitleColor">setTitleColor</a> and <a href="qctmmessagetipmodel.html#titleColor">titleColor</a>.</p>
+<!-- @@@titleColor -->
+</div>
+<div class="func">
+<h2>Member Function Documentation</h2>
+<!-- $$$QCtmMessageTipModel[overload1]$$$QCtmMessageTipModelQObject* -->
+<h3 class="fn" id="QCtmMessageTipModel">QCtmMessageTipModel::<span class="name">QCtmMessageTipModel</span>(<span class="type"><a href="https://doc.qt.io/qt/qobject.html#QObject">QObject</a></span> *<i>parent</i>)</h3>
+<p>构造一个父对象为 <i>parent</i> 的消息model.</p>
+<!-- @@@QCtmMessageTipModel -->
+<!-- $$$~QCtmMessageTipModel[overload1]$$$~QCtmMessageTipModel -->
+<h3 class="fn" id="dtor.QCtmMessageTipModel"><code>[virtual] </code>QCtmMessageTipModel::<span class="name">~QCtmMessageTipModel</span>()</h3>
+<p>销毁当前消息model对象.</p>
+<!-- @@@~QCtmMessageTipModel -->
+<!-- $$$columnCount[overload1]$$$columnCountconstQModelIndex& -->
+<h3 class="fn" id="columnCount"><code>[override virtual] </code><span class="type">int</span> QCtmMessageTipModel::<span class="name">columnCount</span>(const <span class="type"><a href="https://doc.qt.io/qt/qmodelindex.html">QModelIndex</a></span> &amp;<i>parent</i>) const</h3>
+<p>Reimplements: <a href="https://doc.qt.io/qt/qabstractitemmodel.html#columnCount">QAbstractItemModel::columnCount(const QModelIndex &amp;parent) const</a>.</p>
+<!-- @@@columnCount -->
+<!-- $$$data[overload1]$$$dataconstQModelIndex&int -->
+<h3 class="fn" id="data"><code>[override virtual] </code><span class="type"><a href="https://doc.qt.io/qt/qvariant.html">QVariant</a></span> QCtmMessageTipModel::<span class="name">data</span>(const <span class="type"><a href="https://doc.qt.io/qt/qmodelindex.html">QModelIndex</a></span> &amp;<i>index</i>, <span class="type">int</span> <i>role</i>) const</h3>
+<p>Reimplements: <a href="https://doc.qt.io/qt/qabstractitemmodel.html#data">QAbstractItemModel::data(const QModelIndex &amp;index, int role) const</a>.</p>
+<!-- @@@data -->
+<!-- $$$flags[overload1]$$$flagsconstQModelIndex& -->
+<h3 class="fn" id="flags"><code>[override virtual] </code><span class="type"><a href="https://doc.qt.io/qt/qt.html#ItemFlag-enum">Qt::ItemFlags</a></span> QCtmMessageTipModel::<span class="name">flags</span>(const <span class="type"><a href="https://doc.qt.io/qt/qmodelindex.html">QModelIndex</a></span> &amp;<i>index</i>) const</h3>
+<p>Reimplements: <a href="https://doc.qt.io/qt/qabstracttablemodel.html#flags">QAbstractTableModel::flags(const QModelIndex &amp;index) const</a>.</p>
+<!-- @@@flags -->
+<!-- $$$setTimeColor -->
+<h3 class="fn" id="setTimeColor"><span class="type">void</span> QCtmMessageTipModel::<span class="name">setTimeColor</span>(const <span class="type"><a href="https://doc.qt.io/qt/qcolor.html">QColor</a></span> &amp;<i>color</i>)</h3>
+<p>设置消息时间的文本颜色 <i>color</i>.</p>
+<p><b>Note: </b>Setter function for property <a href="qctmmessagetipmodel.html#timeColor">timeColor</a>. </p>
+<p><b>See also </b><a href="qctmmessagetipmodel.html#timeColor">timeColor</a>().</p>
+<!-- @@@setTimeColor -->
+<!-- $$$setTitleColor -->
+<h3 class="fn" id="setTitleColor"><span class="type">void</span> QCtmMessageTipModel::<span class="name">setTitleColor</span>(const <span class="type"><a href="https://doc.qt.io/qt/qcolor.html">QColor</a></span> &amp;<i>color</i>)</h3>
+<p>设置消息标题的文本颜色 <i>color</i>.</p>
+<p><b>Note: </b>Setter function for property <a href="qctmmessagetipmodel.html#titleColor">titleColor</a>. </p>
+<p><b>See also </b><a href="qctmmessagetipmodel.html#titleColor">titleColor</a>().</p>
+<!-- @@@setTitleColor -->
+<!-- $$$timeColor -->
+<h3 class="fn" id="timeColor">const <span class="type"><a href="https://doc.qt.io/qt/qcolor.html">QColor</a></span> &amp;QCtmMessageTipModel::<span class="name">timeColor</span>() const</h3>
+<p>返回消息时间的文本颜色.</p>
+<p><b>Note: </b>Getter function for property timeColor. </p>
+<p><b>See also </b><a href="qctmmessagetipmodel.html#setTimeColor">setTimeColor</a>.</p>
+<!-- @@@timeColor -->
+<!-- $$$titleColor -->
+<h3 class="fn" id="titleColor">const <span class="type"><a href="https://doc.qt.io/qt/qcolor.html">QColor</a></span> &amp;QCtmMessageTipModel::<span class="name">titleColor</span>() const</h3>
+<p>返回消息标题的文本颜色.</p>
+<p><b>Note: </b>Getter function for property titleColor. </p>
+<p><b>See also </b><a href="qctmmessagetipmodel.html#setTitleColor">setTitleColor</a>.</p>
+<!-- @@@titleColor -->
+</div>
+        </div>
+       </div>
+   </div>
+   </div>
+</div>
+<div class="footer">
+   <p>
+   <acronym title="Copyright">&copy;</acronym> QCustomUi
+   Documentation contributions included herein are the copyrights of
+   their respective owners.<br/>    The documentation provided herein is licensed under the terms of the    <a href="http://www.gnu.org/licenses/fdl.html">GNU Free Documentation    License version 1.3</a> as published by the Free Software Foundation.<br/> </div>
+</body>
+</html>
