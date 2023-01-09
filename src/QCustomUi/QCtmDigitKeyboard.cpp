@@ -281,20 +281,32 @@ bool QCtmDigitKeyboard::eventFilter(QObject* obj, QEvent* event)
             auto evt = dynamic_cast<QMouseEvent*>(event);
             if (evt && evt->button() == Qt::LeftButton)
             {
-                setValue(m_impl->bindedBox->property("value"));
+                auto beforeValue = m_impl->bindedBox->property("value");
+                auto beforeUnit  = m_impl->bindedBox->property("suffix").toString();
+                setValue(beforeValue);
                 if (exec() == QDialog::Accepted)
                 {
-                    auto val = value();
+                    auto val  = value();
+                    auto unit = m_impl->box->property("suffix").toString();
+                    m_impl->bindedBox->blockSignals(true);
                     if (!m_impl->units.empty())
                     {
                         m_impl->bindedBox->setProperty("minimum", m_impl->units[m_impl->currentUnitIndex].minimum);
                         m_impl->bindedBox->setProperty("maximum", m_impl->units[m_impl->currentUnitIndex].maximum);
                     }
+                    m_impl->bindedBox->setProperty("suffix", unit);
                     m_impl->bindedBox->setProperty("value", val);
-                    m_impl->bindedBox->setProperty("suffix", m_impl->box->property("suffix"));
-#ifdef QTBUG_107745
-                    QMetaObject::invokeMethod(m_impl->bindedBox, "textChanged", Q_ARG(QString, m_impl->box->text()));
-#endif
+                    m_impl->bindedBox->blockSignals(false);
+                    if (beforeValue != val)
+                    {
+                        if (qobject_cast<QDoubleSpinBox*>(m_impl->bindedBox))
+                            QMetaObject::invokeMethod(m_impl->bindedBox, "valueChanged", Q_ARG(double, val.toDouble()));
+                        else if (qobject_cast<QSpinBox*>(m_impl->bindedBox))
+                            QMetaObject::invokeMethod(m_impl->bindedBox, "valueChanged", Q_ARG(int, val.toInt()));
+                        QMetaObject::invokeMethod(m_impl->bindedBox, "textChanged", Q_ARG(QString, m_impl->bindedBox->text()));
+                    }
+                    else if (beforeUnit != unit)
+                        QMetaObject::invokeMethod(m_impl->bindedBox, "textChanged", Q_ARG(QString, m_impl->bindedBox->text()));
                 }
             }
         }
