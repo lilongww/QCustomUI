@@ -40,7 +40,6 @@ if(NOT BUILD_OPENVISA_STATIC)
     endif()
 endif()
 set_target_properties(${TARGET_NAME} PROPERTIES PUBLIC_HEADER "${HEADERS}")
-set_property(TARGET ${TARGET_NAME} PROPERTY FOLDER "Drivers")
 
 install(TARGETS ${TARGET_NAME}
     CONFIGURATIONS Debug
