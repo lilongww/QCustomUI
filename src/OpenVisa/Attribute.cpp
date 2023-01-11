@@ -24,6 +24,7 @@ struct Object::Attribute::Impl
 {
     std::string termChars { "\n" };
     std::chrono::milliseconds timeout { 2000 };
+    bool autoAppendTerminalChars { true };
 };
 
 /*!
@@ -67,5 +68,17 @@ void Object::Attribute::setTimeout(const std::chrono::milliseconds& timeout) { m
     \sa         setTimeout
 */
 const std::chrono::milliseconds& Object::Attribute::timeout() const { return m_impl->timeout; }
+
+/*!
+    \brief      设置是否启用发送数据时是否自动添加终结符 \a en, 默认为true.
+    \sa         autoAppendTerminalChars
+*/
+void Object::Attribute::setAutoAppendTerminalChars(bool en) { m_impl->autoAppendTerminalChars = en; }
+
+/*!
+    \brief      返回是否启用发送数据时是否自动添加终结符.
+    \sa         setAutoAppendTerminalChars
+*/
+bool Object::Attribute::autoAppendTerminalChars() const { return m_impl->autoAppendTerminalChars; }
 
 } // namespace OpenVisa

@@ -34,6 +34,8 @@ public:
     const std::string& terminalChars() const;
     void setTimeout(const std::chrono::milliseconds& timeout);
     const std::chrono::milliseconds& timeout() const;
+    void setAutoAppendTerminalChars(bool en);
+    bool autoAppendTerminalChars() const;
 
 private:
     struct Impl;

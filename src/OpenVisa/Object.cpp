@@ -207,7 +207,10 @@ std::vector<OpenVisa::Address<OpenVisa::AddressType::USB>> Object::listUSB() { r
 void Object::sendImpl(const std::string& scpi)
 {
     throwNoConnection();
-    m_impl->io->send(scpi + m_impl->attr.terminalChars());
+    if (m_impl->attr.autoAppendTerminalChars() && !scpi.ends_with(m_impl->attr.terminalChars()))
+        m_impl->io->send(scpi + m_impl->attr.terminalChars());
+    else
+        m_impl->io->send(scpi);
 }
 
 void Object::throwNoConnection() const

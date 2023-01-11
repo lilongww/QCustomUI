@@ -116,20 +116,18 @@ void VXI11::send(const std::string& buffer) const
     size_t offset { 0 };
     do
     {
-        VXI::Req::DeviceWrite data(
-            m_impl->generateXid(),
-            m_impl->linkId,
-            static_cast<unsigned long>(m_impl->attribute.timeout().count()),
-            0,
-            std::string_view(buffer.c_str() + offset,
-                             (buffer.size() - offset) > m_impl->maxBufferSize ? m_impl->maxBufferSize : (buffer.size() - offset)),
-            VXI::DeviceFlag { .end = buffer.size() - offset <= m_impl->maxBufferSize });
+        std::string_view view(buffer.c_str() + offset,
+                              (buffer.size() - offset) > m_impl->maxBufferSize ? m_impl->maxBufferSize : (buffer.size() - offset));
+        VXI::Req::DeviceWrite data(m_impl->generateXid(),
+                                   m_impl->linkId,
+                                   static_cast<unsigned long>(m_impl->attribute.timeout().count()),
+                                   0,
+                                   view,
+                                   VXI::DeviceFlag { .end = buffer.size() - offset <= m_impl->maxBufferSize });
 
         auto resp = m_impl->deviceWrite(data);
         if (resp.error() == VXI::Resp::DeviceErrorCode::NoError)
-        {
-            offset += resp.size();
-        }
+            offset += view.size();
         else
             throw std::exception("DeviceWrite failed.");
     } while (offset < buffer.size());
