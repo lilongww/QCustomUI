@@ -79,7 +79,7 @@ BEGIN
 #else
             VALUE "InternalName", "OpenVisa.dll"
 #endif
-            VALUE "LegalCopyright", "Copyright (C) 2022 OpenVisa"
+            VALUE "LegalCopyright", "Copyright (C) 2022-2023 OpenVisa"
 #ifdef _DEBUG
             VALUE "OriginalFilename", "OpenVisad.dll"
 #else
