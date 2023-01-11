@@ -1,6 +1,6 @@
 ﻿/*********************************************************************************
 **                                                                              **
-**  Copyright (C) 2022 LiLong                                                   **
+**  Copyright (C) 2022-2023 LiLong                                              **
 **  This file is part of OpenVisa.                                              **
 **                                                                              **
 **  OpenVisa is free software: you can redistribute it and/or modify            **
@@ -229,7 +229,7 @@ constexpr inline auto _skipHelper(const Tuple& t, std::index_sequence<I...>)
     return std::make_tuple(std::get<I + offset>(t)...);
 }
 
-//跳过元组的前i项，生成一个新的元组,如{1,2,3}调用skip<1>时，返回{2,3}.
+// 跳过元组的前i项，生成一个新的元组,如{1,2,3}调用skip<1>时，返回{2,3}.
 template<size_t i, typename Tuple>
 constexpr inline auto skipTuple(const Tuple& t)
 {

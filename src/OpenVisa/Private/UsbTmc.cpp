@@ -1,6 +1,6 @@
 ﻿/*********************************************************************************
 **                                                                              **
-**  Copyright (C) 2022 LiLong                                                   **
+**  Copyright (C) 2022-2023 LiLong                                              **
 **  This file is part of OpenVisa.                                              **
 **                                                                              **
 **  OpenVisa is free software: you can redistribute it and/or modify            **
@@ -205,7 +205,7 @@ void UsbTmc::connect(const Address<AddressType::USB>& addr, const std::chrono::m
             {
                 auto endpoint = &conf_desc->interface[i].altsetting[j].endpoint[k];
                 if ((endpoint->bmAttributes & LIBUSB_TRANSFER_TYPE_MASK) & (LIBUSB_TRANSFER_TYPE_BULK))
-                { //只获取批量传输端点
+                { // 只获取批量传输端点
                     libusb_clear_halt(m_impl->handle, endpoint->bEndpointAddress);
                     if (endpoint->bEndpointAddress & LIBUSB_ENDPOINT_IN)
                     {
@@ -243,7 +243,7 @@ void UsbTmc::connect(const Address<AddressType::USB>& addr, const std::chrono::m
         close();
         throw std::exception("USB device not found.");
     }
-    //获得通讯端点并声明内核接口
+    // 获得通讯端点并声明内核接口
     {
         libusb_set_auto_detach_kernel_driver(m_impl->handle, 1);
         for (auto i : ifs)
