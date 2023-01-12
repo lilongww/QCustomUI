@@ -1,6 +1,6 @@
 ﻿/*********************************************************************************
 **                                                                              **
-**  Copyright (C) 2022 LiLong                                                   **
+**  Copyright (C) 2022-2023 LiLong                                              **
 **  This file is part of OpenVisa.                                              **
 **                                                                              **
 **  OpenVisa is free software: you can redistribute it and/or modify            **

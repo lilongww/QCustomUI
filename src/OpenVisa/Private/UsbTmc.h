@@ -1,6 +1,6 @@
 ﻿/*********************************************************************************
 **                                                                              **
-**  Copyright (C) 2022 LiLong                                                   **
+**  Copyright (C) 2022-2023 LiLong                                              **
 **  This file is part of OpenVisa.                                              **
 **                                                                              **
 **  OpenVisa is free software: you can redistribute it and/or modify            **
@@ -34,7 +34,7 @@ public:
     std::string read(size_t size) const override;
     void close() noexcept override;
     bool connected() const noexcept override;
-    //此处 avalible 必须先调用read方法
+    // 此处 avalible 必须先调用read方法
     size_t avalible() const noexcept override;
     static std::vector<Address<AddressType::USB>> listUSB();
 

@@ -1,6 +1,6 @@
 ﻿/*********************************************************************************
 **                                                                              **
-**  Copyright (C) 2022 LiLong                                                   **
+**  Copyright (C) 2022-2023 LiLong                                              **
 **  This file is part of OpenVisa.                                              **
 **                                                                              **
 **  OpenVisa is free software: you can redistribute it and/or modify            **
@@ -20,7 +20,7 @@
 #pragma once
 
 #define OPENVISA_VERSION_MAJOR 0
-#define OPENVISA_VERSION_MINOR 4
+#define OPENVISA_VERSION_MINOR 5
 #define OPENVISA_VERSION_MICRO 0
 
 #define _OPENVISA_TOSTR(x) #x
