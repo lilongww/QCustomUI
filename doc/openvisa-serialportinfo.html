@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+<!-- SerialPortInfo.qdoc -->
+  <title>SerialPortInfo Class | OpenVisa 0.5.0</title>
+  <link rel="stylesheet" type="text/css" href="style/offline-simple.css" />
+  <script type="text/javascript">
+    document.getElementsByTagName("link").item(0).setAttribute("href", "style/offline.css");
+    // loading style sheet breaks anchors that were jumped to before
+    // so force jumping to anchor again
+    setTimeout(function() {
+        var anchor = location.hash;
+        // need to jump to different anchor first (e.g. none)
+        location.hash = "#";
+        setTimeout(function() {
+            location.hash = anchor;
+        }, 0);
+    }, 0);
+  </script>
+</head>
+<body>
+<div class="header" id="qtdocheader">
+    <div class="main">
+    <div class="main-rounded">
+        <div class="navigationbar">
+        <ul>
+<li><a href="index.html">OpenVisa 0.5&#x2e;0</a></li>
+<li><a href="index.html">OpenVisa</a></li>
+<li>SerialPortInfo</li>
+<li id="buildversion">OpenVisa 0.5.0 Reference Documentation</li>
+    </ul>
+    </div>
+</div>
+<div class="content">
+<div class="line">
+<div class="content mainContent">
+<div class="sidebar">
+<div class="toc">
+<h3 id="toc">Contents</h3>
+<ul>
+<li class="level1"><a href="#public-functions">Public Functions</a></li>
+<li class="level1"><a href="#static-public-members">Static Public Members</a></li>
+<li class="level1"><a href="#details">Detailed Description</a></li>
+</ul>
+</div>
+<div class="sidebar-content" id="sidebar-content"></div></div>
+<h1 class="title">SerialPortInfo Class</h1>
+<span class="small-subtitle">class <a href="openvisa-module.html">OpenVisa</a>::SerialPortInfo</span>
+<!-- $$$SerialPortInfo-brief -->
+<p>串口信息类. <a href="#details">More...</a></p>
+<!-- @@@SerialPortInfo -->
+<div class="table"><table class="alignedsummary">
+<tr><td class="memItemLeft rightAlign topAlign"> Header:</td><td class="memItemRight bottomAlign">  <span class="preprocessor">#include &lt;SerialPortInfo.h&gt;</span>
+</td></tr></table></div>
+<ul>
+<li><a href="openvisa-serialportinfo-members.html">List of all members, including inherited members</a></li>
+</ul>
+<h2 id="public-functions">Public Functions</h2>
+<div class="table"><table class="alignedsummary">
+<tr><td class="memItemLeft rightAlign topAlign"> </td><td class="memItemRight bottomAlign"><b><a href="openvisa-serialportinfo.html#SerialPortInfo">SerialPortInfo</a></b>()</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> </td><td class="memItemRight bottomAlign"><b><a href="openvisa-serialportinfo.html#dtor.SerialPortInfo">~SerialPortInfo</a></b>()</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> const std::string &amp;</td><td class="memItemRight bottomAlign"><b><a href="openvisa-serialportinfo.html#description">description</a></b>() const</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> const std::string &amp;</td><td class="memItemRight bottomAlign"><b><a href="openvisa-serialportinfo.html#hardwareID">hardwareID</a></b>() const</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> bool </td><td class="memItemRight bottomAlign"><b><a href="openvisa-serialportinfo.html#hasProductId">hasProductId</a></b>() const</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> bool </td><td class="memItemRight bottomAlign"><b><a href="openvisa-serialportinfo.html#hasVendorId">hasVendorId</a></b>() const</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> const std::string &amp;</td><td class="memItemRight bottomAlign"><b><a href="openvisa-serialportinfo.html#manufacturer">manufacturer</a></b>() const</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> const std::string &amp;</td><td class="memItemRight bottomAlign"><b><a href="openvisa-serialportinfo.html#portName">portName</a></b>() const</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> unsigned short </td><td class="memItemRight bottomAlign"><b><a href="openvisa-serialportinfo.html#productId">productId</a></b>() const</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> const std::string &amp;</td><td class="memItemRight bottomAlign"><b><a href="openvisa-serialportinfo.html#serialNumber">serialNumber</a></b>() const</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> unsigned short </td><td class="memItemRight bottomAlign"><b><a href="openvisa-serialportinfo.html#vendorId">vendorId</a></b>() const</td></tr>
+</table></div>
+<h2 id="static-public-members">Static Public Members</h2>
+<div class="table"><table class="alignedsummary">
+<tr><td class="memItemLeft rightAlign topAlign"> std::vector&lt;SerialPortInfo&gt; </td><td class="memItemRight bottomAlign"><b><a href="openvisa-serialportinfo.html#listPorts">listPorts</a></b>()</td></tr>
+</table></div>
+<!-- $$$SerialPortInfo-description -->
+<div class="descr">
+<h2 id="details">Detailed Description</h2>
+<div class="admonition note">
+<p><b>Note: </b>现在仅支持windows平台.</p>
+</div>
+</div>
+<!-- @@@SerialPortInfo -->
+<div class="func">
+<h2>Member Function Documentation</h2>
+<!-- $$$SerialPortInfo[overload1]$$$SerialPortInfo -->
+<h3 class="fn" id="SerialPortInfo">SerialPortInfo::<span class="name">SerialPortInfo</span>()</h3>
+<p>构造函数.</p>
+<!-- @@@SerialPortInfo -->
+<!-- $$$~SerialPortInfo[overload1]$$$~SerialPortInfo -->
+<h3 class="fn" id="dtor.SerialPortInfo">SerialPortInfo::<span class="name">~SerialPortInfo</span>()</h3>
+<p>析构函数.</p>
+<!-- @@@~SerialPortInfo -->
+<!-- $$$description[overload1]$$$description -->
+<h3 class="fn" id="description">const <span class="type">std::string</span> &amp;SerialPortInfo::<span class="name">description</span>() const</h3>
+<p>返回串口描述信息.</p>
+<!-- @@@description -->
+<!-- $$$hardwareID[overload1]$$$hardwareID -->
+<h3 class="fn" id="hardwareID">const <span class="type">std::string</span> &amp;SerialPortInfo::<span class="name">hardwareID</span>() const</h3>
+<p>返回串口硬件ID.</p>
+<!-- @@@hardwareID -->
+<!-- $$$hasProductId[overload1]$$$hasProductId -->
+<h3 class="fn" id="hasProductId"><span class="type">bool</span> SerialPortInfo::<span class="name">hasProductId</span>() const</h3>
+<p>返回串口是否有 product id.</p>
+<!-- @@@hasProductId -->
+<!-- $$$hasVendorId[overload1]$$$hasVendorId -->
+<h3 class="fn" id="hasVendorId"><span class="type">bool</span> SerialPortInfo::<span class="name">hasVendorId</span>() const</h3>
+<p>返回串口是否有 vendor id.</p>
+<!-- @@@hasVendorId -->
+<!-- $$$listPorts[overload1]$$$listPorts -->
+<h3 class="fn" id="listPorts"><code>[static] </code><span class="type">std::vector</span>&lt;<span class="type"><a href="openvisa-serialportinfo.html#SerialPortInfo">SerialPortInfo</a></span>&gt; SerialPortInfo::<span class="name">listPorts</span>()</h3>
+<p>返回计算机上存在的串口列表.</p>
+<div class="admonition note">
+<p><b>Note: </b>仅windows有效.</p>
+</div>
+<!-- @@@listPorts -->
+<!-- $$$manufacturer[overload1]$$$manufacturer -->
+<h3 class="fn" id="manufacturer">const <span class="type">std::string</span> &amp;SerialPortInfo::<span class="name">manufacturer</span>() const</h3>
+<p>返回串口生产商.</p>
+<!-- @@@manufacturer -->
+<!-- $$$portName[overload1]$$$portName -->
+<h3 class="fn" id="portName">const <span class="type">std::string</span> &amp;SerialPortInfo::<span class="name">portName</span>() const</h3>
+<p>返回串口名称.</p>
+<!-- @@@portName -->
+<!-- $$$productId[overload1]$$$productId -->
+<h3 class="fn" id="productId"><span class="type">unsigned</span> <span class="type">short</span> SerialPortInfo::<span class="name">productId</span>() const</h3>
+<p>返回串口的 product id.</p>
+<!-- @@@productId -->
+<!-- $$$serialNumber[overload1]$$$serialNumber -->
+<h3 class="fn" id="serialNumber">const <span class="type">std::string</span> &amp;SerialPortInfo::<span class="name">serialNumber</span>() const</h3>
+<p>返回串口的序列号.</p>
+<div class="admonition note">
+<p><b>Note: </b>一般只在 vid 或者 pid 存在的情况下才有序列号.</p>
+</div>
+<!-- @@@serialNumber -->
+<!-- $$$vendorId[overload1]$$$vendorId -->
+<h3 class="fn" id="vendorId"><span class="type">unsigned</span> <span class="type">short</span> SerialPortInfo::<span class="name">vendorId</span>() const</h3>
+<p>返回串口的 vendor id.</p>
+<!-- @@@vendorId -->
+</div>
+        </div>
+       </div>
+   </div>
+   </div>
+</div>
+<div class="footer">
+   <p>
+   <acronym title="Copyright">&copy;</acronym> OpenVisa
+   Documentation contributions included herein are the copyrights of
+   their respective owners.<br/>    The documentation provided herein is licensed under the terms of the    <a href="http://www.gnu.org/licenses/fdl.html">GNU Free Documentation    License version 1.3</a> as published by the Free Software Foundation.<br/> </div>
+</body>
+</html>

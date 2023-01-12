@@ -1,0 +1,196 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<QtHelpProject version="1.0">
+    <namespace>com.openvisa.0.5.0</namespace>
+    <virtualFolder>openvisa</virtualFolder>
+    <metaData name="version" value=""/>
+    <customFilter name="OpenVisa">
+        <filterAttribute>openvisa</filterAttribute>
+    </customFilter>
+    <filterSection>
+        <filterAttribute>openvisa</filterAttribute>
+        <toc>
+            <section ref="index.html" title="OpenVisa">
+                <section ref="openvisa-module.html" title="OpenVisa Classes">
+                    <section ref="version-h.html" title="&lt;Version.h&gt; - Version"/>
+                    <section ref="openvisa-asciiarray.html" title="OpenVisa::AsciiArray Class Reference">
+                        <section ref="openvisa-asciiarray-members.html" title="List of all members"/>
+                    </section>
+                    <section ref="openvisa-binaryarray.html" title="OpenVisa::BinaryArray Class Reference">
+                        <section ref="openvisa-binaryarray-members.html" title="List of all members"/>
+                    </section>
+                    <section ref="openvisa-object.html" title="OpenVisa::Object Class Reference">
+                        <section ref="openvisa-object-members.html" title="List of all members"/>
+                    </section>
+                    <section ref="openvisa-object-attribute.html" title="Object::Attribute Class Reference">
+                        <section ref="openvisa-object-attribute-members.html" title="List of all members"/>
+                    </section>
+                    <section ref="openvisa-object-commoncommand.html" title="Object::CommonCommand Class Reference">
+                        <section ref="openvisa-object-commoncommand-members.html" title="List of all members"/>
+                    </section>
+                    <section ref="openvisa-objectadapter.html" title="OpenVisa::ObjectAdapter Class Reference">
+                        <section ref="openvisa-objectadapter-members.html" title="List of all members"/>
+                    </section>
+                    <section ref="openvisa-serialportinfo.html" title="OpenVisa::SerialPortInfo Class Reference">
+                        <section ref="openvisa-serialportinfo-members.html" title="List of all members"/>
+                    </section>
+                </section>
+            </section>
+        </toc>
+        <keywords>
+            <keyword name="Address" id="OpenVisa::Address" ref="openvisa-address.html"/>
+            <keyword name="AsciiArray" id="OpenVisa::AsciiArray" ref="openvisa-asciiarray.html"/>
+            <keyword name="Attribute" id="Object::Attribute" ref="openvisa-object-attribute.html"/>
+            <keyword name="BinaryArray" id="OpenVisa::BinaryArray" ref="openvisa-binaryarray.html"/>
+            <keyword name="CommonCommand" id="Object::CommonCommand" ref="openvisa-object-commoncommand.html"/>
+            <keyword name="OPENVISA_VERSION" id="OPENVISA_VERSION" ref="version-h.html#OPENVISA_VERSION"/>
+            <keyword name="OPENVISA_VERSION_MAJOR" id="OPENVISA_VERSION_MAJOR" ref="version-h.html#OPENVISA_VERSION_MAJOR"/>
+            <keyword name="OPENVISA_VERSION_MICRO" id="OPENVISA_VERSION_MICRO" ref="version-h.html#OPENVISA_VERSION_MICRO"/>
+            <keyword name="OPENVISA_VERSION_MINOR" id="OPENVISA_VERSION_MINOR" ref="version-h.html#OPENVISA_VERSION_MINOR"/>
+            <keyword name="Object" id="OpenVisa::Object" ref="openvisa-object.html"/>
+            <keyword name="ObjectAdapter" id="OpenVisa::ObjectAdapter" ref="openvisa-objectadapter.html"/>
+            <keyword name="OpenVisa" id="OpenVisa" ref="index.html"/>
+            <keyword name="OpenVisa" id="OpenVisa" ref="openvisa.html"/>
+            <keyword name="OpenVisa Classes" id="OpenVisa Classes" ref="openvisa-module.html"/>
+            <keyword name="OpenVisa::AddressType" id="OpenVisa::AddressType" ref="openvisa.html#AddressType-enum"/>
+            <keyword name="OpenVisa::BaudRate" id="OpenVisa::BaudRate" ref="openvisa.html#BaudRate-enum"/>
+            <keyword name="OpenVisa::Data5" id="OpenVisa::Data5" ref="openvisa.html#DataBits-enum"/>
+            <keyword name="OpenVisa::Data6" id="OpenVisa::Data6" ref="openvisa.html#DataBits-enum"/>
+            <keyword name="OpenVisa::Data7" id="OpenVisa::Data7" ref="openvisa.html#DataBits-enum"/>
+            <keyword name="OpenVisa::Data8" id="OpenVisa::Data8" ref="openvisa.html#DataBits-enum"/>
+            <keyword name="OpenVisa::DataBits" id="OpenVisa::DataBits" ref="openvisa.html#DataBits-enum"/>
+            <keyword name="OpenVisa::ErrorQueue" id="OpenVisa::ErrorQueue" ref="openvisa.html#StatusByteRegister-enum"/>
+            <keyword name="OpenVisa::Even" id="OpenVisa::Even" ref="openvisa.html#Parity-enum"/>
+            <keyword name="OpenVisa::FlowControl" id="OpenVisa::FlowControl" ref="openvisa.html#FlowControl-enum"/>
+            <keyword name="OpenVisa::Hardware" id="OpenVisa::Hardware" ref="openvisa.html#FlowControl-enum"/>
+            <keyword name="OpenVisa::HiSLIP" id="OpenVisa::HiSLIP" ref="openvisa.html#AddressType-enum"/>
+            <keyword name="OpenVisa::MasterSummary" id="OpenVisa::MasterSummary" ref="openvisa.html#StatusByteRegister-enum"/>
+            <keyword name="OpenVisa::MessageAvailable" id="OpenVisa::MessageAvailable" ref="openvisa.html#StatusByteRegister-enum"/>
+            <keyword name="OpenVisa::None" id="OpenVisa::None" ref="openvisa.html#FlowControl-enum"/>
+            <keyword name="OpenVisa::None" id="OpenVisa::None" ref="openvisa.html#Parity-enum"/>
+            <keyword name="OpenVisa::Odd" id="OpenVisa::Odd" ref="openvisa.html#Parity-enum"/>
+            <keyword name="OpenVisa::One" id="OpenVisa::One" ref="openvisa.html#StopBits-enum"/>
+            <keyword name="OpenVisa::OnePointFive" id="OpenVisa::OnePointFive" ref="openvisa.html#StopBits-enum"/>
+            <keyword name="OpenVisa::Parity" id="OpenVisa::Parity" ref="openvisa.html#Parity-enum"/>
+            <keyword name="OpenVisa::QuestionableDataSummary" id="OpenVisa::QuestionableDataSummary" ref="openvisa.html#StatusByteRegister-enum"/>
+            <keyword name="OpenVisa::RawSocket" id="OpenVisa::RawSocket" ref="openvisa.html#AddressType-enum"/>
+            <keyword name="OpenVisa::SerialPort" id="OpenVisa::SerialPort" ref="openvisa.html#AddressType-enum"/>
+            <keyword name="OpenVisa::Software" id="OpenVisa::Software" ref="openvisa.html#FlowControl-enum"/>
+            <keyword name="OpenVisa::StandardEventSummary" id="OpenVisa::StandardEventSummary" ref="openvisa.html#StatusByteRegister-enum"/>
+            <keyword name="OpenVisa::StandardOperationSummary" id="OpenVisa::StandardOperationSummary" ref="openvisa.html#StatusByteRegister-enum"/>
+            <keyword name="OpenVisa::StatusByteRegister" id="OpenVisa::StatusByteRegister" ref="openvisa.html#StatusByteRegister-enum"/>
+            <keyword name="OpenVisa::StopBits" id="OpenVisa::StopBits" ref="openvisa.html#StopBits-enum"/>
+            <keyword name="OpenVisa::Two" id="OpenVisa::Two" ref="openvisa.html#StopBits-enum"/>
+            <keyword name="OpenVisa::USB" id="OpenVisa::USB" ref="openvisa.html#AddressType-enum"/>
+            <keyword name="OpenVisa::Unused1" id="OpenVisa::Unused1" ref="openvisa.html#StatusByteRegister-enum"/>
+            <keyword name="OpenVisa::Unused2" id="OpenVisa::Unused2" ref="openvisa.html#StatusByteRegister-enum"/>
+            <keyword name="OpenVisa::VXI11" id="OpenVisa::VXI11" ref="openvisa.html#AddressType-enum"/>
+            <keyword name="OpenVisa::_115200" id="OpenVisa::_115200" ref="openvisa.html#BaudRate-enum"/>
+            <keyword name="OpenVisa::_1200" id="OpenVisa::_1200" ref="openvisa.html#BaudRate-enum"/>
+            <keyword name="OpenVisa::_19200" id="OpenVisa::_19200" ref="openvisa.html#BaudRate-enum"/>
+            <keyword name="OpenVisa::_2400" id="OpenVisa::_2400" ref="openvisa.html#BaudRate-enum"/>
+            <keyword name="OpenVisa::_38400" id="OpenVisa::_38400" ref="openvisa.html#BaudRate-enum"/>
+            <keyword name="OpenVisa::_4800" id="OpenVisa::_4800" ref="openvisa.html#BaudRate-enum"/>
+            <keyword name="OpenVisa::_57600" id="OpenVisa::_57600" ref="openvisa.html#BaudRate-enum"/>
+            <keyword name="OpenVisa::_9600" id="OpenVisa::_9600" ref="openvisa.html#BaudRate-enum"/>
+            <keyword name="Search Results" id="Search Results" ref="search-results.html"/>
+            <keyword name="SerialPortInfo" id="OpenVisa::SerialPortInfo" ref="openvisa-serialportinfo.html"/>
+            <keyword name="attribute" id="Object::attribute" ref="openvisa-object.html#attribute"/>
+            <keyword name="attribute" id="ObjectAdapter::attribute" ref="openvisa-objectadapter.html#attribute"/>
+            <keyword name="autoAppendTerminalChars" id="Attribute::autoAppendTerminalChars" ref="openvisa-object-attribute.html#autoAppendTerminalChars"/>
+            <keyword name="begin" id="BinaryArray::begin" ref="openvisa-binaryarray.html#begin"/>
+            <keyword name="close" id="Object::close" ref="openvisa-object.html#close"/>
+            <keyword name="cls" id="CommonCommand::cls" ref="openvisa-object-commoncommand.html#cls"/>
+            <keyword name="commonCommand" id="Object::commonCommand" ref="openvisa-object.html#commonCommand"/>
+            <keyword name="commonCommand" id="ObjectAdapter::commonCommand" ref="openvisa-objectadapter.html#commonCommand"/>
+            <keyword name="connect" id="Object::connect" ref="openvisa-object.html#connect"/>
+            <keyword name="connected" id="Object::connected" ref="openvisa-object.html#connected"/>
+            <keyword name="data" id="BinaryArray::data" ref="openvisa-binaryarray.html#data"/>
+            <keyword name="description" id="SerialPortInfo::description" ref="openvisa-serialportinfo.html#description"/>
+            <keyword name="empty" id="BinaryArray::empty" ref="openvisa-binaryarray.html#empty"/>
+            <keyword name="end" id="BinaryArray::end" ref="openvisa-binaryarray.html#end"/>
+            <keyword name="ese" id="CommonCommand::ese" ref="openvisa-object-commoncommand.html#ese"/>
+            <keyword name="esr" id="CommonCommand::esr" ref="openvisa-object-commoncommand.html#esr"/>
+            <keyword name="hardwareID" id="SerialPortInfo::hardwareID" ref="openvisa-serialportinfo.html#hardwareID"/>
+            <keyword name="hasProductId" id="SerialPortInfo::hasProductId" ref="openvisa-serialportinfo.html#hasProductId"/>
+            <keyword name="hasVendorId" id="SerialPortInfo::hasVendorId" ref="openvisa-serialportinfo.html#hasVendorId"/>
+            <keyword name="idn" id="CommonCommand::idn" ref="openvisa-object-commoncommand.html#idn"/>
+            <keyword name="listPorts" id="SerialPortInfo::listPorts" ref="openvisa-serialportinfo.html#listPorts"/>
+            <keyword name="listSerialPorts" id="Object::listSerialPorts" ref="openvisa-object.html#listSerialPorts"/>
+            <keyword name="listUSB" id="Object::listUSB" ref="openvisa-object.html#listUSB"/>
+            <keyword name="manufacturer" id="SerialPortInfo::manufacturer" ref="openvisa-serialportinfo.html#manufacturer"/>
+            <keyword name="object" id="ObjectAdapter::object" ref="openvisa-objectadapter.html#object"/>
+            <keyword name="opc" id="CommonCommand::opc" ref="openvisa-object-commoncommand.html#opc"/>
+            <keyword name="operator std::vector&lt;T&gt;" id="AsciiArray::operator std::vector&lt;T&gt;" ref="openvisa-asciiarray.html#operator-std-3a-3avector-ltT-gt"/>
+            <keyword name="operator std::vector&lt;Type&gt;" id="BinaryArray::operator std::vector&lt;Type&gt;" ref="openvisa-binaryarray.html#operator-std-3a-3avector-ltType-gt"/>
+            <keyword name="opt" id="CommonCommand::opt" ref="openvisa-object-commoncommand.html#opt"/>
+            <keyword name="portName" id="SerialPortInfo::portName" ref="openvisa-serialportinfo.html#portName"/>
+            <keyword name="productId" id="SerialPortInfo::productId" ref="openvisa-serialportinfo.html#productId"/>
+            <keyword name="query" id="Object::query" ref="openvisa-object.html#query"/>
+            <keyword name="query" id="ObjectAdapter::query" ref="openvisa-objectadapter.html#query"/>
+            <keyword name="rcl" id="CommonCommand::rcl" ref="openvisa-object-commoncommand.html#rcl"/>
+            <keyword name="read" id="Object::read" ref="openvisa-object.html#read"/>
+            <keyword name="read" id="ObjectAdapter::read" ref="openvisa-objectadapter.html#read"/>
+            <keyword name="readAll" id="Object::readAll" ref="openvisa-object.html#readAll"/>
+            <keyword name="readAll" id="ObjectAdapter::readAll" ref="openvisa-objectadapter.html#readAll"/>
+            <keyword name="rst" id="CommonCommand::rst" ref="openvisa-object-commoncommand.html#rst"/>
+            <keyword name="send" id="Object::send" ref="openvisa-object.html#send"/>
+            <keyword name="send" id="ObjectAdapter::send" ref="openvisa-objectadapter.html#send"/>
+            <keyword name="sendBlockData" id="Object::sendBlockData" ref="openvisa-object.html#sendBlockData"/>
+            <keyword name="sendBlockData" id="ObjectAdapter::sendBlockData" ref="openvisa-objectadapter.html#sendBlockData"/>
+            <keyword name="serialNumber" id="SerialPortInfo::serialNumber" ref="openvisa-serialportinfo.html#serialNumber"/>
+            <keyword name="setAutoAppendTerminalChars" id="Attribute::setAutoAppendTerminalChars" ref="openvisa-object-attribute.html#setAutoAppendTerminalChars"/>
+            <keyword name="setEse" id="CommonCommand::setEse" ref="openvisa-object-commoncommand.html#setEse"/>
+            <keyword name="setOpc" id="CommonCommand::setOpc" ref="openvisa-object-commoncommand.html#setOpc"/>
+            <keyword name="setSre" id="CommonCommand::setSre" ref="openvisa-object-commoncommand.html#setSre"/>
+            <keyword name="setTerminalChars" id="Attribute::setTerminalChars" ref="openvisa-object-attribute.html#setTerminalChars"/>
+            <keyword name="setTimeout" id="Attribute::setTimeout" ref="openvisa-object-attribute.html#setTimeout"/>
+            <keyword name="size" id="BinaryArray::size" ref="openvisa-binaryarray.html#size"/>
+            <keyword name="sre" id="CommonCommand::sre" ref="openvisa-object-commoncommand.html#sre"/>
+            <keyword name="stb" id="CommonCommand::stb" ref="openvisa-object-commoncommand.html#stb"/>
+            <keyword name="terminalChars" id="Attribute::terminalChars" ref="openvisa-object-attribute.html#terminalChars"/>
+            <keyword name="timeout" id="Attribute::timeout" ref="openvisa-object-attribute.html#timeout"/>
+            <keyword name="tst" id="CommonCommand::tst" ref="openvisa-object-commoncommand.html#tst"/>
+            <keyword name="vendorId" id="SerialPortInfo::vendorId" ref="openvisa-serialportinfo.html#vendorId"/>
+            <keyword name="wai" id="CommonCommand::wai" ref="openvisa-object-commoncommand.html#wai"/>
+            <keyword name="~Attribute" id="Attribute::~Attribute" ref="openvisa-object-attribute.html#dtor.Attribute"/>
+            <keyword name="~Object" id="Object::~Object" ref="openvisa-object.html#dtor.Object"/>
+            <keyword name="~ObjectAdapter" id="ObjectAdapter::~ObjectAdapter" ref="openvisa-objectadapter.html#dtor.ObjectAdapter"/>
+            <keyword name="~SerialPortInfo" id="SerialPortInfo::~SerialPortInfo" ref="openvisa-serialportinfo.html#dtor.SerialPortInfo"/>
+        </keywords>
+        <files>
+            <file>images/arrow_bc.png</file>
+            <file>images/bgrContent.png</file>
+            <file>images/btn_next.png</file>
+            <file>images/btn_prev.png</file>
+            <file>images/bullet_dn.png</file>
+            <file>images/bullet_sq.png</file>
+            <file>images/home.png</file>
+            <file>images/ico_note.png</file>
+            <file>images/ico_note_attention.png</file>
+            <file>images/ico_out.png</file>
+            <file>images/logo.png</file>
+            <file>index.html</file>
+            <file>openvisa-address.html</file>
+            <file>openvisa-asciiarray-members.html</file>
+            <file>openvisa-asciiarray.html</file>
+            <file>openvisa-binaryarray-members.html</file>
+            <file>openvisa-binaryarray.html</file>
+            <file>openvisa-module.html</file>
+            <file>openvisa-object-attribute-members.html</file>
+            <file>openvisa-object-attribute.html</file>
+            <file>openvisa-object-commoncommand-members.html</file>
+            <file>openvisa-object-commoncommand.html</file>
+            <file>openvisa-object-members.html</file>
+            <file>openvisa-object.html</file>
+            <file>openvisa-objectadapter-members.html</file>
+            <file>openvisa-objectadapter.html</file>
+            <file>openvisa-serialportinfo-members.html</file>
+            <file>openvisa-serialportinfo.html</file>
+            <file>openvisa.html</file>
+            <file>search-results.html</file>
+            <file>style/offline-simple.css</file>
+            <file>style/offline.css</file>
+            <file>version-h.html</file>
+        </files>
+    </filterSection>
+</QtHelpProject>

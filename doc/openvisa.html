@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+<!-- OpenVisa.qdoc -->
+  <title>OpenVisa Namespace | OpenVisa 0.5.0</title>
+  <link rel="stylesheet" type="text/css" href="style/offline-simple.css" />
+  <script type="text/javascript">
+    document.getElementsByTagName("link").item(0).setAttribute("href", "style/offline.css");
+    // loading style sheet breaks anchors that were jumped to before
+    // so force jumping to anchor again
+    setTimeout(function() {
+        var anchor = location.hash;
+        // need to jump to different anchor first (e.g. none)
+        location.hash = "#";
+        setTimeout(function() {
+            location.hash = anchor;
+        }, 0);
+    }, 0);
+  </script>
+</head>
+<body>
+<div class="header" id="qtdocheader">
+    <div class="main">
+    <div class="main-rounded">
+        <div class="navigationbar">
+        <ul>
+<li><a href="index.html">OpenVisa 0.5&#x2e;0</a></li>
+<li>OpenVisa Namespace</li>
+<li id="buildversion">OpenVisa 0.5.0 Reference Documentation</li>
+    </ul>
+    </div>
+</div>
+<div class="content">
+<div class="line">
+<div class="content mainContent">
+<div class="sidebar">
+<div class="toc">
+<h3 id="toc">Contents</h3>
+<ul>
+<li class="level1"><a href="#classes">Classes</a></li>
+<li class="level1"><a href="#types">Types</a></li>
+<li class="level1"><a href="#details">Detailed Description</a></li>
+</ul>
+</div>
+<div class="sidebar-content" id="sidebar-content"></div></div>
+<h1 class="title">OpenVisa Namespace</h1>
+<!-- $$$OpenVisa-brief -->
+<p>开源 Visa 通讯库. <a href="#details">More...</a></p>
+<!-- @@@OpenVisa -->
+<div class="table"><table class="alignedsummary">
+<tr><td class="memItemLeft rightAlign topAlign"> Header:</td><td class="memItemRight bottomAlign">  <span class="preprocessor">#include &lt;OpenVisa&gt;</span>
+</td></tr></table></div>
+<h2 id="classes">Classes</h2>
+<div class="table"><table class="alignedsummary">
+<tr><td class="memItemLeft rightAlign topAlign"> struct </td><td class="memItemRight bottomAlign"><b><a href="openvisa-address.html">Address</a></b></td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> class </td><td class="memItemRight bottomAlign"><b><a href="openvisa-asciiarray.html">AsciiArray</a></b></td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> class </td><td class="memItemRight bottomAlign"><b><a href="openvisa-binaryarray.html">BinaryArray</a></b></td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> class </td><td class="memItemRight bottomAlign"><b><a href="openvisa-object.html">Object</a></b></td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> class </td><td class="memItemRight bottomAlign"><b><a href="openvisa-objectadapter.html">ObjectAdapter</a></b></td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> class </td><td class="memItemRight bottomAlign"><b><a href="openvisa-serialportinfo.html">SerialPortInfo</a></b></td></tr>
+</table></div>
+<h2 id="types">Types</h2>
+<div class="table"><table class="alignedsummary">
+<tr><td class="memItemLeft rightAlign topAlign"> enum class </td><td class="memItemRight bottomAlign"><b><a href="openvisa.html#AddressType-enum">AddressType</a></b> { RawSocket, SerialPort, USB, VXI11, HiSLIP }</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> enum </td><td class="memItemRight bottomAlign"><b><a href="openvisa.html#BaudRate-enum">BaudRate</a></b> { _1200, _2400, _4800, _9600, _19200, &hellip;, _115200 }</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> enum class </td><td class="memItemRight bottomAlign"><b><a href="openvisa.html#DataBits-enum">DataBits</a></b> { Data5, Data6, Data7, Data8 }</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> enum class </td><td class="memItemRight bottomAlign"><b><a href="openvisa.html#FlowControl-enum">FlowControl</a></b> { None, Software, Hardware }</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> enum class </td><td class="memItemRight bottomAlign"><b><a href="openvisa.html#Parity-enum">Parity</a></b> { None, Odd, Even }</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> enum class </td><td class="memItemRight bottomAlign"><b><a href="openvisa.html#StatusByteRegister-enum">StatusByteRegister</a></b> { Unused1, Unused2, ErrorQueue, QuestionableDataSummary, MessageAvailable, &hellip;, StandardOperationSummary }</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> enum class </td><td class="memItemRight bottomAlign"><b><a href="openvisa.html#StopBits-enum">StopBits</a></b> { One, OnePointFive, Two }</td></tr>
+</table></div>
+<!-- $$$OpenVisa-description -->
+<div class="descr">
+<h2 id="details">Detailed Description</h2>
+</div>
+<!-- @@@OpenVisa -->
+<div class="classes">
+<h2>Classes</h2>
+<h3> class <a href="openvisa-address.html">Address</a></h3><!-- $$$Address-brief -->
+<p>Visa地址封装类型. <a href="openvisa-address.html#details">More...</a></p>
+<!-- @@@Address -->
+<h3> class <a href="openvisa-asciiarray.html">AsciiArray</a></h3><!-- $$$AsciiArray-brief -->
+<p>Visa返回Ascii文本类型数组时，使用该类进行解析. <a href="openvisa-asciiarray.html#details">More...</a></p>
+<!-- @@@AsciiArray -->
+<h3> class <a href="openvisa-binaryarray.html">BinaryArray</a></h3><!-- $$$BinaryArray-brief -->
+<p>Visa返回二进制数组时，使用该类进行解析. 该类型可用于长期保存，访问其中数字时没有额外的开销，只有在转换为vector时，会产生内存复制. <a href="openvisa-binaryarray.html#details">More...</a></p>
+<!-- @@@BinaryArray -->
+<h3> class <a href="openvisa-object.html">Object</a></h3><!-- $$$Object-brief -->
+<p>仪器通讯基础库. <a href="openvisa-object.html#details">More...</a></p>
+<!-- @@@Object -->
+<h3> class <a href="openvisa-objectadapter.html">ObjectAdapter</a></h3><!-- $$$ObjectAdapter-brief -->
+<p><a href="openvisa-object.html">OpenVisa::Object</a>桥接基类，方便通信接口分类. <a href="openvisa-objectadapter.html#details">More...</a></p>
+<!-- @@@ObjectAdapter -->
+<h3> class <a href="openvisa-serialportinfo.html">SerialPortInfo</a></h3><!-- $$$SerialPortInfo-brief -->
+<p>串口信息类. <a href="openvisa-serialportinfo.html#details">More...</a></p>
+<!-- @@@SerialPortInfo -->
+</div>
+<div class="types">
+<h2>Type Documentation</h2>
+<!-- $$$AddressType$$$RawSocket$$$SerialPort$$$USB$$$VXI11$$$HiSLIP -->
+<h3 class="fn" id="AddressType-enum">enum class OpenVisa::<span class="name">AddressType</span></h3>
+<p>Visa连接地址类型.</p>
+<div class="table"><table class="valuelist"><tr valign="top" class="odd"><th class="tblConst">Constant</th><th class="tblval">Value</th><th class="tbldscr">Description</th></tr>
+<tr><td class="topAlign"><code>OpenVisa::AddressType::RawSocket</code></td><td class="topAlign tblval"><code>0</code></td><td class="topAlign">原始Socket连接方式，必须要启用终结符和终结字符串.</td></tr>
+<tr><td class="topAlign"><code>OpenVisa::AddressType::SerialPort</code></td><td class="topAlign tblval"><code>1</code></td><td class="topAlign">串口通信.</td></tr>
+<tr><td class="topAlign"><code>OpenVisa::AddressType::USB</code></td><td class="topAlign tblval"><code>2</code></td><td class="topAlign">USBTMC通信. <b>注意，使用USB连接必须安装USBTMC驱动程序.如果安装NI-VISA的USBTMC驱动程序是无法访问的，应安装其他USBTMC驱动程序，参考</b> <a href="https://zadig.akeo.ie/">Zadig</a>.</td></tr>
+<tr><td class="topAlign"><code>OpenVisa::AddressType::VXI11</code></td><td class="topAlign tblval"><code>3</code></td><td class="topAlign">使用VXI11通信协议与设备通信.</td></tr>
+<tr><td class="topAlign"><code>OpenVisa::AddressType::HiSLIP</code></td><td class="topAlign tblval"><code>4</code></td><td class="topAlign">使用HiSLIP通信协议与设备通信.</td></tr>
+</table></div>
+<!-- @@@AddressType -->
+<!-- $$$BaudRate$$$_1200$$$_2400$$$_4800$$$_9600$$$_19200$$$_38400$$$_57600$$$_115200 -->
+<h3 class="fn" id="BaudRate-enum">enum OpenVisa::<span class="name">BaudRate</span></h3>
+<p>串口常用波特率定义.</p>
+<div class="table"><table class="valuelist"><tr><th class="tblConst">Constant</th><th class="tblVal">Value</th></tr>
+<tr><td class="topAlign"><code>OpenVisa::_1200</code></td><td class="topAlign tblval"><code>1200</code></td></tr>
+<tr><td class="topAlign"><code>OpenVisa::_2400</code></td><td class="topAlign tblval"><code>2400</code></td></tr>
+<tr><td class="topAlign"><code>OpenVisa::_4800</code></td><td class="topAlign tblval"><code>4800</code></td></tr>
+<tr><td class="topAlign"><code>OpenVisa::_9600</code></td><td class="topAlign tblval"><code>9600</code></td></tr>
+<tr><td class="topAlign"><code>OpenVisa::_19200</code></td><td class="topAlign tblval"><code>19200</code></td></tr>
+<tr><td class="topAlign"><code>OpenVisa::_38400</code></td><td class="topAlign tblval"><code>38400</code></td></tr>
+<tr><td class="topAlign"><code>OpenVisa::_57600</code></td><td class="topAlign tblval"><code>57600</code></td></tr>
+<tr><td class="topAlign"><code>OpenVisa::_115200</code></td><td class="topAlign tblval"><code>115200</code></td></tr>
+</table></div>
+<!-- @@@BaudRate -->
+<!-- $$$DataBits$$$Data5$$$Data6$$$Data7$$$Data8 -->
+<h3 class="fn" id="DataBits-enum">enum class OpenVisa::<span class="name">DataBits</span></h3>
+<p>数据位定义.</p>
+<div class="table"><table class="valuelist"><tr><th class="tblConst">Constant</th><th class="tblVal">Value</th></tr>
+<tr><td class="topAlign"><code>OpenVisa::DataBits::Data5</code></td><td class="topAlign tblval"><code>5</code></td></tr>
+<tr><td class="topAlign"><code>OpenVisa::DataBits::Data6</code></td><td class="topAlign tblval"><code>6</code></td></tr>
+<tr><td class="topAlign"><code>OpenVisa::DataBits::Data7</code></td><td class="topAlign tblval"><code>7</code></td></tr>
+<tr><td class="topAlign"><code>OpenVisa::DataBits::Data8</code></td><td class="topAlign tblval"><code>8</code></td></tr>
+</table></div>
+<!-- @@@DataBits -->
+<!-- $$$FlowControl$$$None$$$Software$$$Hardware -->
+<h3 class="fn" id="FlowControl-enum">enum class OpenVisa::<span class="name">FlowControl</span></h3>
+<p>流控制定义.</p>
+<div class="table"><table class="valuelist"><tr valign="top" class="odd"><th class="tblConst">Constant</th><th class="tblval">Value</th><th class="tbldscr">Description</th></tr>
+<tr><td class="topAlign"><code>OpenVisa::FlowControl::None</code></td><td class="topAlign tblval"><code>0</code></td><td class="topAlign">无.</td></tr>
+<tr><td class="topAlign"><code>OpenVisa::FlowControl::Software</code></td><td class="topAlign tblval"><code>1</code></td><td class="topAlign">软件.</td></tr>
+<tr><td class="topAlign"><code>OpenVisa::FlowControl::Hardware</code></td><td class="topAlign tblval"><code>2</code></td><td class="topAlign">硬件.</td></tr>
+</table></div>
+<!-- @@@FlowControl -->
+<!-- $$$Parity$$$None$$$Odd$$$Even -->
+<h3 class="fn" id="Parity-enum">enum class OpenVisa::<span class="name">Parity</span></h3>
+<p>校验设置.</p>
+<div class="table"><table class="valuelist"><tr valign="top" class="odd"><th class="tblConst">Constant</th><th class="tblval">Value</th><th class="tbldscr">Description</th></tr>
+<tr><td class="topAlign"><code>OpenVisa::Parity::None</code></td><td class="topAlign tblval"><code>0</code></td><td class="topAlign">无.</td></tr>
+<tr><td class="topAlign"><code>OpenVisa::Parity::Odd</code></td><td class="topAlign tblval"><code>1</code></td><td class="topAlign">奇校验.</td></tr>
+<tr><td class="topAlign"><code>OpenVisa::Parity::Even</code></td><td class="topAlign tblval"><code>2</code></td><td class="topAlign">偶校验.</td></tr>
+</table></div>
+<!-- @@@Parity -->
+<!-- $$$StatusByteRegister$$$Unused1$$$Unused2$$$ErrorQueue$$$QuestionableDataSummary$$$MessageAvailable$$$StandardEventSummary$$$MasterSummary$$$StandardOperationSummary -->
+<h3 class="fn" id="StatusByteRegister-enum">enum class OpenVisa::<span class="name">StatusByteRegister</span></h3>
+<p>状态字节.</p>
+<div class="table"><table class="valuelist"><tr valign="top" class="odd"><th class="tblConst">Constant</th><th class="tblval">Value</th><th class="tbldscr">Description</th></tr>
+<tr><td class="topAlign"><code>OpenVisa::StatusByteRegister::Unused1</code></td><td class="topAlign tblval"><code>0x0001</code></td><td class="topAlign">未使用</td></tr>
+<tr><td class="topAlign"><code>OpenVisa::StatusByteRegister::Unused2</code></td><td class="topAlign tblval"><code>0x0002</code></td><td class="topAlign">未使用</td></tr>
+<tr><td class="topAlign"><code>OpenVisa::StatusByteRegister::ErrorQueue</code></td><td class="topAlign tblval"><code>0x0004</code></td><td class="topAlign">一个或多个错误存在于队列中，使用SYSTem:ERRor?读取和删除错误.</td></tr>
+<tr><td class="topAlign"><code>OpenVisa::StatusByteRegister::QuestionableDataSummary</code></td><td class="topAlign tblval"><code>0x0008</code></td><td class="topAlign">在可疑数据寄存器中设置一个或多个位（必须启用这些位，请参见 STATus:QUEStionable:ENABle）.</td></tr>
+<tr><td class="topAlign"><code>OpenVisa::StatusByteRegister::MessageAvailable</code></td><td class="topAlign tblval"><code>0x0010</code></td><td class="topAlign">仪器输出缓冲区中的数据可用.</td></tr>
+<tr><td class="topAlign"><code>OpenVisa::StatusByteRegister::StandardEventSummary</code></td><td class="topAlign tblval"><code>0x0020</code></td><td class="topAlign">在标准事件寄存器中设置一个或多个位（必须启用这些位，请参见 *ESE）.</td></tr>
+<tr><td class="topAlign"><code>OpenVisa::StatusByteRegister::MasterSummary</code></td><td class="topAlign tblval"><code>0x0040</code></td><td class="topAlign">一个或多个位在状态字节寄存器中设置且可能生成服务请求 (RQS)。 必须使用 *SRE 启用位.</td></tr>
+<tr><td class="topAlign"><code>OpenVisa::StatusByteRegister::StandardOperationSummary</code></td><td class="topAlign tblval"><code>0x0080</code></td><td class="topAlign">在标准操作寄存器中设置一个或多个位（必须启用这些位，请参见 STATus:OPERation:ENABle）.</td></tr>
+</table></div>
+<!-- @@@StatusByteRegister -->
+<!-- $$$StopBits$$$One$$$OnePointFive$$$Two -->
+<h3 class="fn" id="StopBits-enum">enum class OpenVisa::<span class="name">StopBits</span></h3>
+<p>停止位设置.</p>
+<div class="table"><table class="valuelist"><tr valign="top" class="odd"><th class="tblConst">Constant</th><th class="tblval">Value</th><th class="tbldscr">Description</th></tr>
+<tr><td class="topAlign"><code>OpenVisa::StopBits::One</code></td><td class="topAlign tblval"><code>0</code></td><td class="topAlign">1.</td></tr>
+<tr><td class="topAlign"><code>OpenVisa::StopBits::OnePointFive</code></td><td class="topAlign tblval"><code>1</code></td><td class="topAlign">1.5&#x2e;</td></tr>
+<tr><td class="topAlign"><code>OpenVisa::StopBits::Two</code></td><td class="topAlign tblval"><code>2</code></td><td class="topAlign">2.</td></tr>
+</table></div>
+<!-- @@@StopBits -->
+</div>
+        </div>
+       </div>
+   </div>
+   </div>
+</div>
+<div class="footer">
+   <p>
+   <acronym title="Copyright">&copy;</acronym> OpenVisa
+   Documentation contributions included herein are the copyrights of
+   their respective owners.<br/>    The documentation provided herein is licensed under the terms of the    <a href="http://www.gnu.org/licenses/fdl.html">GNU Free Documentation    License version 1.3</a> as published by the Free Software Foundation.<br/> </div>
+</body>
+</html>
