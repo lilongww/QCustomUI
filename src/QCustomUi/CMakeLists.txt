@@ -1,4 +1,5 @@
-﻿set(CMAKE_AUTOMOC ON)
+﻿set(TARGET_NAME QCustomUi)
+set(CMAKE_AUTOMOC ON)
 set(CMAKE_AUTOUIC ON)
 set(CMAKE_AUTORCC ON)
 
@@ -178,9 +179,11 @@ set(BUTTONS_SOURCES "QCtmSwitchButton.cpp")
 set(UI_PRIVATE
  "Private/QCtmToolBoxItem.ui")
 
-if(WIN32)
- list(APPEND RESOURCES "QCustomUi.rc")
-endif()
+if(MSVC)
+    set(QCUSTOMUI_VERSIONINFO_RC ${CMAKE_CURRENT_BINARY_DIR}/${TARGET_NAME}.rc)
+    configure_file("${PROJECT_SOURCE_DIR}/cmake/${TARGET_NAME}.rc.in" "${QCUSTOMUI_VERSIONINFO_RC}")
+    list(APPEND RESOURCES ${QCUSTOMUI_VERSIONINFO_RC})
+endif(MSVC)
 
 source_group("Headers" FILES ${HEADERS})
 source_group("Headers/Log" FILES ${LOG_HEADERS})
@@ -208,7 +211,7 @@ source_group("UI" FILES ${UI})
 source_group("UI/Private" FILES ${UI_PRIVATE})
 source_group("Resource" FILES ${RESOURCES})
 
-add_library(QCustomUi SHARED
+add_library(${TARGET_NAME} SHARED
  ${HEADERS}
  ${PRIVATRE_HEADERS}
  ${LOG_HEADERS}
@@ -237,31 +240,43 @@ add_library(QCustomUi SHARED
  ${DOCS}
 )
 
+include(CMakePackageConfigHelpers)
+
+set(QCUSTOMUI_CMAKE_CONFIG "${CMAKE_CURRENT_BINARY_DIR}/${TARGET_NAME}Config.cmake")
+configure_package_config_file("${PROJECT_SOURCE_DIR}/cmake/${TARGET_NAME}Config.cmake.in" ${QCUSTOMUI_CMAKE_CONFIG}
+ INSTALL_DESTINATION "${INSTALL_LIBRARYDIR}/cmake/"
+ PATH_VARS TARGET_NAME)
+
+write_basic_package_version_file(
+ "${CMAKE_CURRENT_BINARY_DIR}/${TARGET_NAME}ConfigVersion.cmake"
+ VERSION ${PROJECT_VERSION}
+ COMPATIBILITY AnyNewerVersion
+)
+
 if(WIN32)
     if(${QT_VERSION_MAJOR} EQUAL 5)
-        target_link_libraries(QCustomUi PUBLIC dwmapi PRIVATE Qt${QT_VERSION_MAJOR}::Core Qt${QT_VERSION_MAJOR}::Gui Qt${QT_VERSION_MAJOR}::Widgets Qt${QT_VERSION_MAJOR}::Network Qt${QT_VERSION_MAJOR}::WinExtras Qt${QT_VERSION_MAJOR}::WidgetsPrivate)
+        target_link_libraries(${TARGET_NAME} PUBLIC dwmapi PRIVATE Qt${QT_VERSION_MAJOR}::Core Qt${QT_VERSION_MAJOR}::Gui Qt${QT_VERSION_MAJOR}::Widgets Qt${QT_VERSION_MAJOR}::Network Qt${QT_VERSION_MAJOR}::WinExtras Qt${QT_VERSION_MAJOR}::WidgetsPrivate)
     else(${QT_VERSION_MAJOR} EQUAL 5)
-        target_link_libraries(QCustomUi PUBLIC dwmapi PRIVATE Qt${QT_VERSION_MAJOR}::Core Qt${QT_VERSION_MAJOR}::Gui Qt${QT_VERSION_MAJOR}::Widgets Qt${QT_VERSION_MAJOR}::Network Qt${QT_VERSION_MAJOR}::WidgetsPrivate)
+        target_link_libraries(${TARGET_NAME} PUBLIC dwmapi PRIVATE Qt${QT_VERSION_MAJOR}::Core Qt${QT_VERSION_MAJOR}::Gui Qt${QT_VERSION_MAJOR}::Widgets Qt${QT_VERSION_MAJOR}::Network Qt${QT_VERSION_MAJOR}::WidgetsPrivate)
     endif(${QT_VERSION_MAJOR} EQUAL 5)
 else ()
-    target_link_libraries(QCustomUi PRIVATE Qt${QT_VERSION_MAJOR}::Core Qt${QT_VERSION_MAJOR}::Gui Qt${QT_VERSION_MAJOR}::Widgets Qt${QT_VERSION_MAJOR}::Network Qt${QT_VERSION_MAJOR}::WidgetsPrivate)
+    target_link_libraries(${TARGET_NAME} PRIVATE Qt${QT_VERSION_MAJOR}::Core Qt${QT_VERSION_MAJOR}::Gui Qt${QT_VERSION_MAJOR}::Widgets Qt${QT_VERSION_MAJOR}::Network Qt${QT_VERSION_MAJOR}::WidgetsPrivate)
 endif(WIN32)
-set_target_properties(QCustomUi PROPERTIES VERSION ${QCUSTOMUI_VERSION} SOVERSION 1)
+set_target_properties(${TARGET_NAME} PROPERTIES VERSION ${PROJECT_VERSION} SOVERSION 1)
 
 file(GLOB PUBLIC_HEADERS ./*.h)
 file(GLOB _RESOURCE_HEADER_LIST "./resource.h")
 list(REMOVE_ITEM PUBLIC_HEADERS "${_RESOURCE_HEADER_LIST}")
-set_target_properties(QCustomUi PROPERTIES PUBLIC_HEADER "${PUBLIC_HEADERS}")
+set_target_properties(${TARGET_NAME} PROPERTIES PUBLIC_HEADER "${PUBLIC_HEADERS}")
 
-install(TARGETS QCustomUi
-    CONFIGURATIONS Debug
+install(TARGETS ${TARGET_NAME}
     ARCHIVE DESTINATION ${INSTALL_LIBRARYDIR}
-    RUNTIME DESTINATION ${INSTALL_BINDIR}/Debug
-    PUBLIC_HEADER DESTINATION ${INSTALL_INCLUDEDIR}/QCustomUi
+    RUNTIME DESTINATION ${INSTALL_BINDIR}/${CMAKE_BUILD_TYPE}
+    PUBLIC_HEADER DESTINATION ${INSTALL_INCLUDEDIR}/${TARGET_NAME}
 )
-install(TARGETS QCustomUi
-    CONFIGURATIONS Release
-    ARCHIVE DESTINATION ${INSTALL_LIBRARYDIR}
-    RUNTIME DESTINATION ${INSTALL_BINDIR}/Release
-    PUBLIC_HEADER DESTINATION ${INSTALL_INCLUDEDIR}/QCustomUi
-)
+
+install(FILES "${CMAKE_CURRENT_BINARY_DIR}/${TARGET_NAME}ConfigVersion.cmake"
+              "${QCUSTOMUI_CMAKE_CONFIG}"
+        DESTINATION ${INSTALL_LIBRARYDIR}/cmake/ )
+set(CMAKE_EXPORT_PACKAGE_REGISTRY ON)
+export(PACKAGE ${TARGET_NAME})
