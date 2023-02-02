@@ -24,6 +24,6 @@ endif()
 
 include(${PROJECT_SOURCE_DIR}/cmake/ExportHelper.cmake)
 
-export_config(${PROJECT_NAME} ${INSTALL_LIBRARYDIR})
+export_config(${PROJECT_NAME} ${INSTALL_LIBRARYDIR} ${INSTALL_INCLUDEDIR})
 
 add_subdirectory(src)
