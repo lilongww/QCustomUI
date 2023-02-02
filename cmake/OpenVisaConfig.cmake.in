@@ -1,3 +1,4 @@
 @PACKAGE_INIT@
 
-include(@install_dir@/cmake/OpenVisaTargets.cmake)
+include_directories(@includedir@)
+include(@installdir@/cmake/OpenVisaTargets.cmake)
