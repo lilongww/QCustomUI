@@ -32,4 +32,7 @@ find_file(LIBUSB_LIBRARY libusb-1.0 DOC "libusb library file." REQUIRED)
 option(BUILD_OPENVISA_STATIC "Build OpenVisa static library." false)
 option(BUILD_TEST "Build test applications." true)
 
+include(${PROJECT_SOURCE_DIR}/cmake/ExportHelper.cmake)
+export_config(${PROJECT_NAME} ${INSTALL_LIBRARYDIR})
+
 add_subdirectory(src)
