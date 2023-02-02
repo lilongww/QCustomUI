@@ -21,4 +21,9 @@ if (MSVC)
 else()
     add_compile_options(-Wall)
 endif()
+
+include(${PROJECT_SOURCE_DIR}/cmake/ExportHelper.cmake)
+
+export_config(${PROJECT_NAME} ${INSTALL_LIBRARYDIR})
+
 add_subdirectory(src)
