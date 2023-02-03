@@ -68,6 +68,7 @@ public:
     void setDecimals(int decimals);
     int decimals() const;
     void bindBox(QAbstractSpinBox* box);
+    static void simpleBindBox(QAbstractSpinBox* box, const Units& units = {}, const QVariant& step = {});
 signals:
     void valueChanged(const QVariant& value);
 
@@ -85,8 +86,11 @@ private:
     void createUnits();
     void syncBindBox();
     void acceptUnit(int unitIndex);
+    std::pair<QVariant, QString> showBefore();
+    void showAfter(const QVariant& beforeValue, const QString& beforeUnit);
 
 private:
     struct Impl;
     std::unique_ptr<Impl> m_impl;
+    friend class QCtmDigitKeyboardInputHelper;
 };
