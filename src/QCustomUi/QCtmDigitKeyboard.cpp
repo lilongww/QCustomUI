@@ -28,6 +28,51 @@
 
 #define QTBUG_107745
 
+class QCtmDigitKeyboardInputHelper : public QObject
+{
+public:
+    QCtmDigitKeyboardInputHelper(QAbstractSpinBox* box, const QCtmDigitKeyboard::Units& units, const QVariant& step)
+        : QObject(box), m_bindedBox(box), m_units(units), m_step(step)
+    {
+    }
+
+protected:
+    bool eventFilter(QObject* watched, QEvent* event) override
+    {
+        if (m_bindedBox && m_bindedBox->isEnabled() && watched == m_bindedBox->findChild<QLineEdit*>())
+        {
+            if (event->type() == QEvent::MouseButtonPress)
+            {
+                if (!m_keyboard)
+                {
+                    m_keyboard = new QCtmDigitKeyboard(m_bindedBox);
+                    m_keyboard->setUnits(m_units);
+                    m_keyboard->setSingleStep(m_step);
+                    m_keyboard->bindBox(m_bindedBox);
+                    auto evt = dynamic_cast<QMouseEvent*>(event);
+                    if (evt && evt->button() == Qt::LeftButton)
+                    {
+                        auto [beforeValue, beforeUnit] = m_keyboard->showBefore();
+                        if (m_keyboard->exec() == QDialog::Accepted)
+                        {
+                            m_keyboard->showAfter(beforeValue, beforeUnit);
+                        }
+                    }
+                    watched->removeEventFilter(this);
+                    this->deleteLater();
+                }
+            }
+        }
+        return false;
+    }
+
+private:
+    QAbstractSpinBox* m_bindedBox;
+    QCtmDigitKeyboard::Units m_units;
+    QVariant m_step;
+    QCtmDigitKeyboard* m_keyboard { nullptr };
+};
+
 struct QCtmDigitKeyboard::Impl
 {
     InputMode mode { InputMode::IntInput };
@@ -252,6 +297,14 @@ void QCtmDigitKeyboard::bindBox(QAbstractSpinBox* box)
 }
 
 /*!
+    \brief      打开 \a box 的数字键盘，单位列表为 \a units, 步进为 \a step, 输入完成后销毁数字键盘.
+*/
+void QCtmDigitKeyboard::simpleBindBox(QAbstractSpinBox* box, const Units& units /*= {}*/, const QVariant& step /*= {}*/)
+{
+    box->findChild<QLineEdit*>()->installEventFilter(new QCtmDigitKeyboardInputHelper(box, units, step));
+}
+
+/*!
     \reimp
 */
 QSize QCtmDigitKeyboard::sizeHint() const
@@ -281,32 +334,10 @@ bool QCtmDigitKeyboard::eventFilter(QObject* obj, QEvent* event)
             auto evt = dynamic_cast<QMouseEvent*>(event);
             if (evt && evt->button() == Qt::LeftButton)
             {
-                auto beforeValue = m_impl->bindedBox->property("value");
-                auto beforeUnit  = m_impl->bindedBox->property("suffix").toString();
-                setValue(beforeValue);
+                auto [beforeValue, beforeUnit] = showBefore();
                 if (exec() == QDialog::Accepted)
                 {
-                    auto val  = value();
-                    auto unit = m_impl->box->property("suffix").toString();
-                    m_impl->bindedBox->blockSignals(true);
-                    if (!m_impl->units.empty())
-                    {
-                        m_impl->bindedBox->setProperty("minimum", m_impl->units[m_impl->currentUnitIndex].minimum);
-                        m_impl->bindedBox->setProperty("maximum", m_impl->units[m_impl->currentUnitIndex].maximum);
-                    }
-                    m_impl->bindedBox->setProperty("suffix", unit);
-                    m_impl->bindedBox->setProperty("value", val);
-                    m_impl->bindedBox->blockSignals(false);
-                    if (beforeValue != val)
-                    {
-                        if (qobject_cast<QDoubleSpinBox*>(m_impl->bindedBox))
-                            QMetaObject::invokeMethod(m_impl->bindedBox, "valueChanged", Q_ARG(double, val.toDouble()));
-                        else if (qobject_cast<QSpinBox*>(m_impl->bindedBox))
-                            QMetaObject::invokeMethod(m_impl->bindedBox, "valueChanged", Q_ARG(int, val.toInt()));
-                        QMetaObject::invokeMethod(m_impl->bindedBox, "textChanged", Q_ARG(QString, m_impl->bindedBox->text()));
-                    }
-                    else if (beforeUnit != unit)
-                        QMetaObject::invokeMethod(m_impl->bindedBox, "textChanged", Q_ARG(QString, m_impl->bindedBox->text()));
+                    showAfter(beforeValue, beforeUnit);
                 }
             }
         }
@@ -548,4 +579,37 @@ void QCtmDigitKeyboard::acceptUnit(int unitIndex)
         return;
     }
     accept();
+}
+
+std::pair<QVariant, QString> QCtmDigitKeyboard::showBefore()
+{
+    auto beforeValue = m_impl->bindedBox->property("value");
+    auto beforeUnit  = m_impl->bindedBox->property("suffix").toString();
+    setValue(beforeValue);
+    return std::make_pair(beforeValue, beforeUnit);
+}
+
+void QCtmDigitKeyboard::showAfter(const QVariant& beforeValue, const QString& beforeUnit)
+{
+    auto val  = value();
+    auto unit = m_impl->box->property("suffix").toString();
+    m_impl->bindedBox->blockSignals(true);
+    if (!m_impl->units.empty())
+    {
+        m_impl->bindedBox->setProperty("minimum", m_impl->units[m_impl->currentUnitIndex].minimum);
+        m_impl->bindedBox->setProperty("maximum", m_impl->units[m_impl->currentUnitIndex].maximum);
+    }
+    m_impl->bindedBox->setProperty("suffix", unit);
+    m_impl->bindedBox->setProperty("value", val);
+    m_impl->bindedBox->blockSignals(false);
+    if (beforeValue != val)
+    {
+        if (qobject_cast<QDoubleSpinBox*>(m_impl->bindedBox))
+            QMetaObject::invokeMethod(m_impl->bindedBox, "valueChanged", Q_ARG(double, val.toDouble()));
+        else if (qobject_cast<QSpinBox*>(m_impl->bindedBox))
+            QMetaObject::invokeMethod(m_impl->bindedBox, "valueChanged", Q_ARG(int, val.toInt()));
+        QMetaObject::invokeMethod(m_impl->bindedBox, "textChanged", Q_ARG(QString, m_impl->bindedBox->text()));
+    }
+    else if (beforeUnit != unit)
+        QMetaObject::invokeMethod(m_impl->bindedBox, "textChanged", Q_ARG(QString, m_impl->bindedBox->text()));
 }
