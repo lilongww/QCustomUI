@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
 <!-- QCtmDigitKeyboard.cpp -->
-  <title>QCtmDigitKeyboard Class | QCustomUi 1.10.0-beta.3</title>
+  <title>QCtmDigitKeyboard Class | QCustomUi 1.10.0</title>
   <link rel="stylesheet" type="text/css" href="style/offline-simple.css" />
   <script type="text/javascript">
     document.getElementsByTagName("link").item(0).setAttribute("href", "style/offline.css");
@@ -25,10 +25,10 @@
     <div class="main-rounded">
         <div class="navigationbar">
         <ul>
-<li><a href="index.html">QCustomUi 1.10.0-beta.3</a></li>
+<li><a href="index.html">QCustomUi 1.10.0</a></li>
 <li><a href="index.html">QCustomUi</a></li>
 <li>QCtmDigitKeyboard</li>
-<li id="buildversion">QCustomUi 1.10.0-beta.3 Reference Documentation</li>
+<li id="buildversion">QCustomUi 1.10.0 Reference Documentation</li>
     </ul>
     </div>
 </div>
@@ -41,6 +41,7 @@
 <ul>
 <li class="level1"><a href="#public-functions">Public Functions</a></li>
 <li class="level1"><a href="#signals">Signals</a></li>
+<li class="level1"><a href="#static-public-members">Static Public Members</a></li>
 <li class="level1"><a href="#reimplemented-protected-functions">Reimplemented Protected Functions</a></li>
 <li class="level1"><a href="#details">Detailed Description</a></li>
 </ul>
@@ -82,6 +83,10 @@
 <h2 id="signals">Signals</h2>
 <div class="table"><table class="alignedsummary">
 <tr><td class="memItemLeft rightAlign topAlign"> void </td><td class="memItemRight bottomAlign"><b><a href="qctmdigitkeyboard.html#value-prop">valueChanged</a></b>(const QVariant &amp;<i>value</i>)</td></tr>
+</table></div>
+<h2 id="static-public-members">Static Public Members</h2>
+<div class="table"><table class="alignedsummary">
+<tr><td class="memItemLeft rightAlign topAlign"> void </td><td class="memItemRight bottomAlign"><b><a href="qctmdigitkeyboard.html#simpleBindBox">simpleBindBox</a></b>(QAbstractSpinBox *<i>box</i>, const QCtmDigitKeyboard::Units &amp;<i>units</i> = {}, const QVariant &amp;<i>step</i> = {})</td></tr>
 </table></div>
 <h2 id="reimplemented-protected-functions">Reimplemented Protected Functions</h2>
 <div class="table"><table class="alignedsummary">
@@ -200,6 +205,10 @@
 <p><b>Note: </b>Setter function for property <a href="qctmdigitkeyboard.html#value">value</a>. </p>
 <p><b>See also </b><a href="qctmdigitkeyboard.html#value">value</a>.</p>
 <!-- @@@setValue -->
+<!-- $$$simpleBindBox[overload1]$$$simpleBindBoxQAbstractSpinBox*constQCtmDigitKeyboard::Units&constQVariant& -->
+<h3 class="fn" id="simpleBindBox"><code>[static] </code><span class="type">void</span> QCtmDigitKeyboard::<span class="name">simpleBindBox</span>(<span class="type"><a href="https://doc.qt.io/qt/qabstractspinbox.html">QAbstractSpinBox</a></span> *<i>box</i>, const <span class="type">QCtmDigitKeyboard::Units</span> &amp;<i>units</i> = {}, const <span class="type"><a href="https://doc.qt.io/qt/qvariant.html">QVariant</a></span> &amp;<i>step</i> = {})</h3>
+<p>打开 <i>box</i> 的数字键盘，单位列表为 <i>units</i>, 步进为 <i>step</i>, 输入完成后销毁数字键盘.</p>
+<!-- @@@simpleBindBox -->
 <!-- $$$singleStep -->
 <h3 class="fn" id="singleStep"><span class="type"><a href="https://doc.qt.io/qt/qvariant.html">QVariant</a></span> QCtmDigitKeyboard::<span class="name">singleStep</span>() const</h3>
 <p>返回步进值.</p>

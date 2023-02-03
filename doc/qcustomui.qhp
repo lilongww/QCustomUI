@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <QtHelpProject version="1.0">
-    <namespace>com.qcustomui.1.10.0-beta.3</namespace>
+    <namespace>com.qcustomui.1.10.0</namespace>
     <virtualFolder>qcustomui</virtualFolder>
     <metaData name="version" value=""/>
     <customFilter name="QCustomUi">
@@ -837,6 +837,7 @@
             <keyword name="showLog" id="QCtmLogFilterModel::showLog" ref="qctmlogfiltermodel.html#showLog"/>
             <keyword name="showPopup" id="QCtmComboBox::showPopup" ref="qctmcombobox.html#showPopup"/>
             <keyword name="sibling" id="QCtmAbstractMultiPageTableModel::sibling" ref="qctmabstractmultipagetablemodel.html#sibling"/>
+            <keyword name="simpleBindBox" id="QCtmDigitKeyboard::simpleBindBox" ref="qctmdigitkeyboard.html#simpleBindBox"/>
             <keyword name="singleStep" id="QCtmDigitKeyboard::singleStep" ref="qctmdigitkeyboard.html#singleStep"/>
             <keyword name="sizeHint" id="QCtmCircleProgressBar::sizeHint" ref="qctmcircleprogressbar.html#sizeHint"/>
             <keyword name="sizeHint" id="QCtmDigitKeyboard::sizeHint" ref="qctmdigitkeyboard.html#sizeHint"/>
