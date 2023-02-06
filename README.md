@@ -41,11 +41,23 @@ API文档：https://llongww.gitee.io/openvisa
 
 ### 3. CMake设置
 
+如果libusb的目录与OpenVisa在同级目录中，一般来说下述变量将会自动查找
+
 * 设置 ```LIBUSB_INCLUDEDIR``` 为 libusb.h 头文件所在目录的上一级，比如 libusb.h 的所在目录为：F:\3rd\libusb\libusb\libusb.h，则将 ```LIBUSB_INCLUDEDIR``` 设为 ```F:/3rd/libusb```
 
-* 设置 ```LIBUSB_LIBRARY``` 为 libusb-1.0.lib 文件所在的路径，如：```F:/3rd/libusb/x64/Release/lib/libusb-1.0.lib```
+* 设置```LIBUSB_INCLUDEDIR``` 后一般情况下lib和dll的路径将会自动查找如果没有自动查找，则设置如下变量
+
+* 设置 ```LIBUSB_DEBUG_LIBRARY``` 为Debug模式下的 libusb-1.0.lib 文件所在的路径，如：```F:/3rd/libusb/x64/Debug/dll/libusb-1.0.lib```
+
+* 设置 ```LIBUSB_RELEASE_LIBRARY``` 为Release模式下的 libusb-1.0.lib 文件所在的路径，如：```F:/3rd/libusb/x64/Release/dll/libusb-1.0.lib```
+
+* 设置 ```LIBUSB_DEBUG_DLL``` 为Debug模式下的 libusb-1.0.dll 文件所在的路径，如：```F:/3rd/libusb/x64/Debug/dll/libusb-1.0.dll```
+
+* 设置 ```LIBUSB_RELEASE_DLL``` 为Release模式下的 libusb-1.0.dll 文件所在的路径，如：```F:/3rd/libusb/x64/Release/dll/libusb-1.0.dll```
 
 如果编译时没有找到 libusb.h，请检查```LIBUSB_INCLUDEDIR```的设置是否正确，如果编译动态库时出现链接错误，请检查```LIBUSB_LIBRARY``` 
+
+**注意:**如果修改了LIBUSB_USE_STATIC变量，请删除cmake缓存重新构建，否则可能产生错误。
 
 ## 四、使用
 
