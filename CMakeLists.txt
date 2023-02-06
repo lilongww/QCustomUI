@@ -33,30 +33,51 @@ find_path(LIBUSB_INCLUDEDIR libusb.h
     PATH_SUFFIXES libusb
     DOC "Header directory for libusb." REQUIRED)
 
+if(EXISTS "${LIBUSB_INCLUDEDIR}/libusb.h")
+    set(LIBUSB_INCLUDEDIR ${LIBUSB_INCLUDEDIR}/..)
+endif()
+message(${LIBUSB_INCLUDEDIR})
 option(LIBUSB_USE_STATIC "Use static libusb library." false)
 
 set(LIBUSB_LIBRARY_DEBUG_DIR)
 set(LIBUSB_LIBRARY_RELEASE_DIR)
+set(LIBUSB_RUNTIME_DEBUG_DIR)
+set(LIBUSB_RUNTIME_RELEASE_DIR)
 
 if(LIBUSB_USE_STATIC)
-    if("${CMAKE_BUILD_TYPE}" STREQUAL "Debug")
-        find_library(LIBUSB NAMES libusb libusb-1.0 PATHS "${LIBUSB_INCLUDEDIR}/${_platform}/Debug/lib" ${LIBUSB_LIBRARY_DEBUG_DIR} REQUIRED)
-    else()
-        find_library(LIBUSB NAMES libusb libusb-1.0 PATHS "${LIBUSB_INCLUDEDIR}/${_platform}/Release/lib" REQUIRED)
-    endif()
+    find_library(LIBUSB_DEBUG_LIBRARY
+        NAMES libusb libusb-1.0
+        PATHS "${LIBUSB_INCLUDEDIR}/${_platform}/Debug/lib" ${LIBUSB_LIBRARY_DEBUG_DIR} REQUIRED)
+    find_library(LIBUSB_RELEASE_LIBRARY
+        NAMES libusb libusb-1.0
+        PATHS "${LIBUSB_INCLUDEDIR}/${_platform}/Release/lib" REQUIRED)
 else(LIBUSB_USE_STATIC)
-    if("${CMAKE_BUILD_TYPE}" STREQUAL "Debug")
-        find_library(LIBUSB NAMES libusb libusb-1.0 PATHS "${LIBUSB_INCLUDEDIR}/${_platform}/Debug/dll" ${LIBUSB_LIBRARY_RELEASE_DIR} REQUIRED)
-    else()
-        find_library(LIBUSB NAMES libusb libusb-1.0 PATHS "${LIBUSB_INCLUDEDIR}/${_platform}/Release/dll" REQUIRED)
-    endif()
+    find_library(LIBUSB_DEBUG_LIBRARY
+        NAMES libusb libusb-1.0
+        PATHS "${LIBUSB_INCLUDEDIR}/${_platform}/Debug/dll" ${LIBUSB_LIBRARY_DEBUG_DIR} REQUIRED)
+    find_library(LIBUSB_RELEASE_LIBRARY
+        NAMES libusb libusb-1.0
+        PATHS "${LIBUSB_INCLUDEDIR}/${_platform}/Release/dll" REQUIRED)
+    if(WIN32)
+        find_file(LIBUSB_DEBUG_DLL
+            NAMES libusb.dll libusb-1.0.dll
+            PATHS "${LIBUSB_INCLUDEDIR}/${_platform}/Debug/dll" ${LIBUSB_LIBRARY_DEBUG_DIR} REQUIRED)
+        find_file(LIBUSB_RELEASE_DLL
+            NAMES libusb.dll libusb-1.0.dll
+            PATHS "${LIBUSB_INCLUDEDIR}/${_platform}/Release/dll" ${LIBUSB_RUNTIME_RELEASE_DIR} REQUIRED)
+    endif(WIN32)
 endif(LIBUSB_USE_STATIC)
 unset(_platform)
+
+include(${PROJECT_SOURCE_DIR}/cmake/FindLibusb.cmake)
+
+openvisa_find_libusb(${LIBUSB_DEBUG_LIBRARY} ${LIBUSB_RELEASE_LIBRARY} ${LIBUSB_DEBUG_DLL} ${LIBUSB_RELEASE_DLL} ${LIBUSB_USE_STATIC})
 
 option(BUILD_OPENVISA_STATIC "Build OpenVisa static library." false)
 option(BUILD_TEST "Build test applications." true)
 
 include(${PROJECT_SOURCE_DIR}/cmake/ExportHelper.cmake)
-export_config(${PROJECT_NAME} ${INSTALL_LIBRARYDIR} ${INSTALL_INCLUDEDIR})
+export_config(${PROJECT_NAME} ${INSTALL_LIBRARYDIR} ${INSTALL_INCLUDEDIR} ${LIBUSB_DEBUG_LIBRARY} ${LIBUSB_RELEASE_LIBRARY} ${LIBUSB_DEBUG_DLL} ${LIBUSB_RELEASE_DLL} ${LIBUSB_USE_STATIC})
+install(FILES ${PROJECT_SOURCE_DIR}/cmake/FindLibusb.cmake DESTINATION ${INSTALL_LIBRARYDIR}/cmake)
 
 add_subdirectory(src)

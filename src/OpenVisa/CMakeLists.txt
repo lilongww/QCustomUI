@@ -41,11 +41,12 @@ add_library(${TARGET_NAME} ${OPENVISA_OPT}
 
 if(NOT BUILD_OPENVISA_STATIC)
     if(WIN32)
-        target_link_libraries(${TARGET_NAME} PUBLIC ${LIBUSB_LIBRARY} Setupapi)
+        target_link_libraries(${TARGET_NAME} PUBLIC Setupapi PRIVATE libusb)
     else()
-        target_link_libraries(${TARGET_NAME} PUBLIC ${LIBUSB_LIBRARY} Setupapi)
+        target_link_libraries(${TARGET_NAME} PUBLIC Setupapi PRIVATE libusb)
     endif()
 endif()
 set_target_properties(${TARGET_NAME} PROPERTIES PUBLIC_HEADER "${HEADERS}")
 
+install(IMPORTED_RUNTIME_ARTIFACTS libusb)
 export_install_target(${TARGET_NAME} ${INSTALL_INCLUDEDIR} ${INSTALL_LIBRARYDIR} ${INSTALL_BINDIR})

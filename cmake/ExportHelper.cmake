@@ -1,10 +1,10 @@
-function(export_config target_name installdir includedir)
+function(export_config target_name installdir includedir libusb_debug_library libusb_release_library libusb_debug_dll libusb_release_dll libusb_use_static)
     include(CMakePackageConfigHelpers)
 
     configure_package_config_file("${PROJECT_SOURCE_DIR}/cmake/${target_name}Config.cmake.in"
         "${CMAKE_CURRENT_BINARY_DIR}/${target_name}Config.cmake"
         INSTALL_DESTINATION "${installdir}/cmake/"
-        PATH_VARS installdir includedir)
+        PATH_VARS installdir includedir libusb_debug_library libusb_release_library libusb_debug_dll libusb_release_dll libusb_use_static)
 
     write_basic_package_version_file(
         "${CMAKE_CURRENT_BINARY_DIR}/${target_name}ConfigVersion.cmake"
