@@ -9,9 +9,11 @@ set(INSTALL_INCLUDEDIR ${CMAKE_INSTALL_PREFIX}/include)
 if(${CMAKE_SIZEOF_VOID_P} EQUAL 8)
     set(INSTALL_LIBRARYDIR ${CMAKE_INSTALL_PREFIX}/lib/x64)
     set(INSTALL_BINDIR ${CMAKE_INSTALL_PREFIX}/bin/x64)
+    set(_platform x64)
 else()
     set(INSTALL_LIBRARYDIR ${CMAKE_INSTALL_PREFIX}/lib/x86)
     set(INSTALL_BINDIR ${CMAKE_INSTALL_PREFIX}/bin/x86)
+    set(_platform x86)
 endif(${CMAKE_SIZEOF_VOID_P} EQUAL 8)
 
 set(CMAKE_CXX_STANDARD 20)
@@ -26,8 +28,30 @@ if(MSVC)
   endif()
 endif()
 
-find_path(LIBUSB_INCLUDEDIR libusb.h PATH_SUFFIXES libusb DOC "Header directory for libusb." REQUIRED)
-find_file(LIBUSB_LIBRARY libusb-1.0 DOC "libusb library file." REQUIRED)
+find_path(LIBUSB_INCLUDEDIR libusb.h
+    PATHS "${CMAKE_CURRENT_LIST_DIR}/../libusb" "${CMAKE_CURRENT_LIST_DIR}/../../3rd/libusb"
+    PATH_SUFFIXES libusb
+    DOC "Header directory for libusb." REQUIRED)
+
+option(LIBUSB_USE_STATIC "Use static libusb library." false)
+
+set(LIBUSB_LIBRARY_DEBUG_DIR)
+set(LIBUSB_LIBRARY_RELEASE_DIR)
+
+if(LIBUSB_USE_STATIC)
+    if("${CMAKE_BUILD_TYPE}" STREQUAL "Debug")
+        find_library(LIBUSB NAMES libusb libusb-1.0 PATHS "${LIBUSB_INCLUDEDIR}/${_platform}/Debug/lib" ${LIBUSB_LIBRARY_DEBUG_DIR} REQUIRED)
+    else()
+        find_library(LIBUSB NAMES libusb libusb-1.0 PATHS "${LIBUSB_INCLUDEDIR}/${_platform}/Release/lib" REQUIRED)
+    endif()
+else(LIBUSB_USE_STATIC)
+    if("${CMAKE_BUILD_TYPE}" STREQUAL "Debug")
+        find_library(LIBUSB NAMES libusb libusb-1.0 PATHS "${LIBUSB_INCLUDEDIR}/${_platform}/Debug/dll" ${LIBUSB_LIBRARY_RELEASE_DIR} REQUIRED)
+    else()
+        find_library(LIBUSB NAMES libusb libusb-1.0 PATHS "${LIBUSB_INCLUDEDIR}/${_platform}/Release/dll" REQUIRED)
+    endif()
+endif(LIBUSB_USE_STATIC)
+unset(_platform)
 
 option(BUILD_OPENVISA_STATIC "Build OpenVisa static library." false)
 option(BUILD_TEST "Build test applications." true)
