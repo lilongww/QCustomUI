@@ -41,7 +41,7 @@ void VisaAdl<bool>::fromScpi(const std::string& ret, bool& val)
         val = false;
     else if (temp == "1" || temp == "+1")
         val = true;
-    else if (temp == "0")
+    else if (temp == "0" || temp == "+0")
         val = false;
     else
         throw std::exception((std::string("Visa::parseBool Unknown ret:") + temp).c_str());
