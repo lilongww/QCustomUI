@@ -251,7 +251,7 @@ struct SampleValue
 } // namespace OpenVisa
 
 #define VISA_SAMPLE_VALUE(SubClass, ValueType)                                                                                             \
-    struct SubClass : public Visa::SampleValue<ValueType>                                                                                  \
+    struct SubClass : public OpenVisa::SampleValue<ValueType>                                                                                  \
     {                                                                                                                                      \
         using SampleValue<ValueType>::operator ValueType;                                                                                  \
         using SampleValue<ValueType>::operator=;                                                                                           \
