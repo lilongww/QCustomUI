@@ -1,6 +1,8 @@
 @PACKAGE_INIT@
 
-include_directories(@includedir@)
-include(@installdir@/cmake/OpenVisaTargets.cmake)
-include(@installdir@/cmake/FindLibusb.cmake)
+include_directories("@includedir@")
+include("@installdir@/cmake/OpenVisaTargets.cmake")
+include("@installdir@/cmake/FindLibusb.cmake")
 openvisa_find_libusb(@libusb_debug_library@ @libusb_release_library@ @libusb_debug_dll@ @libusb_release_dll@ @libusb_use_static@)
+
+set(OpenVisa_INCLUDEDIR "@includedir@")
