@@ -221,4 +221,29 @@ void Object::throwNoConnection() const
     }
 }
 
+template<>
+OPENVISA_EXPORT static std::string Object::toVisaAddressString<Address<AddressType::VXI11>>(const Address<AddressType::VXI11>& addr)
+{
+    return std::format("TCPIP::{}::{}::INSTR", addr.ip(), addr.subAddress());
+}
+
+template<>
+OPENVISA_EXPORT static std::string Object::toVisaAddressString<Address<AddressType::RawSocket>>(const Address<AddressType::RawSocket>& addr)
+{
+    return std::format("TCPIP::{}::{}::SOCKET", addr.ip(), addr.port());
+}
+
+template<>
+OPENVISA_EXPORT static std::string Object::toVisaAddressString<Address<AddressType::HiSLIP>>(const Address<AddressType::HiSLIP>& addr)
+{
+    return std::format("TCPIP::{}::{}", addr.ip(), addr.subAddress());
+}
+
+template<>
+OPENVISA_EXPORT static std::string Object::toVisaAddressString<Address<AddressType::SerialPort>>(
+    const Address<AddressType::SerialPort>& addr)
+{
+    auto map = asrlMap return std::format("ASRL{}::INSTR", addr.portName());
+}
+
 } // namespace OpenVisa

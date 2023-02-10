@@ -55,6 +55,8 @@ public:
     CommonCommand& commonCommand() noexcept;
     static std::vector<std::string> listSerialPorts();
     static std::vector<Address<AddressType::USB>> listUSB();
+    template<IsAddress T>
+    static std::string toVisaAddressString(const T& addr);
 
 protected:
     virtual void afterConnected() {};
