@@ -9,11 +9,11 @@ set(INSTALL_INCLUDEDIR ${CMAKE_INSTALL_PREFIX}/include)
 if(${CMAKE_SIZEOF_VOID_P} EQUAL 8)
     set(INSTALL_LIBRARYDIR ${CMAKE_INSTALL_PREFIX}/lib/x64)
     set(INSTALL_BINDIR ${CMAKE_INSTALL_PREFIX}/bin/x64)
-    set(_platform x64)
+    set(_platform "x64")
 else()
     set(INSTALL_LIBRARYDIR ${CMAKE_INSTALL_PREFIX}/lib/x86)
     set(INSTALL_BINDIR ${CMAKE_INSTALL_PREFIX}/bin/x86)
-    set(_platform x86)
+    set(_platform "Win32")
 endif(${CMAKE_SIZEOF_VOID_P} EQUAL 8)
 
 set(CMAKE_CXX_STANDARD 20)
@@ -47,24 +47,24 @@ set(LIBUSB_RUNTIME_RELEASE_DIR)
 if(LIBUSB_USE_STATIC)
     find_library(LIBUSB_DEBUG_LIBRARY
         NAMES libusb libusb-1.0
-        PATHS "${LIBUSB_INCLUDEDIR}/${_platform}/Debug/lib" ${LIBUSB_LIBRARY_DEBUG_DIR} REQUIRED)
+        PATHS "${LIBUSB_INCLUDEDIR}/${_platform}/Debug/lib" "${LIBUSB_INCLUDEDIR}/build/v${MSVC_TOOLSET_VERSION}/${_platform}/Debug/lib" ${LIBUSB_LIBRARY_DEBUG_DIR} REQUIRED)
     find_library(LIBUSB_RELEASE_LIBRARY
         NAMES libusb libusb-1.0
-        PATHS "${LIBUSB_INCLUDEDIR}/${_platform}/Release/lib" REQUIRED)
+        PATHS "${LIBUSB_INCLUDEDIR}/${_platform}/Release/lib" "${LIBUSB_INCLUDEDIR}/build/v${MSVC_TOOLSET_VERSION}/${_platform}/Release/lib" REQUIRED)
 else(LIBUSB_USE_STATIC)
     find_library(LIBUSB_DEBUG_LIBRARY
         NAMES libusb libusb-1.0
-        PATHS "${LIBUSB_INCLUDEDIR}/${_platform}/Debug/dll" ${LIBUSB_LIBRARY_DEBUG_DIR} REQUIRED)
+        PATHS "${LIBUSB_INCLUDEDIR}/${_platform}/Debug/dll" "${LIBUSB_INCLUDEDIR}/build/v${MSVC_TOOLSET_VERSION}/${_platform}/Debug/dll" ${LIBUSB_LIBRARY_DEBUG_DIR} REQUIRED)
     find_library(LIBUSB_RELEASE_LIBRARY
         NAMES libusb libusb-1.0
-        PATHS "${LIBUSB_INCLUDEDIR}/${_platform}/Release/dll" REQUIRED)
+        PATHS "${LIBUSB_INCLUDEDIR}/${_platform}/Release/dll" "${LIBUSB_INCLUDEDIR}/build/v${MSVC_TOOLSET_VERSION}/${_platform}/Release/dll" REQUIRED)
     if(WIN32)
         find_file(LIBUSB_DEBUG_DLL
             NAMES libusb.dll libusb-1.0.dll
-            PATHS "${LIBUSB_INCLUDEDIR}/${_platform}/Debug/dll" ${LIBUSB_LIBRARY_DEBUG_DIR} REQUIRED)
+            PATHS "${LIBUSB_INCLUDEDIR}/${_platform}/Debug/dll" "${LIBUSB_INCLUDEDIR}/build/v${MSVC_TOOLSET_VERSION}/${_platform}/Debug/dll" ${LIBUSB_LIBRARY_DEBUG_DIR} REQUIRED)
         find_file(LIBUSB_RELEASE_DLL
             NAMES libusb.dll libusb-1.0.dll
-            PATHS "${LIBUSB_INCLUDEDIR}/${_platform}/Release/dll" ${LIBUSB_RUNTIME_RELEASE_DIR} REQUIRED)
+            PATHS "${LIBUSB_INCLUDEDIR}/${_platform}/Release/dll" "${LIBUSB_INCLUDEDIR}/build/v${MSVC_TOOLSET_VERSION}/${_platform}/Release/dll" ${LIBUSB_RUNTIME_RELEASE_DIR} REQUIRED)
     endif(WIN32)
 endif(LIBUSB_USE_STATIC)
 unset(_platform)
