@@ -20,6 +20,7 @@
 #include "Attribute.h"
 #include "CommonCommand.h"
 #include "Private/HiSLIP.h"
+#include "Private/OpenVisaConfig.h"
 #include "Private/RawSocket.h"
 #include "Private/SerialPort.h"
 #include "Private/UsbTmc.h"
@@ -243,7 +244,14 @@ template<>
 OPENVISA_EXPORT static std::string Object::toVisaAddressString<Address<AddressType::SerialPort>>(
     const Address<AddressType::SerialPort>& addr)
 {
-    auto map = asrlMap return std::format("ASRL{}::INSTR", addr.portName());
+    auto asrl = OpenVisaConfig::instance().toAsrl(addr);
+    return asrl ? std::format("ASRL{}::INSTR", *asrl) : std::string {};
+}
+
+template<>
+OPENVISA_EXPORT static std::string Object::toVisaAddressString<Address<AddressType::USB>>(const Address<AddressType::USB>& addr)
+{
+    return std::format("USB::{:#04x}::{:#04x}::{}::INSTR", addr.vendorId(), addr.productId(), addr.serialNumber());
 }
 
 } // namespace OpenVisa

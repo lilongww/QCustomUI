@@ -18,8 +18,11 @@
 **********************************************************************************/
 #pragma once
 
+#include "../Address.h"
+
 #include <map>
 #include <memory>
+#include <optional>
 
 namespace OpenVisa
 {
@@ -28,6 +31,8 @@ class OpenVisaConfig
 public:
     static OpenVisaConfig& instance();
     const std::map<unsigned int, Address<AddressType::SerialPort>>& asrlMap() const;
+    std::optional<int> toAsrl(const Address<AddressType::SerialPort>& addr) const;
+    std::optional<Address<AddressType::SerialPort>> fromAsrl(unsigned int asrl) const;
     void loadConfig();
 
 protected:
