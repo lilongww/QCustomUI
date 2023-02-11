@@ -34,6 +34,12 @@ public:
     std::optional<int> toAsrl(const Address<AddressType::SerialPort>& addr) const;
     std::optional<Address<AddressType::SerialPort>> fromAsrl(unsigned int asrl) const;
     void loadConfig();
+    void saveConfig() const;
+
+private:
+    void updateAsrl();
+    void addAsrl(const Address<AddressType::SerialPort>& addr);
+    void saveDefault();
 
 protected:
     OpenVisaConfig();

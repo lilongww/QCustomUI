@@ -19,6 +19,7 @@
 #pragma once
 
 #include "openvisa_global.h"
+#include "Address.h"
 
 #include <string>
 #include <vector>

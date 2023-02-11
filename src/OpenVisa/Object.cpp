@@ -251,7 +251,7 @@ OPENVISA_EXPORT static std::string Object::toVisaAddressString<Address<AddressTy
 template<>
 OPENVISA_EXPORT static std::string Object::toVisaAddressString<Address<AddressType::USB>>(const Address<AddressType::USB>& addr)
 {
-    return std::format("USB::{:#04x}::{:#04x}::{}::INSTR", addr.vendorId(), addr.productId(), addr.serialNumber());
+    return std::format("USB::{:#04X}::{:#04X}::{}::INSTR", addr.vendorId(), addr.productId(), addr.serialNumber());
 }
 
 } // namespace OpenVisa
