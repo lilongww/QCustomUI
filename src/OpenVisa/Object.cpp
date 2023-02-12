@@ -26,6 +26,15 @@
 #include "Private/UsbTmc.h"
 #include "Private/VXI11.h"
 #include "SerialPortInfo.h"
+#include "Utils.h"
+
+#include <ranges>
+
+template<typename... Args>
+struct Overload : public Args...
+{
+    using Args::operator()...;
+};
 
 namespace OpenVisa
 {
@@ -65,6 +74,12 @@ struct Object::Impl
 */
 
 /*!
+    \fn         template <IsAddress T> inline std::string OpenVisa::Object::toVisaAddressString(const T& addr);
+    \brief      将地址类型 \a addr 转换为 Visa 连接描述字符串.
+    \sa         fromVisaAddressString
+*/
+
+/*!
     \brief      构造函数.
 */
 Object::Object() : m_impl(std::make_unique<Impl>(this)) {}
@@ -73,6 +88,18 @@ Object::Object() : m_impl(std::make_unique<Impl>(this)) {}
     \brief      析构函数.
 */
 Object::~Object() noexcept { close(); }
+
+/*!
+    \brief      通过 Visa 连接描述字符串连接设备 \a addressString.
+    \sa         connect
+*/
+void Object::connectByVisaAddressString(std::string_view addressString)
+{
+    auto addressVariant = fromVisaAddressString(addressString.data());
+    std::visit(Overload { [](const std::monostate&) { throw std::system_error(std::make_error_code(std::errc::address_not_available)); },
+                          [this](const auto& addr) { connect(addr); } },
+               addressVariant);
+}
 
 /*!
     \brief      关闭仪器连接.
@@ -204,6 +231,53 @@ std::vector<std::string> Object::listSerialPorts()
     \brief      列出所有USBTMC驱动设备.
 */
 std::vector<OpenVisa::Address<OpenVisa::AddressType::USB>> Object::listUSB() { return UsbTmc::listUSB(); }
+
+/*!
+    \brief      从Visa连接描述字符串 \a str 转换为地址类型联合体.
+    \sa         toVisaAddressString
+*/
+AddressVariant Object::fromVisaAddressString(const std::string& str)
+{
+    try
+    {
+        std::string addr;
+        std::ranges::transform(str, std::back_inserter(addr), [=](auto c) { return std::tolower(c); });
+
+        auto tokens = split(addr, "::");
+        if (tokens.size() < 2)
+            return std::monostate {};
+        if (tokens[0].starts_with("tcpip"))
+        {
+            if (addr.contains("hislip"))
+            {
+                auto temp = split(tokens[2], ",");
+                return Address<AddressType::HiSLIP>(
+                    tokens[1], temp[0], temp.size() == 2 ? static_cast<unsigned short>(std::stoul(temp[1])) : 4880);
+            }
+            if (addr.ends_with("instr"))
+                return Address<AddressType::VXI11>(tokens[1], tokens.size() == 3 ? "inst0" : tokens[2]);
+            else if (addr.ends_with("socket"))
+                return Address<AddressType::RawSocket>(tokens[1], static_cast<unsigned short>(std::stoul(tokens[2])));
+        }
+        else if (tokens[0].starts_with("asrl"))
+        {
+            std::string temp;
+            std::ranges::copy(tokens[0] | std::views::filter([](auto ch) { return ch >= '0' && ch <= '9'; }), std::back_inserter(temp));
+            auto opt = OpenVisa::OpenVisaConfig::instance().fromAsrl(static_cast<unsigned long>(std::stoul(temp)));
+            return opt ? AddressVariant { *opt } : std::monostate {};
+        }
+        else if (tokens[0].starts_with("usb"))
+        {
+            return Address<AddressType::USB>(static_cast<unsigned short>(std::stoul(tokens[1], nullptr, 16)),
+                                             static_cast<unsigned short>(std::stoul(tokens[2], nullptr, 16)),
+                                             tokens[3]);
+        }
+    }
+    catch (const std::exception&)
+    {
+    }
+    return std::monostate {};
+}
 
 void Object::sendImpl(const std::string& scpi)
 {

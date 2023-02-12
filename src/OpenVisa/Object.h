@@ -24,6 +24,7 @@
 #include <chrono>
 #include <format>
 #include <memory>
+#include <string_view>
 
 namespace OpenVisa
 {
@@ -42,6 +43,7 @@ public:
     void connect(const T& addr,
                  const std::chrono::milliseconds& openTimeout    = std::chrono::milliseconds { 5000 },
                  const std::chrono::milliseconds& commandTimeout = std::chrono::milliseconds { 5000 });
+    void connectByVisaAddressString(std::string_view addressString);
     void close() noexcept;
     template<typename... Args>
     inline void send(std::string_view fmt, const Args&... args);
@@ -57,6 +59,7 @@ public:
     static std::vector<Address<AddressType::USB>> listUSB();
     template<IsAddress T>
     static std::string toVisaAddressString(const T& addr);
+    static AddressVariant fromVisaAddressString(const std::string& str);
 
 protected:
     virtual void afterConnected() {};
