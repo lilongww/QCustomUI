@@ -133,6 +133,8 @@ std::vector<SerialPortInfo> SerialPortInfo::listPorts()
     {
         deviceIndex++;
         const auto& portName = _portName(dev, data);
+        if (portName.contains("LPT") || portName.empty())
+            continue;
         SerialPortInfo info;
         info.setPortName(portName);
         info.setDescrption(_property(dev, data, SPDRP_DEVICEDESC));
