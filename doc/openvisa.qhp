@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <QtHelpProject version="1.0">
-    <namespace>com.openvisa.0.5.0</namespace>
+    <namespace>com.openvisa.0.6.0</namespace>
     <virtualFolder>openvisa</virtualFolder>
     <metaData name="version" value=""/>
     <customFilter name="OpenVisa">
@@ -97,6 +97,7 @@
             <keyword name="attribute" id="Object::attribute" ref="openvisa-object.html#attribute"/>
             <keyword name="attribute" id="ObjectAdapter::attribute" ref="openvisa-objectadapter.html#attribute"/>
             <keyword name="autoAppendTerminalChars" id="Attribute::autoAppendTerminalChars" ref="openvisa-object-attribute.html#autoAppendTerminalChars"/>
+            <keyword name="baudRate" id="Attribute::baudRate" ref="openvisa-object-attribute.html#baudRate"/>
             <keyword name="begin" id="BinaryArray::begin" ref="openvisa-binaryarray.html#begin"/>
             <keyword name="close" id="Object::close" ref="openvisa-object.html#close"/>
             <keyword name="cls" id="CommonCommand::cls" ref="openvisa-object-commoncommand.html#cls"/>
@@ -105,11 +106,14 @@
             <keyword name="connect" id="Object::connect" ref="openvisa-object.html#connect"/>
             <keyword name="connected" id="Object::connected" ref="openvisa-object.html#connected"/>
             <keyword name="data" id="BinaryArray::data" ref="openvisa-binaryarray.html#data"/>
+            <keyword name="dataBits" id="Attribute::dataBits" ref="openvisa-object-attribute.html#dataBits"/>
             <keyword name="description" id="SerialPortInfo::description" ref="openvisa-serialportinfo.html#description"/>
             <keyword name="empty" id="BinaryArray::empty" ref="openvisa-binaryarray.html#empty"/>
             <keyword name="end" id="BinaryArray::end" ref="openvisa-binaryarray.html#end"/>
             <keyword name="ese" id="CommonCommand::ese" ref="openvisa-object-commoncommand.html#ese"/>
             <keyword name="esr" id="CommonCommand::esr" ref="openvisa-object-commoncommand.html#esr"/>
+            <keyword name="flowControl" id="Attribute::flowControl" ref="openvisa-object-attribute.html#flowControl"/>
+            <keyword name="fromVisaAddressString" id="Object::fromVisaAddressString" ref="openvisa-object.html#fromVisaAddressString"/>
             <keyword name="hardwareID" id="SerialPortInfo::hardwareID" ref="openvisa-serialportinfo.html#hardwareID"/>
             <keyword name="hasProductId" id="SerialPortInfo::hasProductId" ref="openvisa-serialportinfo.html#hasProductId"/>
             <keyword name="hasVendorId" id="SerialPortInfo::hasVendorId" ref="openvisa-serialportinfo.html#hasVendorId"/>
@@ -123,6 +127,7 @@
             <keyword name="operator std::vector&lt;T&gt;" id="AsciiArray::operator std::vector&lt;T&gt;" ref="openvisa-asciiarray.html#operator-std-3a-3avector-ltT-gt"/>
             <keyword name="operator std::vector&lt;Type&gt;" id="BinaryArray::operator std::vector&lt;Type&gt;" ref="openvisa-binaryarray.html#operator-std-3a-3avector-ltType-gt"/>
             <keyword name="opt" id="CommonCommand::opt" ref="openvisa-object-commoncommand.html#opt"/>
+            <keyword name="parity" id="Attribute::parity" ref="openvisa-object-attribute.html#parity"/>
             <keyword name="portName" id="SerialPortInfo::portName" ref="openvisa-serialportinfo.html#portName"/>
             <keyword name="productId" id="SerialPortInfo::productId" ref="openvisa-serialportinfo.html#productId"/>
             <keyword name="query" id="Object::query" ref="openvisa-object.html#query"/>
@@ -139,16 +144,23 @@
             <keyword name="sendBlockData" id="ObjectAdapter::sendBlockData" ref="openvisa-objectadapter.html#sendBlockData"/>
             <keyword name="serialNumber" id="SerialPortInfo::serialNumber" ref="openvisa-serialportinfo.html#serialNumber"/>
             <keyword name="setAutoAppendTerminalChars" id="Attribute::setAutoAppendTerminalChars" ref="openvisa-object-attribute.html#setAutoAppendTerminalChars"/>
+            <keyword name="setBaudRate" id="Attribute::setBaudRate" ref="openvisa-object-attribute.html#setBaudRate"/>
+            <keyword name="setDataBits" id="Attribute::setDataBits" ref="openvisa-object-attribute.html#setDataBits"/>
             <keyword name="setEse" id="CommonCommand::setEse" ref="openvisa-object-commoncommand.html#setEse"/>
+            <keyword name="setFlowControl" id="Attribute::setFlowControl" ref="openvisa-object-attribute.html#setFlowControl"/>
             <keyword name="setOpc" id="CommonCommand::setOpc" ref="openvisa-object-commoncommand.html#setOpc"/>
+            <keyword name="setParity" id="Attribute::setParity" ref="openvisa-object-attribute.html#setParity"/>
             <keyword name="setSre" id="CommonCommand::setSre" ref="openvisa-object-commoncommand.html#setSre"/>
+            <keyword name="setStopBits" id="Attribute::setStopBits" ref="openvisa-object-attribute.html#setStopBits"/>
             <keyword name="setTerminalChars" id="Attribute::setTerminalChars" ref="openvisa-object-attribute.html#setTerminalChars"/>
             <keyword name="setTimeout" id="Attribute::setTimeout" ref="openvisa-object-attribute.html#setTimeout"/>
             <keyword name="size" id="BinaryArray::size" ref="openvisa-binaryarray.html#size"/>
             <keyword name="sre" id="CommonCommand::sre" ref="openvisa-object-commoncommand.html#sre"/>
             <keyword name="stb" id="CommonCommand::stb" ref="openvisa-object-commoncommand.html#stb"/>
+            <keyword name="stopBits" id="Attribute::stopBits" ref="openvisa-object-attribute.html#stopBits"/>
             <keyword name="terminalChars" id="Attribute::terminalChars" ref="openvisa-object-attribute.html#terminalChars"/>
             <keyword name="timeout" id="Attribute::timeout" ref="openvisa-object-attribute.html#timeout"/>
+            <keyword name="toVisaAddressString" id="Object::toVisaAddressString" ref="openvisa-object.html#toVisaAddressString"/>
             <keyword name="tst" id="CommonCommand::tst" ref="openvisa-object-commoncommand.html#tst"/>
             <keyword name="vendorId" id="SerialPortInfo::vendorId" ref="openvisa-serialportinfo.html#vendorId"/>
             <keyword name="wai" id="CommonCommand::wai" ref="openvisa-object-commoncommand.html#wai"/>

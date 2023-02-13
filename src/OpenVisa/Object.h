@@ -24,6 +24,8 @@
 #include <chrono>
 #include <format>
 #include <memory>
+#include <string>
+#include <string_view>
 
 namespace OpenVisa
 {
@@ -38,10 +40,14 @@ public:
     Object();
     virtual ~Object() noexcept;
 
-    template<IsAddress T>
-    void connect(const T& addr,
-                 const std::chrono::milliseconds& openTimeout    = std::chrono::milliseconds { 5000 },
-                 const std::chrono::milliseconds& commandTimeout = std::chrono::milliseconds { 5000 });
+    template<typename T>
+    requires IsAddress<T> || std::same_as<std::string, T> || std::is_array_v<T> || std::same_as<const char*, T> || std::same_as<char*, T>
+    inline void connect(const T& addr,
+                        const std::chrono::milliseconds& openTimeout    = std::chrono::milliseconds { 5000 },
+                        const std::chrono::milliseconds& commandTimeout = std::chrono::milliseconds { 5000 })
+    {
+        connectImpl(AddressHelper(addr).address, openTimeout, commandTimeout);
+    }
     void close() noexcept;
     template<typename... Args>
     inline void send(std::string_view fmt, const Args&... args);
@@ -55,9 +61,15 @@ public:
     CommonCommand& commonCommand() noexcept;
     static std::vector<std::string> listSerialPorts();
     static std::vector<Address<AddressType::USB>> listUSB();
+    template<IsAddress T>
+    static std::string toVisaAddressString(const T& addr);
+    static AddressVariant fromVisaAddressString(const std::string& str);
 
 protected:
     virtual void afterConnected() {};
+    template<typename T>
+    requires IsAddress<T> || std::same_as<std::string, T>
+    void connectImpl(const T& addr, const std::chrono::milliseconds& openTimeout, const std::chrono::milliseconds& commandTimeout);
 
 private:
     void sendImpl(const std::string& scpi);

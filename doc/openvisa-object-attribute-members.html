@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
 <!-- Attribute.cpp -->
-  <title>List of All Members for Attribute | OpenVisa 0.5.0</title>
+  <title>List of All Members for Attribute | OpenVisa 0.6.0</title>
   <link rel="stylesheet" type="text/css" href="style/offline-simple.css" />
   <script type="text/javascript">
     document.getElementsByTagName("link").item(0).setAttribute("href", "style/offline.css");
@@ -25,10 +25,10 @@
     <div class="main-rounded">
         <div class="navigationbar">
         <ul>
-<li><a href="index.html">OpenVisa 0.5&#x2e;0</a></li>
+<li><a href="index.html">OpenVisa 0.6&#x2e;0</a></li>
 <li><a href="index.html">OpenVisa</a></li>
 <li>Attribute</li>
-<li id="buildversion">OpenVisa 0.5.0 Reference Documentation</li>
+<li id="buildversion">OpenVisa 0.6.0 Reference Documentation</li>
     </ul>
     </div>
 </div>
@@ -38,16 +38,30 @@
 <div class="sidebar"><div class="sidebar-content" id="sidebar-content"></div></div>
 <h1 class="title">List of All Members for Attribute</h1>
 <p>This is the complete list of members for <a href="openvisa-object-attribute.html">OpenVisa::Object::Attribute</a>, including inherited members.</p>
-<ul>
-<li class="fn"><span class="name"><b><a href="openvisa-object-attribute.html#Attribute">Attribute</a></b></span>()</li>
+<div class="table"><table class="propsummary">
+<tr><td class="topAlign"><ul>
+<li class="fn"><span class="name"><b><a href="openvisa-object-attribute.html#Attribute">Attribute</a></b></span>(std::shared_ptr&lt;IOBase&gt; *)</li>
 <li class="fn"><span class="name"><b><a href="openvisa-object-attribute.html#dtor.Attribute">~Attribute</a></b></span>()</li>
 <li class="fn"><span class="name"><b><a href="openvisa-object-attribute.html#autoAppendTerminalChars">autoAppendTerminalChars</a></b></span>() const : bool</li>
+<li class="fn"><span class="name"><b><a href="openvisa-object-attribute.html#baudRate">baudRate</a></b></span>() const : std::optional&lt;unsigned int&gt;</li>
+<li class="fn"><span class="name"><b><a href="openvisa-object-attribute.html#dataBits">dataBits</a></b></span>() const : std::optional&lt;DataBits&gt;</li>
+<li class="fn"><span class="name"><b><a href="openvisa-object-attribute.html#flowControl">flowControl</a></b></span>() const : std::optional&lt;FlowControl&gt;</li>
+<li class="fn"><span class="name"><b><a href="openvisa-object-attribute.html#parity">parity</a></b></span>() const : std::optional&lt;Parity&gt;</li>
 <li class="fn"><span class="name"><b><a href="openvisa-object-attribute.html#setAutoAppendTerminalChars">setAutoAppendTerminalChars</a></b></span>(bool)</li>
+<li class="fn"><span class="name"><b><a href="openvisa-object-attribute.html#setBaudRate">setBaudRate</a></b></span>(unsigned int)</li>
+</ul></td><td class="topAlign"><ul>
+<li class="fn"><span class="name"><b><a href="openvisa-object-attribute.html#setDataBits">setDataBits</a></b></span>(OpenVisa::DataBits)</li>
+<li class="fn"><span class="name"><b><a href="openvisa-object-attribute.html#setFlowControl">setFlowControl</a></b></span>(OpenVisa::FlowControl)</li>
+<li class="fn"><span class="name"><b><a href="openvisa-object-attribute.html#setParity">setParity</a></b></span>(OpenVisa::Parity)</li>
+<li class="fn"><span class="name"><b><a href="openvisa-object-attribute.html#setStopBits">setStopBits</a></b></span>(OpenVisa::StopBits)</li>
 <li class="fn"><span class="name"><b><a href="openvisa-object-attribute.html#setTerminalChars">setTerminalChars</a></b></span>(std::string_view)</li>
 <li class="fn"><span class="name"><b><a href="openvisa-object-attribute.html#setTimeout">setTimeout</a></b></span>(const std::chrono::milliseconds &amp;)</li>
+<li class="fn"><span class="name"><b><a href="openvisa-object-attribute.html#stopBits">stopBits</a></b></span>() const : std::optional&lt;StopBits&gt;</li>
 <li class="fn"><span class="name"><b><a href="openvisa-object-attribute.html#terminalChars">terminalChars</a></b></span>() const : const std::string &amp;</li>
 <li class="fn"><span class="name"><b><a href="openvisa-object-attribute.html#timeout">timeout</a></b></span>() const : const std::chrono::milliseconds &amp;</li>
 </ul>
+</td></tr>
+</table></div>
         </div>
        </div>
    </div>

@@ -338,7 +338,6 @@ void UsbTmc::close() noexcept
 bool UsbTmc::connected() const noexcept { return m_impl->handle; }
 
 size_t UsbTmc::avalible() const noexcept { return m_impl->avalibe; }
-
 std::vector<OpenVisa::Address<OpenVisa::AddressType::USB>> UsbTmc::listUSB()
 {
     std::vector<OpenVisa::Address<OpenVisa::AddressType::USB>> address;
@@ -347,7 +346,11 @@ std::vector<OpenVisa::Address<OpenVisa::AddressType::USB>> UsbTmc::listUSB()
                                                 []
                                                 {
                                                     libusb_context* context { nullptr };
+#if LIBUSB_API_VERSION > 0x01000109
+                                                    libusb_init_context(&context, nullptr, 0);
+#else
                                                     libusb_init(&context);
+#endif
                                                     return context;
                                                 }),
                                             [](auto context) { libusb_exit(context); });
@@ -393,7 +396,7 @@ std::vector<OpenVisa::Address<OpenVisa::AddressType::USB>> UsbTmc::listUSB()
         Address<AddressType::USB> addr(vid, pid, sn);
         try
         {
-            Object::Attribute attr;
+            Object::Attribute attr(nullptr);
             UsbTmc tmc(attr);
             tmc.connect(addr, std::chrono::milliseconds(500));
             tmc.close();
@@ -406,6 +409,13 @@ std::vector<OpenVisa::Address<OpenVisa::AddressType::USB>> UsbTmc::listUSB()
     return address;
 }
 
-void UsbTmc::init() { libusb_init(&m_impl->context); }
+void UsbTmc::init()
+{
+#if LIBUSB_API_VERSION > 0x01000109
+    libusb_init_context(&m_impl->context, nullptr, 0);
+#else
+    libusb_init(&m_impl->context);
+#endif
+}
 
 } // namespace OpenVisa

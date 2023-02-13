@@ -17,6 +17,7 @@
 **  along with OpenVisa.  If not, see <https://www.gnu.org/licenses/>.          **
 **********************************************************************************/
 #include "SerialPort.h"
+#include "OpenVisaConfig.h"
 
 #include <boost/asio.hpp>
 #ifdef WIN32
@@ -55,14 +56,15 @@ SerialPort::~SerialPort() noexcept
 
 void SerialPort::connect(const Address<AddressType::SerialPort>& addr, const std::chrono::milliseconds& openTimeout)
 {
+    auto asrlId      = OpenVisaConfig::instance().toAsrl(addr.portName());
+    const auto& asrl = asrlId ? OpenVisaConfig::instance().fromAsrl(*asrlId) : std::nullopt;
+
     m_impl->serialPort.open(addr.portName());
-    m_impl->serialPort.set_option(boost::asio::serial_port::baud_rate { addr.baud() });
-    m_impl->serialPort.set_option(boost::asio::serial_port::character_size { static_cast<unsigned int>(addr.dataBits()) });
-    m_impl->serialPort.set_option(
-        boost::asio::serial_port::flow_control { static_cast<boost::asio::serial_port::flow_control::type>(addr.flowControl()) });
-    m_impl->serialPort.set_option(boost::asio::serial_port::parity { static_cast<boost::asio::serial_port::parity::type>(addr.parity()) });
-    m_impl->serialPort.set_option(
-        boost::asio::serial_port::stop_bits { static_cast<boost::asio::serial_port::stop_bits::type>(addr.stopBits()) });
+    setBaudRate(m_attr.baudRate() ? *m_attr.baudRate() : asrl ? asrl->baud : 9600);
+    setDataBits(m_attr.dataBits() ? *m_attr.dataBits() : asrl ? asrl->dataBits : DataBits::Data8);
+    setFlowControl(m_attr.flowControl() ? *m_attr.flowControl() : asrl ? asrl->flowControl : FlowControl::None);
+    setParity(m_attr.parity() ? *m_attr.parity() : asrl ? asrl->parity : Parity::None);
+    setStopBits(m_attr.stopBits() ? *m_attr.stopBits() : asrl ? asrl->stopBits : StopBits::One);
 }
 
 void SerialPort::send(const std::string& buffer) const
@@ -195,4 +197,27 @@ size_t SerialPort::avalible() const noexcept
 #error avalible not defined.
 #endif
 }
+
+void SerialPort::setBaudRate(unsigned int baud) { m_impl->serialPort.set_option(boost::asio::serial_port::baud_rate { baud }); }
+
+void SerialPort::setDataBits(DataBits bits)
+{
+    m_impl->serialPort.set_option(boost::asio::serial_port::character_size { static_cast<unsigned int>(bits) });
+}
+
+void SerialPort::setFlowControl(FlowControl fc)
+{
+    m_impl->serialPort.set_option(boost::asio::serial_port::flow_control { static_cast<boost::asio::serial_port::flow_control::type>(fc) });
+}
+
+void SerialPort::setParity(Parity p)
+{
+    m_impl->serialPort.set_option(boost::asio::serial_port::parity { static_cast<boost::asio::serial_port::parity::type>(p) });
+}
+
+void SerialPort::setStopBits(StopBits bits)
+{
+    m_impl->serialPort.set_option(boost::asio::serial_port::stop_bits { static_cast<boost::asio::serial_port::stop_bits::type>(bits) });
+}
+
 } // namespace OpenVisa

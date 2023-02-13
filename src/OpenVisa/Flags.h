@@ -63,15 +63,9 @@ public:
         m_flag = evs.m_flag;
         return *this;
     }
-    inline bool operator==(Flags evs) const { return m_flag == evs.m_flag; }
     inline bool testFlag(T ev) const { return m_flag & static_cast<Int>(ev); }
     inline Int flags() const { return m_flag; }
-    inline std::strong_ordering operator<=>(const Flags& other) const
-    {
-        return other.m_flag == m_flag  ? std::strong_ordering::equal
-               : other.m_flag < m_flag ? std::strong_ordering::less
-                                       : std::strong_ordering::greater;
-    }
+    auto operator<=>(const Flags& other) const = default;
 
 private:
     Int m_flag;
