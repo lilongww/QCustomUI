@@ -185,4 +185,30 @@ using AddressVariant = std::variant<std::monostate,
                                     Address<AddressType::USB>,
                                     Address<AddressType::VXI11>,
                                     Address<AddressType::HiSLIP>>;
+
+template<typename T>
+requires IsAddress<T> || std::same_as<std::string, T> || std::is_array_v<T> || std::same_as<const char*, T> || std::same_as<char*, T>
+struct AddressHelper
+{
+    AddressHelper(const T& addr) : address(addr) {}
+    const T& address;
+};
+
+template<typename T, size_t N>
+struct AddressHelper<T[N]>
+{
+    AddressHelper(const T (&addr)[N]) : address(addr) {}
+    std::string address;
+};
+
+template<typename T>
+struct AddressHelper<const T*>
+{
+    AddressHelper(const T* addr) : address(addr) {}
+    std::string address;
+};
+
+template<typename T>
+AddressHelper(T*) -> AddressHelper<const T*>;
+
 } // namespace OpenVisa

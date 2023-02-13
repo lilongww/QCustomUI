@@ -90,18 +90,6 @@ Object::Object() : m_impl(std::make_unique<Impl>(this)) {}
 Object::~Object() noexcept { close(); }
 
 /*!
-    \brief      通过 Visa 连接描述字符串连接设备 \a addressString.
-    \sa         connect
-*/
-void Object::connectByVisaAddressString(std::string_view addressString)
-{
-    auto addressVariant = fromVisaAddressString(addressString.data());
-    std::visit(Overload { [](const std::monostate&) { throw std::system_error(std::make_error_code(std::errc::address_not_available)); },
-                          [this](const auto& addr) { connect(addr); } },
-               addressVariant);
-}
-
-/*!
     \brief      关闭仪器连接.
 */
 void Object::close() noexcept
@@ -114,9 +102,9 @@ void Object::close() noexcept
 }
 
 template<>
-OPENVISA_EXPORT void Object::connect<Address<AddressType::RawSocket>>(const Address<AddressType::RawSocket>& addr,
-                                                                      const std::chrono::milliseconds& openTimeout /*= 5000*/,
-                                                                      const std::chrono::milliseconds& commandTimeout /*= 5000*/)
+OPENVISA_EXPORT void Object::connectImpl<Address<AddressType::RawSocket>>(const Address<AddressType::RawSocket>& addr,
+                                                                          const std::chrono::milliseconds& openTimeout /*= 5000*/,
+                                                                          const std::chrono::milliseconds& commandTimeout /*= 5000*/)
 {
     m_impl->attr.setTimeout(commandTimeout);
     auto socket = std::make_shared<RawSocket>(m_impl->attr);
@@ -126,9 +114,9 @@ OPENVISA_EXPORT void Object::connect<Address<AddressType::RawSocket>>(const Addr
 }
 
 template<>
-OPENVISA_EXPORT void Object::connect<Address<AddressType::SerialPort>>(const Address<AddressType::SerialPort>& addr,
-                                                                       const std::chrono::milliseconds& openTimeout /*= 5000*/,
-                                                                       const std::chrono::milliseconds& commandTimeout /*= 5000*/)
+OPENVISA_EXPORT void Object::connectImpl<Address<AddressType::SerialPort>>(const Address<AddressType::SerialPort>& addr,
+                                                                           const std::chrono::milliseconds& openTimeout /*= 5000*/,
+                                                                           const std::chrono::milliseconds& commandTimeout /*= 5000*/)
 {
     m_impl->attr.setTimeout(commandTimeout);
     auto serialPort = std::make_shared<SerialPort>(m_impl->attr);
@@ -138,9 +126,9 @@ OPENVISA_EXPORT void Object::connect<Address<AddressType::SerialPort>>(const Add
 }
 
 template<>
-OPENVISA_EXPORT void Object::connect<Address<AddressType::USB>>(const Address<AddressType::USB>& addr,
-                                                                const std::chrono::milliseconds& openTimeout /*= 5000*/,
-                                                                const std::chrono::milliseconds& commandTimeout /*= 5000*/)
+OPENVISA_EXPORT void Object::connectImpl<Address<AddressType::USB>>(const Address<AddressType::USB>& addr,
+                                                                    const std::chrono::milliseconds& openTimeout /*= 5000*/,
+                                                                    const std::chrono::milliseconds& commandTimeout /*= 5000*/)
 {
     m_impl->attr.setTimeout(commandTimeout);
     auto usb = std::make_shared<UsbTmc>(m_impl->attr);
@@ -150,9 +138,9 @@ OPENVISA_EXPORT void Object::connect<Address<AddressType::USB>>(const Address<Ad
 }
 
 template<>
-OPENVISA_EXPORT void Object::connect<Address<AddressType::VXI11>>(const Address<AddressType::VXI11>& addr,
-                                                                  const std::chrono::milliseconds& openTimeout /*= 5000*/,
-                                                                  const std::chrono::milliseconds& commandTimeout /*= 5000*/)
+OPENVISA_EXPORT void Object::connectImpl<Address<AddressType::VXI11>>(const Address<AddressType::VXI11>& addr,
+                                                                      const std::chrono::milliseconds& openTimeout /*= 5000*/,
+                                                                      const std::chrono::milliseconds& commandTimeout /*= 5000*/)
 {
     m_impl->attr.setTimeout(commandTimeout);
     auto vxi11 = std::make_shared<VXI11>(m_impl->attr);
@@ -162,9 +150,9 @@ OPENVISA_EXPORT void Object::connect<Address<AddressType::VXI11>>(const Address<
 }
 
 template<>
-OPENVISA_EXPORT void Object::connect<Address<AddressType::HiSLIP>>(const Address<AddressType::HiSLIP>& addr,
-                                                                   const std::chrono::milliseconds& openTimeout /*= 5000*/,
-                                                                   const std::chrono::milliseconds& commandTimeout /*= 5000*/)
+OPENVISA_EXPORT void Object::connectImpl<Address<AddressType::HiSLIP>>(const Address<AddressType::HiSLIP>& addr,
+                                                                       const std::chrono::milliseconds& openTimeout /*= 5000*/,
+                                                                       const std::chrono::milliseconds& commandTimeout /*= 5000*/)
 {
     m_impl->attr.setTimeout(commandTimeout);
     auto hiSLIP = std::make_shared<HiSLIP>(m_impl->attr);
@@ -172,6 +160,18 @@ OPENVISA_EXPORT void Object::connect<Address<AddressType::HiSLIP>>(const Address
     m_impl->io = hiSLIP;
     afterConnected();
 }
+
+template<>
+OPENVISA_EXPORT void Object::connectImpl<std::string>(const std::string& addr,
+                                                      const std::chrono::milliseconds& openTimeout /*= 5000*/,
+                                                      const std::chrono::milliseconds& commandTimeout /*= 5000*/)
+{
+    auto addressVariant = fromVisaAddressString(addr);
+    std::visit(Overload { [](const std::monostate&) { throw std::system_error(std::make_error_code(std::errc::address_not_available)); },
+                          [&](const auto& addr) { connectImpl(addr, openTimeout, commandTimeout); } },
+               addressVariant);
+}
+
 /*!
 \brief      发送块数据 \a data 专用函数，因发送块数据时，结尾不添加终结符.
 */
