@@ -19,6 +19,7 @@
 #pragma once
 
 #include "../Address.h"
+#include "Asrl.h"
 
 #include <map>
 #include <memory>
@@ -30,15 +31,15 @@ class OpenVisaConfig
 {
 public:
     static OpenVisaConfig& instance();
-    const std::map<unsigned int, Address<AddressType::SerialPort>>& asrlMap() const;
-    std::optional<int> toAsrl(const Address<AddressType::SerialPort>& addr) const;
-    std::optional<Address<AddressType::SerialPort>> fromAsrl(unsigned int asrl) const;
+    const std::map<unsigned int, Asrl>& asrlMap() const;
+    std::optional<int> toAsrl(const std::string& portName) const;
+    std::optional<Asrl> fromAsrl(unsigned int asrl) const;
     void loadConfig();
     void saveConfig() const;
 
 private:
     void updateAsrl();
-    void addAsrl(const Address<AddressType::SerialPort>& addr);
+    void addAsrl(const Asrl& addr);
     void saveDefault();
 
 protected:

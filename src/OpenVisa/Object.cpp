@@ -44,7 +44,7 @@ struct Object::Impl
     Attribute attr;
     CommonCommand commonCommand;
 
-    inline Impl(Object* obj) : commonCommand(obj) {}
+    inline Impl(Object* obj) : commonCommand(obj), attr(&io) {}
 };
 
 /*!
@@ -230,7 +230,7 @@ std::vector<std::string> Object::listSerialPorts()
 /*!
     \brief      列出所有USBTMC驱动设备.
 */
-std::vector<OpenVisa::Address<OpenVisa::AddressType::USB>> Object::listUSB() { return UsbTmc::listUSB(); }
+std::vector<Address<AddressType::USB>> Object::listUSB() { return UsbTmc::listUSB(); }
 
 /*!
     \brief      从Visa连接描述字符串 \a str 转换为地址类型联合体.
@@ -264,7 +264,7 @@ AddressVariant Object::fromVisaAddressString(const std::string& str)
             std::string temp;
             std::ranges::copy(tokens[0] | std::views::filter([](auto ch) { return ch >= '0' && ch <= '9'; }), std::back_inserter(temp));
             auto opt = OpenVisa::OpenVisaConfig::instance().fromAsrl(static_cast<unsigned long>(std::stoul(temp)));
-            return opt ? AddressVariant { *opt } : std::monostate {};
+            return opt ? AddressVariant { Address<AddressType::SerialPort>(opt->portName) } : std::monostate {};
         }
         else if (tokens[0].starts_with("usb"))
         {
@@ -318,7 +318,7 @@ template<>
 OPENVISA_EXPORT static std::string Object::toVisaAddressString<Address<AddressType::SerialPort>>(
     const Address<AddressType::SerialPort>& addr)
 {
-    auto asrl = OpenVisaConfig::instance().toAsrl(addr);
+    auto asrl = OpenVisaConfig::instance().toAsrl(addr.portName());
     return asrl ? std::format("ASRL{}::INSTR", *asrl) : std::string {};
 }
 

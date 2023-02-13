@@ -53,74 +53,15 @@ private:
     unsigned short m_port;
 };
 
-enum BaudRate
-{
-    _1200   = 1200,
-    _2400   = 2400,
-    _4800   = 4800,
-    _9600   = 9600,
-    _19200  = 19200,
-    _38400  = 38400,
-    _57600  = 57600,
-    _115200 = 115200
-};
-
-enum class DataBits
-{
-    Data5 = 5,
-    Data6,
-    Data7,
-    Data8
-};
-
-enum class FlowControl
-{
-    None,
-    Software,
-    Hardware
-};
-
-enum class Parity
-{
-    None,
-    Odd,
-    Even
-};
-
-enum class StopBits
-{
-    One,
-    OnePointFive,
-    Two
-};
-
 template<>
 struct Address<AddressType::SerialPort>
 {
-    [[nodiscard]] inline Address(std::string_view com,
-                                 unsigned int baud       = BaudRate::_115200,
-                                 DataBits dataBits       = DataBits::Data8,
-                                 FlowControl flowControl = FlowControl::None,
-                                 Parity parity           = Parity::None,
-                                 StopBits stopBits       = StopBits::One) noexcept
-        : m_com(com), m_baud(baud), m_dataBits(dataBits), m_flowControl(flowControl), m_parity(parity), m_stopBits(stopBits)
-    {
-    }
+    [[nodiscard]] inline Address(std::string_view com) noexcept : m_com(com) {}
     [[nodiscard]] inline const std::string& portName() const noexcept { return m_com; }
-    [[nodiscard]] inline unsigned int baud() const noexcept { return m_baud; }
-    [[nodiscard]] inline DataBits dataBits() const noexcept { return m_dataBits; }
-    [[nodiscard]] inline FlowControl flowControl() const noexcept { return m_flowControl; }
-    [[nodiscard]] inline Parity parity() const noexcept { return m_parity; }
-    [[nodiscard]] inline StopBits stopBits() const noexcept { return m_stopBits; }
     [[nodiscard]] auto operator<=>(const Address<AddressType::SerialPort>& other) const = default;
 
 private:
     std::string m_com;
-    unsigned int m_baud;
-    DataBits m_dataBits;
-    FlowControl m_flowControl;
-    Parity m_parity;
-    StopBits m_stopBits;
 };
 
 template<>

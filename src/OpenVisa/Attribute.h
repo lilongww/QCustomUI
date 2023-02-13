@@ -21,24 +21,80 @@
 #include "Object.h"
 
 #include <chrono>
+#include <optional>
 
 namespace OpenVisa
 {
+enum BaudRate
+{
+    _1200   = 1200,
+    _2400   = 2400,
+    _4800   = 4800,
+    _9600   = 9600,
+    _19200  = 19200,
+    _38400  = 38400,
+    _57600  = 57600,
+    _115200 = 115200
+};
+
+enum class DataBits
+{
+    Data5 = 5,
+    Data6,
+    Data7,
+    Data8
+};
+
+enum class FlowControl
+{
+    None,
+    Software,
+    Hardware
+};
+
+enum class Parity
+{
+    None,
+    Odd,
+    Even
+};
+
+enum class StopBits
+{
+    One,
+    OnePointFive,
+    Two
+};
+
+class IOBase;
 class OPENVISA_EXPORT Object::Attribute
 {
 public:
-    Attribute();
-    ~Attribute();
-
     void setTerminalChars(std::string_view chars);
     [[nodiscard]] const std::string& terminalChars() const;
     void setTimeout(const std::chrono::milliseconds& timeout);
     [[nodiscard]] const std::chrono::milliseconds& timeout() const;
     void setAutoAppendTerminalChars(bool en);
     [[nodiscard]] bool autoAppendTerminalChars() const;
+    void setBaudRate(unsigned int baud);
+    [[nodiscard]] std::optional<unsigned int> baudRate() const;
+    void setDataBits(DataBits bits);
+    [[nodiscard]] std::optional<DataBits> dataBits() const;
+    void setFlowControl(FlowControl fc);
+    [[nodiscard]] std::optional<FlowControl> flowControl() const;
+    void setParity(Parity p);
+    [[nodiscard]] std::optional<Parity> parity() const;
+    void setStopBits(StopBits bits);
+    [[nodiscard]] std::optional<StopBits> stopBits() const;
+
+protected:
+    Attribute(std::shared_ptr<IOBase>* io);
+    ~Attribute();
 
 private:
     struct Impl;
     std::unique_ptr<Impl> m_impl;
+    friend Object;
+    friend class UsbTmc;
 };
 } // namespace OpenVisa

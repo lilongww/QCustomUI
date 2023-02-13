@@ -1,5 +1,4 @@
 ﻿#include "OpenVisaConfig.h"
-#include "../Address.h"
 #include "../SerialPortInfo.h"
 
 #include <boost/property_tree/ini_parser.hpp>
@@ -17,7 +16,7 @@ namespace OpenVisa
 {
 struct OpenVisaConfig::Impl
 {
-    std::map<unsigned int, Address<AddressType::SerialPort>> asrlMap;
+    std::map<unsigned int, Asrl> asrlMap;
 #ifdef WIN32
     const std::string path { std::format("{}/OpenVisa", std::getenv("ALLUSERSPROFILE")) };
 #else
@@ -31,22 +30,18 @@ OpenVisaConfig& OpenVisaConfig::instance()
     return inst;
 }
 
-const std::map<unsigned int, OpenVisa::Address<OpenVisa::AddressType::SerialPort>>& OpenVisaConfig::asrlMap() const
-{
-    return m_impl->asrlMap;
-}
+const std::map<unsigned int, Asrl>& OpenVisaConfig::asrlMap() const { return m_impl->asrlMap; }
 
-std::optional<int> OpenVisaConfig::toAsrl(const Address<AddressType::SerialPort>& addr) const
+std::optional<int> OpenVisaConfig::toAsrl(const std::string& portName) const
 {
     auto ports = SerialPortInfo::listPorts();
-    if (std::ranges::find_if(ports, [&](const auto& port) { return port.portName() == addr.portName(); }) != ports.end())
+    if (std::ranges::find_if(ports, [&](const auto& port) { return port.portName() == portName; }) != ports.end())
     {
         auto reFind = [&]()
         {
             return std::find_if(m_impl->asrlMap.begin(),
                                 m_impl->asrlMap.end(),
-                                [&](const std::pair<unsigned int, Address<AddressType::SerialPort>>& kv)
-                                { return kv.second.portName() == addr.portName(); });
+                                [&](const std::pair<unsigned int, Asrl>& kv) { return kv.second.portName == portName; });
         };
         auto it = reFind();
         if (it != m_impl->asrlMap.end())
@@ -68,7 +63,7 @@ std::optional<int> OpenVisaConfig::toAsrl(const Address<AddressType::SerialPort>
     return std::nullopt;
 }
 
-std::optional<OpenVisa::Address<OpenVisa::AddressType::SerialPort>> OpenVisaConfig::fromAsrl(unsigned int asrl) const
+std::optional<Asrl> OpenVisaConfig::fromAsrl(unsigned int asrl) const
 {
     auto it = m_impl->asrlMap.find(asrl);
     if (it != m_impl->asrlMap.end())
@@ -85,7 +80,7 @@ std::optional<OpenVisa::Address<OpenVisa::AddressType::SerialPort>> OpenVisaConf
     saveConfig();
 
     it = m_impl->asrlMap.find(asrl);
-    return it == m_impl->asrlMap.end() ? std::optional<OpenVisa::Address<OpenVisa::AddressType::SerialPort>> {} : it->second;
+    return it == m_impl->asrlMap.end() ? std::optional<Asrl> {} : it->second;
 }
 
 void OpenVisaConfig::loadConfig()
@@ -112,13 +107,12 @@ void OpenVisaConfig::loadConfig()
                     std::ranges::copy(name | std::views::filter([=](auto ch) { return ch >= '0' && ch <= '9'; }), std::back_inserter(temp));
                     m_impl->asrlMap.insert(
                         std::pair(static_cast<unsigned int>(std::stoul(temp)),
-                                  Address<AddressType::SerialPort>(
-                                      asrlNode.get<std::string>(std::format("SystemName{}", i)),
-                                      asrlNode.get<int>(std::format("BaudRate{}", i)),
-                                      static_cast<DataBits>(asrlNode.get<int>(std::format("DataBits{}", i))),
-                                      static_cast<FlowControl>(asrlNode.get<int>(std::format("FlowCtrl{}", i))),
-                                      static_cast<Parity>(asrlNode.get<int>(std::format("Parity{}", i))),
-                                      static_cast<StopBits>((asrlNode.get<int>(std::format("StopBits{}", i)) - 10) / 5))));
+                                  Asrl { asrlNode.get<std::string>(std::format("SystemName{}", i)),
+                                         asrlNode.get<unsigned int>(std::format("BaudRate{}", i)),
+                                         static_cast<DataBits>(asrlNode.get<int>(std::format("DataBits{}", i))),
+                                         static_cast<FlowControl>(asrlNode.get<int>(std::format("FlowCtrl{}", i))),
+                                         static_cast<Parity>(asrlNode.get<int>(std::format("Parity{}", i))),
+                                         static_cast<StopBits>((asrlNode.get<int>(std::format("StopBits{}", i)) - 10) / 5) }));
                 }
             }
         }
@@ -139,12 +133,12 @@ void OpenVisaConfig::saveConfig() const
         root.put(k(std::format("Name{}", i)), std::format("ASRL{}::INSTR", it->first));
         root.put(k(std::format("Enabled{}", i)), 1);
         root.put(k(std::format("Static{}", i)), 0);
-        root.put(k(std::format("SystemName{}", i)), it->second.portName());
-        root.put(k(std::format("BaudRate{}", i)), it->second.baud());
-        root.put(k(std::format("Parity{}", i)), static_cast<int>(it->second.parity()));
-        root.put(k(std::format("StopBits{}", i)), static_cast<int>(it->second.stopBits()) * 5 + 10);
-        root.put(k(std::format("DataBits{}", i)), static_cast<int>(it->second.dataBits()));
-        root.put(k(std::format("FlowCtrl{}", i)), static_cast<int>(it->second.flowControl()));
+        root.put(k(std::format("SystemName{}", i)), it->second.portName);
+        root.put(k(std::format("BaudRate{}", i)), it->second.baud);
+        root.put(k(std::format("Parity{}", i)), static_cast<int>(it->second.parity));
+        root.put(k(std::format("StopBits{}", i)), static_cast<int>(it->second.stopBits) * 5 + 10);
+        root.put(k(std::format("DataBits{}", i)), static_cast<int>(it->second.dataBits));
+        root.put(k(std::format("FlowCtrl{}", i)), static_cast<int>(it->second.flowControl));
         it++;
     }
     root.put(k("NumOfResources"), m_impl->asrlMap.size());
@@ -167,22 +161,21 @@ void OpenVisaConfig::updateAsrl()
     for (const auto& port : ports)
     {
 
-        if (Address<AddressType::SerialPort> addr(port.portName());
-            std::find_if(m_impl->asrlMap.begin(),
+        if (std::find_if(m_impl->asrlMap.begin(),
                          m_impl->asrlMap.end(),
-                         [&](const std::pair<unsigned int, Address<AddressType::SerialPort>>& kv)
-                         { return kv.second.portName() == addr.portName(); }) == m_impl->asrlMap.end())
+                         [&](const std::pair<unsigned int, Asrl>& kv)
+                         { return kv.second.portName == port.portName(); }) == m_impl->asrlMap.end())
         {
-            addAsrl(addr);
+            addAsrl(Asrl { port.portName() });
         }
     }
 }
 
-void OpenVisaConfig::addAsrl(const Address<AddressType::SerialPort>& addr)
+void OpenVisaConfig::addAsrl(const Asrl& addr)
 {
     unsigned int asrl = 0;
     std::string numStr;
-    std::ranges::copy(addr.portName() | std::views::filter([=](char c) { return c >= '0' && c <= '9'; }), std::back_inserter(numStr));
+    std::ranges::copy(addr.portName | std::views::filter([=](char c) { return c >= '0' && c <= '9'; }), std::back_inserter(numStr));
     try
     {
         asrl = static_cast<unsigned int>(std::stoul(numStr));

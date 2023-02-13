@@ -396,7 +396,7 @@ std::vector<OpenVisa::Address<OpenVisa::AddressType::USB>> UsbTmc::listUSB()
         Address<AddressType::USB> addr(vid, pid, sn);
         try
         {
-            Object::Attribute attr;
+            Object::Attribute attr(nullptr);
             UsbTmc tmc(attr);
             tmc.connect(addr, std::chrono::milliseconds(500));
             tmc.close();
