@@ -45,7 +45,53 @@ struct Object::Attribute::Impl
 */
 
 /*!
-    \brief      构造函数.
+    \enum       OpenVisa::BaudRate
+                串口常用波特率定义.
+    \value      _1200
+    \value      _2400
+    \value      _4800
+    \value      _9600
+    \value      _19200
+    \value      _38400
+    \value      _57600
+    \value      _115200
+*/
+
+/*!
+    \enum       OpenVisa::DataBits
+                数据位定义.
+    \value      Data5
+    \value      Data6
+    \value      Data7
+    \value      Data8
+*/
+
+/*!
+    \enum       OpenVisa::FlowControl
+                流控制定义.
+    \value      None        无.
+    \value      Software    软件.
+    \value      Hardware    硬件.
+*/
+
+/*!
+    \enum       OpenVisa::Parity
+                校验设置.
+    \value      None        无.
+    \value      Odd         奇校验.
+    \value      Even        偶校验.
+*/
+
+/*!
+    \enum       OpenVisa::StopBits
+                停止位设置.
+    \value      One             1.
+    \value      OnePointFive    1.5.
+    \value      Two             2.
+*/
+
+/*!
+    \brief      构造函数 \a io.
 */
 Object::Attribute::Attribute(std::shared_ptr<IOBase>* io) : m_impl(std::make_unique<Impl>(io)) {}
 
