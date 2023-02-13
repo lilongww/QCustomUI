@@ -26,22 +26,22 @@ namespace OpenVisa
 class ObjectAdapter
 {
 public:
-    Object& object() { return m_object; }
+    [[nodiscard]] Object& object() { return m_object; }
     template<typename... Args>
     inline void send(std::string_view fmt, const Args&... args)
     {
         m_object.send(fmt, std::forward<const Args&>(args)...);
     }
     inline void sendBlockData(const std::string& data) { m_object.sendBlockData(data); }
-    inline std::string readAll() { return m_object.readAll(); }
-    inline std::tuple<std::string, bool> read(unsigned long blockSize) { return m_object.read(blockSize); }
+    [[nodiscard]] inline std::string readAll() { return m_object.readAll(); }
+    [[nodiscard]] inline std::tuple<std::string, bool> read(unsigned long blockSize) { return m_object.read(blockSize); }
     template<typename... Args>
-    inline std::string query(std::string_view fmt, const Args&... args)
+    [[nodiscard]] inline std::string query(std::string_view fmt, const Args&... args)
     {
         return m_object.query(fmt, std::forward<const Args&>(args)...);
     }
-    inline Object::Attribute& attribute() noexcept { return m_object.attribute(); }
-    inline Object::CommonCommand& commonCommand() noexcept { return m_object.commonCommand(); }
+    [[nodiscard]] inline Object::Attribute& attribute() noexcept { return m_object.attribute(); }
+    [[nodiscard]] inline Object::CommonCommand& commonCommand() noexcept { return m_object.commonCommand(); }
 
 protected:
     inline ObjectAdapter(Object& object) : m_object(object) {}

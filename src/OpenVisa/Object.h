@@ -68,7 +68,7 @@ public:
 protected:
     virtual void afterConnected() {};
     template<typename T>
-    requires IsAddress<T> || std::same_as<std::string, T> || std::is_array_v<T> || std::same_as<const char*, T>
+    requires IsAddress<T> || std::same_as<std::string, T>
     void connectImpl(const T& addr, const std::chrono::milliseconds& openTimeout, const std::chrono::milliseconds& commandTimeout);
 
 private:

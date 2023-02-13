@@ -26,7 +26,7 @@ class BinaryArray
 public:
     using Type     = T;
     using Iterator = const Type*;
-    inline BinaryArray(std::string&& buffer) : m_temp(buffer)
+    [[nodiscard]] inline BinaryArray(std::string&& buffer) : m_temp(buffer)
     {
         if (m_temp.empty())
             return;
@@ -41,7 +41,7 @@ public:
         m_size = byteCount / sizeof(Type);
         m_data = reinterpret_cast<const Type*>(m_temp.c_str() + dataBeginOffset);
     }
-    inline BinaryArray(BinaryArray&& other)
+    [[nodiscard]] inline BinaryArray(BinaryArray&& other)
     {
         m_temp = std::move(other.m_temp);
         m_data = other.m_data;

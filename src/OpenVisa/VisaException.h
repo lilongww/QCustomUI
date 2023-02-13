@@ -25,8 +25,8 @@ namespace OpenVisa
 class Exception : public std::exception
 {
 public:
-    inline Exception(int code, const char* what) : std::exception(what), m_code(code) {}
-    inline int code() const { return m_code; }
+    [[nodiscard]] inline Exception(int code, const char* what) : std::exception(what), m_code(code) {}
+    [[nodiscard]] inline int code() const { return m_code; }
 
 private:
     int m_code { 0 };

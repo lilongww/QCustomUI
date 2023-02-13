@@ -31,11 +31,11 @@ public:
     ~Attribute();
 
     void setTerminalChars(std::string_view chars);
-    const std::string& terminalChars() const;
+    [[nodiscard]] const std::string& terminalChars() const;
     void setTimeout(const std::chrono::milliseconds& timeout);
-    const std::chrono::milliseconds& timeout() const;
+    [[nodiscard]] const std::chrono::milliseconds& timeout() const;
     void setAutoAppendTerminalChars(bool en);
-    bool autoAppendTerminalChars() const;
+    [[nodiscard]] bool autoAppendTerminalChars() const;
 
 private:
     struct Impl;
