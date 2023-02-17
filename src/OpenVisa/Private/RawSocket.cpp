@@ -116,6 +116,26 @@ std::string RawSocket::readAll() const
     m_impl->io.post(
         [=]()
         {
+            auto readOne = [&]()
+            {
+                boost::system::error_code e;
+                auto s = boost::asio::read(m_impl->socket, m_impl->readBuffer, boost::asio::transfer_exactly(1), e);
+                if (e)
+                {
+                    *size  = s;
+                    *error = e;
+                    mutex->unlock();
+                    return false;
+                }
+                return true;
+            };
+            if (readOne() && m_impl->readBuffer.sgetc() == '#')
+            {
+                if (!readOne())
+                    return;
+                char buf[2];
+                m_impl->readBuffer.sgetn(buf, 2);
+            }
             boost::asio::async_read_until(m_impl->socket,
                                           m_impl->readBuffer,
                                           m_attr.terminalChars(),
