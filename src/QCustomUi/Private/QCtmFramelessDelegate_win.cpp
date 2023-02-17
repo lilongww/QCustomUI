@@ -341,7 +341,9 @@ bool QCtmWinFramelessDelegate::eventFilter(QObject* watched, QEvent* event)
         }
         else if (event->type() == QEvent::ScreenChangeInternal)
         {
-            SetWindowPos(reinterpret_cast<HWND>(m_impl->parent->winId()), nullptr, 0, 0, 0, 0, SWP_FRAMECHANGED | SWP_NOMOVE | SWP_NOSIZE);
+            if (m_impl->parent->isVisible())
+                SetWindowPos(
+                    reinterpret_cast<HWND>(m_impl->parent->winId()), nullptr, 0, 0, 0, 0, SWP_FRAMECHANGED | SWP_NOMOVE | SWP_NOSIZE);
             return false;
         }
     }
