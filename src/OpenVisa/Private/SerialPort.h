@@ -18,6 +18,7 @@
 **********************************************************************************/
 #pragma once
 
+#include "../Attribute.h"
 #include "IOBase.h"
 
 #include <memory>
@@ -37,6 +38,11 @@ public:
     void close() noexcept override;
     bool connected() const noexcept override;
     size_t avalible() const noexcept override;
+    void setBaudRate(unsigned int baud);
+    void setDataBits(DataBits bits);
+    void setFlowControl(FlowControl fc);
+    void setParity(Parity p);
+    void setStopBits(StopBits bits);
 
 private:
     struct Impl;

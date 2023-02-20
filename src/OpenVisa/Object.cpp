@@ -20,11 +20,21 @@
 #include "Attribute.h"
 #include "CommonCommand.h"
 #include "Private/HiSLIP.h"
+#include "Private/OpenVisaConfig.h"
 #include "Private/RawSocket.h"
 #include "Private/SerialPort.h"
 #include "Private/UsbTmc.h"
 #include "Private/VXI11.h"
 #include "SerialPortInfo.h"
+#include "Utils.h"
+
+#include <ranges>
+
+template<typename... Args>
+struct Overload : public Args...
+{
+    using Args::operator()...;
+};
 
 namespace OpenVisa
 {
@@ -34,7 +44,7 @@ struct Object::Impl
     Attribute attr;
     CommonCommand commonCommand;
 
-    inline Impl(Object* obj) : commonCommand(obj) {}
+    inline Impl(Object* obj) : commonCommand(obj), attr(&io) {}
 };
 
 /*!
@@ -64,6 +74,12 @@ struct Object::Impl
 */
 
 /*!
+    \fn         template <IsAddress T> inline std::string OpenVisa::Object::toVisaAddressString(const T& addr);
+    \brief      将地址类型 \a addr 转换为 Visa 连接描述字符串.
+    \sa         fromVisaAddressString
+*/
+
+/*!
     \brief      构造函数.
 */
 Object::Object() : m_impl(std::make_unique<Impl>(this)) {}
@@ -86,9 +102,9 @@ void Object::close() noexcept
 }
 
 template<>
-OPENVISA_EXPORT void Object::connect<Address<AddressType::RawSocket>>(const Address<AddressType::RawSocket>& addr,
-                                                                      const std::chrono::milliseconds& openTimeout /*= 5000*/,
-                                                                      const std::chrono::milliseconds& commandTimeout /*= 5000*/)
+OPENVISA_EXPORT void Object::connectImpl<Address<AddressType::RawSocket>>(const Address<AddressType::RawSocket>& addr,
+                                                                          const std::chrono::milliseconds& openTimeout /*= 5000*/,
+                                                                          const std::chrono::milliseconds& commandTimeout /*= 5000*/)
 {
     m_impl->attr.setTimeout(commandTimeout);
     auto socket = std::make_shared<RawSocket>(m_impl->attr);
@@ -98,9 +114,9 @@ OPENVISA_EXPORT void Object::connect<Address<AddressType::RawSocket>>(const Addr
 }
 
 template<>
-OPENVISA_EXPORT void Object::connect<Address<AddressType::SerialPort>>(const Address<AddressType::SerialPort>& addr,
-                                                                       const std::chrono::milliseconds& openTimeout /*= 5000*/,
-                                                                       const std::chrono::milliseconds& commandTimeout /*= 5000*/)
+OPENVISA_EXPORT void Object::connectImpl<Address<AddressType::SerialPort>>(const Address<AddressType::SerialPort>& addr,
+                                                                           const std::chrono::milliseconds& openTimeout /*= 5000*/,
+                                                                           const std::chrono::milliseconds& commandTimeout /*= 5000*/)
 {
     m_impl->attr.setTimeout(commandTimeout);
     auto serialPort = std::make_shared<SerialPort>(m_impl->attr);
@@ -110,9 +126,9 @@ OPENVISA_EXPORT void Object::connect<Address<AddressType::SerialPort>>(const Add
 }
 
 template<>
-OPENVISA_EXPORT void Object::connect<Address<AddressType::USB>>(const Address<AddressType::USB>& addr,
-                                                                const std::chrono::milliseconds& openTimeout /*= 5000*/,
-                                                                const std::chrono::milliseconds& commandTimeout /*= 5000*/)
+OPENVISA_EXPORT void Object::connectImpl<Address<AddressType::USB>>(const Address<AddressType::USB>& addr,
+                                                                    const std::chrono::milliseconds& openTimeout /*= 5000*/,
+                                                                    const std::chrono::milliseconds& commandTimeout /*= 5000*/)
 {
     m_impl->attr.setTimeout(commandTimeout);
     auto usb = std::make_shared<UsbTmc>(m_impl->attr);
@@ -122,9 +138,9 @@ OPENVISA_EXPORT void Object::connect<Address<AddressType::USB>>(const Address<Ad
 }
 
 template<>
-OPENVISA_EXPORT void Object::connect<Address<AddressType::VXI11>>(const Address<AddressType::VXI11>& addr,
-                                                                  const std::chrono::milliseconds& openTimeout /*= 5000*/,
-                                                                  const std::chrono::milliseconds& commandTimeout /*= 5000*/)
+OPENVISA_EXPORT void Object::connectImpl<Address<AddressType::VXI11>>(const Address<AddressType::VXI11>& addr,
+                                                                      const std::chrono::milliseconds& openTimeout /*= 5000*/,
+                                                                      const std::chrono::milliseconds& commandTimeout /*= 5000*/)
 {
     m_impl->attr.setTimeout(commandTimeout);
     auto vxi11 = std::make_shared<VXI11>(m_impl->attr);
@@ -134,9 +150,9 @@ OPENVISA_EXPORT void Object::connect<Address<AddressType::VXI11>>(const Address<
 }
 
 template<>
-OPENVISA_EXPORT void Object::connect<Address<AddressType::HiSLIP>>(const Address<AddressType::HiSLIP>& addr,
-                                                                   const std::chrono::milliseconds& openTimeout /*= 5000*/,
-                                                                   const std::chrono::milliseconds& commandTimeout /*= 5000*/)
+OPENVISA_EXPORT void Object::connectImpl<Address<AddressType::HiSLIP>>(const Address<AddressType::HiSLIP>& addr,
+                                                                       const std::chrono::milliseconds& openTimeout /*= 5000*/,
+                                                                       const std::chrono::milliseconds& commandTimeout /*= 5000*/)
 {
     m_impl->attr.setTimeout(commandTimeout);
     auto hiSLIP = std::make_shared<HiSLIP>(m_impl->attr);
@@ -144,6 +160,18 @@ OPENVISA_EXPORT void Object::connect<Address<AddressType::HiSLIP>>(const Address
     m_impl->io = hiSLIP;
     afterConnected();
 }
+
+template<>
+OPENVISA_EXPORT void Object::connectImpl<std::string>(const std::string& addr,
+                                                      const std::chrono::milliseconds& openTimeout /*= 5000*/,
+                                                      const std::chrono::milliseconds& commandTimeout /*= 5000*/)
+{
+    auto addressVariant = fromVisaAddressString(addr);
+    std::visit(Overload { [](const std::monostate&) { throw std::system_error(std::make_error_code(std::errc::address_not_available)); },
+                          [&](const auto& addr) { connectImpl(addr, openTimeout, commandTimeout); } },
+               addressVariant);
+}
+
 /*!
 \brief      发送块数据 \a data 专用函数，因发送块数据时，结尾不添加终结符.
 */
@@ -202,7 +230,54 @@ std::vector<std::string> Object::listSerialPorts()
 /*!
     \brief      列出所有USBTMC驱动设备.
 */
-std::vector<OpenVisa::Address<OpenVisa::AddressType::USB>> Object::listUSB() { return UsbTmc::listUSB(); }
+std::vector<Address<AddressType::USB>> Object::listUSB() { return UsbTmc::listUSB(); }
+
+/*!
+    \brief      从Visa连接描述字符串 \a str 转换为地址类型联合体.
+    \sa         toVisaAddressString
+*/
+AddressVariant Object::fromVisaAddressString(const std::string& str)
+{
+    try
+    {
+        std::string addr;
+        std::ranges::transform(str, std::back_inserter(addr), [=](auto c) { return std::tolower(c); });
+
+        auto tokens = split(addr, "::");
+        if (tokens.size() < 2)
+            return std::monostate {};
+        if (tokens[0].starts_with("tcpip"))
+        {
+            if (addr.contains("hislip"))
+            {
+                auto temp = split(tokens[2], ",");
+                return Address<AddressType::HiSLIP>(
+                    tokens[1], temp[0], temp.size() == 2 ? static_cast<unsigned short>(std::stoul(temp[1])) : 4880);
+            }
+            if (addr.ends_with("instr"))
+                return Address<AddressType::VXI11>(tokens[1], tokens.size() == 3 ? "inst0" : tokens[2]);
+            else if (addr.ends_with("socket"))
+                return Address<AddressType::RawSocket>(tokens[1], static_cast<unsigned short>(std::stoul(tokens[2])));
+        }
+        else if (tokens[0].starts_with("asrl"))
+        {
+            std::string temp;
+            std::ranges::copy(tokens[0] | std::views::filter([](auto ch) { return ch >= '0' && ch <= '9'; }), std::back_inserter(temp));
+            auto opt = OpenVisa::OpenVisaConfig::instance().fromAsrl(static_cast<unsigned long>(std::stoul(temp)));
+            return opt ? AddressVariant { Address<AddressType::SerialPort>(opt->portName) } : std::monostate {};
+        }
+        else if (tokens[0].starts_with("usb"))
+        {
+            return Address<AddressType::USB>(static_cast<unsigned short>(std::stoul(tokens[1], nullptr, 16)),
+                                             static_cast<unsigned short>(std::stoul(tokens[2], nullptr, 16)),
+                                             tokens[3]);
+        }
+    }
+    catch (const std::exception&)
+    {
+    }
+    return std::monostate {};
+}
 
 void Object::sendImpl(const std::string& scpi)
 {
@@ -219,6 +294,38 @@ void Object::throwNoConnection() const
     {
         throw std::exception("not connection");
     }
+}
+
+template<>
+OPENVISA_EXPORT static std::string Object::toVisaAddressString<Address<AddressType::VXI11>>(const Address<AddressType::VXI11>& addr)
+{
+    return std::format("TCPIP::{}::{}::INSTR", addr.ip(), addr.subAddress());
+}
+
+template<>
+OPENVISA_EXPORT static std::string Object::toVisaAddressString<Address<AddressType::RawSocket>>(const Address<AddressType::RawSocket>& addr)
+{
+    return std::format("TCPIP::{}::{}::SOCKET", addr.ip(), addr.port());
+}
+
+template<>
+OPENVISA_EXPORT static std::string Object::toVisaAddressString<Address<AddressType::HiSLIP>>(const Address<AddressType::HiSLIP>& addr)
+{
+    return std::format("TCPIP::{}::{}", addr.ip(), addr.subAddress());
+}
+
+template<>
+OPENVISA_EXPORT static std::string Object::toVisaAddressString<Address<AddressType::SerialPort>>(
+    const Address<AddressType::SerialPort>& addr)
+{
+    auto asrl = OpenVisaConfig::instance().toAsrl(addr.portName());
+    return asrl ? std::format("ASRL{}::INSTR", *asrl) : std::string {};
+}
+
+template<>
+OPENVISA_EXPORT static std::string Object::toVisaAddressString<Address<AddressType::USB>>(const Address<AddressType::USB>& addr)
+{
+    return std::format("USB::{:#04X}::{:#04X}::{}::INSTR", addr.vendorId(), addr.productId(), addr.serialNumber());
 }
 
 } // namespace OpenVisa

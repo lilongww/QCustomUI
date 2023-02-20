@@ -18,6 +18,7 @@
 **********************************************************************************/
 #pragma once
 
+#include "Address.h"
 #include "openvisa_global.h"
 
 #include <string>
@@ -28,7 +29,7 @@ namespace OpenVisa
 class OPENVISA_EXPORT SerialPortInfo
 {
 public:
-    inline SerialPortInfo() noexcept {}
+    [[nodiscard]] inline SerialPortInfo() noexcept {}
     inline ~SerialPortInfo() noexcept {}
 
     [[nodiscard]] inline const std::string& portName() const noexcept { return m_portName; }
@@ -40,7 +41,7 @@ public:
     [[nodiscard]] inline bool hasProductId() const noexcept { return m_hasPid; }
     [[nodiscard]] inline unsigned short productId() const noexcept { return m_pid; }
     [[nodiscard]] inline const std::string& serialNumber() const noexcept { return m_serialNumber; }
-    static std::vector<SerialPortInfo> listPorts();
+    [[nodiscard]] static std::vector<SerialPortInfo> listPorts();
 
 private:
     inline void setPortName(std::string_view name) noexcept { m_portName = name; }

@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
 <!-- Object.cpp -->
-  <title>List of All Members for Object | OpenVisa 0.5.0</title>
+  <title>List of All Members for Object | OpenVisa 0.6.0</title>
   <link rel="stylesheet" type="text/css" href="style/offline-simple.css" />
   <script type="text/javascript">
     document.getElementsByTagName("link").item(0).setAttribute("href", "style/offline.css");
@@ -25,10 +25,10 @@
     <div class="main-rounded">
         <div class="navigationbar">
         <ul>
-<li><a href="index.html">OpenVisa 0.5&#x2e;0</a></li>
+<li><a href="index.html">OpenVisa 0.6&#x2e;0</a></li>
 <li><a href="index.html">OpenVisa</a></li>
 <li>Object</li>
-<li id="buildversion">OpenVisa 0.5.0 Reference Documentation</li>
+<li id="buildversion">OpenVisa 0.6.0 Reference Documentation</li>
     </ul>
     </div>
 </div>
@@ -48,8 +48,9 @@
 <li class="fn"><span class="name"><b><a href="openvisa-object.html#close">close</a></b></span>()</li>
 <li class="fn"><span class="name"><b><a href="openvisa-object.html#commonCommand">commonCommand</a></b></span>() : OpenVisa::Object::CommonCommand &amp;</li>
 <li class="fn"><span class="name"><b><a href="openvisa-object.html#connect">connect</a></b></span>(const T &amp;, const std::chrono::milliseconds &amp;, const std::chrono::milliseconds &amp;)</li>
-</ul></td><td class="topAlign"><ul>
 <li class="fn"><span class="name"><b><a href="openvisa-object.html#connected">connected</a></b></span>() const : bool</li>
+</ul></td><td class="topAlign"><ul>
+<li class="fn"><span class="name"><b><a href="openvisa-object.html#fromVisaAddressString">fromVisaAddressString</a></b></span>(const std::string &amp;) : OpenVisa::AddressVariant</li>
 <li class="fn"><span class="name"><b><a href="openvisa-object.html#listSerialPorts">listSerialPorts</a></b></span>() : std::vector&lt;std::string&gt;</li>
 <li class="fn"><span class="name"><b><a href="openvisa-object.html#listUSB">listUSB</a></b></span>() : std::vector&lt;Address&lt;AddressType::USB&gt;&gt;</li>
 <li class="fn"><span class="name"><b><a href="openvisa-object.html#query">query</a></b></span>(std::string_view, const Args &amp;...) : std::string</li>
@@ -57,6 +58,7 @@
 <li class="fn"><span class="name"><b><a href="openvisa-object.html#readAll">readAll</a></b></span>() : std::string</li>
 <li class="fn"><span class="name"><b><a href="openvisa-object.html#send">send</a></b></span>(std::string_view, const Args &amp;...)</li>
 <li class="fn"><span class="name"><b><a href="openvisa-object.html#sendBlockData">sendBlockData</a></b></span>(const std::string &amp;)</li>
+<li class="fn"><span class="name"><b><a href="openvisa-object.html#toVisaAddressString">toVisaAddressString</a></b></span>(const T &amp;) : std::string</li>
 </ul>
 </td></tr>
 </table></div>

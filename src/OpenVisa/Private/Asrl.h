@@ -16,38 +16,18 @@
 **  You should have received a copy of the GNU Lesser General Public License    **
 **  along with OpenVisa.  If not, see <https://www.gnu.org/licenses/>.          **
 **********************************************************************************/
-
 #pragma once
-
-#include "Object.h"
+#include "../Attribute.h"
 
 namespace OpenVisa
 {
-class ObjectAdapter
+struct Asrl
 {
-public:
-    [[nodiscard]] Object& object() { return m_object; }
-    template<typename... Args>
-    inline void send(std::string_view fmt, const Args&... args)
-    {
-        m_object.send(fmt, std::forward<const Args&>(args)...);
-    }
-    inline void sendBlockData(const std::string& data) { m_object.sendBlockData(data); }
-    [[nodiscard]] inline std::string readAll() { return m_object.readAll(); }
-    [[nodiscard]] inline std::tuple<std::string, bool> read(unsigned long blockSize) { return m_object.read(blockSize); }
-    template<typename... Args>
-    [[nodiscard]] inline std::string query(std::string_view fmt, const Args&... args)
-    {
-        return m_object.query(fmt, std::forward<const Args&>(args)...);
-    }
-    [[nodiscard]] inline Object::Attribute& attribute() noexcept { return m_object.attribute(); }
-    [[nodiscard]] inline Object::CommonCommand& commonCommand() noexcept { return m_object.commonCommand(); }
-
-protected:
-    inline ObjectAdapter(Object& object) : m_object(object) {}
-    virtual ~ObjectAdapter() {}
-
-private:
-    Object& m_object;
+    std::string portName;
+    unsigned int baud;
+    DataBits dataBits;
+    FlowControl flowControl;
+    Parity parity;
+    StopBits stopBits;
 };
 } // namespace OpenVisa

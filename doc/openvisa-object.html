@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
 <!-- Object.cpp -->
-  <title>Object Class | OpenVisa 0.5.0</title>
+  <title>Object Class | OpenVisa 0.6.0</title>
   <link rel="stylesheet" type="text/css" href="style/offline-simple.css" />
   <script type="text/javascript">
     document.getElementsByTagName("link").item(0).setAttribute("href", "style/offline.css");
@@ -25,10 +25,10 @@
     <div class="main-rounded">
         <div class="navigationbar">
         <ul>
-<li><a href="index.html">OpenVisa 0.5&#x2e;0</a></li>
+<li><a href="index.html">OpenVisa 0.6&#x2e;0</a></li>
 <li><a href="index.html">OpenVisa</a></li>
 <li>Object</li>
-<li id="buildversion">OpenVisa 0.5.0 Reference Documentation</li>
+<li id="buildversion">OpenVisa 0.6.0 Reference Documentation</li>
     </ul>
     </div>
 </div>
@@ -79,8 +79,10 @@
 </table></div>
 <h2 id="static-public-members">Static Public Members</h2>
 <div class="table"><table class="alignedsummary">
+<tr><td class="memItemLeft rightAlign topAlign"> OpenVisa::AddressVariant </td><td class="memItemRight bottomAlign"><b><a href="openvisa-object.html#fromVisaAddressString">fromVisaAddressString</a></b>(const std::string &amp;<i>str</i>)</td></tr>
 <tr><td class="memItemLeft rightAlign topAlign"> std::vector&lt;std::string&gt; </td><td class="memItemRight bottomAlign"><b><a href="openvisa-object.html#listSerialPorts">listSerialPorts</a></b>()</td></tr>
 <tr><td class="memItemLeft rightAlign topAlign"> std::vector&lt;Address&lt;AddressType::USB&gt;&gt; </td><td class="memItemRight bottomAlign"><b><a href="openvisa-object.html#listUSB">listUSB</a></b>()</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> std::string </td><td class="memItemRight bottomAlign"><b><a href="openvisa-object.html#toVisaAddressString">toVisaAddressString</a></b>(const T &amp;<i>addr</i>)</td></tr>
 </table></div>
 <!-- $$$Object-description -->
 <div class="descr">
@@ -117,6 +119,11 @@
 <h3 class="fn" id="connected"><span class="type">bool</span> Object::<span class="name">connected</span>() const</h3>
 <p>返回仪器是否已连接.</p>
 <!-- @@@connected -->
+<!-- $$$fromVisaAddressString[overload1]$$$fromVisaAddressStringconststd::string& -->
+<h3 class="fn" id="fromVisaAddressString"><code>[static] </code><span class="type">OpenVisa::AddressVariant</span> Object::<span class="name">fromVisaAddressString</span>(const <span class="type">std::string</span> &amp;<i>str</i>)</h3>
+<p>从Visa连接描述字符串 <i>str</i> 转换为地址类型联合体.</p>
+<p><b>See also </b><a href="openvisa-object.html#toVisaAddressString">toVisaAddressString</a>.</p>
+<!-- @@@fromVisaAddressString -->
 <!-- $$$listSerialPorts[overload1]$$$listSerialPorts -->
 <h3 class="fn" id="listSerialPorts"><code>[static] </code><span class="type">std::vector</span>&lt;<span class="type">std::string</span>&gt; Object::<span class="name">listSerialPorts</span>()</h3>
 <p>列出所有串口名称.</p>
@@ -149,6 +156,11 @@
 <h3 class="fn" id="sendBlockData"><span class="type">void</span> Object::<span class="name">sendBlockData</span>(const <span class="type">std::string</span> &amp;<i>data</i>)</h3>
 <p>发送块数据 <i>data</i> 专用函数，因发送块数据时，结尾不添加终结符.</p>
 <!-- @@@sendBlockData -->
+<!-- $$$toVisaAddressString[overload1]$$$toVisaAddressStringconstT& -->
+<h3 class="fn" id="toVisaAddressString"><code>[static] </code>template &lt;typename T&gt; <span class="type">std::string</span> Object::<span class="name">toVisaAddressString</span>(const <span class="type">T</span> &amp;<i>addr</i>)</h3>
+<p>将地址类型 <i>addr</i> 转换为 Visa 连接描述字符串.</p>
+<p><b>See also </b><a href="openvisa-object.html#fromVisaAddressString">fromVisaAddressString</a>.</p>
+<!-- @@@toVisaAddressString -->
 </div>
         </div>
        </div>

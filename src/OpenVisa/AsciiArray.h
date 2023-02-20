@@ -33,7 +33,7 @@ class AsciiArray
 {
 public:
     using Type = T;
-    inline AsciiArray(std::string&& buffer, std::size_t offset = 0) : m_temp(buffer), m_offset(offset) {}
+    [[nodiscard]] inline AsciiArray(std::string&& buffer, std::size_t offset = 0) : m_temp(buffer), m_offset(offset) {}
     [[nodiscard]] inline operator std::vector<T>() const&&
     {
         std::vector<T> vec;

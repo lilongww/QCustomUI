@@ -65,7 +65,8 @@ API文档：https://llongww.gitee.io/openvisa
 
 ```cpp
 OpenVisa::Object visa;
-visa.connect(OpenVisa::Address<OpenVisa::AddressType::RawSocket>("192.168.0.111", 9999);
+visa.connect(OpenVisa::Address<OpenVisa::AddressType::RawSocket>("192.168.0.111", 9999));
+// or visa.connect("TCPIP::192.168.0.111::9999::SOCKET");
 visa.send("*IDN?");
 std::cout << visa.readAll();
 ```
@@ -74,13 +75,14 @@ std::cout << visa.readAll();
 
 ```cpp
 OpenVisa::Object visa;
-visa.connect(OpenVisa::Address<OpenVisa::AddressType::SerialPort>(
-                        "COM3",
-                        115200,
-                        OpenVisa::DataBits::Data8,
-                        OpenVisa::FlowControl::None,
-                        OpenVisa::Parity::None,
-                        OpenVisa::StopBits::One));
+auto& attr = visa.attribute();
+attr.setBaudRate(115200);
+attr.setDataBits(OpenVisa::DataBits::Data8);
+attr.setFlowControl(OpenVisa::FlowControl::None);
+attr.setParity(OpenVisa::Parity::None);
+attr.setStopBits(OpenVisa::StopBits::One)
+visa.connect(OpenVisa::Address<OpenVisa::AddressType::SerialPort>("COM3"));
+// or visa.connect("ASRL3::INSTR");
 visa.send("*IDN?");
 std::cout << visa.readAll();
 ```
@@ -90,6 +92,7 @@ std::cout << visa.readAll();
 ```cpp
 OpenVisa::Object visa;
 visa.connect(OpenVisa::Address<OpenVisa::AddressType::USB>(0x0a69, 0x0651, "0000000000001"));
+// or visa.connect("USB::0x0A69::0x0651::0000000000001::INSTR");
 visa.send("*IDN?");
 std::cout << visa.readAll();
 ```
@@ -101,6 +104,7 @@ std::cout << visa.readAll();
 ```cpp
 OpenVisa::Object visa;
 visa.connect(OpenVisa::Address<OpenVisa::AddressType::VXI11>("192.168.0.111", "inst0"));
+// or visa.connect("TCPIP::192.168.0.111::INSTR");
 visa.send("*IDN?");
 std::cout << visa.readAll();
 ```
@@ -110,6 +114,7 @@ std::cout << visa.readAll();
 ```cpp
 OpenVisa::Object visa;
 visa.connect(OpenVisa::Address<OpenVisa::AddressType::HiSLIP>("192.168.0.111", "hislip0"));
+// or visa.connect("TCPIP::192.168.0.111::hislip0");
 visa.send("*IDN?");
 std::cout << visa.readAll();
 ```

@@ -35,15 +35,15 @@
 
 namespace OpenVisa
 {
-OPENVISA_EXPORT std::vector<std::string> split(const std::string& source, const std::string& s);
-OPENVISA_EXPORT std::string join(const std::vector<std::string>& source, const std::string& delimiter);
+OPENVISA_EXPORT [[nodiscard]] std::vector<std::string> split(const std::string& source, const std::string& s);
+OPENVISA_EXPORT [[nodiscard]] std::string join(const std::vector<std::string>& source, const std::string& delimiter);
 
 template<typename T>
 extern std::string encode(const T& arg);
 
 template<typename T>
 requires std::ranges::range<T>
-inline std::string join(const T& enums, const std::string& delimiter)
+[[nodiscard]] inline std::string join(const T& enums, const std::string& delimiter)
 {
     std::string ret;
     for (auto it = enums.begin(); it != enums.end(); ++it)
@@ -57,7 +57,7 @@ inline std::string join(const T& enums, const std::string& delimiter)
 
 template<typename T>
 requires std::is_enum_v<T>
-inline std::string join(const std::vector<T>& enums, const std::string& delimiter)
+[[nodiscard]] inline std::string join(const std::vector<T>& enums, const std::string& delimiter)
 {
     std::string ret;
     for (auto it = enums.begin(); it != enums.end(); ++it)
@@ -188,13 +188,13 @@ struct OPENVISA_EXPORT VisaAdl<StatusByteRegisters>
 };
 
 template<typename T>
-inline std::string encode(const T& arg)
+[[nodiscard]] inline std::string encode(const T& arg)
 {
     return VisaAdl<T>::toScpi(arg);
 }
 
 template<typename T>
-inline T decode(const std::string& ret)
+[[nodiscard]] inline T decode(const std::string& ret)
 {
     T value;
     VisaAdl<T>::fromScpi(ret, value);
@@ -251,7 +251,7 @@ struct SampleValue
 } // namespace OpenVisa
 
 #define VISA_SAMPLE_VALUE(SubClass, ValueType)                                                                                             \
-    struct SubClass : public OpenVisa::SampleValue<ValueType>                                                                                  \
+    struct SubClass : public OpenVisa::SampleValue<ValueType>                                                                              \
     {                                                                                                                                      \
         using SampleValue<ValueType>::operator ValueType;                                                                                  \
         using SampleValue<ValueType>::operator=;                                                                                           \

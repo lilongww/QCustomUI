@@ -9,7 +9,11 @@ int main(int argc, char* argv[])
     {
         OpenVisa::Object obj;
         // obj.connect(OpenVisa::Address<OpenVisa::AddressType::HiSLIP>("192.168.2.111"));
-        obj.connect(OpenVisa::Address<OpenVisa::AddressType::VXI11>("192.168.2.111", "inst0"));
+        // obj.connect(OpenVisa::Address<OpenVisa::AddressType::VXI11>("192.168.2.111", "inst0"));
+        // obj.connect("TCPIP::192.168.2.111::INSTR");
+        const char* str = "TCPIP::192.168.2.111::INSTR";
+        // obj.connect(str);
+        obj.connect(const_cast<char*>(str));
         // obj.connect(OpenVisa::Address<OpenVisa::AddressType::USB>(0x1AB1, 0x0514, "DS7A241200172"));
         //  for (int i = 0; i < 1024; i++)
         //      std::cout << obj.query("*IDN?");

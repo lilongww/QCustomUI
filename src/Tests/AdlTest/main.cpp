@@ -32,7 +32,7 @@ TEST(AdlTest, bool)
     EXPECT_FALSE(OpenVisa::decode<bool>("0"));
     EXPECT_FALSE(OpenVisa::decode<bool>("0\n"));
     EXPECT_FALSE(OpenVisa::decode<bool>("0\r\n"));
-    EXPECT_ANY_THROW(OpenVisa::decode<bool>("NFF\n"));
+    EXPECT_ANY_THROW(auto ret = OpenVisa::decode<bool>("NFF\n"));
 }
 
 TEST(AdlTest, double)
