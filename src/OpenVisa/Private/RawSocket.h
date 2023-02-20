@@ -41,6 +41,10 @@ public:
     size_t avalible() const noexcept override;
 
 private:
+    std::string readAllAscii() const;
+    std::string readAllBlockData(unsigned char bufferStringLen) const;
+
+private:
     struct Impl;
     std::unique_ptr<Impl> m_impl;
 };

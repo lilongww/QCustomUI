@@ -109,57 +109,19 @@ void RawSocket::send(const std::string& buffer) const
 
 std::string RawSocket::readAll() const
 {
-    auto mutex = std::make_shared<std::timed_mutex>();
-    mutex->lock();
-    auto error = std::make_shared<boost::system::error_code>();
-    auto size  = std::make_shared<std::size_t>(0);
-    m_impl->io.post(
-        [=]()
-        {
-            auto readOne = [&]()
-            {
-                boost::system::error_code e;
-                auto s = boost::asio::read(m_impl->socket, m_impl->readBuffer, boost::asio::transfer_exactly(1), e);
-                if (e)
-                {
-                    *size  = s;
-                    *error = e;
-                    mutex->unlock();
-                    return false;
-                }
-                return true;
-            };
-            if (readOne() && m_impl->readBuffer.sgetc() == '#')
-            {
-                if (!readOne())
-                    return;
-                char buf[2];
-                m_impl->readBuffer.sgetn(buf, 2);
-            }
-            boost::asio::async_read_until(m_impl->socket,
-                                          m_impl->readBuffer,
-                                          m_attr.terminalChars(),
-                                          [=](const boost::system::error_code& e, std::size_t s)
-                                          {
-                                              *size  = s;
-                                              *error = e;
-                                              mutex->unlock();
-                                          });
-        });
-
-    if (!mutex->try_lock_for(m_attr.timeout()))
+    auto header = read(2);
     {
-        m_impl->socket.cancel();
-        throw std::exception("read timeout");
+        std::ostream out(&m_impl->readBuffer);
+        out.write(header.c_str(), header.size());
     }
-    if (*error != boost::system::errc::success)
+    if (*header.begin() == '#' && header.size() == 2 && std::isdigit(header[1]))
     {
-        m_impl->socket.close();
-        boost::asio::detail::throw_error(*error, "read");
+        return readAllBlockData(header[1] + '0');
     }
-    std::string buffer(boost::asio::buffer_cast<const char*>(m_impl->readBuffer.data()), m_impl->readBuffer.size());
-    m_impl->readBuffer.consume(buffer.size());
-    return buffer;
+    else
+    {
+        return readAllAscii();
+    }
 }
 
 std::string RawSocket::read(size_t size) const
@@ -208,4 +170,94 @@ size_t RawSocket::avalible() const noexcept
     return m_impl->socket.is_open() ? m_impl->socket.available(e) : 0UL;
 }
 
+std::string RawSocket::readAllAscii() const
+{
+    auto mutex = std::make_shared<std::timed_mutex>();
+    mutex->lock();
+    auto error = std::make_shared<boost::system::error_code>();
+    auto size  = std::make_shared<std::size_t>(0);
+    m_impl->io.post(
+        [=]()
+        {
+            boost::asio::async_read_until(m_impl->socket,
+                                          m_impl->readBuffer,
+                                          m_attr.terminalChars(),
+                                          [=](const boost::system::error_code& e, std::size_t s)
+                                          {
+                                              *size  = s;
+                                              *error = e;
+                                              mutex->unlock();
+                                          });
+        });
+
+    if (!mutex->try_lock_for(m_attr.timeout()))
+    {
+        m_impl->socket.cancel();
+        throw std::exception("read timeout");
+    }
+    if (*error != boost::system::errc::success)
+    {
+        m_impl->socket.close();
+        boost::asio::detail::throw_error(*error, "readAllAscii");
+    }
+    std::string buffer(boost::asio::buffer_cast<const char*>(m_impl->readBuffer.data()), m_impl->readBuffer.size());
+    m_impl->readBuffer.consume(buffer.size());
+    return buffer;
+}
+
+std::string RawSocket::readAllBlockData(unsigned char bufferStringLen) const
+{
+    auto mutex = std::make_shared<std::timed_mutex>();
+    mutex->lock();
+    auto error = std::make_shared<boost::system::error_code>();
+    auto size  = std::make_shared<std::size_t>(0);
+    m_impl->io.post(
+        [=]()
+        {
+            std::scoped_lock lock(*mutex);
+            std::string buffer(static_cast<size_t>(bufferStringLen), '0');
+            boost::asio::read(m_impl->socket, boost::asio::buffer(buffer), boost::asio::transfer_exactly(bufferStringLen), *error);
+            if (error)
+            {
+                return;
+            }
+            else
+            {
+                std::ostream os(&m_impl->readBuffer);
+                os.write(buffer.c_str(), buffer.size());
+            }
+            size_t len;
+            try
+            {
+                len = std::stoull(buffer);
+            }
+            catch (const std::exception&)
+            {
+                // str不是一个数字，即非visa二进制传输格式.
+                while (m_impl->socket.available())
+                {
+                    boost::asio::read(m_impl->socket, m_impl->readBuffer, *error);
+                    if (error)
+                    {
+                        return;
+                    }
+                }
+            }
+            boost::asio::read(m_impl->socket, m_impl->readBuffer, boost::asio::transfer_exactly(len), *error);
+        });
+
+    if (!mutex->try_lock_for(m_attr.timeout()))
+    {
+        m_impl->socket.cancel();
+        throw std::exception("read timeout");
+    }
+    if (*error != boost::system::errc::success)
+    {
+        m_impl->socket.close();
+        boost::asio::detail::throw_error(*error, "readAllBlockData");
+    }
+    std::string buffer(boost::asio::buffer_cast<const char*>(m_impl->readBuffer.data()), m_impl->readBuffer.size());
+    m_impl->readBuffer.consume(buffer.size());
+    return buffer;
+}
 } // namespace OpenVisa
