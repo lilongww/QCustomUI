@@ -39,28 +39,27 @@ public:
 protected:
     bool eventFilter(QObject* watched, QEvent* event) override
     {
+        if (event->type() != QEvent::MouseButtonPress)
+            return false;
         if (m_bindedBox && m_bindedBox->isEnabled() && watched == m_bindedBox->findChild<QLineEdit*>())
         {
-            if (event->type() == QEvent::MouseButtonPress)
+            if (!m_keyboard)
             {
-                if (!m_keyboard)
+                m_keyboard = new QCtmDigitKeyboard(m_bindedBox);
+                m_keyboard->setUnits(m_units);
+                m_keyboard->setSingleStep(m_step);
+                m_keyboard->bindBox(m_bindedBox);
+                auto evt = dynamic_cast<QMouseEvent*>(event);
+                if (evt && evt->button() == Qt::LeftButton)
                 {
-                    m_keyboard = new QCtmDigitKeyboard(m_bindedBox);
-                    m_keyboard->setUnits(m_units);
-                    m_keyboard->setSingleStep(m_step);
-                    m_keyboard->bindBox(m_bindedBox);
-                    auto evt = dynamic_cast<QMouseEvent*>(event);
-                    if (evt && evt->button() == Qt::LeftButton)
+                    auto [beforeValue, beforeUnit] = m_keyboard->showBefore();
+                    if (m_keyboard->exec() == QDialog::Accepted)
                     {
-                        auto [beforeValue, beforeUnit] = m_keyboard->showBefore();
-                        if (m_keyboard->exec() == QDialog::Accepted)
-                        {
-                            m_keyboard->showAfter(beforeValue, beforeUnit);
-                        }
+                        m_keyboard->showAfter(beforeValue, beforeUnit);
                     }
-                    watched->removeEventFilter(this);
-                    this->deleteLater();
                 }
+                watched->removeEventFilter(this);
+                this->deleteLater();
             }
         }
         return false;
