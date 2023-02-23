@@ -19,6 +19,8 @@
 
 #include "QCtmAbstractMultiPageItemModel.h"
 
+#include <QScopeGuard>
+
 struct QCtmAbstractMultiPageItemModel::Impl
 {
     int currentPage { 0 };
@@ -107,6 +109,13 @@ void QCtmAbstractMultiPageItemModel::setCurrentPage(int page)
     m_impl->currentPage = page;
     auto afterRowCount  = rowCount();
 
+    auto guard = qScopeGuard(
+        [&]
+        {
+            emit dataChanged(index(0, 0), index(columnCount() - 1, rowCount() - 1));
+            emit currentPageChanged(page);
+        });
+
     if (afterRowCount == beforeRowCount)
         return;
     if (afterRowCount > beforeRowCount)
@@ -121,9 +130,6 @@ void QCtmAbstractMultiPageItemModel::setCurrentPage(int page)
         endRemoveRows();
         m_impl->currentPage = page;
     }
-
-    emit dataChanged(index(0, 0), index(columnCount() - 1, rowCount() - 1));
-    emit currentPageChanged(page);
 }
 
 /*!
