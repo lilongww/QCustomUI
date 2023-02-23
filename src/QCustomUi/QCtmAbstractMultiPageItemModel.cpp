@@ -91,7 +91,26 @@ void QCtmAbstractMultiPageItemModel::setCurrentPage(int page)
         return;
     if (page == m_impl->currentPage)
         return;
+    auto beforeRowCount = rowCount();
+    auto beforePage     = m_impl->currentPage;
     m_impl->currentPage = page;
+    auto afterRowCount  = rowCount();
+
+    if (afterRowCount == beforeRowCount)
+        return;
+    if (afterRowCount > beforeRowCount)
+    {
+        beginInsertRows(QModelIndex {}, beforeRowCount, afterRowCount - 1);
+        endInsertRows();
+    }
+    else
+    {
+        m_impl->currentPage = beforePage; // 防止断言
+        beginRemoveRows(QModelIndex {}, afterRowCount, beforeRowCount - 1);
+        endRemoveRows();
+        m_impl->currentPage = page;
+    }
+
     emit dataChanged(index(0, 0), index(columnCount() - 1, rowCount() - 1));
     emit currentPageChanged(page);
 }
