@@ -57,6 +57,16 @@ struct QCtmAbstractMultiPageItemModel::Impl
 QCtmAbstractMultiPageItemModel::QCtmAbstractMultiPageItemModel(QObject* parent /*= nullptr*/)
     : QAbstractItemModel(parent), m_impl(std::make_unique<Impl>())
 {
+    connect(this,
+            &QCtmAbstractMultiPageItemModel::pageCountChanged,
+            this,
+            [=](int count)
+            {
+                if (m_impl->currentPage >= count)
+                {
+                    setCurrentPage(std::max(count - 1, 0));
+                }
+            });
 }
 
 /*!
@@ -91,6 +101,7 @@ void QCtmAbstractMultiPageItemModel::setCurrentPage(int page)
         return;
     if (page == m_impl->currentPage)
         return;
+    page                = std::min(page, pageCount() - 1); // page合法化
     auto beforeRowCount = rowCount();
     auto beforePage     = m_impl->currentPage;
     m_impl->currentPage = page;
