@@ -201,6 +201,7 @@ void QCtmMultiPageButtonBox::onPageCountChanged()
             m_impl->pageButtonGroup->addButton(btn, m_impl->pageButtonGroup->buttons().size());
             m_impl->pageButtonLayout->addWidget(btn);
         }
+        onCurrentPageChanged(); // 更新按钮文本
     }
     else
     {
@@ -212,6 +213,7 @@ void QCtmMultiPageButtonBox::onPageCountChanged()
             btn->hide();
             btn->deleteLater();
         }
+        onCurrentPageChanged(); // 更新按钮文本
     }
 
     m_impl->currentPage->setRange(m_impl->model->pageCount() ? 1 : 0, m_impl->model->pageCount());
