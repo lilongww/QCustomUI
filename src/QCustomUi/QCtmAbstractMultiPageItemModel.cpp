@@ -99,9 +99,9 @@ int QCtmAbstractMultiPageItemModel::offset() const { return m_impl->currentPage 
 */
 void QCtmAbstractMultiPageItemModel::setCurrentPage(int page)
 {
+    page = std::min(page, pageCount() - 1); // page合法化
     if (page < 0)
         return;
-    page = std::min(page, pageCount() - 1); // page合法化
     if (page == m_impl->currentPage)
         return;
     auto beforeRowCount = rowCount();
