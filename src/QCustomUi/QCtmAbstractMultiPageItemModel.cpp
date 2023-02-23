@@ -99,9 +99,9 @@ void QCtmAbstractMultiPageItemModel::setCurrentPage(int page)
 {
     if (page < 0)
         return;
+    page = std::min(page, pageCount() - 1); // page合法化
     if (page == m_impl->currentPage)
         return;
-    page                = std::min(page, pageCount() - 1); // page合法化
     auto beforeRowCount = rowCount();
     auto beforePage     = m_impl->currentPage;
     m_impl->currentPage = page;
