@@ -41,7 +41,7 @@ protected:
     {
         if (event->type() != QEvent::MouseButtonPress)
             return false;
-        if (m_bindedBox && m_bindedBox->isEnabled() && watched == m_bindedBox->findChild<QLineEdit*>())
+        if (m_bindedBox && m_bindedBox->isEnabled() && !m_bindedBox->isReadOnly() && watched == m_bindedBox->findChild<QLineEdit*>())
         {
             if (!m_keyboard)
             {
@@ -347,7 +347,8 @@ QSize QCtmDigitKeyboard::minimumSizeHint() const
 */
 bool QCtmDigitKeyboard::eventFilter(QObject* obj, QEvent* event)
 {
-    if (m_impl->bindedBox && m_impl->bindedBox->isEnabled() && obj == m_impl->bindedBox->findChild<QLineEdit*>())
+    if (m_impl->bindedBox && m_impl->bindedBox->isEnabled() && !m_impl->bindedBox->isReadOnly() &&
+        obj == m_impl->bindedBox->findChild<QLineEdit*>())
     {
         if (event->type() == QEvent::MouseButtonPress)
         {

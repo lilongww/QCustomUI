@@ -16,6 +16,8 @@ private slots:
     void bindDoubleSpinBox();
     void spinBoxRangeTest();
     void doubleSpinBoxRangeTest();
+    void disableTest();
+    void readOnlyTest();
 
 private:
     QPushButton* findButtonHasText(QCtmDigitKeyboard* board, const QString& txt) const
@@ -154,6 +156,54 @@ void tst_QCtmDigitKeyboard::doubleSpinBoxRangeTest()
         board->setUnits({ { "Hz", 0.0, 1E6 }, { "kHz", 0.0, 1E3 } });
         QVERIFY(box.minimum() == 0.0 && box.maximum() == 1E3);
     }
+}
+
+void tst_QCtmDigitKeyboard::disableTest()
+{
+    QSpinBox box(nullptr);
+    auto board = new QCtmDigitKeyboard(&box);
+    board->bindBox(&box);
+    box.setEnabled(false);
+    box.show();
+    QVERIFY(QTest::qWaitForWindowExposed(&box));
+    QMetaObject::invokeMethod(
+        board,
+        [&]()
+        {
+            auto scope = qScopeGuard(
+                [&]
+                {
+                    box.close();
+                    board->hide();
+                });
+            QVERIFY(!QTest::qWaitFor([=] { return board->isVisible(); }, 1000));
+        },
+        Qt::QueuedConnection);
+    QTest::mouseClick(box.findChild<QLineEdit*>(), Qt::MouseButton::LeftButton);
+}
+
+void tst_QCtmDigitKeyboard::readOnlyTest()
+{
+    QSpinBox box(nullptr);
+    auto board = new QCtmDigitKeyboard(&box);
+    board->bindBox(&box);
+    box.setReadOnly(true);
+    box.show();
+    QVERIFY(QTest::qWaitForWindowExposed(&box));
+    QMetaObject::invokeMethod(
+        board,
+        [&]()
+        {
+            auto scope = qScopeGuard(
+                [&]
+                {
+                    box.close();
+                    board->hide();
+                });
+            QVERIFY(!QTest::qWaitFor([=] { return board->isVisible(); }, 1000));
+        },
+        Qt::QueuedConnection);
+    QTest::mouseClick(box.findChild<QLineEdit*>(), Qt::MouseButton::LeftButton);
 }
 
 QTEST_MAIN(tst_QCtmDigitKeyboard)
