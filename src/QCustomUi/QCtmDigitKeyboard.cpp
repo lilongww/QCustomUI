@@ -85,6 +85,23 @@ struct QCtmDigitKeyboard::Impl
     QAbstractSpinBox* box { nullptr };
     int decimals { 2 };
     QAbstractSpinBox* bindedBox { nullptr };
+    inline void updateBindedBoxRange()
+    {
+        if (!bindedBox || units.empty())
+            return;
+        if (auto suffix = bindedBox->property("suffix").toString(); !suffix.isEmpty())
+        {
+            auto it = std::find_if(units.begin(), units.end(), [&](const auto& u) { return u.unit == suffix; });
+            if (it != units.end())
+            {
+                bindedBox->setProperty("maximum", it->maximum);
+                bindedBox->setProperty("minimum", it->minimum);
+                return;
+            }
+        }
+        bindedBox->setProperty("maximum", units.front().maximum);
+        bindedBox->setProperty("minimum", units.front().minimum);
+    }
 };
 
 /*!
@@ -226,6 +243,7 @@ void QCtmDigitKeyboard::setUnits(const Units& units)
         return;
     createUnits();
     setCurrentUnitIndex(0);
+    m_impl->updateBindedBoxRange();
 }
 
 /*!
@@ -279,6 +297,8 @@ int QCtmDigitKeyboard::decimals() const { return m_impl->decimals; }
 */
 void QCtmDigitKeyboard::bindBox(QAbstractSpinBox* box)
 {
+    if (box == m_impl->bindedBox)
+        return;
     setInputMode(qobject_cast<QSpinBox*>(box) ? InputMode::IntInput : InputMode::DoubleInput);
     if (m_impl->bindedBox)
         m_impl->bindedBox->findChild<QLineEdit*>()->removeEventFilter(this);
@@ -293,6 +313,7 @@ void QCtmDigitKeyboard::bindBox(QAbstractSpinBox* box)
         connect(qobject_cast<QDoubleSpinBox*>(box), qOverload<double>(&QDoubleSpinBox::valueChanged), this, &QCtmDigitKeyboard::setValue);
     }
     box->findChild<QLineEdit*>()->installEventFilter(this);
+    m_impl->updateBindedBoxRange();
 }
 
 /*!
@@ -459,9 +480,7 @@ void QCtmDigitKeyboard::init()
 void QCtmDigitKeyboard::clearUnits()
 {
     if (m_impl->box)
-    {
         m_impl->box->setProperty("suffix", "");
-    }
     for (int row = m_impl->ui.unitsLayout->rowCount() - 1; row >= 0; row--)
     {
         for (int col = m_impl->ui.unitsLayout->columnCount() - 1; col >= 0; col--)
