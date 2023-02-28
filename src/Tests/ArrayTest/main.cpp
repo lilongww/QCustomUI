@@ -38,6 +38,33 @@ TEST(ArrayTest, BinaryArray_double)
     EXPECT_EQ(vec1, static_cast<std::vector<double>>(OpenVisa::BinaryArray<double>(std::move(buffer))));
 }
 
+TEST(ArrayTest, BinaryArray_string)
+{
+    std::vector<double> vec1 { 1.0, 2.0 };
+    std::string buffer(4 + sizeof(double) * vec1.size(), 0);
+    buffer[0] = '#';
+    buffer[1] = '2';
+    buffer[2] = '1';
+    buffer[3] = '6';
+    std::string v { reinterpret_cast<const char*>(vec1.data()), vec1.size() * sizeof(std::vector<double>::value_type) };
+    memcpy(buffer.data() + 4, vec1.data(), vec1.size() * sizeof(double));
+    EXPECT_EQ(v, static_cast<std::string>(OpenVisa::BinaryArray<std::string>(std::move(buffer))));
+}
+
+TEST(ArrayTest, BinaryArray_wstring)
+{
+    std::vector<double> vec1 { 1.0, 2.0 };
+    std::string buffer(4 + sizeof(double) * vec1.size(), 0);
+    buffer[0] = '#';
+    buffer[1] = '2';
+    buffer[2] = '1';
+    buffer[3] = '6';
+    std::wstring v { reinterpret_cast<const wchar_t*>(vec1.data()),
+                     vec1.size() * sizeof(std::vector<double>::value_type) / sizeof(wchar_t) };
+    memcpy(buffer.data() + 4, vec1.data(), vec1.size() * sizeof(double));
+    EXPECT_EQ(v, static_cast<std::wstring>(OpenVisa::BinaryArray<std::wstring>(std::move(buffer))));
+}
+
 int main(int argc, char* argv[])
 {
     std::cout << std::string("OpenVisa Version:") + OPENVISA_VERSION << std::endl;
