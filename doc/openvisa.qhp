@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <QtHelpProject version="1.0">
-    <namespace>com.openvisa.0.6.0</namespace>
+    <namespace>com.openvisa.0.7.0</namespace>
     <virtualFolder>openvisa</virtualFolder>
     <metaData name="version" value=""/>
     <customFilter name="OpenVisa">
