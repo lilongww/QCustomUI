@@ -26,7 +26,7 @@ namespace OpenVisa
 class ObjectAdapter
 {
 public:
-    [[nodiscard]] Object& object() { return m_object; }
+    [[nodiscard]] inline Object& object() { return m_object; }
     template<typename... Args>
     inline void send(std::string_view fmt, const Args&... args)
     {

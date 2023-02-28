@@ -19,13 +19,18 @@
 #pragma once
 
 #include "Object.h"
+#include "ObjectAdapter.h"
 #include "StatusByteRegister.h"
 
 #include <vector>
 
+#if WIN32
+#pragma warning(push)
+#pragma warning(disable : 4275)
+#endif
 namespace OpenVisa
 {
-class OPENVISA_EXPORT Object::CommonCommand
+class OPENVISA_EXPORT Object::CommonCommand : private ObjectAdapter
 {
 public:
     void cls();
@@ -45,8 +50,10 @@ public:
     void rcl(int i);
 
 private:
-    inline CommonCommand(Object* parent) : m_parent(parent) {};
+    inline CommonCommand(Object& parent) : ObjectAdapter(parent) {};
     friend Object;
-    Object* m_parent;
 };
+#if WIN32
+#pragma warning(pop)
+#endif
 } // namespace OpenVisa
