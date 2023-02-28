@@ -25,6 +25,10 @@ if(MSVC)
     list(APPEND RESOURCES ${OPENVISA_VERSIONINFO_RC}) 
 endif(MSVC)
 
+set(OPENVISA_VERSION_H ${CMAKE_CURRENT_BINARY_DIR}/Version.h)
+configure_file("${PROJECT_SOURCE_DIR}/cmake/Version.h.in" "${OPENVISA_VERSION_H}")
+list(APPEND HEADERS ${OPENVISA_VERSION_H}) 
+
 source_group("Headers" FILES ${HEADERS})
 source_group("Sources" FILES ${SOURCES})
 source_group("Privates" FILES ${PRIVATES})

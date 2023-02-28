@@ -44,7 +44,7 @@ struct Object::Impl
     Attribute attr;
     CommonCommand commonCommand;
 
-    inline Impl(Object* obj) : commonCommand(obj), attr(&io) {}
+    inline Impl(Object& obj) : commonCommand(obj), attr(&io) {}
 };
 
 /*!
@@ -82,7 +82,7 @@ struct Object::Impl
 /*!
     \brief      构造函数.
 */
-Object::Object() : m_impl(std::make_unique<Impl>(this)) {}
+Object::Object() : m_impl(std::make_unique<Impl>(*this)) {}
 
 /*!
     \brief      析构函数.
