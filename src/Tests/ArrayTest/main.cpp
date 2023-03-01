@@ -19,6 +19,20 @@ TEST(ArrayTest, AsciiArray_double)
     EXPECT_EQ(vec1, static_cast<std::vector<double>>(OpenVisa::AsciiArray<double>("123.1,456.256,789.993,\n")));
 }
 
+TEST(ArrayTest, AsciiArray_complex)
+{
+    std::vector<std::complex<double>> vec1 { { 123.1, 456.256 }, { 789.993, 646.444 } };
+    EXPECT_EQ(
+        vec1,
+        static_cast<std::vector<std::complex<double>>>(OpenVisa::AsciiArray<std::complex<double>>("123.1,456.256,789.993,646.444\n")));
+    EXPECT_EQ(vec1,
+              static_cast<std::vector<std::complex<double>>>(
+                  OpenVisa::AsciiArray<std::complex<double>>("abc,123.1,456.256,789.993,646.444\n", 4)));
+    EXPECT_EQ(
+        vec1,
+        static_cast<std::vector<std::complex<double>>>(OpenVisa::AsciiArray<std::complex<double>>("123.1,456.256,789.993,646.444,\n")));
+}
+
 TEST(ArrayTest, BinaryArray_int)
 {
     std::vector<int> vec1 { 1, 2 };
