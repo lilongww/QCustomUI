@@ -128,6 +128,6 @@ struct VisaAdl
                 it != m_enumStrings.end())                                                                                                 \
                 e = static_cast<Enum>(std::distance(m_enumStrings.begin(), it) + static_cast<Int>(EnumBegin));                             \
             else                                                                                                                           \
-                throw std::exception("Unknown enum.");                                                                                     \
+                throw std::runtime_error("Unknown enum.");                                                                                 \
         }                                                                                                                                  \
     }

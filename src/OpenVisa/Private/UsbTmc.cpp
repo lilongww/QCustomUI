@@ -338,6 +338,7 @@ void UsbTmc::close() noexcept
 bool UsbTmc::connected() const noexcept { return m_impl->handle; }
 
 size_t UsbTmc::avalible() const noexcept { return m_impl->avalibe; }
+
 std::vector<OpenVisa::Address<OpenVisa::AddressType::USB>> UsbTmc::listUSB()
 {
     std::vector<OpenVisa::Address<OpenVisa::AddressType::USB>> address;

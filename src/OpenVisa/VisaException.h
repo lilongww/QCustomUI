@@ -22,6 +22,7 @@
 
 namespace OpenVisa
 {
+/*当前未使用该类型*/
 class Exception : public std::exception
 {
 public:

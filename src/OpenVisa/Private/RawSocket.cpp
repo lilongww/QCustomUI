@@ -70,7 +70,7 @@ void RawSocket::connect(const Address<AddressType::RawSocket>& addr, const std::
     if (!mutex->try_lock_for(openTimeout))
     {
         m_impl->socket.close();
-        throw std::exception("connect timeout");
+        throw std::exception("Connect timeout.");
     }
     if (*error != boost::system::errc::success)
     {
@@ -98,7 +98,7 @@ void RawSocket::send(const std::string& buffer) const
     if (!mutex->try_lock_for(m_attr.timeout()))
     {
         m_impl->socket.cancel();
-        throw std::exception("send timeout");
+        throw std::exception("Send timeout.");
     }
     if (*error != boost::system::errc::success)
     {
@@ -147,7 +147,7 @@ std::string RawSocket::read(size_t size) const
     if (!mutex->try_lock_for(m_attr.timeout()))
     {
         m_impl->socket.cancel();
-        throw std::exception("read timeout");
+        throw std::exception("Read timeout.");
     }
     if (*error != boost::system::errc::success)
     {
@@ -194,7 +194,7 @@ std::string RawSocket::readAllAscii() const
     if (!mutex->try_lock_for(m_attr.timeout()))
     {
         m_impl->socket.cancel();
-        throw std::exception("read timeout");
+        throw std::exception("Read timeout.");
     }
     if (*error != boost::system::errc::success)
     {
@@ -249,7 +249,7 @@ std::string RawSocket::readAllBlockData(unsigned char bufferStringLen) const
     if (!mutex->try_lock_for(m_attr.timeout()))
     {
         m_impl->socket.cancel();
-        throw std::exception("read timeout");
+        throw std::exception("Read timeout.");
     }
     if (*error != boost::system::errc::success)
     {

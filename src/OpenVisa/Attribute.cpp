@@ -32,6 +32,7 @@ struct Object::Attribute::Impl
     std::optional<FlowControl> flowControl;
     std::optional<Parity> parity;
     std::optional<StopBits> stopBits;
+    std::string deviceName;
     inline Impl(std::shared_ptr<IOBase>* _io) : io(_io) {}
     inline std::shared_ptr<SerialPort> asSerialPort() const { return io ? std::dynamic_pointer_cast<SerialPort>(*io) : nullptr; }
 };
@@ -220,5 +221,18 @@ void Object::Attribute::setStopBits(StopBits bits)
     if (auto sp = m_impl->asSerialPort(); sp)
         sp->setStopBits(bits);
 }
+
+/*!
+    \brief      设置设备名称 \a name, 该设置不是必须的，如果设置了设备名称，抛出异常时，
+                异常描述将以该设备名称为前缀，用于多台设备控制时的区分，若未设置设备名，则抛出的异常描述无前缀.
+    \sa         deviceName
+*/
+void Object::Attribute::setDeviceName(std::string_view name) { m_impl->deviceName = name; }
+
+/*!
+    \brief      返回设备名称.
+    \sa         setDeviceName
+*/
+const std::string& Object::Attribute::deviceName() const { return m_impl->deviceName; }
 
 } // namespace OpenVisa

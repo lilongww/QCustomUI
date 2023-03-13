@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <QtHelpProject version="1.0">
-    <namespace>com.openvisa.0.8.0</namespace>
+    <namespace>com.openvisa.0.9.0</namespace>
     <virtualFolder>openvisa</virtualFolder>
     <metaData name="version" value=""/>
     <customFilter name="OpenVisa">
@@ -108,6 +108,7 @@
             <keyword name="data" id="BinaryArray::data" ref="openvisa-binaryarray.html#data"/>
             <keyword name="dataBits" id="Attribute::dataBits" ref="openvisa-object-attribute.html#dataBits"/>
             <keyword name="description" id="SerialPortInfo::description" ref="openvisa-serialportinfo.html#description"/>
+            <keyword name="deviceName" id="Attribute::deviceName" ref="openvisa-object-attribute.html#deviceName"/>
             <keyword name="empty" id="BinaryArray::empty" ref="openvisa-binaryarray.html#empty"/>
             <keyword name="end" id="BinaryArray::end" ref="openvisa-binaryarray.html#end"/>
             <keyword name="ese" id="CommonCommand::ese" ref="openvisa-object-commoncommand.html#ese"/>
@@ -146,6 +147,7 @@
             <keyword name="setAutoAppendTerminalChars" id="Attribute::setAutoAppendTerminalChars" ref="openvisa-object-attribute.html#setAutoAppendTerminalChars"/>
             <keyword name="setBaudRate" id="Attribute::setBaudRate" ref="openvisa-object-attribute.html#setBaudRate"/>
             <keyword name="setDataBits" id="Attribute::setDataBits" ref="openvisa-object-attribute.html#setDataBits"/>
+            <keyword name="setDeviceName" id="Attribute::setDeviceName" ref="openvisa-object-attribute.html#setDeviceName"/>
             <keyword name="setEse" id="CommonCommand::setEse" ref="openvisa-object-commoncommand.html#setEse"/>
             <keyword name="setFlowControl" id="Attribute::setFlowControl" ref="openvisa-object-attribute.html#setFlowControl"/>
             <keyword name="setOpc" id="CommonCommand::setOpc" ref="openvisa-object-commoncommand.html#setOpc"/>
