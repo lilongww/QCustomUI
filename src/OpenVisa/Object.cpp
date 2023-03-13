@@ -25,6 +25,7 @@
 #include "Private/SerialPort.h"
 #include "Private/UsbTmc.h"
 #include "Private/VXI11.h"
+#include "Private/VisaExceptionHelper.h"
 #include "SerialPortInfo.h"
 #include "Utils.h"
 
@@ -108,7 +109,7 @@ OPENVISA_EXPORT void Object::connectImpl<Address<AddressType::RawSocket>>(const 
 {
     m_impl->attr.setTimeout(commandTimeout);
     auto socket = std::make_shared<RawSocket>(m_impl->attr);
-    socket->connect(addr, openTimeout);
+    visaReThrow(m_impl->attr, [&] { socket->connect(addr, openTimeout); });
     m_impl->io = socket;
     afterConnected();
 }
@@ -120,7 +121,7 @@ OPENVISA_EXPORT void Object::connectImpl<Address<AddressType::SerialPort>>(const
 {
     m_impl->attr.setTimeout(commandTimeout);
     auto serialPort = std::make_shared<SerialPort>(m_impl->attr);
-    serialPort->connect(addr, openTimeout);
+    visaReThrow(m_impl->attr, [&] { serialPort->connect(addr, openTimeout); });
     m_impl->io = serialPort;
     afterConnected();
 }
@@ -132,7 +133,7 @@ OPENVISA_EXPORT void Object::connectImpl<Address<AddressType::USB>>(const Addres
 {
     m_impl->attr.setTimeout(commandTimeout);
     auto usb = std::make_shared<UsbTmc>(m_impl->attr);
-    usb->connect(addr, openTimeout);
+    visaReThrow(m_impl->attr, [&] { usb->connect(addr, openTimeout); });
     m_impl->io = usb;
     afterConnected();
 }
@@ -144,7 +145,7 @@ OPENVISA_EXPORT void Object::connectImpl<Address<AddressType::VXI11>>(const Addr
 {
     m_impl->attr.setTimeout(commandTimeout);
     auto vxi11 = std::make_shared<VXI11>(m_impl->attr);
-    vxi11->connect(addr, openTimeout);
+    visaReThrow(m_impl->attr, [&] { vxi11->connect(addr, openTimeout); });
     m_impl->io = vxi11;
     afterConnected();
 }
@@ -156,7 +157,7 @@ OPENVISA_EXPORT void Object::connectImpl<Address<AddressType::HiSLIP>>(const Add
 {
     m_impl->attr.setTimeout(commandTimeout);
     auto hiSLIP = std::make_shared<HiSLIP>(m_impl->attr);
-    hiSLIP->connect(addr, openTimeout);
+    visaReThrow(m_impl->attr, [&] { hiSLIP->connect(addr, openTimeout); });
     m_impl->io = hiSLIP;
     afterConnected();
 }
@@ -166,8 +167,10 @@ OPENVISA_EXPORT void Object::connectImpl<std::string>(const std::string& addr,
                                                       const std::chrono::milliseconds& openTimeout /*= 5000*/,
                                                       const std::chrono::milliseconds& commandTimeout /*= 5000*/)
 {
-    auto addressVariant = fromVisaAddressString(addr);
-    std::visit(Overload { [](const std::monostate&) { throw std::system_error(std::make_error_code(std::errc::address_not_available)); },
+    AddressVariant addressVariant;
+    visaReThrow(m_impl->attr, [&] { addressVariant = fromVisaAddressString(addr); });
+    std::visit(Overload { [&](const std::monostate&)
+                          { visaThrow(m_impl->attr, std::make_error_code(std::errc::address_not_available).message()); },
                           [&](const auto& addr) { connectImpl(addr, openTimeout, commandTimeout); } },
                addressVariant);
 }
@@ -177,8 +180,12 @@ OPENVISA_EXPORT void Object::connectImpl<std::string>(const std::string& addr,
 */
 void Object::sendBlockData(const std::string& data)
 {
-    throwNoConnection();
-    m_impl->io->send(data);
+    visaReThrow(m_impl->attr,
+                [&]
+                {
+                    throwNoConnection();
+                    m_impl->io->send(data);
+                });
 }
 
 /*!
@@ -187,8 +194,12 @@ void Object::sendBlockData(const std::string& data)
 */
 std::string Object::readAll()
 {
-    throwNoConnection();
-    return m_impl->io->readAll();
+    return visaReThrow(m_impl->attr,
+                       [&]
+                       {
+                           throwNoConnection();
+                           return m_impl->io->readAll();
+                       });
 }
 
 /*!
@@ -197,8 +208,12 @@ std::string Object::readAll()
 */
 std::tuple<std::string, bool> Object::read(unsigned long blockSize)
 {
-    throwNoConnection();
-    return { m_impl->io->read(blockSize), m_impl->io->avalible() };
+    return visaReThrow(m_impl->attr,
+                       [&]() -> std::tuple<std::string, bool>
+                       {
+                           throwNoConnection();
+                           return { m_impl->io->read(blockSize), m_impl->io->avalible() };
+                       });
 }
 
 /*!
@@ -292,7 +307,7 @@ void Object::throwNoConnection() const
 {
     if (!connected())
     {
-        throw std::exception("not connection");
+        throw std::runtime_error("Device not connected.");
     }
 }
 

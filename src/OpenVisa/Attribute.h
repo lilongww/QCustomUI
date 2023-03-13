@@ -86,6 +86,8 @@ public:
     [[nodiscard]] std::optional<Parity> parity() const;
     void setStopBits(StopBits bits);
     [[nodiscard]] std::optional<StopBits> stopBits() const;
+    void setDeviceName(std::string_view name);
+    [[nodiscard]] const std::string& deviceName() const;
 
 protected:
     Attribute(std::shared_ptr<IOBase>* io);

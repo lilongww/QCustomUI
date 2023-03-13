@@ -1,4 +1,5 @@
-﻿#include <OpenVisa/Object.h>
+﻿#include <OpenVisa/Attribute.h>
+#include <OpenVisa/Object.h>
 #include <OpenVisa/Utils.h>
 
 #include <iostream>
@@ -11,6 +12,7 @@ int main(int argc, char* argv[])
         // obj.connect(OpenVisa::Address<OpenVisa::AddressType::HiSLIP>("192.168.2.111"));
         // obj.connect(OpenVisa::Address<OpenVisa::AddressType::VXI11>("192.168.2.111", "inst0"));
         // obj.connect("TCPIP::192.168.2.111::INSTR");
+        obj.attribute().setDeviceName("ZNA 43");
         const char* str = "TCPIP::192.168.2.111::INSTR";
         // obj.connect(str);
         obj.connect(const_cast<char*>(str));

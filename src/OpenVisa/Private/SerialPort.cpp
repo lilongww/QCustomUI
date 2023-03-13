@@ -87,7 +87,7 @@ void SerialPort::send(const std::string& buffer) const
     if (!mutex->try_lock_for(m_attr.timeout()))
     {
         m_impl->serialPort.cancel();
-        throw std::exception("send timeout");
+        throw std::exception("Send timeout.");
     }
     if (*error != boost::system::errc::success)
     {
@@ -136,7 +136,7 @@ std::string SerialPort::read(size_t size) const
     if (!mutex->try_lock_for(m_attr.timeout()))
     {
         m_impl->serialPort.cancel();
-        throw std::exception("read timeout");
+        throw std::exception("Read timeout.");
     }
     if (*error != boost::system::errc::success)
     {
@@ -226,7 +226,7 @@ std::string SerialPort::readAllAscii() const
     if (!mutex->try_lock_for(m_attr.timeout()))
     {
         m_impl->serialPort.cancel();
-        throw std::exception("read timeout");
+        throw std::exception("Read timeout.");
     }
     if (*error != boost::system::errc::success)
     {
@@ -281,7 +281,7 @@ std::string SerialPort::readAllBlockData(unsigned char bufferStringLen) const
     if (!mutex->try_lock_for(m_attr.timeout()))
     {
         m_impl->serialPort.cancel();
-        throw std::exception("read timeout");
+        throw std::exception("Read timeout.");
     }
     if (*error != boost::system::errc::success)
     {
