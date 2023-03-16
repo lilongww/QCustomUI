@@ -261,31 +261,31 @@ AddressVariant Object::fromVisaAddressString(const std::string& str)
         auto tokens = split(addr, "::");
         if (tokens.size() < 2)
             return std::monostate {};
-        if (tokens[0].starts_with("tcpip"))
+        if (tokens.at(0).starts_with("tcpip"))
         {
             if (addr.contains("hislip"))
             {
-                auto temp = split(tokens[2], ",");
+                auto temp = split(tokens.at(2), ",");
                 return Address<AddressType::HiSLIP>(
-                    tokens[1], temp[0], temp.size() == 2 ? static_cast<unsigned short>(std::stoul(temp[1])) : 4880);
+                    tokens.at(1), temp.at(0), temp.size() == 2 ? static_cast<unsigned short>(std::stoul(temp.at(1))) : 4880);
             }
             if (addr.ends_with("instr"))
-                return Address<AddressType::VXI11>(tokens[1], tokens.size() == 3 ? "inst0" : tokens[2]);
+                return Address<AddressType::VXI11>(tokens.at(1), tokens.size() == 3 ? "inst0" : tokens.at(2));
             else if (addr.ends_with("socket"))
-                return Address<AddressType::RawSocket>(tokens[1], static_cast<unsigned short>(std::stoul(tokens[2])));
+                return Address<AddressType::RawSocket>(tokens.at(1), static_cast<unsigned short>(std::stoul(tokens.at(2))));
         }
-        else if (tokens[0].starts_with("asrl"))
+        else if (tokens.at(0).starts_with("asrl"))
         {
             std::string temp;
-            std::ranges::copy(tokens[0] | std::views::filter([](auto ch) { return ch >= '0' && ch <= '9'; }), std::back_inserter(temp));
+            std::ranges::copy(tokens.at(0) | std::views::filter([](auto ch) { return ch >= '0' && ch <= '9'; }), std::back_inserter(temp));
             auto opt = OpenVisa::OpenVisaConfig::instance().fromAsrl(static_cast<unsigned long>(std::stoul(temp)));
             return opt ? AddressVariant { Address<AddressType::SerialPort>(opt->portName) } : std::monostate {};
         }
-        else if (tokens[0].starts_with("usb"))
+        else if (tokens.at(0).starts_with("usb"))
         {
-            return Address<AddressType::USB>(static_cast<unsigned short>(std::stoul(tokens[1], nullptr, 16)),
-                                             static_cast<unsigned short>(std::stoul(tokens[2], nullptr, 16)),
-                                             tokens[3]);
+            return Address<AddressType::USB>(static_cast<unsigned short>(std::stoul(tokens.at(1), nullptr, 16)),
+                                             static_cast<unsigned short>(std::stoul(tokens.at(2), nullptr, 16)),
+                                             tokens.at(3));
         }
     }
     catch (const std::exception&)
