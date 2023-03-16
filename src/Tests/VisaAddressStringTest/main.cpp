@@ -27,6 +27,7 @@ TEST(VisaAddressStringTest, USB)
     auto str  = "USB::0XFFFF::0X6300::abcdefghijklmn::INSTR";
     EXPECT_EQ(Object::toVisaAddressString(addr), str);
     EXPECT_EQ(std::get<3>(Object::fromVisaAddressString(str)), addr);
+    EXPECT_EQ(Object::fromVisaAddressString("USB::0XFFFF::0X6300::").index(), 0);
 }
 
 TEST(VisaAddressStringTest, VXI11)
