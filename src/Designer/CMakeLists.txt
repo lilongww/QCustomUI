@@ -36,8 +36,9 @@ set(CMAKE_AUTOMOC ON)
 set(CMAKE_AUTOUIC ON)
 set(CMAKE_AUTORCC ON)
 
-find_package(QT NAMES Qt6 Qt5 REQUIRED)
+find_package(QT NAMES Qt6 Qt5 COMPONENTS Core REQUIRED)
 find_package(Qt${QT_VERSION_MAJOR} COMPONENTS Core Gui Widgets UiPlugin REQUIRED)
+file(REAL_PATH "${QT_DIR}/../../.." QTDIR)
 
 include_directories(../)
 
@@ -49,18 +50,17 @@ add_library(${TARGET_NAME} SHARED
      )
 
 target_link_libraries(${TARGET_NAME} PUBLIC QCustomUi PRIVATE Qt${QT_VERSION_MAJOR}::Core Qt${QT_VERSION_MAJOR}::Gui Qt${QT_VERSION_MAJOR}::Widgets Qt${QT_VERSION_MAJOR}::UiPlugin)
-set_target_properties(${TARGET_NAME} PROPERTIES VERSION ${QCUSTOMUI_VERSION} SOVERSION 1)
 
 install(TARGETS ${TARGET_NAME}
         CONFIGURATIONS Release
-        RUNTIME DESTINATION ${QTDIR}/plugins/designer)
+        RUNTIME DESTINATION "${QTDIR}/plugins/designer")
 install(TARGETS ${TARGET_NAME}
         CONFIGURATIONS Release
-        RUNTIME DESTINATION ${QTDIR}/../../Tools/QtCreator/bin/plugins/designer)
+        RUNTIME DESTINATION "${QTDIR}/../../Tools/QtCreator/bin/plugins/designer")
 
 install(FILES ${QCustomUi_BINARY_DIR}/src/QCustomUi/QCustomUi${CMAKE_SHARED_MODULE_SUFFIX}
         CONFIGURATIONS Release
-        DESTINATION ${QTDIR}/bin)
+        DESTINATION "${QTDIR}/bin")
 install(FILES ${QCustomUi_BINARY_DIR}/src/QCustomUi/QCustomUi${CMAKE_SHARED_MODULE_SUFFIX}
         CONFIGURATIONS Release
-        DESTINATION ${QTDIR}/../../Tools/QtCreator/bin)
+        DESTINATION "${QTDIR}/../../Tools/QtCreator/bin")
