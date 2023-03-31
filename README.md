@@ -124,7 +124,7 @@ std::cout << visa.readAll();
 // 枚举所有串口设备
 OpenVisa::Object::listSerialPorts();
 // 枚举所有USB设备
-std::vector<Address<AddressType::USB>> listUSB();
+OpenVisa::Object::listUSB();
 ```
 
 
