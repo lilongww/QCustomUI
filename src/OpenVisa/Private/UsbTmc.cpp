@@ -89,6 +89,12 @@ static std::string getStringDescriptor(libusb_device_handle* handle, uint8_t des
     return descriptor;
 }
 
+inline bool checkUSBTMC(const libusb_interface_descriptor& desc)
+{
+    return desc.bLength == 0x09 && desc.bDescriptorType == 0x04 && desc.bAlternateSetting == 0x00 && desc.bInterfaceClass == 0xFE &&
+           desc.bInterfaceSubClass == 0x03 && desc.bInterfaceProtocol == 0x01;
+}
+
 struct UsbTmc::Impl
 {
     libusb_context* context { nullptr };
@@ -193,10 +199,7 @@ void UsbTmc::connect(const Address<AddressType::USB>& addr, const std::chrono::m
     {
         for (int j = 0; j < conf_desc->interface[i].num_altsetting; j++)
         {
-            if (conf_desc->interface[i].altsetting[j].bLength == 0x09 && conf_desc->interface[i].altsetting[j].bDescriptorType == 0x04 &&
-                conf_desc->interface[i].altsetting[j].bInterfaceClass != 0xFE &&
-                conf_desc->interface[i].altsetting[j].bInterfaceSubClass != 0x03 &&
-                conf_desc->interface[i].altsetting[j].bInterfaceProtocol != 0x01) // USBTMC
+            if (!checkUSBTMC(conf_desc->interface[i].altsetting[j])) // USBTMC
                 continue;
             ifs.push_back(i);
             bool hasIn { false };

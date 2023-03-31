@@ -119,6 +119,21 @@ visa.send("*IDN?");
 std::cout << visa.readAll();
 ```
 
+### 6. 设备枚举
+```cpp
+// 枚举所有串口设备
+auto ports = OpenVisa::Object::listSerialPorts();
+for(const auto& port : ports)
+{
+    std::cout << port << std::endl;
+}
+// 枚举所有USB设备
+auto usbs = OpenVisa::Object::listUSB();
+for(const auto& usb : usbs)
+{
+    std::cout << OpenVisa::Object::toVisaAddressString(usb) << std::endl;
+}
+```
 
 
 ## 五、参考
