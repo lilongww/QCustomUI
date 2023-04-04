@@ -26,6 +26,8 @@ struct QCtmAbstractMultiPageItemModel::Impl
     int currentPage { 0 };
     int pageRowCount { 20 };
     int pageCountCache { 0 };
+
+    int tempPageCount { 0 };
 };
 
 /*!
@@ -68,6 +70,15 @@ QCtmAbstractMultiPageItemModel::QCtmAbstractMultiPageItemModel(QObject* parent /
                 {
                     setCurrentPage(std::max(count - 1, 0));
                 }
+            });
+    connect(this, &QCtmAbstractMultiPageItemModel::modelAboutToBeReset, this, [=]() { m_impl->tempPageCount = pageCount(); });
+    connect(this,
+            &QCtmAbstractMultiPageItemModel::modelReset,
+            this,
+            [=]()
+            {
+                if (auto pageCount = this->pageCount(); pageCount != m_impl->tempPageCount)
+                    emit pageCountChanged(pageCount);
             });
 }
 
