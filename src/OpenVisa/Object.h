@@ -25,7 +25,6 @@
 #include <format>
 #include <memory>
 #include <string>
-#include <string_view>
 
 namespace OpenVisa
 {
@@ -44,18 +43,14 @@ public:
     requires IsAddress<T> || std::same_as<std::string, T> || std::is_array_v<T> || std::same_as<const char*, T> || std::same_as<char*, T>
     inline void connect(const T& addr,
                         const std::chrono::milliseconds& openTimeout    = std::chrono::milliseconds { 5000 },
-                        const std::chrono::milliseconds& commandTimeout = std::chrono::milliseconds { 5000 })
-    {
-        connectImpl(AddressHelper(addr).address, openTimeout, commandTimeout);
-    }
+                        const std::chrono::milliseconds& commandTimeout = std::chrono::milliseconds { 5000 });
     void close() noexcept;
     template<typename... Args>
-    inline void send(std::string_view fmt, const Args&... args);
-    void sendBlockData(const std::string& data);
+    inline void send(const std::string& fmt, const Args&... args);
     std::string readAll();
     std::tuple<std::string, bool> read(unsigned long blockSize);
     template<typename... Args>
-    inline std::string query(std::string_view fmt, const Args&... args);
+    inline std::string query(const std::string& fmt, const Args&... args);
     bool connected() const noexcept;
     Attribute& attribute() noexcept;
     CommonCommand& commonCommand() noexcept;
@@ -80,14 +75,24 @@ private:
     std::unique_ptr<Impl> m_impl;
 };
 
-template<typename... Args>
-inline void Object::send(std::string_view fmt, const Args&... args)
+template<typename T>
+requires IsAddress<T> || std::same_as<std::string, T> || std::is_array_v<T> || std::same_as<const char*, T> || std::same_as<char*, T>
+void Object::connect(const T& addr, const std::chrono::milliseconds& openTimeout, const std::chrono::milliseconds& commandTimeout)
 {
-    sendImpl(std::vformat(fmt, std::make_format_args(std::forward<const Args&>(args)...)));
+    connectImpl(AddressHelper(addr).address, openTimeout, commandTimeout);
 }
 
 template<typename... Args>
-std::string Object::query(std::string_view fmt, const Args&... args)
+inline void Object::send(const std::string& fmt, const Args&... args)
+{
+    if constexpr (sizeof...(args))
+        sendImpl(std::vformat(fmt, std::make_format_args(std::forward<const Args&>(args)...)));
+    else
+        sendImpl(fmt);
+}
+
+template<typename... Args>
+std::string Object::query(const std::string& fmt, const Args&... args)
 {
     send(fmt, std::forward<const Args&>(args)...);
     return readAll();

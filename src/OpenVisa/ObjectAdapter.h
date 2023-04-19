@@ -28,15 +28,14 @@ class ObjectAdapter
 public:
     [[nodiscard]] inline Object& object() { return m_object; }
     template<typename... Args>
-    inline void send(std::string_view fmt, const Args&... args)
+    inline void send(const std::string& fmt, const Args&... args)
     {
         m_object.send(fmt, std::forward<const Args&>(args)...);
     }
-    inline void sendBlockData(const std::string& data) { m_object.sendBlockData(data); }
     [[nodiscard]] inline std::string readAll() { return m_object.readAll(); }
     [[nodiscard]] inline std::tuple<std::string, bool> read(unsigned long blockSize) { return m_object.read(blockSize); }
     template<typename... Args>
-    [[nodiscard]] inline std::string query(std::string_view fmt, const Args&... args)
+    [[nodiscard]] inline std::string query(const std::string& fmt, const Args&... args)
     {
         return m_object.query(fmt, std::forward<const Args&>(args)...);
     }

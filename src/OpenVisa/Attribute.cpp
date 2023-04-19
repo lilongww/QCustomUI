@@ -25,6 +25,7 @@ struct Object::Attribute::Impl
 {
     std::shared_ptr<IOBase>* io { nullptr };
     std::string termChars { "\n" };
+    bool terminalCharsEnable { true };
     std::chrono::milliseconds timeout { 2000 };
     bool autoAppendTerminalChars { true };
     std::optional<unsigned int> baud;
@@ -102,7 +103,7 @@ Object::Attribute::Attribute(std::shared_ptr<IOBase>* io) : m_impl(std::make_uni
 Object::Attribute::~Attribute() {}
 
 /*!
-    \brief      设置终结符 \a chars, 默认为 '\n'(0x0A).
+    \brief      设置终结符 \a chars, 默认为 '\n'(0x0A), 设置这个属性值不会影响它是否被使用.
     \sa         terminalChars
 */
 void Object::Attribute::setTerminalChars(std::string_view chars) { m_impl->termChars = chars; }
@@ -234,5 +235,17 @@ void Object::Attribute::setDeviceName(std::string_view name) { m_impl->deviceNam
     \sa         setDeviceName
 */
 const std::string& Object::Attribute::deviceName() const { return m_impl->deviceName; }
+
+/*!
+    \brief      设置终止符是否启用 \a enable 默认为启用，该属性仅对读取数据有效.
+    \sa         terminalCharsEnable
+*/
+void Object::Attribute::setTerminalCharsEnable(bool enable) { m_impl->terminalCharsEnable = enable; }
+
+/*!
+    \brief      返回终止符是否启用，该属性仅对读取数据有效.
+    \sa         setTerminalCharsEnable
+*/
+bool Object::Attribute::terminalCharsEnable() const { return m_impl->terminalCharsEnable; }
 
 } // namespace OpenVisa

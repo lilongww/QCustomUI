@@ -176,19 +176,6 @@ OPENVISA_EXPORT void Object::connectImpl<std::string>(const std::string& addr,
 }
 
 /*!
-\brief      发送块数据 \a data 专用函数，因发送块数据时，结尾不添加终结符.
-*/
-void Object::sendBlockData(const std::string& data)
-{
-    visaReThrow(m_impl->attr,
-                [&]
-                {
-                    throwNoConnection();
-                    m_impl->io->send(data);
-                });
-}
-
-/*!
     \brief      读取所有数据.
     \sa         read
 */
