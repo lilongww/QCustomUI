@@ -16,61 +16,7 @@
 **  You should have received a copy of the GNU Lesser General Public License    **
 **  along with QCustomUi.  If not, see <https://www.gnu.org/licenses/>.         **
 **********************************************************************************/
-
-*
-{
-    font-family: 'Microsoft YaHei';
-    outline: none;
-}
-
 /***************************QCtmTitleBar************************************/
-
-.QCtmTitleBar #closeBtn
-{
-    qproperty-icon: url(:/QCustomUi/Resources/close-light.png);
-}
-
-.QCtmTitleBar #minimumSizeBtn
-{
-    qproperty-icon: url(:/QCustomUi/Resources/minimize-light.png);
-}
-
-.QCtmTitleBar #maximumSizeBtn[maximumsized=true]
-{
-    qproperty-icon: url(:/QCustomUi/Resources/maximize-light.png);
-}
-
-.QCtmTitleBar #maximumSizeBtn[maximumsized=false]
-{
-    qproperty-icon: url(:/QCustomUi/Resources/maximize_max-light.png);
-}
-
-QCtmTitleBar QAbstractButton
-{
-    padding-left: 5px;
-    padding-right: 5px;
-    border: none;
-    background-color: transparent;
-}
-
-QCtmTitleBar QAbstractButton:hover
-{
-    background-color: #C6C6C6;
-    border: none;
-}
-
-QCtmTitleBar QAbstractButton:pressed
-{
-    background-color: #C0C0C0;
-    border: none;
-}
-
-.QCtmTitleBar
-{
-    background: #D9D9D9;
-    font-weight: 400;
-    color: rgba(94,94,94,1);
-}
 
 .QCtmTitleBar QMenuBar
 {

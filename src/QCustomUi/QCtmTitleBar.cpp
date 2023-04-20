@@ -18,6 +18,7 @@
 **********************************************************************************/
 
 #include "QCtmTitleBar.h"
+#include "Private/QCtmPaletteFactor.h"
 #include "Private/QCtmWidgetItem_p.h"
 #include "Private/Util_p.h"
 #include "ui_QCtmTitleBar.h"
@@ -65,6 +66,7 @@ struct QCtmTitleBar::Impl
 QCtmTitleBar::QCtmTitleBar(QWidget* parent) : QWidget(parent), ui(new Ui::QCtmTitleBar), m_impl(std::make_unique<Impl>())
 {
     ui->setupUi(this);
+    QCtmPaletteFactor::init(this);
     setFocusPolicy(Qt::StrongFocus);
     connect(ui->closeBtn, &QPushButton::clicked, this, &QCtmTitleBar::onCloseBtn);
     connect(ui->minimumSizeBtn, &QPushButton::clicked, this, &QCtmTitleBar::onMinimumSizeBtn);
