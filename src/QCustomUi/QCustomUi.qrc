@@ -38,7 +38,6 @@
         <file>Resources/loading.gif</file>
     </qresource>
     <qresource prefix="/stylesheet">
-        <file>Resources/stylesheet/default-light.css</file>
         <file>Resources/stylesheet/sw-light.css</file>
     </qresource>
     <qresource prefix="/QCheckBox">

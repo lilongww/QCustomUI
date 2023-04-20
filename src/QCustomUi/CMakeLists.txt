@@ -24,7 +24,6 @@ file(GLOB DOCS ./Docs/*.qdoc)
 set(RESOURCES
  "${PROJECT_SOURCE_DIR}/README.md"
  "QCustomUi.qrc"
- "Resources/stylesheet/default-light.css"
  "Resources/stylesheet/sw-light.css")
 
 set(HEADERS
