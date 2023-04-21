@@ -203,6 +203,10 @@ bool QCtmDialog::eventFilter(QObject* o, QEvent* e)
     if (o == m_impl->content && e->type() == QEvent::WindowTitleChange)
     {
         setWindowTitle(m_impl->content->windowTitle());
+        if (m_impl->content->testAttribute(Qt::WA_PendingResizeEvent))
+        {
+            this->resize(m_impl->content->size());
+        }
     }
     return QDialog::eventFilter(o, e);
 }
