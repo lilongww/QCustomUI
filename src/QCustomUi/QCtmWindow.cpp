@@ -319,6 +319,10 @@ bool QCtmWindow::eventFilter(QObject* watched, QEvent* event)
     else if (watched == m_impl->content && event->type() == QEvent::WindowTitleChange)
     {
         setWindowTitle(m_impl->content->windowTitle());
+        if (m_impl->content->testAttribute(Qt::WA_PendingResizeEvent))
+        {
+            this->resize(m_impl->content->size());
+        }
     }
     return QWidget::eventFilter(watched, event);
 }
