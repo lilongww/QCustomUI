@@ -598,29 +598,6 @@ QCtmTableView QTableCornerButton::section
     border: none;
 }
 
-QCtmIPAddressEdit
-{
-    background: #FFFFFF;
-    border: 1px solid #999999;
-}
-
-QCtmIPAddressEdit:hover
-{
-    border: 1px solid #2477CE;
-}
-
-QCtmIPAddressEdit:focus
-{
-    border: 1px solid #2477CE;
-}
-
-QCtmIPAddressEdit:disabled
-{
-    color: #AAAAAA;
-    border: 1px solid #E1E1E1;
-    background: #D2D2D2;
-}
-
 QCtmNavigationMainMenu QCtmMainMenuButton
 {
     color: rgba(255,255,255,153);
