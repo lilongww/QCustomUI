@@ -28,37 +28,36 @@ QCtmTitleBar QAbstractButton
 
 QCtmTitleBar QAbstractButton:hover
 {
-    background-color: #C6C6C6;
+    background-color: #E5E5E5;
     border: none;
 }
 
 QCtmTitleBar QAbstractButton:pressed
 {
-    background-color: #C0C0C0;
+    background-color: #CCCCCC;
     border: none;
 }
 
 .QCtmTitleBar QMenuBar
 {
-    background: #D9D9D9;
+    background: white;
 }
 
 .QCtmTitleBar QMenuBar::item
 {
     font-family: 'Microsoft YaHei';
     font-weight: 400;
-    color: rgba(94,94,94,1);
-    background-color: #D9D9D9;
+    background-color: white;
 }
 
 .QCtmTitleBar QMenuBar::item:hover
 {
-    background-color: #C6C6C6;
+    background-color: #E5E5E5;
 }
 
 .QCtmTitleBar QMenuBar::item:pressed
 {
-    background-color: #C6C6C6;
+    background-color: #CCCCCC;
 }
 
 /*********************************************************************/
@@ -70,17 +69,6 @@ QCtmNavigationBar::separator
     margin-bottom: 8px;
     width: 1px;
     background: #CCCCCC;
-}
-
-.QCtmNavigationBar
-{
-    max-height: 50px;
-    min-height: 50px;
-    font-family: 'Microsoft YaHei';
-    font-weight: 400;
-    color: #4F4F4F;
-    background: #F3F3F3;
-    border-bottom: 1px solid #D9D9D9;
 }
 
 .QCtmNavigationBar .QCtmToolButton, QCtmUserButton
@@ -591,83 +579,6 @@ QCtmMessageBox QPushButton:pressed
 }
 
 /************************************************************/
-
-/**********************QCtmComboBox*************************/
-QCtmComboBox
-{
-    background: #FFFFFF;
-    border: 1px solid #999999;
-    color: #808080;
-}
-
-QCtmComboBox:hover
-{
-    border: 1px solid #2477CE;
-}
-
-QCtmComboBox:disabled
-{
-    background: #D2D2D2;
-    border: 1px solid #E1E1E1;
-    color: #AAAAAA;
-}
-
-QCtmComboBox::drop-down
-{
-    background: transparent;
-    border: none;
-}
-
-QCtmComboBox::drop-down:hover
-{
-    background: #CBE5FF;
-    border-left: 1px solid #2477CE;
-}
-
-QCtmComboBox::drop-down:pressed
-{
-    background: #2477CE;
-}
-
-QCtmComboBox::down-arrow
-{
-    image: url(:/QCustomUi/Resources/drop-down-light.png);
-}
-
-QCtmComboBox::down-arrow:pressed
-{
-    image: url(:/QCustomUi/Resources/drop-down.png);
-}
-
-QCtmComboBox::down-arrow:disabled
-{
-    image: url(:/QCustomUi/Resources/drop-down.png);
-}
-
-QCtmComboBox QListView
-{
-    background: #F6F6F6;
-}
-
-QCtmComboBox QListView::item
-{
-    padding-left: 5px;
-    height: 21px;
-    color: #808080;
-    background: transparent;
-}
-
-QCtmComboBox QListView::item:hover
-{
-    background: #CBE5FF;
-    color: #808080;
-}
-
-QCtmComboBox QListView::item:selected
-{
-    background: #CBE5FF;
-    color: #808080;
-}
 
 /*************************QCtmTableView************************************/
 QCtmTableView

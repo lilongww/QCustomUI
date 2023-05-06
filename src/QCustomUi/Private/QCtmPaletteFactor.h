@@ -12,6 +12,7 @@ public:
 
 protected:
     virtual void initQCtmTitleBar(QWidget* bar);
+    virtual void initQCtmNavigationBar(QWidget* bar);
 
 private:
     struct Impl;

@@ -1,4 +1,5 @@
 ﻿#include "QCtmPaletteFactor.h"
+#include "../QCtmNavigationBar.h"
 #include "../QCtmTitleBar.h"
 #include "QCtmMaximumSizeButton_p.h"
 
@@ -14,6 +15,7 @@ QCtmPaletteFactor::QCtmPaletteFactor() : m_impl(std::make_unique<Impl>())
 {
     auto& funcs = m_impl->funcs;
     funcs.insert({ QCtmTitleBar::staticMetaObject.className(), std::bind_front(&QCtmPaletteFactor::initQCtmTitleBar, this) });
+    funcs.insert({ QCtmNavigationBar::staticMetaObject.className(), std::bind_front(&QCtmPaletteFactor::initQCtmNavigationBar, this) });
 }
 
 void QCtmPaletteFactor::init(QWidget* widget)
@@ -28,7 +30,7 @@ void QCtmPaletteFactor::init(QWidget* widget)
 void QCtmPaletteFactor::initQCtmTitleBar(QWidget* bar)
 {
     auto palette = bar->palette();
-    palette.setBrush(QPalette::Window, QColor(0xD9D9D9));
+    palette.setBrush(QPalette::Window, Qt::white);
     bar->setPalette(palette);
     if (auto minBtn = bar->findChild<QWidget*>("minimumSizeBtn"))
     {
@@ -52,4 +54,12 @@ void QCtmPaletteFactor::initQCtmTitleBar(QWidget* bar)
     {
         minBtn->setProperty("icon", QIcon(":/QCustomUi/Resources/close-light.png"));
     }
+}
+
+void QCtmPaletteFactor::initQCtmNavigationBar(QWidget* bar)
+{
+    auto palette = bar->palette();
+    palette.setBrush(QPalette::WindowText, QColor(0x4F4F4F));
+    palette.setBrush(QPalette::Window, QColor(0xD9D9D9));
+    bar->setPalette(palette);
 }
