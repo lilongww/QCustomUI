@@ -85,6 +85,7 @@ struct QCtmDigitKeyboard::Impl
     QAbstractSpinBox* box { nullptr };
     int decimals { 2 };
     QAbstractSpinBox* bindedBox { nullptr };
+    QPushButton* plusOrMinusBtn { nullptr };
     inline void updateBindedBoxRange()
     {
         if (!bindedBox || units.empty())
@@ -466,6 +467,10 @@ void QCtmDigitKeyboard::init()
     btn = new QPushButton(".", this);
     btn->setFocusPolicy(Qt::NoFocus);
     m_impl->ui.digitLayout->addWidget(btn, 3, 2);
+    m_impl->plusOrMinusBtn = new QPushButton("-/+", this);
+    m_impl->plusOrMinusBtn->setFocusPolicy(Qt::NoFocus);
+    m_impl->ui.digitLayout->addWidget(m_impl->plusOrMinusBtn, 3, 0);
+
     connect(m_impl->ui.buttonBox,
             &QDialogButtonBox::accepted,
             this,
@@ -477,6 +482,14 @@ void QCtmDigitKeyboard::init()
                     accept();
             });
     connect(m_impl->ui.buttonBox, &QDialogButtonBox::rejected, this, &QCtmDialog::reject);
+    connect(m_impl->plusOrMinusBtn,
+            &QPushButton::clicked,
+            this,
+            [=]()
+            {
+                auto value = m_impl->box->property("value");
+                m_impl->box->setProperty("value", m_impl->mode == InputMode::IntInput ? -value.toInt() : -value.toDouble());
+            });
 }
 
 void QCtmDigitKeyboard::clearUnits()
@@ -603,6 +616,8 @@ void QCtmDigitKeyboard::acceptUnit(int unitIndex)
 
 std::pair<QVariant, QString> QCtmDigitKeyboard::showBefore()
 {
+    auto minimum = m_impl->bindedBox->property("minimum");
+    m_impl->plusOrMinusBtn->setVisible(m_impl->mode == InputMode::IntInput ? minimum.toInt() < 0 : minimum.toDouble() < 0.0);
     auto beforeValue = m_impl->bindedBox->property("value");
     auto beforeUnit  = m_impl->bindedBox->property("suffix").toString();
     setValue(beforeValue);
