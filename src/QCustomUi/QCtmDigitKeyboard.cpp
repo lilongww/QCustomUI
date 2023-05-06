@@ -320,7 +320,8 @@ void QCtmDigitKeyboard::bindBox(QAbstractSpinBox* box)
 }
 
 /*!
-    \brief      打开 \a box 的数字键盘，单位列表为 \a units, 步进为 \a step, 输入完成后销毁数字键盘.
+    \brief      绑定 \a box 的数字键盘，单位列表为 \a units, 步进为 \a step, 标题为 \a title
+                ,此行为并不会立即生成数字键盘，在第一次触发数字键盘弹出操作时才会生成数字键盘对象.
 */
 void QCtmDigitKeyboard::simpleBindBox(QAbstractSpinBox* box,
                                       const Units& units /*= {}*/,
@@ -372,6 +373,9 @@ bool QCtmDigitKeyboard::eventFilter(QObject* obj, QEvent* event)
     return QCtmDialog::eventFilter(obj, event);
 }
 
+/*!
+    \reimp
+*/
 void QCtmDigitKeyboard::showEvent(QShowEvent* event)
 {
     ensureConnect();
