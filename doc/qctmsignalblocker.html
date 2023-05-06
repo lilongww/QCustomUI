@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+<!-- QCtmSignalBlocker.qdoc -->
+  <title>QCtmSignalBlocker Class | QCustomUi 1.11.0</title>
+  <link rel="stylesheet" type="text/css" href="style/offline-simple.css" />
+  <script type="text/javascript">
+    document.getElementsByTagName("link").item(0).setAttribute("href", "style/offline.css");
+    // loading style sheet breaks anchors that were jumped to before
+    // so force jumping to anchor again
+    setTimeout(function() {
+        var anchor = location.hash;
+        // need to jump to different anchor first (e.g. none)
+        location.hash = "#";
+        setTimeout(function() {
+            location.hash = anchor;
+        }, 0);
+    }, 0);
+  </script>
+</head>
+<body>
+<div class="header" id="qtdocheader">
+    <div class="main">
+    <div class="main-rounded">
+        <div class="navigationbar">
+        <ul>
+<li><a href="index.html" translate="no">QCustomUi 1.11.0</a></li>
+<li><a href="qcustomui-module.html" translate="no">QCustomUi</a></li>
+<li>QCtmSignalBlocker</li>
+<li id="buildversion">QCustomUi 1.11.0 Reference Documentation</li>
+    </ul>
+    </div>
+</div>
+<div class="content">
+<div class="line">
+<div class="content mainContent">
+<div class="sidebar">
+<div class="toc">
+<h3 id="toc">Contents</h3>
+<ul>
+<li class="level1"><a href="#public-functions">Public Functions</a></li>
+<li class="level1"><a href="#details">Detailed Description</a></li>
+</ul>
+</div>
+<div class="sidebar-content" id="sidebar-content"></div></div>
+<h1 class="title" translate="no">QCtmSignalBlocker Class</h1>
+<!-- $$$QCtmSignalBlocker-brief -->
+<p><a href="https://doc.qt.io/qt/qsignalblocker.html" translate="no">QSignalBlocker</a>的增强版本，支持多个<a href="https://doc.qt.io/qt/qobject.html" translate="no">QObject</a>对象的信号阻断，而<a href="https://doc.qt.io/qt/qsignalblocker.html" translate="no">QSignalBlocker</a>仅支持一个<a href="https://doc.qt.io/qt/qobject.html" translate="no">QObject</a>对象的信号的阻断. <a href="#details">More...</a></p>
+<!-- @@@QCtmSignalBlocker -->
+<div class="table"><table class="alignedsummary" translate="no">
+<tr><td class="memItemLeft rightAlign topAlign"> Header:</td><td class="memItemRight bottomAlign">  <span class="preprocessor">#include &lt;QCtmSignalBlocker.h&gt;</span></td></tr>
+</table></div>
+<ul>
+<li><a href="qctmsignalblocker-members.html">List of all members, including inherited members</a></li>
+</ul>
+<h2 id="public-functions">Public Functions</h2>
+<div class="table"><table class="alignedsummary" translate="no">
+<tr><td class="memItemLeft rightAlign topAlign"> </td><td class="memItemRight bottomAlign"><b><a href="qctmsignalblocker.html#QCtmSignalBlocker" translate="no">QCtmSignalBlocker</a></b>(Args &amp;&amp;... <i>objs</i>)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> </td><td class="memItemRight bottomAlign"><b><a href="qctmsignalblocker.html#QCtmSignalBlocker-1" translate="no">QCtmSignalBlocker</a></b>(QCtmSignalBlocker &amp;&amp;<i>other</i>)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> </td><td class="memItemRight bottomAlign"><b><a href="qctmsignalblocker.html#dtor.QCtmSignalBlocker" translate="no">~QCtmSignalBlocker</a></b>()</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> void </td><td class="memItemRight bottomAlign"><b><a href="qctmsignalblocker.html#reblock" translate="no">reblock</a></b>()</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> void </td><td class="memItemRight bottomAlign"><b><a href="qctmsignalblocker.html#unblock" translate="no">unblock</a></b>()</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> QCtmSignalBlocker &amp;</td><td class="memItemRight bottomAlign"><b><a href="qctmsignalblocker.html#operator-eq" translate="no">operator=</a></b>(QCtmSignalBlocker &amp;&amp;<i>other</i>)</td></tr>
+</table></div>
+<!-- $$$QCtmSignalBlocker-description -->
+<div class="descr">
+<h2 id="details">Detailed Description</h2>
+</div>
+<!-- @@@QCtmSignalBlocker -->
+<div class="func">
+<h2>Member Function Documentation</h2>
+<!-- $$$QCtmSignalBlocker[overload1]$$$QCtmSignalBlockerArgs&&... -->
+<h3 class="fn" translate="no" id="QCtmSignalBlocker">template &lt;typename Args&gt; QCtmSignalBlocker::<span class="name">QCtmSignalBlocker</span>(<span class="type">Args</span> &amp;&amp;... <i>objs</i>)</h3>
+<p>构造函数，支持一次传入多个<a href="https://doc.qt.io/qt/qobject.html" translate="no">QObject</a>对象 <i translate="no">objs</i>.</p>
+<!-- @@@QCtmSignalBlocker -->
+<!-- $$$QCtmSignalBlocker$$$QCtmSignalBlockerQCtmSignalBlocker&& -->
+<h3 class="fn" translate="no" id="QCtmSignalBlocker-1">QCtmSignalBlocker::<span class="name">QCtmSignalBlocker</span>(<span class="type"><a href="qctmsignalblocker.html#QCtmSignalBlocker" translate="no">QCtmSignalBlocker</a></span> &amp;&amp;<i>other</i>)</h3>
+<p>移动构造函数 <i translate="no">other</i>.</p>
+<!-- @@@QCtmSignalBlocker -->
+<!-- $$$~QCtmSignalBlocker[overload1]$$$~QCtmSignalBlocker -->
+<h3 class="fn" translate="no" id="dtor.QCtmSignalBlocker">QCtmSignalBlocker::<span class="name">~QCtmSignalBlocker</span>()</h3>
+<p>析构函数.</p>
+<!-- @@@~QCtmSignalBlocker -->
+<!-- $$$reblock[overload1]$$$reblock -->
+<h3 class="fn" translate="no" id="reblock"><span class="type">void</span> QCtmSignalBlocker::<span class="name">reblock</span>()</h3>
+<p>重新阻断所有对象信号.</p>
+<!-- @@@reblock -->
+<!-- $$$unblock[overload1]$$$unblock -->
+<h3 class="fn" translate="no" id="unblock"><span class="type">void</span> QCtmSignalBlocker::<span class="name">unblock</span>()</h3>
+<p>将所有对象的信号阻断状态恢复到本次阻断之前的状态，注意，如果对象在本次阻断之前就已经阻断，调用本函数并不会解除阻断.</p>
+<!-- @@@unblock -->
+<!-- $$$operator=[overload1]$$$operator=QCtmSignalBlocker&& -->
+<h3 class="fn" translate="no" id="operator-eq"><span class="type"><a href="qctmsignalblocker.html#QCtmSignalBlocker" translate="no">QCtmSignalBlocker</a></span> &amp;QCtmSignalBlocker::<span class="name">operator=</span>(<span class="type"><a href="qctmsignalblocker.html#QCtmSignalBlocker" translate="no">QCtmSignalBlocker</a></span> &amp;&amp;<i>other</i>)</h3>
+<p>移动赋值运算符重载 <i translate="no">other</i>.</p>
+<!-- @@@operator= -->
+</div>
+        </div>
+       </div>
+   </div>
+   </div>
+</div>
+<div class="footer">
+   <p>
+   <acronym title="Copyright">&copy;</acronym> QCustomUi
+   Documentation contributions included herein are the copyrights of
+   their respective owners.<br/>    The documentation provided herein is licensed under the terms of the    <a href="http://www.gnu.org/licenses/fdl.html">GNU Free Documentation    License version 1.3</a> as published by the Free Software Foundation.<br/> </div>
+</body>
+</html>

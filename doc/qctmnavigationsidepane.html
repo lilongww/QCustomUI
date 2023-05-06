@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
 <!-- QCtmNavigationSidePane.cpp -->
-  <title>QCtmNavigationSidePane Class | QCustomUi 1.10.0</title>
+  <title>QCtmNavigationSidePane Class | QCustomUi 1.11.0</title>
   <link rel="stylesheet" type="text/css" href="style/offline-simple.css" />
   <script type="text/javascript">
     document.getElementsByTagName("link").item(0).setAttribute("href", "style/offline.css");
@@ -25,10 +25,10 @@
     <div class="main-rounded">
         <div class="navigationbar">
         <ul>
-<li><a href="index.html">QCustomUi 1.10.0</a></li>
-<li><a href="index.html">QCustomUi</a></li>
+<li><a href="index.html" translate="no">QCustomUi 1.11.0</a></li>
+<li><a href="qcustomui-module.html" translate="no">QCustomUi</a></li>
 <li>QCtmNavigationSidePane</li>
-<li id="buildversion">QCustomUi 1.10.0 Reference Documentation</li>
+<li id="buildversion">QCustomUi 1.11.0 Reference Documentation</li>
     </ul>
     </div>
 </div>
@@ -48,57 +48,59 @@
 </ul>
 </div>
 <div class="sidebar-content" id="sidebar-content"></div></div>
-<h1 class="title">QCtmNavigationSidePane Class</h1>
+<h1 class="title" translate="no">QCtmNavigationSidePane Class</h1>
 <!-- $$$QCtmNavigationSidePane-brief -->
 <p>边缘停靠窗口. <a href="#details">More...</a></p>
 <!-- @@@QCtmNavigationSidePane -->
-<div class="table"><table class="alignedsummary">
-<tr><td class="memItemLeft rightAlign topAlign"> Header:</td><td class="memItemRight bottomAlign">  <span class="preprocessor">#include &lt;QCtmNavigationSidePane.h&gt;</span>
-</td></tr><tr><td class="memItemLeft rightAlign topAlign"> Inherits:</td><td class="memItemRight bottomAlign"> QWidget</td></tr><tr><td class="memItemLeft rightAlign topAlign"> Inherited By:</td><td class="memItemRight bottomAlign"> <p><a href="qctmabstractmessagetipview.html">QCtmAbstractMessageTipView</a></p>
-</td></tr></table></div>
+<div class="table"><table class="alignedsummary" translate="no">
+<tr><td class="memItemLeft rightAlign topAlign"> Header:</td><td class="memItemRight bottomAlign">  <span class="preprocessor">#include &lt;QCtmNavigationSidePane.h&gt;</span></td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> Inherits:</td><td class="memItemRight bottomAlign"> QWidget</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> Inherited By:</td><td class="memItemRight bottomAlign"> <p><a href="qctmabstractmessagetipview.html" translate="no">QCtmAbstractMessageTipView</a></p>
+</td></tr>
+</table></div>
 <ul>
 <li><a href="qctmnavigationsidepane-members.html">List of all members, including inherited members</a></li>
 </ul>
 <h2 id="public-types">Public Types</h2>
-<div class="table"><table class="alignedsummary">
-<tr><td class="memItemLeft rightAlign topAlign"> enum class </td><td class="memItemRight bottomAlign"><b><a href="qctmnavigationsidepane.html#DockArea-enum">DockArea</a></b> { Left, Top, Right, Bottom }</td></tr>
+<div class="table"><table class="alignedsummary" translate="no">
+<tr><td class="memItemLeft rightAlign topAlign"> enum class </td><td class="memItemRight bottomAlign"><b><a href="qctmnavigationsidepane.html#DockArea-enum" translate="no">DockArea</a></b> { Left, Top, Right, Bottom }</td></tr>
 </table></div>
 <h2 id="public-functions">Public Functions</h2>
-<div class="table"><table class="alignedsummary">
-<tr><td class="memItemLeft rightAlign topAlign"> </td><td class="memItemRight bottomAlign"><b><a href="qctmnavigationsidepane.html#QCtmNavigationSidePane-1">QCtmNavigationSidePane</a></b>(QCtmNavigationSidePane::DockArea <i>area</i>, QCtmNavigationBar *<i>parent</i>)</td></tr>
-<tr><td class="memItemLeft rightAlign topAlign"> </td><td class="memItemRight bottomAlign"><b><a href="qctmnavigationsidepane.html#QCtmNavigationSidePane">QCtmNavigationSidePane</a></b>(QCtmNavigationBar *<i>parent</i>)</td></tr>
-<tr><td class="memItemLeft rightAlign topAlign"> virtual </td><td class="memItemRight bottomAlign"><b><a href="qctmnavigationsidepane.html#dtor.QCtmNavigationSidePane">~QCtmNavigationSidePane</a></b>()</td></tr>
-<tr><td class="memItemLeft rightAlign topAlign"> QCtmNavigationSidePane::DockArea </td><td class="memItemRight bottomAlign"><b><a href="qctmnavigationsidepane.html#dockArea">dockArea</a></b>() const</td></tr>
-<tr><td class="memItemLeft rightAlign topAlign"> bool </td><td class="memItemRight bottomAlign"><b><a href="qctmnavigationsidepane.html#popup">popup</a></b>() const</td></tr>
-<tr><td class="memItemLeft rightAlign topAlign"> void </td><td class="memItemRight bottomAlign"><b><a href="qctmnavigationsidepane.html#setDockArea">setDockArea</a></b>(QCtmNavigationSidePane::DockArea <i>area</i>)</td></tr>
-<tr><td class="memItemLeft rightAlign topAlign"> void </td><td class="memItemRight bottomAlign"><b><a href="qctmnavigationsidepane.html#setPopup">setPopup</a></b>(bool <i>popup</i>)</td></tr>
-<tr><td class="memItemLeft rightAlign topAlign"> void </td><td class="memItemRight bottomAlign"><b><a href="qctmnavigationsidepane.html#setTitle">setTitle</a></b>(const QString &amp;<i>text</i>)</td></tr>
-<tr><td class="memItemLeft rightAlign topAlign"> void </td><td class="memItemRight bottomAlign"><b><a href="qctmnavigationsidepane.html#setTitleBarVisible">setTitleBarVisible</a></b>(bool <i>visible</i>)</td></tr>
-<tr><td class="memItemLeft rightAlign topAlign"> void </td><td class="memItemRight bottomAlign"><b><a href="qctmnavigationsidepane.html#setWidget">setWidget</a></b>(QWidget *<i>widget</i>)</td></tr>
-<tr><td class="memItemLeft rightAlign topAlign"> QString </td><td class="memItemRight bottomAlign"><b><a href="qctmnavigationsidepane.html#title">title</a></b>() const</td></tr>
-<tr><td class="memItemLeft rightAlign topAlign"> bool </td><td class="memItemRight bottomAlign"><b><a href="qctmnavigationsidepane.html#titleBarIsVisible">titleBarIsVisible</a></b>() const</td></tr>
-<tr><td class="memItemLeft rightAlign topAlign"> QScrollArea *</td><td class="memItemRight bottomAlign"><b><a href="qctmnavigationsidepane.html#viewContainer">viewContainer</a></b>() const</td></tr>
-<tr><td class="memItemLeft rightAlign topAlign"> QWidget *</td><td class="memItemRight bottomAlign"><b><a href="qctmnavigationsidepane.html#widget">widget</a></b>() const</td></tr>
+<div class="table"><table class="alignedsummary" translate="no">
+<tr><td class="memItemLeft rightAlign topAlign"> </td><td class="memItemRight bottomAlign"><b><a href="qctmnavigationsidepane.html#QCtmNavigationSidePane" translate="no">QCtmNavigationSidePane</a></b>(QCtmNavigationBar *<i>parent</i>)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> </td><td class="memItemRight bottomAlign"><b><a href="qctmnavigationsidepane.html#QCtmNavigationSidePane-1" translate="no">QCtmNavigationSidePane</a></b>(QCtmNavigationSidePane::DockArea <i>area</i>, QCtmNavigationBar *<i>parent</i>)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> virtual </td><td class="memItemRight bottomAlign"><b><a href="qctmnavigationsidepane.html#dtor.QCtmNavigationSidePane" translate="no">~QCtmNavigationSidePane</a></b>()</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> QCtmNavigationSidePane::DockArea </td><td class="memItemRight bottomAlign"><b><a href="qctmnavigationsidepane.html#dockArea" translate="no">dockArea</a></b>() const</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> bool </td><td class="memItemRight bottomAlign"><b><a href="qctmnavigationsidepane.html#popup" translate="no">popup</a></b>() const</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> void </td><td class="memItemRight bottomAlign"><b><a href="qctmnavigationsidepane.html#setDockArea" translate="no">setDockArea</a></b>(QCtmNavigationSidePane::DockArea <i>area</i>)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> void </td><td class="memItemRight bottomAlign"><b><a href="qctmnavigationsidepane.html#setPopup" translate="no">setPopup</a></b>(bool <i>popup</i>)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> void </td><td class="memItemRight bottomAlign"><b><a href="qctmnavigationsidepane.html#setTitle" translate="no">setTitle</a></b>(const QString &amp;<i>text</i>)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> void </td><td class="memItemRight bottomAlign"><b><a href="qctmnavigationsidepane.html#setTitleBarVisible" translate="no">setTitleBarVisible</a></b>(bool <i>visible</i>)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> void </td><td class="memItemRight bottomAlign"><b><a href="qctmnavigationsidepane.html#setWidget" translate="no">setWidget</a></b>(QWidget *<i>widget</i>)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> QString </td><td class="memItemRight bottomAlign"><b><a href="qctmnavigationsidepane.html#title" translate="no">title</a></b>() const</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> bool </td><td class="memItemRight bottomAlign"><b><a href="qctmnavigationsidepane.html#titleBarIsVisible" translate="no">titleBarIsVisible</a></b>() const</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> QScrollArea *</td><td class="memItemRight bottomAlign"><b><a href="qctmnavigationsidepane.html#viewContainer" translate="no">viewContainer</a></b>() const</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> QWidget *</td><td class="memItemRight bottomAlign"><b><a href="qctmnavigationsidepane.html#widget" translate="no">widget</a></b>() const</td></tr>
 </table></div>
 <h2 id="signals">Signals</h2>
-<div class="table"><table class="alignedsummary">
-<tr><td class="memItemLeft rightAlign topAlign"> void </td><td class="memItemRight bottomAlign"><b><a href="qctmnavigationsidepane.html#paneClosed">paneClosed</a></b>()</td></tr>
+<div class="table"><table class="alignedsummary" translate="no">
+<tr><td class="memItemLeft rightAlign topAlign"> void </td><td class="memItemRight bottomAlign"><b><a href="qctmnavigationsidepane.html#paneClosed" translate="no">paneClosed</a></b>()</td></tr>
 </table></div>
 <h2 id="protected-functions">Protected Functions</h2>
-<div class="table"><table class="alignedsummary">
-<tr><td class="memItemLeft rightAlign topAlign"> QCtmNavigationBar *</td><td class="memItemRight bottomAlign"><b><a href="qctmnavigationsidepane.html#navigationBar">navigationBar</a></b>() const</td></tr>
-<tr><td class="memItemLeft rightAlign topAlign"> void </td><td class="memItemRight bottomAlign"><b><a href="qctmnavigationsidepane.html#setNavigationBar">setNavigationBar</a></b>(QCtmNavigationBar *<i>bar</i>)</td></tr>
-<tr><td class="memItemLeft rightAlign topAlign"> virtual QPoint </td><td class="memItemRight bottomAlign"><b><a href="qctmnavigationsidepane.html#smartPosition">smartPosition</a></b>(QCtmNavigationSidePane::DockArea <i>area</i>) const</td></tr>
-<tr><td class="memItemLeft rightAlign topAlign"> virtual QSize </td><td class="memItemRight bottomAlign"><b><a href="qctmnavigationsidepane.html#smartSize">smartSize</a></b>(QCtmNavigationSidePane::DockArea <i>area</i>) const</td></tr>
+<div class="table"><table class="alignedsummary" translate="no">
+<tr><td class="memItemLeft rightAlign topAlign"> QCtmNavigationBar *</td><td class="memItemRight bottomAlign"><b><a href="qctmnavigationsidepane.html#navigationBar" translate="no">navigationBar</a></b>() const</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> void </td><td class="memItemRight bottomAlign"><b><a href="qctmnavigationsidepane.html#setNavigationBar" translate="no">setNavigationBar</a></b>(QCtmNavigationBar *<i>bar</i>)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> virtual QPoint </td><td class="memItemRight bottomAlign"><b><a href="qctmnavigationsidepane.html#smartPosition" translate="no">smartPosition</a></b>(QCtmNavigationSidePane::DockArea <i>area</i>) const</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> virtual QSize </td><td class="memItemRight bottomAlign"><b><a href="qctmnavigationsidepane.html#smartSize" translate="no">smartSize</a></b>(QCtmNavigationSidePane::DockArea <i>area</i>) const</td></tr>
 </table></div>
 <h2 id="reimplemented-protected-functions">Reimplemented Protected Functions</h2>
-<div class="table"><table class="alignedsummary">
-<tr><td class="memItemLeft rightAlign topAlign"> virtual void </td><td class="memItemRight bottomAlign"><b><a href="qctmnavigationsidepane.html#closeEvent">closeEvent</a></b>(QCloseEvent *<i>event</i>) override</td></tr>
-<tr><td class="memItemLeft rightAlign topAlign"> virtual bool </td><td class="memItemRight bottomAlign"><b><a href="qctmnavigationsidepane.html#eventFilter">eventFilter</a></b>(QObject *<i>o</i>, QEvent *<i>e</i>) override</td></tr>
-<tr><td class="memItemLeft rightAlign topAlign"> virtual void </td><td class="memItemRight bottomAlign"><b><a href="qctmnavigationsidepane.html#mousePressEvent">mousePressEvent</a></b>(QMouseEvent *<i>event</i>) override</td></tr>
-<tr><td class="memItemLeft rightAlign topAlign"> virtual void </td><td class="memItemRight bottomAlign"><b><a href="qctmnavigationsidepane.html#paintEvent">paintEvent</a></b>(QPaintEvent *<i>event</i>) override</td></tr>
-<tr><td class="memItemLeft rightAlign topAlign"> virtual void </td><td class="memItemRight bottomAlign"><b><a href="qctmnavigationsidepane.html#showEvent">showEvent</a></b>(QShowEvent *<i>event</i>) override</td></tr>
-<tr><td class="memItemLeft rightAlign topAlign"> virtual QSize </td><td class="memItemRight bottomAlign"><b><a href="qctmnavigationsidepane.html#sizeHint">sizeHint</a></b>() const override</td></tr>
+<div class="table"><table class="alignedsummary" translate="no">
+<tr><td class="memItemLeft rightAlign topAlign"> virtual void </td><td class="memItemRight bottomAlign"><b><a href="qctmnavigationsidepane.html#closeEvent" translate="no">closeEvent</a></b>(QCloseEvent *<i>event</i>) override</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> virtual bool </td><td class="memItemRight bottomAlign"><b><a href="qctmnavigationsidepane.html#eventFilter" translate="no">eventFilter</a></b>(QObject *<i>o</i>, QEvent *<i>e</i>) override</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> virtual void </td><td class="memItemRight bottomAlign"><b><a href="qctmnavigationsidepane.html#mousePressEvent" translate="no">mousePressEvent</a></b>(QMouseEvent *<i>event</i>) override</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> virtual void </td><td class="memItemRight bottomAlign"><b><a href="qctmnavigationsidepane.html#paintEvent" translate="no">paintEvent</a></b>(QPaintEvent *<i>event</i>) override</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> virtual void </td><td class="memItemRight bottomAlign"><b><a href="qctmnavigationsidepane.html#showEvent" translate="no">showEvent</a></b>(QShowEvent *<i>event</i>) override</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> virtual QSize </td><td class="memItemRight bottomAlign"><b><a href="qctmnavigationsidepane.html#sizeHint" translate="no">sizeHint</a></b>() const override</td></tr>
 </table></div>
 <!-- $$$QCtmNavigationSidePane-description -->
 <div class="descr">
@@ -109,130 +111,130 @@
 <div class="types">
 <h2>Member Type Documentation</h2>
 <!-- $$$DockArea$$$Left$$$Top$$$Right$$$Bottom -->
-<h3 class="fn" id="DockArea-enum">enum class QCtmNavigationSidePane::<span class="name">DockArea</span></h3>
+<h3 class="fn" translate="no" id="DockArea-enum">enum class QCtmNavigationSidePane::<span class="name">DockArea</span></h3>
 <p>停靠位置.</p>
 <div class="table"><table class="valuelist"><tr valign="top" class="odd"><th class="tblConst">Constant</th><th class="tblval">Value</th><th class="tbldscr">Description</th></tr>
-<tr><td class="topAlign"><code>QCtmNavigationSidePane::DockArea::Left</code></td><td class="topAlign tblval"><code>0</code></td><td class="topAlign">窗口左侧.</td></tr>
-<tr><td class="topAlign"><code>QCtmNavigationSidePane::DockArea::Top</code></td><td class="topAlign tblval"><code>1</code></td><td class="topAlign">窗口顶部.</td></tr>
-<tr><td class="topAlign"><code>QCtmNavigationSidePane::DockArea::Right</code></td><td class="topAlign tblval"><code>2</code></td><td class="topAlign">窗口右侧.</td></tr>
-<tr><td class="topAlign"><code>QCtmNavigationSidePane::DockArea::Bottom</code></td><td class="topAlign tblval"><code>3</code></td><td class="topAlign">窗口底部.</td></tr>
+<tr><td class="topAlign"><code translate="no">QCtmNavigationSidePane::DockArea::Left</code></td><td class="topAlign tblval"><code translate="no">0</code></td><td class="topAlign">窗口左侧.</td></tr>
+<tr><td class="topAlign"><code translate="no">QCtmNavigationSidePane::DockArea::Top</code></td><td class="topAlign tblval"><code translate="no">1</code></td><td class="topAlign">窗口顶部.</td></tr>
+<tr><td class="topAlign"><code translate="no">QCtmNavigationSidePane::DockArea::Right</code></td><td class="topAlign tblval"><code translate="no">2</code></td><td class="topAlign">窗口右侧.</td></tr>
+<tr><td class="topAlign"><code translate="no">QCtmNavigationSidePane::DockArea::Bottom</code></td><td class="topAlign tblval"><code translate="no">3</code></td><td class="topAlign">窗口底部.</td></tr>
 </table></div>
 <!-- @@@DockArea -->
 </div>
 <div class="func">
 <h2>Member Function Documentation</h2>
-<!-- $$$QCtmNavigationSidePane$$$QCtmNavigationSidePaneQCtmNavigationSidePane::DockAreaQCtmNavigationBar* -->
-<h3 class="fn" id="QCtmNavigationSidePane-1">QCtmNavigationSidePane::<span class="name">QCtmNavigationSidePane</span>(<span class="type"><a href="qctmnavigationsidepane.html#DockArea-enum">QCtmNavigationSidePane::DockArea</a></span> <i>area</i>, <span class="type"><a href="qctmnavigationbar.html">QCtmNavigationBar</a></span> *<i>parent</i>)</h3>
-<p>构造函数，构造时确定其停靠位置 <i>area</i>, <i>parent</i>.</p>
-<!-- @@@QCtmNavigationSidePane -->
 <!-- $$$QCtmNavigationSidePane[overload1]$$$QCtmNavigationSidePaneQCtmNavigationBar* -->
-<h3 class="fn" id="QCtmNavigationSidePane">QCtmNavigationSidePane::<span class="name">QCtmNavigationSidePane</span>(<span class="type"><a href="qctmnavigationbar.html">QCtmNavigationBar</a></span> *<i>parent</i>)</h3>
-<p>构造函数 <i>parent</i>.</p>
+<h3 class="fn" translate="no" id="QCtmNavigationSidePane"><code translate="no">[explicit] </code>QCtmNavigationSidePane::<span class="name">QCtmNavigationSidePane</span>(<span class="type"><a href="qctmnavigationbar.html" translate="no">QCtmNavigationBar</a></span> *<i>parent</i>)</h3>
+<p>构造函数 <i translate="no">parent</i>.</p>
 <!-- @@@QCtmNavigationSidePane -->
-<!-- $$$paneClosed[overload1]$$$paneClosed -->
-<h3 class="fn" id="paneClosed"><code>[signal] </code><span class="type">void</span> QCtmNavigationSidePane::<span class="name">paneClosed</span>()</h3>
-<p>停靠窗口关闭时发送该信号.</p>
-<!-- @@@paneClosed -->
+<!-- $$$QCtmNavigationSidePane$$$QCtmNavigationSidePaneQCtmNavigationSidePane::DockAreaQCtmNavigationBar* -->
+<h3 class="fn" translate="no" id="QCtmNavigationSidePane-1">QCtmNavigationSidePane::<span class="name">QCtmNavigationSidePane</span>(<span class="type"><a href="qctmnavigationsidepane.html#DockArea-enum" translate="no">QCtmNavigationSidePane::DockArea</a></span> <i>area</i>, <span class="type"><a href="qctmnavigationbar.html" translate="no">QCtmNavigationBar</a></span> *<i>parent</i>)</h3>
+<p>构造函数，构造时确定其停靠位置 <i translate="no">area</i>, <i translate="no">parent</i>.</p>
+<!-- @@@QCtmNavigationSidePane -->
 <!-- $$$~QCtmNavigationSidePane[overload1]$$$~QCtmNavigationSidePane -->
-<h3 class="fn" id="dtor.QCtmNavigationSidePane"><code>[virtual] </code>QCtmNavigationSidePane::<span class="name">~QCtmNavigationSidePane</span>()</h3>
+<h3 class="fn" translate="no" id="dtor.QCtmNavigationSidePane"><code translate="no">[virtual] </code>QCtmNavigationSidePane::<span class="name">~QCtmNavigationSidePane</span>()</h3>
 <p>析构函数.</p>
 <!-- @@@~QCtmNavigationSidePane -->
 <!-- $$$closeEvent[overload1]$$$closeEventQCloseEvent* -->
-<h3 class="fn" id="closeEvent"><code>[override virtual protected] </code><span class="type">void</span> QCtmNavigationSidePane::<span class="name">closeEvent</span>(<span class="type"><a href="https://doc.qt.io/qt/qcloseevent.html">QCloseEvent</a></span> *<i>event</i>)</h3>
+<h3 class="fn" translate="no" id="closeEvent"><code translate="no">[override virtual protected] </code><span class="type">void</span> QCtmNavigationSidePane::<span class="name">closeEvent</span>(<span class="type"><a href="https://doc.qt.io/qt/qcloseevent.html" translate="no">QCloseEvent</a></span> *<i>event</i>)</h3>
 <!-- @@@closeEvent -->
 <!-- $$$dockArea[overload1]$$$dockArea -->
-<h3 class="fn" id="dockArea"><span class="type"><a href="qctmnavigationsidepane.html#DockArea-enum">QCtmNavigationSidePane::DockArea</a></span> QCtmNavigationSidePane::<span class="name">dockArea</span>() const</h3>
+<h3 class="fn" translate="no" id="dockArea"><span class="type"><a href="qctmnavigationsidepane.html#DockArea-enum" translate="no">QCtmNavigationSidePane::DockArea</a></span> QCtmNavigationSidePane::<span class="name">dockArea</span>() const</h3>
 <p>返回窗口停靠位置.</p>
-<p><b>See also </b><a href="qctmnavigationsidepane.html#setDockArea">setDockArea</a>.</p>
+<p><b>See also </b><a href="qctmnavigationsidepane.html#setDockArea" translate="no">setDockArea</a>.</p>
 <!-- @@@dockArea -->
 <!-- $$$eventFilter[overload1]$$$eventFilterQObject*QEvent* -->
-<h3 class="fn" id="eventFilter"><code>[override virtual protected] </code><span class="type">bool</span> QCtmNavigationSidePane::<span class="name">eventFilter</span>(<span class="type"><a href="https://doc.qt.io/qt/qobject.html#QObject">QObject</a></span> *<i>o</i>, <span class="type"><a href="https://doc.qt.io/qt/qevent.html">QEvent</a></span> *<i>e</i>)</h3>
-<p>Reimplements: <a href="https://doc.qt.io/qt/qobject.html#eventFilter">QObject::eventFilter</a>(QObject *watched, QEvent *event).</p>
+<h3 class="fn" translate="no" id="eventFilter"><code translate="no">[override virtual protected] </code><span class="type">bool</span> QCtmNavigationSidePane::<span class="name">eventFilter</span>(<span class="type"><a href="https://doc.qt.io/qt/qobject.html#QObject" translate="no">QObject</a></span> *<i>o</i>, <span class="type"><a href="https://doc.qt.io/qt/qevent.html" translate="no">QEvent</a></span> *<i>e</i>)</h3>
+<p>Reimplements: <a href="https://doc.qt.io/qt/qobject.html#eventFilter" translate="no">QObject::eventFilter</a>(QObject *watched, QEvent *event).</p>
 <!-- @@@eventFilter -->
 <!-- $$$mousePressEvent[overload1]$$$mousePressEventQMouseEvent* -->
-<h3 class="fn" id="mousePressEvent"><code>[override virtual protected] </code><span class="type">void</span> QCtmNavigationSidePane::<span class="name">mousePressEvent</span>(<span class="type"><a href="https://doc.qt.io/qt/qmouseevent.html">QMouseEvent</a></span> *<i>event</i>)</h3>
+<h3 class="fn" translate="no" id="mousePressEvent"><code translate="no">[override virtual protected] </code><span class="type">void</span> QCtmNavigationSidePane::<span class="name">mousePressEvent</span>(<span class="type"><a href="https://doc.qt.io/qt/qmouseevent.html" translate="no">QMouseEvent</a></span> *<i>event</i>)</h3>
 <!-- @@@mousePressEvent -->
 <!-- $$$navigationBar[overload1]$$$navigationBar -->
-<h3 class="fn" id="navigationBar"><code>[protected] </code><span class="type"><a href="qctmnavigationbar.html">QCtmNavigationBar</a></span> *QCtmNavigationSidePane::<span class="name">navigationBar</span>() const</h3>
-<p>返回绑定的 <a href="qctmnavigationbar.html">QCtmNavigationBar</a>.</p>
-<p><b>See also </b><a href="qctmnavigationsidepane.html#setNavigationBar">setNavigationBar</a> and <a href="qctmnavigationbar.html">QCtmNavigationBar</a>.</p>
+<h3 class="fn" translate="no" id="navigationBar"><code translate="no">[protected] </code><span class="type"><a href="qctmnavigationbar.html" translate="no">QCtmNavigationBar</a></span> *QCtmNavigationSidePane::<span class="name">navigationBar</span>() const</h3>
+<p>返回绑定的 <a href="qctmnavigationbar.html" translate="no">QCtmNavigationBar</a>.</p>
+<p><b>See also </b><a href="qctmnavigationsidepane.html#setNavigationBar" translate="no">setNavigationBar</a> and <a href="qctmnavigationbar.html" translate="no">QCtmNavigationBar</a>.</p>
 <!-- @@@navigationBar -->
 <!-- $$$paintEvent[overload1]$$$paintEventQPaintEvent* -->
-<h3 class="fn" id="paintEvent"><code>[override virtual protected] </code><span class="type">void</span> QCtmNavigationSidePane::<span class="name">paintEvent</span>(<span class="type"><a href="https://doc.qt.io/qt/qpaintevent.html">QPaintEvent</a></span> *<i>event</i>)</h3>
+<h3 class="fn" translate="no" id="paintEvent"><code translate="no">[override virtual protected] </code><span class="type">void</span> QCtmNavigationSidePane::<span class="name">paintEvent</span>(<span class="type"><a href="https://doc.qt.io/qt/qpaintevent.html" translate="no">QPaintEvent</a></span> *<i>event</i>)</h3>
 <!-- @@@paintEvent -->
+<!-- $$$paneClosed[overload1]$$$paneClosed -->
+<h3 class="fn" translate="no" id="paneClosed"><code translate="no">[signal] </code><span class="type">void</span> QCtmNavigationSidePane::<span class="name">paneClosed</span>()</h3>
+<p>停靠窗口关闭时发送该信号.</p>
+<!-- @@@paneClosed -->
 <!-- $$$popup[overload1]$$$popup -->
-<h3 class="fn" id="popup"><span class="type">bool</span> QCtmNavigationSidePane::<span class="name">popup</span>() const</h3>
+<h3 class="fn" translate="no" id="popup"><span class="type">bool</span> QCtmNavigationSidePane::<span class="name">popup</span>() const</h3>
 <p>返回窗口是否以Popup方式显示.</p>
-<p><b>See also </b><a href="qctmnavigationsidepane.html#setPopup">setPopup</a>.</p>
+<p><b>See also </b><a href="qctmnavigationsidepane.html#setPopup" translate="no">setPopup</a>.</p>
 <!-- @@@popup -->
 <!-- $$$setDockArea[overload1]$$$setDockAreaQCtmNavigationSidePane::DockArea -->
-<h3 class="fn" id="setDockArea"><span class="type">void</span> QCtmNavigationSidePane::<span class="name">setDockArea</span>(<span class="type"><a href="qctmnavigationsidepane.html#DockArea-enum">QCtmNavigationSidePane::DockArea</a></span> <i>area</i>)</h3>
-<p>设置窗口停靠位置 <i>area</i>.</p>
-<p><b>See also </b><a href="qctmnavigationsidepane.html#dockArea">dockArea</a>.</p>
+<h3 class="fn" translate="no" id="setDockArea"><span class="type">void</span> QCtmNavigationSidePane::<span class="name">setDockArea</span>(<span class="type"><a href="qctmnavigationsidepane.html#DockArea-enum" translate="no">QCtmNavigationSidePane::DockArea</a></span> <i>area</i>)</h3>
+<p>设置窗口停靠位置 <i translate="no">area</i>.</p>
+<p><b>See also </b><a href="qctmnavigationsidepane.html#dockArea" translate="no">dockArea</a>.</p>
 <!-- @@@setDockArea -->
 <!-- $$$setNavigationBar[overload1]$$$setNavigationBarQCtmNavigationBar* -->
-<h3 class="fn" id="setNavigationBar"><code>[protected] </code><span class="type">void</span> QCtmNavigationSidePane::<span class="name">setNavigationBar</span>(<span class="type"><a href="qctmnavigationbar.html">QCtmNavigationBar</a></span> *<i>bar</i>)</h3>
-<p>绑定 <a href="qctmnavigationbar.html">QCtmNavigationBar</a> <i>bar</i>.</p>
-<p><b>See also </b><a href="qctmnavigationsidepane.html#navigationBar">navigationBar</a>() and <a href="qctmnavigationbar.html">QCtmNavigationBar</a>.</p>
+<h3 class="fn" translate="no" id="setNavigationBar"><code translate="no">[protected] </code><span class="type">void</span> QCtmNavigationSidePane::<span class="name">setNavigationBar</span>(<span class="type"><a href="qctmnavigationbar.html" translate="no">QCtmNavigationBar</a></span> *<i>bar</i>)</h3>
+<p>绑定 <a href="qctmnavigationbar.html" translate="no">QCtmNavigationBar</a> <i translate="no">bar</i>.</p>
+<p><b>See also </b><a href="qctmnavigationsidepane.html#navigationBar" translate="no">navigationBar</a>() and <a href="qctmnavigationbar.html" translate="no">QCtmNavigationBar</a>.</p>
 <!-- @@@setNavigationBar -->
 <!-- $$$setPopup[overload1]$$$setPopupbool -->
-<h3 class="fn" id="setPopup"><span class="type">void</span> QCtmNavigationSidePane::<span class="name">setPopup</span>(<span class="type">bool</span> <i>popup</i>)</h3>
-<p>设置窗口是否以Popup方式显示 <i>popup</i>.</p>
-<p><b>See also </b><a href="qctmnavigationsidepane.html#popup">popup</a>().</p>
+<h3 class="fn" translate="no" id="setPopup"><span class="type">void</span> QCtmNavigationSidePane::<span class="name">setPopup</span>(<span class="type">bool</span> <i>popup</i>)</h3>
+<p>设置窗口是否以Popup方式显示 <i translate="no">popup</i>.</p>
+<p><b>See also </b><a href="qctmnavigationsidepane.html#popup" translate="no">popup</a>().</p>
 <!-- @@@setPopup -->
 <!-- $$$setTitle[overload1]$$$setTitleconstQString& -->
-<h3 class="fn" id="setTitle"><span class="type">void</span> QCtmNavigationSidePane::<span class="name">setTitle</span>(const <span class="type"><a href="https://doc.qt.io/qt/qstring.html">QString</a></span> &amp;<i>text</i>)</h3>
-<p>设置标题栏文字 <i>text</i>.</p>
-<p><b>See also </b><a href="qctmnavigationsidepane.html#title">title</a>().</p>
+<h3 class="fn" translate="no" id="setTitle"><span class="type">void</span> QCtmNavigationSidePane::<span class="name">setTitle</span>(const <span class="type"><a href="https://doc.qt.io/qt/qstring.html" translate="no">QString</a></span> &amp;<i>text</i>)</h3>
+<p>设置标题栏文字 <i translate="no">text</i>.</p>
+<p><b>See also </b><a href="qctmnavigationsidepane.html#title" translate="no">title</a>().</p>
 <!-- @@@setTitle -->
 <!-- $$$setTitleBarVisible[overload1]$$$setTitleBarVisiblebool -->
-<h3 class="fn" id="setTitleBarVisible"><span class="type">void</span> QCtmNavigationSidePane::<span class="name">setTitleBarVisible</span>(<span class="type">bool</span> <i>visible</i>)</h3>
-<p>设置标题栏是否可见 <i>visible</i>.</p>
-<p><b>See also </b><a href="qctmnavigationsidepane.html#titleBarIsVisible">titleBarIsVisible</a>().</p>
+<h3 class="fn" translate="no" id="setTitleBarVisible"><span class="type">void</span> QCtmNavigationSidePane::<span class="name">setTitleBarVisible</span>(<span class="type">bool</span> <i>visible</i>)</h3>
+<p>设置标题栏是否可见 <i translate="no">visible</i>.</p>
+<p><b>See also </b><a href="qctmnavigationsidepane.html#titleBarIsVisible" translate="no">titleBarIsVisible</a>().</p>
 <!-- @@@setTitleBarVisible -->
 <!-- $$$setWidget[overload1]$$$setWidgetQWidget* -->
-<h3 class="fn" id="setWidget"><span class="type">void</span> QCtmNavigationSidePane::<span class="name">setWidget</span>(<span class="type">QWidget</span> *<i>widget</i>)</h3>
-<p>设置要显示的窗口 <i>widget</i>.</p>
+<h3 class="fn" translate="no" id="setWidget"><span class="type">void</span> QCtmNavigationSidePane::<span class="name">setWidget</span>(<span class="type">QWidget</span> *<i>widget</i>)</h3>
+<p>设置要显示的窗口 <i translate="no">widget</i>.</p>
 <div class="admonition note">
-<p><b>Note: </b><i>widget</i> 必须在设置前布局，设置窗口后再布局无效.</p>
+<p><b>Note: </b><i translate="no">widget</i> 必须在设置前布局，设置窗口后再布局无效.</p>
 </div>
-<p><b>See also </b><a href="qctmnavigationsidepane.html#widget">widget</a>().</p>
+<p><b>See also </b><a href="qctmnavigationsidepane.html#widget" translate="no">widget</a>().</p>
 <!-- @@@setWidget -->
 <!-- $$$showEvent[overload1]$$$showEventQShowEvent* -->
-<h3 class="fn" id="showEvent"><code>[override virtual protected] </code><span class="type">void</span> QCtmNavigationSidePane::<span class="name">showEvent</span>(<span class="type"><a href="https://doc.qt.io/qt/qshowevent.html">QShowEvent</a></span> *<i>event</i>)</h3>
+<h3 class="fn" translate="no" id="showEvent"><code translate="no">[override virtual protected] </code><span class="type">void</span> QCtmNavigationSidePane::<span class="name">showEvent</span>(<span class="type"><a href="https://doc.qt.io/qt/qshowevent.html" translate="no">QShowEvent</a></span> *<i>event</i>)</h3>
 <!-- @@@showEvent -->
 <!-- $$$sizeHint[overload1]$$$sizeHint -->
-<h3 class="fn" id="sizeHint"><code>[override virtual protected] </code><span class="type"><a href="https://doc.qt.io/qt/qsize.html">QSize</a></span> QCtmNavigationSidePane::<span class="name">sizeHint</span>() const</h3>
+<h3 class="fn" translate="no" id="sizeHint"><code translate="no">[override virtual protected] </code><span class="type"><a href="https://doc.qt.io/qt/qsize.html" translate="no">QSize</a></span> QCtmNavigationSidePane::<span class="name">sizeHint</span>() const</h3>
 <!-- @@@sizeHint -->
 <!-- $$$smartPosition[overload1]$$$smartPositionQCtmNavigationSidePane::DockArea -->
-<h3 class="fn" id="smartPosition"><code>[virtual protected] </code><span class="type"><a href="https://doc.qt.io/qt/qpoint.html">QPoint</a></span> QCtmNavigationSidePane::<span class="name">smartPosition</span>(<span class="type"><a href="qctmnavigationsidepane.html#DockArea-enum">QCtmNavigationSidePane::DockArea</a></span> <i>area</i>) const</h3>
-<p>根据 <i>area</i> 计算显示位置.</p>
-<p><b>See also </b><a href="qctmnavigationsidepane.html#smartSize">smartSize</a>.</p>
+<h3 class="fn" translate="no" id="smartPosition"><code translate="no">[virtual protected] </code><span class="type"><a href="https://doc.qt.io/qt/qpoint.html" translate="no">QPoint</a></span> QCtmNavigationSidePane::<span class="name">smartPosition</span>(<span class="type"><a href="qctmnavigationsidepane.html#DockArea-enum" translate="no">QCtmNavigationSidePane::DockArea</a></span> <i>area</i>) const</h3>
+<p>根据 <i translate="no">area</i> 计算显示位置.</p>
+<p><b>See also </b><a href="qctmnavigationsidepane.html#smartSize" translate="no">smartSize</a>.</p>
 <!-- @@@smartPosition -->
 <!-- $$$smartSize[overload1]$$$smartSizeQCtmNavigationSidePane::DockArea -->
-<h3 class="fn" id="smartSize"><code>[virtual protected] </code><span class="type"><a href="https://doc.qt.io/qt/qsize.html">QSize</a></span> QCtmNavigationSidePane::<span class="name">smartSize</span>(<span class="type"><a href="qctmnavigationsidepane.html#DockArea-enum">QCtmNavigationSidePane::DockArea</a></span> <i>area</i>) const</h3>
-<p>根据 <i>area</i> 自动计算窗口显示大小.</p>
-<p><b>See also </b><a href="qctmnavigationsidepane.html#smartPosition">smartPosition</a>.</p>
+<h3 class="fn" translate="no" id="smartSize"><code translate="no">[virtual protected] </code><span class="type"><a href="https://doc.qt.io/qt/qsize.html" translate="no">QSize</a></span> QCtmNavigationSidePane::<span class="name">smartSize</span>(<span class="type"><a href="qctmnavigationsidepane.html#DockArea-enum" translate="no">QCtmNavigationSidePane::DockArea</a></span> <i>area</i>) const</h3>
+<p>根据 <i translate="no">area</i> 自动计算窗口显示大小.</p>
+<p><b>See also </b><a href="qctmnavigationsidepane.html#smartPosition" translate="no">smartPosition</a>.</p>
 <!-- @@@smartSize -->
 <!-- $$$title[overload1]$$$title -->
-<h3 class="fn" id="title"><span class="type"><a href="https://doc.qt.io/qt/qstring.html">QString</a></span> QCtmNavigationSidePane::<span class="name">title</span>() const</h3>
+<h3 class="fn" translate="no" id="title"><span class="type"><a href="https://doc.qt.io/qt/qstring.html" translate="no">QString</a></span> QCtmNavigationSidePane::<span class="name">title</span>() const</h3>
 <p>返回标题栏文字.</p>
-<p><b>See also </b><a href="qctmnavigationsidepane.html#setTitle">setTitle</a>.</p>
+<p><b>See also </b><a href="qctmnavigationsidepane.html#setTitle" translate="no">setTitle</a>.</p>
 <!-- @@@title -->
 <!-- $$$titleBarIsVisible[overload1]$$$titleBarIsVisible -->
-<h3 class="fn" id="titleBarIsVisible"><span class="type">bool</span> QCtmNavigationSidePane::<span class="name">titleBarIsVisible</span>() const</h3>
+<h3 class="fn" translate="no" id="titleBarIsVisible"><span class="type">bool</span> QCtmNavigationSidePane::<span class="name">titleBarIsVisible</span>() const</h3>
 <p>返回标题栏是否可见.</p>
-<p><b>See also </b><a href="qctmnavigationsidepane.html#setTitleBarVisible">setTitleBarVisible</a>.</p>
+<p><b>See also </b><a href="qctmnavigationsidepane.html#setTitleBarVisible" translate="no">setTitleBarVisible</a>.</p>
 <!-- @@@titleBarIsVisible -->
 <!-- $$$viewContainer[overload1]$$$viewContainer -->
-<h3 class="fn" id="viewContainer"><span class="type"><a href="https://doc.qt.io/qt/qscrollarea.html">QScrollArea</a></span> *QCtmNavigationSidePane::<span class="name">viewContainer</span>() const</h3>
+<h3 class="fn" translate="no" id="viewContainer"><span class="type"><a href="https://doc.qt.io/qt/qscrollarea.html" translate="no">QScrollArea</a></span> *QCtmNavigationSidePane::<span class="name">viewContainer</span>() const</h3>
 <p>返回容器窗口.</p>
-<p><b>See also </b><a href="qctmnavigationsidepane.html#widget">widget</a>().</p>
+<p><b>See also </b><a href="qctmnavigationsidepane.html#widget" translate="no">widget</a>().</p>
 <!-- @@@viewContainer -->
 <!-- $$$widget[overload1]$$$widget -->
-<h3 class="fn" id="widget"><span class="type">QWidget</span> *QCtmNavigationSidePane::<span class="name">widget</span>() const</h3>
+<h3 class="fn" translate="no" id="widget"><span class="type">QWidget</span> *QCtmNavigationSidePane::<span class="name">widget</span>() const</h3>
 <p>返回设置的窗口.</p>
-<p><b>See also </b><a href="qctmnavigationsidepane.html#setWidget">setWidget</a>.</p>
+<p><b>See also </b><a href="qctmnavigationsidepane.html#setWidget" translate="no">setWidget</a>.</p>
 <!-- @@@widget -->
 </div>
         </div>

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <QtHelpProject version="1.0">
-    <namespace>com.qcustomui.1.10.0</namespace>
+    <namespace>com.qcustomui.1.11.0</namespace>
     <virtualFolder>qcustomui</virtualFolder>
     <metaData name="version" value=""/>
     <customFilter name="QCustomUi">
@@ -139,6 +139,9 @@
                     </section>
                     <section ref="qctmpathbrowser.html" title="QCtmPathBrowser Class Reference">
                         <section ref="qctmpathbrowser-members.html" title="List of all members"/>
+                    </section>
+                    <section ref="qctmsignalblocker.html" title="QCtmSignalBlocker Class Reference">
+                        <section ref="qctmsignalblocker-members.html" title="List of all members"/>
                     </section>
                     <section ref="qctmstageprogressbar.html" title="QCtmStageProgressBar Class Reference">
                         <section ref="qctmstageprogressbar-members.html" title="List of all members"/>
@@ -304,6 +307,7 @@
             <keyword name="QCtmNavigationSidePane::Right" id="QCtmNavigationSidePane::Right" ref="qctmnavigationsidepane.html#DockArea-enum"/>
             <keyword name="QCtmNavigationSidePane::Top" id="QCtmNavigationSidePane::Top" ref="qctmnavigationsidepane.html#DockArea-enum"/>
             <keyword name="QCtmPathBrowser" id="QCtmPathBrowser" ref="qctmpathbrowser.html"/>
+            <keyword name="QCtmSignalBlocker" id="QCtmSignalBlocker" ref="qctmsignalblocker.html"/>
             <keyword name="QCtmStageProgressBar" id="QCtmStageProgressBar" ref="qctmstageprogressbar.html"/>
             <keyword name="QCtmStyleSheet" id="QCtmStyleSheet" ref="qctmstylesheet.html"/>
             <keyword name="QCtmSwitchButton" id="QCtmSwitchButton" ref="qctmswitchbutton.html"/>
@@ -587,6 +591,7 @@
             <keyword name="minimumSizeHint" id="QCtmDigitKeyboard::minimumSizeHint" ref="qctmdigitkeyboard.html#minimumSizeHint"/>
             <keyword name="minimumSizeHint" id="QCtmEditLabel::minimumSizeHint" ref="qctmeditlabel.html#minimumSizeHint"/>
             <keyword name="minimumSizeHint" id="QCtmIPAddressEdit::minimumSizeHint" ref="qctmipaddressedit.html#minimumSizeHint"/>
+            <keyword name="minimumSizeHint" id="QCtmNavigationBar::minimumSizeHint" ref="qctmnavigationbar.html#minimumSizeHint"/>
             <keyword name="minimumSizeHint" id="QCtmPathBrowser::minimumSizeHint" ref="qctmpathbrowser.html#minimumSizeHint"/>
             <keyword name="minimumSizeHint" id="QCtmStageProgressBar::minimumSizeHint" ref="qctmstageprogressbar.html#minimumSizeHint"/>
             <keyword name="minimumSizeHint" id="QCtmSwitchButton::minimumSizeHint" ref="qctmswitchbutton.html#minimumSizeHint"/>
@@ -618,6 +623,7 @@
             <keyword name="next" id="QCtmAbstractMultiPageItemModel::next" ref="qctmabstractmultipageitemmodel.html#next"/>
             <keyword name="nextButton" id="QCtmMultiPageButtonBox::nextButton" ref="qctmmultipagebuttonbox.html#nextButton"/>
             <keyword name="offset" id="QCtmAbstractMultiPageItemModel::offset" ref="qctmabstractmultipageitemmodel.html#offset"/>
+            <keyword name="operator=" id="QCtmSignalBlocker::operator=" ref="qctmsignalblocker.html#operator-eq"/>
             <keyword name="orientation" id="QCtmStageProgressBar::orientation" ref="qctmstageprogressbar.html#orientation"/>
             <keyword name="pageButtonCount" id="QCtmMultiPageButtonBox::pageButtonCount" ref="qctmmultipagebuttonbox.html#pageButtonCount"/>
             <keyword name="pageCount" id="QCtmAbstractMultiPageItemModel::pageCount" ref="qctmabstractmultipageitemmodel.html#pageCount"/>
@@ -650,6 +656,7 @@
             <keyword name="readOnly" id="QCtmEditLabel::readOnly" ref="qctmeditlabel.html#readOnly-prop"/>
             <keyword name="readOnly" id="QCtmIPAddressEdit::readOnly" ref="qctmipaddressedit.html#readOnly-prop"/>
             <keyword name="readOnly" id="QCtmPathBrowser::readOnly" ref="qctmpathbrowser.html#readOnly"/>
+            <keyword name="reblock" id="QCtmSignalBlocker::reblock" ref="qctmsignalblocker.html#reblock"/>
             <keyword name="registerModel" id="QCtmLogManager::registerModel" ref="qctmlogmanager.html#registerModel"/>
             <keyword name="relayoutNodes" id="QCtmClassifyTreeView::relayoutNodes" ref="qctmclassifytreeview.html#relayoutNodes"/>
             <keyword name="removeAction" id="QCtmDrawerItemWidget::removeAction" ref="qctmdraweritemwidget.html#removeAction"/>
@@ -826,6 +833,7 @@
             <keyword name="setWarningIcon" id="QCtmLogWidget::setWarningIcon" ref="qctmlogwidget.html#setWarningIcon"/>
             <keyword name="setWidget" id="QCtmDrawerItemWidget::setWidget" ref="qctmdraweritemwidget.html#setWidget"/>
             <keyword name="setWidget" id="QCtmNavigationSidePane::setWidget" ref="qctmnavigationsidepane.html#setWidget"/>
+            <keyword name="showEvent" id="QCtmDigitKeyboard::showEvent" ref="qctmdigitkeyboard.html#showEvent"/>
             <keyword name="showEvent" id="QCtmDrawerWidget::showEvent" ref="qctmdrawerwidget.html#showEvent"/>
             <keyword name="showEvent" id="QCtmInputDialog::showEvent" ref="qctminputdialog.html#showEvent"/>
             <keyword name="showEvent" id="QCtmLoadingDialog::showEvent" ref="qctmloadingdialog.html#showEvent"/>
@@ -842,6 +850,7 @@
             <keyword name="sizeHint" id="QCtmCircleProgressBar::sizeHint" ref="qctmcircleprogressbar.html#sizeHint"/>
             <keyword name="sizeHint" id="QCtmDigitKeyboard::sizeHint" ref="qctmdigitkeyboard.html#sizeHint"/>
             <keyword name="sizeHint" id="QCtmIPAddressEdit::sizeHint" ref="qctmipaddressedit.html#sizeHint"/>
+            <keyword name="sizeHint" id="QCtmNavigationBar::sizeHint" ref="qctmnavigationbar.html#sizeHint"/>
             <keyword name="sizeHint" id="QCtmNavigationSidePane::sizeHint" ref="qctmnavigationsidepane.html#sizeHint"/>
             <keyword name="sizeHint" id="QCtmPathBrowser::sizeHint" ref="qctmpathbrowser.html#sizeHint"/>
             <keyword name="sizeHint" id="QCtmStageProgressBar::sizeHint" ref="qctmstageprogressbar.html#sizeHint"/>
@@ -892,6 +901,7 @@
             <keyword name="touchControlStyle" id="QCtmMessageTipView::touchControlStyle" ref="qctmmessagetipview.html#touchControlStyle"/>
             <keyword name="type" id="QCtmLogData::type" ref="qctmlogdata.html#type"/>
             <keyword name="unRegisterModel" id="QCtmLogManager::unRegisterModel" ref="qctmlogmanager.html#unRegisterModel"/>
+            <keyword name="unblock" id="QCtmSignalBlocker::unblock" ref="qctmsignalblocker.html#unblock"/>
             <keyword name="uncheckedBackground" id="QCtmSwitchButton::uncheckedBackground" ref="qctmswitchbutton.html#uncheckedBackground-prop"/>
             <keyword name="uncheckedBackground" id="QCtmSwitchButton::uncheckedBackground" ref="qctmswitchbutton.html#uncheckedBackground-prop"/>
             <keyword name="uncheckedBackgroundBorderColor" id="QCtmSwitchButton::uncheckedBackgroundBorderColor" ref="qctmswitchbutton.html#uncheckedBackgroundBorderColor-prop"/>
@@ -964,6 +974,7 @@
             <keyword name="~QCtmNavigationSideBar" id="QCtmNavigationSideBar::~QCtmNavigationSideBar" ref="qctmnavigationsidebar.html#dtor.QCtmNavigationSideBar"/>
             <keyword name="~QCtmNavigationSidePane" id="QCtmNavigationSidePane::~QCtmNavigationSidePane" ref="qctmnavigationsidepane.html#dtor.QCtmNavigationSidePane"/>
             <keyword name="~QCtmPathBrowser" id="QCtmPathBrowser::~QCtmPathBrowser" ref="qctmpathbrowser.html#dtor.QCtmPathBrowser"/>
+            <keyword name="~QCtmSignalBlocker" id="QCtmSignalBlocker::~QCtmSignalBlocker" ref="qctmsignalblocker.html#dtor.QCtmSignalBlocker"/>
             <keyword name="~QCtmStageProgressBar" id="QCtmStageProgressBar::~QCtmStageProgressBar" ref="qctmstageprogressbar.html#dtor.QCtmStageProgressBar"/>
             <keyword name="~QCtmSwitchButton" id="QCtmSwitchButton::~QCtmSwitchButton" ref="qctmswitchbutton.html#dtor.QCtmSwitchButton"/>
             <keyword name="~QCtmTabPage" id="QCtmTabPage::~QCtmTabPage" ref="qctmtabpage.html#dtor.QCtmTabPage"/>
@@ -1083,6 +1094,8 @@
             <file>qctmnavigationsidepane.html</file>
             <file>qctmpathbrowser-members.html</file>
             <file>qctmpathbrowser.html</file>
+            <file>qctmsignalblocker-members.html</file>
+            <file>qctmsignalblocker.html</file>
             <file>qctmstageprogressbar-members.html</file>
             <file>qctmstageprogressbar.html</file>
             <file>qctmstylesheet-members.html</file>
@@ -1105,6 +1118,7 @@
             <file>qctmwindow.html</file>
             <file>qcustomui-module.html</file>
             <file>search-results.html</file>
+            <file>style/offline-dark.css</file>
             <file>style/offline-simple.css</file>
             <file>style/offline.css</file>
         </files>

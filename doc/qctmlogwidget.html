@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
 <!-- QCtmLogWidget.cpp -->
-  <title>QCtmLogWidget Class | QCustomUi 1.10.0</title>
+  <title>QCtmLogWidget Class | QCustomUi 1.11.0</title>
   <link rel="stylesheet" type="text/css" href="style/offline-simple.css" />
   <script type="text/javascript">
     document.getElementsByTagName("link").item(0).setAttribute("href", "style/offline.css");
@@ -25,10 +25,10 @@
     <div class="main-rounded">
         <div class="navigationbar">
         <ul>
-<li><a href="index.html">QCustomUi 1.10.0</a></li>
-<li><a href="index.html">QCustomUi</a></li>
+<li><a href="index.html" translate="no">QCustomUi 1.11.0</a></li>
+<li><a href="qcustomui-module.html" translate="no">QCustomUi</a></li>
 <li>QCtmLogWidget</li>
-<li id="buildversion">QCustomUi 1.10.0 Reference Documentation</li>
+<li id="buildversion">QCustomUi 1.11.0 Reference Documentation</li>
     </ul>
     </div>
 </div>
@@ -46,42 +46,43 @@
 </ul>
 </div>
 <div class="sidebar-content" id="sidebar-content"></div></div>
-<h1 class="title">QCtmLogWidget Class</h1>
+<h1 class="title" translate="no">QCtmLogWidget Class</h1>
 <!-- $$$QCtmLogWidget-brief -->
 <p>标准日志窗口. <a href="#details">More...</a></p>
 <!-- @@@QCtmLogWidget -->
-<div class="table"><table class="alignedsummary">
-<tr><td class="memItemLeft rightAlign topAlign"> Header:</td><td class="memItemRight bottomAlign">  <span class="preprocessor">#include &lt;QCtmLogWidget.h&gt;</span>
-</td></tr><tr><td class="memItemLeft rightAlign topAlign"> Inherits:</td><td class="memItemRight bottomAlign"> QWidget</td></tr></table></div>
+<div class="table"><table class="alignedsummary" translate="no">
+<tr><td class="memItemLeft rightAlign topAlign"> Header:</td><td class="memItemRight bottomAlign">  <span class="preprocessor">#include &lt;QCtmLogWidget.h&gt;</span></td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> Inherits:</td><td class="memItemRight bottomAlign"> QWidget</td></tr>
+</table></div>
 <ul>
 <li><a href="qctmlogwidget-members.html">List of all members, including inherited members</a></li>
 </ul>
 <h2 id="public-types">Public Types</h2>
-<div class="table"><table class="alignedsummary">
-<tr><td class="memItemLeft rightAlign topAlign"> enum class </td><td class="memItemRight bottomAlign"><b><a href="qctmlogwidget.html#QCtmLogColumn-enum">QCtmLogColumn</a></b> { Level, Time, Description }</td></tr>
+<div class="table"><table class="alignedsummary" translate="no">
+<tr><td class="memItemLeft rightAlign topAlign"> enum class </td><td class="memItemRight bottomAlign"><b><a href="qctmlogwidget.html#QCtmLogColumn-enum" translate="no">QCtmLogColumn</a></b> { Level, Time, Description }</td></tr>
 </table></div>
 <h2 id="properties">Properties</h2>
 <ul>
-<li class="fn"><b><a href="qctmlogwidget.html#errorIcon-prop">errorIcon</a></b> : QIcon</li>
-<li class="fn"><b><a href="qctmlogwidget.html#infoIcon-prop">infoIcon</a></b> : QIcon</li>
-<li class="fn"><b><a href="qctmlogwidget.html#warningIcon-prop">warningIcon</a></b> : QIcon</li>
+<li class="fn" translate="no"><b><a href="qctmlogwidget.html#errorIcon-prop" translate="no">errorIcon</a></b> : QIcon</li>
+<li class="fn" translate="no"><b><a href="qctmlogwidget.html#infoIcon-prop" translate="no">infoIcon</a></b> : QIcon</li>
+<li class="fn" translate="no"><b><a href="qctmlogwidget.html#warningIcon-prop" translate="no">warningIcon</a></b> : QIcon</li>
 </ul>
 <h2 id="public-functions">Public Functions</h2>
-<div class="table"><table class="alignedsummary">
-<tr><td class="memItemLeft rightAlign topAlign"> </td><td class="memItemRight bottomAlign"><b><a href="qctmlogwidget.html#QCtmLogWidget">QCtmLogWidget</a></b>(const QString &amp;<i>objectName</i>, QWidget *<i>parent</i> = Q_NULLPTR)</td></tr>
-<tr><td class="memItemLeft rightAlign topAlign"> virtual </td><td class="memItemRight bottomAlign"><b><a href="qctmlogwidget.html#dtor.QCtmLogWidget">~QCtmLogWidget</a></b>()</td></tr>
-<tr><td class="memItemLeft rightAlign topAlign"> bool </td><td class="memItemRight bottomAlign"><b><a href="qctmlogwidget.html#columnVisible">columnVisible</a></b>(QCtmLogWidget::QCtmLogColumn <i>column</i>) const</td></tr>
-<tr><td class="memItemLeft rightAlign topAlign"> const QIcon &amp;</td><td class="memItemRight bottomAlign"><b><a href="qctmlogwidget.html#errorIcon">errorIcon</a></b>() const</td></tr>
-<tr><td class="memItemLeft rightAlign topAlign"> const QIcon &amp;</td><td class="memItemRight bottomAlign"><b><a href="qctmlogwidget.html#infoIcon">infoIcon</a></b>() const</td></tr>
-<tr><td class="memItemLeft rightAlign topAlign"> QCtmLogData::LogInsertPolicy </td><td class="memItemRight bottomAlign"><b><a href="qctmlogwidget.html#logInsertPolicy">logInsertPolicy</a></b>() const</td></tr>
-<tr><td class="memItemLeft rightAlign topAlign"> int </td><td class="memItemRight bottomAlign"><b><a href="qctmlogwidget.html#maximumCount">maximumCount</a></b>() const</td></tr>
-<tr><td class="memItemLeft rightAlign topAlign"> void </td><td class="memItemRight bottomAlign"><b><a href="qctmlogwidget.html#setColumnVisible">setColumnVisible</a></b>(QCtmLogWidget::QCtmLogColumn <i>column</i>, bool <i>visible</i>)</td></tr>
-<tr><td class="memItemLeft rightAlign topAlign"> void </td><td class="memItemRight bottomAlign"><b><a href="qctmlogwidget.html#setErrorIcon">setErrorIcon</a></b>(const QIcon &amp;<i>icon</i>)</td></tr>
-<tr><td class="memItemLeft rightAlign topAlign"> void </td><td class="memItemRight bottomAlign"><b><a href="qctmlogwidget.html#setInfoIcon">setInfoIcon</a></b>(const QIcon &amp;<i>icon</i>)</td></tr>
-<tr><td class="memItemLeft rightAlign topAlign"> void </td><td class="memItemRight bottomAlign"><b><a href="qctmlogwidget.html#setLogInsertPolicy">setLogInsertPolicy</a></b>(QCtmLogData::LogInsertPolicy <i>policy</i>)</td></tr>
-<tr><td class="memItemLeft rightAlign topAlign"> void </td><td class="memItemRight bottomAlign"><b><a href="qctmlogwidget.html#setMaximumCount">setMaximumCount</a></b>(int <i>count</i>)</td></tr>
-<tr><td class="memItemLeft rightAlign topAlign"> void </td><td class="memItemRight bottomAlign"><b><a href="qctmlogwidget.html#setWarningIcon">setWarningIcon</a></b>(const QIcon &amp;<i>icon</i>)</td></tr>
-<tr><td class="memItemLeft rightAlign topAlign"> const QIcon &amp;</td><td class="memItemRight bottomAlign"><b><a href="qctmlogwidget.html#warningIcon">warningIcon</a></b>() const</td></tr>
+<div class="table"><table class="alignedsummary" translate="no">
+<tr><td class="memItemLeft rightAlign topAlign"> </td><td class="memItemRight bottomAlign"><b><a href="qctmlogwidget.html#QCtmLogWidget" translate="no">QCtmLogWidget</a></b>(const QString &amp;<i>objectName</i>, QWidget *<i>parent</i> = Q_NULLPTR)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> virtual </td><td class="memItemRight bottomAlign"><b><a href="qctmlogwidget.html#dtor.QCtmLogWidget" translate="no">~QCtmLogWidget</a></b>()</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> bool </td><td class="memItemRight bottomAlign"><b><a href="qctmlogwidget.html#columnVisible" translate="no">columnVisible</a></b>(QCtmLogWidget::QCtmLogColumn <i>column</i>) const</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> const QIcon &amp;</td><td class="memItemRight bottomAlign"><b><a href="qctmlogwidget.html#errorIcon" translate="no">errorIcon</a></b>() const</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> const QIcon &amp;</td><td class="memItemRight bottomAlign"><b><a href="qctmlogwidget.html#infoIcon" translate="no">infoIcon</a></b>() const</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> QCtmLogData::LogInsertPolicy </td><td class="memItemRight bottomAlign"><b><a href="qctmlogwidget.html#logInsertPolicy" translate="no">logInsertPolicy</a></b>() const</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> int </td><td class="memItemRight bottomAlign"><b><a href="qctmlogwidget.html#maximumCount" translate="no">maximumCount</a></b>() const</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> void </td><td class="memItemRight bottomAlign"><b><a href="qctmlogwidget.html#setColumnVisible" translate="no">setColumnVisible</a></b>(QCtmLogWidget::QCtmLogColumn <i>column</i>, bool <i>visible</i>)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> void </td><td class="memItemRight bottomAlign"><b><a href="qctmlogwidget.html#setErrorIcon" translate="no">setErrorIcon</a></b>(const QIcon &amp;<i>icon</i>)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> void </td><td class="memItemRight bottomAlign"><b><a href="qctmlogwidget.html#setInfoIcon" translate="no">setInfoIcon</a></b>(const QIcon &amp;<i>icon</i>)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> void </td><td class="memItemRight bottomAlign"><b><a href="qctmlogwidget.html#setLogInsertPolicy" translate="no">setLogInsertPolicy</a></b>(QCtmLogData::LogInsertPolicy <i>policy</i>)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> void </td><td class="memItemRight bottomAlign"><b><a href="qctmlogwidget.html#setMaximumCount" translate="no">setMaximumCount</a></b>(int <i>count</i>)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> void </td><td class="memItemRight bottomAlign"><b><a href="qctmlogwidget.html#setWarningIcon" translate="no">setWarningIcon</a></b>(const QIcon &amp;<i>icon</i>)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> const QIcon &amp;</td><td class="memItemRight bottomAlign"><b><a href="qctmlogwidget.html#warningIcon" translate="no">warningIcon</a></b>() const</td></tr>
 </table></div>
 <!-- $$$QCtmLogWidget-description -->
 <div class="descr">
@@ -91,120 +92,120 @@
 <div class="types">
 <h2>Member Type Documentation</h2>
 <!-- $$$QCtmLogColumn$$$Level$$$Time$$$Description -->
-<h3 class="fn" id="QCtmLogColumn-enum">enum class QCtmLogWidget::<span class="name">QCtmLogColumn</span></h3>
+<h3 class="fn" translate="no" id="QCtmLogColumn-enum">enum class QCtmLogWidget::<span class="name">QCtmLogColumn</span></h3>
 <p>日志列表列定义.</p>
 <div class="table"><table class="valuelist"><tr valign="top" class="odd"><th class="tblConst">Constant</th><th class="tblval">Value</th><th class="tbldscr">Description</th></tr>
-<tr><td class="topAlign"><code>QCtmLogWidget::QCtmLogColumn::Level</code></td><td class="topAlign tblval"><code>0</code></td><td class="topAlign">日志等级.</td></tr>
-<tr><td class="topAlign"><code>QCtmLogWidget::QCtmLogColumn::Time</code></td><td class="topAlign tblval"><code>1</code></td><td class="topAlign">日志时间.</td></tr>
-<tr><td class="topAlign"><code>QCtmLogWidget::QCtmLogColumn::Description</code></td><td class="topAlign tblval"><code>2</code></td><td class="topAlign">日志描述.</td></tr>
+<tr><td class="topAlign"><code translate="no">QCtmLogWidget::QCtmLogColumn::Level</code></td><td class="topAlign tblval"><code translate="no">0</code></td><td class="topAlign">日志等级.</td></tr>
+<tr><td class="topAlign"><code translate="no">QCtmLogWidget::QCtmLogColumn::Time</code></td><td class="topAlign tblval"><code translate="no">1</code></td><td class="topAlign">日志时间.</td></tr>
+<tr><td class="topAlign"><code translate="no">QCtmLogWidget::QCtmLogColumn::Description</code></td><td class="topAlign tblval"><code translate="no">2</code></td><td class="topAlign">日志描述.</td></tr>
 </table></div>
 <!-- @@@QCtmLogColumn -->
 </div>
 <div class="prop">
 <h2>Property Documentation</h2>
 <!-- $$$errorIcon-prop$$$errorIcon$$$setErrorIconconstQIcon& -->
-<h3 class="fn" id="errorIcon-prop"><span class="name">errorIcon</span> : <span class="type"><a href="https://doc.qt.io/qt/qicon.html">QIcon</a></span></h3>
+<h3 class="fn" translate="no" id="errorIcon-prop"><span class="name">errorIcon</span> : <span class="type"><a href="https://doc.qt.io/qt/qicon.html" translate="no">QIcon</a></span></h3>
 <p>Error 等级日志图标.</p>
 <p><b>Access functions:</b></p>
-<div class="table"><table class="alignedsummary">
-<tr><td class="memItemLeft topAlign rightAlign"> const QIcon &amp;</td><td class="memItemRight bottomAlign"><span class="name"><b><a href="qctmlogwidget.html#errorIcon">errorIcon</a></b></span>() const</td></tr>
-<tr><td class="memItemLeft topAlign rightAlign"> void </td><td class="memItemRight bottomAlign"><span class="name"><b><a href="qctmlogwidget.html#setErrorIcon">setErrorIcon</a></b></span>(const QIcon &amp;<i>icon</i>)</td></tr>
+<div class="table"><table class="alignedsummary" translate="no">
+<tr><td class="memItemLeft topAlign rightAlign"> const QIcon &amp;</td><td class="memItemRight bottomAlign"><span class="name"><b><a href="qctmlogwidget.html#errorIcon" translate="no">errorIcon</a></b></span>() const</td></tr>
+<tr><td class="memItemLeft topAlign rightAlign"> void </td><td class="memItemRight bottomAlign"><span class="name"><b><a href="qctmlogwidget.html#setErrorIcon" translate="no">setErrorIcon</a></b></span>(const QIcon &amp;<i>icon</i>)</td></tr>
 </table></div>
 <!-- @@@errorIcon -->
 <!-- $$$infoIcon-prop$$$infoIcon$$$setInfoIconconstQIcon& -->
-<h3 class="fn" id="infoIcon-prop"><span class="name">infoIcon</span> : <span class="type"><a href="https://doc.qt.io/qt/qicon.html">QIcon</a></span></h3>
+<h3 class="fn" translate="no" id="infoIcon-prop"><span class="name">infoIcon</span> : <span class="type"><a href="https://doc.qt.io/qt/qicon.html" translate="no">QIcon</a></span></h3>
 <p>Info 等级日志图标.</p>
 <p><b>Access functions:</b></p>
-<div class="table"><table class="alignedsummary">
-<tr><td class="memItemLeft topAlign rightAlign"> const QIcon &amp;</td><td class="memItemRight bottomAlign"><span class="name"><b><a href="qctmlogwidget.html#infoIcon">infoIcon</a></b></span>() const</td></tr>
-<tr><td class="memItemLeft topAlign rightAlign"> void </td><td class="memItemRight bottomAlign"><span class="name"><b><a href="qctmlogwidget.html#setInfoIcon">setInfoIcon</a></b></span>(const QIcon &amp;<i>icon</i>)</td></tr>
+<div class="table"><table class="alignedsummary" translate="no">
+<tr><td class="memItemLeft topAlign rightAlign"> const QIcon &amp;</td><td class="memItemRight bottomAlign"><span class="name"><b><a href="qctmlogwidget.html#infoIcon" translate="no">infoIcon</a></b></span>() const</td></tr>
+<tr><td class="memItemLeft topAlign rightAlign"> void </td><td class="memItemRight bottomAlign"><span class="name"><b><a href="qctmlogwidget.html#setInfoIcon" translate="no">setInfoIcon</a></b></span>(const QIcon &amp;<i>icon</i>)</td></tr>
 </table></div>
 <!-- @@@infoIcon -->
 <!-- $$$warningIcon-prop$$$warningIcon$$$setWarningIconconstQIcon& -->
-<h3 class="fn" id="warningIcon-prop"><span class="name">warningIcon</span> : <span class="type"><a href="https://doc.qt.io/qt/qicon.html">QIcon</a></span></h3>
+<h3 class="fn" translate="no" id="warningIcon-prop"><span class="name">warningIcon</span> : <span class="type"><a href="https://doc.qt.io/qt/qicon.html" translate="no">QIcon</a></span></h3>
 <p>Warning 等级日志图标.</p>
 <p><b>Access functions:</b></p>
-<div class="table"><table class="alignedsummary">
-<tr><td class="memItemLeft topAlign rightAlign"> const QIcon &amp;</td><td class="memItemRight bottomAlign"><span class="name"><b><a href="qctmlogwidget.html#warningIcon">warningIcon</a></b></span>() const</td></tr>
-<tr><td class="memItemLeft topAlign rightAlign"> void </td><td class="memItemRight bottomAlign"><span class="name"><b><a href="qctmlogwidget.html#setWarningIcon">setWarningIcon</a></b></span>(const QIcon &amp;<i>icon</i>)</td></tr>
+<div class="table"><table class="alignedsummary" translate="no">
+<tr><td class="memItemLeft topAlign rightAlign"> const QIcon &amp;</td><td class="memItemRight bottomAlign"><span class="name"><b><a href="qctmlogwidget.html#warningIcon" translate="no">warningIcon</a></b></span>() const</td></tr>
+<tr><td class="memItemLeft topAlign rightAlign"> void </td><td class="memItemRight bottomAlign"><span class="name"><b><a href="qctmlogwidget.html#setWarningIcon" translate="no">setWarningIcon</a></b></span>(const QIcon &amp;<i>icon</i>)</td></tr>
 </table></div>
 <!-- @@@warningIcon -->
 </div>
 <div class="func">
 <h2>Member Function Documentation</h2>
 <!-- $$$QCtmLogWidget[overload1]$$$QCtmLogWidgetconstQString&QWidget* -->
-<h3 class="fn" id="QCtmLogWidget">QCtmLogWidget::<span class="name">QCtmLogWidget</span>(const <span class="type"><a href="https://doc.qt.io/qt/qstring.html">QString</a></span> &amp;<i>objectName</i>, <span class="type">QWidget</span> *<i>parent</i> = Q_NULLPTR)</h3>
-<p>构造函数 <i>objectName</i>, <i>parent</i>.</p>
+<h3 class="fn" translate="no" id="QCtmLogWidget">QCtmLogWidget::<span class="name">QCtmLogWidget</span>(const <span class="type"><a href="https://doc.qt.io/qt/qstring.html" translate="no">QString</a></span> &amp;<i>objectName</i>, <span class="type">QWidget</span> *<i>parent</i> = Q_NULLPTR)</h3>
+<p>构造函数 <i translate="no">objectName</i>, <i translate="no">parent</i>.</p>
 <!-- @@@QCtmLogWidget -->
 <!-- $$$~QCtmLogWidget[overload1]$$$~QCtmLogWidget -->
-<h3 class="fn" id="dtor.QCtmLogWidget"><code>[virtual] </code>QCtmLogWidget::<span class="name">~QCtmLogWidget</span>()</h3>
+<h3 class="fn" translate="no" id="dtor.QCtmLogWidget"><code translate="no">[virtual] </code>QCtmLogWidget::<span class="name">~QCtmLogWidget</span>()</h3>
 <p>析构函数.</p>
 <!-- @@@~QCtmLogWidget -->
 <!-- $$$columnVisible[overload1]$$$columnVisibleQCtmLogWidget::QCtmLogColumn -->
-<h3 class="fn" id="columnVisible"><span class="type">bool</span> QCtmLogWidget::<span class="name">columnVisible</span>(<span class="type"><a href="qctmlogwidget.html#QCtmLogColumn-enum">QCtmLogWidget::QCtmLogColumn</a></span> <i>column</i>) const</h3>
-<p>返回 <i>column</i> 列是否可见.</p>
-<p><b>See also </b><a href="qctmlogwidget.html#setColumnVisible">setColumnVisible</a>.</p>
+<h3 class="fn" translate="no" id="columnVisible"><span class="type">bool</span> QCtmLogWidget::<span class="name">columnVisible</span>(<span class="type"><a href="qctmlogwidget.html#QCtmLogColumn-enum" translate="no">QCtmLogWidget::QCtmLogColumn</a></span> <i>column</i>) const</h3>
+<p>返回 <i translate="no">column</i> 列是否可见.</p>
+<p><b>See also </b><a href="qctmlogwidget.html#setColumnVisible" translate="no">setColumnVisible</a>.</p>
 <!-- @@@columnVisible -->
 <!-- $$$errorIcon -->
-<h3 class="fn" id="errorIcon">const <span class="type"><a href="https://doc.qt.io/qt/qicon.html">QIcon</a></span> &amp;QCtmLogWidget::<span class="name">errorIcon</span>() const</h3>
+<h3 class="fn" translate="no" id="errorIcon">const <span class="type"><a href="https://doc.qt.io/qt/qicon.html" translate="no">QIcon</a></span> &amp;QCtmLogWidget::<span class="name">errorIcon</span>() const</h3>
 <p>返回 Error 日志图标.</p>
 <p><b>Note: </b>Getter function for property errorIcon. </p>
-<p><b>See also </b><a href="qctmlogwidget.html#setErrorIcon">setErrorIcon</a>.</p>
+<p><b>See also </b><a href="qctmlogwidget.html#setErrorIcon" translate="no">setErrorIcon</a>.</p>
 <!-- @@@errorIcon -->
 <!-- $$$infoIcon -->
-<h3 class="fn" id="infoIcon">const <span class="type"><a href="https://doc.qt.io/qt/qicon.html">QIcon</a></span> &amp;QCtmLogWidget::<span class="name">infoIcon</span>() const</h3>
+<h3 class="fn" translate="no" id="infoIcon">const <span class="type"><a href="https://doc.qt.io/qt/qicon.html" translate="no">QIcon</a></span> &amp;QCtmLogWidget::<span class="name">infoIcon</span>() const</h3>
 <p>返回 Info 等级日志图标.</p>
 <p><b>Note: </b>Getter function for property infoIcon. </p>
-<p><b>See also </b><a href="qctmlogwidget.html#setInfoIcon">setInfoIcon</a>.</p>
+<p><b>See also </b><a href="qctmlogwidget.html#setInfoIcon" translate="no">setInfoIcon</a>.</p>
 <!-- @@@infoIcon -->
 <!-- $$$logInsertPolicy[overload1]$$$logInsertPolicy -->
-<h3 class="fn" id="logInsertPolicy"><span class="type"><a href="qctmlogdata.html#LogInsertPolicy-enum">QCtmLogData::LogInsertPolicy</a></span> QCtmLogWidget::<span class="name">logInsertPolicy</span>() const</h3>
+<h3 class="fn" translate="no" id="logInsertPolicy"><span class="type"><a href="qctmlogdata.html#LogInsertPolicy-enum" translate="no">QCtmLogData::LogInsertPolicy</a></span> QCtmLogWidget::<span class="name">logInsertPolicy</span>() const</h3>
 <p>返回日志插入策略.</p>
-<p><b>See also </b><a href="qctmlogwidget.html#setLogInsertPolicy">setLogInsertPolicy</a>.</p>
+<p><b>See also </b><a href="qctmlogwidget.html#setLogInsertPolicy" translate="no">setLogInsertPolicy</a>.</p>
 <!-- @@@logInsertPolicy -->
 <!-- $$$maximumCount[overload1]$$$maximumCount -->
-<h3 class="fn" id="maximumCount"><span class="type">int</span> QCtmLogWidget::<span class="name">maximumCount</span>() const</h3>
+<h3 class="fn" translate="no" id="maximumCount"><span class="type">int</span> QCtmLogWidget::<span class="name">maximumCount</span>() const</h3>
 <p>返回最大日志数量.</p>
-<p><b>See also </b><a href="qctmlogwidget.html#setMaximumCount">setMaximumCount</a>.</p>
+<p><b>See also </b><a href="qctmlogwidget.html#setMaximumCount" translate="no">setMaximumCount</a>.</p>
 <!-- @@@maximumCount -->
 <!-- $$$setColumnVisible[overload1]$$$setColumnVisibleQCtmLogWidget::QCtmLogColumnbool -->
-<h3 class="fn" id="setColumnVisible"><span class="type">void</span> QCtmLogWidget::<span class="name">setColumnVisible</span>(<span class="type"><a href="qctmlogwidget.html#QCtmLogColumn-enum">QCtmLogWidget::QCtmLogColumn</a></span> <i>column</i>, <span class="type">bool</span> <i>visible</i>)</h3>
-<p>设置 <i>column</i> 列是否可见 <i>visible</i>.</p>
-<p><b>See also </b><a href="qctmlogwidget.html#columnVisible">columnVisible</a>.</p>
+<h3 class="fn" translate="no" id="setColumnVisible"><span class="type">void</span> QCtmLogWidget::<span class="name">setColumnVisible</span>(<span class="type"><a href="qctmlogwidget.html#QCtmLogColumn-enum" translate="no">QCtmLogWidget::QCtmLogColumn</a></span> <i>column</i>, <span class="type">bool</span> <i>visible</i>)</h3>
+<p>设置 <i translate="no">column</i> 列是否可见 <i translate="no">visible</i>.</p>
+<p><b>See also </b><a href="qctmlogwidget.html#columnVisible" translate="no">columnVisible</a>.</p>
 <!-- @@@setColumnVisible -->
 <!-- $$$setErrorIcon -->
-<h3 class="fn" id="setErrorIcon"><span class="type">void</span> QCtmLogWidget::<span class="name">setErrorIcon</span>(const <span class="type"><a href="https://doc.qt.io/qt/qicon.html">QIcon</a></span> &amp;<i>icon</i>)</h3>
-<p>设置 Error 日志图标 <i>icon</i>.</p>
-<p><b>Note: </b>Setter function for property <a href="qctmlogwidget.html#errorIcon">errorIcon</a>. </p>
-<p><b>See also </b><a href="qctmlogwidget.html#errorIcon">errorIcon</a>().</p>
+<h3 class="fn" translate="no" id="setErrorIcon"><span class="type">void</span> QCtmLogWidget::<span class="name">setErrorIcon</span>(const <span class="type"><a href="https://doc.qt.io/qt/qicon.html" translate="no">QIcon</a></span> &amp;<i>icon</i>)</h3>
+<p>设置 Error 日志图标 <i translate="no">icon</i>.</p>
+<p><b>Note: </b>Setter function for property <a href="qctmlogwidget.html#errorIcon" translate="no">errorIcon</a>. </p>
+<p><b>See also </b><a href="qctmlogwidget.html#errorIcon" translate="no">errorIcon</a>().</p>
 <!-- @@@setErrorIcon -->
 <!-- $$$setInfoIcon -->
-<h3 class="fn" id="setInfoIcon"><span class="type">void</span> QCtmLogWidget::<span class="name">setInfoIcon</span>(const <span class="type"><a href="https://doc.qt.io/qt/qicon.html">QIcon</a></span> &amp;<i>icon</i>)</h3>
-<p>设置 Info 等级日志图标 <i>icon</i>.</p>
-<p><b>Note: </b>Setter function for property <a href="qctmlogwidget.html#infoIcon">infoIcon</a>. </p>
-<p><b>See also </b><a href="qctmlogwidget.html#infoIcon">infoIcon</a>().</p>
+<h3 class="fn" translate="no" id="setInfoIcon"><span class="type">void</span> QCtmLogWidget::<span class="name">setInfoIcon</span>(const <span class="type"><a href="https://doc.qt.io/qt/qicon.html" translate="no">QIcon</a></span> &amp;<i>icon</i>)</h3>
+<p>设置 Info 等级日志图标 <i translate="no">icon</i>.</p>
+<p><b>Note: </b>Setter function for property <a href="qctmlogwidget.html#infoIcon" translate="no">infoIcon</a>. </p>
+<p><b>See also </b><a href="qctmlogwidget.html#infoIcon" translate="no">infoIcon</a>().</p>
 <!-- @@@setInfoIcon -->
 <!-- $$$setLogInsertPolicy[overload1]$$$setLogInsertPolicyQCtmLogData::LogInsertPolicy -->
-<h3 class="fn" id="setLogInsertPolicy"><span class="type">void</span> QCtmLogWidget::<span class="name">setLogInsertPolicy</span>(<span class="type"><a href="qctmlogdata.html#LogInsertPolicy-enum">QCtmLogData::LogInsertPolicy</a></span> <i>policy</i>)</h3>
-<p>设置日志插入策略 <i>policy</i>.</p>
-<p><b>See also </b><a href="qctmlogwidget.html#logInsertPolicy">logInsertPolicy</a>().</p>
+<h3 class="fn" translate="no" id="setLogInsertPolicy"><span class="type">void</span> QCtmLogWidget::<span class="name">setLogInsertPolicy</span>(<span class="type"><a href="qctmlogdata.html#LogInsertPolicy-enum" translate="no">QCtmLogData::LogInsertPolicy</a></span> <i>policy</i>)</h3>
+<p>设置日志插入策略 <i translate="no">policy</i>.</p>
+<p><b>See also </b><a href="qctmlogwidget.html#logInsertPolicy" translate="no">logInsertPolicy</a>().</p>
 <!-- @@@setLogInsertPolicy -->
 <!-- $$$setMaximumCount[overload1]$$$setMaximumCountint -->
-<h3 class="fn" id="setMaximumCount"><span class="type">void</span> QCtmLogWidget::<span class="name">setMaximumCount</span>(<span class="type">int</span> <i>count</i>)</h3>
-<p>设置最大日志数量 <i>count</i>.</p>
-<p><b>See also </b><a href="qctmlogwidget.html#maximumCount">maximumCount</a>().</p>
+<h3 class="fn" translate="no" id="setMaximumCount"><span class="type">void</span> QCtmLogWidget::<span class="name">setMaximumCount</span>(<span class="type">int</span> <i>count</i>)</h3>
+<p>设置最大日志数量 <i translate="no">count</i>.</p>
+<p><b>See also </b><a href="qctmlogwidget.html#maximumCount" translate="no">maximumCount</a>().</p>
 <!-- @@@setMaximumCount -->
 <!-- $$$setWarningIcon -->
-<h3 class="fn" id="setWarningIcon"><span class="type">void</span> QCtmLogWidget::<span class="name">setWarningIcon</span>(const <span class="type"><a href="https://doc.qt.io/qt/qicon.html">QIcon</a></span> &amp;<i>icon</i>)</h3>
-<p>设置 Warning 日志图标 <i>icon</i>.</p>
-<p><b>Note: </b>Setter function for property <a href="qctmlogwidget.html#warningIcon">warningIcon</a>. </p>
-<p><b>See also </b><a href="qctmlogwidget.html#warningIcon">warningIcon</a>().</p>
+<h3 class="fn" translate="no" id="setWarningIcon"><span class="type">void</span> QCtmLogWidget::<span class="name">setWarningIcon</span>(const <span class="type"><a href="https://doc.qt.io/qt/qicon.html" translate="no">QIcon</a></span> &amp;<i>icon</i>)</h3>
+<p>设置 Warning 日志图标 <i translate="no">icon</i>.</p>
+<p><b>Note: </b>Setter function for property <a href="qctmlogwidget.html#warningIcon" translate="no">warningIcon</a>. </p>
+<p><b>See also </b><a href="qctmlogwidget.html#warningIcon" translate="no">warningIcon</a>().</p>
 <!-- @@@setWarningIcon -->
 <!-- $$$warningIcon -->
-<h3 class="fn" id="warningIcon">const <span class="type"><a href="https://doc.qt.io/qt/qicon.html">QIcon</a></span> &amp;QCtmLogWidget::<span class="name">warningIcon</span>() const</h3>
+<h3 class="fn" translate="no" id="warningIcon">const <span class="type"><a href="https://doc.qt.io/qt/qicon.html" translate="no">QIcon</a></span> &amp;QCtmLogWidget::<span class="name">warningIcon</span>() const</h3>
 <p>返回 Warning 日志图标.</p>
 <p><b>Note: </b>Getter function for property warningIcon. </p>
-<p><b>See also </b><a href="qctmlogwidget.html#setWarningIcon">setWarningIcon</a>.</p>
+<p><b>See also </b><a href="qctmlogwidget.html#setWarningIcon" translate="no">setWarningIcon</a>.</p>
 <!-- @@@warningIcon -->
 </div>
         </div>
