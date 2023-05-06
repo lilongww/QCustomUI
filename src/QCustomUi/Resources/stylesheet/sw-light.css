@@ -25,16 +25,19 @@ QCtmTitleBar QAbstractButton
     border: none;
     background-color: transparent;
 }
+
 QCtmTitleBar QAbstractButton:hover
 {
     background-color: #C6C6C6;
     border: none;
 }
+
 QCtmTitleBar QAbstractButton:pressed
 {
     background-color: #C0C0C0;
     border: none;
 }
+
 .QCtmTitleBar QMenuBar
 {
     background: #D9D9D9;
@@ -59,33 +62,6 @@ QCtmTitleBar QAbstractButton:pressed
 }
 
 /*********************************************************************/
-
-/****************************QStatusBar*******************************/
-
-.QStatusBar
-{
-    max-height: 20px;
-    min-height: 20px;
-    color: white;
-    background: #68217A;
-}
-
-QStatusBar QToolButton
-{
-    color: white;
-    border: none;
-}
-
-QStatusBar QToolButton:hover
-{
-    background-color: #1F8AD2;
-}
-
-QStatusBar::item
-{
-    border: none;
-}
-/********************************************************************/
 
 /********************QCtmNavigationBar**********************/
 QCtmNavigationBar::separator
