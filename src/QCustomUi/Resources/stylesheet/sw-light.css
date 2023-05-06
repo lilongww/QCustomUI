@@ -18,6 +18,23 @@
 **********************************************************************************/
 /***************************QCtmTitleBar************************************/
 
+QCtmTitleBar QAbstractButton
+{
+    padding-left: 5px;
+    padding-right: 5px;
+    border: none;
+    background-color: transparent;
+}
+QCtmTitleBar QAbstractButton:hover
+{
+    background-color: #C6C6C6;
+    border: none;
+}
+QCtmTitleBar QAbstractButton:pressed
+{
+    background-color: #C0C0C0;
+    border: none;
+}
 .QCtmTitleBar QMenuBar
 {
     background: #D9D9D9;

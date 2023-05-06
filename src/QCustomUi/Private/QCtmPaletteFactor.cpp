@@ -28,7 +28,7 @@ void QCtmPaletteFactor::init(QWidget* widget)
 void QCtmPaletteFactor::initQCtmTitleBar(QWidget* bar)
 {
     auto palette = bar->palette();
-    palette.setBrush(QPalette::Window, Qt::white);
+    palette.setBrush(QPalette::Window, QColor(0xD9D9D9));
     bar->setPalette(palette);
     if (auto minBtn = bar->findChild<QWidget*>("minimumSizeBtn"))
     {

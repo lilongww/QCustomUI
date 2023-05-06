@@ -368,6 +368,7 @@ bool QCtmDigitKeyboard::eventFilter(QObject* obj, QEvent* event)
 
 void QCtmDigitKeyboard::showEvent(QShowEvent* event)
 {
+    ensureConnect();
     this->layout()->setSizeConstraint(QLayout::SetFixedSize);
     syncBindBox();
     if (m_impl->box)
