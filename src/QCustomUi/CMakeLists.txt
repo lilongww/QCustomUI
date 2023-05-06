@@ -24,7 +24,6 @@ file(GLOB DOCS ./Docs/*.qdoc)
 set(RESOURCES
  "${PROJECT_SOURCE_DIR}/README.md"
  "QCustomUi.qrc"
- "Resources/stylesheet/default-light.css"
  "Resources/stylesheet/sw-light.css")
 
 set(HEADERS
@@ -163,6 +162,7 @@ set(TOOLS_HEADERS
  "QCtmColor.h"
  "QCtmApplication.h"
  "QCtmFile.h"
+ "QCtmSignalBlocker.h"
 )
 
 set(TOOLS_SOURCES

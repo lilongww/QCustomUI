@@ -31,8 +31,8 @@
 class QCtmDigitKeyboardInputHelper : public QObject
 {
 public:
-    QCtmDigitKeyboardInputHelper(QAbstractSpinBox* box, const QCtmDigitKeyboard::Units& units, const QVariant& step)
-        : QObject(box), m_bindedBox(box), m_units(units), m_step(step)
+    QCtmDigitKeyboardInputHelper(QAbstractSpinBox* box, const QCtmDigitKeyboard::Units& units, const QVariant& step, const QString& title)
+        : QObject(box), m_bindedBox(box), m_units(units), m_step(step), m_title(title)
     {
     }
 
@@ -46,6 +46,7 @@ protected:
             if (!m_keyboard)
             {
                 m_keyboard = new QCtmDigitKeyboard(m_bindedBox);
+                m_keyboard->setWindowTitle(m_title);
                 m_keyboard->setUnits(m_units);
                 m_keyboard->setSingleStep(m_step);
                 m_keyboard->bindBox(m_bindedBox);
@@ -70,6 +71,7 @@ private:
     QCtmDigitKeyboard::Units m_units;
     QVariant m_step;
     QCtmDigitKeyboard* m_keyboard { nullptr };
+    QString m_title;
 };
 
 struct QCtmDigitKeyboard::Impl
@@ -85,6 +87,7 @@ struct QCtmDigitKeyboard::Impl
     QAbstractSpinBox* box { nullptr };
     int decimals { 2 };
     QAbstractSpinBox* bindedBox { nullptr };
+    QPushButton* plusOrMinusBtn { nullptr };
     inline void updateBindedBoxRange()
     {
         if (!bindedBox || units.empty())
@@ -317,11 +320,15 @@ void QCtmDigitKeyboard::bindBox(QAbstractSpinBox* box)
 }
 
 /*!
-    \brief      打开 \a box 的数字键盘，单位列表为 \a units, 步进为 \a step, 输入完成后销毁数字键盘.
+    \brief      绑定 \a box 的数字键盘，单位列表为 \a units, 步进为 \a step, 标题为 \a title
+                ,此行为并不会立即生成数字键盘，在第一次触发数字键盘弹出操作时才会生成数字键盘对象.
 */
-void QCtmDigitKeyboard::simpleBindBox(QAbstractSpinBox* box, const Units& units /*= {}*/, const QVariant& step /*= {}*/)
+void QCtmDigitKeyboard::simpleBindBox(QAbstractSpinBox* box,
+                                      const Units& units /*= {}*/,
+                                      const QVariant& step /*= {}*/,
+                                      const QString& title /*= {}*/)
 {
-    box->findChild<QLineEdit*>()->installEventFilter(new QCtmDigitKeyboardInputHelper(box, units, step));
+    box->findChild<QLineEdit*>()->installEventFilter(new QCtmDigitKeyboardInputHelper(box, units, step, title));
 }
 
 /*!
@@ -366,8 +373,12 @@ bool QCtmDigitKeyboard::eventFilter(QObject* obj, QEvent* event)
     return QCtmDialog::eventFilter(obj, event);
 }
 
+/*!
+    \reimp
+*/
 void QCtmDigitKeyboard::showEvent(QShowEvent* event)
 {
+    ensureConnect();
     this->layout()->setSizeConstraint(QLayout::SetFixedSize);
     syncBindBox();
     if (m_impl->box)
@@ -465,6 +476,10 @@ void QCtmDigitKeyboard::init()
     btn = new QPushButton(".", this);
     btn->setFocusPolicy(Qt::NoFocus);
     m_impl->ui.digitLayout->addWidget(btn, 3, 2);
+    m_impl->plusOrMinusBtn = new QPushButton("-/+", this);
+    m_impl->plusOrMinusBtn->setFocusPolicy(Qt::NoFocus);
+    m_impl->ui.digitLayout->addWidget(m_impl->plusOrMinusBtn, 3, 0);
+
     connect(m_impl->ui.buttonBox,
             &QDialogButtonBox::accepted,
             this,
@@ -476,6 +491,14 @@ void QCtmDigitKeyboard::init()
                     accept();
             });
     connect(m_impl->ui.buttonBox, &QDialogButtonBox::rejected, this, &QCtmDialog::reject);
+    connect(m_impl->plusOrMinusBtn,
+            &QPushButton::clicked,
+            this,
+            [=]()
+            {
+                auto value = m_impl->box->property("value");
+                m_impl->box->setProperty("value", m_impl->mode == InputMode::IntInput ? -value.toInt() : -value.toDouble());
+            });
 }
 
 void QCtmDigitKeyboard::clearUnits()
@@ -602,6 +625,8 @@ void QCtmDigitKeyboard::acceptUnit(int unitIndex)
 
 std::pair<QVariant, QString> QCtmDigitKeyboard::showBefore()
 {
+    auto minimum = m_impl->bindedBox->property("minimum");
+    m_impl->plusOrMinusBtn->setVisible(m_impl->mode == InputMode::IntInput ? minimum.toInt() < 0 : minimum.toDouble() < 0.0);
     auto beforeValue = m_impl->bindedBox->property("value");
     auto beforeUnit  = m_impl->bindedBox->property("suffix").toString();
     setValue(beforeValue);

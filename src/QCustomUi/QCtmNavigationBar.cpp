@@ -19,6 +19,7 @@
 
 #include "QCtmNavigationBar.h"
 #include "Private/QCtmNavigationImageButton_p.h"
+#include "Private/QCtmPaletteFactor.h"
 #include "Private/QCtmUserButton_p.h"
 #include "Private/QCtmWidgetItem_p.h"
 #include "Private/Util_p.h"
@@ -143,7 +144,9 @@ struct QCtmNavigationBar::Impl
 */
 QCtmNavigationBar::QCtmNavigationBar(QWidget* parent) : QWidget(parent), m_impl(std::make_unique<Impl>())
 {
-    setFixedHeight(50);
+    setSizePolicy(QSizePolicy(QSizePolicy::Preferred, QSizePolicy::Fixed, QSizePolicy::PushButton));
+    setAutoFillBackground(true);
+    QCtmPaletteFactor::init(this);
     QHBoxLayout* layout = new QHBoxLayout(this);
     layout->setContentsMargins(1, 1, 1, 1);
     layout->setSpacing(0);
@@ -511,6 +514,16 @@ void QCtmNavigationBar::setIconSize(const QSize& size)
     \sa         setIconSize
 */
 const QSize& QCtmNavigationBar::iconSize() const { return m_impl->iconSize; }
+
+/*!
+    \reimp
+*/
+QSize QCtmNavigationBar::sizeHint() const { return minimumSizeHint(); }
+
+/*!
+    \reimp
+*/
+QSize QCtmNavigationBar::minimumSizeHint() const { return QSize(50, 50); }
 
 /*!
     \reimp

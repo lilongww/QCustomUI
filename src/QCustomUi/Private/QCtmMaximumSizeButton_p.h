@@ -24,13 +24,15 @@
 class QCtmMaximumSizeButton : public QPushButton
 {
     Q_OBJECT
-    Q_PROPERTY(bool maximumsized READ maximumSized WRITE setMaximumSized)
+    Q_PROPERTY(bool maximumsized READ maximumSized WRITE setMaximumSized NOTIFY maximumSizedChanged)
 public:
     QCtmMaximumSizeButton(QWidget* parent);
     ~QCtmMaximumSizeButton();
 
     void setMaximumSized(bool max);
     bool maximumSized() const;
+signals:
+    void maximumSizedChanged(bool max);
 
 private:
     bool m_maxsized;

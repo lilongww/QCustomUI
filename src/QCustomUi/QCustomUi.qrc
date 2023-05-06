@@ -38,59 +38,7 @@
         <file>Resources/loading.gif</file>
     </qresource>
     <qresource prefix="/stylesheet">
-        <file>Resources/stylesheet/default-light.css</file>
         <file>Resources/stylesheet/sw-light.css</file>
-    </qresource>
-    <qresource prefix="/QCheckBox">
-        <file>Resources/QCheckBox/checkbox-checked.png</file>
-        <file>Resources/QCheckBox/checkbox-checked-disabled.png</file>
-        <file>Resources/QCheckBox/checkbox-checked-hover.png</file>
-        <file>Resources/QCheckBox/checkbox-checked-pressed.png</file>
-        <file>Resources/QCheckBox/checkbox-partiallychecked.png</file>
-        <file>Resources/QCheckBox/checkbox-partiallychecked-disabled.png</file>
-        <file>Resources/QCheckBox/checkbox-partiallychecked-hover.png</file>
-        <file>Resources/QCheckBox/checkbox-partiallychecked-pressed.png</file>
-        <file>Resources/QCheckBox/checkbox-unchecked.png</file>
-        <file>Resources/QCheckBox/checkbox-unchecked-disabled.png</file>
-        <file>Resources/QCheckBox/checkbox-unchecked-hover.png</file>
-        <file>Resources/QCheckBox/checkbox-unchecked-pressed.png</file>
-    </qresource>
-    <qresource prefix="/QComboBox">
-        <file>Resources/QComboBox/down-arrow.png</file>
-        <file>Resources/QComboBox/down-arrow-disabled.png</file>
-        <file>Resources/QComboBox/down-arrow-pressed.png</file>
-    </qresource>
-    <qresource prefix="/QRadioButton">
-        <file>Resources/QRadioButton/radiobutton-checked.png</file>
-        <file>Resources/QRadioButton/radiobutton-checked-disabled.png</file>
-        <file>Resources/QRadioButton/radiobutton-checked-hover.png</file>
-        <file>Resources/QRadioButton/radiobutton-checked-pressed.png</file>
-        <file>Resources/QRadioButton/radiobutton-unchecked.png</file>
-        <file>Resources/QRadioButton/radiobutton-unchecked-disabled.png</file>
-        <file>Resources/QRadioButton/radiobutton-unchecked-hover.png</file>
-        <file>Resources/QRadioButton/radiobutton-unchecked-pressed.png</file>
-    </qresource>
-    <qresource prefix="/QScrollBar">
-        <file>Resources/QScrollBar/addLineH.png</file>
-        <file>Resources/QScrollBar/addLineH-hover.png</file>
-        <file>Resources/QScrollBar/addLineH-pressed.png</file>
-        <file>Resources/QScrollBar/addLineV.png</file>
-        <file>Resources/QScrollBar/addLineV-hover.png</file>
-        <file>Resources/QScrollBar/addLineV-pressed.png</file>
-        <file>Resources/QScrollBar/subLineH.png</file>
-        <file>Resources/QScrollBar/subLineH-hover.png</file>
-        <file>Resources/QScrollBar/subLineH-pressed.png</file>
-        <file>Resources/QScrollBar/subLineV.png</file>
-        <file>Resources/QScrollBar/subLineV-hover.png</file>
-        <file>Resources/QScrollBar/subLineV-pressed.png</file>
-    </qresource>
-    <qresource prefix="/QSpinBox">
-        <file>Resources/QSpinBox/down-button.png</file>
-        <file>Resources/QSpinBox/down-button-disabled.png</file>
-        <file>Resources/QSpinBox/down-button-pressed.png</file>
-        <file>Resources/QSpinBox/up-button.png</file>
-        <file>Resources/QSpinBox/up-button-disabled.png</file>
-        <file>Resources/QSpinBox/up-button-pressed.png</file>
     </qresource>
     <qresource prefix="/QCtmDocking">
         <file>Resources/QCtmDocking/dockTitleFixed.svg</file>

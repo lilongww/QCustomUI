@@ -69,6 +69,8 @@ public:
     QAction* actionAt(int index, ActionPosition pos) const;
     void setIconSize(const QSize& size);
     const QSize& iconSize() const;
+    QSize sizeHint() const override;
+    QSize minimumSizeHint() const override;
 signals:
     void iconSizeChanged(const QSize& size);
 

@@ -30,6 +30,7 @@ void QCtmMaximumSizeButton::setMaximumSized(bool max)
     this->style()->unpolish(this);
     m_maxsized = max;
     this->style()->polish(this);
+    emit maximumSizedChanged(max);
 }
 
 bool QCtmMaximumSizeButton::maximumSized() const { return m_maxsized; }
