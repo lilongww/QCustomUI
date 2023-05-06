@@ -432,7 +432,7 @@ QCtmMessageTipButton:pressed
 
 .QCtmTabWidget QAbstractButton
 {
-    background: transparent;
+    background: white;
 }
 
 .QCtmTabWidget QAbstractButton::hover
@@ -455,6 +455,7 @@ QCtmMessageTipButton:pressed
 
 .QCtmTabWidget #clearAction
 {
+    border: none;
     image: url(:/QCustomUi/Resources/clear-light.png);
 }
 
@@ -470,6 +471,7 @@ QCtmMessageTipButton:pressed
 
 .QCtmTabWidget #copyAction
 {
+    border: none;
     image: url(:/QCustomUi/Resources/copy-light.png);
 }
 
