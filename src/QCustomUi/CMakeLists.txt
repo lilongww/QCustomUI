@@ -162,6 +162,7 @@ set(TOOLS_HEADERS
  "QCtmColor.h"
  "QCtmApplication.h"
  "QCtmFile.h"
+ "QCtmSignalBlocker.h"
 )
 
 set(TOOLS_SOURCES
