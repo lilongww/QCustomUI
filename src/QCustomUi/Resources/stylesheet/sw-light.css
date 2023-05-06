@@ -545,59 +545,6 @@ QCtmMessageTipButton:pressed
 
 /************************************************************/
 
-/*************************QCtmTableView************************************/
-QCtmTableView
-{
-    qproperty-alternatingRowColors: true;
-    background: white;
-    alternate-background-color: #F7F7F7;
-    border: none;
-}
-
-QCtmTableView::item:hover
-{
-    background: #CBE5FF;
-}
-
-QCtmTableView::item:selected
-{
-    background: #55aaff;
-    color: white;
-}
-
-QCtmTableView #hHeader
-{
-    background: transparent;
-    border: none;
-    font-weight: bold;
-    color: #1E1E1E;
-}
-
-QCtmTableView #hHeader::section
-{
-    background: transparent;
-    height: 27px;
-    border: none;
-}
-
-QCtmTableView #vHeader
-{
-    background: white;
-    border: none;
-}
-
-QCtmTableView #vHeader::section
-{
-    background: white;
-    border: none;
-}
-
-QCtmTableView QTableCornerButton::section
-{
-    background: transparent;
-    border: none;
-}
-
 QCtmNavigationMainMenu QCtmMainMenuButton
 {
     color: rgba(255,255,255,153);
