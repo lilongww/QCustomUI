@@ -545,14 +545,6 @@ QCtmMessageTipButton:pressed
 
 /************************************************************/
 
-QCtmNavigationMainMenu QCtmMainMenuButton
-{
-    color: rgba(255,255,255,153);
-    padding: 9px;
-    text-align: left bottom;
-    font-weight: bold;
-}
-
 QCtmEditLabel QToolButton
 {
     background: #E1E1E1;
@@ -567,54 +559,6 @@ QCtmEditLabel QToolButton:hover
 QCtmEditLabel QToolButton:pressed
 {
     background: #CBE5FF;
-}
-
-QCtmDockTitle
-{
-    color: #808080;
-    background: #EEEEF2;
-}
-
-QCtmDockTitle::focus
-{
-    color: #FEFEFE;
-    background: #007ACC;
-}
-
-QCtmDockTitle QAbstractButton
-{
-    border: none;
-}
-
-QCtmDockTitle QAbstractButton
-{
-    background: transparent;
-}
-
-QCtmDockTitle QAbstractButton:hover
-{
-    background: rgba(255,255,255,100);
-}
-
-QCtmDockTitle QAbstractButton:pressed, QCtmDockTitle QAbstractButton:checked
-{
-    margin: 0;
-    background: #0e6198;
-}
-
-QCtmDockTitle QToolButton#qctmdocking_close_btn
-{
-    image: url(:/QCustomUi/Resources/close-light.png);
-}
-
-QCtmDockTitle QToolButton#qctmdocking_float_btn[float=false]
-{
-    image: url(:/QCtmDocking/Resources/QCtmDocking/dockTitleFixed.svg);
-}
-
-QCtmDockTitle QToolButton#qctmdocking_float_btn[float=true]
-{
-    image: url(:/QCtmDocking/Resources/QCtmDocking/dockTitleFloat.svg);
 }
 
 QCtmStageProgressBar

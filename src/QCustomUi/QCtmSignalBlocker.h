@@ -64,6 +64,6 @@ void QCtmSignalBlocker::unblock() noexcept
 template<typename T>
 void QCtmSignalBlocker::emplaceBack(const T& obj)
 {
-    static_assert(std::is_base_of_v<QObject, std::decay_t<T>> || std::is_base_of_v<QObject, *std::decay_t<T>>);
+    static_assert(std::is_base_of_v<QObject, std::remove_pointer_t<std::decay_t<T>>>);
     m_blockers.emplace_back(QSignalBlocker(obj));
 }
