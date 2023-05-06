@@ -545,41 +545,6 @@ QCtmMessageTipButton:pressed
 
 /************************************************************/
 
-/***********************QCtmMessageBox***********************/
-
-
-QCtmMessageBox
-{
-    background: #F0F0F0;
-}
-
-QCtmMessageBox QPushButton
-{
-    min-width: 89px;
-    min-height: 27px;
-    border: 1px solid #B3B3B3;
-    background: #E1E1E1;
-}
-
-QCtmMessageBox QPushButton:focus
-{
-    border: 2px solid #0078d7;
-}
-
-QCtmMessageBox QPushButton:hover
-{
-    border: 1px solid #0078d7;
-    background: #E5F1FB;
-}
-
-QCtmMessageBox QPushButton:pressed
-{
-    border: 1px solid #005499;
-    background: #CCE4F7;
-}
-
-/************************************************************/
-
 /*************************QCtmTableView************************************/
 QCtmTableView
 {
