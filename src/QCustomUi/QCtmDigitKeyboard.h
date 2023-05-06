@@ -68,7 +68,7 @@ public:
     void setDecimals(int decimals);
     int decimals() const;
     void bindBox(QAbstractSpinBox* box);
-    static void simpleBindBox(QAbstractSpinBox* box, const Units& units = {}, const QVariant& step = {});
+    static void simpleBindBox(QAbstractSpinBox* box, const Units& units = {}, const QVariant& step = {}, const QString& title = {});
 signals:
     void valueChanged(const QVariant& value);
 

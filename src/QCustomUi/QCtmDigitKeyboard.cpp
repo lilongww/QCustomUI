@@ -31,8 +31,8 @@
 class QCtmDigitKeyboardInputHelper : public QObject
 {
 public:
-    QCtmDigitKeyboardInputHelper(QAbstractSpinBox* box, const QCtmDigitKeyboard::Units& units, const QVariant& step)
-        : QObject(box), m_bindedBox(box), m_units(units), m_step(step)
+    QCtmDigitKeyboardInputHelper(QAbstractSpinBox* box, const QCtmDigitKeyboard::Units& units, const QVariant& step, const QString& title)
+        : QObject(box), m_bindedBox(box), m_units(units), m_step(step), m_title(title)
     {
     }
 
@@ -46,6 +46,7 @@ protected:
             if (!m_keyboard)
             {
                 m_keyboard = new QCtmDigitKeyboard(m_bindedBox);
+                m_keyboard->setWindowTitle(m_title);
                 m_keyboard->setUnits(m_units);
                 m_keyboard->setSingleStep(m_step);
                 m_keyboard->bindBox(m_bindedBox);
@@ -70,6 +71,7 @@ private:
     QCtmDigitKeyboard::Units m_units;
     QVariant m_step;
     QCtmDigitKeyboard* m_keyboard { nullptr };
+    QString m_title;
 };
 
 struct QCtmDigitKeyboard::Impl
@@ -320,9 +322,12 @@ void QCtmDigitKeyboard::bindBox(QAbstractSpinBox* box)
 /*!
     \brief      打开 \a box 的数字键盘，单位列表为 \a units, 步进为 \a step, 输入完成后销毁数字键盘.
 */
-void QCtmDigitKeyboard::simpleBindBox(QAbstractSpinBox* box, const Units& units /*= {}*/, const QVariant& step /*= {}*/)
+void QCtmDigitKeyboard::simpleBindBox(QAbstractSpinBox* box,
+                                      const Units& units /*= {}*/,
+                                      const QVariant& step /*= {}*/,
+                                      const QString& title /*= {}*/)
 {
-    box->findChild<QLineEdit*>()->installEventFilter(new QCtmDigitKeyboardInputHelper(box, units, step));
+    box->findChild<QLineEdit*>()->installEventFilter(new QCtmDigitKeyboardInputHelper(box, units, step, title));
 }
 
 /*!
