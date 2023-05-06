@@ -113,7 +113,7 @@ struct QCtmNavigationBar::Impl
 /*!
     \class      QCtmNavigationBar
     \brief      QCtmNavigationBar类似于QToolBar，它可以配合QCtmWindow和QCtmNavigationPane使用.
-    \inherits   QFrame
+    \inherits   QWidget
     \ingroup    QCustomUi
     \inmodule   QCustomUi
     \inheaderfile QCtmNavigationBar.h
