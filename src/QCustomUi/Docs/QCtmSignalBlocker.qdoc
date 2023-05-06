@@ -1,0 +1,56 @@
+﻿/*********************************************************************************
+**                                                                              **
+**  Copyright (C) 2019-2023 LiLong                                              **
+**  This file is part of QCustomUi.                                             **
+**                                                                              **
+**  QCustomUi is free software: you can redistribute it and/or modify           **
+**  it under the terms of the GNU Lesser General Public License as published by **
+**  the Free Software Foundation, either version 3 of the License, or           **
+**  (at your option) any later version.                                         **
+**                                                                              **
+**  QCustomUi is distributed in the hope that it will be useful,                **
+**  but WITHOUT ANY WARRANTY; without even the implied warranty of              **
+**  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the               **
+**  GNU Lesser General Public License for more details.                         **
+**                                                                              **
+**  You should have received a copy of the GNU Lesser General Public License    **
+**  along with QCustomUi.  If not, see <https://www.gnu.org/licenses/>.         **
+**********************************************************************************/
+
+/*!
+    \class      QCtmSignalBlocker
+    \brief      QSignalBlocker的增强版本，支持多个QObject对象的信号阻断，而QSignalBlocker仅支持一个QObject对象的信号的阻断.
+    \ingroup    QCustomUi
+    \inmodule   QCustomUi
+    \inheaderfile QCtmSignalBlocker.h
+*/
+
+/*!
+    \fn         template<typename... Args> QCtmSignalBlocker::QCtmSignalBlocker(Args&&... objs)
+    \brief      构造函数，支持一次传入多个QObject对象 \a objs.
+*/
+
+/*!
+    \fn         QCtmSignalBlocker::~QCtmSignalBlocker()
+    \brief      析构函数.
+*/
+
+/*!
+    \fn         QCtmSignalBlocker::QCtmSignalBlocker(QCtmSignalBlocker&& other) noexcept
+    \brief      移动构造函数 \a other.
+*/
+
+/*!
+    \fn         QCtmSignalBlocker& QCtmSignalBlocker::operator=(QCtmSignalBlocker&& other) noexcept
+    \brief      移动赋值运算符重载 \a other.
+*/
+
+/*!
+    \fn         void QCtmSignalBlocker::reblock() noexcept
+    \brief      重新阻断所有对象信号.
+*/
+
+/*!
+    \fn         void QCtmSignalBlocker::unblock() noexcept
+    \brief      将所有对象的信号阻断状态恢复到本次阻断之前的状态，注意，如果对象在本次阻断之前就已经阻断，调用本函数并不会解除阻断.
+*/
