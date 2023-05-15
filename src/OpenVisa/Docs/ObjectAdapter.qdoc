@@ -22,13 +22,8 @@
 */
 
 /*!
-    \fn         template<typename... Args> void OpenVisa::ObjectAdapter::send(std::string_view fmt, const Args&... args)
+    \fn         template<typename... Args> void OpenVisa::ObjectAdapter::send(const std::string& fmt, const Args&... args)
     \brief      OpenVisa::Object::send 的透传 \a fmt, \a args.
-*/
-
-/*!
-    \fn         void OpenVisa::ObjectAdapter::sendBlockData(const std::string& data)
-    \brief      OpenVisa::Object::sendBlockData 的透传 \a data.
 */
 
 /*!
@@ -42,7 +37,7 @@
 */
 
 /*!
-    \fn         template<typename... Args> std::string OpenVisa::ObjectAdapter::query(std::string_view fmt, const Args&... args)
+    \fn         template<typename... Args> std::string OpenVisa::ObjectAdapter::query(const std::string& fmt, const Args&... args)
     \brief      OpenVisa::Object::query 的透传 \a fmt, \a args.
 */
 

@@ -43,6 +43,6 @@
 */
 
 /*!
-    \fn         template <typename T> OpenVisa::BinaryArray<T>::operator std::vector<Type>() const
+    \fn         template <typename T> OpenVisa::BinaryArray<T>::operator std::vector<T>() const
     \brief      隐式转换为vector，转换时将分配内存.
 */

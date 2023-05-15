@@ -22,6 +22,7 @@
 #include "openvisa_global.h"
 
 #include <chrono>
+#include <concepts>
 #include <format>
 #include <memory>
 #include <string>
