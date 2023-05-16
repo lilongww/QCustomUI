@@ -18,6 +18,8 @@
 **********************************************************************************/
 #pragma once
 
+#include <vector>
+
 namespace OpenVisa
 {
 template<typename T>

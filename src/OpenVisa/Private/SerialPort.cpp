@@ -99,18 +99,30 @@ void SerialPort::send(const std::string& buffer) const
 std::string SerialPort::readAll() const
 {
     std::shared_ptr<void> scope(nullptr, [=](void*) { m_impl->readBuffer.consume(m_impl->readBuffer.size()); });
-    auto header = read(2);
+    if (m_attr.terminalCharsEnable())
     {
-        std::ostream out(&m_impl->readBuffer);
-        out.write(header.c_str(), header.size());
-    }
-    if (*header.begin() == '#' && header.size() == 2 && std::isdigit(header[1]))
-    {
-        return readAllBlockData(header[1] - '0');
+        auto header = read(2);
+        {
+            std::ostream out(&m_impl->readBuffer);
+            out.write(header.c_str(), header.size());
+        }
+        if (*header.begin() == '#' && header.size() == 2 && std::isdigit(header[1]))
+        {
+            return readAllBlockData(header[1] - '0');
+        }
+        else
+        {
+            return readAllAscii();
+        }
     }
     else
     {
-        return readAllAscii();
+        std::string buffer;
+        do
+        {
+            buffer.append(read(1024));
+        } while (avalible());
+        return buffer;
     }
 }
 

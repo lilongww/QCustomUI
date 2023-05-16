@@ -72,6 +72,8 @@ class OPENVISA_EXPORT Object::Attribute
 public:
     void setTerminalChars(std::string_view chars);
     [[nodiscard]] const std::string& terminalChars() const;
+    void setTerminalCharsEnable(bool enable);
+    [[nodiscard]] bool terminalCharsEnable() const;
     void setTimeout(const std::chrono::milliseconds& timeout);
     [[nodiscard]] const std::chrono::milliseconds& timeout() const;
     void setAutoAppendTerminalChars(bool en);

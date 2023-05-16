@@ -56,20 +56,20 @@ struct Object::Impl
     \inheaderfile Object.h
 */
 
+// clang-format off
 /*!
-    \fn         template<IsAddress T> void OpenVisa::Object::connect(const T& addr, const std::chrono::milliseconds& openTimeout =
-                std::chrono::milliseconds { 5000 }, const std::chrono::milliseconds& commandTimeout = std::chrono::milliseconds { 5000 });
+    \fn         template <VaildConnectAddress T> void OpenVisa::Object::connect(const T& addr, const std::chrono::milliseconds& openTimeout = std::chrono::milliseconds { 5000 }, const std::chrono::milliseconds& commandTimeout = std::chrono::milliseconds { 5000 });
     \brief      连接到地址为 \a addr 的设备，并且连接超时时间为 \a openTimeout, 通讯超时时间为 \a commandTimeout.
 */
-
+// clang-format on
 /*!
-    \fn         template <typename ...Args> inline void OpenVisa::Object::send(std::string_view fmt, const Args&... args);
+    \fn         template <typename ...Args> inline void OpenVisa::Object::send(const std::string& fmt, const Args&... args);
     \brief      格式化发送scpi指令，参考 std::format 格式化设置, \a fmt, \a args.
     \sa         readAll, read
 */
 
 /*!
-    \fn         template <typename ...Args> inline std::string OpenVisa::Object::query(std::string_view fmt, const Args&... args);
+    \fn         template <typename ...Args> inline std::string OpenVisa::Object::query(const std::string& fmt, const Args&... args);
     \brief      格式化发送查询scpi指令，参考 std::format 格式化设置, \a fmt, \a args, 并返回查询值.
     \sa         send, readAll
 */
@@ -173,19 +173,6 @@ OPENVISA_EXPORT void Object::connectImpl<std::string>(const std::string& addr,
                           { visaThrow(m_impl->attr, std::make_error_code(std::errc::address_not_available).message()); },
                           [&](const auto& addr) { connectImpl(addr, openTimeout, commandTimeout); } },
                addressVariant);
-}
-
-/*!
-\brief      发送块数据 \a data 专用函数，因发送块数据时，结尾不添加终结符.
-*/
-void Object::sendBlockData(const std::string& data)
-{
-    visaReThrow(m_impl->attr,
-                [&]
-                {
-                    throwNoConnection();
-                    m_impl->io->send(data);
-                });
 }
 
 /*!

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <QtHelpProject version="1.0">
-    <namespace>com.openvisa.0.9.0</namespace>
+    <namespace>com.openvisa.0.10.0</namespace>
     <virtualFolder>openvisa</virtualFolder>
     <metaData name="version" value=""/>
     <customFilter name="OpenVisa">
@@ -126,7 +126,6 @@
             <keyword name="object" id="ObjectAdapter::object" ref="openvisa-objectadapter.html#object"/>
             <keyword name="opc" id="CommonCommand::opc" ref="openvisa-object-commoncommand.html#opc"/>
             <keyword name="operator std::vector&lt;T&gt;" id="AsciiArray::operator std::vector&lt;T&gt;" ref="openvisa-asciiarray.html#operator-std-3a-3avector-ltT-gt"/>
-            <keyword name="operator std::vector&lt;Type&gt;" id="BinaryArray::operator std::vector&lt;Type&gt;" ref="openvisa-binaryarray.html#operator-std-3a-3avector-ltType-gt"/>
             <keyword name="opt" id="CommonCommand::opt" ref="openvisa-object-commoncommand.html#opt"/>
             <keyword name="parity" id="Attribute::parity" ref="openvisa-object-attribute.html#parity"/>
             <keyword name="portName" id="SerialPortInfo::portName" ref="openvisa-serialportinfo.html#portName"/>
@@ -141,8 +140,6 @@
             <keyword name="rst" id="CommonCommand::rst" ref="openvisa-object-commoncommand.html#rst"/>
             <keyword name="send" id="Object::send" ref="openvisa-object.html#send"/>
             <keyword name="send" id="ObjectAdapter::send" ref="openvisa-objectadapter.html#send"/>
-            <keyword name="sendBlockData" id="Object::sendBlockData" ref="openvisa-object.html#sendBlockData"/>
-            <keyword name="sendBlockData" id="ObjectAdapter::sendBlockData" ref="openvisa-objectadapter.html#sendBlockData"/>
             <keyword name="serialNumber" id="SerialPortInfo::serialNumber" ref="openvisa-serialportinfo.html#serialNumber"/>
             <keyword name="setAutoAppendTerminalChars" id="Attribute::setAutoAppendTerminalChars" ref="openvisa-object-attribute.html#setAutoAppendTerminalChars"/>
             <keyword name="setBaudRate" id="Attribute::setBaudRate" ref="openvisa-object-attribute.html#setBaudRate"/>
@@ -155,12 +152,14 @@
             <keyword name="setSre" id="CommonCommand::setSre" ref="openvisa-object-commoncommand.html#setSre"/>
             <keyword name="setStopBits" id="Attribute::setStopBits" ref="openvisa-object-attribute.html#setStopBits"/>
             <keyword name="setTerminalChars" id="Attribute::setTerminalChars" ref="openvisa-object-attribute.html#setTerminalChars"/>
+            <keyword name="setTerminalCharsEnable" id="Attribute::setTerminalCharsEnable" ref="openvisa-object-attribute.html#setTerminalCharsEnable"/>
             <keyword name="setTimeout" id="Attribute::setTimeout" ref="openvisa-object-attribute.html#setTimeout"/>
             <keyword name="size" id="BinaryArray::size" ref="openvisa-binaryarray.html#size"/>
             <keyword name="sre" id="CommonCommand::sre" ref="openvisa-object-commoncommand.html#sre"/>
             <keyword name="stb" id="CommonCommand::stb" ref="openvisa-object-commoncommand.html#stb"/>
             <keyword name="stopBits" id="Attribute::stopBits" ref="openvisa-object-attribute.html#stopBits"/>
             <keyword name="terminalChars" id="Attribute::terminalChars" ref="openvisa-object-attribute.html#terminalChars"/>
+            <keyword name="terminalCharsEnable" id="Attribute::terminalCharsEnable" ref="openvisa-object-attribute.html#terminalCharsEnable"/>
             <keyword name="timeout" id="Attribute::timeout" ref="openvisa-object-attribute.html#timeout"/>
             <keyword name="toVisaAddressString" id="Object::toVisaAddressString" ref="openvisa-object.html#toVisaAddressString"/>
             <keyword name="tst" id="CommonCommand::tst" ref="openvisa-object-commoncommand.html#tst"/>
@@ -202,6 +201,7 @@
             <file>openvisa-serialportinfo.html</file>
             <file>openvisa.html</file>
             <file>search-results.html</file>
+            <file>style/offline-dark.css</file>
             <file>style/offline-simple.css</file>
             <file>style/offline.css</file>
             <file>version-h.html</file>
