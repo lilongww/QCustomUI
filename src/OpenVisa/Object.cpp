@@ -58,7 +58,7 @@ struct Object::Impl
 
 // clang-format off
 /*!
-    \fn         template <typename T> requires IsAddress<T> || std::same_as<std::string, T> || std::is_array_v<T> || std::same_as<const char*, T> || std::same_as<char*, T> void OpenVisa::Object::connect(const T& addr, const std::chrono::milliseconds& openTimeout = std::chrono::milliseconds { 5000 }, const std::chrono::milliseconds& commandTimeout = std::chrono::milliseconds { 5000 });
+    \fn         template <VaildConnectAddress T> void OpenVisa::Object::connect(const T& addr, const std::chrono::milliseconds& openTimeout = std::chrono::milliseconds { 5000 }, const std::chrono::milliseconds& commandTimeout = std::chrono::milliseconds { 5000 });
     \brief      连接到地址为 \a addr 的设备，并且连接超时时间为 \a openTimeout, 通讯超时时间为 \a commandTimeout.
 */
 // clang-format on

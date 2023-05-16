@@ -31,7 +31,9 @@ namespace OpenVisa
 {
 template<typename T>
 concept IsAddress = IsVisaAddress<T>;
-
+template<typename T>
+concept VaildConnectAddress =
+    IsAddress<T> || std::same_as<std::string, T> || std::is_array_v<T> || std::same_as<const char*, T> || std::same_as<char*, T>;
 class OPENVISA_EXPORT Object
 {
 public:
@@ -40,11 +42,10 @@ public:
     Object();
     virtual ~Object() noexcept;
 
-    template<typename T>
-    requires IsAddress<T> || std::same_as<std::string, T> || std::is_array_v<T> || std::same_as<const char*, T> || std::same_as<char*, T>
-    inline void connect(const T& addr,
-                        const std::chrono::milliseconds& openTimeout    = std::chrono::milliseconds { 5000 },
-                        const std::chrono::milliseconds& commandTimeout = std::chrono::milliseconds { 5000 });
+    template<VaildConnectAddress T>
+    void connect(const T& addr,
+                 const std::chrono::milliseconds& openTimeout    = std::chrono::milliseconds { 5000 },
+                 const std::chrono::milliseconds& commandTimeout = std::chrono::milliseconds { 5000 });
     void close() noexcept;
     template<typename... Args>
     inline void send(const std::string& fmt, const Args&... args);
@@ -76,9 +77,8 @@ private:
     std::unique_ptr<Impl> m_impl;
 };
 
-template<typename T>
-requires IsAddress<T> || std::same_as<std::string, T> || std::is_array_v<T> || std::same_as<const char*, T> || std::same_as<char*, T>
-void Object::connect(const T& addr, const std::chrono::milliseconds& openTimeout, const std::chrono::milliseconds& commandTimeout)
+template<VaildConnectAddress T>
+inline void Object::connect(const T& addr, const std::chrono::milliseconds& openTimeout, const std::chrono::milliseconds& commandTimeout)
 {
     connectImpl(AddressHelper(addr).address, openTimeout, commandTimeout);
 }
