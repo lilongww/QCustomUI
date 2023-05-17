@@ -19,19 +19,23 @@
 
 #pragma once
 
-#include <QWidget>
+#include "qcustomui_global.h"
 
-#include <memory>
+#include <QTreeView>
 
-class QCtmPaletteFactor
+class QCtmRecentModel;
+class QCUSTOMUI_EXPORT QCtmRecentView : public QTreeView
 {
+    Q_OBJECT
 public:
-    QCtmPaletteFactor();
-    static void init(QWidget* widget);
+    explicit QCtmRecentView(QWidget* parent);
+    ~QCtmRecentView();
+    virtual void setModel(QCtmRecentModel* model);
+    QCtmRecentModel* model() const;
 
 protected:
-    virtual void initQCtmTitleBar(QWidget* bar);
-    virtual void initQCtmNavigationBar(QWidget* bar);
+    using QTreeView::model;
+    using QTreeView::setModel;
 
 private:
     struct Impl;

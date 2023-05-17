@@ -19,21 +19,24 @@
 
 #pragma once
 
-#include <QWidget>
+#include "qcustomui_global.h"
 
-#include <memory>
+#include <QStyledItemDelegate>
 
-class QCtmPaletteFactor
+class QCUSTOMUI_EXPORT QCtmRecentViewDelegate : public QStyledItemDelegate
 {
+    Q_OBJECT
 public:
-    QCtmPaletteFactor();
-    static void init(QWidget* widget);
+    explicit QCtmRecentViewDelegate(QObject* parent = nullptr);
+    ~QCtmRecentViewDelegate();
 
-protected:
-    virtual void initQCtmTitleBar(QWidget* bar);
-    virtual void initQCtmNavigationBar(QWidget* bar);
+    void paint(QPainter* painter, const QStyleOptionViewItem& option, const QModelIndex& index) const override;
+    QSize sizeHint(const QStyleOptionViewItem& option, const QModelIndex& index) const override;
+    virtual void drawIcon(QPainter* painter, const QStyleOptionViewItem& option, const QModelIndex& index) const;
+    virtual void drawName(QPainter* painter, const QStyleOptionViewItem& option, const QModelIndex& index) const;
+    virtual void drawPath(QPainter* painter, const QStyleOptionViewItem& option, const QModelIndex& index) const;
 
-private:
-    struct Impl;
-    std::unique_ptr<Impl> m_impl;
+    virtual QRect doIconRect(const QStyleOptionViewItem& option) const;
+    virtual QRect doNameRect(const QStyleOptionViewItem& option) const;
+    virtual QRect doPathRect(const QStyleOptionViewItem& option) const;
 };

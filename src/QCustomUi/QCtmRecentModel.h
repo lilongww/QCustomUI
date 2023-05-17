@@ -16,22 +16,61 @@
 **  You should have received a copy of the GNU Lesser General Public License    **
 **  along with QCustomUi.  If not, see <https://www.gnu.org/licenses/>.         **
 **********************************************************************************/
-
 #pragma once
 
-#include <QWidget>
+#include "qcustomui_global.h"
 
-#include <memory>
+#include <QAbstractItemModel>
+#include <QDateTime>
+#include <QIcon>
+#include <QString>
+#include <QVector>
 
-class QCtmPaletteFactor
+struct QCtmRecentData
 {
-public:
-    QCtmPaletteFactor();
-    static void init(QWidget* widget);
+    QString name;
+    QString path;
+    QDateTime time;
+    QIcon icon;
+    bool fixed { false };
+};
 
-protected:
-    virtual void initQCtmTitleBar(QWidget* bar);
-    virtual void initQCtmNavigationBar(QWidget* bar);
+class QCUSTOMUI_EXPORT QCtmRecentModel : public QAbstractItemModel
+{
+    Q_OBJECT
+public:
+    enum Roles
+    {
+        Name = Qt::DisplayRole + 1,
+        Path,
+        Time,
+        Icon,
+        IsFixed
+    };
+
+    enum Classification
+    {
+        Fixed,
+        Today,
+        Yesterday,
+        Pastweek,
+        Pastmonth,
+        Earlier,
+        ClassificationSize
+    };
+    explicit QCtmRecentModel(QObject* parent);
+    ~QCtmRecentModel();
+    int rowCount(const QModelIndex& parent = QModelIndex()) const override;
+    int columnCount(const QModelIndex& parent = QModelIndex()) const override;
+    QVariant data(const QModelIndex& index, int role = Qt::DisplayRole) const override;
+    QVariant headerData(int section, Qt::Orientation orientation, int role = Qt::DisplayRole) const override;
+    bool setData(const QModelIndex& index, const QVariant& value, int role = Qt::EditRole) override;
+    void setRecentDatas(const QVector<QCtmRecentData>& datas);
+    void setRecentDatas(QVector<QCtmRecentData>&& datas);
+    QModelIndex parent(const QModelIndex& child) const override;
+    QModelIndex index(int row, int column, const QModelIndex& parent) const override;
+
+    const QVector<QCtmRecentData>& recentDatas() const;
 
 private:
     struct Impl;
