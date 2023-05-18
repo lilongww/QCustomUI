@@ -17,31 +17,73 @@
 **  along with QCustomUi.  If not, see <https://www.gnu.org/licenses/>.         **
 **********************************************************************************/
 #include "QCtmRecentViewDelegate.h"
+#include "Private/QCtmXPM.h"
 #include "QCtmRecentModel.h"
 
+#include <QApplication>
 #include <QFontMetricsF>
+#include <QMouseEvent>
 #include <QPainter>
 
 constexpr static int SpacePixel = 15;
 
-QCtmRecentViewDelegate::QCtmRecentViewDelegate(QObject* parent /*= nullptr*/) : QStyledItemDelegate(parent) {}
+/*!
+    \class      QCtmRecentViewDelegate
+    \brief      仿vs启动界面最近项目表委托.
+    \inherits   QStyledItemDelegate
+    \ingroup    QCustomUi
+    \inmodule   QCustomUi
+    \inheaderfile QCtmRecentViewDelegate.h
+*/
 
+struct QCtmRecentViewDelegate::Impl
+{
+    std::optional<QPoint> mousePoint;
+    bool pressed { false };
+    std::optional<QPersistentModelIndex> pressedIndex;
+    QPixmap unFixedIcon { QCtmXPM::UnFixedXPM };
+    QPixmap fixedIcon { QCtmXPM::FixedXPM };
+};
+
+/*!
+    \brief      构造函数 \a parent.
+*/
+QCtmRecentViewDelegate::QCtmRecentViewDelegate(QObject* parent /*= nullptr*/)
+    : QStyledItemDelegate(parent), m_impl(std::make_unique<Impl>())
+{
+}
+
+/*!
+    \brief      析构函数.
+*/
 QCtmRecentViewDelegate::~QCtmRecentViewDelegate() {}
 
+/*!
+    \reimp
+*/
 void QCtmRecentViewDelegate::paint(QPainter* painter, const QStyleOptionViewItem& option, const QModelIndex& index) const
 {
     if (!index.parent().isValid())
         QStyledItemDelegate::paint(painter, option, index);
     else
     {
-        auto opt = option;
-        opt.text.clear();
-        QStyledItemDelegate::paint(painter, opt, index);
+        QStyleOptionViewItem opt = option;
+        initStyleOption(&opt, index);
+
+        const QWidget* widget = option.widget;
+        QStyle* style         = widget ? widget->style() : QApplication::style();
+        style->drawPrimitive(QStyle::PE_PanelItemViewItem, &opt, painter, widget);
         drawIcon(painter, option, index);
         drawName(painter, option, index);
+        drawPath(painter, option, index);
+        drawTime(painter, option, index);
+        drawTopButton(painter, option, index);
     }
 }
 
+/*!
+    \reimp
+*/
 QSize QCtmRecentViewDelegate::sizeHint(const QStyleOptionViewItem& option, const QModelIndex& index) const
 {
     auto size = QStyledItemDelegate::sizeHint(option, index);
@@ -54,6 +96,9 @@ QSize QCtmRecentViewDelegate::sizeHint(const QStyleOptionViewItem& option, const
     }
 }
 
+/*!
+    \brief      绘制图标 \a parent, \a option, \a index.
+*/
 void QCtmRecentViewDelegate::drawIcon(QPainter* painter, const QStyleOptionViewItem& option, const QModelIndex& index) const
 {
     auto icon = index.data(QCtmRecentModel::Roles::Icon).value<QIcon>();
@@ -64,36 +109,189 @@ void QCtmRecentViewDelegate::drawIcon(QPainter* painter, const QStyleOptionViewI
     }
     else
         mode = QIcon::Mode::Disabled;
-    painter->drawPixmap(doIconRect(option), icon.pixmap(0, mode, QIcon::State::Off));
+    auto rect = doIconRect(option);
+    painter->drawPixmap(rect, icon.pixmap(rect.size(), mode, QIcon::State::Off));
 }
 
+/*!
+    \brief      绘制名称 \a parent, \a option, \a index.
+*/
 void QCtmRecentViewDelegate::drawName(QPainter* painter, const QStyleOptionViewItem& option, const QModelIndex& index) const
 {
     painter->drawText(
         doNameRect(option), index.data(QCtmRecentModel::Roles::Name).toString(), QTextOption(Qt::AlignLeft | Qt::AlignVCenter));
 }
 
+/*!
+    \brief      绘制路径 \a parent, \a option, \a index.
+*/
 void QCtmRecentViewDelegate::drawPath(QPainter* painter, const QStyleOptionViewItem& option, const QModelIndex& index) const
 {
     painter->drawText(
         doPathRect(option), index.data(QCtmRecentModel::Roles::Path).toString(), QTextOption(Qt::AlignLeft | Qt::AlignVCenter));
 }
 
+/*!
+    \brief      绘制时间 \a parent, \a option, \a index.
+*/
+void QCtmRecentViewDelegate::drawTime(QPainter* painter, const QStyleOptionViewItem& option, const QModelIndex& index) const
+{
+    painter->drawText(doTimeRect(option),
+                      index.data(QCtmRecentModel::Roles::Time).toDateTime().toString("yyyy/MM/dd hh:mm"),
+                      QTextOption(Qt::AlignRight | Qt::AlignVCenter));
+}
+
+/*!
+    \brief      绘制置顶按钮 \a parent, \a option, \a index.
+*/
+void QCtmRecentViewDelegate::drawTopButton(QPainter* painter, const QStyleOptionViewItem& option, const QModelIndex& index) const
+{
+    auto fixed   = index.data(QCtmRecentModel::Roles::IsFixed).toBool();
+    auto btnRect = doTopButtonRect(option);
+    if (!fixed && (!m_impl->mousePoint || !option.rect.contains(*m_impl->mousePoint)))
+        return;
+    QStyleOptionToolButton opt;
+    opt.state       = QStyle::State_Enabled;
+    opt.icon        = fixed ? m_impl->fixedIcon : m_impl->unFixedIcon;
+    opt.rect        = btnRect;
+    opt.styleObject = option.styleObject;
+    opt.iconSize    = QSize { 16, 16 };
+    bool mouseOver  = m_impl->mousePoint && btnRect.contains(*m_impl->mousePoint);
+    opt.state.setFlag(QStyle::State_MouseOver, mouseOver);
+    if (mouseOver && !m_impl->pressed)
+    {
+        opt.state |= QStyle::State_Sunken;
+        opt.state |= QStyle::State_Raised;
+    }
+    opt.state |= QStyle::State_AutoRaise;
+    opt.subControls = QStyle::SC_ToolButton;
+
+    option.widget->style()->drawComplexControl(QStyle::CC_ToolButton, &opt, painter, option.widget);
+}
+
+/*!
+    \brief      计算图标位置 \a option.
+*/
 QRect QCtmRecentViewDelegate::doIconRect(const QStyleOptionViewItem& option) const
 {
     const auto& r = option.rect;
     return QRect(r.left() + SpacePixel, r.top() + SpacePixel, 24, 24);
 }
 
+/*!
+    \brief      计算名称位置 \a option.
+*/
 QRect QCtmRecentViewDelegate::doNameRect(const QStyleOptionViewItem& option) const
 {
     const auto& r = option.rect;
     auto iconRect = doIconRect(option);
-    return QRect(iconRect.right() + SpacePixel, iconRect.top(), r.right() - iconRect.right() - SpacePixel, option.fontMetrics.height());
+    auto timeRect = doTimeRect(option);
+    return QRect(
+        iconRect.right() + SpacePixel, iconRect.top(), timeRect.left() - iconRect.right() - SpacePixel, option.fontMetrics.height());
 }
 
+/*!
+    \brief      计算路径位置 \a option.
+*/
 QRect QCtmRecentViewDelegate::doPathRect(const QStyleOptionViewItem& option) const
 {
     auto nameRect = doNameRect(option);
-    return QRect(nameRect.left(), nameRect.bottom() + SpacePixel, nameRect.width(), option.fontMetrics.height());
+    return QRect(nameRect.left(), nameRect.bottom() + SpacePixel, option.rect.right() - nameRect.left(), option.fontMetrics.height());
+}
+
+/*!
+    \brief      计算时间位置 \a option.
+*/
+QRect QCtmRecentViewDelegate::doTimeRect(const QStyleOptionViewItem& option) const
+{
+    auto w = option.fontMetrics.horizontalAdvance("2023/00/00 00:00");
+    auto r = doTopButtonRect(option);
+    return QRect(r.left() - SpacePixel - w, r.top(), w, option.fontMetrics.height());
+}
+
+/*!
+    \brief      计算置顶按钮位置 \a option.
+*/
+QRect QCtmRecentViewDelegate::doTopButtonRect(const QStyleOptionViewItem& option) const
+{
+    const auto& r = option.rect;
+    return QRect { r.right() - SpacePixel - 16, r.top() + SpacePixel, 16, 16 };
+}
+
+/*!
+    \reimp
+*/
+bool QCtmRecentViewDelegate::eventFilter(QObject* object, QEvent* event)
+{
+    if (object->property("_interal_name").toString() == "qcustomui_qctmrecentview_viewport")
+    {
+        auto w = qobject_cast<QWidget*>(object);
+        switch (event->type())
+        {
+        case QEvent::MouseMove:
+            {
+                auto e             = dynamic_cast<QMouseEvent*>(event);
+                m_impl->mousePoint = e->position().toPoint();
+                w->update();
+            }
+            break;
+        case QEvent::MouseButtonPress:
+            {
+                auto e = dynamic_cast<QMouseEvent*>(event);
+                if (e->button() == Qt::LeftButton)
+                    m_impl->pressed = true;
+                w->update();
+            }
+            break;
+        case QEvent::MouseButtonRelease:
+            {
+                auto e = dynamic_cast<QMouseEvent*>(event);
+                if (e->button() == Qt::LeftButton)
+                    m_impl->pressed = false;
+                w->update();
+            }
+            break;
+        case QEvent::Leave:
+            m_impl->mousePoint = std::nullopt;
+            break;
+        case QEvent::Enter:
+            m_impl->mousePoint = w->mapFromGlobal(QCursor::pos());
+            break;
+        }
+    }
+    return QStyledItemDelegate::eventFilter(object, event);
+}
+
+/*!
+    \reimp
+*/
+bool QCtmRecentViewDelegate::editorEvent(QEvent* event,
+                                         QAbstractItemModel* model,
+                                         const QStyleOptionViewItem& option,
+                                         const QModelIndex& index)
+{
+    if (index.isValid())
+    {
+        switch (event->type())
+        {
+        case QEvent::MouseButtonPress:
+            {
+                auto e = dynamic_cast<QMouseEvent*>(event);
+                m_impl->pressedIndex =
+                    doTopButtonRect(option).contains(e->position().toPoint()) ? std::optional<QModelIndex>(index) : std::nullopt;
+            }
+            break;
+        case QEvent::MouseButtonRelease:
+            {
+                auto e = dynamic_cast<QMouseEvent*>(event);
+                if (m_impl->pressedIndex && *m_impl->pressedIndex == index && doTopButtonRect(option).contains(e->position().toPoint()))
+                {
+                    emit topButtonClicked(index);
+                }
+                m_impl->pressedIndex = std::nullopt;
+            }
+            break;
+        }
+    }
+    return false;
 }

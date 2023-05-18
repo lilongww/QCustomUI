@@ -1,22 +1,96 @@
-﻿#include "QCtmRecentView.h"
+﻿/*********************************************************************************
+**                                                                              **
+**  Copyright (C) 2019-2023 LiLong                                              **
+**  This file is part of QCustomUi.                                             **
+**                                                                              **
+**  QCustomUi is free software: you can redistribute it and/or modify           **
+**  it under the terms of the GNU Lesser General Public License as published by **
+**  the Free Software Foundation, either version 3 of the License, or           **
+**  (at your option) any later version.                                         **
+**                                                                              **
+**  QCustomUi is distributed in the hope that it will be useful,                **
+**  but WITHOUT ANY WARRANTY; without even the implied warranty of              **
+**  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the               **
+**  GNU Lesser General Public License for more details.                         **
+**                                                                              **
+**  You should have received a copy of the GNU Lesser General Public License    **
+**  along with QCustomUi.  If not, see <https://www.gnu.org/licenses/>.         **
+**********************************************************************************/
+#include "QCtmRecentView.h"
 #include "QCtmRecentModel.h"
 #include "QCtmRecentViewDelegate.h"
 
+#include <QHeaderView>
 #include <QPainter>
 #include <QScrollBar>
 
 struct QCtmRecentView::Impl
 {
-    std::map<QModelIndex, QRect> layoutMap;
 };
 
+/*!
+    \class      QCtmRecentView
+    \brief      仿vs启动界面最近项目表view.
+    \inherits   QTreeView
+    \ingroup    QCustomUi
+    \inmodule   QCustomUi
+    \inheaderfile QCtmRecentView.h
+*/
+
+/*!
+    \brief      构造函数 \a parent.
+*/
 QCtmRecentView::QCtmRecentView(QWidget* parent) : QTreeView(parent), m_impl(std::make_unique<Impl>())
 {
-    setItemDelegate(new QCtmRecentViewDelegate(this));
+    auto d = new QCtmRecentViewDelegate(this);
+    setItemDelegate(d);
+    this->viewport()->setProperty("_interal_name", "qcustomui_qctmrecentview_viewport");
+    this->viewport()->installEventFilter(d);
+    this->header()->setVisible(false);
+    setMouseTracking(true);
+    setSelectionMode(QAbstractItemView::SingleSelection);
+    setEditTriggers(QAbstractItemView::NoEditTriggers);
+    connect(d, &QCtmRecentViewDelegate::topButtonClicked, this, &QCtmRecentView::topButtonClicked);
+    connect(this, &QCtmRecentView::topButtonClicked, this, &QCtmRecentView::onTopButtonClicked);
 }
 
+/*!
+    \brief      析构函数.
+*/
 QCtmRecentView::~QCtmRecentView() {}
 
-void QCtmRecentView::setModel(QCtmRecentModel* model) { QAbstractItemView::setModel(model); }
+/*!
+    \overload
+                设置数据model.
+    \sa         model
+*/
+void QCtmRecentView::setModel(QCtmRecentModel* model) { QTreeView::setModel(model); }
 
-QCtmRecentModel* QCtmRecentView::model() const { return qobject_cast<QCtmRecentModel*>(QAbstractItemView::model()); }
+/*!
+    \overload
+                返回数据model.
+    \sa         setModel
+*/
+QCtmRecentModel* QCtmRecentView::model() const { return qobject_cast<QCtmRecentModel*>(QTreeView::model()); }
+
+/*!
+    \reimp
+*/
+void QCtmRecentView::reset()
+{
+    QTreeView::reset();
+    for (int r = 0; r < model()->rowCount(); ++r)
+    {
+        setRowHidden(r, {}, !model()->hasChildren(model()->index(r, 0, {})));
+    }
+    expandAll();
+}
+
+/*!
+    \brief      响应置顶按钮点击信号，修改项目数据 \a index 的置顶状态.
+    \sa         topButtonClicked
+*/
+void QCtmRecentView::onTopButtonClicked(const QModelIndex& index)
+{
+    model()->setData(index, !index.data(QCtmRecentModel::Roles::IsFixed).toBool(), QCtmRecentModel::Roles::IsFixed);
+}

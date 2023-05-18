@@ -41,10 +41,10 @@ class QCUSTOMUI_EXPORT QCtmRecentModel : public QAbstractItemModel
 public:
     enum Roles
     {
-        Name = Qt::DisplayRole + 1,
+        Icon = Qt::DecorationRole,
+        Name = Qt::UserRole + 1,
         Path,
         Time,
-        Icon,
         IsFixed
     };
 

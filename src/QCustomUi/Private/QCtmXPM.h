@@ -16,32 +16,49 @@
 **  You should have received a copy of the GNU Lesser General Public License    **
 **  along with QCustomUi.  If not, see <https://www.gnu.org/licenses/>.         **
 **********************************************************************************/
-
-#pragma once
-
-#include "qcustomui_global.h"
-
-#include <QTreeView>
-
-class QCtmRecentModel;
-class QCUSTOMUI_EXPORT QCtmRecentView : public QTreeView
+namespace QCtmXPM
 {
-    Q_OBJECT
-public:
-    explicit QCtmRecentView(QWidget* parent);
-    ~QCtmRecentView();
-    virtual void setModel(QCtmRecentModel* model);
-    QCtmRecentModel* model() const;
-signals:
-    void topButtonClicked(const QModelIndex& index);
+// clang-format off
+constexpr const char* const UnFixedXPM[] = {
+    "16 16 2 1",
+    "  c None",
+    "# c #8F8B88",
+    "                ",
+    "  ############  ",
+    "   ##########   ",
+    "    #      #    ",
+    "    #      #    ",
+    "    #      #    ",
+    "    #      #    ",
+    "    #      #    ",
+    "    #      #    ",
+    "    #      #    ",
+    "    #      #    ",
+    "   ##########   ",
+    "  ############  ",
+    "       ##       ",
+    "       ##       ",
+    "       ##       "};
 
-protected:
-    using QTreeView::model;
-    using QTreeView::setModel;
-    void reset() override;
-    virtual void onTopButtonClicked(const QModelIndex& index);
-
-private:
-    struct Impl;
-    std::unique_ptr<Impl> m_impl;
-};
+constexpr const char* const FixedXPM[] = {
+    "16 16 2 1",
+    "  c None",
+    "# c #8F8B88",
+    "                ",
+    "                ",
+    "   #          # ",
+    "   ##        ## ",
+    "   ############ ",
+    "   ##        ## ",
+    "   ##        ## ",
+    "#####        ## ",
+    "#####        ## ",
+    "   ##        ## ",
+    "   ##        ## ",
+    "   ############ ",
+    "   ##        ## ",
+    "   #          # ",
+    "                ",
+    "                "};
+// clang-format on
+} // namespace QCtmXPM

@@ -35,8 +35,22 @@ public:
     virtual void drawIcon(QPainter* painter, const QStyleOptionViewItem& option, const QModelIndex& index) const;
     virtual void drawName(QPainter* painter, const QStyleOptionViewItem& option, const QModelIndex& index) const;
     virtual void drawPath(QPainter* painter, const QStyleOptionViewItem& option, const QModelIndex& index) const;
+    virtual void drawTime(QPainter* painter, const QStyleOptionViewItem& option, const QModelIndex& index) const;
+    virtual void drawTopButton(QPainter* painter, const QStyleOptionViewItem& option, const QModelIndex& index) const;
 
     virtual QRect doIconRect(const QStyleOptionViewItem& option) const;
     virtual QRect doNameRect(const QStyleOptionViewItem& option) const;
     virtual QRect doPathRect(const QStyleOptionViewItem& option) const;
+    virtual QRect doTimeRect(const QStyleOptionViewItem& option) const;
+    virtual QRect doTopButtonRect(const QStyleOptionViewItem& option) const;
+
+protected:
+    bool eventFilter(QObject* object, QEvent* event) override;
+    bool editorEvent(QEvent* event, QAbstractItemModel* model, const QStyleOptionViewItem& option, const QModelIndex& index) override;
+signals:
+    void topButtonClicked(const QModelIndex& index);
+
+private:
+    struct Impl;
+    std::unique_ptr<Impl> m_impl;
 };

@@ -50,10 +50,28 @@ struct QCtmRecentModel::Impl
     }
 };
 
-QCtmRecentModel::QCtmRecentModel(QObject* parent) : QAbstractItemModel(parent) {}
+/*!
+    \class      QCtmRecentModel
+    \brief      仿vs启动界面最近项目表model.
+    \inherits   QAbstractItemModel
+    \ingroup    QCustomUi
+    \inmodule   QCustomUi
+    \inheaderfile QCtmRecentModel.h
+*/
 
+/*!
+    \brief      构造函数 \a parent.
+*/
+QCtmRecentModel::QCtmRecentModel(QObject* parent) : QAbstractItemModel(parent), m_impl(std::make_unique<Impl>()) {}
+
+/*!
+    \brief      析构函数.
+*/
 QCtmRecentModel::~QCtmRecentModel() {}
 
+/*!
+    \reimp
+*/
 int QCtmRecentModel::rowCount(const QModelIndex& parent /*= QModelIndex()*/) const
 {
     if (parent.isValid())
@@ -66,15 +84,21 @@ int QCtmRecentModel::rowCount(const QModelIndex& parent /*= QModelIndex()*/) con
         return m_impl->sorted.size();
 }
 
+/*!
+    \reimp
+*/
 int QCtmRecentModel::columnCount(const QModelIndex& parent /*= QModelIndex()*/) const { return 1; }
 
+/*!
+    \reimp
+*/
 QVariant QCtmRecentModel::data(const QModelIndex& index, int role /*= Qt::DisplayRole*/) const
 {
     if (!index.isValid())
         return {};
     if (role == Qt::DisplayRole)
     {
-        if (index.parent().isValid())
+        if (!index.parent().isValid())
         {
             switch (index.row())
             {
@@ -116,8 +140,14 @@ QVariant QCtmRecentModel::data(const QModelIndex& index, int role /*= Qt::Displa
     return {};
 }
 
+/*!
+    \reimp
+*/
 QVariant QCtmRecentModel::headerData(int section, Qt::Orientation orientation, int role /*= Qt::DisplayRole*/) const { return {}; }
 
+/*!
+    \reimp
+*/
 bool QCtmRecentModel::setData(const QModelIndex& index, const QVariant& value, int role /*= Qt::EditRole*/)
 {
     if (index.parent().isValid())
@@ -140,6 +170,10 @@ bool QCtmRecentModel::setData(const QModelIndex& index, const QVariant& value, i
     return false;
 }
 
+/*!
+    \brief      设置最近使用的项目数据 \a datas, model会自动根据数据的时间和是否置顶来自动分类.
+    \sa         recentDatas
+*/
 void QCtmRecentModel::setRecentDatas(const QVector<QCtmRecentData>& datas)
 {
     beginResetModel();
@@ -148,6 +182,11 @@ void QCtmRecentModel::setRecentDatas(const QVector<QCtmRecentData>& datas)
     endResetModel();
 }
 
+/*!
+    \overload
+                重载函数, 右值优化版本 \a datas.
+    \sa         setRecentDatas, recentDatas
+*/
 void QCtmRecentModel::setRecentDatas(QVector<QCtmRecentData>&& datas)
 {
     beginResetModel();
@@ -156,16 +195,27 @@ void QCtmRecentModel::setRecentDatas(QVector<QCtmRecentData>&& datas)
     endResetModel();
 }
 
+/*!
+    \reimp
+*/
 QModelIndex QCtmRecentModel::parent(const QModelIndex& child) const
 {
     if (child.internalPointer())
     {
-        auto row = m_impl->sorted.indexOf(*reinterpret_cast<QVector<std::reference_wrapper<QCtmRecentData>>*>(child.internalPointer()));
-        return createIndex(row, 0, nullptr);
+        auto it = std::find_if(
+            m_impl->sorted.begin(), m_impl->sorted.end(), [&](const auto& vec) { return &vec == child.constInternalPointer(); });
+        if (it != m_impl->sorted.end())
+        {
+            return createIndex(std::distance(m_impl->sorted.begin(), it), 0, nullptr);
+        }
+        return {};
     }
     return {};
 }
 
+/*!
+    \reimp
+*/
 QModelIndex QCtmRecentModel::index(int row, int column, const QModelIndex& parent) const
 {
     if (!parent.isValid())
@@ -178,4 +228,8 @@ QModelIndex QCtmRecentModel::index(int row, int column, const QModelIndex& paren
     }
 }
 
+/*!
+    \brief      返回最近使用的项目数据列表.
+    \sa         setRecentDatas
+*/
 const QVector<QCtmRecentData>& QCtmRecentModel::recentDatas() const { return m_impl->d; }
