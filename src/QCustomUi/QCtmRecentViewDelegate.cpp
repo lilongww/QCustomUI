@@ -333,15 +333,3 @@ bool QCtmRecentViewDelegate::eventFilter(QObject* object, QEvent* event)
     }
     return QStyledItemDelegate::eventFilter(object, event);
 }
-
-/*!
-    \reimp
-*/
-bool QCtmRecentViewDelegate::editorEvent(QEvent* event,
-                                         QAbstractItemModel* model,
-                                         const QStyleOptionViewItem& option,
-                                         const QModelIndex& index)
-{
-
-    return false;
-}

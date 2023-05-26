@@ -51,7 +51,6 @@ public:
 
 protected:
     bool eventFilter(QObject* object, QEvent* event) override;
-    bool editorEvent(QEvent* event, QAbstractItemModel* model, const QStyleOptionViewItem& option, const QModelIndex& index) override;
 signals:
     void topButtonClicked(const QModelIndex& index);
 
