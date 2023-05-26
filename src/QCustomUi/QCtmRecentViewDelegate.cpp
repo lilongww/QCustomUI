@@ -38,6 +38,11 @@ constexpr static int SpacePixel = 15;
     \inheaderfile QCtmRecentViewDelegate.h
 */
 
+/*!
+    \fn         void QCtmRecentViewDelegate::topButtonClicked(const QModelIndex& index);
+    \brief      置顶按钮点击信号，此信号连接 QCtmRecentView::topButtonClicked.
+*/
+
 struct QCtmRecentViewDelegate::Impl
 {
     std::optional<QPoint> mousePoint;
