@@ -32,7 +32,7 @@ struct QCtmRecentData
     QString path;
     QDateTime time;
     QIcon icon;
-    bool fixed { false };
+    bool isTop { false };
 };
 
 class QCUSTOMUI_EXPORT QCtmRecentModel : public QAbstractItemModel
@@ -45,12 +45,11 @@ public:
         Name = Qt::UserRole + 1,
         Path,
         Time,
-        IsFixed
+        isTop
     };
-
     enum Classification
     {
-        Fixed,
+        Top,
         Today,
         Yesterday,
         Pastweek,

@@ -19,11 +19,13 @@
 #include "QCtmRecentViewDelegate.h"
 #include "Private/QCtmXPM.h"
 #include "QCtmRecentModel.h"
+#include "QCtmRecentView.h"
 
 #include <QApplication>
 #include <QFontMetricsF>
 #include <QMouseEvent>
 #include <QPainter>
+#include <QToolButton>
 
 constexpr static int SpacePixel = 15;
 
@@ -41,15 +43,27 @@ struct QCtmRecentViewDelegate::Impl
     std::optional<QPoint> mousePoint;
     bool pressed { false };
     std::optional<QPersistentModelIndex> pressedIndex;
-    QPixmap unFixedIcon { QCtmXPM::UnFixedXPM };
-    QPixmap fixedIcon { QCtmXPM::FixedXPM };
+    bool topButtonVisible { true };
+    QToolButton* topButton;
+    inline Impl(QCtmRecentView* parent) : topButton(new QToolButton(parent))
+    {
+        QIcon icon;
+        icon.addPixmap(QPixmap(QCtmXPM::UnFixedXPM));
+        icon.addPixmap(QPixmap(QCtmXPM::FixedXPM), QIcon::Mode::Normal, QIcon::State::On);
+        topButton->setIcon(icon);
+        topButton->setCheckable(true);
+        topButton->setIconSize({ 16, 16 });
+        topButton->setAutoRaise(true);
+        topButton->setVisible(false);
+        topButton->setObjectName("top_button");
+    }
 };
 
 /*!
     \brief      构造函数 \a parent.
 */
-QCtmRecentViewDelegate::QCtmRecentViewDelegate(QObject* parent /*= nullptr*/)
-    : QStyledItemDelegate(parent), m_impl(std::make_unique<Impl>())
+QCtmRecentViewDelegate::QCtmRecentViewDelegate(QCtmRecentView* parent /*= nullptr*/)
+    : QStyledItemDelegate(parent), m_impl(std::make_unique<Impl>(parent))
 {
 }
 
@@ -57,6 +71,30 @@ QCtmRecentViewDelegate::QCtmRecentViewDelegate(QObject* parent /*= nullptr*/)
     \brief      析构函数.
 */
 QCtmRecentViewDelegate::~QCtmRecentViewDelegate() {}
+
+/*!
+    \brief      设置指定按钮图标 \a icon.
+    \sa         topButtonIcon
+*/
+void QCtmRecentViewDelegate::setTopButtonIcon(const QIcon& icon) { m_impl->topButton->setIcon(icon); }
+
+/*!
+    \brief      返回置顶按钮图标.
+    \sa         setTopButtonIcon
+*/
+QIcon QCtmRecentViewDelegate::topButtonIcon() const { return m_impl->topButton->icon(); }
+
+/*!
+    \brief      设置置顶按钮是否可见 \a v.
+    \sa         topButtonVisible
+*/
+void QCtmRecentViewDelegate::setTopButtonVisible(bool v) { m_impl->topButtonVisible = v; }
+
+/*!
+    \brief      返回置顶按钮是否可见.
+    \sa         setTopButtonVisible
+*/
+bool QCtmRecentViewDelegate::topButtonVisible() const { return m_impl->topButtonVisible; }
 
 /*!
     \reimp
@@ -77,7 +115,8 @@ void QCtmRecentViewDelegate::paint(QPainter* painter, const QStyleOptionViewItem
         drawName(painter, option, index);
         drawPath(painter, option, index);
         drawTime(painter, option, index);
-        drawTopButton(painter, option, index);
+        if (m_impl->topButtonVisible)
+            drawTopButton(painter, option, index);
     }
 }
 
@@ -146,27 +185,19 @@ void QCtmRecentViewDelegate::drawTime(QPainter* painter, const QStyleOptionViewI
 */
 void QCtmRecentViewDelegate::drawTopButton(QPainter* painter, const QStyleOptionViewItem& option, const QModelIndex& index) const
 {
-    auto fixed   = index.data(QCtmRecentModel::Roles::IsFixed).toBool();
+    auto fixed   = index.data(QCtmRecentModel::Roles::isTop).toBool();
     auto btnRect = doTopButtonRect(option);
     if (!fixed && (!m_impl->mousePoint || !option.rect.contains(*m_impl->mousePoint)))
         return;
-    QStyleOptionToolButton opt;
-    opt.state       = QStyle::State_Enabled;
-    opt.icon        = fixed ? m_impl->fixedIcon : m_impl->unFixedIcon;
-    opt.rect        = btnRect;
-    opt.styleObject = option.styleObject;
-    opt.iconSize    = QSize { 16, 16 };
-    bool mouseOver  = m_impl->mousePoint && btnRect.contains(*m_impl->mousePoint);
-    opt.state.setFlag(QStyle::State_MouseOver, mouseOver);
-    if (mouseOver && !m_impl->pressed)
-    {
-        opt.state |= QStyle::State_Sunken;
-        opt.state |= QStyle::State_Raised;
-    }
-    opt.state |= QStyle::State_AutoRaise;
-    opt.subControls = QStyle::SC_ToolButton;
-
-    option.widget->style()->drawComplexControl(QStyle::CC_ToolButton, &opt, painter, option.widget);
+    bool mouseOver = m_impl->mousePoint && btnRect.contains(*m_impl->mousePoint);
+    m_impl->topButton->setAttribute(Qt::WA_UnderMouse, mouseOver && !m_impl->pressed);
+    m_impl->topButton->setChecked(fixed);
+    m_impl->topButton->resize(btnRect.size());
+    auto p = btnRect.topLeft();
+    painter->save();
+    painter->setTransform(QTransform::fromTranslate(btnRect.left(), btnRect.top()));
+    m_impl->topButton->render(painter);
+    painter->restore();
 }
 
 /*!
@@ -286,7 +317,8 @@ bool QCtmRecentViewDelegate::editorEvent(QEvent* event,
                 auto e = dynamic_cast<QMouseEvent*>(event);
                 if (m_impl->pressedIndex && *m_impl->pressedIndex == index && doTopButtonRect(option).contains(e->position().toPoint()))
                 {
-                    emit topButtonClicked(index);
+                    if (m_impl->topButtonVisible)
+                        emit topButtonClicked(index);
                 }
                 m_impl->pressedIndex = std::nullopt;
             }

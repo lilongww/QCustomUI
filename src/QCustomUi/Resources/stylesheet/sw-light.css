@@ -572,3 +572,24 @@ QCtmClassifyTreeView::item:hover
 {
     background: #CBE5FF;
 }
+
+QCtmRecentView > #top_button
+{
+    border: none;
+    background: transparent;
+}
+
+QCtmRecentView > #top_button:checked
+{
+    background: transparent;
+}
+
+QCtmRecentView > #top_button:hover
+{
+    background: white;
+}
+
+QCtmRecentView > #top_button:pressed
+{
+    background: #99D1FF;
+}

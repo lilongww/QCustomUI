@@ -74,6 +74,38 @@ void QCtmRecentView::setModel(QCtmRecentModel* model) { QTreeView::setModel(mode
 QCtmRecentModel* QCtmRecentView::model() const { return qobject_cast<QCtmRecentModel*>(QTreeView::model()); }
 
 /*!
+    \brief      设置置顶按钮图标 \a icon.
+    \sa         topButtonIcon
+*/
+void QCtmRecentView::setTopButtonIcon(const QIcon& icon)
+{
+    itemDelegate()->setProperty("topButtonIcon", icon);
+    viewport()->update();
+}
+
+/*!
+    \brief      返回置顶按钮图标.
+    \sa         setTopButtonIcon
+*/
+QIcon QCtmRecentView::topButtonIcon() const { return itemDelegate()->property("topButtonIcon").value<QIcon>(); }
+
+/*!
+    \brief      设置置顶按钮是否可见 \a v.
+    \sa         topButtonVisible
+*/
+void QCtmRecentView::setTopButtonVisible(bool v)
+{
+    itemDelegate()->setProperty("topButtonVisible", v);
+    viewport()->update();
+}
+
+/*!
+    \brief      返回指定按钮是否可见.
+    \sa         setTopButtonVisible
+*/
+bool QCtmRecentView::topButtonVisible() const { return itemDelegate()->property("topButtonVisible").toBool(); }
+
+/*!
     \reimp
 */
 void QCtmRecentView::reset()
@@ -92,5 +124,5 @@ void QCtmRecentView::reset()
 */
 void QCtmRecentView::onTopButtonClicked(const QModelIndex& index)
 {
-    model()->setData(index, !index.data(QCtmRecentModel::Roles::IsFixed).toBool(), QCtmRecentModel::Roles::IsFixed);
+    model()->setData(index, !index.data(QCtmRecentModel::Roles::isTop).toBool(), QCtmRecentModel::Roles::isTop);
 }

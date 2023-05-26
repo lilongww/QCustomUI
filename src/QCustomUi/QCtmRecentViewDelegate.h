@@ -23,13 +23,19 @@
 
 #include <QStyledItemDelegate>
 
+class QCtmRecentView;
 class QCUSTOMUI_EXPORT QCtmRecentViewDelegate : public QStyledItemDelegate
 {
+    Q_PROPERTY(QIcon topButtonIcon READ topButtonIcon WRITE setTopButtonIcon)
+    Q_PROPERTY(bool topButtonVisible READ topButtonVisible WRITE setTopButtonVisible)
     Q_OBJECT
 public:
-    explicit QCtmRecentViewDelegate(QObject* parent = nullptr);
+    explicit QCtmRecentViewDelegate(QCtmRecentView* parent);
     ~QCtmRecentViewDelegate();
-
+    void setTopButtonIcon(const QIcon& icon);
+    QIcon topButtonIcon() const;
+    void setTopButtonVisible(bool v);
+    bool topButtonVisible() const;
     void paint(QPainter* painter, const QStyleOptionViewItem& option, const QModelIndex& index) const override;
     QSize sizeHint(const QStyleOptionViewItem& option, const QModelIndex& index) const override;
     virtual void drawIcon(QPainter* painter, const QStyleOptionViewItem& option, const QModelIndex& index) const;
@@ -37,7 +43,6 @@ public:
     virtual void drawPath(QPainter* painter, const QStyleOptionViewItem& option, const QModelIndex& index) const;
     virtual void drawTime(QPainter* painter, const QStyleOptionViewItem& option, const QModelIndex& index) const;
     virtual void drawTopButton(QPainter* painter, const QStyleOptionViewItem& option, const QModelIndex& index) const;
-
     virtual QRect doIconRect(const QStyleOptionViewItem& option) const;
     virtual QRect doNameRect(const QStyleOptionViewItem& option) const;
     virtual QRect doPathRect(const QStyleOptionViewItem& option) const;

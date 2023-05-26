@@ -34,8 +34,8 @@ struct QCtmRecentModel::Impl
             auto days = data.time.daysTo(now);
             if (days < 0)
                 continue;
-            if (data.fixed)
-                sorted[Classification::Fixed].push_back(data);
+            if (data.isTop)
+                sorted[Classification::Top].push_back(data);
             else if (now.date() == data.time.date())
                 sorted[Classification::Today].push_back(data);
             else if (data.time.date().daysTo(now.date()) <= 1)
@@ -102,7 +102,7 @@ QVariant QCtmRecentModel::data(const QModelIndex& index, int role /*= Qt::Displa
         {
             switch (index.row())
             {
-            case Classification::Fixed:
+            case Classification::Top:
                 return tr("Top");
             case Classification::Today:
                 return tr("Today");
@@ -132,8 +132,8 @@ QVariant QCtmRecentModel::data(const QModelIndex& index, int role /*= Qt::Displa
                 return data.icon;
             case Roles::Time:
                 return data.time;
-            case Roles::IsFixed:
-                return data.fixed;
+            case Roles::isTop:
+                return data.isTop;
             }
         }
     }
@@ -157,9 +157,9 @@ bool QCtmRecentModel::setData(const QModelIndex& index, const QVariant& value, i
         auto& data     = m_impl->sorted[parentRow][row].get();
         switch (role)
         {
-        case Roles::IsFixed:
+        case Roles::isTop:
             {
-                data.fixed = value.toBool();
+                data.isTop = value.toBool();
                 beginResetModel();
                 m_impl->sortDatas();
                 endResetModel();

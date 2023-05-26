@@ -34,4 +34,8 @@ void RecentViewExample::init()
             this->style()->standardIcon(QStyle::SP_FileIcon),
             false } });
     view->expandAll();
+    // view->setTopButtonVisible(false);
+    // QIcon icon(":/QCustomUi/Resources/tree-open-light.png");
+    // icon.addPixmap(QPixmap(":/QCustomUi/Resources/tree-close-light.png"), QIcon::Mode::Normal, QIcon::On);
+    // view->setTopButtonIcon(icon);
 }
