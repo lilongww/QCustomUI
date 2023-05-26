@@ -191,7 +191,7 @@ void QCtmRecentViewDelegate::drawTime(QPainter* painter, const QStyleOptionViewI
 void QCtmRecentViewDelegate::drawTopButton(QPainter* painter, const QStyleOptionViewItem& option, const QModelIndex& index) const
 {
     auto fixed   = index.data(QCtmRecentModel::Roles::isTop).toBool();
-    auto btnRect = doTopButtonRect(option);
+    auto btnRect = doTopButtonRect(option.rect);
     if (!fixed && (!m_impl->mousePoint || !option.rect.contains(*m_impl->mousePoint)))
         return;
     bool mouseOver = m_impl->mousePoint && btnRect.contains(*m_impl->mousePoint);
@@ -241,17 +241,16 @@ QRect QCtmRecentViewDelegate::doPathRect(const QStyleOptionViewItem& option) con
 QRect QCtmRecentViewDelegate::doTimeRect(const QStyleOptionViewItem& option) const
 {
     auto w = option.fontMetrics.horizontalAdvance("2023/00/00 00:00");
-    auto r = doTopButtonRect(option);
+    auto r = doTopButtonRect(option.rect);
     return QRect(r.left() - SpacePixel - w, r.top(), w, option.fontMetrics.height());
 }
 
 /*!
-    \brief      计算置顶按钮位置 \a option.
+    \brief      计算置顶按钮位置 \a itemRect.
 */
-QRect QCtmRecentViewDelegate::doTopButtonRect(const QStyleOptionViewItem& option) const
+QRect QCtmRecentViewDelegate::doTopButtonRect(const QRect& itemRect) const
 {
-    const auto& r = option.rect;
-    return QRect { r.right() - SpacePixel - 16, r.top() + SpacePixel, 16, 16 };
+    return QRect { itemRect.right() - SpacePixel - 16, itemRect.top() + SpacePixel, 16, 16 };
 }
 
 /*!
@@ -275,7 +274,22 @@ bool QCtmRecentViewDelegate::eventFilter(QObject* object, QEvent* event)
             {
                 auto e = dynamic_cast<QMouseEvent*>(event);
                 if (e->button() == Qt::LeftButton)
+                {
+                    auto view  = qobject_cast<QAbstractItemView*>(parent());
+                    auto index = view->indexAt(e->position().toPoint());
+                    if (index.isValid())
+                    {
+                        auto rect = view->visualRect(index);
+                        if (rect.contains(e->position().toPoint()))
+                        {
+                            m_impl->pressedIndex =
+                                doTopButtonRect(rect).contains(e->position().toPoint()) ? std::optional<QModelIndex>(index) : std::nullopt;
+                            w->update();
+                            return true;
+                        }
+                    }
                     m_impl->pressed = true;
+                }
                 w->update();
             }
             break;
@@ -283,7 +297,29 @@ bool QCtmRecentViewDelegate::eventFilter(QObject* object, QEvent* event)
             {
                 auto e = dynamic_cast<QMouseEvent*>(event);
                 if (e->button() == Qt::LeftButton)
+                {
                     m_impl->pressed = false;
+                    auto view       = qobject_cast<QAbstractItemView*>(parent());
+                    auto index      = view->indexAt(e->position().toPoint());
+                    if (index.isValid())
+                    {
+                        auto rect = view->visualRect(index);
+                        if (rect.contains(e->position().toPoint()))
+                        {
+                            bool inTopButton = doTopButtonRect(rect).contains(e->position().toPoint());
+                            if (m_impl->pressedIndex && *m_impl->pressedIndex == index && inTopButton)
+                            {
+                                if (m_impl->topButtonVisible)
+                                {
+                                    emit topButtonClicked(index);
+                                }
+                            }
+                            m_impl->pressedIndex = std::nullopt;
+                            view->update();
+                            return m_impl->topButtonVisible && inTopButton;
+                        }
+                    }
+                }
                 w->update();
             }
             break;
@@ -306,29 +342,6 @@ bool QCtmRecentViewDelegate::editorEvent(QEvent* event,
                                          const QStyleOptionViewItem& option,
                                          const QModelIndex& index)
 {
-    if (index.isValid())
-    {
-        switch (event->type())
-        {
-        case QEvent::MouseButtonPress:
-            {
-                auto e = dynamic_cast<QMouseEvent*>(event);
-                m_impl->pressedIndex =
-                    doTopButtonRect(option).contains(e->position().toPoint()) ? std::optional<QModelIndex>(index) : std::nullopt;
-            }
-            break;
-        case QEvent::MouseButtonRelease:
-            {
-                auto e = dynamic_cast<QMouseEvent*>(event);
-                if (m_impl->pressedIndex && *m_impl->pressedIndex == index && doTopButtonRect(option).contains(e->position().toPoint()))
-                {
-                    if (m_impl->topButtonVisible)
-                        emit topButtonClicked(index);
-                }
-                m_impl->pressedIndex = std::nullopt;
-            }
-            break;
-        }
-    }
+
     return false;
 }

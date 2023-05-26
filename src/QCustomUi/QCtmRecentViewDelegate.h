@@ -47,7 +47,7 @@ public:
     virtual QRect doNameRect(const QStyleOptionViewItem& option) const;
     virtual QRect doPathRect(const QStyleOptionViewItem& option) const;
     virtual QRect doTimeRect(const QStyleOptionViewItem& option) const;
-    virtual QRect doTopButtonRect(const QStyleOptionViewItem& option) const;
+    virtual QRect doTopButtonRect(const QRect& itemRect) const;
 
 protected:
     bool eventFilter(QObject* object, QEvent* event) override;
