@@ -96,7 +96,7 @@ QCtmRecentView::~QCtmRecentView() {}
 
 /*!
     \overload
-                设置数据model.
+                设置数据 \a model.
     \sa         model
 */
 void QCtmRecentView::setModel(QCtmRecentModel* model) { QTreeView::setModel(model); }

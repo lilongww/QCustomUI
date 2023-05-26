@@ -40,7 +40,7 @@ constexpr static int SpacePixel = 15;
 
 /*!
     \fn         void QCtmRecentViewDelegate::topButtonClicked(const QModelIndex& index);
-    \brief      置顶按钮点击信号，此信号连接 QCtmRecentView::topButtonClicked.
+    \brief      置顶按钮点击信号 \a index, 此信号连接 QCtmRecentView::topButtonClicked.
 */
 
 struct QCtmRecentViewDelegate::Impl
@@ -141,7 +141,7 @@ QSize QCtmRecentViewDelegate::sizeHint(const QStyleOptionViewItem& option, const
 }
 
 /*!
-    \brief      绘制图标 \a parent, \a option, \a index.
+    \brief      绘制图标 \a painter, \a option, \a index.
 */
 void QCtmRecentViewDelegate::drawIcon(QPainter* painter, const QStyleOptionViewItem& option, const QModelIndex& index) const
 {
@@ -158,7 +158,7 @@ void QCtmRecentViewDelegate::drawIcon(QPainter* painter, const QStyleOptionViewI
 }
 
 /*!
-    \brief      绘制名称 \a parent, \a option, \a index.
+    \brief      绘制名称 \a painter, \a option, \a index.
 */
 void QCtmRecentViewDelegate::drawName(QPainter* painter, const QStyleOptionViewItem& option, const QModelIndex& index) const
 {
@@ -167,7 +167,7 @@ void QCtmRecentViewDelegate::drawName(QPainter* painter, const QStyleOptionViewI
 }
 
 /*!
-    \brief      绘制路径 \a parent, \a option, \a index.
+    \brief      绘制路径 \a painter, \a option, \a index.
 */
 void QCtmRecentViewDelegate::drawPath(QPainter* painter, const QStyleOptionViewItem& option, const QModelIndex& index) const
 {
@@ -176,7 +176,7 @@ void QCtmRecentViewDelegate::drawPath(QPainter* painter, const QStyleOptionViewI
 }
 
 /*!
-    \brief      绘制时间 \a parent, \a option, \a index.
+    \brief      绘制时间 \a painter, \a option, \a index.
 */
 void QCtmRecentViewDelegate::drawTime(QPainter* painter, const QStyleOptionViewItem& option, const QModelIndex& index) const
 {
@@ -186,7 +186,7 @@ void QCtmRecentViewDelegate::drawTime(QPainter* painter, const QStyleOptionViewI
 }
 
 /*!
-    \brief      绘制置顶按钮 \a parent, \a option, \a index.
+    \brief      绘制置顶按钮 \a painter, \a option, \a index.
 */
 void QCtmRecentViewDelegate::drawTopButton(QPainter* painter, const QStyleOptionViewItem& option, const QModelIndex& index) const
 {
