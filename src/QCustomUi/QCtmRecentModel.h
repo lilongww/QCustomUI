@@ -26,6 +26,8 @@
 #include <QString>
 #include <QVector>
 
+#include <optional>
+
 struct QCtmRecentData
 {
     QString name;
@@ -70,6 +72,7 @@ public:
     QModelIndex index(int row, int column, const QModelIndex& parent) const override;
 
     const QVector<QCtmRecentData>& recentDatas() const;
+    std::optional<QCtmRecentData> dataOfIndex(const QModelIndex& index) const;
 
 private:
     struct Impl;

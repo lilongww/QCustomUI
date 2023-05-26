@@ -38,6 +38,21 @@ struct QCtmRecentView::Impl
 */
 
 /*!
+    \fn         void QCtmRecentView::topButtonClicked(const QModelIndex& index)
+    \brief      置顶按钮被点击时发送该消息 \a index.
+*/
+
+/*!
+    \fn         void QCtmRecentView::recentClicked(const QCtmRecentData& data)
+    \brief      最近项目被点击时，发送该消息 \a data.
+*/
+
+/*!
+    \fn         void QCtmRecentView::recentDoubleClicked(const QCtmRecentData& data)
+    \brief      最近项目被双击时，发送该消息 \a data.
+*/
+
+/*!
     \brief      构造函数 \a parent.
 */
 QCtmRecentView::QCtmRecentView(QWidget* parent) : QTreeView(parent), m_impl(std::make_unique<Impl>())
@@ -52,6 +67,26 @@ QCtmRecentView::QCtmRecentView(QWidget* parent) : QTreeView(parent), m_impl(std:
     setEditTriggers(QAbstractItemView::NoEditTriggers);
     connect(d, &QCtmRecentViewDelegate::topButtonClicked, this, &QCtmRecentView::topButtonClicked);
     connect(this, &QCtmRecentView::topButtonClicked, this, &QCtmRecentView::onTopButtonClicked);
+    connect(this,
+            &QAbstractItemView::clicked,
+            this,
+            [&](const auto& index)
+            {
+                auto d = model()->dataOfIndex(index);
+                if (!d)
+                    return;
+                emit recentClicked(*d);
+            });
+    connect(this,
+            &QAbstractItemView::doubleClicked,
+            this,
+            [&](const auto& index)
+            {
+                auto d = model()->dataOfIndex(index);
+                if (!d)
+                    return;
+                emit recentDoubleClicked(*d);
+            });
 }
 
 /*!

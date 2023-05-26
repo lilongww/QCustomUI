@@ -1,5 +1,6 @@
 ﻿#include "RecentViewExample.h"
 
+#include <QCustomUi/QCtmMessageBox.h>
 #include <QCustomUi/QCtmRecentModel.h>
 #include <QCustomUi/QCtmRecentView.h>
 
@@ -34,6 +35,11 @@ void RecentViewExample::init()
             this->style()->standardIcon(QStyle::SP_FileIcon),
             false } });
     view->expandAll();
+    auto showBox = [&](const QString& title, const auto& data)
+    { QCtmMessageBox::information(this, title, QStringLiteral("名称：%1\n路径：%2").arg(data.name).arg(data.path)); };
+    connect(view, &QCtmRecentView::recentClicked, this, std::bind_front(showBox, QStringLiteral("单击")));
+    connect(view, &QCtmRecentView::recentDoubleClicked, this, std::bind_front(showBox, QStringLiteral("双击")));
+
     // view->setTopButtonVisible(false);
     // QIcon icon(":/QCustomUi/Resources/tree-open-light.png");
     // icon.addPixmap(QPixmap(":/QCustomUi/Resources/tree-close-light.png"), QIcon::Mode::Normal, QIcon::On);

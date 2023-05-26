@@ -233,3 +233,13 @@ QModelIndex QCtmRecentModel::index(int row, int column, const QModelIndex& paren
     \sa         setRecentDatas
 */
 const QVector<QCtmRecentData>& QCtmRecentModel::recentDatas() const { return m_impl->d; }
+
+/*!
+    \brief      返回 \a index 对应的最近使用的项目.
+*/
+std::optional<QCtmRecentData> QCtmRecentModel::dataOfIndex(const QModelIndex& index) const
+{
+    if (!index.isValid() || !index.parent().isValid())
+        return std::nullopt;
+    return m_impl->sorted[index.parent().row()][index.row()].get();
+}

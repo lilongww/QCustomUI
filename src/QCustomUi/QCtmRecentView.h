@@ -24,6 +24,7 @@
 #include <QTreeView>
 
 class QCtmRecentModel;
+struct QCtmRecentData;
 class QCUSTOMUI_EXPORT QCtmRecentView : public QTreeView
 {
     Q_PROPERTY(QIcon topButtonIcon READ topButtonIcon WRITE setTopButtonIcon)
@@ -40,6 +41,8 @@ public:
     bool topButtonVisible() const;
 signals:
     void topButtonClicked(const QModelIndex& index);
+    void recentClicked(const QCtmRecentData& data);
+    void recentDoubleClicked(const QCtmRecentData& data);
 
 protected:
     using QTreeView::model;
