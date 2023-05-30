@@ -143,6 +143,9 @@ set(VIEW_HEADERS
  "QCtmAbstractMultiPageTableModel.h"
  "QCtmMultiPageStringListModel.h"
  "QCtmMultiPageButtonBox.h"
+ "QCtmRecentModel.h"
+ "QCtmRecentView.h"
+ "QCtmRecentViewDelegate.h"
 )
 set(VIEW_SOURCES
  "QCtmTableItemDelegate.cpp"
@@ -155,6 +158,9 @@ set(VIEW_SOURCES
  "QCtmAbstractMultiPageTableModel.cpp"
  "QCtmMultiPageStringListModel.cpp"
  "QCtmMultiPageButtonBox.cpp"
+ "QCtmRecentModel.cpp"
+ "QCtmRecentView.cpp"
+ "QCtmRecentViewDelegate.cpp"
 )
 
 set(TOOLS_HEADERS
