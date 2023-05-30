@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+<!-- QCtmRecentView.cpp -->
+  <title>QCtmRecentView Class | QCustomUi 1.12.0</title>
+  <link rel="stylesheet" type="text/css" href="style/offline-simple.css" />
+  <script type="text/javascript">
+    document.getElementsByTagName("link").item(0).setAttribute("href", "style/offline.css");
+    // loading style sheet breaks anchors that were jumped to before
+    // so force jumping to anchor again
+    setTimeout(function() {
+        var anchor = location.hash;
+        // need to jump to different anchor first (e.g. none)
+        location.hash = "#";
+        setTimeout(function() {
+            location.hash = anchor;
+        }, 0);
+    }, 0);
+  </script>
+</head>
+<body>
+<div class="header" id="qtdocheader">
+    <div class="main">
+    <div class="main-rounded">
+        <div class="navigationbar">
+        <ul>
+<li><a href="index.html" translate="no">QCustomUi 1.12.0</a></li>
+<li><a href="qcustomui-module.html" translate="no">QCustomUi</a></li>
+<li>QCtmRecentView</li>
+<li id="buildversion">QCustomUi 1.12.0 Reference Documentation</li>
+    </ul>
+    </div>
+</div>
+<div class="content">
+<div class="line">
+<div class="content mainContent">
+<div class="sidebar">
+<div class="toc">
+<h3 id="toc">Contents</h3>
+<ul>
+<li class="level1"><a href="#public-functions">Public Functions</a></li>
+<li class="level1"><a href="#signals">Signals</a></li>
+<li class="level1"><a href="#protected-functions">Protected Functions</a></li>
+<li class="level1"><a href="#reimplemented-protected-functions">Reimplemented Protected Functions</a></li>
+<li class="level1"><a href="#details">Detailed Description</a></li>
+</ul>
+</div>
+<div class="sidebar-content" id="sidebar-content"></div></div>
+<h1 class="title" translate="no">QCtmRecentView Class</h1>
+<!-- $$$QCtmRecentView-brief -->
+<p>仿vs启动界面最近项目表view. <a href="#details">More...</a></p>
+<!-- @@@QCtmRecentView -->
+<div class="table"><table class="alignedsummary" translate="no">
+<tr><td class="memItemLeft rightAlign topAlign"> Header:</td><td class="memItemRight bottomAlign">  <span class="preprocessor">#include &lt;QCtmRecentView.h&gt;</span></td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> Inherits:</td><td class="memItemRight bottomAlign"> <a href="https://doc.qt.io/qt/qtreeview.html" translate="no">QTreeView</a></td></tr>
+</table></div>
+<ul>
+<li><a href="qctmrecentview-members.html">List of all members, including inherited members</a></li>
+</ul>
+<h2 id="public-functions">Public Functions</h2>
+<div class="table"><table class="alignedsummary" translate="no">
+<tr><td class="memItemLeft rightAlign topAlign"> </td><td class="memItemRight bottomAlign"><b><a href="qctmrecentview.html#QCtmRecentView" translate="no">QCtmRecentView</a></b>(QWidget *<i>parent</i>)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> virtual </td><td class="memItemRight bottomAlign"><b><a href="qctmrecentview.html#dtor.QCtmRecentView" translate="no">~QCtmRecentView</a></b>()</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> QCtmRecentModel *</td><td class="memItemRight bottomAlign"><b><a href="qctmrecentview.html#model" translate="no">model</a></b>() const</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> virtual void </td><td class="memItemRight bottomAlign"><b><a href="qctmrecentview.html#setModel" translate="no">setModel</a></b>(QCtmRecentModel *<i>model</i>)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> void </td><td class="memItemRight bottomAlign"><b><a href="qctmrecentview.html#setTopButtonIcon" translate="no">setTopButtonIcon</a></b>(const QIcon &amp;<i>icon</i>)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> void </td><td class="memItemRight bottomAlign"><b><a href="qctmrecentview.html#setTopButtonVisible" translate="no">setTopButtonVisible</a></b>(bool <i>v</i>)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> QIcon </td><td class="memItemRight bottomAlign"><b><a href="qctmrecentview.html#topButtonIcon" translate="no">topButtonIcon</a></b>() const</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> bool </td><td class="memItemRight bottomAlign"><b><a href="qctmrecentview.html#topButtonVisible" translate="no">topButtonVisible</a></b>() const</td></tr>
+</table></div>
+<h2 id="signals">Signals</h2>
+<div class="table"><table class="alignedsummary" translate="no">
+<tr><td class="memItemLeft rightAlign topAlign"> void </td><td class="memItemRight bottomAlign"><b><a href="qctmrecentview.html#recentClicked" translate="no">recentClicked</a></b>(const QCtmRecentData &amp;<i>data</i>)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> void </td><td class="memItemRight bottomAlign"><b><a href="qctmrecentview.html#recentDoubleClicked" translate="no">recentDoubleClicked</a></b>(const QCtmRecentData &amp;<i>data</i>)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> void </td><td class="memItemRight bottomAlign"><b><a href="qctmrecentview.html#topButtonClicked" translate="no">topButtonClicked</a></b>(const QModelIndex &amp;<i>index</i>)</td></tr>
+</table></div>
+<h2 id="protected-functions">Protected Functions</h2>
+<div class="table"><table class="alignedsummary" translate="no">
+<tr><td class="memItemLeft rightAlign topAlign"> virtual void </td><td class="memItemRight bottomAlign"><b><a href="qctmrecentview.html#onTopButtonClicked" translate="no">onTopButtonClicked</a></b>(const QModelIndex &amp;<i>index</i>)</td></tr>
+</table></div>
+<h2 id="reimplemented-protected-functions">Reimplemented Protected Functions</h2>
+<div class="table"><table class="alignedsummary" translate="no">
+<tr><td class="memItemLeft rightAlign topAlign"> virtual void </td><td class="memItemRight bottomAlign"><b><a href="qctmrecentview.html#reset" translate="no">reset</a></b>() override</td></tr>
+</table></div>
+<!-- $$$QCtmRecentView-description -->
+<div class="descr">
+<h2 id="details">Detailed Description</h2>
+</div>
+<!-- @@@QCtmRecentView -->
+<div class="func">
+<h2>Member Function Documentation</h2>
+<!-- $$$QCtmRecentView[overload1]$$$QCtmRecentViewQWidget* -->
+<h3 class="fn" translate="no" id="QCtmRecentView"><code translate="no">[explicit] </code>QCtmRecentView::<span class="name">QCtmRecentView</span>(<span class="type"><a href="https://doc.qt.io/qt/qwidget.html#QWidget" translate="no">QWidget</a></span> *<i>parent</i>)</h3>
+<p>构造函数 <i translate="no">parent</i>.</p>
+<!-- @@@QCtmRecentView -->
+<!-- $$$~QCtmRecentView[overload1]$$$~QCtmRecentView -->
+<h3 class="fn" translate="no" id="dtor.QCtmRecentView"><code translate="no">[virtual] </code>QCtmRecentView::<span class="name">~QCtmRecentView</span>()</h3>
+<p>析构函数.</p>
+<!-- @@@~QCtmRecentView -->
+<!-- $$$model[overload1]$$$model -->
+<h3 class="fn" translate="no" id="model"><span class="type"><a href="qctmrecentmodel.html" translate="no">QCtmRecentModel</a></span> *QCtmRecentView::<span class="name">model</span>() const</h3>
+<p>This is an overloaded function.</p>
+<p>返回数据model.</p>
+<p><b>See also </b><a href="qctmrecentview.html#setModel" translate="no">setModel</a>.</p>
+<!-- @@@model -->
+<!-- $$$onTopButtonClicked[overload1]$$$onTopButtonClickedconstQModelIndex& -->
+<h3 class="fn" translate="no" id="onTopButtonClicked"><code translate="no">[virtual protected] </code><span class="type">void</span> QCtmRecentView::<span class="name">onTopButtonClicked</span>(const <span class="type"><a href="https://doc.qt.io/qt/qmodelindex.html" translate="no">QModelIndex</a></span> &amp;<i>index</i>)</h3>
+<p>响应置顶按钮点击信号，修改项目数据 <i translate="no">index</i> 的置顶状态.</p>
+<p><b>See also </b><a href="qctmrecentview.html#topButtonClicked" translate="no">topButtonClicked</a>.</p>
+<!-- @@@onTopButtonClicked -->
+<!-- $$$recentClicked[overload1]$$$recentClickedconstQCtmRecentData& -->
+<h3 class="fn" translate="no" id="recentClicked"><code translate="no">[signal] </code><span class="type">void</span> QCtmRecentView::<span class="name">recentClicked</span>(const <span class="type"><a href="qctmrecentdata.html" translate="no">QCtmRecentData</a></span> &amp;<i>data</i>)</h3>
+<p>最近项目被点击时，发送该消息 <i translate="no">data</i>.</p>
+<!-- @@@recentClicked -->
+<!-- $$$recentDoubleClicked[overload1]$$$recentDoubleClickedconstQCtmRecentData& -->
+<h3 class="fn" translate="no" id="recentDoubleClicked"><code translate="no">[signal] </code><span class="type">void</span> QCtmRecentView::<span class="name">recentDoubleClicked</span>(const <span class="type"><a href="qctmrecentdata.html" translate="no">QCtmRecentData</a></span> &amp;<i>data</i>)</h3>
+<p>最近项目被双击时，发送该消息 <i translate="no">data</i>.</p>
+<!-- @@@recentDoubleClicked -->
+<!-- $$$reset[overload1]$$$reset -->
+<h3 class="fn" translate="no" id="reset"><code translate="no">[override virtual protected] </code><span class="type">void</span> QCtmRecentView::<span class="name">reset</span>()</h3>
+<p>Reimplements: <a href="https://doc.qt.io/qt/qtreeview.html#reset" translate="no">QTreeView::reset</a>().</p>
+<!-- @@@reset -->
+<!-- $$$setModel[overload1]$$$setModelQCtmRecentModel* -->
+<h3 class="fn" translate="no" id="setModel"><code translate="no">[virtual] </code><span class="type">void</span> QCtmRecentView::<span class="name">setModel</span>(<span class="type"><a href="qctmrecentmodel.html" translate="no">QCtmRecentModel</a></span> *<i>model</i>)</h3>
+<p>This is an overloaded function.</p>
+<p>设置数据 <i translate="no">model</i>.</p>
+<p><b>See also </b><a href="qctmrecentview.html#model" translate="no">model</a>.</p>
+<!-- @@@setModel -->
+<!-- $$$setTopButtonIcon -->
+<h3 class="fn" translate="no" id="setTopButtonIcon"><span class="type">void</span> QCtmRecentView::<span class="name">setTopButtonIcon</span>(const <span class="type"><a href="https://doc.qt.io/qt/qicon.html" translate="no">QIcon</a></span> &amp;<i>icon</i>)</h3>
+<p>设置置顶按钮图标 <i translate="no">icon</i>.</p>
+<p><b>Note: </b>Setter function for property <a href="qctmrecentview.html#topButtonIcon" translate="no">topButtonIcon</a>. </p>
+<p><b>See also </b><a href="qctmrecentview.html#topButtonIcon" translate="no">topButtonIcon</a>.</p>
+<!-- @@@setTopButtonIcon -->
+<!-- $$$setTopButtonVisible -->
+<h3 class="fn" translate="no" id="setTopButtonVisible"><span class="type">void</span> QCtmRecentView::<span class="name">setTopButtonVisible</span>(<span class="type">bool</span> <i>v</i>)</h3>
+<p>设置置顶按钮是否可见 <i translate="no">v</i>.</p>
+<p><b>Note: </b>Setter function for property <a href="qctmrecentview.html#topButtonVisible" translate="no">topButtonVisible</a>. </p>
+<p><b>See also </b><a href="qctmrecentview.html#topButtonVisible" translate="no">topButtonVisible</a>.</p>
+<!-- @@@setTopButtonVisible -->
+<!-- $$$topButtonClicked[overload1]$$$topButtonClickedconstQModelIndex& -->
+<h3 class="fn" translate="no" id="topButtonClicked"><code translate="no">[signal] </code><span class="type">void</span> QCtmRecentView::<span class="name">topButtonClicked</span>(const <span class="type"><a href="https://doc.qt.io/qt/qmodelindex.html" translate="no">QModelIndex</a></span> &amp;<i>index</i>)</h3>
+<p>置顶按钮被点击时发送该消息 <i translate="no">index</i>.</p>
+<!-- @@@topButtonClicked -->
+<!-- $$$topButtonIcon -->
+<h3 class="fn" translate="no" id="topButtonIcon"><span class="type"><a href="https://doc.qt.io/qt/qicon.html" translate="no">QIcon</a></span> QCtmRecentView::<span class="name">topButtonIcon</span>() const</h3>
+<p>返回置顶按钮图标.</p>
+<p><b>Note: </b>Getter function for property topButtonIcon. </p>
+<p><b>See also </b><a href="qctmrecentview.html#setTopButtonIcon" translate="no">setTopButtonIcon</a>.</p>
+<!-- @@@topButtonIcon -->
+<!-- $$$topButtonVisible -->
+<h3 class="fn" translate="no" id="topButtonVisible"><span class="type">bool</span> QCtmRecentView::<span class="name">topButtonVisible</span>() const</h3>
+<p>返回指定按钮是否可见.</p>
+<p><b>Note: </b>Getter function for property topButtonVisible. </p>
+<p><b>See also </b><a href="qctmrecentview.html#setTopButtonVisible" translate="no">setTopButtonVisible</a>.</p>
+<!-- @@@topButtonVisible -->
+</div>
+        </div>
+       </div>
+   </div>
+   </div>
+</div>
+<div class="footer">
+   <p>
+   <acronym title="Copyright">&copy;</acronym> QCustomUi
+   Documentation contributions included herein are the copyrights of
+   their respective owners.<br/>    The documentation provided herein is licensed under the terms of the    <a href="http://www.gnu.org/licenses/fdl.html">GNU Free Documentation    License version 1.3</a> as published by the Free Software Foundation.<br/> </div>
+</body>
+</html>
