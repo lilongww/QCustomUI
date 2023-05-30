@@ -73,6 +73,7 @@ public:
 
     const QVector<QCtmRecentData>& recentDatas() const;
     std::optional<QCtmRecentData> dataOfIndex(const QModelIndex& index) const;
+    void search(const QString& name, Qt::CaseSensitivity cs);
 
 private:
     struct Impl;

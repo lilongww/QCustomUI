@@ -21,6 +21,8 @@
 
 struct QCtmRecentModel::Impl
 {
+    QString filter;
+    Qt::CaseSensitivity cs;
     QVector<QCtmRecentData> d;
     QVector<QVector<std::reference_wrapper<QCtmRecentData>>> sorted { static_cast<int>(Classification::ClassificationSize) };
 
@@ -31,6 +33,11 @@ struct QCtmRecentModel::Impl
         auto now = QDateTime::currentDateTime();
         for (auto& data : d)
         {
+            if (!filter.isEmpty())
+            {
+                if (!data.name.contains(filter, cs))
+                    continue;
+            }
             auto days = data.time.daysTo(now);
             if (days < 0)
                 continue;
@@ -242,4 +249,16 @@ std::optional<QCtmRecentData> QCtmRecentModel::dataOfIndex(const QModelIndex& in
     if (!index.isValid() || !index.parent().isValid())
         return std::nullopt;
     return m_impl->sorted[index.parent().row()][index.row()].get();
+}
+
+/*!
+    \brief      查找名称中包含 \a name 的项, 以及是否忽略大小写 \a cs.
+*/
+void QCtmRecentModel::search(const QString& name, Qt::CaseSensitivity cs)
+{
+    beginResetModel();
+    m_impl->filter = name;
+    m_impl->cs     = cs;
+    m_impl->sortDatas();
+    endResetModel();
 }
