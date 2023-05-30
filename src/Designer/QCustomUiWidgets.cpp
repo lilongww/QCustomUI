@@ -8,6 +8,7 @@
 #include "StageProgressBar.h"
 #include "SwitchButton.h"
 #include "TableView.h"
+#include "RecentView.h"
 
 #include <QCustomUi/QCtmStyleSheet.h>
 
@@ -29,6 +30,7 @@ QCustomUiWidgets::QCustomUiWidgets(QObject* parent /*= 0*/) : QObject(parent), m
     m_impl->widgets.push_back(new EditLabel(this));
     m_impl->widgets.push_back(new SwitchButton(this));
     m_impl->widgets.push_back(new CircleProgressBar(this));
+    m_impl->widgets.push_back(new RecentView(this));
     qApp->setStyleSheet(QCtmStyleSheet::defaultStyleSheet());
 }
 

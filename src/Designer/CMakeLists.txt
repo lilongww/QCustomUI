@@ -10,7 +10,8 @@ set(HEADERS
  "ClassifyTreeView.h"
  "EditLabel.h"
  "SwitchButton.h"
- "CircleProgressBar.h")
+ "CircleProgressBar.h"
+ "RecentView.h")
 set(SOURCES 
  "QCustomUiWidgets.cpp"
  "StageProgressBar.cpp"
@@ -22,6 +23,7 @@ set(SOURCES
  "EditLabel.cpp"
  "SwitchButton.cpp"
  "CircleProgressBar.cpp"
+ "RecentView.cpp"
 )
 
 file(GLOB RESOURCES *.qrc)
