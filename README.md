@@ -135,6 +135,36 @@ for(const auto& usb : usbs)
 }
 ```
 
+### 7. 终结符（TermChars）
+
+* 与C语言Visa不同，C语言Visa仅支持单个字符的终结符，OpenVisa可以支持多个字符的终结符；
+
+* 目前OpenVisa没有将发送和接收的终结符分开，他们都由Object::Attribute::terminalChars决定；
+
+* 默认情况下OpenVisa的终结符为'\n'，如果Object::send和Object::query方法发送的数据末尾不含终结符，OpenVisa将会为发送的数据自动添加终结符，该行为由Object::Attribute::autoAppendTerminalChars属性决定；
+* 默认情况下OpenVisa的Object::query和Object::readAll方法接收数据时，将会等待直到收到终结符为止，否则将超时，该行为由Object::Attribute::terminalCharsEnable属性决定。
+
+#### 7.1 如果需要与设备进行二进制通信时，可以关闭终结符，例如：
+
+```cpp
+OpenVisa::Object visa;
+auto& attr = visa.attribute();
+attr.setAutoAppendTerminalChars(false);
+attr.setTerminalCharsEnable(false);
+```
+
+#### 7.2 如果设备的发送和接收的终结符不同，那么请将终结符属性设为接收时的终结符，并关闭发送时自动附加终结符属性，例如：
+
+```cpp
+// 发送终结符为\n,接收终结符为#
+OpenVisa::Object visa;
+//... connect
+auto& attr = visa.attribute();
+attr.setAutoAppendTerminalChars(false);
+attr.setTerminalChars("#");
+//...
+auto idn = visa.query("*IDN?\n");
+```
 
 ## 五、参考
 
