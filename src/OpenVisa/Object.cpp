@@ -30,6 +30,7 @@
 #include "Utils.h"
 
 #include <ranges>
+#include <algorithm>
 
 template<typename... Args>
 struct Overload : public Args...
