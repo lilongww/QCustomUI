@@ -24,10 +24,11 @@ namespace OpenVisa
 struct Asrl
 {
     std::string portName;
-    unsigned int baud;
-    DataBits dataBits;
-    FlowControl flowControl;
-    Parity parity;
-    StopBits stopBits;
+    unsigned int baud { 9600 };
+    DataBits dataBits { DataBits::Data8 };
+    FlowControl flowControl { FlowControl::None };
+    Parity parity { Parity::None };
+    StopBits stopBits { StopBits::One };
+    inline bool isValid() const { return baud != 0; }
 };
 } // namespace OpenVisa

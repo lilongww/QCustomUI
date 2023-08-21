@@ -114,6 +114,17 @@ void OpenVisaConfig::loadConfig()
                                          static_cast<Parity>(asrlNode.get<int>(std::format("Parity{}", i))),
                                          static_cast<StopBits>((asrlNode.get<int>(std::format("StopBits{}", i)) - 10) / 5) }));
                 }
+                bool configValid = true;
+                for (auto& value : m_impl->asrlMap | std::views::values)
+                {
+                    if (!value.isValid())
+                    {
+                        value       = Asrl { .portName = value.portName };
+                        configValid = false;
+                    }
+                }
+                if (!configValid)
+                    saveConfig();
             }
         }
         catch (const std::exception&)
