@@ -120,9 +120,9 @@ struct VisaAdl
         using Enum = decltype(EnumBegin);                                                                                                  \
         using Int  = typename std::underlying_type<Enum>::type;                                                                            \
         inline static constexpr std::initializer_list<std::string_view> m_enumStrings {##__VA_ARGS__ };                                    \
-        static_assert(std::is_same_v<Enum, decltype(EnumEnd)>, "EnumBegin is not same type of EnumEnd");                                   \
+        static_assert(std::is_same_v<Enum, decltype(EnumEnd)>, "EnumBegin and EnumEnd are not of the same type.");                         \
         static_assert(m_enumStrings.size() - 1 == static_cast<Int>(EnumEnd) - static_cast<Int>(EnumBegin),                                 \
-                      "Not continus enum or strings not enough.");                                                                         \
+                      "Discontinuous enum or strings is not enough.");                                                                     \
         inline static std::string toScpi(Enum e)                                                                                           \
         {                                                                                                                                  \
             const auto& view = (*(m_enumStrings.begin() + (static_cast<Int>(e) - static_cast<Int>(EnumBegin))));                           \
@@ -134,6 +134,6 @@ struct VisaAdl
                 it != m_enumStrings.end())                                                                                                 \
                 e = static_cast<Enum>(std::distance(m_enumStrings.begin(), it) + static_cast<Int>(EnumBegin));                             \
             else                                                                                                                           \
-                throw std::runtime_error("Unknown enum.");                                                                                 \
+                throw std::runtime_error("Unknown enum type.");                                                                            \
         }                                                                                                                                  \
     }
