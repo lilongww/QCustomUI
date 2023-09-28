@@ -104,11 +104,11 @@ struct VisaAdl
 {
     inline static std::string toScpi(const T& arg)
     {
-        static_assert(std::_Always_false<T>, "Please define your ADL function: std::string toScpi(YourType).");
+        static_assert(sizeof(T), "Please define your ADL function: std::string toScpi(YourType).");
     }
     inline static void fromScpi(const std::string& ret, T& out)
     {
-        static_assert(std::_Always_false<T>, "Please define your ADL function: void fromScpi(const std::string&, YourType&).");
+        static_assert(sizeof(T), "Please define your ADL function: void fromScpi(const std::string&, YourType&).");
     }
 };
 } // namespace OpenVisa
