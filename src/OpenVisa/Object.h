@@ -32,7 +32,7 @@ namespace OpenVisa
 template<typename T>
 concept IsAddress = IsVisaAddress<T>;
 template<typename T>
-concept VaildConnectAddress =
+concept ValidConnectAddress =
     IsAddress<T> || std::same_as<std::string, T> || std::is_array_v<T> || std::same_as<const char*, T> || std::same_as<char*, T>;
 class OPENVISA_EXPORT Object
 {
@@ -42,7 +42,7 @@ public:
     Object();
     virtual ~Object() noexcept;
 
-    template<VaildConnectAddress T>
+    template<ValidConnectAddress T>
     void connect(const T& addr,
                  const std::chrono::milliseconds& openTimeout    = std::chrono::milliseconds { 5000 },
                  const std::chrono::milliseconds& commandTimeout = std::chrono::milliseconds { 5000 });
@@ -77,7 +77,7 @@ private:
     std::unique_ptr<Impl> m_impl;
 };
 
-template<VaildConnectAddress T>
+template<ValidConnectAddress T>
 inline void Object::connect(const T& addr, const std::chrono::milliseconds& openTimeout, const std::chrono::milliseconds& commandTimeout)
 {
     connectImpl(AddressHelper(addr).address, openTimeout, commandTimeout);
