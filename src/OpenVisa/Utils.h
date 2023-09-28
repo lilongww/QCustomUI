@@ -74,7 +74,7 @@ struct VisaAdl<std::tuple<Args...>>
 {
     inline static std::string toScpi(const std::tuple<Args...>& arg)
     {
-        static_assert(sizeof(std::tuple<Args...>), "Please define your ADL function: std::string toScpi(YourType).");
+        static_assert(sizeof(!std::tuple<Args...>), "Please define your ADL function: std::string toScpi(YourType).");
     }
     inline static void fromScpi(const std::string& ret, std::tuple<Args...>& out)
     {
