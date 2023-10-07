@@ -120,6 +120,8 @@ void QCtmHeaderView::paintSection(QPainter* painter, const QRect& rect, int logi
         style()->drawControl(QStyle::CE_Header, &opt, painter, this);
         painter->restore();
         painter->setBrushOrigin(oldBO);
+        if (!model())
+            return;
         QTextOption txtOpt(opt.textAlignment);
         txtOpt.setWrapMode(QTextOption::ManualWrap);
         painter->drawText(show ? QRect(boxRect.right(), rect.top(), rect.width() - (boxRect.right() - rect.left()), rect.height()) : rect,
@@ -173,7 +175,8 @@ void QCtmHeaderView::mousePressEvent(QMouseEvent* e)
             QHeaderView::mousePressEvent(e);
             return;
         }
-
+        if (!model())
+            return;
         const auto& rect = doCheckBoxRect(logicalIndex);
         if (rect.contains(e->pos()))
         {
@@ -236,6 +239,8 @@ QSize QCtmHeaderView::sectionSizeFromContents(int logicalIndex) const
 */
 void QCtmHeaderView::onModelReset()
 {
+    if (!model())
+        return;
     m_impl->state.resize(model()->columnCount());
     int jCount = orientation() == Qt::Horizontal ? model()->columnCount() : model()->rowCount();
     for (int j = 0; j < jCount; j++)
