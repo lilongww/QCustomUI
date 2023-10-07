@@ -40,6 +40,7 @@ protected:
     void paintSection(QPainter* painter, const QRect& rect, int logicalIndex) const override;
     void mousePressEvent(QMouseEvent* e) override;
     QRect doCheckBoxRect(int logicalIndex) const;
+    QSize sectionSizeFromContents(int logicalIndex) const override;
 private slots:
     void onModelReset();
 

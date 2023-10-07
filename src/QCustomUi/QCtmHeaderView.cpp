@@ -97,26 +97,49 @@ void QCtmHeaderView::setReadOnly(int logicIndex, bool enable)
 */
 void QCtmHeaderView::paintSection(QPainter* painter, const QRect& rect, int logicalIndex) const
 {
-    painter->save();
-    QHeaderView::paintSection(painter, rect, logicalIndex);
-    painter->restore();
-
     auto [show, state] = m_impl->state[logicalIndex];
+    auto boxRect       = doCheckBoxRect(logicalIndex);
+    if (!rect.isValid())
+        return;
+    { // header
+        QStyleOptionHeaderV2 opt;
+        QPointF oldBO = painter->brushOrigin();
+        initStyleOption(&opt);
+        QBrush oBrushButton = opt.palette.brush(QPalette::Button);
+        QBrush oBrushWindow = opt.palette.brush(QPalette::Window);
+        initStyleOptionForIndex(&opt, logicalIndex);
+        opt.rect            = rect;
+        opt.text            = "";
+        QBrush nBrushButton = opt.palette.brush(QPalette::Button);
+        QBrush nBrushWindow = opt.palette.brush(QPalette::Window);
+        if (oBrushButton != nBrushButton || oBrushWindow != nBrushWindow)
+        {
+            painter->setBrushOrigin(opt.rect.topLeft());
+        }
+        painter->save();
+        style()->drawControl(QStyle::CE_Header, &opt, painter, this);
+        painter->restore();
+        painter->setBrushOrigin(oldBO);
+        QTextOption txtOpt(opt.textAlignment);
+        txtOpt.setWrapMode(QTextOption::ManualWrap);
+        painter->drawText(show ? QRect(boxRect.right(), rect.top(), rect.width() - (boxRect.right() - rect.left()), rect.height()) : rect,
+                          this->model()->headerData(logicalIndex, Qt::Horizontal, Qt::DisplayRole).toString(),
+                          txtOpt);
+    }
     if (!show)
         return;
-
-    QStyleOptionButton opt;
-    opt.rect = doCheckBoxRect(logicalIndex);
-    if (state == Qt::Checked)
-        opt.state = QStyle::State_On;
-    else if (state == Qt::PartiallyChecked)
-        opt.state = QStyle::State_NoChange;
-    else
-        opt.state = QStyle::State_Off;
-
-    opt.state |= QStyle::State_Enabled;
-
-    style()->drawPrimitive(QStyle::PE_IndicatorCheckBox, &opt, painter, this);
+    { // button
+        QStyleOptionButton opt;
+        opt.rect = boxRect;
+        if (state == Qt::Checked)
+            opt.state = QStyle::State_On;
+        else if (state == Qt::PartiallyChecked)
+            opt.state = QStyle::State_NoChange;
+        else
+            opt.state = QStyle::State_Off;
+        opt.state |= QStyle::State_Enabled;
+        style()->drawPrimitive(QStyle::PE_IndicatorCheckBox, &opt, painter, this);
+    }
 }
 
 /*!
@@ -193,6 +216,19 @@ QRect QCtmHeaderView::doCheckBoxRect(int logicalIndex) const
         opt.rect = QRect(QPoint(0, position), QSize(this->width(), size));
     const auto& rect = style()->subElementRect(QStyle::SE_CheckBoxIndicator, &opt, this);
     return QRect { rect.x() + checkboxMargin, rect.y(), rect.width(), rect.height() };
+}
+
+/*!
+    \reimp
+*/
+QSize QCtmHeaderView::sectionSizeFromContents(int logicalIndex) const
+{
+    auto size = QHeaderView::sectionSizeFromContents(logicalIndex);
+    if (auto [checkable, igonre] = m_impl->state[logicalIndex]; checkable)
+    {
+        return QSize(size.width() + doCheckBoxRect(logicalIndex).width(), size.height());
+    }
+    return size;
 }
 
 /*!
