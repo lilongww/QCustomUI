@@ -193,10 +193,10 @@ void QCtmHeaderView::mousePressEvent(QMouseEvent* e)
             model()->blockSignals(false);
             if (Qt::Horizontal == orientation())
                 emit model()->dataChanged(
-                    model()->index(0, logicalIndex), model()->index(model()->rowCount(), logicalIndex), { Qt::CheckStateRole });
+                    model()->index(0, logicalIndex), model()->index(model()->rowCount() - 1, logicalIndex), { Qt::CheckStateRole });
             else
                 emit model()->dataChanged(
-                    model()->index(logicalIndex, 0), model()->index(logicalIndex, model()->columnCount()), { Qt::CheckStateRole });
+                    model()->index(logicalIndex, 0), model()->index(logicalIndex, model()->columnCount() - 1), { Qt::CheckStateRole });
             return;
         }
     }
