@@ -84,12 +84,6 @@
      <property name="text">
       <string/>
      </property>
-     <property name="iconSize">
-      <size>
-       <width>10</width>
-       <height>10</height>
-      </size>
-     </property>
     </widget>
    </item>
    <item>
@@ -112,12 +106,6 @@
      <property name="text">
       <string/>
      </property>
-     <property name="iconSize">
-      <size>
-       <width>10</width>
-       <height>10</height>
-      </size>
-     </property>
     </widget>
    </item>
    <item>
@@ -139,12 +127,6 @@
      </property>
      <property name="text">
       <string/>
-     </property>
-     <property name="iconSize">
-      <size>
-       <width>10</width>
-       <height>10</height>
-      </size>
      </property>
     </widget>
    </item>
