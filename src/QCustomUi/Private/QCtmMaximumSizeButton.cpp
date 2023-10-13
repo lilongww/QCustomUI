@@ -19,11 +19,27 @@
 
 #include "QCtmMaximumSizeButton_p.h"
 
-#include <QStyle>
+#include <QStyleOption>
 
-QCtmMaximumSizeButton::QCtmMaximumSizeButton(QWidget* parent) : QPushButton(parent), m_maxsized(false) {}
+QCtmMaximumSizeButton::QCtmMaximumSizeButton(QWidget* parent) : QToolButton(parent), m_maxsized(false) {}
 
 QCtmMaximumSizeButton::~QCtmMaximumSizeButton() {}
+
+void QCtmMaximumSizeButton::setMaximumSizedIcon(const QIcon& icon)
+{
+    m_maximumSizedIcon = icon;
+    update();
+}
+
+const QIcon& QCtmMaximumSizeButton::maximumSizedIcon() const { return m_maximumSizedIcon; }
+
+void QCtmMaximumSizeButton::setRevertIcon(const QIcon& icon)
+{
+    m_revertIcon = icon;
+    update();
+}
+
+const QIcon& QCtmMaximumSizeButton::revertIcon() const { return m_revertIcon; }
 
 void QCtmMaximumSizeButton::setMaximumSized(bool max)
 {
@@ -34,3 +50,9 @@ void QCtmMaximumSizeButton::setMaximumSized(bool max)
 }
 
 bool QCtmMaximumSizeButton::maximumSized() const { return m_maxsized; }
+
+void QCtmMaximumSizeButton::initStyleOption(QStyleOptionToolButton* option) const
+{
+    QToolButton::initStyleOption(option);
+    option->icon = m_maxsized ? m_maximumSizedIcon : m_revertIcon;
+}

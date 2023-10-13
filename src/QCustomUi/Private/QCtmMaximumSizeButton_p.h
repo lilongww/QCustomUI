@@ -19,21 +19,32 @@
 
 #pragma once
 
-#include <QPushButton>
+#include <QToolButton>
 
-class QCtmMaximumSizeButton : public QPushButton
+class QCtmMaximumSizeButton : public QToolButton
 {
     Q_OBJECT
     Q_PROPERTY(bool maximumsized READ maximumSized WRITE setMaximumSized NOTIFY maximumSizedChanged)
+    Q_PROPERTY(QIcon maximumSizedIcon READ maximumSizedIcon WRITE setMaximumSizedIcon)
+    Q_PROPERTY(QIcon revertIcon READ revertIcon WRITE setRevertIcon)
+
 public:
     QCtmMaximumSizeButton(QWidget* parent);
     ~QCtmMaximumSizeButton();
-
+    void setMaximumSizedIcon(const QIcon& icon);
+    const QIcon& maximumSizedIcon() const;
+    void setRevertIcon(const QIcon& icon);
+    const QIcon& revertIcon() const;
     void setMaximumSized(bool max);
     bool maximumSized() const;
 signals:
     void maximumSizedChanged(bool max);
 
+protected:
+    virtual void initStyleOption(QStyleOptionToolButton* option) const;
+
 private:
     bool m_maxsized;
+    QIcon m_maximumSizedIcon;
+    QIcon m_revertIcon;
 };

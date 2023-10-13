@@ -65,7 +65,7 @@
     </layout>
    </item>
    <item>
-    <widget class="QCtmMaximumSizeButton" name="minimumSizeBtn">
+    <widget class="QToolButton" name="minimumSizeBtn">
      <property name="minimumSize">
       <size>
        <width>30</width>
@@ -83,6 +83,9 @@
      </property>
      <property name="text">
       <string/>
+     </property>
+     <property name="autoRaise">
+      <bool>true</bool>
      </property>
     </widget>
    </item>
@@ -127,6 +130,9 @@
      </property>
      <property name="text">
       <string/>
+     </property>
+     <property name="autoRaise">
+      <bool>true</bool>
      </property>
     </widget>
    </item>

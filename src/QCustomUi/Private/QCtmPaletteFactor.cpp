@@ -61,13 +61,8 @@ void QCtmPaletteFactor::initQCtmTitleBar(QWidget* bar)
     }
     if (auto maxBtn = bar->findChild<QCtmMaximumSizeButton*>("maximumSizeBtn"))
     {
-        maxBtn->setIcon(QIcon(":/QCustomUi/Resources/maximize_max-light.png"));
-        QObject::connect(
-            maxBtn,
-            &QCtmMaximumSizeButton::maximumSizedChanged,
-            maxBtn,
-            [=](bool max)
-            { maxBtn->setIcon(QIcon(max ? ":/QCustomUi/Resources/maximize-light.png" : ":/QCustomUi/Resources/maximize_max-light.png")); });
+        maxBtn->setMaximumSizedIcon(QIcon(":/QCustomUi/Resources/maximize_max-light.png"));
+        maxBtn->setRevertIcon(QIcon(":/QCustomUi/Resources/maximize-light.png"));
     }
     if (auto minBtn = bar->findChild<QWidget*>("closeBtn"))
     {

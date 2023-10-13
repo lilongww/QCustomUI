@@ -68,9 +68,9 @@ QCtmTitleBar::QCtmTitleBar(QWidget* parent) : QWidget(parent), ui(new Ui::QCtmTi
     ui->setupUi(this);
     QCtmPaletteFactor::init(this);
     setFocusPolicy(Qt::StrongFocus);
-    connect(ui->closeBtn, &QPushButton::clicked, this, &QCtmTitleBar::onCloseBtn);
-    connect(ui->minimumSizeBtn, &QPushButton::clicked, this, &QCtmTitleBar::onMinimumSizeBtn);
-    connect(ui->maximumSizeBtn, &QPushButton::clicked, this, &QCtmTitleBar::onMaximumSizeBtn);
+    connect(ui->closeBtn, &QAbstractButton::clicked, this, &QCtmTitleBar::onCloseBtn);
+    connect(ui->minimumSizeBtn, &QAbstractButton::clicked, this, &QCtmTitleBar::onMinimumSizeBtn);
+    connect(ui->maximumSizeBtn, &QAbstractButton::clicked, this, &QCtmTitleBar::onMaximumSizeBtn);
     ui->maximumSizeBtn->setProperty("qcustomui_maximumSizeButton", true);
 
     parent->installEventFilter(this);
