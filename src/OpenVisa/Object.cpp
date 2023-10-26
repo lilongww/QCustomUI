@@ -29,8 +29,8 @@
 #include "SerialPortInfo.h"
 #include "Utils.h"
 
-#include <ranges>
 #include <algorithm>
+#include <ranges>
 
 template<typename... Args>
 struct Overload : public Args...
@@ -214,10 +214,26 @@ bool Object::connected() const noexcept { return m_impl->io ? m_impl->io->connec
 */
 Object::Attribute& Object::attribute() noexcept { return m_impl->attr; }
 
+const Object::Attribute& Object::attribute() const noexcept { return m_impl->attr; }
+
 /*!
     \brief      IEEE488.2公共指令接口.
 */
 Object::CommonCommand& Object::commonCommand() noexcept { return m_impl->commonCommand; }
+
+/*!
+    \brief      移除字符串 \a source 尾部的终结符.
+    \note       若未启用终结符，则该函数不做任何处理.
+    \sa         query, readAll
+*/
+std::string Object::removeTermChars(const std::string& source) const
+{
+    if (attribute().terminalCharsEnable() && source.ends_with(attribute().terminalChars()))
+    {
+        return source.substr(0, source.size() - attribute().terminalChars().size());
+    }
+    return source;
+}
 
 /*!
     \brief      列出所有串口名称.

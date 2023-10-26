@@ -28,19 +28,15 @@ class ObjectAdapter
 public:
     [[nodiscard]] inline Object& object() { return m_object; }
     template<typename... Args>
-    inline void send(const std::string& fmt, const Args&... args)
-    {
-        m_object.send(fmt, std::forward<const Args&>(args)...);
-    }
+    inline void send(const std::string& fmt, const Args&... args);
     [[nodiscard]] inline std::string readAll() { return m_object.readAll(); }
     [[nodiscard]] inline std::tuple<std::string, bool> read(unsigned long blockSize) { return m_object.read(blockSize); }
     template<typename... Args>
-    [[nodiscard]] inline std::string query(const std::string& fmt, const Args&... args)
-    {
-        return m_object.query(fmt, std::forward<const Args&>(args)...);
-    }
+    [[nodiscard]] inline std::string query(const std::string& fmt, const Args&... args);
     [[nodiscard]] inline Object::Attribute& attribute() noexcept { return m_object.attribute(); }
+    [[nodiscard]] inline const Object::Attribute& attribute() const noexcept { return m_object.attribute(); }
     [[nodiscard]] inline Object::CommonCommand& commonCommand() noexcept { return m_object.commonCommand(); }
+    [[nodiscard]] inline std::string removeTermChars(const std::string& source) const { return m_object.removeTermChars(source); }
 
 protected:
     inline ObjectAdapter(Object& object) : m_object(object) {}
@@ -49,4 +45,14 @@ protected:
 private:
     Object& m_object;
 };
+template<typename... Args>
+inline void ObjectAdapter::send(const std::string& fmt, const Args&... args)
+{
+    m_object.send(fmt, std::forward<const Args&>(args)...);
+}
+template<typename... Args>
+inline std::string ObjectAdapter::query(const std::string& fmt, const Args&... args)
+{
+    return m_object.query(fmt, std::forward<const Args&>(args)...);
+}
 } // namespace OpenVisa
