@@ -292,6 +292,7 @@ std::string UsbTmc::readAll() const
     {
         buffer.append(read(std::numeric_limits<int>::max()));
     } while (avalible());
+    return buffer;
 }
 
 std::string UsbTmc::read(size_t size) const
