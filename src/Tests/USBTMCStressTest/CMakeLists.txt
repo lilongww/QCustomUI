@@ -1,0 +1,1 @@
+﻿openvisa_add_test(USBTMCStressTest SOURCES main.cpp PUBLIC_LIBRARIES OpenVisa gtest)

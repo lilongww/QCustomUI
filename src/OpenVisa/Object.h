@@ -49,18 +49,20 @@ public:
     void close() noexcept;
     template<typename... Args>
     inline void send(const std::string& fmt, const Args&... args);
-    std::string readAll();
-    std::tuple<std::string, bool> read(unsigned long blockSize);
+    [[nodiscard]] std::string readAll();
+    [[nodiscard]] std::tuple<std::string, bool> read(unsigned long blockSize);
     template<typename... Args>
-    inline std::string query(const std::string& fmt, const Args&... args);
-    bool connected() const noexcept;
-    Attribute& attribute() noexcept;
-    CommonCommand& commonCommand() noexcept;
-    static std::vector<std::string> listSerialPorts();
-    static std::vector<Address<AddressType::USB>> listUSB();
+    [[nodiscard]] inline std::string query(const std::string& fmt, const Args&... args);
+    [[nodiscard]] bool connected() const noexcept;
+    [[nodiscard]] Attribute& attribute() noexcept;
+    [[nodiscard]] const Attribute& attribute() const noexcept;
+    [[nodiscard]] CommonCommand& commonCommand() noexcept;
+    [[nodiscard]] std::string removeTermChars(const std::string& source) const;
+    [[nodiscard]] static std::vector<std::string> listSerialPorts();
+    [[nodiscard]] static std::vector<Address<AddressType::USB>> listUSB();
     template<IsAddress T>
-    static std::string toVisaAddressString(const T& addr);
-    static AddressVariant fromVisaAddressString(const std::string& str);
+    [[nodiscard]] static std::string toVisaAddressString(const T& addr);
+    [[nodiscard]] static AddressVariant fromVisaAddressString(const std::string& str);
 
 protected:
     virtual void afterConnected() {};
