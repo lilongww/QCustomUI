@@ -285,15 +285,7 @@ void UsbTmc::send(const std::string& buffer) const
     }
 }
 #undef max
-std::string UsbTmc::readAll() const
-{
-    std::string buffer;
-    do
-    {
-        buffer.append(read(std::numeric_limits<int>::max()));
-    } while (avalible());
-    return buffer;
-}
+std::string UsbTmc::readAll() const { return read(std::numeric_limits<int>::max()); }
 
 std::string UsbTmc::read(size_t size) const
 {
@@ -305,11 +297,11 @@ std::string UsbTmc::read(size_t size) const
         int transfered;
         m_impl->updateTag();
         { // req
-            std::string buffer = BulkRequest(m_impl->tag, static_cast<unsigned int>(size));
+            std::string requrestBuffer = BulkRequest(m_impl->tag, static_cast<unsigned int>(size - buffer.size()));
             if (auto code = transfer(m_impl->handle,
                                      m_impl->endpoint_out,
-                                     reinterpret_cast<unsigned char*>(buffer.data()),
-                                     static_cast<int>(buffer.size()),
+                                     reinterpret_cast<unsigned char*>(requrestBuffer.data()),
+                                     static_cast<int>(requrestBuffer.size()),
                                      nullptr,
                                      static_cast<unsigned int>(m_attr.timeout().count()));
                 code != LIBUSB_SUCCESS)
