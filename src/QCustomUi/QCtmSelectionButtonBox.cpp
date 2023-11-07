@@ -335,7 +335,8 @@ QSize QCtmSelectionButtonBox::minimumSizeHint() const
         int width = std::accumulate(m_impl->datas.begin(),
                                     m_impl->datas.end(),
                                     0,
-                                    [this](int w, const auto& data) { return w + this->fontMetrics().horizontalAdvance(data.text); });
+                                    [this, sz](int w, const auto& data)
+                                    { return w + std::max(this->fontMetrics().horizontalAdvance(data.text), sz.width()); });
         return QSize(width, sz.height());
     }
     else
@@ -346,7 +347,7 @@ QSize QCtmSelectionButtonBox::minimumSizeHint() const
             const auto& data = m_impl->datas[i];
             width            = std::max(width, this->fontMetrics().horizontalAdvance(data.text));
         }
-        return QSize(width, sz.height() * m_impl->datas.size());
+        return QSize(std::max(sz.width(), width), sz.height() * m_impl->datas.size());
     }
 }
 

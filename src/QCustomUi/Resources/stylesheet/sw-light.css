@@ -602,6 +602,7 @@ QCtmSelectionButtonBox
 QCtmSelectionButtonBox::section
 {
     background: white;
+    min-width: 50px;
     color: rgba(79,79,79,1);
 }
 
