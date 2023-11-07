@@ -326,18 +326,30 @@ QSize QCtmSelectionButtonBox::minimumSizeHint() const
 {
     if (m_impl->datas.isEmpty())
         return {};
+
     QCtmStyleOptionSelectionButtonBox opt;
-    opt.text        = "1234";
+    opt.text        = "XXXX";
     opt.orientation = Qt::Horizontal;
-    auto sz         = style()->sizeFromContents(QStyle::CT_HeaderSection, &opt, QSize(), this);
+    auto height     = style()->sizeFromContents(QStyle::CT_HeaderSection, &opt, QSize(), this).height();
+
     if (m_impl->orientation == Qt::Horizontal)
     {
-        int width = std::accumulate(m_impl->datas.begin(),
-                                    m_impl->datas.end(),
-                                    0,
-                                    [this, sz](int w, const auto& data)
-                                    { return w + std::max(this->fontMetrics().horizontalAdvance(data.text), sz.width()); });
-        return QSize(width, sz.height());
+        if (m_impl->uniformSize)
+        {
+            int width = 0;
+            for (int i = 0; i < m_impl->datas.size(); ++i)
+            {
+                const auto& data = m_impl->datas[i];
+                width            = std::max(width, calcWidth(data.text));
+            }
+            return QSize(width * m_impl->datas.size(), height);
+        }
+        else
+        {
+            int width = std::accumulate(
+                m_impl->datas.begin(), m_impl->datas.end(), 0, [&](int w, const auto& data) { return w + calcWidth(data.text); });
+            return QSize(width, height);
+        }
     }
     else
     {
@@ -345,9 +357,9 @@ QSize QCtmSelectionButtonBox::minimumSizeHint() const
         for (int i = 0; i < m_impl->datas.size(); ++i)
         {
             const auto& data = m_impl->datas[i];
-            width            = std::max(width, this->fontMetrics().horizontalAdvance(data.text));
+            width            = std::max(width, calcWidth(data.text));
         }
-        return QSize(std::max(sz.width(), width), sz.height() * m_impl->datas.size());
+        return QSize(width, height * m_impl->datas.size());
     }
 }
 
@@ -367,11 +379,11 @@ std::vector<QRect> QCtmSelectionButtonBox::calcSizes() const
         auto minWidth = minimumSizeHint().width();
         if (!m_impl->uniformSize)
         {
-            int step = static_cast<int>((minWidth - width()) / ret.size());
+            int step = static_cast<int>((width() - minWidth) / ret.size());
             for (int i = 0; i < ret.size(); ++i)
             {
                 const auto& data = m_impl->datas[i];
-                ret[i]           = QRect(offset, 0, this->fontMetrics().horizontalAdvance(data.text) + step, height());
+                ret[i]           = QRect(offset, 0, calcWidth(data.text) + step, height());
                 offset += ret[i].width();
             }
         }
@@ -424,4 +436,16 @@ void QCtmSelectionButtonBox::initStyleOption(int index, QCtmStyleOptionSelection
         opt.position = QStyleOptionHeader::Middle;
     opt.textAlignment = Qt::AlignCenter;
     opt.orientation   = m_impl->orientation;
+}
+
+int QCtmSelectionButtonBox::calcWidth(const QString& text) const
+{
+    QCtmStyleOptionSelectionButtonBox opt;
+    opt.initFrom(this);
+    opt.iconAlignment = Qt::AlignVCenter;
+    opt.text          = text;
+    opt.orientation   = Qt::Horizontal;
+    opt.textAlignment = Qt::AlignCenter;
+    auto w            = opt.fontMetrics.horizontalAdvance(text);
+    return style()->sizeFromContents(QStyle::CT_HeaderSection, &opt, QSize(), this).width();
 }

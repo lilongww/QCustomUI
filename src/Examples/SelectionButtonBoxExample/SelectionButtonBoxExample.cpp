@@ -9,7 +9,7 @@ SelectionButtonBoxExample::SelectionButtonBoxExample(QWidget* parent) : QCtmWind
 {
     auto layout = new QVBoxLayout(this->centralWidget());
     {
-        auto box = new QCtmSelectionButtonBox({ u8"选项1", u8"选项2", u8"选项3" });
+        auto box = new QCtmSelectionButtonBox({ u8"选项1", u8"选项2", u8"增强分辨率" });
         layout->addWidget(box);
         box->texts();
     }

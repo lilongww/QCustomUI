@@ -72,6 +72,7 @@ protected:
 private:
     std::vector<QRect> calcSizes() const;
     void initStyleOption(int index, QCtmStyleOptionSelectionButtonBox& opt) const;
+    int calcWidth(const QString& text) const;
 
 private:
     struct Impl;
