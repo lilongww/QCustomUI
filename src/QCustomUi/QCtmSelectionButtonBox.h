@@ -30,6 +30,8 @@ class QCUSTOMUI_EXPORT QCtmSelectionButtonBox : public QWidget
     Q_PROPERTY(ExclusionPolicy exclusionPolicy READ exclusionPolicy WRITE setExclusionPolicy)
     Q_PROPERTY(bool uniformSize READ uniformSize WRITE setUniformSize)
     Q_PROPERTY(Qt::Orientation orientation READ orientation WRITE setOrientation)
+    Q_PROPERTY(QStringList texts READ texts WRITE setTexts)
+
 public:
     enum class ExclusionPolicy
     {
@@ -68,7 +70,7 @@ protected:
     QSize sizeHint() const override;
 
 private:
-    std::vector<QRectF> calcSizes() const;
+    std::vector<QRect> calcSizes() const;
     void initStyleOption(int index, QCtmStyleOptionSelectionButtonBox& opt) const;
 
 private:

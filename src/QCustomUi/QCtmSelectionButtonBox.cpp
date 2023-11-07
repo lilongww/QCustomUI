@@ -41,7 +41,7 @@ struct QCtmSelectionButtonBox::Impl
     QVector<QCtmSelectionButtonBoxState> datas;
     bool uniformSize { true };
     Qt::Orientation orientation { Qt::Horizontal };
-    std::optional<std::vector<QRectF>> sizesCache;
+    std::optional<std::vector<QRect>> sizesCache;
     std::optional<QPoint> mousePos;
 };
 
@@ -183,7 +183,7 @@ QString QCtmSelectionButtonBox::text(int index) const
 QStringList QCtmSelectionButtonBox::texts() const
 {
     QStringList ret;
-    std::transform(m_impl->datas.begin(), m_impl->datas.end(), ret.begin(), [](const auto& data) { return data.text; });
+    std::transform(m_impl->datas.begin(), m_impl->datas.end(), std::back_inserter(ret), [](const auto& data) { return data.text; });
     return ret;
 }
 
@@ -355,22 +355,22 @@ QSize QCtmSelectionButtonBox::minimumSizeHint() const
 */
 QSize QCtmSelectionButtonBox::sizeHint() const { return minimumSizeHint(); }
 
-std::vector<QRectF> QCtmSelectionButtonBox::calcSizes() const
+std::vector<QRect> QCtmSelectionButtonBox::calcSizes() const
 {
     if (m_impl->sizesCache)
         return *m_impl->sizesCache;
-    std::vector<QRectF> ret(m_impl->datas.size());
-    double offset = 0;
+    std::vector<QRect> ret(m_impl->datas.size());
+    int offset = 0;
     if (m_impl->orientation == Qt::Horizontal)
     {
         auto minWidth = minimumSizeHint().width();
         if (!m_impl->uniformSize)
         {
-            auto step = (minWidth - width()) / static_cast<double>(ret.size());
+            int step = static_cast<int>((minWidth - width()) / ret.size());
             for (int i = 0; i < ret.size(); ++i)
             {
                 const auto& data = m_impl->datas[i];
-                ret[i]           = QRectF(offset, 0, this->fontMetrics().horizontalAdvance(data.text) + step, height());
+                ret[i]           = QRect(offset, 0, this->fontMetrics().horizontalAdvance(data.text) + step, height());
                 offset += ret[i].width();
             }
         }
@@ -379,7 +379,7 @@ std::vector<QRectF> QCtmSelectionButtonBox::calcSizes() const
             for (int i = 0; i < ret.size(); ++i)
             {
                 const auto& data = m_impl->datas[i];
-                ret[i]           = QRectF(offset, 0, width() / static_cast<double>(ret.size()), height());
+                ret[i]           = QRect(offset, 0, static_cast<int>(width() / ret.size()), height());
                 offset += ret[i].width();
             }
         }
@@ -388,10 +388,14 @@ std::vector<QRectF> QCtmSelectionButtonBox::calcSizes() const
     {
         for (auto& rect : ret)
         {
-            rect = QRectF(0, offset, width(), this->height() / static_cast<double>(m_impl->datas.size()));
+            rect = QRect(0, offset, width(), this->height() / m_impl->datas.size());
             offset += rect.height();
         }
     }
+    if (ret.size() > 1)
+        ret.back().setWidth(
+            this->width() -
+            std::accumulate(ret.begin(), (ret.rbegin() + 1).base(), 0, [](int w, const auto& rect) { return w + rect.width(); }));
     m_impl->sizesCache = ret;
     return ret;
 }
@@ -400,7 +404,7 @@ void QCtmSelectionButtonBox::initStyleOption(int index, QCtmStyleOptionSelection
 {
     const auto& state = m_impl->datas[index];
     opt.initFrom(this);
-    opt.rect = calcSizes()[index].toRect();
+    opt.rect = calcSizes()[index];
     opt.state.setFlag(QStyle::State_Enabled, state.enabled);
     opt.state.setFlag(QStyle::State_Selected, state.checked);
     opt.state.setFlag(QStyle::State_MouseOver, m_impl->mousePos && opt.rect.contains(*m_impl->mousePos));
