@@ -33,14 +33,15 @@ class QCUSTOMUI_EXPORT QCtmSelectionButtonBox : public QWidget
     Q_PROPERTY(QStringList texts READ texts WRITE setTexts)
 
 public:
-    enum class ExclusionPolicy
+    enum ExclusionPolicy
     {
         None,
         Exclusive,
         ExclusiveOptional
     };
     Q_ENUM(ExclusionPolicy)
-    QCtmSelectionButtonBox(Qt::Orientation orientation = Qt::Horizontal, QWidget* parent = nullptr);
+    explicit QCtmSelectionButtonBox(QWidget* parent = nullptr);
+    QCtmSelectionButtonBox(Qt::Orientation orientation, QWidget* parent = nullptr);
     QCtmSelectionButtonBox(const QStringList& texts, Qt::Orientation orientation = Qt::Horizontal, QWidget* parent = nullptr);
     ~QCtmSelectionButtonBox();
     void setExclusionPolicy(ExclusionPolicy policy);

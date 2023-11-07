@@ -63,14 +63,21 @@ struct QCtmSelectionButtonBox::Impl
 */
 
 /*!
-    \brief      构造函数 \a orientation, \a parent.
+    \brief      构造函数 \a parent.
+*/
+QCtmSelectionButtonBox::QCtmSelectionButtonBox(QWidget* parent /*= nullptr*/) : QWidget(parent), m_impl(std::make_unique<Impl>())
+{
+    setSizePolicy(QSizePolicy(QSizePolicy::Minimum, QSizePolicy::Fixed, QSizePolicy::PushButton));
+    setMouseTracking(true);
+}
+
+/*!
+    \brief      构造函数重载 \a orientation, \a parent.
 */
 QCtmSelectionButtonBox::QCtmSelectionButtonBox(Qt::Orientation orientation, QWidget* parent)
     : QWidget(parent), m_impl(std::make_unique<Impl>())
 {
     m_impl->orientation = orientation;
-    setSizePolicy(QSizePolicy(QSizePolicy::Minimum, QSizePolicy::Fixed, QSizePolicy::PushButton));
-    setMouseTracking(true);
 }
 
 /*!
