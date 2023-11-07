@@ -593,3 +593,56 @@ QCtmRecentView > #top_button:pressed
 {
     background: #99D1FF;
 }
+
+QCtmSelectionButtonBox
+{
+    border: 1px solid #DCDFE6;
+}
+
+QCtmSelectionButtonBox::section
+{
+    background: white;
+    color: rgba(79,79,79,1);
+}
+
+QCtmSelectionButtonBox::section:middle
+{
+    border: 1px solid #DCDFE6;
+}
+
+QCtmSelectionButtonBox[orientation = Horizontal]::section:first
+{
+    margin-left: 1px; /*Qt底层不绘制第一项的左侧边框*/
+    border: 1px solid #DCDFE6;
+    border-right: none;
+}
+
+QCtmSelectionButtonBox[orientation = Horizontal]::section:end
+{
+    border: 1px solid #DCDFE6;
+    border-left: none;
+}
+
+QCtmSelectionButtonBox[orientation = Vertical]::section:first
+{
+    margin-top: 1px; /*Qt底层不绘制第一项的顶部边框*/
+    border: 1px solid #DCDFE6;
+    border-bottom: none;
+}
+
+QCtmSelectionButtonBox[orientation = Vertical]::section:end
+{
+    border: 1px solid #DCDFE6;
+    border-top: none;
+}
+
+QCtmSelectionButtonBox::section:hover
+{
+    color: #409EFF;
+}
+
+QCtmSelectionButtonBox::section:selected
+{
+    background: #409EFF;
+    color: white;
+}
