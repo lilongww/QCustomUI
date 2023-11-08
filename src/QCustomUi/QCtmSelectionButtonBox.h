@@ -31,6 +31,7 @@ class QCUSTOMUI_EXPORT QCtmSelectionButtonBox : public QWidget
     Q_PROPERTY(bool uniformSize READ uniformSize WRITE setUniformSize)
     Q_PROPERTY(Qt::Orientation orientation READ orientation WRITE setOrientation)
     Q_PROPERTY(QStringList texts READ texts WRITE setTexts)
+    Q_PROPERTY(int count READ count)
 
 public:
     enum ExclusionPolicy
@@ -53,6 +54,7 @@ public:
     bool isChecked(int index) const;
     void setOrientation(Qt::Orientation orientation);
     Qt::Orientation orientation() const;
+    int count() const;
 signals:
     void toggled(int index, bool checked);
 public slots:

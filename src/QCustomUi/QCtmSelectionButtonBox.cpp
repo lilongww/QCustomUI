@@ -241,6 +241,11 @@ void QCtmSelectionButtonBox::setOrientation(Qt::Orientation orientation)
 Qt::Orientation QCtmSelectionButtonBox::orientation() const { return m_impl->orientation; }
 
 /*!
+    \brief      返回选项数量.
+*/
+int QCtmSelectionButtonBox::count() const { return m_impl->datas.size(); }
+
+/*!
     \reimp
 */
 void QCtmSelectionButtonBox::paintEvent(QPaintEvent* event)
