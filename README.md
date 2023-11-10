@@ -42,6 +42,12 @@ QCtmWindow 是一个顶层窗口类，默认带有自定义的标题栏，支持
 
 ![165294410414120225191518431](README.assets/165294410414120225191518431.gif)
 
+#### QCtmSelectionButtonBox
+
+选择按钮组合组件，支持多选，单选，单选（可取消选中），水平排布，垂直排布，可以替代radiobox，checkbox
+
+![QQ20231110-163619-HD202311101638541](README.assets/QQ20231110-163619-HD202311101638541.gif)
+
 ### 3. 进度条
 
 #### QCtmStageProgressBar
