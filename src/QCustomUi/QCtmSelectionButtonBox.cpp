@@ -80,8 +80,7 @@ QCtmSelectionButtonBox::QCtmSelectionButtonBox(QWidget* parent /*= nullptr*/) : 
 /*!
     \brief      构造函数重载 \a orientation, \a parent.
 */
-QCtmSelectionButtonBox::QCtmSelectionButtonBox(Qt::Orientation orientation, QWidget* parent)
-    : QWidget(parent), m_impl(std::make_unique<Impl>())
+QCtmSelectionButtonBox::QCtmSelectionButtonBox(Qt::Orientation orientation, QWidget* parent) : QCtmSelectionButtonBox(parent)
 {
     m_impl->orientation = orientation;
 }

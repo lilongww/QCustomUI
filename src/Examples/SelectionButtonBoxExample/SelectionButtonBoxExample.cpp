@@ -11,7 +11,6 @@ SelectionButtonBoxExample::SelectionButtonBoxExample(QWidget* parent) : QCtmWind
     {
         auto box = new QCtmSelectionButtonBox({ u8"选项1", u8"选项2", u8"增强分辨率" });
         layout->addWidget(box);
-        box->texts();
     }
     {
         auto box = new QCtmSelectionButtonBox();
