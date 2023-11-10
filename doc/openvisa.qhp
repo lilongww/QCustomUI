@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <QtHelpProject version="1.0">
-    <namespace>com.openvisa.0.10.0</namespace>
+    <namespace>com.openvisa.0.11.0</namespace>
     <virtualFolder>openvisa</virtualFolder>
     <metaData name="version" value=""/>
     <customFilter name="OpenVisa">
@@ -137,6 +137,7 @@
             <keyword name="read" id="ObjectAdapter::read" ref="openvisa-objectadapter.html#read"/>
             <keyword name="readAll" id="Object::readAll" ref="openvisa-object.html#readAll"/>
             <keyword name="readAll" id="ObjectAdapter::readAll" ref="openvisa-objectadapter.html#readAll"/>
+            <keyword name="removeTermChars" id="Object::removeTermChars" ref="openvisa-object.html#removeTermChars"/>
             <keyword name="rst" id="CommonCommand::rst" ref="openvisa-object-commoncommand.html#rst"/>
             <keyword name="send" id="Object::send" ref="openvisa-object.html#send"/>
             <keyword name="send" id="ObjectAdapter::send" ref="openvisa-objectadapter.html#send"/>
@@ -204,6 +205,7 @@
             <file>style/offline-dark.css</file>
             <file>style/offline-simple.css</file>
             <file>style/offline.css</file>
+            <file>style/tech_preview.svg</file>
             <file>version-h.html</file>
         </files>
     </filterSection>

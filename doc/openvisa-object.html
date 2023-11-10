@@ -3,7 +3,8 @@
 <head>
   <meta charset="utf-8">
 <!-- Object.cpp -->
-  <title>Object Class | OpenVisa 0.10.0</title>
+  <meta name="description" content="仪器通讯基础库.">
+  <title>Object Class | OpenVisa 0.11.0</title>
   <link rel="stylesheet" type="text/css" href="style/offline-simple.css" />
   <script type="text/javascript">
     document.getElementsByTagName("link").item(0).setAttribute("href", "style/offline.css");
@@ -25,10 +26,10 @@
     <div class="main-rounded">
         <div class="navigationbar">
         <ul>
-<li><a href="index.html" translate="no">OpenVisa 0.10.0</a></li>
+<li><a href="index.html" translate="no">OpenVisa 0.11.0</a></li>
 <li><a href="openvisa-module.html" translate="no">OpenVisa</a></li>
 <li>Object</li>
-<li id="buildversion">OpenVisa 0.10.0 Reference Documentation</li>
+<li id="buildversion">OpenVisa 0.11.0 Reference Documentation</li>
     </ul>
     </div>
 </div>
@@ -74,6 +75,7 @@
 <tr><td class="memItemLeft rightAlign topAlign"> std::string </td><td class="memItemRight bottomAlign"><b><a href="openvisa-object.html#query" translate="no">query</a></b>(const std::string &amp;<i>fmt</i>, const Args &amp;... <i>args</i>)</td></tr>
 <tr><td class="memItemLeft rightAlign topAlign"> std::tuple&lt;std::string, bool&gt; </td><td class="memItemRight bottomAlign"><b><a href="openvisa-object.html#read" translate="no">read</a></b>(unsigned long <i>blockSize</i>)</td></tr>
 <tr><td class="memItemLeft rightAlign topAlign"> std::string </td><td class="memItemRight bottomAlign"><b><a href="openvisa-object.html#readAll" translate="no">readAll</a></b>()</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> std::string </td><td class="memItemRight bottomAlign"><b><a href="openvisa-object.html#removeTermChars" translate="no">removeTermChars</a></b>(const std::string &amp;<i>source</i>) const</td></tr>
 <tr><td class="memItemLeft rightAlign topAlign"> void </td><td class="memItemRight bottomAlign"><b><a href="openvisa-object.html#send" translate="no">send</a></b>(const std::string &amp;<i>fmt</i>, const Args &amp;... <i>args</i>)</td></tr>
 </table></div>
 <h2 id="static-public-members">Static Public Members</h2>
@@ -95,19 +97,19 @@
 <p>构造函数.</p>
 <!-- @@@Object -->
 <!-- $$$~Object[overload1]$$$~Object -->
-<h3 class="fn" translate="no" id="dtor.Object"><code translate="no">[virtual] </code>Object::<span class="name">~Object</span>()</h3>
+<h3 class="fn" translate="no" id="dtor.Object"><code translate="no">[virtual noexcept] </code>Object::<span class="name">~Object</span>()</h3>
 <p>析构函数.</p>
 <!-- @@@~Object -->
 <!-- $$$attribute[overload1]$$$attribute -->
-<h3 class="fn" translate="no" id="attribute"><span class="type"><a href="openvisa-object-attribute.html" translate="no">OpenVisa::Object::Attribute</a></span> &amp;Object::<span class="name">attribute</span>()</h3>
+<h3 class="fn" translate="no" id="attribute"><code translate="no">[noexcept] </code><span class="type"><a href="openvisa-object-attribute.html" translate="no">OpenVisa::Object::Attribute</a></span> &amp;Object::<span class="name">attribute</span>()</h3>
 <p>返回属性设置.</p>
 <!-- @@@attribute -->
 <!-- $$$close[overload1]$$$close -->
-<h3 class="fn" translate="no" id="close"><span class="type">void</span> Object::<span class="name">close</span>()</h3>
+<h3 class="fn" translate="no" id="close"><code translate="no">[noexcept] </code><span class="type">void</span> Object::<span class="name">close</span>()</h3>
 <p>关闭仪器连接.</p>
 <!-- @@@close -->
 <!-- $$$commonCommand[overload1]$$$commonCommand -->
-<h3 class="fn" translate="no" id="commonCommand"><span class="type"><a href="openvisa-object-commoncommand.html" translate="no">OpenVisa::Object::CommonCommand</a></span> &amp;Object::<span class="name">commonCommand</span>()</h3>
+<h3 class="fn" translate="no" id="commonCommand"><code translate="no">[noexcept] </code><span class="type"><a href="openvisa-object-commoncommand.html" translate="no">OpenVisa::Object::CommonCommand</a></span> &amp;Object::<span class="name">commonCommand</span>()</h3>
 <p>IEEE488.2公共指令接口.</p>
 <!-- @@@commonCommand -->
 <!-- $$$connect[overload1]$$$connectconstint&conststd::chrono::milliseconds&conststd::chrono::milliseconds& -->
@@ -115,7 +117,7 @@
 <p>连接到地址为 <i translate="no">addr</i> 的设备，并且连接超时时间为 <i translate="no">openTimeout</i>, 通讯超时时间为 <i translate="no">commandTimeout</i>.</p>
 <!-- @@@connect -->
 <!-- $$$connected[overload1]$$$connected -->
-<h3 class="fn" translate="no" id="connected"><span class="type">bool</span> Object::<span class="name">connected</span>() const</h3>
+<h3 class="fn" translate="no" id="connected"><code translate="no">[noexcept] </code><span class="type">bool</span> Object::<span class="name">connected</span>() const</h3>
 <p>返回仪器是否已连接.</p>
 <!-- @@@connected -->
 <!-- $$$fromVisaAddressString[overload1]$$$fromVisaAddressStringconststd::string& -->
@@ -146,6 +148,14 @@
 <p>读取所有数据.</p>
 <p><b>See also </b><a href="openvisa-object.html#read" translate="no">read</a>.</p>
 <!-- @@@readAll -->
+<!-- $$$removeTermChars[overload1]$$$removeTermCharsconststd::string& -->
+<h3 class="fn" translate="no" id="removeTermChars"><span class="type">std::string</span> Object::<span class="name">removeTermChars</span>(const <span class="type">std::string</span> &amp;<i>source</i>) const</h3>
+<p>移除字符串 <i translate="no">source</i> 尾部的终结符.</p>
+<div class="admonition note">
+<p><b>Note: </b>若未启用终结符，则该函数不做任何处理.</p>
+</div>
+<p><b>See also </b><a href="openvisa-object.html#query" translate="no">query</a> and <a href="openvisa-object.html#readAll" translate="no">readAll</a>.</p>
+<!-- @@@removeTermChars -->
 <!-- $$$send[overload1]$$$sendconststd::string&constArgs&... -->
 <h3 class="fn" translate="no" id="send">template &lt;typename Args&gt; <span class="type">void</span> Object::<span class="name">send</span>(const <span class="type">std::string</span> &amp;<i>fmt</i>, const <span class="type">Args</span> &amp;... <i>args</i>)</h3>
 <p>格式化发送scpi指令，参考 std::format 格式化设置, <i translate="no">fmt</i>, <i translate="no">args</i>.</p>
