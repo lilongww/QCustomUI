@@ -3,7 +3,8 @@
 <head>
   <meta charset="utf-8">
 <!-- QCtmHeaderView.cpp -->
-  <title>QCtmHeaderView Class | QCustomUi 1.12.0</title>
+  <meta name="description" content="自定义表头，提供了 checkbox 勾选功能.">
+  <title>QCtmHeaderView Class | QCustomUi 1.13.0</title>
   <link rel="stylesheet" type="text/css" href="style/offline-simple.css" />
   <script type="text/javascript">
     document.getElementsByTagName("link").item(0).setAttribute("href", "style/offline.css");
@@ -25,10 +26,10 @@
     <div class="main-rounded">
         <div class="navigationbar">
         <ul>
-<li><a href="index.html" translate="no">QCustomUi 1.12.0</a></li>
+<li><a href="index.html" translate="no">QCustomUi 1.13.0</a></li>
 <li><a href="qcustomui-module.html" translate="no">QCustomUi</a></li>
 <li>QCtmHeaderView</li>
-<li id="buildversion">QCustomUi 1.12.0 Reference Documentation</li>
+<li id="buildversion">QCustomUi 1.13.0 Reference Documentation</li>
     </ul>
     </div>
 </div>
@@ -76,6 +77,7 @@
 <div class="table"><table class="alignedsummary" translate="no">
 <tr><td class="memItemLeft rightAlign topAlign"> virtual void </td><td class="memItemRight bottomAlign"><b><a href="qctmheaderview.html#mousePressEvent" translate="no">mousePressEvent</a></b>(QMouseEvent *<i>e</i>) override</td></tr>
 <tr><td class="memItemLeft rightAlign topAlign"> virtual void </td><td class="memItemRight bottomAlign"><b><a href="qctmheaderview.html#paintSection" translate="no">paintSection</a></b>(QPainter *<i>painter</i>, const QRect &amp;<i>rect</i>, int <i>logicalIndex</i>) const override</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> virtual QSize </td><td class="memItemRight bottomAlign"><b><a href="qctmheaderview.html#sectionSizeFromContents" translate="no">sectionSizeFromContents</a></b>(int <i>logicalIndex</i>) const override</td></tr>
 </table></div>
 <!-- $$$QCtmHeaderView-description -->
 <div class="descr">
@@ -89,7 +91,7 @@
 <p>构造函数 <i translate="no">orientation</i>, <i translate="no">parent</i>.</p>
 <!-- @@@QCtmHeaderView -->
 <!-- $$$~QCtmHeaderView[overload1]$$$~QCtmHeaderView -->
-<h3 class="fn" translate="no" id="dtor.QCtmHeaderView"><code translate="no">[virtual] </code>QCtmHeaderView::<span class="name">~QCtmHeaderView</span>()</h3>
+<h3 class="fn" translate="no" id="dtor.QCtmHeaderView"><code translate="no">[virtual noexcept] </code>QCtmHeaderView::<span class="name">~QCtmHeaderView</span>()</h3>
 <p>析构函数.</p>
 <!-- @@@~QCtmHeaderView -->
 <!-- $$$doCheckBoxRect[overload1]$$$doCheckBoxRectint -->
@@ -104,6 +106,10 @@
 <h3 class="fn" translate="no" id="paintSection"><code translate="no">[override virtual protected] </code><span class="type">void</span> QCtmHeaderView::<span class="name">paintSection</span>(<span class="type"><a href="https://doc.qt.io/qt/qpainter.html" translate="no">QPainter</a></span> *<i>painter</i>, const <span class="type"><a href="https://doc.qt.io/qt/qrect.html" translate="no">QRect</a></span> &amp;<i>rect</i>, <span class="type">int</span> <i>logicalIndex</i>) const</h3>
 <p>Reimplements: <a href="https://doc.qt.io/qt/qheaderview.html#paintSection" translate="no">QHeaderView::paintSection(QPainter *painter, const QRect &amp;rect, int logicalIndex) const</a>.</p>
 <!-- @@@paintSection -->
+<!-- $$$sectionSizeFromContents[overload1]$$$sectionSizeFromContentsint -->
+<h3 class="fn" translate="no" id="sectionSizeFromContents"><code translate="no">[override virtual protected] </code><span class="type"><a href="https://doc.qt.io/qt/qsize.html" translate="no">QSize</a></span> QCtmHeaderView::<span class="name">sectionSizeFromContents</span>(<span class="type">int</span> <i>logicalIndex</i>) const</h3>
+<p>Reimplements: <a href="https://doc.qt.io/qt/qheaderview.html#sectionSizeFromContents" translate="no">QHeaderView::sectionSizeFromContents(int logicalIndex) const</a>.</p>
+<!-- @@@sectionSizeFromContents -->
 <!-- $$$setModel[overload1]$$$setModelQAbstractItemModel* -->
 <h3 class="fn" translate="no" id="setModel"><code translate="no">[override virtual] </code><span class="type">void</span> QCtmHeaderView::<span class="name">setModel</span>(<span class="type"><a href="https://doc.qt.io/qt/qabstractitemmodel.html" translate="no">QAbstractItemModel</a></span> *<i>model</i>)</h3>
 <p>Reimplements: <a href="https://doc.qt.io/qt/qheaderview.html#setModel" translate="no">QHeaderView::setModel</a>(QAbstractItemModel *model).</p>

@@ -3,7 +3,8 @@
 <head>
   <meta charset="utf-8">
 <!-- QCtmLogModel.cpp -->
-  <title>QCtmLogModel Class | QCustomUi 1.12.0</title>
+  <meta name="description" content="标准日志 model.">
+  <title>QCtmLogModel Class | QCustomUi 1.13.0</title>
   <link rel="stylesheet" type="text/css" href="style/offline-simple.css" />
   <script type="text/javascript">
     document.getElementsByTagName("link").item(0).setAttribute("href", "style/offline.css");
@@ -25,10 +26,10 @@
     <div class="main-rounded">
         <div class="navigationbar">
         <ul>
-<li><a href="index.html" translate="no">QCustomUi 1.12.0</a></li>
+<li><a href="index.html" translate="no">QCustomUi 1.13.0</a></li>
 <li><a href="qcustomui-module.html" translate="no">QCustomUi</a></li>
 <li>QCtmLogModel</li>
-<li id="buildversion">QCustomUi 1.12.0 Reference Documentation</li>
+<li id="buildversion">QCustomUi 1.13.0 Reference Documentation</li>
     </ul>
     </div>
 </div>
@@ -102,7 +103,7 @@
 <p><b>See also </b><a href="https://doc.qt.io/qt/qobject.html#setObjectName" translate="no">QObject::setObjectName</a>.</p>
 <!-- @@@QCtmLogModel -->
 <!-- $$$~QCtmLogModel[overload1]$$$~QCtmLogModel -->
-<h3 class="fn" translate="no" id="dtor.QCtmLogModel"><code translate="no">[virtual] </code>QCtmLogModel::<span class="name">~QCtmLogModel</span>()</h3>
+<h3 class="fn" translate="no" id="dtor.QCtmLogModel"><code translate="no">[virtual noexcept] </code>QCtmLogModel::<span class="name">~QCtmLogModel</span>()</h3>
 <p>析构函数.</p>
 <!-- @@@~QCtmLogModel -->
 <!-- $$$clear[overload1]$$$clear -->
@@ -126,8 +127,8 @@
 <!-- $$$errorIcon -->
 <h3 class="fn" translate="no" id="errorIcon">const <span class="type"><a href="https://doc.qt.io/qt/qicon.html" translate="no">QIcon</a></span> &amp;QCtmLogModel::<span class="name">errorIcon</span>() const</h3>
 <p>返回 Error 等级日志图标.</p>
-<p><b>Note: </b>Getter function for property errorIcon. </p>
-<p><b>See also </b><a href="qctmlogmodel.html#setErrorIcon" translate="no">setErrorIcon</a>.</p>
+<div class="admonition note"><p><b>Note: </b>Getter function for property errorIcon. </p>
+</div><p><b>See also </b><a href="qctmlogmodel.html#setErrorIcon" translate="no">setErrorIcon</a>.</p>
 <!-- @@@errorIcon -->
 <!-- $$$headerData[overload1]$$$headerDataintQt::Orientationint -->
 <h3 class="fn" translate="no" id="headerData"><code translate="no">[override virtual] </code><span class="type"><a href="https://doc.qt.io/qt/qvariant.html" translate="no">QVariant</a></span> QCtmLogModel::<span class="name">headerData</span>(<span class="type">int</span> <i>section</i>, <span class="type"><a href="https://doc.qt.io/qt/qt.html#Orientation-enum" translate="no">Qt::Orientation</a></span> <i>orientation</i>, <span class="type">int</span> <i>role</i>) const</h3>
@@ -140,8 +141,8 @@
 <!-- $$$infoIcon -->
 <h3 class="fn" translate="no" id="infoIcon">const <span class="type"><a href="https://doc.qt.io/qt/qicon.html" translate="no">QIcon</a></span> &amp;QCtmLogModel::<span class="name">infoIcon</span>() const</h3>
 <p>返回 Info 等级日志图标.</p>
-<p><b>Note: </b>Getter function for property infoIcon. </p>
-<p><b>See also </b><a href="qctmlogmodel.html#setInfoIcon" translate="no">setInfoIcon</a>.</p>
+<div class="admonition note"><p><b>Note: </b>Getter function for property infoIcon. </p>
+</div><p><b>See also </b><a href="qctmlogmodel.html#setInfoIcon" translate="no">setInfoIcon</a>.</p>
 <!-- @@@infoIcon -->
 <!-- $$$logEvent[overload1]$$$logEventQCtmLogEvent* -->
 <h3 class="fn" translate="no" id="logEvent"><code translate="no">[override virtual protected] </code><span class="type">void</span> QCtmLogModel::<span class="name">logEvent</span>(<span class="type"><a href="qctmlogevent.html" translate="no">QCtmLogEvent</a></span> *<i>e</i>)</h3>
@@ -174,14 +175,14 @@
 <!-- $$$setErrorIcon -->
 <h3 class="fn" translate="no" id="setErrorIcon"><span class="type">void</span> QCtmLogModel::<span class="name">setErrorIcon</span>(const <span class="type"><a href="https://doc.qt.io/qt/qicon.html" translate="no">QIcon</a></span> &amp;<i>icon</i>)</h3>
 <p>设置 Error 等级日志图标 <i translate="no">icon</i>.</p>
-<p><b>Note: </b>Setter function for property <a href="qctmlogmodel.html#errorIcon" translate="no">errorIcon</a>. </p>
-<p><b>See also </b><a href="qctmlogmodel.html#errorIcon" translate="no">errorIcon</a>().</p>
+<div class="admonition note"><p><b>Note: </b>Setter function for property <a href="qctmlogmodel.html#errorIcon" translate="no">errorIcon</a>. </p>
+</div><p><b>See also </b><a href="qctmlogmodel.html#errorIcon" translate="no">errorIcon</a>().</p>
 <!-- @@@setErrorIcon -->
 <!-- $$$setInfoIcon -->
 <h3 class="fn" translate="no" id="setInfoIcon"><span class="type">void</span> QCtmLogModel::<span class="name">setInfoIcon</span>(const <span class="type"><a href="https://doc.qt.io/qt/qicon.html" translate="no">QIcon</a></span> &amp;<i>icon</i>)</h3>
 <p>设置 Info 等级日志图标 <i translate="no">icon</i>.</p>
-<p><b>Note: </b>Setter function for property <a href="qctmlogmodel.html#infoIcon" translate="no">infoIcon</a>. </p>
-<p><b>See also </b><a href="qctmlogmodel.html#infoIcon" translate="no">infoIcon</a>().</p>
+<div class="admonition note"><p><b>Note: </b>Setter function for property <a href="qctmlogmodel.html#infoIcon" translate="no">infoIcon</a>. </p>
+</div><p><b>See also </b><a href="qctmlogmodel.html#infoIcon" translate="no">infoIcon</a>().</p>
 <!-- @@@setInfoIcon -->
 <!-- $$$setLogInsertPolicy[overload1]$$$setLogInsertPolicyQCtmLogData::LogInsertPolicy -->
 <h3 class="fn" translate="no" id="setLogInsertPolicy"><span class="type">void</span> QCtmLogModel::<span class="name">setLogInsertPolicy</span>(<span class="type"><a href="qctmlogdata.html#LogInsertPolicy-enum" translate="no">QCtmLogData::LogInsertPolicy</a></span> <i>policy</i>)</h3>
@@ -196,8 +197,8 @@
 <!-- $$$setWarningIcon -->
 <h3 class="fn" translate="no" id="setWarningIcon"><span class="type">void</span> QCtmLogModel::<span class="name">setWarningIcon</span>(const <span class="type"><a href="https://doc.qt.io/qt/qicon.html" translate="no">QIcon</a></span> &amp;<i>icon</i>)</h3>
 <p>设置 Warning 等级日志图标 <i translate="no">icon</i>.</p>
-<p><b>Note: </b>Setter function for property <a href="qctmlogmodel.html#warningIcon" translate="no">warningIcon</a>. </p>
-<p><b>See also </b><a href="qctmlogmodel.html#warningIcon" translate="no">warningIcon</a>().</p>
+<div class="admonition note"><p><b>Note: </b>Setter function for property <a href="qctmlogmodel.html#warningIcon" translate="no">warningIcon</a>. </p>
+</div><p><b>See also </b><a href="qctmlogmodel.html#warningIcon" translate="no">warningIcon</a>().</p>
 <!-- @@@setWarningIcon -->
 <!-- $$$warningCount[overload1]$$$warningCount -->
 <h3 class="fn" translate="no" id="warningCount"><span class="type">int</span> QCtmLogModel::<span class="name">warningCount</span>() const</h3>
@@ -206,8 +207,8 @@
 <!-- $$$warningIcon -->
 <h3 class="fn" translate="no" id="warningIcon">const <span class="type"><a href="https://doc.qt.io/qt/qicon.html" translate="no">QIcon</a></span> &amp;QCtmLogModel::<span class="name">warningIcon</span>() const</h3>
 <p>返回 Warning 等级日志图标.</p>
-<p><b>Note: </b>Getter function for property warningIcon. </p>
-<p><b>See also </b><a href="qctmlogmodel.html#setWarningIcon" translate="no">setWarningIcon</a>.</p>
+<div class="admonition note"><p><b>Note: </b>Getter function for property warningIcon. </p>
+</div><p><b>See also </b><a href="qctmlogmodel.html#setWarningIcon" translate="no">setWarningIcon</a>.</p>
 <!-- @@@warningIcon -->
 </div>
         </div>
