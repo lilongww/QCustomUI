@@ -63,6 +63,12 @@ struct QCtmSelectionButtonBox::Impl
 */
 
 /*!
+    \fn         void QCtmSelectionButtonBox::toggled(int index, bool checked)
+    \brief      选项状态切换时发送该信号 \a index \a checked.
+    \sa         setChecked, checked
+*/
+
+/*!
     \brief      构造函数 \a parent.
 */
 QCtmSelectionButtonBox::QCtmSelectionButtonBox(QWidget* parent /*= nullptr*/) : QWidget(parent), m_impl(std::make_unique<Impl>())
