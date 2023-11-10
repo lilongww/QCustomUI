@@ -52,6 +52,7 @@ public:
     void setUniformSize(bool u);
     bool uniformSize() const;
     bool isChecked(int index) const;
+    int firstChecked() const;
     void setOrientation(Qt::Orientation orientation);
     Qt::Orientation orientation() const;
     int count() const;

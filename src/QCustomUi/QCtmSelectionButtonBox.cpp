@@ -219,6 +219,19 @@ bool QCtmSelectionButtonBox::uniformSize() const { return m_impl->uniformSize; }
 bool QCtmSelectionButtonBox::isChecked(int index) const { return m_impl->datas[index].checked; }
 
 /*!
+    \brief      返回首个选中项，如果没有选中项则返回-1.
+*/
+int QCtmSelectionButtonBox::firstChecked() const
+{
+    for (int i = 0; i < m_impl->datas.size(); ++i)
+    {
+        if (m_impl->datas.at(i).checked)
+            return i;
+    }
+    return -1;
+}
+
+/*!
     \brief      设置排布方向 \a orientation.
     \sa         orientation
 */
