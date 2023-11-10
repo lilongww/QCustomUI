@@ -1,4 +1,4 @@
-add_subdirectory(QCustomUi)
+﻿add_subdirectory(QCustomUi)
 
 option(BUILD_EXAMPLES "Build example applications." FALSE)
 if(BUILD_EXAMPLES)

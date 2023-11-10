@@ -1,31 +1,7 @@
 ﻿set(TARGET_NAME "QCustomUiDesignerPlugin")
 
-set(HEADERS
- "QCustomUiWidgets.h"
- "StageProgressBar.h"
- "IPAddressEdit.h"
- "MultiComboBox.h"
- "ComboBox.h"
- "TableView.h"
- "ClassifyTreeView.h"
- "EditLabel.h"
- "SwitchButton.h"
- "CircleProgressBar.h"
- "RecentView.h")
-set(SOURCES 
- "QCustomUiWidgets.cpp"
- "StageProgressBar.cpp"
- "IPAddressEdit.cpp"
- "MultiComboBox.cpp"
- "ComboBox.cpp"
- "TableView.cpp"
- "ClassifyTreeView.cpp"
- "EditLabel.cpp"
- "SwitchButton.cpp"
- "CircleProgressBar.cpp"
- "RecentView.cpp"
-)
-
+file(GLOB HEADERS "*.h")
+file(GLOB SOURCES "*.cpp")
 file(GLOB RESOURCES *.qrc)
 file(GLOB UI *.ui)
 

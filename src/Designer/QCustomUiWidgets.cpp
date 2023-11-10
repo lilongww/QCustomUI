@@ -5,10 +5,11 @@
 #include "EditLabel.h"
 #include "IPAddressEdit.h"
 #include "MultiComboBox.h"
+#include "RecentView.h"
+#include "SelectionButtonBox.h"
 #include "StageProgressBar.h"
 #include "SwitchButton.h"
 #include "TableView.h"
-#include "RecentView.h"
 
 #include <QCustomUi/QCtmStyleSheet.h>
 
@@ -31,6 +32,7 @@ QCustomUiWidgets::QCustomUiWidgets(QObject* parent /*= 0*/) : QObject(parent), m
     m_impl->widgets.push_back(new SwitchButton(this));
     m_impl->widgets.push_back(new CircleProgressBar(this));
     m_impl->widgets.push_back(new RecentView(this));
+    m_impl->widgets.push_back(new SelectionButtonBox(this));
     qApp->setStyleSheet(QCtmStyleSheet::defaultStyleSheet());
 }
 

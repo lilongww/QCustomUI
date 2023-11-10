@@ -178,9 +178,9 @@ set(TOOLS_SOURCES
  "QCtmFile.cpp"
 )
 
-set(BUTTONS_HEADERS "QCtmSwitchButton.h")
+set(BUTTONS_HEADERS "QCtmSwitchButton.h" "QCtmSelectionButtonBox.h")
 
-set(BUTTONS_SOURCES "QCtmSwitchButton.cpp")
+set(BUTTONS_SOURCES "QCtmSwitchButton.cpp" "QCtmSelectionButtonBox.cpp")
 
 set(UI_PRIVATE
  "Private/QCtmToolBoxItem.ui")

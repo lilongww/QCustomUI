@@ -3,7 +3,8 @@
 <head>
   <meta charset="utf-8">
 <!-- QCtmRecentModel.cpp -->
-  <title>QCtmRecentModel Class | QCustomUi 1.12.0</title>
+  <meta name="description" content="仿vs启动界面最近项目表model.">
+  <title>QCtmRecentModel Class | QCustomUi 1.13.0</title>
   <link rel="stylesheet" type="text/css" href="style/offline-simple.css" />
   <script type="text/javascript">
     document.getElementsByTagName("link").item(0).setAttribute("href", "style/offline.css");
@@ -25,10 +26,10 @@
     <div class="main-rounded">
         <div class="navigationbar">
         <ul>
-<li><a href="index.html" translate="no">QCustomUi 1.12.0</a></li>
+<li><a href="index.html" translate="no">QCustomUi 1.13.0</a></li>
 <li><a href="qcustomui-module.html" translate="no">QCustomUi</a></li>
 <li>QCtmRecentModel</li>
-<li id="buildversion">QCustomUi 1.12.0 Reference Documentation</li>
+<li id="buildversion">QCustomUi 1.13.0 Reference Documentation</li>
     </ul>
     </div>
 </div>
@@ -62,6 +63,7 @@
 <tr><td class="memItemLeft rightAlign topAlign"> virtual </td><td class="memItemRight bottomAlign"><b><a href="qctmrecentmodel.html#dtor.QCtmRecentModel" translate="no">~QCtmRecentModel</a></b>()</td></tr>
 <tr><td class="memItemLeft rightAlign topAlign"> std::optional&lt;QCtmRecentData&gt; </td><td class="memItemRight bottomAlign"><b><a href="qctmrecentmodel.html#dataOfIndex" translate="no">dataOfIndex</a></b>(const QModelIndex &amp;<i>index</i>) const</td></tr>
 <tr><td class="memItemLeft rightAlign topAlign"> const QVector&lt;QCtmRecentData&gt; &amp;</td><td class="memItemRight bottomAlign"><b><a href="qctmrecentmodel.html#recentDatas" translate="no">recentDatas</a></b>() const</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> void </td><td class="memItemRight bottomAlign"><b><a href="qctmrecentmodel.html#search" translate="no">search</a></b>(const QString &amp;<i>name</i>, Qt::CaseSensitivity <i>cs</i>)</td></tr>
 <tr><td class="memItemLeft rightAlign topAlign"> void </td><td class="memItemRight bottomAlign"><b><a href="qctmrecentmodel.html#setRecentDatas" translate="no">setRecentDatas</a></b>(const QVector&lt;QCtmRecentData&gt; &amp;<i>datas</i>)</td></tr>
 <tr><td class="memItemLeft rightAlign topAlign"> void </td><td class="memItemRight bottomAlign"><b><a href="qctmrecentmodel.html#setRecentDatas-1" translate="no">setRecentDatas</a></b>(QVector&lt;QCtmRecentData&gt; &amp;&amp;<i>datas</i>)</td></tr>
 </table></div>
@@ -87,7 +89,7 @@
 <p>构造函数 <i translate="no">parent</i>.</p>
 <!-- @@@QCtmRecentModel -->
 <!-- $$$~QCtmRecentModel[overload1]$$$~QCtmRecentModel -->
-<h3 class="fn" translate="no" id="dtor.QCtmRecentModel"><code translate="no">[virtual] </code>QCtmRecentModel::<span class="name">~QCtmRecentModel</span>()</h3>
+<h3 class="fn" translate="no" id="dtor.QCtmRecentModel"><code translate="no">[virtual noexcept] </code>QCtmRecentModel::<span class="name">~QCtmRecentModel</span>()</h3>
 <p>析构函数.</p>
 <!-- @@@~QCtmRecentModel -->
 <!-- $$$columnCount[overload1]$$$columnCountconstQModelIndex& -->
@@ -124,6 +126,10 @@
 <h3 class="fn" translate="no" id="rowCount"><code translate="no">[override virtual] </code><span class="type">int</span> QCtmRecentModel::<span class="name">rowCount</span>(const <span class="type"><a href="https://doc.qt.io/qt/qmodelindex.html" translate="no">QModelIndex</a></span> &amp;<i>parent</i> = QModelIndex()) const</h3>
 <p>Reimplements: <a href="https://doc.qt.io/qt/qabstractitemmodel.html#rowCount" translate="no">QAbstractItemModel::rowCount(const QModelIndex &amp;parent) const</a>.</p>
 <!-- @@@rowCount -->
+<!-- $$$search[overload1]$$$searchconstQString&Qt::CaseSensitivity -->
+<h3 class="fn" translate="no" id="search"><span class="type">void</span> QCtmRecentModel::<span class="name">search</span>(const <span class="type"><a href="https://doc.qt.io/qt/qstring.html" translate="no">QString</a></span> &amp;<i>name</i>, <span class="type"><a href="https://doc.qt.io/qt/qt.html#CaseSensitivity-enum" translate="no">Qt::CaseSensitivity</a></span> <i>cs</i>)</h3>
+<p>查找名称中包含 <i translate="no">name</i> 的项, 以及是否忽略大小写 <i translate="no">cs</i>.</p>
+<!-- @@@search -->
 <!-- $$$setData[overload1]$$$setDataconstQModelIndex&constQVariant&int -->
 <h3 class="fn" translate="no" id="setData"><code translate="no">[override virtual] </code><span class="type">bool</span> QCtmRecentModel::<span class="name">setData</span>(const <span class="type"><a href="https://doc.qt.io/qt/qmodelindex.html" translate="no">QModelIndex</a></span> &amp;<i>index</i>, const <span class="type"><a href="https://doc.qt.io/qt/qvariant.html" translate="no">QVariant</a></span> &amp;<i>value</i>, <span class="type">int</span> <i>role</i> = Qt::EditRole)</h3>
 <p>Reimplements: <a href="https://doc.qt.io/qt/qabstractitemmodel.html#setData" translate="no">QAbstractItemModel::setData</a>(const QModelIndex &amp;index, const QVariant &amp;value, int role).</p>
