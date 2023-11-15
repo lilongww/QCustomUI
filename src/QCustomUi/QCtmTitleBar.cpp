@@ -300,15 +300,18 @@ bool QCtmTitleBar::eventFilter(QObject* watched, QEvent* event)
 */
 void QCtmTitleBar::actionEvent(QActionEvent* event)
 {
-    if (event->type() == QEvent::ActionAdded)
+    switch (event->type())
     {
-        auto item = std::make_shared<QCtmWidgetItem>(event->action(), Qt::Horizontal, m_impl->iconSize, this);
-        connect(this, &QCtmTitleBar::iconSizeChanged, item.get(), &QCtmWidgetItem::iconSizeChanged);
-        Util::addItem(item, m_impl->items, event->before(), ui->actionLayout);
-    }
-    else
-    {
+    case QEvent::ActionAdded:
+        {
+            auto item = std::make_shared<QCtmWidgetItem>(event->action(), Qt::Horizontal, m_impl->iconSize, this);
+            connect(this, &QCtmTitleBar::iconSizeChanged, item.get(), &QCtmWidgetItem::iconSizeChanged);
+            Util::addItem(item, m_impl->items, event->before(), ui->actionLayout);
+        }
+        break;
+    case QEvent::ActionRemoved:
         Util::removeItem(event->action(), m_impl->items, ui->actionLayout);
+        break;
     }
 }
 
