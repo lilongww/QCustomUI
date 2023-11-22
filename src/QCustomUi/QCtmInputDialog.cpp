@@ -30,6 +30,7 @@
 #include <QLabel>
 #include <QStyle>
 #include <QVBoxLayout>
+#include <QStyleOption>
 
 struct QCtmInputDialog::Impl
 {
@@ -59,7 +60,7 @@ QCtmInputDialog::QCtmInputDialog(QWidget* parent, Qt::WindowFlags flags) : QInpu
 {
     sizeHint();
     m_impl->layout = new QVBoxLayout;
-    m_impl->layout->setContentsMargins(0, 0, 0, 0);
+    m_impl->layout->setContentsMargins(contentMargins());
     m_impl->title = new QCtmTitleBar(this);
     m_impl->title->setObjectName("ctmDialogTitleBar");
     m_impl->layout->addWidget(m_impl->title, 0);
@@ -376,4 +377,28 @@ bool QCtmInputDialog::nativeEvent(const QByteArray& eventType, void* message, qi
 #else
     return QInputDialog::nativeEvent(eventType, message, result);
 #endif
+}
+
+/*!
+    \reimp
+*/
+bool QCtmInputDialog::event(QEvent* e)
+{
+    if (e->type() == QEvent::StyleChange)
+    {
+        m_impl->layout->setContentsMargins(contentMargins());
+    }
+    return QDialog::event(e);
+}
+
+QMargins QCtmInputDialog::contentMargins() const
+{
+    QStyleOption opt;
+    opt.initFrom(this);
+    auto rect = this->style()->subElementRect(QStyle::SE_FrameContents, &opt, this);
+    if (rect.isEmpty())
+        return {};
+    QRect fullRect(0, 0, width(), height());
+    return QMargins(
+        rect.left() - fullRect.left(), rect.top() - fullRect.top(), fullRect.right() - rect.right(), fullRect.bottom() - rect.bottom());
 }

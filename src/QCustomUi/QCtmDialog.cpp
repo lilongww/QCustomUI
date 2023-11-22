@@ -233,6 +233,9 @@ bool QCtmDialog::nativeEvent(const QByteArray& eventType, void* message, qintptr
 #endif
 }
 
+/*!
+    \reimp
+*/
 bool QCtmDialog::event(QEvent* e)
 {
     if (e->type() == QEvent::StyleChange)
