@@ -30,6 +30,8 @@
 #include <QResizeEvent>
 #include <QSizeGrip>
 #include <QStatusBar>
+#include <QStyle>
+#include <QStyleOption>
 #include <QVBoxLayout>
 
 /*!
@@ -346,4 +348,28 @@ bool QCtmWindow::nativeEvent(const QByteArray& eventType, void* message, qintptr
 #else
     return QWidget::nativeEvent(eventType, message, result);
 #endif
+}
+
+/*!
+    \reimp
+*/
+bool QCtmWindow::event(QEvent* e)
+{
+    if (e->type() == QEvent::StyleChange)
+    {
+        ui->gridLayout->setContentsMargins(contentMargins());
+    }
+    return QWidget::event(e);
+}
+
+QMargins QCtmWindow::contentMargins() const
+{
+    QStyleOption opt;
+    opt.initFrom(this);
+    auto rect = this->style()->subElementRect(QStyle::SE_FrameContents, &opt, this);
+    if (rect.isEmpty())
+        return {};
+    QRect fullRect(0, 0, width(), height());
+    return QMargins(
+        rect.left() - fullRect.left(), rect.top() - fullRect.top(), fullRect.right() - rect.right(), fullRect.bottom() - rect.bottom());
 }

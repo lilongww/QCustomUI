@@ -29,8 +29,8 @@
 #include <QEvent>
 #include <QLabel>
 #include <QStyle>
-#include <QVBoxLayout>
 #include <QStyleOption>
+#include <QVBoxLayout>
 
 struct QCtmInputDialog::Impl
 {
@@ -388,7 +388,7 @@ bool QCtmInputDialog::event(QEvent* e)
     {
         m_impl->layout->setContentsMargins(contentMargins());
     }
-    return QDialog::event(e);
+    return QInputDialog::event(e);
 }
 
 QMargins QCtmInputDialog::contentMargins() const
