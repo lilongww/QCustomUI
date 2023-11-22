@@ -26,6 +26,7 @@
 #include <QMoveEvent>
 #include <QPointer>
 #include <QScreen>
+#include <QStyleOption>
 #include <QVBoxLayout>
 
 struct QCtmDialog::Impl
@@ -57,7 +58,7 @@ QCtmDialog::QCtmDialog(QWidget* parent) : QDialog(parent), m_impl(std::make_uniq
     m_impl->title = new QCtmTitleBar(this);
 
     m_impl->layout = new QVBoxLayout(this);
-    m_impl->layout->setContentsMargins(0, 0, 0, 0);
+    m_impl->layout->setContentsMargins(contentMargins());
     m_impl->layout->setSpacing(0);
 
     m_impl->layout->addWidget(m_impl->title);
@@ -230,4 +231,28 @@ bool QCtmDialog::nativeEvent(const QByteArray& eventType, void* message, qintptr
 #else
     return QDialog::nativeEvent(eventType, message, result);
 #endif
+}
+
+/*!
+    \reimp
+*/
+bool QCtmDialog::event(QEvent* e)
+{
+    if (e->type() == QEvent::StyleChange)
+    {
+        m_impl->layout->setContentsMargins(contentMargins());
+    }
+    return QDialog::event(e);
+}
+
+QMargins QCtmDialog::contentMargins() const
+{
+    QStyleOption opt;
+    opt.initFrom(this);
+    auto rect = this->style()->subElementRect(QStyle::SE_FrameContents, &opt, this);
+    if (rect.isEmpty())
+        return {};
+    QRect fullRect(0, 0, width(), height());
+    return QMargins(
+        rect.left() - fullRect.left(), rect.top() - fullRect.top(), fullRect.right() - rect.right(), fullRect.bottom() - rect.bottom());
 }

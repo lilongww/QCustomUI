@@ -86,6 +86,11 @@ protected:
 #else
     bool nativeEvent(const QByteArray& eventType, void* message, qintptr* result) override;
 #endif
+    bool event(QEvent* e) override;
+
+private:
+    QMargins contentMargins() const;
+
 private:
     struct Impl;
     std::unique_ptr<Impl> m_impl;
