@@ -1,5 +1,5 @@
 ﻿cmake_minimum_required(VERSION 3.20)
-project(OpenVisa VERSION "0.11.0")
+project(OpenVisa VERSION "0.12.0")
 enable_testing()
 
 set(CMAKE_BUILD_WITH_INSTALL_RPATH TRUE)
