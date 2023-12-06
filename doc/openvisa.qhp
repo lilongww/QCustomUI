@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <QtHelpProject version="1.0">
-    <namespace>com.openvisa.0.11.0</namespace>
+    <namespace>com.openvisa.0.12.0</namespace>
     <virtualFolder>openvisa</virtualFolder>
     <metaData name="version" value=""/>
     <customFilter name="OpenVisa">
@@ -17,6 +17,9 @@
                     </section>
                     <section ref="openvisa-binaryarray.html" title="OpenVisa::BinaryArray Class Reference">
                         <section ref="openvisa-binaryarray-members.html" title="List of all members"/>
+                    </section>
+                    <section ref="openvisa-idn.html" title="OpenVisa::IDN Class Reference">
+                        <section ref="openvisa-idn-members.html" title="List of all members"/>
                     </section>
                     <section ref="openvisa-object.html" title="OpenVisa::Object Class Reference">
                         <section ref="openvisa-object-members.html" title="List of all members"/>
@@ -42,6 +45,7 @@
             <keyword name="Attribute" id="Object::Attribute" ref="openvisa-object-attribute.html"/>
             <keyword name="BinaryArray" id="OpenVisa::BinaryArray" ref="openvisa-binaryarray.html"/>
             <keyword name="CommonCommand" id="Object::CommonCommand" ref="openvisa-object-commoncommand.html"/>
+            <keyword name="IDN" id="OpenVisa::IDN" ref="openvisa-idn.html"/>
             <keyword name="OPENVISA_VERSION" id="OPENVISA_VERSION" ref="version-h.html#OPENVISA_VERSION"/>
             <keyword name="OPENVISA_VERSION_MAJOR" id="OPENVISA_VERSION_MAJOR" ref="version-h.html#OPENVISA_VERSION_MAJOR"/>
             <keyword name="OPENVISA_VERSION_MICRO" id="OPENVISA_VERSION_MICRO" ref="version-h.html#OPENVISA_VERSION_MICRO"/>
@@ -113,6 +117,7 @@
             <keyword name="end" id="BinaryArray::end" ref="openvisa-binaryarray.html#end"/>
             <keyword name="ese" id="CommonCommand::ese" ref="openvisa-object-commoncommand.html#ese"/>
             <keyword name="esr" id="CommonCommand::esr" ref="openvisa-object-commoncommand.html#esr"/>
+            <keyword name="firmwareRevision" id="IDN::firmwareRevision" ref="openvisa-idn.html#firmwareRevision"/>
             <keyword name="flowControl" id="Attribute::flowControl" ref="openvisa-object-attribute.html#flowControl"/>
             <keyword name="fromVisaAddressString" id="Object::fromVisaAddressString" ref="openvisa-object.html#fromVisaAddressString"/>
             <keyword name="hardwareID" id="SerialPortInfo::hardwareID" ref="openvisa-serialportinfo.html#hardwareID"/>
@@ -122,7 +127,9 @@
             <keyword name="listPorts" id="SerialPortInfo::listPorts" ref="openvisa-serialportinfo.html#listPorts"/>
             <keyword name="listSerialPorts" id="Object::listSerialPorts" ref="openvisa-object.html#listSerialPorts"/>
             <keyword name="listUSB" id="Object::listUSB" ref="openvisa-object.html#listUSB"/>
+            <keyword name="manufacturer" id="IDN::manufacturer" ref="openvisa-idn.html#manufacturer"/>
             <keyword name="manufacturer" id="SerialPortInfo::manufacturer" ref="openvisa-serialportinfo.html#manufacturer"/>
+            <keyword name="model" id="IDN::model" ref="openvisa-idn.html#model"/>
             <keyword name="object" id="ObjectAdapter::object" ref="openvisa-objectadapter.html#object"/>
             <keyword name="opc" id="CommonCommand::opc" ref="openvisa-object-commoncommand.html#opc"/>
             <keyword name="operator std::vector&lt;T&gt;" id="AsciiArray::operator std::vector&lt;T&gt;" ref="openvisa-asciiarray.html#operator-std-3a-3avector-ltT-gt"/>
@@ -141,6 +148,7 @@
             <keyword name="rst" id="CommonCommand::rst" ref="openvisa-object-commoncommand.html#rst"/>
             <keyword name="send" id="Object::send" ref="openvisa-object.html#send"/>
             <keyword name="send" id="ObjectAdapter::send" ref="openvisa-objectadapter.html#send"/>
+            <keyword name="serialNumber" id="IDN::serialNumber" ref="openvisa-idn.html#serialNumber"/>
             <keyword name="serialNumber" id="SerialPortInfo::serialNumber" ref="openvisa-serialportinfo.html#serialNumber"/>
             <keyword name="setAutoAppendTerminalChars" id="Attribute::setAutoAppendTerminalChars" ref="openvisa-object-attribute.html#setAutoAppendTerminalChars"/>
             <keyword name="setBaudRate" id="Attribute::setBaudRate" ref="openvisa-object-attribute.html#setBaudRate"/>
@@ -167,6 +175,7 @@
             <keyword name="vendorId" id="SerialPortInfo::vendorId" ref="openvisa-serialportinfo.html#vendorId"/>
             <keyword name="wai" id="CommonCommand::wai" ref="openvisa-object-commoncommand.html#wai"/>
             <keyword name="~Attribute" id="Attribute::~Attribute" ref="openvisa-object-attribute.html#dtor.Attribute"/>
+            <keyword name="~IDN" id="IDN::~IDN" ref="openvisa-idn.html#dtor.IDN"/>
             <keyword name="~Object" id="Object::~Object" ref="openvisa-object.html#dtor.Object"/>
             <keyword name="~ObjectAdapter" id="ObjectAdapter::~ObjectAdapter" ref="openvisa-objectadapter.html#dtor.ObjectAdapter"/>
             <keyword name="~SerialPortInfo" id="SerialPortInfo::~SerialPortInfo" ref="openvisa-serialportinfo.html#dtor.SerialPortInfo"/>
@@ -189,6 +198,8 @@
             <file>openvisa-asciiarray.html</file>
             <file>openvisa-binaryarray-members.html</file>
             <file>openvisa-binaryarray.html</file>
+            <file>openvisa-idn-members.html</file>
+            <file>openvisa-idn.html</file>
             <file>openvisa-module.html</file>
             <file>openvisa-object-attribute-members.html</file>
             <file>openvisa-object-attribute.html</file>

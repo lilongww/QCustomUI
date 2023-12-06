@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+<!-- IDN.qdoc -->
+  <meta name="description" content="IDN类型，用于解析IDN指令的返回值.">
+  <title>IDN Class | OpenVisa 0.12.0</title>
+  <link rel="stylesheet" type="text/css" href="style/offline-simple.css" />
+  <script type="text/javascript">
+    document.getElementsByTagName("link").item(0).setAttribute("href", "style/offline.css");
+    // loading style sheet breaks anchors that were jumped to before
+    // so force jumping to anchor again
+    setTimeout(function() {
+        var anchor = location.hash;
+        // need to jump to different anchor first (e.g. none)
+        location.hash = "#";
+        setTimeout(function() {
+            location.hash = anchor;
+        }, 0);
+    }, 0);
+  </script>
+</head>
+<body>
+<div class="header" id="qtdocheader">
+    <div class="main">
+    <div class="main-rounded">
+        <div class="navigationbar">
+        <ul>
+<li><a href="index.html" translate="no">OpenVisa 0.12.0</a></li>
+<li><a href="openvisa-module.html" translate="no">OpenVisa</a></li>
+<li>IDN</li>
+<li id="buildversion">OpenVisa 0.12.0 Reference Documentation</li>
+    </ul>
+    </div>
+</div>
+<div class="content">
+<div class="line">
+<div class="content mainContent">
+<div class="sidebar">
+<div class="toc">
+<h3 id="toc">Contents</h3>
+<ul>
+<li class="level1"><a href="#public-functions">Public Functions</a></li>
+<li class="level1"><a href="#details">Detailed Description</a></li>
+</ul>
+</div>
+<div class="sidebar-content" id="sidebar-content"></div></div>
+<h1 class="title" translate="no">IDN Class</h1>
+<span class="small-subtitle" translate="no">class <a href="openvisa-module.html" translate="no">OpenVisa</a>::IDN</span>
+<!-- $$$IDN-brief -->
+<p>IDN类型，用于解析IDN指令的返回值. <a href="#details">More...</a></p>
+<!-- @@@IDN -->
+<div class="table"><table class="alignedsummary" translate="no">
+<tr><td class="memItemLeft rightAlign topAlign"> Header:</td><td class="memItemRight bottomAlign">  <span class="preprocessor">#include &lt;IDN.h&gt;</span></td></tr>
+</table></div>
+<ul>
+<li><a href="openvisa-idn-members.html">List of all members, including inherited members</a></li>
+</ul>
+<h2 id="public-functions">Public Functions</h2>
+<div class="table"><table class="alignedsummary" translate="no">
+<tr><td class="memItemLeft rightAlign topAlign"> </td><td class="memItemRight bottomAlign"><b><a href="openvisa-idn.html#IDN" translate="no">IDN</a></b>(const std::string &amp;<i>source</i>)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> </td><td class="memItemRight bottomAlign"><b><a href="openvisa-idn.html#dtor.IDN" translate="no">~IDN</a></b>()</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> const std::string &amp;</td><td class="memItemRight bottomAlign"><b><a href="openvisa-idn.html#firmwareRevision" translate="no">firmwareRevision</a></b>() const</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> const std::string &amp;</td><td class="memItemRight bottomAlign"><b><a href="openvisa-idn.html#manufacturer" translate="no">manufacturer</a></b>() const</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> const std::string &amp;</td><td class="memItemRight bottomAlign"><b><a href="openvisa-idn.html#model" translate="no">model</a></b>() const</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> const std::string &amp;</td><td class="memItemRight bottomAlign"><b><a href="openvisa-idn.html#serialNumber" translate="no">serialNumber</a></b>() const</td></tr>
+</table></div>
+<!-- $$$IDN-description -->
+<div class="descr">
+<h2 id="details">Detailed Description</h2>
+</div>
+<!-- @@@IDN -->
+<div class="func">
+<h2>Member Function Documentation</h2>
+<!-- $$$IDN[overload1]$$$IDNconststd::string& -->
+<h3 class="fn" translate="no" id="IDN">IDN::<span class="name">IDN</span>(const <span class="type">std::string</span> &amp;<i>source</i>)</h3>
+<p>构造函数，解析IDN指令返回值 <i translate="no">source</i>, 解析前最好去除终结符.</p>
+<!-- @@@IDN -->
+<!-- $$$~IDN[overload1]$$$~IDN -->
+<h3 class="fn" translate="no" id="dtor.IDN"><code translate="no">[noexcept] </code>IDN::<span class="name">~IDN</span>()</h3>
+<p>析构函数.</p>
+<!-- @@@~IDN -->
+<!-- $$$firmwareRevision[overload1]$$$firmwareRevision -->
+<h3 class="fn" translate="no" id="firmwareRevision">const <span class="type">std::string</span> &amp;IDN::<span class="name">firmwareRevision</span>() const</h3>
+<p>返回设备固件程序版本号.</p>
+<!-- @@@firmwareRevision -->
+<!-- $$$manufacturer[overload1]$$$manufacturer -->
+<h3 class="fn" translate="no" id="manufacturer">const <span class="type">std::string</span> &amp;IDN::<span class="name">manufacturer</span>() const</h3>
+<p>返回设备的制造商名称.</p>
+<!-- @@@manufacturer -->
+<!-- $$$model[overload1]$$$model -->
+<h3 class="fn" translate="no" id="model">const <span class="type">std::string</span> &amp;IDN::<span class="name">model</span>() const</h3>
+<p>返回设备型号.</p>
+<!-- @@@model -->
+<!-- $$$serialNumber[overload1]$$$serialNumber -->
+<h3 class="fn" translate="no" id="serialNumber">const <span class="type">std::string</span> &amp;IDN::<span class="name">serialNumber</span>() const</h3>
+<p>返回设备序列号.</p>
+<!-- @@@serialNumber -->
+</div>
+        </div>
+       </div>
+   </div>
+   </div>
+</div>
+<div class="footer">
+   <p>
+   <acronym title="Copyright">&copy;</acronym> OpenVisa
+   Documentation contributions included herein are the copyrights of
+   their respective owners.<br/>    The documentation provided herein is licensed under the terms of the    <a href="http://www.gnu.org/licenses/fdl.html">GNU Free Documentation    License version 1.3</a> as published by the Free Software Foundation.<br/> </div>
+</body>
+</html>
