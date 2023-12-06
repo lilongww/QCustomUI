@@ -1,4 +1,4 @@
-﻿set(TARGET_NAME ListDevices)
+﻿set(TARGET_NAME IDNExample)
 
 file(GLOB SOURCES "*.cpp")
 

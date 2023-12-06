@@ -1,0 +1,1 @@
+﻿openvisa_add_test(IDNTest SOURCES main.cpp PUBLIC_LIBRARIES OpenVisa gtest)

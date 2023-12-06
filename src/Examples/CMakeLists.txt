@@ -1,3 +1,3 @@
-include_directories(../)
-add_subdirectory(IDNTest)
-add_subdirectory(ListDevices)
+﻿include_directories(../)
+add_subdirectory(IDNExample)
+add_subdirectory(ListDevicesExample)
