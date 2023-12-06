@@ -32,8 +32,10 @@ public:
         auto view =
             std::views::split(source, ',') | std::views::transform([](const auto& view) { return std::string(view.begin(), view.end()); });
         m_datas = std::vector<std::string>(view.begin(), view.end());
+        if (m_datas.size() != 4)
+            throw std::exception("Nonstandard IDN string.");
     }
-    inline ~IDN() {}
+    inline ~IDN() noexcept {}
     inline const std::string& manufacturer() const { return m_datas[0]; }
     inline const std::string& model() const { return m_datas[1]; }
     inline const std::string& serialNumber() const { return m_datas[2]; }

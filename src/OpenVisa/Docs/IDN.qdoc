@@ -1,0 +1,37 @@
+﻿/*!
+    \class      OpenVisa::IDN
+    \brief      IDN类型，用于解析IDN指令的返回值.
+    \ingroup    openvisa
+    \inmodule   OpenVisa
+    \inheaderfile IDN.h
+*/
+
+/*!
+    \fn         inline OpenVisa::IDN::IDN(const std::string& source)
+    \brief      构造函数，解析IDN指令返回值 \a source, 解析前最好去除终结符.
+*/
+
+/*
+    \fn         inline OpenVisa::IDN::~IDN() noexcept
+    \brief      析构函数.
+*/
+
+/*
+    \fn         inline const std::string& OpenVisa::IDN::manufacturer() const
+    \brief      返回设备的制造商名称.
+*/
+
+/*
+    \fn         inline const std::string& OpenVisa::IDN::model() const
+    \brief      返回设备型号.
+*/
+
+/*
+    \fn         inline const std::string& OpenVisa::IDN::serialNumber() const
+    \brief      返回设备序列号.
+*/
+
+/*
+    \fn         inline const std::string& OpenVisa::IDN::firmwareRevision() const
+    \brief      返回设备固件程序版本号.
+*/
