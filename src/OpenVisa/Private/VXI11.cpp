@@ -211,7 +211,13 @@ void VXI11::close() noexcept
     std::shared_ptr<int> scope(nullptr, [&](int*) { m_impl->connected = false; });
     if (m_impl->socket.connected() && m_impl->connected)
     {
-        m_impl->destroyLink(VXI::Req::DestroyLink(m_impl->xid, m_impl->linkId));
+        try
+        {
+            m_impl->destroyLink(VXI::Req::DestroyLink(m_impl->xid, m_impl->linkId));
+        }
+        catch (...)
+        {
+        }
     }
     m_impl->socket.close();
 }

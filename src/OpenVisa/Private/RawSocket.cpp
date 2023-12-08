@@ -56,17 +56,12 @@ void RawSocket::connect(const Address<AddressType::RawSocket>& addr, const std::
     auto error = std::make_shared<boost::system::error_code>();
     auto mutex = std::make_shared<std::timed_mutex>();
     mutex->lock();
-    m_impl->io.post(
-        [=]()
-        {
-            m_impl->socket.async_connect(boost::asio::ip::tcp::endpoint(boost::asio::ip::address::from_string(addr.ip()), addr.port()),
-                                         [=](const boost::system::error_code& e)
-                                         {
-                                             *error = e;
-                                             mutex->unlock();
-                                         });
-        });
-
+    m_impl->socket.async_connect(boost::asio::ip::tcp::endpoint(boost::asio::ip::address::from_string(addr.ip()), addr.port()),
+                                 [=](const boost::system::error_code& e)
+                                 {
+                                     *error = e;
+                                     mutex->unlock();
+                                 });
     if (!mutex->try_lock_for(openTimeout))
     {
         m_impl->socket.close();
@@ -84,16 +79,12 @@ void RawSocket::send(const std::string& buffer) const
     auto mutex          = std::make_shared<std::timed_mutex>();
     mutex->lock();
     auto error = std::make_shared<boost::system::error_code>();
-    m_impl->io.post(
-        [=]()
-        {
-            m_impl->socket.async_write_some(boost::asio::buffer(m_impl->writeBuffer),
-                                            [=](const boost::system::error_code& e, std::size_t)
-                                            {
-                                                *error = e;
-                                                mutex->unlock();
-                                            });
-        });
+    m_impl->socket.async_write_some(boost::asio::buffer(m_impl->writeBuffer),
+                                    [=](const boost::system::error_code& e, std::size_t)
+                                    {
+                                        *error = e;
+                                        mutex->unlock();
+                                    });
 
     if (!mutex->try_lock_for(m_attr.timeout()))
     {
@@ -144,17 +135,13 @@ std::string RawSocket::read(size_t size) const
     auto error  = std::make_shared<boost::system::error_code>();
     auto buffer = std::make_shared<std::string>();
     buffer->resize(size);
-    m_impl->io.post(
-        [=]()
-        {
-            m_impl->socket.async_read_some(boost::asio::buffer(*buffer),
-                                           [=](const boost::system::error_code& e, std::size_t s)
-                                           {
-                                               buffer->resize(s);
-                                               *error = e;
-                                               mutex->unlock();
-                                           });
-        });
+    m_impl->socket.async_read_some(boost::asio::buffer(*buffer),
+                                   [=](const boost::system::error_code& e, std::size_t s)
+                                   {
+                                       buffer->resize(s);
+                                       *error = e;
+                                       mutex->unlock();
+                                   });
 
     if (!mutex->try_lock_for(m_attr.timeout()))
     {
@@ -189,19 +176,15 @@ std::string RawSocket::readAllAscii() const
     mutex->lock();
     auto error = std::make_shared<boost::system::error_code>();
     auto size  = std::make_shared<std::size_t>(0);
-    m_impl->io.post(
-        [=]()
-        {
-            boost::asio::async_read_until(m_impl->socket,
-                                          m_impl->readBuffer,
-                                          m_attr.terminalChars(),
-                                          [=](const boost::system::error_code& e, std::size_t s)
-                                          {
-                                              *size  = s;
-                                              *error = e;
-                                              mutex->unlock();
-                                          });
-        });
+    boost::asio::async_read_until(m_impl->socket,
+                                  m_impl->readBuffer,
+                                  m_attr.terminalChars(),
+                                  [=](const boost::system::error_code& e, std::size_t s)
+                                  {
+                                      *size  = s;
+                                      *error = e;
+                                      mutex->unlock();
+                                  });
 
     if (!mutex->try_lock_for(m_attr.timeout()))
     {
