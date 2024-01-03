@@ -97,6 +97,18 @@ struct QCtmWinFramelessDelegate::Impl
     WINDOWPLACEMENT wndPlaceMent;
     std::optional<QRect> workRect;
     HMONITOR monitor { nullptr };
+    inline void resetMargins(HWND hwnd)
+    {
+        bool max = IsZoomed(hwnd);
+        RECT wrect, crect;
+        GetWindowRect(hwnd, &wrect);
+        GetClientRect(hwnd, &crect);
+        QMargins margins(dpiScale(crect.left - wrect.left),
+                         dpiScale(crect.top - wrect.top),
+                         dpiScale(crect.right - wrect.right),
+                         dpiScale(crect.bottom - wrect.bottom));
+        parent->setContentsMargins(max ? margins : QMargins(0, 0, 0, 0));
+    };
     inline double dpiScale(double value) { return value / parent->devicePixelRatioF(); }
     inline double unDpiScale(double value) { return value * parent->devicePixelRatioF(); }
     inline void checkMonitorChanged()
@@ -116,6 +128,7 @@ QCtmWinFramelessDelegate::QCtmWinFramelessDelegate(QWidget* parent, const QWidge
     : QObject(parent), m_impl(std::make_unique<Impl>())
 {
     m_impl->parent = parent;
+    parent->setWindowFlag(Qt::FramelessWindowHint);
     parent->installEventFilter(this);
     m_impl->moveBars = moveBars;
     m_impl->workRect = getScreenNativeWorkRect(reinterpret_cast<HWND>(parent->winId()));
@@ -200,21 +213,31 @@ bool QCtmWinFramelessDelegate::nativeEvent(const QByteArray& eventType, void* me
         {
             if (msg->wParam)
             {
+                QMetaObject::invokeMethod(
+                    this,
+                    [hwnd = msg->hwnd, this]
+                    {
+                        m_impl->resetMargins(hwnd);
+                        m_impl->parent->setAttribute(Qt::WA_PendingUpdate);
+                    },
+                    Qt::QueuedConnection);
                 if (IsZoomed(msg->hwnd))
                 {
-                    m_impl->checkMonitorChanged();
-                    auto rc = m_impl->workRect;
-                    if (!rc)
-                        return false;
-                    if (auto ret = DefWindowProcW(msg->hwnd, WM_NCCALCSIZE, msg->wParam, msg->lParam); ret)
-                    {
-                        *result = ret;
-                        return true;
-                    }
-                    NCCALCSIZE_PARAMS* ncParam = reinterpret_cast<NCCALCSIZE_PARAMS*>(msg->lParam);
-                    ncParam->rgrc[0].top       = rc->top();
-                    ncParam->rgrc[0].bottom    = rc->bottom() + 1;
-                    *result                    = 0;
+                    // m_impl->checkMonitorChanged();
+                    // auto rc = m_impl->workRect;
+                    // if (!rc)
+                    //     return false;
+                    //  if (auto ret = DefWindowProcW(msg->hwnd, WM_NCCALCSIZE, msg->wParam, msg->lParam); ret)
+                    //{
+                    //      *result = ret;
+                    //      return true;
+                    //  }
+                    //  NCCALCSIZE_PARAMS* ncParam = reinterpret_cast<NCCALCSIZE_PARAMS*>(msg->lParam);
+                    //  ncParam->rgrc[0].top       = rc->top();
+                    //  ncParam->rgrc[0].bottom    = rc->bottom() + 1;
+                    //  ncParam->rgrc[0].left      = rc->left();
+                    //  ncParam->rgrc[0].right     = rc->right();
+                    //*result = 0;
                     return true;
                 }
                 else // 优化窗口大小调整闪烁问题
@@ -364,7 +387,7 @@ void QCtmWinFramelessDelegate::setWindowLong()
 
     if (isCompositionEnabled())
     {
-        extendFrameIntoClientArea(m_impl->parent->windowHandle(), 1, 0, 0, 0);
+        extendFrameIntoClientArea(m_impl->parent->windowHandle(), -1, -1, -1, -1);
     }
     RECT rect;
     GetWindowRect(hwnd, &rect);
