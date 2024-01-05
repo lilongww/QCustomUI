@@ -100,13 +100,13 @@ struct QCtmWinFramelessDelegate::Impl
     inline void resetMargins(HWND hwnd)
     {
         bool max = IsZoomed(hwnd);
-        RECT wrect, crect;
-        GetWindowRect(hwnd, &wrect);
-        GetClientRect(hwnd, &crect);
-        QMargins margins(dpiScale(crect.left - wrect.left),
-                         dpiScale(crect.top - wrect.top),
-                         dpiScale(crect.right - wrect.right),
-                         dpiScale(crect.bottom - wrect.bottom));
+        WINDOWINFO info;
+        auto ret = ::GetWindowInfo(hwnd, &info);
+        if (!ret)
+            return;
+        auto xb = dpiScale(info.cxWindowBorders);
+        auto yb = dpiScale(info.cyWindowBorders);
+        QMargins margins(xb, yb, xb, yb);
         parent->setContentsMargins(max ? margins : QMargins(0, 0, 0, 0));
     };
     inline double dpiScale(double value) { return value / parent->devicePixelRatioF(); }
@@ -129,6 +129,8 @@ QCtmWinFramelessDelegate::QCtmWinFramelessDelegate(QWidget* parent, const QWidge
 {
     m_impl->parent = parent;
     parent->setWindowFlag(Qt::FramelessWindowHint);
+    parent->setWindowFlag(Qt::WindowSystemMenuHint);
+
     parent->installEventFilter(this);
     m_impl->moveBars = moveBars;
     m_impl->workRect = getScreenNativeWorkRect(reinterpret_cast<HWND>(parent->winId()));
@@ -213,14 +215,6 @@ bool QCtmWinFramelessDelegate::nativeEvent(const QByteArray& eventType, void* me
         {
             if (msg->wParam)
             {
-                QMetaObject::invokeMethod(
-                    this,
-                    [hwnd = msg->hwnd, this]
-                    {
-                        m_impl->resetMargins(hwnd);
-                        m_impl->parent->setAttribute(Qt::WA_PendingUpdate);
-                    },
-                    Qt::QueuedConnection);
                 if (IsZoomed(msg->hwnd))
                 {
                     // m_impl->checkMonitorChanged();
@@ -310,6 +304,11 @@ bool QCtmWinFramelessDelegate::nativeEvent(const QByteArray& eventType, void* me
             *result = 0;
             return true;
         }
+    case WM_GETMINMAXINFO:
+        {
+            m_impl->resetMargins(msg->hwnd);
+            return false;
+        }
     default:
         break;
     }
@@ -321,11 +320,7 @@ bool QCtmWinFramelessDelegate::eventFilter(QObject* watched, QEvent* event)
     if (watched == m_impl->parent)
     {
         // qDebug() << event->type();
-        if (event->type() == QEvent::WindowStateChange)
-        {
-            int i = 0;
-        }
-        else if (event->type() == QEvent::Show)
+        if (event->type() == QEvent::Show)
         {
             if (m_impl->firstShow)
             {
