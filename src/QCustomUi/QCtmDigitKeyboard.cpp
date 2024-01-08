@@ -510,8 +510,11 @@ void QCtmDigitKeyboard::clearUnits()
         for (int col = m_impl->ui.unitsLayout->columnCount() - 1; col >= 0; col--)
         {
             auto item = m_impl->ui.unitsLayout->itemAtPosition(row, col);
+            m_impl->ui.unitsLayout->removeItem(item);
             if (item && item->widget())
+            {
                 delete item->widget();
+            }
             else
                 delete item;
         }
