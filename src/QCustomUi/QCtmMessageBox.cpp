@@ -27,6 +27,8 @@
 #include <QPushButton>
 #include <QScreen>
 #include <QStyle>
+#include <QTimeLine>
+#include <QTimer>
 #include <QVBoxLayout>
 
 struct QCtmMessageBox::Impl
@@ -38,6 +40,10 @@ struct QCtmMessageBox::Impl
     QAbstractButton* clickedButton { nullptr };
     QAbstractButton* defaultButton { nullptr };
     QAbstractButton* escapeButton { nullptr };
+    std::chrono::seconds timeout { 0 };
+    QTimer timer;
+    QTimeLine timeline;
+    bool timeoutVisible { true };
 };
 
 /*!
@@ -386,8 +392,33 @@ void QCtmMessageBox::setTextInteractionFlags(Qt::TextInteractionFlags flags) { m
 Qt::TextInteractionFlags QCtmMessageBox::textInteractionFlags() const { return m_impl->label->textInteractionFlags(); }
 
 /*!
+    \brief      设置显示超时时间 \a timeout.
+    \sa         timeout
+*/
+void QCtmMessageBox::setTimeout(const std::chrono::seconds& timeout) { m_impl->timeout = timeout; }
+
+/*!
+    \brief      返回显示超时时间.
+    \sa         setTimeout
+*/
+const std::chrono::seconds& QCtmMessageBox::timeout() const { return m_impl->timeout; }
+
+/*!
+    \brief      设置倒计时文本是否可见 \a visible.
+    \sa         timeoutVisible
+*/
+void QCtmMessageBox::setTimeoutVisible(bool visible) { m_impl->timeoutVisible = visible; }
+
+/*!
+    \brief      返回倒计时文本是否可见.
+    \sa         setTimeoutVisible
+*/
+bool QCtmMessageBox::timeoutVisible() const { return m_impl->timeoutVisible; }
+
+/*!
     \brief      构造一个错误消息弹窗，并指定标题文本 \a title, 显示文本 \a text, 按钮集合 \a buttons, 默认按钮 \a defaultButton, 父窗口 \a
-   parent. \sa         QMessageBox::critical
+                parent.
+    \sa         QMessageBox::critical
 */
 QCtmMessageBox::StandardButton QCtmMessageBox::critical(QWidget* parent,
                                                         const QString& title,
@@ -403,8 +434,28 @@ QCtmMessageBox::StandardButton QCtmMessageBox::critical(QWidget* parent,
 }
 
 /*!
+    \overload   构造一个错误消息弹窗，并指定标题文本 \a title, 显示文本 \a text, \a 超时自动关闭时间 \a timeout, 按钮集合 \a buttons,
+                默认按钮 \a defaultButton, 父窗口 \a parent.
+    \sa         critical
+*/
+QCtmMessageBox::StandardButton QCtmMessageBox::critical(QWidget* parent,
+                                                        const QString& title,
+                                                        const QString& text,
+                                                        const std::chrono::seconds& timeout,
+                                                        StandardButtons buttons /*= Ok*/,
+                                                        StandardButton defaultButton /*= NoButton*/)
+{
+    QCtmMessageBox box(Icon::Critical, title, text, buttons, parent);
+    box.setDefaultButton(defaultButton);
+    box.setTimeout(timeout);
+    box.exec();
+    return box.standardButton(box.clickedButton());
+}
+
+/*!
     \brief      构造一个信息消息弹窗，并指定标题文本 \a title, 显示文本 \a text, 按钮集合 \a buttons, 默认按钮 \a defaultButton, 父窗口 \a
-   parent. \sa         QMessageBox::information
+                parent.
+    \sa         QMessageBox::information
 */
 QCtmMessageBox::StandardButton QCtmMessageBox::information(QWidget* parent,
                                                            const QString& title,
@@ -420,8 +471,28 @@ QCtmMessageBox::StandardButton QCtmMessageBox::information(QWidget* parent,
 }
 
 /*!
+    \overload   构造一个信息消息弹窗，并指定标题文本 \a title, 显示文本 \a text, \a 超时自动关闭时间 \a timeout, 按钮集合 \a buttons,
+                默认按钮 \a defaultButton, 父窗口 \a parent.
+    \sa         QMessageBox::information
+*/
+QCtmMessageBox::StandardButton QCtmMessageBox::information(QWidget* parent,
+                                                           const QString& title,
+                                                           const QString& text,
+                                                           const std::chrono::seconds& timeout,
+                                                           StandardButtons buttons /*= Ok*/,
+                                                           StandardButton defaultButton /*= NoButton*/)
+{
+    QCtmMessageBox box(Icon::Information, title, text, buttons, parent);
+    box.setDefaultButton(defaultButton);
+    box.setTimeout(timeout);
+    box.exec();
+    return box.standardButton(box.clickedButton());
+}
+
+/*!
     \brief      构造一个询问消息弹窗，并指定标题文本 \a title, 显示文本 \a text, 按钮集合 \a buttons, 默认按钮 \a defaultButton, 父窗口 \a
-   parent. \sa         QMessageBox::question
+                parent.
+    \sa         QMessageBox::question
 */
 QCtmMessageBox::StandardButton QCtmMessageBox::question(QWidget* parent,
                                                         const QString& title,
@@ -437,8 +508,28 @@ QCtmMessageBox::StandardButton QCtmMessageBox::question(QWidget* parent,
 }
 
 /*!
+    \overload   构造一个询问消息弹窗，并指定标题文本 \a title, 显示文本 \a text, \a 超时自动关闭时间 \a timeout, 按钮集合 \a buttons,
+                默认按钮 \a defaultButton, 父窗口 \a parent.
+    \sa         QMessageBox::question
+*/
+QCtmMessageBox::StandardButton QCtmMessageBox::question(QWidget* parent,
+                                                        const QString& title,
+                                                        const QString& text,
+                                                        const std::chrono::seconds& timeout,
+                                                        StandardButtons buttons /*= StandardButtons(Yes | No)*/,
+                                                        StandardButton defaultButton /*= NoButton*/)
+{
+    QCtmMessageBox box(Icon::Question, title, text, buttons, parent);
+    box.setDefaultButton(defaultButton);
+    box.setTimeout(timeout);
+    box.exec();
+    return box.standardButton(box.clickedButton());
+}
+
+/*!
     \brief      构造一个警告消息弹窗，并指定标题文本 \a title, 显示文本 \a text, 按钮集合 \a buttons, 默认按钮 \a defaultButton, 父窗口 \a
-   parent. \sa         QMessageBox::warning
+                parent.
+    \sa         QMessageBox::warning
 */
 QCtmMessageBox::StandardButton QCtmMessageBox::warning(QWidget* parent,
                                                        const QString& title,
@@ -454,6 +545,25 @@ QCtmMessageBox::StandardButton QCtmMessageBox::warning(QWidget* parent,
 }
 
 /*!
+    \overload   构造一个警告消息弹窗，并指定标题文本 \a title, 显示文本 \a text, \a 超时自动关闭时间 \a timeout, 按钮集合 \a buttons,
+                默认按钮 \a defaultButton, 父窗口 \a parent.
+    \sa         QMessageBox::warning
+*/
+QCtmMessageBox::StandardButton QCtmMessageBox::warning(QWidget* parent,
+                                                       const QString& title,
+                                                       const QString& text,
+                                                       const std::chrono::seconds& timeout,
+                                                       StandardButtons buttons /*= Ok*/,
+                                                       StandardButton defaultButton /*= NoButton*/)
+{
+    QCtmMessageBox box(Icon::Warning, title, text, buttons, parent);
+    box.setDefaultButton(defaultButton);
+    box.setTimeout(timeout);
+    box.exec();
+    return box.standardButton(box.clickedButton());
+}
+
+/*!
     \reimp
 */
 void QCtmMessageBox::showEvent(QShowEvent* event)
@@ -463,6 +573,26 @@ void QCtmMessageBox::showEvent(QShowEvent* event)
     setAttribute(Qt::WA_Moved, false);
 #endif
     QCtmDialog::showEvent(event);
+    if (m_impl->timeout.count() != 0)
+    {
+        m_impl->timer.setSingleShot(true);
+        m_impl->timer.start(m_impl->timeout);
+        m_impl->timeline.setDuration(m_impl->timeout.count() * 1000);
+        m_impl->timeline.start();
+    }
+}
+
+/*!
+    \reimp
+*/
+void QCtmMessageBox::done(int r)
+{
+    if (m_impl->timer.isActive())
+    {
+        m_impl->timer.stop();
+        m_impl->timeline.stop();
+    }
+    QCtmDialog::done(r);
 }
 
 /*!
@@ -470,6 +600,33 @@ void QCtmMessageBox::showEvent(QShowEvent* event)
 */
 void QCtmMessageBox::init()
 {
+    m_impl->timeline.setEasingCurve(QEasingCurve::Linear);
+    connect(&m_impl->timeline,
+            &QTimeLine::valueChanged,
+            this,
+            [this](double value)
+            {
+                if (!m_impl->timeoutVisible)
+                    return;
+                auto sec = static_cast<int>(m_impl->timeline.duration() / 1000 * (1 - value)) + 1;
+                setWindowTitle(m_impl->timeline.property("title").toString() + QString(" (%1)").arg(sec));
+            });
+    connect(&m_impl->timeline,
+            &QTimeLine::stateChanged,
+            this,
+            [this](QTimeLine::State state)
+            {
+                switch (state)
+                {
+                case QTimeLine::Running:
+                    m_impl->timeline.setProperty("title", this->windowTitle());
+                    break;
+                case QTimeLine::NotRunning:
+                    setWindowTitle(m_impl->timeline.property("title").toString());
+                    break;
+                }
+            });
+    connect(&m_impl->timer, &QTimer::timeout, this, &QCtmMessageBox::onTimeout);
     m_impl->label       = new QLabel(this);
     m_impl->iconLabel   = new QLabel(this);
     m_impl->buttonBox   = new QDialogButtonBox(this);
@@ -591,4 +748,13 @@ void QCtmMessageBox::detectEscapeButton() const
                 return;
         }
     }
+}
+
+void QCtmMessageBox::onTimeout()
+{
+    if (m_impl->timeline.state() != QTimeLine::NotRunning)
+    {
+        m_impl->timeline.stop();
+    }
+    this->reject();
 }

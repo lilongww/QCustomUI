@@ -21,6 +21,8 @@
 
 #include "QCtmDialog.h"
 
+#include <chrono>
+
 class QAbstractButton;
 
 class QCUSTOMUI_EXPORT QCtmMessageBox : public QCtmDialog
@@ -33,6 +35,7 @@ class QCUSTOMUI_EXPORT QCtmMessageBox : public QCtmDialog
     Q_PROPERTY(Qt::TextFormat textFormat READ textFormat WRITE setTextFormat)
     Q_PROPERTY(StandardButtons standardButtons READ standardButtons WRITE setStandardButtons)
     Q_PROPERTY(Qt::TextInteractionFlags textInteractionFlags READ textInteractionFlags WRITE setTextInteractionFlags)
+    Q_PROPERTY(bool timeoutVisible READ timeoutVisible WRITE setTimeoutVisible)
 public:
     enum ButtonRole
     {
@@ -110,54 +113,76 @@ public:
     QPushButton* addButton(const QString& text, ButtonRole role);
     QPushButton* addButton(StandardButton button);
     void removeButton(QAbstractButton* button);
-
     void setText(const QString& text);
     QString text() const;
-
     Icon icon() const;
     void setIcon(Icon icon);
-
     QPixmap iconPixmap() const;
     void setIconPixmap(const QPixmap& pixmap);
-
     Qt::TextFormat textFormat() const;
     void setTextFormat(Qt::TextFormat format);
-
     void setTextInteractionFlags(Qt::TextInteractionFlags flags);
     Qt::TextInteractionFlags textInteractionFlags() const;
-
+    void setTimeout(const std::chrono::seconds& timeout);
+    const std::chrono::seconds& timeout() const;
+    void setTimeoutVisible(bool visible);
+    bool timeoutVisible() const;
     static StandardButton critical(QWidget* parent,
                                    const QString& title,
                                    const QString& text,
                                    StandardButtons buttons      = Ok,
                                    StandardButton defaultButton = NoButton);
-
+    static StandardButton critical(QWidget* parent,
+                                   const QString& title,
+                                   const QString& text,
+                                   const std::chrono::seconds& timeout,
+                                   StandardButtons buttons      = Ok,
+                                   StandardButton defaultButton = NoButton);
     static StandardButton information(QWidget* parent,
                                       const QString& title,
                                       const QString& text,
                                       StandardButtons buttons      = Ok,
                                       StandardButton defaultButton = NoButton);
-
+    static StandardButton information(QWidget* parent,
+                                      const QString& title,
+                                      const QString& text,
+                                      const std::chrono::seconds& timeout,
+                                      StandardButtons buttons      = Ok,
+                                      StandardButton defaultButton = NoButton);
     static StandardButton question(QWidget* parent,
                                    const QString& title,
                                    const QString& text,
                                    StandardButtons buttons      = StandardButtons(Yes | No),
                                    StandardButton defaultButton = NoButton);
-
+    static StandardButton question(QWidget* parent,
+                                   const QString& title,
+                                   const QString& text,
+                                   const std::chrono::seconds& timeout,
+                                   StandardButtons buttons      = StandardButtons(Yes | No),
+                                   StandardButton defaultButton = NoButton);
     static StandardButton warning(QWidget* parent,
                                   const QString& title,
                                   const QString& text,
                                   StandardButtons buttons      = Ok,
                                   StandardButton defaultButton = NoButton);
+    static StandardButton warning(QWidget* parent,
+                                  const QString& title,
+                                  const QString& text,
+                                  const std::chrono::seconds& timeout,
+                                  StandardButtons buttons      = Ok,
+                                  StandardButton defaultButton = NoButton);
 
 protected:
     void showEvent(QShowEvent* event) override;
+    void done(int) override;
 
 private:
     void init();
     int layoutMinimumWidth();
     void updateSize();
     void detectEscapeButton() const;
+private slots:
+    void onTimeout();
 
 private:
     struct Impl;
