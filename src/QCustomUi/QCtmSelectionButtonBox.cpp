@@ -65,7 +65,7 @@ struct QCtmSelectionButtonBox::Impl
 /*!
     \fn         void QCtmSelectionButtonBox::toggled(int index, bool checked)
     \brief      选项状态切换时发送该信号 \a index \a checked.
-    \sa         setChecked, checked
+    \sa         setChecked, isChecked
 */
 
 /*!

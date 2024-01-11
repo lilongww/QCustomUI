@@ -4,7 +4,7 @@
   <meta charset="utf-8">
 <!-- QCtmDialog.cpp -->
   <meta name="description" content="这是一个模态窗口，类似于QDialog，去掉了系统的边框和标题栏，用自定义的标题栏替代.">
-  <title>QCtmDialog Class | QCustomUi 1.13.0</title>
+  <title>QCtmDialog Class | QCustomUi 1.14.0</title>
   <link rel="stylesheet" type="text/css" href="style/offline-simple.css" />
   <script type="text/javascript">
     document.getElementsByTagName("link").item(0).setAttribute("href", "style/offline.css");
@@ -26,10 +26,10 @@
     <div class="main-rounded">
         <div class="navigationbar">
         <ul>
-<li><a href="index.html" translate="no">QCustomUi 1.13.0</a></li>
+<li><a href="index.html" translate="no">QCustomUi 1.14.0</a></li>
 <li><a href="qcustomui-module.html" translate="no">QCustomUi</a></li>
 <li>QCtmDialog</li>
-<li id="buildversion">QCustomUi 1.13.0 Reference Documentation</li>
+<li id="buildversion">QCustomUi 1.14.0 Reference Documentation</li>
     </ul>
     </div>
 </div>
@@ -72,6 +72,7 @@
 </table></div>
 <h2 id="reimplemented-protected-functions">Reimplemented Protected Functions</h2>
 <div class="table"><table class="alignedsummary" translate="no">
+<tr><td class="memItemLeft rightAlign topAlign"> virtual bool </td><td class="memItemRight bottomAlign"><b><a href="qctmdialog.html#event" translate="no">event</a></b>(QEvent *<i>e</i>) override</td></tr>
 <tr><td class="memItemLeft rightAlign topAlign"> virtual bool </td><td class="memItemRight bottomAlign"><b><a href="qctmdialog.html#eventFilter" translate="no">eventFilter</a></b>(QObject *<i>o</i>, QEvent *<i>e</i>) override</td></tr>
 <tr><td class="memItemLeft rightAlign topAlign"> virtual void </td><td class="memItemRight bottomAlign"><b><a href="qctmdialog.html#hideEvent" translate="no">hideEvent</a></b>(QHideEvent *<i>e</i>) override</td></tr>
 <tr><td class="memItemLeft rightAlign topAlign"> virtual bool </td><td class="memItemRight bottomAlign"><b><a href="qctmdialog.html#nativeEvent" translate="no">nativeEvent</a></b>(const QByteArray &amp;<i>eventType</i>, void *<i>message</i>, qintptr *<i>result</i>) override</td></tr>
@@ -101,6 +102,10 @@
 <p>返回中央窗口地址, 如果中央窗口不存在则返回nullptr.</p>
 <p><b>See also </b><a href="qctmdialog.html#setCentralWidget" translate="no">setCentralWidget</a>.</p>
 <!-- @@@centralWidget -->
+<!-- $$$event[overload1]$$$eventQEvent* -->
+<h3 class="fn" translate="no" id="event"><code translate="no">[override virtual protected] </code><span class="type">bool</span> QCtmDialog::<span class="name">event</span>(<span class="type"><a href="https://doc.qt.io/qt/qevent.html" translate="no">QEvent</a></span> *<i>e</i>)</h3>
+<p>Reimplements: <a href="https://doc.qt.io/qt/qwidget.html#event" translate="no">QWidget::event</a>(QEvent *event).</p>
+<!-- @@@event -->
 <!-- $$$eventFilter[overload1]$$$eventFilterQObject*QEvent* -->
 <h3 class="fn" translate="no" id="eventFilter"><code translate="no">[override virtual protected] </code><span class="type">bool</span> QCtmDialog::<span class="name">eventFilter</span>(<span class="type"><a href="https://doc.qt.io/qt/qobject.html#QObject" translate="no">QObject</a></span> *<i>o</i>, <span class="type"><a href="https://doc.qt.io/qt/qevent.html" translate="no">QEvent</a></span> *<i>e</i>)</h3>
 <p>Reimplements: <a href="https://doc.qt.io/qt/qdialog.html#eventFilter" translate="no">QDialog::eventFilter</a>(QObject *o, QEvent *e).</p>

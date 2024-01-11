@@ -4,7 +4,7 @@
   <meta charset="utf-8">
 <!-- QCtmMessageBox.cpp -->
   <meta name="description" content="自定义外观的消息框，用法参考 QMessageBox.">
-  <title>List of All Members for QCtmMessageBox | QCustomUi 1.13.0</title>
+  <title>List of All Members for QCtmMessageBox | QCustomUi 1.14.0</title>
   <link rel="stylesheet" type="text/css" href="style/offline-simple.css" />
   <script type="text/javascript">
     document.getElementsByTagName("link").item(0).setAttribute("href", "style/offline.css");
@@ -26,10 +26,10 @@
     <div class="main-rounded">
         <div class="navigationbar">
         <ul>
-<li><a href="index.html" translate="no">QCustomUi 1.13.0</a></li>
+<li><a href="index.html" translate="no">QCustomUi 1.14.0</a></li>
 <li><a href="qcustomui-module.html" translate="no">QCustomUi</a></li>
 <li>QCtmMessageBox</li>
-<li id="buildversion">QCustomUi 1.13.0 Reference Documentation</li>
+<li id="buildversion">QCustomUi 1.14.0 Reference Documentation</li>
     </ul>
     </div>
 </div>
@@ -115,6 +115,7 @@
 <li class="fn" translate="no"><span class="name"><b><a href="https://doc.qt.io/qt/qwidget.html#create" translate="no">create</a></b></span>(WId, bool, bool)</li>
 <li class="fn" translate="no"><span class="name"><b><a href="https://doc.qt.io/qt/qwidget.html#createWindowContainer" translate="no">createWindowContainer</a></b></span>(QWindow *, QWidget *, Qt::WindowFlags) : QWidget *</li>
 <li class="fn" translate="no"><span class="name"><b><a href="qctmmessagebox.html#critical" translate="no">critical</a></b></span>(QWidget *, const QString &amp;, const QString &amp;, QCtmMessageBox::StandardButtons, QCtmMessageBox::StandardButton) : QCtmMessageBox::StandardButton</li>
+<li class="fn" translate="no"><span class="name"><b><a href="qctmmessagebox.html#critical-1" translate="no">critical</a></b></span>(QWidget *, const QString &amp;, const QString &amp;, const std::chrono::seconds &amp;, QCtmMessageBox::StandardButtons, QCtmMessageBox::StandardButton) : QCtmMessageBox::StandardButton</li>
 <li class="fn" translate="no"><span class="name"><b><a href="https://doc.qt.io/qt/qwidget.html#cursor-prop" translate="no">cursor</a></b></span>() const : QCursor</li>
 <li class="fn" translate="no"><span class="name"><b><a href="https://doc.qt.io/qt/qwidget.html#customContextMenuRequested" translate="no">customContextMenuRequested</a></b></span>(const QPoint &amp;)</li>
 <li class="fn" translate="no"><span class="name"><b><a href="https://doc.qt.io/qt/qobject.html#customEvent" translate="no">customEvent</a></b></span>(QEvent *)</li>
@@ -132,6 +133,7 @@
 <li class="fn" translate="no"><span class="name"><b><a href="https://doc.qt.io/qt/qobject.html#disconnect-4" translate="no">disconnect</a></b></span>(const QMetaObject::Connection &amp;) : bool</li>
 <li class="fn" translate="no"><span class="name"><b><a href="https://doc.qt.io/qt/qobject.html#disconnect-5" translate="no">disconnect</a></b></span>(const QObject *, PointerToMemberFunction, const QObject *, PointerToMemberFunction) : bool</li>
 <li class="fn" translate="no"><span class="name"><b><a href="https://doc.qt.io/qt/qobject.html#disconnectNotify" translate="no">disconnectNotify</a></b></span>(const QMetaMethod &amp;)</li>
+<li class="fn" translate="no"><span class="name"><b><a href="qctmmessagebox.html#done" translate="no">done</a></b></span>(int)</li>
 <li class="fn" translate="no"><span class="name"><b><a href="https://doc.qt.io/qt/qdialog.html#done" translate="no">done</a></b></span>(int)</li>
 <li class="fn" translate="no"><span class="name"><b><a href="https://doc.qt.io/qt/qwidget.html#dragEnterEvent" translate="no">dragEnterEvent</a></b></span>(QDragEnterEvent *)</li>
 <li class="fn" translate="no"><span class="name"><b><a href="https://doc.qt.io/qt/qwidget.html#dragLeaveEvent" translate="no">dragLeaveEvent</a></b></span>(QDragLeaveEvent *)</li>
@@ -143,6 +145,7 @@
 <li class="fn" translate="no"><span class="name"><b><a href="https://doc.qt.io/qt/qwidget.html#effectiveWinId" translate="no">effectiveWinId</a></b></span>() const : WId</li>
 <li class="fn" translate="no"><span class="name"><b><a href="https://doc.qt.io/qt/qwidget.html#ensurePolished" translate="no">ensurePolished</a></b></span>() const</li>
 <li class="fn" translate="no"><span class="name"><b><a href="https://doc.qt.io/qt/qwidget.html#enterEvent" translate="no">enterEvent</a></b></span>(QEnterEvent *)</li>
+<li class="fn" translate="no"><span class="name"><b><a href="qctmdialog.html#event" translate="no">event</a></b></span>(QEvent *) : bool</li>
 <li class="fn" translate="no"><span class="name"><b><a href="https://doc.qt.io/qt/qwidget.html#event" translate="no">event</a></b></span>(QEvent *) : bool</li>
 <li class="fn" translate="no"><span class="name"><b><a href="https://doc.qt.io/qt/qobject.html#event" translate="no">event</a></b></span>(QEvent *) : bool</li>
 <li class="fn" translate="no"><span class="name"><b><a href="qctmdialog.html#eventFilter" translate="no">eventFilter</a></b></span>(QObject *, QEvent *) : bool</li>
@@ -193,6 +196,7 @@
 <li class="fn" translate="no"><span class="name"><b><a href="qctmmessagebox.html#icon" translate="no">icon</a></b></span>() const : QCtmMessageBox::Icon</li>
 <li class="fn" translate="no"><span class="name"><b><a href="qctmmessagebox.html#iconPixmap" translate="no">iconPixmap</a></b></span>() const : QPixmap</li>
 <li class="fn" translate="no"><span class="name"><b><a href="qctmmessagebox.html#information" translate="no">information</a></b></span>(QWidget *, const QString &amp;, const QString &amp;, QCtmMessageBox::StandardButtons, QCtmMessageBox::StandardButton) : QCtmMessageBox::StandardButton</li>
+<li class="fn" translate="no"><span class="name"><b><a href="qctmmessagebox.html#information-1" translate="no">information</a></b></span>(QWidget *, const QString &amp;, const QString &amp;, const std::chrono::seconds &amp;, QCtmMessageBox::StandardButtons, QCtmMessageBox::StandardButton) : QCtmMessageBox::StandardButton</li>
 <li class="fn" translate="no"><span class="name"><b><a href="https://doc.qt.io/qt/qobject.html#inherits" translate="no">inherits</a></b></span>(const char *) const : bool</li>
 <li class="fn" translate="no"><span class="name"><b><a href="https://doc.qt.io/qt/qwidget.html#initPainter" translate="no">initPainter</a></b></span>(QPainter *) const</li>
 <li class="fn" translate="no"><span class="name"><b><a href="https://doc.qt.io/qt/qwidget.html#inputMethodEvent" translate="no">inputMethodEvent</a></b></span>(QInputMethodEvent *)</li>
@@ -261,8 +265,8 @@
 <li class="fn" translate="no"><span class="name"><b><a href="https://doc.qt.io/qt/qwidget.html#mousePressEvent" translate="no">mousePressEvent</a></b></span>(QMouseEvent *)</li>
 <li class="fn" translate="no"><span class="name"><b><a href="https://doc.qt.io/qt/qwidget.html#mouseReleaseEvent" translate="no">mouseReleaseEvent</a></b></span>(QMouseEvent *)</li>
 <li class="fn" translate="no"><span class="name"><b><a href="https://doc.qt.io/qt/qwidget.html#pos-prop" translate="no">move</a></b></span>(const QPoint &amp;)</li>
-</ul></td><td class="topAlign"><ul>
 <li class="fn" translate="no"><span class="name"><b><a href="https://doc.qt.io/qt/qwidget.html#move-1" translate="no">move</a></b></span>(int, int)</li>
+</ul></td><td class="topAlign"><ul>
 <li class="fn" translate="no"><span class="name"><b><a href="https://doc.qt.io/qt/qwidget.html#moveEvent" translate="no">moveEvent</a></b></span>(QMoveEvent *)</li>
 <li class="fn" translate="no"><span class="name"><b><a href="https://doc.qt.io/qt/qobject.html#moveToThread" translate="no">moveToThread</a></b></span>(QThread *)</li>
 <li class="fn" translate="no"><span class="name"><b><a href="qctmdialog.html#nativeEvent" translate="no">nativeEvent</a></b></span>(const QByteArray &amp;, void *, qintptr *) : bool</li>
@@ -287,6 +291,7 @@
 <li class="fn" translate="no"><span class="name"><b><a href="https://doc.qt.io/qt/qwidget.html#previousInFocusChain" translate="no">previousInFocusChain</a></b></span>() const : QWidget *</li>
 <li class="fn" translate="no"><span class="name"><b><a href="https://doc.qt.io/qt/qobject.html#property" translate="no">property</a></b></span>(const char *) const : QVariant</li>
 <li class="fn" translate="no"><span class="name"><b><a href="qctmmessagebox.html#question" translate="no">question</a></b></span>(QWidget *, const QString &amp;, const QString &amp;, QCtmMessageBox::StandardButtons, QCtmMessageBox::StandardButton) : QCtmMessageBox::StandardButton</li>
+<li class="fn" translate="no"><span class="name"><b><a href="qctmmessagebox.html#question-1" translate="no">question</a></b></span>(QWidget *, const QString &amp;, const QString &amp;, const std::chrono::seconds &amp;, QCtmMessageBox::StandardButtons, QCtmMessageBox::StandardButton) : QCtmMessageBox::StandardButton</li>
 <li class="fn" translate="no"><span class="name"><b><a href="https://doc.qt.io/qt/qwidget.html#raise" translate="no">raise</a></b></span>()</li>
 <li class="fn" translate="no"><span class="name"><b><a href="https://doc.qt.io/qt/qobject.html#receivers" translate="no">receivers</a></b></span>(const char *) const : int</li>
 <li class="fn" translate="no"><span class="name"><b><a href="https://doc.qt.io/qt/qwidget.html#rect-prop" translate="no">rect</a></b></span>() const : QRect</li>
@@ -393,6 +398,8 @@
 <li class="fn" translate="no"><span class="name"><b><a href="qctmmessagebox.html#setText" translate="no">setText</a></b></span>(const QString &amp;)</li>
 <li class="fn" translate="no"><span class="name"><b><a href="qctmmessagebox.html#setTextFormat" translate="no">setTextFormat</a></b></span>(Qt::TextFormat)</li>
 <li class="fn" translate="no"><span class="name"><b><a href="qctmmessagebox.html#setTextInteractionFlags" translate="no">setTextInteractionFlags</a></b></span>(Qt::TextInteractionFlags)</li>
+<li class="fn" translate="no"><span class="name"><b><a href="qctmmessagebox.html#setTimeout" translate="no">setTimeout</a></b></span>(const std::chrono::seconds &amp;)</li>
+<li class="fn" translate="no"><span class="name"><b><a href="qctmmessagebox.html#setTimeoutVisible" translate="no">setTimeoutVisible</a></b></span>(bool)</li>
 <li class="fn" translate="no"><span class="name"><b><a href="qctmdialog.html#setTitleBar" translate="no">setTitleBar</a></b></span>(QCtmTitleBar *)</li>
 <li class="fn" translate="no"><span class="name"><b><a href="https://doc.qt.io/qt/qwidget.html#toolTip-prop" translate="no">setToolTip</a></b></span>(const QString &amp;)</li>
 <li class="fn" translate="no"><span class="name"><b><a href="https://doc.qt.io/qt/qwidget.html#toolTipDuration-prop" translate="no">setToolTipDuration</a></b></span>(int)</li>
@@ -441,6 +448,8 @@
 <li class="fn" translate="no"><span class="name"><b><a href="qctmmessagebox.html#textFormat" translate="no">textFormat</a></b></span>() const : Qt::TextFormat</li>
 <li class="fn" translate="no"><span class="name"><b><a href="qctmmessagebox.html#textInteractionFlags" translate="no">textInteractionFlags</a></b></span>() const : Qt::TextInteractionFlags</li>
 <li class="fn" translate="no"><span class="name"><b><a href="https://doc.qt.io/qt/qobject.html#thread" translate="no">thread</a></b></span>() const : QThread *</li>
+<li class="fn" translate="no"><span class="name"><b><a href="qctmmessagebox.html#timeout" translate="no">timeout</a></b></span>() const : const std::chrono::seconds &amp;</li>
+<li class="fn" translate="no"><span class="name"><b><a href="qctmmessagebox.html#timeoutVisible" translate="no">timeoutVisible</a></b></span>() const : bool</li>
 <li class="fn" translate="no"><span class="name"><b><a href="https://doc.qt.io/qt/qobject.html#timerEvent" translate="no">timerEvent</a></b></span>(QTimerEvent *)</li>
 <li class="fn" translate="no"><span class="name"><b><a href="qctmdialog.html#titleBar" translate="no">titleBar</a></b></span>() const : QCtmTitleBar *</li>
 <li class="fn" translate="no"><span class="name"><b><a href="https://doc.qt.io/qt/qwidget.html#toolTip-prop" translate="no">toolTip</a></b></span>() const : QString</li>
@@ -460,6 +469,7 @@
 <li class="fn" translate="no"><span class="name"><b><a href="https://doc.qt.io/qt/qwidget.html#updatesEnabled-prop" translate="no">updatesEnabled</a></b></span>() const : bool</li>
 <li class="fn" translate="no"><span class="name"><b><a href="https://doc.qt.io/qt/qwidget.html#visibleRegion" translate="no">visibleRegion</a></b></span>() const : QRegion</li>
 <li class="fn" translate="no"><span class="name"><b><a href="qctmmessagebox.html#warning" translate="no">warning</a></b></span>(QWidget *, const QString &amp;, const QString &amp;, QCtmMessageBox::StandardButtons, QCtmMessageBox::StandardButton) : QCtmMessageBox::StandardButton</li>
+<li class="fn" translate="no"><span class="name"><b><a href="qctmmessagebox.html#warning-1" translate="no">warning</a></b></span>(QWidget *, const QString &amp;, const QString &amp;, const std::chrono::seconds &amp;, QCtmMessageBox::StandardButtons, QCtmMessageBox::StandardButton) : QCtmMessageBox::StandardButton</li>
 <li class="fn" translate="no"><span class="name"><b><a href="https://doc.qt.io/qt/qwidget.html#whatsThis-prop" translate="no">whatsThis</a></b></span>() const : QString</li>
 <li class="fn" translate="no"><span class="name"><b><a href="https://doc.qt.io/qt/qwidget.html#wheelEvent" translate="no">wheelEvent</a></b></span>(QWheelEvent *)</li>
 <li class="fn" translate="no"><span class="name"><b><a href="https://doc.qt.io/qt/qwidget.html#width-prop" translate="no">width</a></b></span>() const : int</li>

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <QtHelpProject version="1.0">
-    <namespace>com.qcustomui.1.13.0</namespace>
+    <namespace>com.qcustomui.1.14.0</namespace>
     <virtualFolder>qcustomui</virtualFolder>
     <metaData name="version" value=""/>
     <customFilter name="QCustomUi">
@@ -457,6 +457,7 @@
             <keyword name="doTopButtonRect" id="QCtmRecentViewDelegate::doTopButtonRect" ref="qctmrecentviewdelegate.html#doTopButtonRect"/>
             <keyword name="dockArea" id="QCtmNavigationSidePane::dockArea" ref="qctmnavigationsidepane.html#dockArea"/>
             <keyword name="done" id="QCtmLoadingDialog::done" ref="qctmloadingdialog.html#done"/>
+            <keyword name="done" id="QCtmMessageBox::done" ref="qctmmessagebox.html#done"/>
             <keyword name="drawIcon" id="QCtmRecentViewDelegate::drawIcon" ref="qctmrecentviewdelegate.html#drawIcon"/>
             <keyword name="drawName" id="QCtmRecentViewDelegate::drawName" ref="qctmrecentviewdelegate.html#drawName"/>
             <keyword name="drawPath" id="QCtmRecentViewDelegate::drawPath" ref="qctmrecentviewdelegate.html#drawPath"/>
@@ -475,9 +476,12 @@
             <keyword name="errorIcon" id="QCtmLogWidget::errorIcon" ref="qctmlogwidget.html#errorIcon"/>
             <keyword name="errorIcon" id="QCtmLogWidget::errorIcon" ref="qctmlogwidget.html#errorIcon-prop"/>
             <keyword name="event" id="QCtmAbstractLogModel::event" ref="qctmabstractlogmodel.html#event"/>
+            <keyword name="event" id="QCtmDialog::event" ref="qctmdialog.html#event"/>
             <keyword name="event" id="QCtmEditLabel::event" ref="qctmeditlabel.html#event"/>
+            <keyword name="event" id="QCtmInputDialog::event" ref="qctminputdialog.html#event"/>
             <keyword name="event" id="QCtmIPAddressEdit::event" ref="qctmipaddressedit.html#event"/>
             <keyword name="event" id="QCtmPathBrowser::event" ref="qctmpathbrowser.html#event"/>
+            <keyword name="event" id="QCtmWindow::event" ref="qctmwindow.html#event"/>
             <keyword name="eventFilter" id="QCtmDialog::eventFilter" ref="qctmdialog.html#eventFilter"/>
             <keyword name="eventFilter" id="QCtmDigitKeyboard::eventFilter" ref="qctmdigitkeyboard.html#eventFilter"/>
             <keyword name="eventFilter" id="QCtmLoadingDialog::eventFilter" ref="qctmloadingdialog.html#eventFilter"/>
@@ -880,6 +884,8 @@
             <keyword name="setTexts" id="QCtmSelectionButtonBox::setTexts" ref="qctmselectionbuttonbox.html#setTexts"/>
             <keyword name="setTimeColor" id="QCtmMessageTipModel::setTimeColor" ref="qctmmessagetipmodel.html#setTimeColor"/>
             <keyword name="setTimeColor" id="QCtmMessageTipView::setTimeColor" ref="qctmmessagetipview.html#setTimeColor"/>
+            <keyword name="setTimeout" id="QCtmMessageBox::setTimeout" ref="qctmmessagebox.html#setTimeout"/>
+            <keyword name="setTimeoutVisible" id="QCtmMessageBox::setTimeoutVisible" ref="qctmmessagebox.html#setTimeoutVisible"/>
             <keyword name="setTipColor" id="QCtmMessageTipButton::setTipColor" ref="qctmmessagetipbutton.html#setTipColor"/>
             <keyword name="setTitle" id="QCtmDrawerItemWidget::setTitle" ref="qctmdraweritemwidget.html#setTitle"/>
             <keyword name="setTitle" id="QCtmMessageTipData::setTitle" ref="qctmmessagetipdata.html#setTitle"/>
@@ -965,6 +971,8 @@
             <keyword name="timeColor" id="QCtmMessageTipModel::timeColor" ref="qctmmessagetipmodel.html#timeColor-prop"/>
             <keyword name="timeColor" id="QCtmMessageTipView::timeColor" ref="qctmmessagetipview.html#timeColor"/>
             <keyword name="timeColor" id="QCtmMessageTipView::timeColor" ref="qctmmessagetipview.html#timeColor-prop"/>
+            <keyword name="timeout" id="QCtmMessageBox::timeout" ref="qctmmessagebox.html#timeout"/>
+            <keyword name="timeoutVisible" id="QCtmMessageBox::timeoutVisible" ref="qctmmessagebox.html#timeoutVisible"/>
             <keyword name="tipColor" id="QCtmMessageTipButton::tipColor" ref="qctmmessagetipbutton.html#tipColor"/>
             <keyword name="tipColor" id="QCtmMessageTipButton::tipColor" ref="qctmmessagetipbutton.html#tipColor-prop"/>
             <keyword name="title" id="QCtmDrawerItemWidget::title" ref="qctmdraweritemwidget.html#title"/>

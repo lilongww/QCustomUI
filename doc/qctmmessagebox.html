@@ -4,7 +4,7 @@
   <meta charset="utf-8">
 <!-- QCtmMessageBox.cpp -->
   <meta name="description" content="自定义外观的消息框，用法参考 QMessageBox.">
-  <title>QCtmMessageBox Class | QCustomUi 1.13.0</title>
+  <title>QCtmMessageBox Class | QCustomUi 1.14.0</title>
   <link rel="stylesheet" type="text/css" href="style/offline-simple.css" />
   <script type="text/javascript">
     document.getElementsByTagName("link").item(0).setAttribute("href", "style/offline.css");
@@ -26,10 +26,10 @@
     <div class="main-rounded">
         <div class="navigationbar">
         <ul>
-<li><a href="index.html" translate="no">QCustomUi 1.13.0</a></li>
+<li><a href="index.html" translate="no">QCustomUi 1.14.0</a></li>
 <li><a href="qcustomui-module.html" translate="no">QCustomUi</a></li>
 <li>QCtmMessageBox</li>
-<li id="buildversion">QCustomUi 1.13.0 Reference Documentation</li>
+<li id="buildversion">QCustomUi 1.14.0 Reference Documentation</li>
     </ul>
     </div>
 </div>
@@ -100,21 +100,30 @@
 <tr><td class="memItemLeft rightAlign topAlign"> void </td><td class="memItemRight bottomAlign"><b><a href="qctmmessagebox.html#setText" translate="no">setText</a></b>(const QString &amp;<i>text</i>)</td></tr>
 <tr><td class="memItemLeft rightAlign topAlign"> void </td><td class="memItemRight bottomAlign"><b><a href="qctmmessagebox.html#setTextFormat" translate="no">setTextFormat</a></b>(Qt::TextFormat <i>format</i>)</td></tr>
 <tr><td class="memItemLeft rightAlign topAlign"> void </td><td class="memItemRight bottomAlign"><b><a href="qctmmessagebox.html#setTextInteractionFlags" translate="no">setTextInteractionFlags</a></b>(Qt::TextInteractionFlags <i>flags</i>)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> void </td><td class="memItemRight bottomAlign"><b><a href="qctmmessagebox.html#setTimeout" translate="no">setTimeout</a></b>(const std::chrono::seconds &amp;<i>timeout</i>)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> void </td><td class="memItemRight bottomAlign"><b><a href="qctmmessagebox.html#setTimeoutVisible" translate="no">setTimeoutVisible</a></b>(bool <i>visible</i>)</td></tr>
 <tr><td class="memItemLeft rightAlign topAlign"> QCtmMessageBox::StandardButton </td><td class="memItemRight bottomAlign"><b><a href="qctmmessagebox.html#standardButton" translate="no">standardButton</a></b>(QAbstractButton *<i>button</i>) const</td></tr>
 <tr><td class="memItemLeft rightAlign topAlign"> QCtmMessageBox::StandardButtons </td><td class="memItemRight bottomAlign"><b><a href="qctmmessagebox.html#standardButtons" translate="no">standardButtons</a></b>() const</td></tr>
 <tr><td class="memItemLeft rightAlign topAlign"> QString </td><td class="memItemRight bottomAlign"><b><a href="qctmmessagebox.html#text" translate="no">text</a></b>() const</td></tr>
 <tr><td class="memItemLeft rightAlign topAlign"> Qt::TextFormat </td><td class="memItemRight bottomAlign"><b><a href="qctmmessagebox.html#textFormat" translate="no">textFormat</a></b>() const</td></tr>
 <tr><td class="memItemLeft rightAlign topAlign"> Qt::TextInteractionFlags </td><td class="memItemRight bottomAlign"><b><a href="qctmmessagebox.html#textInteractionFlags" translate="no">textInteractionFlags</a></b>() const</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> const std::chrono::seconds &amp;</td><td class="memItemRight bottomAlign"><b><a href="qctmmessagebox.html#timeout" translate="no">timeout</a></b>() const</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> bool </td><td class="memItemRight bottomAlign"><b><a href="qctmmessagebox.html#timeoutVisible" translate="no">timeoutVisible</a></b>() const</td></tr>
 </table></div>
 <h2 id="static-public-members">Static Public Members</h2>
 <div class="table"><table class="alignedsummary" translate="no">
 <tr><td class="memItemLeft rightAlign topAlign"> QCtmMessageBox::StandardButton </td><td class="memItemRight bottomAlign"><b><a href="qctmmessagebox.html#critical" translate="no">critical</a></b>(QWidget *<i>parent</i>, const QString &amp;<i>title</i>, const QString &amp;<i>text</i>, QCtmMessageBox::StandardButtons <i>buttons</i> = Ok, QCtmMessageBox::StandardButton <i>defaultButton</i> = NoButton)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> QCtmMessageBox::StandardButton </td><td class="memItemRight bottomAlign"><b><a href="qctmmessagebox.html#critical-1" translate="no">critical</a></b>(QWidget *<i>parent</i>, const QString &amp;<i>title</i>, const QString &amp;<i>text</i>, const std::chrono::seconds &amp;<i>timeout</i>, QCtmMessageBox::StandardButtons <i>buttons</i> = Ok, QCtmMessageBox::StandardButton <i>defaultButton</i> = NoButton)</td></tr>
 <tr><td class="memItemLeft rightAlign topAlign"> QCtmMessageBox::StandardButton </td><td class="memItemRight bottomAlign"><b><a href="qctmmessagebox.html#information" translate="no">information</a></b>(QWidget *<i>parent</i>, const QString &amp;<i>title</i>, const QString &amp;<i>text</i>, QCtmMessageBox::StandardButtons <i>buttons</i> = Ok, QCtmMessageBox::StandardButton <i>defaultButton</i> = NoButton)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> QCtmMessageBox::StandardButton </td><td class="memItemRight bottomAlign"><b><a href="qctmmessagebox.html#information-1" translate="no">information</a></b>(QWidget *<i>parent</i>, const QString &amp;<i>title</i>, const QString &amp;<i>text</i>, const std::chrono::seconds &amp;<i>timeout</i>, QCtmMessageBox::StandardButtons <i>buttons</i> = Ok, QCtmMessageBox::StandardButton <i>defaultButton</i> = NoButton)</td></tr>
 <tr><td class="memItemLeft rightAlign topAlign"> QCtmMessageBox::StandardButton </td><td class="memItemRight bottomAlign"><b><a href="qctmmessagebox.html#question" translate="no">question</a></b>(QWidget *<i>parent</i>, const QString &amp;<i>title</i>, const QString &amp;<i>text</i>, QCtmMessageBox::StandardButtons <i>buttons</i> = StandardButtons(Yes | No), QCtmMessageBox::StandardButton <i>defaultButton</i> = NoButton)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> QCtmMessageBox::StandardButton </td><td class="memItemRight bottomAlign"><b><a href="qctmmessagebox.html#question-1" translate="no">question</a></b>(QWidget *<i>parent</i>, const QString &amp;<i>title</i>, const QString &amp;<i>text</i>, const std::chrono::seconds &amp;<i>timeout</i>, QCtmMessageBox::StandardButtons <i>buttons</i> = StandardButtons(Yes | No), QCtmMessageBox::StandardButton <i>defaultButton</i> = NoButton)</td></tr>
 <tr><td class="memItemLeft rightAlign topAlign"> QCtmMessageBox::StandardButton </td><td class="memItemRight bottomAlign"><b><a href="qctmmessagebox.html#warning" translate="no">warning</a></b>(QWidget *<i>parent</i>, const QString &amp;<i>title</i>, const QString &amp;<i>text</i>, QCtmMessageBox::StandardButtons <i>buttons</i> = Ok, QCtmMessageBox::StandardButton <i>defaultButton</i> = NoButton)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> QCtmMessageBox::StandardButton </td><td class="memItemRight bottomAlign"><b><a href="qctmmessagebox.html#warning-1" translate="no">warning</a></b>(QWidget *<i>parent</i>, const QString &amp;<i>title</i>, const QString &amp;<i>text</i>, const std::chrono::seconds &amp;<i>timeout</i>, QCtmMessageBox::StandardButtons <i>buttons</i> = Ok, QCtmMessageBox::StandardButton <i>defaultButton</i> = NoButton)</td></tr>
 </table></div>
 <h2 id="reimplemented-protected-functions">Reimplemented Protected Functions</h2>
 <div class="table"><table class="alignedsummary" translate="no">
+<tr><td class="memItemLeft rightAlign topAlign"> virtual void </td><td class="memItemRight bottomAlign"><b><a href="qctmmessagebox.html#done" translate="no">done</a></b>(int <i>r</i>) override</td></tr>
 <tr><td class="memItemLeft rightAlign topAlign"> virtual void </td><td class="memItemRight bottomAlign"><b><a href="qctmmessagebox.html#showEvent" translate="no">showEvent</a></b>(QShowEvent *<i>event</i>) override</td></tr>
 </table></div>
 <!-- $$$QCtmMessageBox-description -->
@@ -292,11 +301,21 @@
 <p>构造一个错误消息弹窗，并指定标题文本 <i translate="no">title</i>, 显示文本 <i translate="no">text</i>, 按钮集合 <i translate="no">buttons</i>, 默认按钮 <i translate="no">defaultButton</i>, 父窗口 <i translate="no">parent</i>.</p>
 <p><b>See also </b><a href="https://doc.qt.io/qt/qmessagebox.html#critical" translate="no">QMessageBox::critical</a>.</p>
 <!-- @@@critical -->
+<!-- $$$critical$$$criticalQWidget*constQString&constQString&conststd::chrono::seconds&QCtmMessageBox::StandardButtonsQCtmMessageBox::StandardButton -->
+<h3 class="fn" translate="no" id="critical-1"><code translate="no">[static] </code><span class="type"><a href="qctmmessagebox.html#StandardButton-enum" translate="no">QCtmMessageBox::StandardButton</a></span> QCtmMessageBox::<span class="name">critical</span>(<span class="type"><a href="https://doc.qt.io/qt/qwidget.html#QWidget" translate="no">QWidget</a></span> *<i>parent</i>, const <span class="type"><a href="https://doc.qt.io/qt/qstring.html" translate="no">QString</a></span> &amp;<i>title</i>, const <span class="type"><a href="https://doc.qt.io/qt/qstring.html" translate="no">QString</a></span> &amp;<i>text</i>, const <span class="type">std::chrono::seconds</span> &amp;<i>timeout</i>, <span class="type"><a href="qctmmessagebox.html#StandardButton-enum" translate="no">QCtmMessageBox::StandardButtons</a></span> <i>buttons</i> = Ok, <span class="type"><a href="qctmmessagebox.html#StandardButton-enum" translate="no">QCtmMessageBox::StandardButton</a></span> <i>defaultButton</i> = NoButton)</h3>
+<p>This function overloads 构造一个错误消息弹窗，并指定标题文本 \a title, 显示文本 \a text, \a 超时自动关闭时间 \a timeout, 按钮集合 \a buttons,.</p>
+<p>默认按钮 <i translate="no">defaultButton</i>, 父窗口 <i translate="no">parent</i>.</p>
+<p><b>See also </b><a href="qctmmessagebox.html#critical" translate="no">critical</a>.</p>
+<!-- @@@critical -->
 <!-- $$$defaultButton[overload1]$$$defaultButton -->
 <h3 class="fn" translate="no" id="defaultButton"><span class="type"><a href="qctmmessagebox.html#StandardButton-enum" translate="no">QCtmMessageBox::StandardButton</a></span> QCtmMessageBox::<span class="name">defaultButton</span>()</h3>
 <p>返回默认按钮.</p>
 <p><b>See also </b><a href="qctmmessagebox.html#setDefaultButton" translate="no">setDefaultButton</a>.</p>
 <!-- @@@defaultButton -->
+<!-- $$$done[overload1]$$$doneint -->
+<h3 class="fn" translate="no" id="done"><code translate="no">[override virtual protected] </code><span class="type">void</span> QCtmMessageBox::<span class="name">done</span>(<span class="type">int</span> <i>r</i>)</h3>
+<p>Reimplements: <a href="https://doc.qt.io/qt/qdialog.html#done" translate="no">QDialog::done</a>(int r).</p>
+<!-- @@@done -->
 <!-- $$$icon -->
 <h3 class="fn" translate="no" id="icon"><span class="type"><a href="qctmmessagebox.html#Icon-enum" translate="no">QCtmMessageBox::Icon</a></span> QCtmMessageBox::<span class="name">icon</span>() const</h3>
 <p>返回显示图标.</p>
@@ -314,9 +333,21 @@
 <p>构造一个信息消息弹窗，并指定标题文本 <i translate="no">title</i>, 显示文本 <i translate="no">text</i>, 按钮集合 <i translate="no">buttons</i>, 默认按钮 <i translate="no">defaultButton</i>, 父窗口 <i translate="no">parent</i>.</p>
 <p><b>See also </b><a href="https://doc.qt.io/qt/qmessagebox.html#information" translate="no">QMessageBox::information</a>.</p>
 <!-- @@@information -->
+<!-- $$$information$$$informationQWidget*constQString&constQString&conststd::chrono::seconds&QCtmMessageBox::StandardButtonsQCtmMessageBox::StandardButton -->
+<h3 class="fn" translate="no" id="information-1"><code translate="no">[static] </code><span class="type"><a href="qctmmessagebox.html#StandardButton-enum" translate="no">QCtmMessageBox::StandardButton</a></span> QCtmMessageBox::<span class="name">information</span>(<span class="type"><a href="https://doc.qt.io/qt/qwidget.html#QWidget" translate="no">QWidget</a></span> *<i>parent</i>, const <span class="type"><a href="https://doc.qt.io/qt/qstring.html" translate="no">QString</a></span> &amp;<i>title</i>, const <span class="type"><a href="https://doc.qt.io/qt/qstring.html" translate="no">QString</a></span> &amp;<i>text</i>, const <span class="type">std::chrono::seconds</span> &amp;<i>timeout</i>, <span class="type"><a href="qctmmessagebox.html#StandardButton-enum" translate="no">QCtmMessageBox::StandardButtons</a></span> <i>buttons</i> = Ok, <span class="type"><a href="qctmmessagebox.html#StandardButton-enum" translate="no">QCtmMessageBox::StandardButton</a></span> <i>defaultButton</i> = NoButton)</h3>
+<p>This function overloads 构造一个信息消息弹窗，并指定标题文本 \a title, 显示文本 \a text, \a 超时自动关闭时间 \a timeout, 按钮集合 \a buttons,.</p>
+<p>默认按钮 <i translate="no">defaultButton</i>, 父窗口 <i translate="no">parent</i>.</p>
+<p><b>See also </b><a href="https://doc.qt.io/qt/qmessagebox.html#information" translate="no">QMessageBox::information</a>.</p>
+<!-- @@@information -->
 <!-- $$$question[overload1]$$$questionQWidget*constQString&constQString&QCtmMessageBox::StandardButtonsQCtmMessageBox::StandardButton -->
 <h3 class="fn" translate="no" id="question"><code translate="no">[static] </code><span class="type"><a href="qctmmessagebox.html#StandardButton-enum" translate="no">QCtmMessageBox::StandardButton</a></span> QCtmMessageBox::<span class="name">question</span>(<span class="type"><a href="https://doc.qt.io/qt/qwidget.html#QWidget" translate="no">QWidget</a></span> *<i>parent</i>, const <span class="type"><a href="https://doc.qt.io/qt/qstring.html" translate="no">QString</a></span> &amp;<i>title</i>, const <span class="type"><a href="https://doc.qt.io/qt/qstring.html" translate="no">QString</a></span> &amp;<i>text</i>, <span class="type"><a href="qctmmessagebox.html#StandardButton-enum" translate="no">QCtmMessageBox::StandardButtons</a></span> <i>buttons</i> = StandardButtons(Yes | No), <span class="type"><a href="qctmmessagebox.html#StandardButton-enum" translate="no">QCtmMessageBox::StandardButton</a></span> <i>defaultButton</i> = NoButton)</h3>
 <p>构造一个询问消息弹窗，并指定标题文本 <i translate="no">title</i>, 显示文本 <i translate="no">text</i>, 按钮集合 <i translate="no">buttons</i>, 默认按钮 <i translate="no">defaultButton</i>, 父窗口 <i translate="no">parent</i>.</p>
+<p><b>See also </b><a href="https://doc.qt.io/qt/qmessagebox.html#question" translate="no">QMessageBox::question</a>.</p>
+<!-- @@@question -->
+<!-- $$$question$$$questionQWidget*constQString&constQString&conststd::chrono::seconds&QCtmMessageBox::StandardButtonsQCtmMessageBox::StandardButton -->
+<h3 class="fn" translate="no" id="question-1"><code translate="no">[static] </code><span class="type"><a href="qctmmessagebox.html#StandardButton-enum" translate="no">QCtmMessageBox::StandardButton</a></span> QCtmMessageBox::<span class="name">question</span>(<span class="type"><a href="https://doc.qt.io/qt/qwidget.html#QWidget" translate="no">QWidget</a></span> *<i>parent</i>, const <span class="type"><a href="https://doc.qt.io/qt/qstring.html" translate="no">QString</a></span> &amp;<i>title</i>, const <span class="type"><a href="https://doc.qt.io/qt/qstring.html" translate="no">QString</a></span> &amp;<i>text</i>, const <span class="type">std::chrono::seconds</span> &amp;<i>timeout</i>, <span class="type"><a href="qctmmessagebox.html#StandardButton-enum" translate="no">QCtmMessageBox::StandardButtons</a></span> <i>buttons</i> = StandardButtons(Yes | No), <span class="type"><a href="qctmmessagebox.html#StandardButton-enum" translate="no">QCtmMessageBox::StandardButton</a></span> <i>defaultButton</i> = NoButton)</h3>
+<p>This function overloads 构造一个询问消息弹窗，并指定标题文本 \a title, 显示文本 \a text, \a 超时自动关闭时间 \a timeout, 按钮集合 \a buttons,.</p>
+<p>默认按钮 <i translate="no">defaultButton</i>, 父窗口 <i translate="no">parent</i>.</p>
 <p><b>See also </b><a href="https://doc.qt.io/qt/qmessagebox.html#question" translate="no">QMessageBox::question</a>.</p>
 <!-- @@@question -->
 <!-- $$$removeButton[overload1]$$$removeButtonQAbstractButton* -->
@@ -365,6 +396,17 @@
 <div class="admonition note"><p><b>Note: </b>Setter function for property <a href="qctmmessagebox.html#textInteractionFlags" translate="no">textInteractionFlags</a>. </p>
 </div><p><b>See also </b><a href="qctmmessagebox.html#textInteractionFlags" translate="no">textInteractionFlags</a>().</p>
 <!-- @@@setTextInteractionFlags -->
+<!-- $$$setTimeout[overload1]$$$setTimeoutconststd::chrono::seconds& -->
+<h3 class="fn" translate="no" id="setTimeout"><span class="type">void</span> QCtmMessageBox::<span class="name">setTimeout</span>(const <span class="type">std::chrono::seconds</span> &amp;<i>timeout</i>)</h3>
+<p>设置显示超时时间 <i translate="no">timeout</i>.</p>
+<p><b>See also </b><a href="qctmmessagebox.html#timeout" translate="no">timeout</a>.</p>
+<!-- @@@setTimeout -->
+<!-- $$$setTimeoutVisible -->
+<h3 class="fn" translate="no" id="setTimeoutVisible"><span class="type">void</span> QCtmMessageBox::<span class="name">setTimeoutVisible</span>(<span class="type">bool</span> <i>visible</i>)</h3>
+<p>设置倒计时文本是否可见 <i translate="no">visible</i>.</p>
+<div class="admonition note"><p><b>Note: </b>Setter function for property <a href="qctmmessagebox.html#timeoutVisible" translate="no">timeoutVisible</a>. </p>
+</div><p><b>See also </b><a href="qctmmessagebox.html#timeoutVisible" translate="no">timeoutVisible</a>.</p>
+<!-- @@@setTimeoutVisible -->
 <!-- $$$showEvent[overload1]$$$showEventQShowEvent* -->
 <h3 class="fn" translate="no" id="showEvent"><code translate="no">[override virtual protected] </code><span class="type">void</span> QCtmMessageBox::<span class="name">showEvent</span>(<span class="type"><a href="https://doc.qt.io/qt/qshowevent.html" translate="no">QShowEvent</a></span> *<i>event</i>)</h3>
 <p>Reimplements: <a href="https://doc.qt.io/qt/qdialog.html#showEvent" translate="no">QDialog::showEvent</a>(QShowEvent *event).</p>
@@ -397,9 +439,26 @@
 <div class="admonition note"><p><b>Note: </b>Getter function for property textInteractionFlags. </p>
 </div><p><b>See also </b><a href="qctmmessagebox.html#setTextInteractionFlags" translate="no">setTextInteractionFlags</a>.</p>
 <!-- @@@textInteractionFlags -->
+<!-- $$$timeout[overload1]$$$timeout -->
+<h3 class="fn" translate="no" id="timeout">const <span class="type">std::chrono::seconds</span> &amp;QCtmMessageBox::<span class="name">timeout</span>() const</h3>
+<p>返回显示超时时间.</p>
+<p><b>See also </b><a href="qctmmessagebox.html#setTimeout" translate="no">setTimeout</a>.</p>
+<!-- @@@timeout -->
+<!-- $$$timeoutVisible -->
+<h3 class="fn" translate="no" id="timeoutVisible"><span class="type">bool</span> QCtmMessageBox::<span class="name">timeoutVisible</span>() const</h3>
+<p>返回倒计时文本是否可见.</p>
+<div class="admonition note"><p><b>Note: </b>Getter function for property timeoutVisible. </p>
+</div><p><b>See also </b><a href="qctmmessagebox.html#setTimeoutVisible" translate="no">setTimeoutVisible</a>.</p>
+<!-- @@@timeoutVisible -->
 <!-- $$$warning[overload1]$$$warningQWidget*constQString&constQString&QCtmMessageBox::StandardButtonsQCtmMessageBox::StandardButton -->
 <h3 class="fn" translate="no" id="warning"><code translate="no">[static] </code><span class="type"><a href="qctmmessagebox.html#StandardButton-enum" translate="no">QCtmMessageBox::StandardButton</a></span> QCtmMessageBox::<span class="name">warning</span>(<span class="type"><a href="https://doc.qt.io/qt/qwidget.html#QWidget" translate="no">QWidget</a></span> *<i>parent</i>, const <span class="type"><a href="https://doc.qt.io/qt/qstring.html" translate="no">QString</a></span> &amp;<i>title</i>, const <span class="type"><a href="https://doc.qt.io/qt/qstring.html" translate="no">QString</a></span> &amp;<i>text</i>, <span class="type"><a href="qctmmessagebox.html#StandardButton-enum" translate="no">QCtmMessageBox::StandardButtons</a></span> <i>buttons</i> = Ok, <span class="type"><a href="qctmmessagebox.html#StandardButton-enum" translate="no">QCtmMessageBox::StandardButton</a></span> <i>defaultButton</i> = NoButton)</h3>
 <p>构造一个警告消息弹窗，并指定标题文本 <i translate="no">title</i>, 显示文本 <i translate="no">text</i>, 按钮集合 <i translate="no">buttons</i>, 默认按钮 <i translate="no">defaultButton</i>, 父窗口 <i translate="no">parent</i>.</p>
+<p><b>See also </b><a href="https://doc.qt.io/qt/qmessagebox.html#warning" translate="no">QMessageBox::warning</a>.</p>
+<!-- @@@warning -->
+<!-- $$$warning$$$warningQWidget*constQString&constQString&conststd::chrono::seconds&QCtmMessageBox::StandardButtonsQCtmMessageBox::StandardButton -->
+<h3 class="fn" translate="no" id="warning-1"><code translate="no">[static] </code><span class="type"><a href="qctmmessagebox.html#StandardButton-enum" translate="no">QCtmMessageBox::StandardButton</a></span> QCtmMessageBox::<span class="name">warning</span>(<span class="type"><a href="https://doc.qt.io/qt/qwidget.html#QWidget" translate="no">QWidget</a></span> *<i>parent</i>, const <span class="type"><a href="https://doc.qt.io/qt/qstring.html" translate="no">QString</a></span> &amp;<i>title</i>, const <span class="type"><a href="https://doc.qt.io/qt/qstring.html" translate="no">QString</a></span> &amp;<i>text</i>, const <span class="type">std::chrono::seconds</span> &amp;<i>timeout</i>, <span class="type"><a href="qctmmessagebox.html#StandardButton-enum" translate="no">QCtmMessageBox::StandardButtons</a></span> <i>buttons</i> = Ok, <span class="type"><a href="qctmmessagebox.html#StandardButton-enum" translate="no">QCtmMessageBox::StandardButton</a></span> <i>defaultButton</i> = NoButton)</h3>
+<p>This function overloads 构造一个警告消息弹窗，并指定标题文本 \a title, 显示文本 \a text, \a 超时自动关闭时间 \a timeout, 按钮集合 \a buttons,.</p>
+<p>默认按钮 <i translate="no">defaultButton</i>, 父窗口 <i translate="no">parent</i>.</p>
 <p><b>See also </b><a href="https://doc.qt.io/qt/qmessagebox.html#warning" translate="no">QMessageBox::warning</a>.</p>
 <!-- @@@warning -->
 </div>
