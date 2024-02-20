@@ -102,12 +102,20 @@ void QCtmHeaderView::paintSection(QPainter* painter, const QRect& rect, int logi
     if (!rect.isValid())
         return;
     { // header
+#if QT_VERSION_MAJOR < 6
+        QStyleOptionHeader opt;
+#else
         QStyleOptionHeaderV2 opt;
+#endif
         QPointF oldBO = painter->brushOrigin();
         initStyleOption(&opt);
         QBrush oBrushButton = opt.palette.brush(QPalette::Button);
         QBrush oBrushWindow = opt.palette.brush(QPalette::Window);
+#if QT_VERSION_MAJOR < 6
+        initStyleOption(&opt);
+#else
         initStyleOptionForIndex(&opt, logicalIndex);
+#endif
         opt.rect            = rect;
         opt.text            = "";
         QBrush nBrushButton = opt.palette.brush(QPalette::Button);

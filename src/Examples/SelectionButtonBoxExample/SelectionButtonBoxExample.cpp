@@ -9,25 +9,25 @@ SelectionButtonBoxExample::SelectionButtonBoxExample(QWidget* parent) : QCtmWind
 {
     auto layout = new QVBoxLayout(this->centralWidget());
     {
-        auto box = new QCtmSelectionButtonBox({ u8"选项1", u8"选项2", u8"增强分辨率" });
+        auto box = new QCtmSelectionButtonBox({ "Test1", "Test2", "Test3" });
         layout->addWidget(box);
     }
     {
         auto box = new QCtmSelectionButtonBox();
         layout->addWidget(box);
-        box->setTexts({ u8"选项1", u8"选项2", u8"选项3" });
+        box->setTexts({ { "Test1", "Test2", "Test3" } });
         box->setExclusionPolicy(QCtmSelectionButtonBox::ExclusionPolicy::Exclusive);
     }
     {
         auto box = new QCtmSelectionButtonBox();
         layout->addWidget(box);
-        box->setTexts({ u8"选项1", u8"选项2", u8"选项3" });
+        box->setTexts({ { "Test1", "Test2", "Test3" } });
         box->setExclusionPolicy(QCtmSelectionButtonBox::ExclusionPolicy::ExclusiveOptional);
     }
     {
         auto box = new QCtmSelectionButtonBox(Qt::Vertical);
         layout->addWidget(box);
-        box->setTexts({ u8"选项1", u8"选项2", u8"选项3" });
+        box->setTexts({ { "Test1", "Test2", "Test3" } });
         box->setExclusionPolicy(QCtmSelectionButtonBox::ExclusionPolicy::ExclusiveOptional);
     }
 }

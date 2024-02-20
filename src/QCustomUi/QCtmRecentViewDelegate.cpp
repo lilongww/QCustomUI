@@ -18,6 +18,7 @@
 **********************************************************************************/
 #include "QCtmRecentViewDelegate.h"
 #include "Private/QCtmXPM.h"
+#include "Private/QtVersionAdapter.h"
 #include "QCtmRecentModel.h"
 #include "QCtmRecentView.h"
 
@@ -266,7 +267,7 @@ bool QCtmRecentViewDelegate::eventFilter(QObject* object, QEvent* event)
         case QEvent::MouseMove:
             {
                 auto e             = dynamic_cast<QMouseEvent*>(event);
-                m_impl->mousePoint = e->position().toPoint();
+                m_impl->mousePoint = QtVersionAdapter::eventPos(e);
                 w->update();
             }
             break;
@@ -276,14 +277,15 @@ bool QCtmRecentViewDelegate::eventFilter(QObject* object, QEvent* event)
                 if (e->button() == Qt::LeftButton)
                 {
                     auto view  = qobject_cast<QAbstractItemView*>(parent());
-                    auto index = view->indexAt(e->position().toPoint());
+                    auto index = view->indexAt(QtVersionAdapter::eventPos(e));
                     if (index.isValid())
                     {
                         auto rect = view->visualRect(index);
-                        if (rect.contains(e->position().toPoint()))
+                        if (rect.contains(QtVersionAdapter::eventPos(e)))
                         {
-                            m_impl->pressedIndex =
-                                doTopButtonRect(rect).contains(e->position().toPoint()) ? std::optional<QModelIndex>(index) : std::nullopt;
+                            m_impl->pressedIndex = doTopButtonRect(rect).contains(QtVersionAdapter::eventPos(e))
+                                                       ? std::optional<QModelIndex>(index)
+                                                       : std::nullopt;
                             w->update();
                             return true;
                         }
@@ -300,13 +302,13 @@ bool QCtmRecentViewDelegate::eventFilter(QObject* object, QEvent* event)
                 {
                     m_impl->pressed = false;
                     auto view       = qobject_cast<QAbstractItemView*>(parent());
-                    auto index      = view->indexAt(e->position().toPoint());
+                    auto index      = view->indexAt(QtVersionAdapter::eventPos(e));
                     if (index.isValid())
                     {
                         auto rect = view->visualRect(index);
-                        if (rect.contains(e->position().toPoint()))
+                        if (rect.contains(QtVersionAdapter::eventPos(e)))
                         {
-                            bool inTopButton = doTopButtonRect(rect).contains(e->position().toPoint());
+                            bool inTopButton = doTopButtonRect(rect).contains(QtVersionAdapter::eventPos(e));
                             if (m_impl->pressedIndex && *m_impl->pressedIndex == index && inTopButton)
                             {
                                 if (m_impl->topButtonVisible)

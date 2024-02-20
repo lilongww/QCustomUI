@@ -17,20 +17,16 @@
 **  along with QCustomUi.  If not, see <https://www.gnu.org/licenses/>.         **
 **********************************************************************************/
 
-#pragma once
+#include <QMouseEvent>
 
-#include <QStyleOption>
-
+namespace QtVersionAdapter
+{
+inline QPoint eventPos(QMouseEvent* e)
+{
 #if QT_VERSION_MAJOR < 6
-class QCtmStyleOptionSelectionButtonBox : public QStyleOptionHeader
-{
-public:
-    using QStyleOptionHeader::QStyleOptionHeader;
-};
+    return e->pos();
 #else
-class QCtmStyleOptionSelectionButtonBox : public QStyleOptionHeaderV2
-{
-public:
-    using QStyleOptionHeaderV2::QStyleOptionHeaderV2;
-};
+    return e->position().toPoint();
 #endif
+}
+} // namespace QtVersionAdapter

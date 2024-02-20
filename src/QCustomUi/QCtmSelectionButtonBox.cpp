@@ -18,6 +18,7 @@
 **********************************************************************************/
 #include "QCtmSelectionButtonBox.h"
 #include "Private/QCtmStyleOptionSelectionButtonBox.h"
+#include "Private/QtVersionAdapter.h"
 
 #include <QApplication>
 #include <QMouseEvent>
@@ -290,7 +291,7 @@ void QCtmSelectionButtonBox::mouseReleaseEvent(QMouseEvent* event)
     case ExclusionPolicy::Exclusive:
         for (int i = 0; i < m_impl->datas.size(); ++i)
         {
-            if (calcSizes()[i].contains(event->position().toPoint()))
+            if (calcSizes()[i].contains(QtVersionAdapter::eventPos(event)))
             {
                 setChecked(i, true);
                 break;
@@ -300,7 +301,7 @@ void QCtmSelectionButtonBox::mouseReleaseEvent(QMouseEvent* event)
     case ExclusionPolicy::None:
         for (int i = 0; i < m_impl->datas.size(); ++i)
         {
-            if (calcSizes()[i].contains(event->position().toPoint()))
+            if (calcSizes()[i].contains(QtVersionAdapter::eventPos(event)))
             {
                 setChecked(i, !m_impl->datas[i].checked);
                 break;
@@ -310,7 +311,7 @@ void QCtmSelectionButtonBox::mouseReleaseEvent(QMouseEvent* event)
     case ExclusionPolicy::ExclusiveOptional:
         for (int i = 0; i < m_impl->datas.size(); ++i)
         {
-            if (calcSizes()[i].contains(event->position().toPoint()))
+            if (calcSizes()[i].contains(QtVersionAdapter::eventPos(event)))
             {
                 setChecked(i, !m_impl->datas[i].checked);
                 break;
@@ -326,7 +327,7 @@ void QCtmSelectionButtonBox::mouseReleaseEvent(QMouseEvent* event)
 */
 void QCtmSelectionButtonBox::mouseMoveEvent(QMouseEvent* event)
 {
-    m_impl->mousePos = event->position().toPoint();
+    m_impl->mousePos = QtVersionAdapter::eventPos(event);
     update();
     QWidget::mouseMoveEvent(event);
 }
@@ -426,6 +427,10 @@ std::vector<QRect> QCtmSelectionButtonBox::calcSizes() const
                 offset += ret[i].width();
             }
         }
+        if (ret.size() > 1)
+            ret.back().setWidth(
+                this->width() -
+                std::accumulate(ret.begin(), (ret.rbegin() + 1).base(), 0, [](int w, const auto& rect) { return w + rect.width(); }));
     }
     else
     {
@@ -434,11 +439,11 @@ std::vector<QRect> QCtmSelectionButtonBox::calcSizes() const
             rect = QRect(0, offset, width(), this->height() / m_impl->datas.size());
             offset += rect.height();
         }
+        if (ret.size() > 1)
+            ret.back().setHeight(
+                this->height() -
+                std::accumulate(ret.begin(), (ret.rbegin() + 1).base(), 0, [](int w, const auto& rect) { return w + rect.height(); }));
     }
-    if (ret.size() > 1)
-        ret.back().setWidth(
-            this->width() -
-            std::accumulate(ret.begin(), (ret.rbegin() + 1).base(), 0, [](int w, const auto& rect) { return w + rect.width(); }));
     m_impl->sizesCache = ret;
     return ret;
 }

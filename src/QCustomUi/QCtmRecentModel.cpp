@@ -209,8 +209,16 @@ QModelIndex QCtmRecentModel::parent(const QModelIndex& child) const
 {
     if (child.internalPointer())
     {
-        auto it = std::find_if(
-            m_impl->sorted.begin(), m_impl->sorted.end(), [&](const auto& vec) { return &vec == child.constInternalPointer(); });
+        auto it = std::find_if(m_impl->sorted.begin(),
+                               m_impl->sorted.end(),
+                               [&](const auto& vec)
+                               {
+#if QT_VERSION_MAJOR < 6
+                                   return &vec == child.internalPointer();
+#else
+                                   return &vec == child.constInternalPointer();
+#endif
+                               });
         if (it != m_impl->sorted.end())
         {
             return createIndex(std::distance(m_impl->sorted.begin(), it), 0, nullptr);

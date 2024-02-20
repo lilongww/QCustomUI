@@ -3,6 +3,7 @@
 #include <QDoubleSpinBox>
 #include <QLineEdit>
 #include <QPushButton>
+#include <QScopeGuard>
 #include <QScreen>
 #include <QSignalSpy>
 #include <QSpinBox>
