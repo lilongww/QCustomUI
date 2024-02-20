@@ -18,6 +18,7 @@
 **********************************************************************************/
 
 #include "QCtmHeaderView.h"
+#include "Private/qheaderview_p.h"
 
 #include <QDebug>
 #include <QMouseEvent>
@@ -111,11 +112,7 @@ void QCtmHeaderView::paintSection(QPainter* painter, const QRect& rect, int logi
         initStyleOption(&opt);
         QBrush oBrushButton = opt.palette.brush(QPalette::Button);
         QBrush oBrushWindow = opt.palette.brush(QPalette::Window);
-#if QT_VERSION_MAJOR < 6
-        initStyleOption(&opt);
-#else
         initStyleOptionForIndex(&opt, logicalIndex);
-#endif
         opt.rect            = rect;
         opt.text            = "";
         QBrush nBrushButton = opt.palette.brush(QPalette::Button);
@@ -170,7 +167,6 @@ void QCtmHeaderView::mousePressEvent(QMouseEvent* e)
             QHeaderView::mousePressEvent(e);
             return;
         }
-
         if (auto it = m_impl->readOnlyState.find(logicalIndex); it != m_impl->readOnlyState.end() && it->second)
         {
             QHeaderView::mousePressEvent(e);
@@ -241,6 +237,137 @@ QSize QCtmHeaderView::sectionSizeFromContents(int logicalIndex) const
     }
     return size;
 }
+
+#if QT_VERSION_MAJOR < 6
+void QCtmHeaderView::initStyleOptionForIndex(QStyleOptionHeader* option, int logicalIndex) const
+{
+    Q_D(const QHeaderView);
+
+    auto isSectionSelected = [d](int section)
+    {
+        int i = section * 2;
+        if (i < 0 || i >= d->sectionSelected.size())
+            return false;
+        if (d->sectionSelected.testBit(i)) // if the value was cached
+            return d->sectionSelected.testBit(i + 1);
+        bool s = false;
+        if (d->orientation == Qt::Horizontal)
+            s = d->isColumnSelected(section);
+        else
+            s = d->isRowSelected(section);
+        d->sectionSelected.setBit(i + 1, s); // selection state
+        d->sectionSelected.setBit(i, true);  // cache state
+        return s;
+    };
+
+    if (!option)
+        return;
+    QStyleOptionHeader& opt = *option;
+
+    QStyle::State state = QStyle::State_None;
+    if (window()->isActiveWindow())
+        state |= QStyle::State_Active;
+    if (d->clickableSections)
+    {
+        if (logicalIndex == d->hover)
+            state |= QStyle::State_MouseOver;
+        if (logicalIndex == d->pressed)
+            state |= QStyle::State_Sunken;
+        else if (d->highlightSelected)
+        {
+            if (d->sectionIntersectsSelection(logicalIndex))
+                state |= QStyle::State_On;
+            if (isSectionSelected(logicalIndex))
+                state |= QStyle::State_Sunken;
+        }
+    }
+    if (isSortIndicatorShown() && sortIndicatorSection() == logicalIndex)
+        opt.sortIndicator = (sortIndicatorOrder() == Qt::AscendingOrder) ? QStyleOptionHeader::SortDown : QStyleOptionHeader::SortUp;
+
+    // setup the style options structure
+    QVariant textAlignment = d->model->headerData(logicalIndex, d->orientation, Qt::TextAlignmentRole);
+    opt.section            = logicalIndex;
+    opt.state |= state;
+    opt.textAlignment = textAlignment.isValid() ? textAlignment.value<Qt::Alignment>() : d->defaultAlignment;
+
+    opt.iconAlignment = Qt::AlignVCenter;
+    opt.text          = d->model->headerData(logicalIndex, d->orientation, Qt::DisplayRole).toString();
+
+    const QVariant variant = d->model->headerData(logicalIndex, d->orientation, Qt::DecorationRole);
+    opt.icon               = qvariant_cast<QIcon>(variant);
+    if (opt.icon.isNull())
+        opt.icon = qvariant_cast<QPixmap>(variant);
+
+    QVariant var = d->model->headerData(logicalIndex, d->orientation, Qt::FontRole);
+    if (var.isValid() && var.canConvert<QFont>())
+        opt.fontMetrics = QFontMetrics(qvariant_cast<QFont>(var));
+
+    QVariant foregroundBrush = d->model->headerData(logicalIndex, d->orientation, Qt::ForegroundRole);
+    if (foregroundBrush.canConvert<QBrush>())
+        opt.palette.setBrush(QPalette::ButtonText, qvariant_cast<QBrush>(foregroundBrush));
+
+    QVariant backgroundBrush = d->model->headerData(logicalIndex, d->orientation, Qt::BackgroundRole);
+    if (backgroundBrush.canConvert<QBrush>())
+    {
+        opt.palette.setBrush(QPalette::Button, qvariant_cast<QBrush>(backgroundBrush));
+        opt.palette.setBrush(QPalette::Window, qvariant_cast<QBrush>(backgroundBrush));
+    }
+
+    // the section position
+    int visual = visualIndex(logicalIndex);
+    Q_ASSERT(visual != -1);
+
+    auto recalcSectionStartPos = [d]()
+    {
+        int pixelpos = 0;
+        for (const QHeaderViewPrivate::SectionItem& i : d->sectionItems)
+        {
+            i.calculated_startpos = pixelpos; // write into const mutable
+            pixelpos += i.size;
+        }
+        d->sectionStartposRecalc = false;
+    };
+
+    auto isFirstVisibleSection = [d, &recalcSectionStartPos](int section)
+    {
+        if (d->sectionStartposRecalc)
+            recalcSectionStartPos();
+        const QHeaderViewPrivate::SectionItem& item = d->sectionItems.at(section);
+        return item.size > 0 && item.calculated_startpos == 0;
+    };
+
+    auto isLastVisibleSection = [d, &recalcSectionStartPos](int section)
+    {
+        if (d->sectionStartposRecalc)
+            recalcSectionStartPos();
+        const QHeaderViewPrivate::SectionItem& item = d->sectionItems.at(section);
+        return item.size > 0 && item.calculatedEndPos() == d->length;
+    };
+
+    bool first = isFirstVisibleSection(visual);
+    bool last  = isLastVisibleSection(visual);
+    if (first && last)
+        opt.position = QStyleOptionHeader::OnlyOneSection;
+    else if (first)
+        opt.position = d->reverse() ? QStyleOptionHeader::End : QStyleOptionHeader::Beginning;
+    else if (last)
+        opt.position = d->reverse() ? QStyleOptionHeader::Beginning : QStyleOptionHeader::End;
+    else
+        opt.position = QStyleOptionHeader::Middle;
+    opt.orientation = d->orientation;
+    // the selected position
+    bool previousSelected = isSectionSelected(this->logicalIndex(visual - 1));
+    bool nextSelected     = isSectionSelected(this->logicalIndex(visual + 1));
+    if (previousSelected && nextSelected)
+        opt.selectedPosition = QStyleOptionHeader::NextAndPreviousAreSelected;
+    else if (previousSelected)
+        opt.selectedPosition = QStyleOptionHeader::PreviousIsSelected;
+    else if (nextSelected)
+        opt.selectedPosition = QStyleOptionHeader::NextIsSelected;
+    else
+        opt.selectedPosition = QStyleOptionHeader::NotAdjacent;
+}
+#endif
 
 /*!
     \brief      响应 model reset.

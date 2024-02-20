@@ -25,6 +25,7 @@
 
 #include <memory>
 
+class QCtmHeaderViewPrivate;
 class QCUSTOMUI_EXPORT QCtmHeaderView : public QHeaderView
 {
     Q_OBJECT
@@ -41,10 +42,14 @@ protected:
     void mousePressEvent(QMouseEvent* e) override;
     QRect doCheckBoxRect(int logicalIndex) const;
     QSize sectionSizeFromContents(int logicalIndex) const override;
+#if QT_VERSION_MAJOR < 6
+    void initStyleOptionForIndex(QStyleOptionHeader* option, int logicalIndex) const;
+#endif
 private slots:
     void onModelReset();
 
 private:
     struct Impl;
     std::unique_ptr<Impl> m_impl;
+    Q_DECLARE_PRIVATE(QHeaderView)
 };
