@@ -20,6 +20,7 @@
 #include "QCtmMaximumSizeButton_p.h"
 
 #include <QStyleOption>
+#include <QStylePainter>
 
 QCtmMaximumSizeButton::QCtmMaximumSizeButton(QWidget* parent) : QToolButton(parent), m_maxsized(false) {}
 
@@ -56,3 +57,13 @@ void QCtmMaximumSizeButton::initStyleOption(QStyleOptionToolButton* option) cons
     QToolButton::initStyleOption(option);
     option->icon = m_maxsized ? m_maximumSizedIcon : m_revertIcon;
 }
+
+#if QT_VERSION_MAJOR < 6
+void QCtmMaximumSizeButton::paintEvent(QPaintEvent* e)
+{
+    QStylePainter p(this);
+    QStyleOptionToolButton opt;
+    initStyleOption(&opt);
+    p.drawComplexControl(QStyle::CC_ToolButton, opt);
+}
+#endif

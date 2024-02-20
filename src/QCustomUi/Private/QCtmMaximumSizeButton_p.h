@@ -42,6 +42,9 @@ signals:
 
 protected:
     virtual void initStyleOption(QStyleOptionToolButton* option) const;
+#if QT_VERSION_MAJOR < 6
+    void paintEvent(QPaintEvent* e) override;
+#endif
 
 private:
     bool m_maxsized;
