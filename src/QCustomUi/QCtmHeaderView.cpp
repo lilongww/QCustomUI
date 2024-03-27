@@ -156,10 +156,11 @@ void QCtmHeaderView::mousePressEvent(QMouseEvent* e)
 {
     if (e->button() == Qt::LeftButton)
     {
+        const bool isHorizontal = orientation() == Qt::Horizontal;
 #if QT_VERSION < QT_VERSION_CHECK(6, 0, 0)
-        auto pos = orientation() == Qt::Horizontal ? e->x() : e->y();
+        auto pos = isHorizontal ? e->x() : e->y();
 #else
-        auto pos = orientation() == Qt::Horizontal ? e->position().x() : e->position().y();
+        auto pos = isHorizontal ? e->position().x() : e->position().y();
 #endif
         auto logicalIndex = logicalIndexAt(static_cast<int>(pos));
         if (logicalIndex < 0)
@@ -184,23 +185,38 @@ void QCtmHeaderView::mousePressEvent(QMouseEvent* e)
         const auto& rect = doCheckBoxRect(logicalIndex);
         if (rect.contains(e->pos()))
         {
-            auto count = orientation() == Qt::Horizontal ? model()->rowCount() : model()->columnCount();
-            model()->blockSignals(true);
-            for (int i = 0; i < count; i++)
+            state = state == Qt::Checked ? Qt::Unchecked : Qt::Checked;
+            if (isHorizontal)
             {
-                const auto& index = Qt::Horizontal ? model()->index(i, logicalIndex) : model()->index(logicalIndex, i);
-                if (index.isValid())
+                std::function<void(int, const QModelIndex&)> visiter = [&](int count, const QModelIndex& parent)
                 {
-                    model()->setData(index, state == Qt::Checked ? Qt::Unchecked : Qt::Checked, Qt::CheckStateRole);
+                    for (int i = 0; i < count; ++i)
+                    {
+                        const auto& index = model()->index(i, logicalIndex, parent);
+                        if (index.isValid())
+                        {
+                            model()->setData(index, state, Qt::CheckStateRole);
+                            if (model()->hasChildren(index))
+                            {
+                                visiter(model()->rowCount(index), index);
+                            }
+                        }
+                    }
+                };
+
+                visiter(model()->rowCount(), QModelIndex());
+            }
+            else
+            {
+                for (int i = 0; i < model()->columnCount(); ++i)
+                {
+                    const auto& index = model()->index(logicalIndex, i);
+                    if (index.isValid())
+                    {
+                        model()->setData(index, state, Qt::CheckStateRole);
+                    }
                 }
             }
-            model()->blockSignals(false);
-            if (Qt::Horizontal == orientation())
-                emit model()->dataChanged(
-                    model()->index(0, logicalIndex), model()->index(model()->rowCount() - 1, logicalIndex), { Qt::CheckStateRole });
-            else
-                emit model()->dataChanged(
-                    model()->index(logicalIndex, 0), model()->index(logicalIndex, model()->columnCount() - 1), { Qt::CheckStateRole });
             return;
         }
     }
@@ -376,18 +392,19 @@ void QCtmHeaderView::onModelReset()
 {
     if (!model())
         return;
+    const bool isHorizontal = orientation() == Qt::Horizontal;
     m_impl->state.resize(model()->columnCount());
-    int jCount = orientation() == Qt::Horizontal ? model()->columnCount() : model()->rowCount();
+    int jCount = isHorizontal ? model()->columnCount() : model()->rowCount();
     for (int j = 0; j < jCount; j++)
     {
         bool checkable { false };
         bool hasChecked { false };
         bool hasUnChecked { false };
         bool hasPartiallyChecked { false };
-        int iCount = orientation() == Qt::Horizontal ? model()->rowCount() : model()->columnCount();
+        int iCount = isHorizontal ? model()->rowCount() : model()->columnCount();
         for (int i = 0; i < iCount; i++)
         {
-            auto index = orientation() == Qt::Horizontal ? model()->index(i, j) : model()->index(j, i);
+            auto index = isHorizontal ? model()->index(i, j) : model()->index(j, i);
             if (!checkable)
                 checkable = index.flags().testFlag(Qt::ItemIsUserCheckable);
             switch (index.data(Qt::CheckStateRole).value<Qt::CheckState>())
