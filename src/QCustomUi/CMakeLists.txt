@@ -191,6 +191,10 @@ if(MSVC)
     list(APPEND RESOURCES ${QCUSTOMUI_VERSIONINFO_RC})
 endif(MSVC)
 
+set(QCUSTOMUI_VERSION_H ${CMAKE_CURRENT_BINARY_DIR}/Version.h)
+configure_file("${PROJECT_SOURCE_DIR}/cmake/Version.h.in" "${QCUSTOMUI_VERSION_H}")
+list(APPEND HEADERS ${QCUSTOMUI_VERSION_H}) 
+
 source_group("Headers" FILES ${HEADERS})
 source_group("Headers/Log" FILES ${LOG_HEADERS})
 source_group("Headers/Private" FILES ${PRIVATRE_HEADERS})
