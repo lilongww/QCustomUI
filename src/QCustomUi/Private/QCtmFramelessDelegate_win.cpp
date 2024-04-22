@@ -384,10 +384,13 @@ void QCtmWinFramelessDelegate::setWindowLong()
     {
         extendFrameIntoClientArea(m_impl->parent->windowHandle(), -1, -1, -1, -1);
     }
-    RECT rect;
-    GetWindowRect(hwnd, &rect);
-    SetWindowPos(
-        hwnd, nullptr, rect.left, rect.top, rect.right - rect.left, rect.bottom - rect.top, SWP_FRAMECHANGED | SWP_NOMOVE | SWP_NOSIZE);
+    if (!m_impl->parent->windowFlags().testAnyFlags(Qt::Tool | Qt::ToolTip))
+    {
+        RECT rect;
+        GetWindowRect(hwnd, &rect);
+        SetWindowPos(
+            hwnd, nullptr, rect.left, rect.top, rect.right - rect.left, rect.bottom - rect.top, SWP_FRAMECHANGED | SWP_NOMOVE | SWP_NOSIZE);
+    }
 }
 
 void QCtmWinFramelessDelegate::showSystemMenu(const QPoint& pos)
