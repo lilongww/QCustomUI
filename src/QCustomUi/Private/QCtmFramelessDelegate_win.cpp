@@ -95,7 +95,6 @@ struct QCtmWinFramelessDelegate::Impl
     QWidget* parent { nullptr };
     bool firstShow { true };
     WINDOWPLACEMENT wndPlaceMent;
-    std::optional<QRect> workRect;
     HMONITOR monitor { nullptr };
     inline void resetMargins(HWND hwnd)
     {
@@ -111,17 +110,6 @@ struct QCtmWinFramelessDelegate::Impl
     };
     inline double dpiScale(double value) { return value / parent->devicePixelRatioF(); }
     inline double unDpiScale(double value) { return value * parent->devicePixelRatioF(); }
-    inline void checkMonitorChanged()
-    {
-        auto hwnd       = reinterpret_cast<HWND>(parent->winId());
-        auto newMonitor = MonitorFromWindow(hwnd, MONITOR_DEFAULTTONULL);
-        if (newMonitor != monitor)
-        {
-            monitor = newMonitor;
-            if (auto ret = getScreenNativeWorkRect(hwnd); ret)
-                workRect = ret;
-        }
-    }
 };
 
 QCtmWinFramelessDelegate::QCtmWinFramelessDelegate(QWidget* parent, const QWidgetList& moveBars)
@@ -133,11 +121,6 @@ QCtmWinFramelessDelegate::QCtmWinFramelessDelegate(QWidget* parent, const QWidge
 
     parent->installEventFilter(this);
     m_impl->moveBars = moveBars;
-    m_impl->workRect = getScreenNativeWorkRect(reinterpret_cast<HWND>(parent->winId()));
-    connect(parent->screen(),
-            &QScreen::availableGeometryChanged,
-            this,
-            [=](const QRect&) { m_impl->workRect = getScreenNativeWorkRect(reinterpret_cast<HWND>(parent->winId())); });
 }
 
 QCtmWinFramelessDelegate::QCtmWinFramelessDelegate(QWidget* parent, QWidget* title)
@@ -217,21 +200,6 @@ bool QCtmWinFramelessDelegate::nativeEvent(const QByteArray& eventType, void* me
             {
                 if (IsZoomed(msg->hwnd))
                 {
-                    // m_impl->checkMonitorChanged();
-                    // auto rc = m_impl->workRect;
-                    // if (!rc)
-                    //     return false;
-                    //  if (auto ret = DefWindowProcW(msg->hwnd, WM_NCCALCSIZE, msg->wParam, msg->lParam); ret)
-                    //{
-                    //      *result = ret;
-                    //      return true;
-                    //  }
-                    //  NCCALCSIZE_PARAMS* ncParam = reinterpret_cast<NCCALCSIZE_PARAMS*>(msg->lParam);
-                    //  ncParam->rgrc[0].top       = rc->top();
-                    //  ncParam->rgrc[0].bottom    = rc->bottom() + 1;
-                    //  ncParam->rgrc[0].left      = rc->left();
-                    //  ncParam->rgrc[0].right     = rc->right();
-                    //*result = 0;
                     return true;
                 }
                 else // 优化窗口大小调整闪烁问题
@@ -593,11 +561,6 @@ bool QCtmWinFramelessDelegate::onNCTitTest(MSG* msg, qintptr* result)
             if (it != w->children().end() && w->metaObject()->className() != QString("QWidget") &&
                 w->metaObject()->className() != QString("QLabel"))
             {
-                // if ((*it)->property("qcustomui_maximumSizeButton").isValid())
-                //{
-                //     *result = HTMAXBUTTON;
-                //     return false;
-                // }
                 *result = HTCLIENT;
                 return false;
             }
