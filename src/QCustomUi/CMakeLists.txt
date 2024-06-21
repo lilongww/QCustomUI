@@ -61,6 +61,7 @@ set(INPUT_HEADERS
  "QCtmPathBrowser.h"
  "QCtmDigitKeyboard.h"
  "QCtmLongLongSpinBox.h"
+ "QCtmULongLongSpinBox.h"
 )
 
 set(INPUT_SOURCES
@@ -71,6 +72,7 @@ set(INPUT_SOURCES
  "QCtmPathBrowser.cpp"
  "QCtmDigitKeyboard.cpp"
  "QCtmLongLongSpinBox.cpp"
+ "QCtmULongLongSpinBox.cpp"
 )
 
 set(CONTAINERS_HEADERS
