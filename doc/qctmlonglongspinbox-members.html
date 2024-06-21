@@ -2,9 +2,9 @@
 <html lang="en">
 <head>
   <meta charset="utf-8">
-<!-- QCtmEditLabel.cpp -->
-  <meta name="description" content="QLabel的扩展，可进行编辑.">
-  <title>List of All Members for QCtmEditLabel | QCustomUi 1.15.0</title>
+<!-- QCtmLongLongSpinBox.cpp -->
+  <meta name="description" content="64位长整型输入框，弥补Qt库QSpinBox输入框仅支持32位整型，API接口与QSpinBox一致.">
+  <title>List of All Members for QCtmLongLongSpinBox | QCustomUi 1.15.0</title>
   <link rel="stylesheet" type="text/css" href="style/offline-simple.css" />
   <script type="text/javascript">
     document.getElementsByTagName("link").item(0).setAttribute("href", "style/offline.css");
@@ -28,7 +28,7 @@
         <ul>
 <li><a href="index.html" translate="no">QCustomUi 1.15.0</a></li>
 <li><a href="qcustomui-module.html" translate="no">QCustomUi</a></li>
-<li>QCtmEditLabel</li>
+<li>QCtmLongLongSpinBox</li>
 <li id="buildversion">QCustomUi 1.15.0 Reference Documentation</li>
     </ul>
     </div>
@@ -37,19 +37,20 @@
 <div class="line">
 <div class="content mainContent">
 <div class="sidebar"><div class="sidebar-content" id="sidebar-content"></div></div>
-<h1 class="title" translate="no">List of All Members for QCtmEditLabel</h1>
-<p>This is the complete list of members for <a href="qctmeditlabel.html">QCtmEditLabel</a>, including inherited members.</p>
+<h1 class="title" translate="no">List of All Members for QCtmLongLongSpinBox</h1>
+<p>This is the complete list of members for <a href="qctmlonglongspinbox.html">QCtmLongLongSpinBox</a>, including inherited members.</p>
 <div class="table"><table class="propsummary" translate="no">
 <tr><td class="topAlign"><ul>
+<li class="fn" translate="no">enum <span class="name"><b><a href="https://doc.qt.io/qt/qabstractspinbox.html#ButtonSymbols-enum" translate="no">ButtonSymbols</a></b></span></li>
+<li class="fn" translate="no">enum <span class="name"><b><a href="https://doc.qt.io/qt/qabstractspinbox.html#CorrectionMode-enum" translate="no">CorrectionMode</a></b></span></li>
 <li class="fn" translate="no">enum <span class="name"><b><a href="https://doc.qt.io/qt/qpaintdevice.html#PaintDeviceMetric-enum" translate="no">PaintDeviceMetric</a></b></span></li>
 <li class="fn" translate="no">enum <span class="name"><b><a href="https://doc.qt.io/qt/qwidget.html#RenderFlag-enum" translate="no">RenderFlag</a></b></span></li>
 <li class="fn" translate="no"><span class="name"><b><a href="https://doc.qt.io/qt/qwidget.html#RenderFlag-enum" translate="no">RenderFlags</a></b></span></li>
-<li class="fn" translate="no">enum <span class="name"><b><a href="https://doc.qt.io/qt/qframe.html#Shadow-enum" translate="no">Shadow</a></b></span></li>
-<li class="fn" translate="no">enum <span class="name"><b><a href="https://doc.qt.io/qt/qframe.html#Shape-enum" translate="no">Shape</a></b></span></li>
-<li class="fn" translate="no">enum <span class="name"><b><a href="https://doc.qt.io/qt/qframe.html#StyleMask-enum" translate="no">StyleMask</a></b></span></li>
-<li class="fn" translate="no"><span class="name"><b><a href="qctmeditlabel.html#QCtmEditLabel" translate="no">QCtmEditLabel</a></b></span>(QWidget *, Qt::WindowFlags)</li>
-<li class="fn" translate="no"><span class="name"><b><a href="qctmeditlabel.html#QCtmEditLabel-1" translate="no">QCtmEditLabel</a></b></span>(const QString &amp;, QWidget *, Qt::WindowFlags)</li>
-<li class="fn" translate="no"><span class="name"><b><a href="qctmeditlabel.html#dtor.QCtmEditLabel" translate="no">~QCtmEditLabel</a></b></span>()</li>
+<li class="fn" translate="no"><span class="name"><b><a href="https://doc.qt.io/qt/qabstractspinbox.html#StepEnabledFlag-enum" translate="no">StepEnabled</a></b></span></li>
+<li class="fn" translate="no">enum <span class="name"><b><a href="https://doc.qt.io/qt/qabstractspinbox.html#StepEnabledFlag-enum" translate="no">StepEnabledFlag</a></b></span></li>
+<li class="fn" translate="no">enum <span class="name"><b><a href="https://doc.qt.io/qt/qabstractspinbox.html#StepType-enum" translate="no">StepType</a></b></span></li>
+<li class="fn" translate="no"><span class="name"><b><a href="qctmlonglongspinbox.html#QCtmLongLongSpinBox" translate="no">QCtmLongLongSpinBox</a></b></span>(QWidget *)</li>
+<li class="fn" translate="no"><span class="name"><b><a href="qctmlonglongspinbox.html#dtor.QCtmLongLongSpinBox" translate="no">~QCtmLongLongSpinBox</a></b></span>()</li>
 <li class="fn" translate="no"><span class="name"><b><a href="https://doc.qt.io/qt/qwidget.html#acceptDrops-prop" translate="no">acceptDrops</a></b></span>() const : bool</li>
 <li class="fn" translate="no"><span class="name"><b><a href="https://doc.qt.io/qt/qwidget.html#accessibleDescription-prop" translate="no">accessibleDescription</a></b></span>() const : QString</li>
 <li class="fn" translate="no"><span class="name"><b><a href="https://doc.qt.io/qt/qwidget.html#accessibleName-prop" translate="no">accessibleName</a></b></span>() const : QString</li>
@@ -71,16 +72,15 @@
 <li class="fn" translate="no"><span class="name"><b><a href="https://doc.qt.io/qt/qwidget.html#addAction-12" translate="no">addAction</a></b></span>(const QIcon &amp;, const QString &amp;, const QKeySequence &amp;, Args &amp;&amp;...) : QAction *</li>
 <li class="fn" translate="no"><span class="name"><b><a href="https://doc.qt.io/qt/qwidget.html#addActions" translate="no">addActions</a></b></span>(const QList&lt;QAction *&gt; &amp;)</li>
 <li class="fn" translate="no"><span class="name"><b><a href="https://doc.qt.io/qt/qwidget.html#adjustSize" translate="no">adjustSize</a></b></span>()</li>
-<li class="fn" translate="no"><span class="name"><b><a href="https://doc.qt.io/qt/qlabel.html#alignment-prop" translate="no">alignment</a></b></span>() const : Qt::Alignment</li>
+<li class="fn" translate="no"><span class="name"><b><a href="https://doc.qt.io/qt/qabstractspinbox.html#alignment-prop" translate="no">alignment</a></b></span>() const : Qt::Alignment</li>
 <li class="fn" translate="no"><span class="name"><b><a href="https://doc.qt.io/qt/qwidget.html#autoFillBackground-prop" translate="no">autoFillBackground</a></b></span>() const : bool</li>
 <li class="fn" translate="no"><span class="name"><b><a href="https://doc.qt.io/qt/qwidget.html#backgroundRole" translate="no">backgroundRole</a></b></span>() const : QPalette::ColorRole</li>
 <li class="fn" translate="no"><span class="name"><b><a href="https://doc.qt.io/qt/qwidget.html#backingStore" translate="no">backingStore</a></b></span>() const : QBackingStore *</li>
 <li class="fn" translate="no"><span class="name"><b><a href="https://doc.qt.io/qt/qwidget.html#baseSize-prop" translate="no">baseSize</a></b></span>() const : QSize</li>
 <li class="fn" translate="no"><span class="name"><b><a href="https://doc.qt.io/qt/qobject.html#objectName-prop" translate="no">bindableObjectName</a></b></span>() : QBindable&lt;QString&gt;</li>
 <li class="fn" translate="no"><span class="name"><b><a href="https://doc.qt.io/qt/qobject.html#blockSignals" translate="no">blockSignals</a></b></span>(bool) : bool</li>
-<li class="fn" translate="no"><span class="name"><b><a href="https://doc.qt.io/qt/qlabel.html#buddy" translate="no">buddy</a></b></span>() const : QWidget *</li>
-<li class="fn" translate="no"><span class="name"><b><a href="https://doc.qt.io/qt/qlabel.html#changeEvent" translate="no">changeEvent</a></b></span>(QEvent *)</li>
-<li class="fn" translate="no"><span class="name"><b><a href="https://doc.qt.io/qt/qframe.html#changeEvent" translate="no">changeEvent</a></b></span>(QEvent *)</li>
+<li class="fn" translate="no"><span class="name"><b><a href="https://doc.qt.io/qt/qabstractspinbox.html#buttonSymbols-prop" translate="no">buttonSymbols</a></b></span>() const : QAbstractSpinBox::ButtonSymbols</li>
+<li class="fn" translate="no"><span class="name"><b><a href="https://doc.qt.io/qt/qabstractspinbox.html#changeEvent" translate="no">changeEvent</a></b></span>(QEvent *)</li>
 <li class="fn" translate="no"><span class="name"><b><a href="https://doc.qt.io/qt/qwidget.html#changeEvent" translate="no">changeEvent</a></b></span>(QEvent *)</li>
 <li class="fn" translate="no"><span class="name"><b><a href="https://doc.qt.io/qt/qwidget.html#childAt" translate="no">childAt</a></b></span>(int, int) const : QWidget *</li>
 <li class="fn" translate="no"><span class="name"><b><a href="https://doc.qt.io/qt/qwidget.html#childAt-1" translate="no">childAt</a></b></span>(const QPoint &amp;) const : QWidget *</li>
@@ -88,10 +88,12 @@
 <li class="fn" translate="no"><span class="name"><b><a href="https://doc.qt.io/qt/qobject.html#children" translate="no">children</a></b></span>() const : const QObjectList &amp;</li>
 <li class="fn" translate="no"><span class="name"><b><a href="https://doc.qt.io/qt/qwidget.html#childrenRect-prop" translate="no">childrenRect</a></b></span>() const : QRect</li>
 <li class="fn" translate="no"><span class="name"><b><a href="https://doc.qt.io/qt/qwidget.html#childrenRegion-prop" translate="no">childrenRegion</a></b></span>() const : QRegion</li>
-<li class="fn" translate="no"><span class="name"><b><a href="https://doc.qt.io/qt/qlabel.html#clear" translate="no">clear</a></b></span>()</li>
+<li class="fn" translate="no"><span class="name"><b><a href="qctmlonglongspinbox.html#cleanText" translate="no">cleanText</a></b></span>() const : QString</li>
+<li class="fn" translate="no"><span class="name"><b><a href="https://doc.qt.io/qt/qabstractspinbox.html#clear" translate="no">clear</a></b></span>()</li>
 <li class="fn" translate="no"><span class="name"><b><a href="https://doc.qt.io/qt/qwidget.html#clearFocus" translate="no">clearFocus</a></b></span>()</li>
 <li class="fn" translate="no"><span class="name"><b><a href="https://doc.qt.io/qt/qwidget.html#clearMask" translate="no">clearMask</a></b></span>()</li>
 <li class="fn" translate="no"><span class="name"><b><a href="https://doc.qt.io/qt/qwidget.html#close" translate="no">close</a></b></span>() : bool</li>
+<li class="fn" translate="no"><span class="name"><b><a href="https://doc.qt.io/qt/qabstractspinbox.html#closeEvent" translate="no">closeEvent</a></b></span>(QCloseEvent *)</li>
 <li class="fn" translate="no"><span class="name"><b><a href="https://doc.qt.io/qt/qwidget.html#closeEvent" translate="no">closeEvent</a></b></span>(QCloseEvent *)</li>
 <li class="fn" translate="no"><span class="name"><b><a href="https://doc.qt.io/qt/qpaintdevice.html#colorCount" translate="no">colorCount</a></b></span>() const : int</li>
 <li class="fn" translate="no"><span class="name"><b><a href="https://doc.qt.io/qt/qobject.html#connect" translate="no">connect</a></b></span>(const QObject *, const char *, const QObject *, const char *, Qt::ConnectionType) : QMetaObject::Connection</li>
@@ -103,9 +105,10 @@
 <li class="fn" translate="no"><span class="name"><b><a href="https://doc.qt.io/qt/qobject.html#connectNotify" translate="no">connectNotify</a></b></span>(const QMetaMethod &amp;)</li>
 <li class="fn" translate="no"><span class="name"><b><a href="https://doc.qt.io/qt/qwidget.html#contentsMargins" translate="no">contentsMargins</a></b></span>() const : QMargins</li>
 <li class="fn" translate="no"><span class="name"><b><a href="https://doc.qt.io/qt/qwidget.html#contentsRect" translate="no">contentsRect</a></b></span>() const : QRect</li>
-<li class="fn" translate="no"><span class="name"><b><a href="https://doc.qt.io/qt/qlabel.html#contextMenuEvent" translate="no">contextMenuEvent</a></b></span>(QContextMenuEvent *)</li>
+<li class="fn" translate="no"><span class="name"><b><a href="https://doc.qt.io/qt/qabstractspinbox.html#contextMenuEvent" translate="no">contextMenuEvent</a></b></span>(QContextMenuEvent *)</li>
 <li class="fn" translate="no"><span class="name"><b><a href="https://doc.qt.io/qt/qwidget.html#contextMenuEvent" translate="no">contextMenuEvent</a></b></span>(QContextMenuEvent *)</li>
 <li class="fn" translate="no"><span class="name"><b><a href="https://doc.qt.io/qt/qwidget.html#contextMenuPolicy-prop" translate="no">contextMenuPolicy</a></b></span>() const : Qt::ContextMenuPolicy</li>
+<li class="fn" translate="no"><span class="name"><b><a href="https://doc.qt.io/qt/qabstractspinbox.html#correctionMode-prop" translate="no">correctionMode</a></b></span>() const : QAbstractSpinBox::CorrectionMode</li>
 <li class="fn" translate="no"><span class="name"><b><a href="https://doc.qt.io/qt/qwidget.html#create" translate="no">create</a></b></span>(WId, bool, bool)</li>
 <li class="fn" translate="no"><span class="name"><b><a href="https://doc.qt.io/qt/qwidget.html#createWindowContainer" translate="no">createWindowContainer</a></b></span>(QWindow *, QWidget *, Qt::WindowFlags) : QWidget *</li>
 <li class="fn" translate="no"><span class="name"><b><a href="https://doc.qt.io/qt/qwidget.html#cursor-prop" translate="no">cursor</a></b></span>() const : QCursor</li>
@@ -124,6 +127,7 @@
 <li class="fn" translate="no"><span class="name"><b><a href="https://doc.qt.io/qt/qobject.html#disconnect-4" translate="no">disconnect</a></b></span>(const QMetaObject::Connection &amp;) : bool</li>
 <li class="fn" translate="no"><span class="name"><b><a href="https://doc.qt.io/qt/qobject.html#disconnect-5" translate="no">disconnect</a></b></span>(const QObject *, PointerToMemberFunction, const QObject *, PointerToMemberFunction) : bool</li>
 <li class="fn" translate="no"><span class="name"><b><a href="https://doc.qt.io/qt/qobject.html#disconnectNotify" translate="no">disconnectNotify</a></b></span>(const QMetaMethod &amp;)</li>
+<li class="fn" translate="no"><span class="name"><b><a href="qctmlonglongspinbox.html#displayIntegerBase" translate="no">displayIntegerBase</a></b></span>() const : int</li>
 <li class="fn" translate="no"><span class="name"><b><a href="https://doc.qt.io/qt/qwidget.html#dragEnterEvent" translate="no">dragEnterEvent</a></b></span>(QDragEnterEvent *)</li>
 <li class="fn" translate="no"><span class="name"><b><a href="https://doc.qt.io/qt/qwidget.html#dragLeaveEvent" translate="no">dragLeaveEvent</a></b></span>(QDragLeaveEvent *)</li>
 <li class="fn" translate="no"><span class="name"><b><a href="https://doc.qt.io/qt/qwidget.html#dragMoveEvent" translate="no">dragMoveEvent</a></b></span>(QDragMoveEvent *)</li>
@@ -131,14 +135,12 @@
 <li class="fn" translate="no"><span class="name"><b><a href="https://doc.qt.io/qt/qobject.html#dumpObjectInfo" translate="no">dumpObjectInfo</a></b></span>() const</li>
 <li class="fn" translate="no"><span class="name"><b><a href="https://doc.qt.io/qt/qobject.html#dumpObjectTree" translate="no">dumpObjectTree</a></b></span>() const</li>
 <li class="fn" translate="no"><span class="name"><b><a href="https://doc.qt.io/qt/qobject.html#dynamicPropertyNames" translate="no">dynamicPropertyNames</a></b></span>() const : QList&lt;QByteArray&gt;</li>
-<li class="fn" translate="no"><span class="name"><b><a href="qctmeditlabel.html#editButtonIcon" translate="no">editButtonIcon</a></b></span>() const : QIcon</li>
-<li class="fn" translate="no"><span class="name"><b><a href="qctmeditlabel.html#editFinished" translate="no">editFinished</a></b></span>()</li>
+<li class="fn" translate="no"><span class="name"><b><a href="https://doc.qt.io/qt/qabstractspinbox.html#editingFinished" translate="no">editingFinished</a></b></span>()</li>
 <li class="fn" translate="no"><span class="name"><b><a href="https://doc.qt.io/qt/qwidget.html#effectiveWinId" translate="no">effectiveWinId</a></b></span>() const : WId</li>
 <li class="fn" translate="no"><span class="name"><b><a href="https://doc.qt.io/qt/qwidget.html#ensurePolished" translate="no">ensurePolished</a></b></span>() const</li>
 <li class="fn" translate="no"><span class="name"><b><a href="https://doc.qt.io/qt/qwidget.html#enterEvent" translate="no">enterEvent</a></b></span>(QEnterEvent *)</li>
-<li class="fn" translate="no"><span class="name"><b><a href="qctmeditlabel.html#event" translate="no">event</a></b></span>(QEvent *) : bool</li>
-<li class="fn" translate="no"><span class="name"><b><a href="https://doc.qt.io/qt/qlabel.html#event" translate="no">event</a></b></span>(QEvent *) : bool</li>
-<li class="fn" translate="no"><span class="name"><b><a href="https://doc.qt.io/qt/qframe.html#event" translate="no">event</a></b></span>(QEvent *) : bool</li>
+<li class="fn" translate="no"><span class="name"><b><a href="qctmlonglongspinbox.html#event" translate="no">event</a></b></span>(QEvent *) : bool</li>
+<li class="fn" translate="no"><span class="name"><b><a href="https://doc.qt.io/qt/qabstractspinbox.html#event" translate="no">event</a></b></span>(QEvent *) : bool</li>
 <li class="fn" translate="no"><span class="name"><b><a href="https://doc.qt.io/qt/qwidget.html#event" translate="no">event</a></b></span>(QEvent *) : bool</li>
 <li class="fn" translate="no"><span class="name"><b><a href="https://doc.qt.io/qt/qobject.html#event" translate="no">event</a></b></span>(QEvent *) : bool</li>
 <li class="fn" translate="no"><span class="name"><b><a href="https://doc.qt.io/qt/qobject.html#eventFilter" translate="no">eventFilter</a></b></span>(QObject *, QEvent *) : bool</li>
@@ -148,13 +150,13 @@
 <li class="fn" translate="no"><span class="name"><b><a href="https://doc.qt.io/qt/qobject.html#findChildren" translate="no">findChildren</a></b></span>(QAnyStringView, Qt::FindChildOptions) const : QList&lt;T&gt;</li>
 <li class="fn" translate="no"><span class="name"><b><a href="https://doc.qt.io/qt/qobject.html#findChildren-1" translate="no">findChildren</a></b></span>(Qt::FindChildOptions) const : QList&lt;T&gt;</li>
 <li class="fn" translate="no"><span class="name"><b><a href="https://doc.qt.io/qt/qobject.html#findChildren-2" translate="no">findChildren</a></b></span>(const QRegularExpression &amp;, Qt::FindChildOptions) const : QList&lt;T&gt;</li>
-<li class="fn" translate="no"><span class="name"><b><a href="qctmeditlabel.html#finishButtonIcon" translate="no">finishButtonIcon</a></b></span>() const : QIcon</li>
-<li class="fn" translate="no"><span class="name"><b><a href="https://doc.qt.io/qt/qlabel.html#focusInEvent" translate="no">focusInEvent</a></b></span>(QFocusEvent *)</li>
+<li class="fn" translate="no"><span class="name"><b><a href="qctmlonglongspinbox.html#fixup" translate="no">fixup</a></b></span>(QString &amp;) const</li>
+<li class="fn" translate="no"><span class="name"><b><a href="https://doc.qt.io/qt/qabstractspinbox.html#fixup" translate="no">fixup</a></b></span>(QString &amp;) const</li>
+<li class="fn" translate="no"><span class="name"><b><a href="https://doc.qt.io/qt/qabstractspinbox.html#focusInEvent" translate="no">focusInEvent</a></b></span>(QFocusEvent *)</li>
 <li class="fn" translate="no"><span class="name"><b><a href="https://doc.qt.io/qt/qwidget.html#focusInEvent" translate="no">focusInEvent</a></b></span>(QFocusEvent *)</li>
 <li class="fn" translate="no"><span class="name"><b><a href="https://doc.qt.io/qt/qwidget.html#focusNextChild" translate="no">focusNextChild</a></b></span>() : bool</li>
-<li class="fn" translate="no"><span class="name"><b><a href="https://doc.qt.io/qt/qlabel.html#focusNextPrevChild" translate="no">focusNextPrevChild</a></b></span>(bool) : bool</li>
 <li class="fn" translate="no"><span class="name"><b><a href="https://doc.qt.io/qt/qwidget.html#focusNextPrevChild" translate="no">focusNextPrevChild</a></b></span>(bool) : bool</li>
-<li class="fn" translate="no"><span class="name"><b><a href="https://doc.qt.io/qt/qlabel.html#focusOutEvent" translate="no">focusOutEvent</a></b></span>(QFocusEvent *)</li>
+<li class="fn" translate="no"><span class="name"><b><a href="https://doc.qt.io/qt/qabstractspinbox.html#focusOutEvent" translate="no">focusOutEvent</a></b></span>(QFocusEvent *)</li>
 <li class="fn" translate="no"><span class="name"><b><a href="https://doc.qt.io/qt/qwidget.html#focusOutEvent" translate="no">focusOutEvent</a></b></span>(QFocusEvent *)</li>
 <li class="fn" translate="no"><span class="name"><b><a href="https://doc.qt.io/qt/qwidget.html#focusPolicy-prop" translate="no">focusPolicy</a></b></span>() const : Qt::FocusPolicy</li>
 <li class="fn" translate="no"><span class="name"><b><a href="https://doc.qt.io/qt/qwidget.html#focusPreviousChild" translate="no">focusPreviousChild</a></b></span>() : bool</li>
@@ -165,12 +167,7 @@
 <li class="fn" translate="no"><span class="name"><b><a href="https://doc.qt.io/qt/qwidget.html#fontMetrics" translate="no">fontMetrics</a></b></span>() const : QFontMetrics</li>
 <li class="fn" translate="no"><span class="name"><b><a href="https://doc.qt.io/qt/qwidget.html#foregroundRole" translate="no">foregroundRole</a></b></span>() const : QPalette::ColorRole</li>
 <li class="fn" translate="no"><span class="name"><b><a href="https://doc.qt.io/qt/qwidget.html#frameGeometry-prop" translate="no">frameGeometry</a></b></span>() const : QRect</li>
-<li class="fn" translate="no"><span class="name"><b><a href="https://doc.qt.io/qt/qframe.html#frameRect-prop" translate="no">frameRect</a></b></span>() const : QRect</li>
-<li class="fn" translate="no"><span class="name"><b><a href="https://doc.qt.io/qt/qframe.html#frameShadow-prop" translate="no">frameShadow</a></b></span>() const : QFrame::Shadow</li>
-<li class="fn" translate="no"><span class="name"><b><a href="https://doc.qt.io/qt/qframe.html#frameShape-prop" translate="no">frameShape</a></b></span>() const : QFrame::Shape</li>
 <li class="fn" translate="no"><span class="name"><b><a href="https://doc.qt.io/qt/qwidget.html#frameSize-prop" translate="no">frameSize</a></b></span>() const : QSize</li>
-<li class="fn" translate="no"><span class="name"><b><a href="https://doc.qt.io/qt/qframe.html#frameStyle" translate="no">frameStyle</a></b></span>() const : int</li>
-<li class="fn" translate="no"><span class="name"><b><a href="https://doc.qt.io/qt/qframe.html#frameWidth-prop" translate="no">frameWidth</a></b></span>() const : int</li>
 <li class="fn" translate="no"><span class="name"><b><a href="https://doc.qt.io/qt/qwidget.html#geometry-prop" translate="no">geometry</a></b></span>() const : const QRect &amp;</li>
 <li class="fn" translate="no"><span class="name"><b><a href="https://doc.qt.io/qt/qwidget.html#grab" translate="no">grab</a></b></span>(const QRect &amp;) : QPixmap</li>
 <li class="fn" translate="no"><span class="name"><b><a href="https://doc.qt.io/qt/qwidget.html#grabGesture" translate="no">grabGesture</a></b></span>(Qt::GestureType, Qt::GestureFlags)</li>
@@ -180,41 +177,44 @@
 <li class="fn" translate="no"><span class="name"><b><a href="https://doc.qt.io/qt/qwidget.html#grabShortcut" translate="no">grabShortcut</a></b></span>(const QKeySequence &amp;, Qt::ShortcutContext) : int</li>
 <li class="fn" translate="no"><span class="name"><b><a href="https://doc.qt.io/qt/qwidget.html#graphicsEffect" translate="no">graphicsEffect</a></b></span>() const : QGraphicsEffect *</li>
 <li class="fn" translate="no"><span class="name"><b><a href="https://doc.qt.io/qt/qwidget.html#graphicsProxyWidget" translate="no">graphicsProxyWidget</a></b></span>() const : QGraphicsProxyWidget *</li>
+<li class="fn" translate="no"><span class="name"><b><a href="https://doc.qt.io/qt/qabstractspinbox.html#acceptableInput-prop" translate="no">hasAcceptableInput</a></b></span>() const : bool</li>
 <li class="fn" translate="no"><span class="name"><b><a href="https://doc.qt.io/qt/qwidget.html#hasEditFocus" translate="no">hasEditFocus</a></b></span>() const : bool</li>
 <li class="fn" translate="no"><span class="name"><b><a href="https://doc.qt.io/qt/qwidget.html#focus-prop" translate="no">hasFocus</a></b></span>() const : bool</li>
+<li class="fn" translate="no"><span class="name"><b><a href="https://doc.qt.io/qt/qabstractspinbox.html#frame-prop" translate="no">hasFrame</a></b></span>() const : bool</li>
 <li class="fn" translate="no"><span class="name"><b><a href="https://doc.qt.io/qt/qwidget.html#hasHeightForWidth" translate="no">hasHeightForWidth</a></b></span>() const : bool</li>
 <li class="fn" translate="no"><span class="name"><b><a href="https://doc.qt.io/qt/qwidget.html#mouseTracking-prop" translate="no">hasMouseTracking</a></b></span>() const : bool</li>
-<li class="fn" translate="no"><span class="name"><b><a href="https://doc.qt.io/qt/qlabel.html#scaledContents-prop" translate="no">hasScaledContents</a></b></span>() const : bool</li>
-<li class="fn" translate="no"><span class="name"><b><a href="https://doc.qt.io/qt/qlabel.html#hasSelectedText-prop" translate="no">hasSelectedText</a></b></span>() const : bool</li>
 <li class="fn" translate="no"><span class="name"><b><a href="https://doc.qt.io/qt/qwidget.html#tabletTracking-prop" translate="no">hasTabletTracking</a></b></span>() const : bool</li>
 <li class="fn" translate="no"><span class="name"><b><a href="https://doc.qt.io/qt/qwidget.html#height-prop" translate="no">height</a></b></span>() const : int</li>
 <li class="fn" translate="no"><span class="name"><b><a href="https://doc.qt.io/qt/qpaintdevice.html#height" translate="no">height</a></b></span>() const : int</li>
-<li class="fn" translate="no"><span class="name"><b><a href="https://doc.qt.io/qt/qlabel.html#heightForWidth" translate="no">heightForWidth</a></b></span>(int) const : int</li>
 <li class="fn" translate="no"><span class="name"><b><a href="https://doc.qt.io/qt/qwidget.html#heightForWidth" translate="no">heightForWidth</a></b></span>(int) const : int</li>
 <li class="fn" translate="no"><span class="name"><b><a href="https://doc.qt.io/qt/qpaintdevice.html#heightMM" translate="no">heightMM</a></b></span>() const : int</li>
 <li class="fn" translate="no"><span class="name"><b><a href="https://doc.qt.io/qt/qwidget.html#hide" translate="no">hide</a></b></span>()</li>
+<li class="fn" translate="no"><span class="name"><b><a href="https://doc.qt.io/qt/qabstractspinbox.html#hideEvent" translate="no">hideEvent</a></b></span>(QHideEvent *)</li>
 <li class="fn" translate="no"><span class="name"><b><a href="https://doc.qt.io/qt/qwidget.html#hideEvent" translate="no">hideEvent</a></b></span>(QHideEvent *)</li>
-<li class="fn" translate="no"><span class="name"><b><a href="https://doc.qt.io/qt/qlabel.html#indent-prop" translate="no">indent</a></b></span>() const : int</li>
 <li class="fn" translate="no"><span class="name"><b><a href="https://doc.qt.io/qt/qobject.html#inherits" translate="no">inherits</a></b></span>(const char *) const : bool</li>
 <li class="fn" translate="no"><span class="name"><b><a href="https://doc.qt.io/qt/qwidget.html#initPainter" translate="no">initPainter</a></b></span>(QPainter *) const</li>
-<li class="fn" translate="no"><span class="name"><b><a href="https://doc.qt.io/qt/qframe.html#initStyleOption" translate="no">initStyleOption</a></b></span>(QStyleOptionFrame *) const</li>
+<li class="fn" translate="no"><span class="name"><b><a href="https://doc.qt.io/qt/qabstractspinbox.html#initStyleOption" translate="no">initStyleOption</a></b></span>(QStyleOptionSpinBox *) const</li>
 <li class="fn" translate="no"><span class="name"><b><a href="https://doc.qt.io/qt/qwidget.html#inputMethodEvent" translate="no">inputMethodEvent</a></b></span>(QInputMethodEvent *)</li>
 <li class="fn" translate="no"><span class="name"><b><a href="https://doc.qt.io/qt/qwidget.html#inputMethodHints-prop" translate="no">inputMethodHints</a></b></span>() const : Qt::InputMethodHints</li>
+<li class="fn" translate="no"><span class="name"><b><a href="https://doc.qt.io/qt/qabstractspinbox.html#inputMethodQuery" translate="no">inputMethodQuery</a></b></span>(Qt::InputMethodQuery) const : QVariant</li>
 <li class="fn" translate="no"><span class="name"><b><a href="https://doc.qt.io/qt/qwidget.html#inputMethodQuery" translate="no">inputMethodQuery</a></b></span>(Qt::InputMethodQuery) const : QVariant</li>
 <li class="fn" translate="no"><span class="name"><b><a href="https://doc.qt.io/qt/qwidget.html#insertAction" translate="no">insertAction</a></b></span>(QAction *, QAction *)</li>
 <li class="fn" translate="no"><span class="name"><b><a href="https://doc.qt.io/qt/qwidget.html#insertActions" translate="no">insertActions</a></b></span>(QAction *, const QList&lt;QAction *&gt; &amp;)</li>
 <li class="fn" translate="no"><span class="name"><b><a href="https://doc.qt.io/qt/qobject.html#installEventFilter" translate="no">installEventFilter</a></b></span>(QObject *)</li>
+<li class="fn" translate="no"><span class="name"><b><a href="https://doc.qt.io/qt/qabstractspinbox.html#interpretText" translate="no">interpretText</a></b></span>()</li>
+<li class="fn" translate="no"><span class="name"><b><a href="https://doc.qt.io/qt/qabstractspinbox.html#accelerated-prop" translate="no">isAccelerated</a></b></span>() const : bool</li>
 <li class="fn" translate="no"><span class="name"><b><a href="https://doc.qt.io/qt/qwidget.html#isActiveWindow-prop" translate="no">isActiveWindow</a></b></span>() const : bool</li>
 <li class="fn" translate="no"><span class="name"><b><a href="https://doc.qt.io/qt/qwidget.html#isAncestorOf" translate="no">isAncestorOf</a></b></span>(const QWidget *) const : bool</li>
 <li class="fn" translate="no"><span class="name"><b><a href="https://doc.qt.io/qt/qwidget.html#enabled-prop" translate="no">isEnabled</a></b></span>() const : bool</li>
 <li class="fn" translate="no"><span class="name"><b><a href="https://doc.qt.io/qt/qwidget.html#isEnabledTo" translate="no">isEnabledTo</a></b></span>(const QWidget *) const : bool</li>
 <li class="fn" translate="no"><span class="name"><b><a href="https://doc.qt.io/qt/qwidget.html#fullScreen-prop" translate="no">isFullScreen</a></b></span>() const : bool</li>
+<li class="fn" translate="no"><span class="name"><b><a href="https://doc.qt.io/qt/qabstractspinbox.html#showGroupSeparator-prop" translate="no">isGroupSeparatorShown</a></b></span>() const : bool</li>
 <li class="fn" translate="no"><span class="name"><b><a href="https://doc.qt.io/qt/qwidget.html#isHidden" translate="no">isHidden</a></b></span>() const : bool</li>
 <li class="fn" translate="no"><span class="name"><b><a href="https://doc.qt.io/qt/qwidget.html#maximized-prop" translate="no">isMaximized</a></b></span>() const : bool</li>
 <li class="fn" translate="no"><span class="name"><b><a href="https://doc.qt.io/qt/qwidget.html#minimized-prop" translate="no">isMinimized</a></b></span>() const : bool</li>
 <li class="fn" translate="no"><span class="name"><b><a href="https://doc.qt.io/qt/qwidget.html#modal-prop" translate="no">isModal</a></b></span>() const : bool</li>
 <li class="fn" translate="no"><span class="name"><b><a href="https://doc.qt.io/qt/qobject.html#isQuickItemType" translate="no">isQuickItemType</a></b></span>() const : bool</li>
-<li class="fn" translate="no"><span class="name"><b><a href="qctmeditlabel.html#isReadOnly" translate="no">isReadOnly</a></b></span>() const : bool</li>
+<li class="fn" translate="no"><span class="name"><b><a href="https://doc.qt.io/qt/qabstractspinbox.html#readOnly-prop" translate="no">isReadOnly</a></b></span>() const : bool</li>
 <li class="fn" translate="no"><span class="name"><b><a href="https://doc.qt.io/qt/qobject.html#isSignalConnected" translate="no">isSignalConnected</a></b></span>(const QMetaMethod &amp;) const : bool</li>
 <li class="fn" translate="no"><span class="name"><b><a href="https://doc.qt.io/qt/qwidget.html#visible-prop" translate="no">isVisible</a></b></span>() const : bool</li>
 <li class="fn" translate="no"><span class="name"><b><a href="https://doc.qt.io/qt/qwidget.html#isVisibleTo" translate="no">isVisibleTo</a></b></span>(const QWidget *) const : bool</li>
@@ -222,17 +222,17 @@
 <li class="fn" translate="no"><span class="name"><b><a href="https://doc.qt.io/qt/qwidget.html#isWindow" translate="no">isWindow</a></b></span>() const : bool</li>
 <li class="fn" translate="no"><span class="name"><b><a href="https://doc.qt.io/qt/qwidget.html#windowModified-prop" translate="no">isWindowModified</a></b></span>() const : bool</li>
 <li class="fn" translate="no"><span class="name"><b><a href="https://doc.qt.io/qt/qobject.html#isWindowType" translate="no">isWindowType</a></b></span>() const : bool</li>
-<li class="fn" translate="no"><span class="name"><b><a href="https://doc.qt.io/qt/qlabel.html#keyPressEvent" translate="no">keyPressEvent</a></b></span>(QKeyEvent *)</li>
+<li class="fn" translate="no"><span class="name"><b><a href="https://doc.qt.io/qt/qabstractspinbox.html#keyPressEvent" translate="no">keyPressEvent</a></b></span>(QKeyEvent *)</li>
 <li class="fn" translate="no"><span class="name"><b><a href="https://doc.qt.io/qt/qwidget.html#keyPressEvent" translate="no">keyPressEvent</a></b></span>(QKeyEvent *)</li>
+<li class="fn" translate="no"><span class="name"><b><a href="https://doc.qt.io/qt/qabstractspinbox.html#keyReleaseEvent" translate="no">keyReleaseEvent</a></b></span>(QKeyEvent *)</li>
 <li class="fn" translate="no"><span class="name"><b><a href="https://doc.qt.io/qt/qwidget.html#keyReleaseEvent" translate="no">keyReleaseEvent</a></b></span>(QKeyEvent *)</li>
 <li class="fn" translate="no"><span class="name"><b><a href="https://doc.qt.io/qt/qwidget.html#keyboardGrabber" translate="no">keyboardGrabber</a></b></span>() : QWidget *</li>
+<li class="fn" translate="no"><span class="name"><b><a href="https://doc.qt.io/qt/qabstractspinbox.html#keyboardTracking-prop" translate="no">keyboardTracking</a></b></span>() const : bool</li>
 <li class="fn" translate="no"><span class="name"><b><a href="https://doc.qt.io/qt/qobject.html#killTimer" translate="no">killTimer</a></b></span>(int)</li>
 <li class="fn" translate="no"><span class="name"><b><a href="https://doc.qt.io/qt/qwidget.html#layout" translate="no">layout</a></b></span>() const : QLayout *</li>
 <li class="fn" translate="no"><span class="name"><b><a href="https://doc.qt.io/qt/qwidget.html#layoutDirection-prop" translate="no">layoutDirection</a></b></span>() const : Qt::LayoutDirection</li>
 <li class="fn" translate="no"><span class="name"><b><a href="https://doc.qt.io/qt/qwidget.html#leaveEvent" translate="no">leaveEvent</a></b></span>(QEvent *)</li>
-<li class="fn" translate="no"><span class="name"><b><a href="https://doc.qt.io/qt/qframe.html#lineWidth-prop" translate="no">lineWidth</a></b></span>() const : int</li>
-<li class="fn" translate="no"><span class="name"><b><a href="https://doc.qt.io/qt/qlabel.html#linkActivated" translate="no">linkActivated</a></b></span>(const QString &amp;)</li>
-<li class="fn" translate="no"><span class="name"><b><a href="https://doc.qt.io/qt/qlabel.html#linkHovered" translate="no">linkHovered</a></b></span>(const QString &amp;)</li>
+<li class="fn" translate="no"><span class="name"><b><a href="https://doc.qt.io/qt/qabstractspinbox.html#lineEdit" translate="no">lineEdit</a></b></span>() const : QLineEdit *</li>
 <li class="fn" translate="no"><span class="name"><b><a href="https://doc.qt.io/qt/qwidget.html#locale-prop" translate="no">locale</a></b></span>() const : QLocale</li>
 <li class="fn" translate="no"><span class="name"><b><a href="https://doc.qt.io/qt/qpaintdevice.html#logicalDpiX" translate="no">logicalDpiX</a></b></span>() const : int</li>
 <li class="fn" translate="no"><span class="name"><b><a href="https://doc.qt.io/qt/qpaintdevice.html#logicalDpiY" translate="no">logicalDpiY</a></b></span>() const : int</li>
@@ -249,47 +249,43 @@
 <li class="fn" translate="no"><span class="name"><b><a href="https://doc.qt.io/qt/qwidget.html#mapToGlobal-1" translate="no">mapToGlobal</a></b></span>(const QPoint &amp;) const : QPoint</li>
 <li class="fn" translate="no"><span class="name"><b><a href="https://doc.qt.io/qt/qwidget.html#mapToParent" translate="no">mapToParent</a></b></span>(const QPointF &amp;) const : QPointF</li>
 <li class="fn" translate="no"><span class="name"><b><a href="https://doc.qt.io/qt/qwidget.html#mapToParent-1" translate="no">mapToParent</a></b></span>(const QPoint &amp;) const : QPoint</li>
-<li class="fn" translate="no"><span class="name"><b><a href="https://doc.qt.io/qt/qlabel.html#margin-prop" translate="no">margin</a></b></span>() const : int</li>
 <li class="fn" translate="no"><span class="name"><b><a href="https://doc.qt.io/qt/qwidget.html#mask" translate="no">mask</a></b></span>() const : QRegion</li>
+<li class="fn" translate="no"><span class="name"><b><a href="qctmlonglongspinbox.html#maximum" translate="no">maximum</a></b></span>() const : qlonglong</li>
 <li class="fn" translate="no"><span class="name"><b><a href="https://doc.qt.io/qt/qwidget.html#maximumHeight-prop" translate="no">maximumHeight</a></b></span>() const : int</li>
 <li class="fn" translate="no"><span class="name"><b><a href="https://doc.qt.io/qt/qwidget.html#maximumSize-prop" translate="no">maximumSize</a></b></span>() const : QSize</li>
 <li class="fn" translate="no"><span class="name"><b><a href="https://doc.qt.io/qt/qwidget.html#maximumWidth-prop" translate="no">maximumWidth</a></b></span>() const : int</li>
 <li class="fn" translate="no"><span class="name"><b><a href="https://doc.qt.io/qt/qobject.html#metaObject" translate="no">metaObject</a></b></span>() const : const QMetaObject *</li>
 <li class="fn" translate="no"><span class="name"><b><a href="https://doc.qt.io/qt/qwidget.html#metric" translate="no">metric</a></b></span>(QPaintDevice::PaintDeviceMetric) const : int</li>
 <li class="fn" translate="no"><span class="name"><b><a href="https://doc.qt.io/qt/qpaintdevice.html#metric" translate="no">metric</a></b></span>(QPaintDevice::PaintDeviceMetric) const : int</li>
-<li class="fn" translate="no"><span class="name"><b><a href="https://doc.qt.io/qt/qframe.html#midLineWidth-prop" translate="no">midLineWidth</a></b></span>() const : int</li>
+<li class="fn" translate="no"><span class="name"><b><a href="qctmlonglongspinbox.html#minimum" translate="no">minimum</a></b></span>() const : qlonglong</li>
 <li class="fn" translate="no"><span class="name"><b><a href="https://doc.qt.io/qt/qwidget.html#minimumHeight-prop" translate="no">minimumHeight</a></b></span>() const : int</li>
 <li class="fn" translate="no"><span class="name"><b><a href="https://doc.qt.io/qt/qwidget.html#minimumSize-prop" translate="no">minimumSize</a></b></span>() const : QSize</li>
-<li class="fn" translate="no"><span class="name"><b><a href="qctmeditlabel.html#minimumSizeHint" translate="no">minimumSizeHint</a></b></span>() const : QSize</li>
-<li class="fn" translate="no"><span class="name"><b><a href="https://doc.qt.io/qt/qlabel.html#minimumSizeHint" translate="no">minimumSizeHint</a></b></span>() const : QSize</li>
+<li class="fn" translate="no"><span class="name"><b><a href="https://doc.qt.io/qt/qabstractspinbox.html#minimumSizeHint" translate="no">minimumSizeHint</a></b></span>() const : QSize</li>
 <li class="fn" translate="no"><span class="name"><b><a href="https://doc.qt.io/qt/qwidget.html#minimumSizeHint-prop" translate="no">minimumSizeHint</a></b></span>() const : QSize</li>
 <li class="fn" translate="no"><span class="name"><b><a href="https://doc.qt.io/qt/qwidget.html#minimumWidth-prop" translate="no">minimumWidth</a></b></span>() const : int</li>
 <li class="fn" translate="no"><span class="name"><b><a href="https://doc.qt.io/qt/qwidget.html#mouseDoubleClickEvent" translate="no">mouseDoubleClickEvent</a></b></span>(QMouseEvent *)</li>
 <li class="fn" translate="no"><span class="name"><b><a href="https://doc.qt.io/qt/qwidget.html#mouseGrabber" translate="no">mouseGrabber</a></b></span>() : QWidget *</li>
-<li class="fn" translate="no"><span class="name"><b><a href="https://doc.qt.io/qt/qlabel.html#mouseMoveEvent" translate="no">mouseMoveEvent</a></b></span>(QMouseEvent *)</li>
+<li class="fn" translate="no"><span class="name"><b><a href="https://doc.qt.io/qt/qabstractspinbox.html#mouseMoveEvent" translate="no">mouseMoveEvent</a></b></span>(QMouseEvent *)</li>
 <li class="fn" translate="no"><span class="name"><b><a href="https://doc.qt.io/qt/qwidget.html#mouseMoveEvent" translate="no">mouseMoveEvent</a></b></span>(QMouseEvent *)</li>
-<li class="fn" translate="no"><span class="name"><b><a href="https://doc.qt.io/qt/qlabel.html#mousePressEvent" translate="no">mousePressEvent</a></b></span>(QMouseEvent *)</li>
+<li class="fn" translate="no"><span class="name"><b><a href="https://doc.qt.io/qt/qabstractspinbox.html#mousePressEvent" translate="no">mousePressEvent</a></b></span>(QMouseEvent *)</li>
 <li class="fn" translate="no"><span class="name"><b><a href="https://doc.qt.io/qt/qwidget.html#mousePressEvent" translate="no">mousePressEvent</a></b></span>(QMouseEvent *)</li>
-<li class="fn" translate="no"><span class="name"><b><a href="https://doc.qt.io/qt/qlabel.html#mouseReleaseEvent" translate="no">mouseReleaseEvent</a></b></span>(QMouseEvent *)</li>
+<li class="fn" translate="no"><span class="name"><b><a href="https://doc.qt.io/qt/qabstractspinbox.html#mouseReleaseEvent" translate="no">mouseReleaseEvent</a></b></span>(QMouseEvent *)</li>
 <li class="fn" translate="no"><span class="name"><b><a href="https://doc.qt.io/qt/qwidget.html#mouseReleaseEvent" translate="no">mouseReleaseEvent</a></b></span>(QMouseEvent *)</li>
 <li class="fn" translate="no"><span class="name"><b><a href="https://doc.qt.io/qt/qwidget.html#pos-prop" translate="no">move</a></b></span>(const QPoint &amp;)</li>
-</ul></td><td class="topAlign"><ul>
 <li class="fn" translate="no"><span class="name"><b><a href="https://doc.qt.io/qt/qwidget.html#move-1" translate="no">move</a></b></span>(int, int)</li>
 <li class="fn" translate="no"><span class="name"><b><a href="https://doc.qt.io/qt/qwidget.html#moveEvent" translate="no">moveEvent</a></b></span>(QMoveEvent *)</li>
+</ul></td><td class="topAlign"><ul>
 <li class="fn" translate="no"><span class="name"><b><a href="https://doc.qt.io/qt/qobject.html#moveToThread" translate="no">moveToThread</a></b></span>(QThread *) : bool</li>
-<li class="fn" translate="no"><span class="name"><b><a href="https://doc.qt.io/qt/qlabel.html#movie" translate="no">movie</a></b></span>() const : QMovie *</li>
 <li class="fn" translate="no"><span class="name"><b><a href="https://doc.qt.io/qt/qwidget.html#nativeEvent" translate="no">nativeEvent</a></b></span>(const QByteArray &amp;, void *, qintptr *) : bool</li>
 <li class="fn" translate="no"><span class="name"><b><a href="https://doc.qt.io/qt/qwidget.html#nativeParentWidget" translate="no">nativeParentWidget</a></b></span>() const : QWidget *</li>
 <li class="fn" translate="no"><span class="name"><b><a href="https://doc.qt.io/qt/qwidget.html#nextInFocusChain" translate="no">nextInFocusChain</a></b></span>() const : QWidget *</li>
 <li class="fn" translate="no"><span class="name"><b><a href="https://doc.qt.io/qt/qwidget.html#normalGeometry-prop" translate="no">normalGeometry</a></b></span>() const : QRect</li>
 <li class="fn" translate="no"><span class="name"><b><a href="https://doc.qt.io/qt/qobject.html#objectName-prop" translate="no">objectName</a></b></span>() const : QString</li>
 <li class="fn" translate="no"><span class="name"><b><a href="https://doc.qt.io/qt/qobject.html#objectNameChanged" translate="no">objectNameChanged</a></b></span>(const QString &amp;)</li>
-<li class="fn" translate="no"><span class="name"><b><a href="https://doc.qt.io/qt/qlabel.html#openExternalLinks-prop" translate="no">openExternalLinks</a></b></span>() const : bool</li>
 <li class="fn" translate="no"><span class="name"><b><a href="https://doc.qt.io/qt/qwidget.html#overrideWindowFlags" translate="no">overrideWindowFlags</a></b></span>(Qt::WindowFlags)</li>
 <li class="fn" translate="no"><span class="name"><b><a href="https://doc.qt.io/qt/qwidget.html#paintEngine" translate="no">paintEngine</a></b></span>() const : QPaintEngine *</li>
 <li class="fn" translate="no"><span class="name"><b><a href="https://doc.qt.io/qt/qpaintdevice.html#paintEngine" translate="no">paintEngine</a></b></span>() const : QPaintEngine *</li>
-<li class="fn" translate="no"><span class="name"><b><a href="https://doc.qt.io/qt/qlabel.html#paintEvent" translate="no">paintEvent</a></b></span>(QPaintEvent *)</li>
-<li class="fn" translate="no"><span class="name"><b><a href="https://doc.qt.io/qt/qframe.html#paintEvent" translate="no">paintEvent</a></b></span>(QPaintEvent *)</li>
+<li class="fn" translate="no"><span class="name"><b><a href="https://doc.qt.io/qt/qabstractspinbox.html#paintEvent" translate="no">paintEvent</a></b></span>(QPaintEvent *)</li>
 <li class="fn" translate="no"><span class="name"><b><a href="https://doc.qt.io/qt/qwidget.html#paintEvent" translate="no">paintEvent</a></b></span>(QPaintEvent *)</li>
 <li class="fn" translate="no"><span class="name"><b><a href="https://doc.qt.io/qt/qpaintdevice.html#paintingActive" translate="no">paintingActive</a></b></span>() const : bool</li>
 <li class="fn" translate="no"><span class="name"><b><a href="https://doc.qt.io/qt/qwidget.html#palette-prop" translate="no">palette</a></b></span>() const : const QPalette &amp;</li>
@@ -297,9 +293,8 @@
 <li class="fn" translate="no"><span class="name"><b><a href="https://doc.qt.io/qt/qwidget.html#parentWidget" translate="no">parentWidget</a></b></span>() const : QWidget *</li>
 <li class="fn" translate="no"><span class="name"><b><a href="https://doc.qt.io/qt/qpaintdevice.html#physicalDpiX" translate="no">physicalDpiX</a></b></span>() const : int</li>
 <li class="fn" translate="no"><span class="name"><b><a href="https://doc.qt.io/qt/qpaintdevice.html#physicalDpiY" translate="no">physicalDpiY</a></b></span>() const : int</li>
-<li class="fn" translate="no"><span class="name"><b><a href="https://doc.qt.io/qt/qlabel.html#picture-1" translate="no">picture</a></b></span>() const : QPicture</li>
-<li class="fn" translate="no"><span class="name"><b><a href="https://doc.qt.io/qt/qlabel.html#pixmap-prop" translate="no">pixmap</a></b></span>() const : QPixmap</li>
 <li class="fn" translate="no"><span class="name"><b><a href="https://doc.qt.io/qt/qwidget.html#pos-prop" translate="no">pos</a></b></span>() const : QPoint</li>
+<li class="fn" translate="no"><span class="name"><b><a href="qctmlonglongspinbox.html#prefix" translate="no">prefix</a></b></span>() const : QString</li>
 <li class="fn" translate="no"><span class="name"><b><a href="https://doc.qt.io/qt/qwidget.html#previousInFocusChain" translate="no">previousInFocusChain</a></b></span>() const : QWidget *</li>
 <li class="fn" translate="no"><span class="name"><b><a href="https://doc.qt.io/qt/qobject.html#property" translate="no">property</a></b></span>(const char *) const : QVariant</li>
 <li class="fn" translate="no"><span class="name"><b><a href="https://doc.qt.io/qt/qwidget.html#raise" translate="no">raise</a></b></span>()</li>
@@ -318,37 +313,36 @@
 <li class="fn" translate="no"><span class="name"><b><a href="https://doc.qt.io/qt/qwidget.html#repaint-3" translate="no">repaint</a></b></span>(const QRegion &amp;)</li>
 <li class="fn" translate="no"><span class="name"><b><a href="https://doc.qt.io/qt/qwidget.html#size-prop" translate="no">resize</a></b></span>(const QSize &amp;)</li>
 <li class="fn" translate="no"><span class="name"><b><a href="https://doc.qt.io/qt/qwidget.html#resize-1" translate="no">resize</a></b></span>(int, int)</li>
+<li class="fn" translate="no"><span class="name"><b><a href="https://doc.qt.io/qt/qabstractspinbox.html#resizeEvent" translate="no">resizeEvent</a></b></span>(QResizeEvent *)</li>
 <li class="fn" translate="no"><span class="name"><b><a href="https://doc.qt.io/qt/qwidget.html#resizeEvent" translate="no">resizeEvent</a></b></span>(QResizeEvent *)</li>
-<li class="fn" translate="no"><span class="name"><b><a href="https://doc.qt.io/qt/qlabel.html#resourceProvider" translate="no">resourceProvider</a></b></span>() const : QTextDocument::ResourceProvider</li>
 <li class="fn" translate="no"><span class="name"><b><a href="https://doc.qt.io/qt/qwidget.html#restoreGeometry" translate="no">restoreGeometry</a></b></span>(const QByteArray &amp;) : bool</li>
-<li class="fn" translate="no"><span class="name"><b><a href="qctmeditlabel.html#revertButtonIcon" translate="no">revertButtonIcon</a></b></span>() const : QIcon</li>
 <li class="fn" translate="no"><span class="name"><b><a href="https://doc.qt.io/qt/qwidget.html#saveGeometry" translate="no">saveGeometry</a></b></span>() const : QByteArray</li>
 <li class="fn" translate="no"><span class="name"><b><a href="https://doc.qt.io/qt/qwidget.html#screen" translate="no">screen</a></b></span>() const : QScreen *</li>
 <li class="fn" translate="no"><span class="name"><b><a href="https://doc.qt.io/qt/qwidget.html#scroll" translate="no">scroll</a></b></span>(int, int)</li>
 <li class="fn" translate="no"><span class="name"><b><a href="https://doc.qt.io/qt/qwidget.html#scroll-1" translate="no">scroll</a></b></span>(int, int, const QRect &amp;)</li>
-<li class="fn" translate="no"><span class="name"><b><a href="https://doc.qt.io/qt/qlabel.html#selectedText-prop" translate="no">selectedText</a></b></span>() const : QString</li>
-<li class="fn" translate="no"><span class="name"><b><a href="https://doc.qt.io/qt/qlabel.html#selectionStart" translate="no">selectionStart</a></b></span>() const : int</li>
+<li class="fn" translate="no"><span class="name"><b><a href="https://doc.qt.io/qt/qabstractspinbox.html#selectAll" translate="no">selectAll</a></b></span>()</li>
 <li class="fn" translate="no"><span class="name"><b><a href="https://doc.qt.io/qt/qobject.html#sender" translate="no">sender</a></b></span>() const : QObject *</li>
 <li class="fn" translate="no"><span class="name"><b><a href="https://doc.qt.io/qt/qobject.html#senderSignalIndex" translate="no">senderSignalIndex</a></b></span>() const : int</li>
+<li class="fn" translate="no"><span class="name"><b><a href="https://doc.qt.io/qt/qabstractspinbox.html#accelerated-prop" translate="no">setAccelerated</a></b></span>(bool)</li>
 <li class="fn" translate="no"><span class="name"><b><a href="https://doc.qt.io/qt/qwidget.html#acceptDrops-prop" translate="no">setAcceptDrops</a></b></span>(bool)</li>
 <li class="fn" translate="no"><span class="name"><b><a href="https://doc.qt.io/qt/qwidget.html#accessibleDescription-prop" translate="no">setAccessibleDescription</a></b></span>(const QString &amp;)</li>
 <li class="fn" translate="no"><span class="name"><b><a href="https://doc.qt.io/qt/qwidget.html#accessibleName-prop" translate="no">setAccessibleName</a></b></span>(const QString &amp;)</li>
-<li class="fn" translate="no"><span class="name"><b><a href="https://doc.qt.io/qt/qlabel.html#alignment-prop" translate="no">setAlignment</a></b></span>(Qt::Alignment)</li>
+<li class="fn" translate="no"><span class="name"><b><a href="https://doc.qt.io/qt/qabstractspinbox.html#alignment-prop" translate="no">setAlignment</a></b></span>(Qt::Alignment)</li>
 <li class="fn" translate="no"><span class="name"><b><a href="https://doc.qt.io/qt/qwidget.html#setAttribute" translate="no">setAttribute</a></b></span>(Qt::WidgetAttribute, bool)</li>
 <li class="fn" translate="no"><span class="name"><b><a href="https://doc.qt.io/qt/qwidget.html#autoFillBackground-prop" translate="no">setAutoFillBackground</a></b></span>(bool)</li>
 <li class="fn" translate="no"><span class="name"><b><a href="https://doc.qt.io/qt/qwidget.html#setBackgroundRole" translate="no">setBackgroundRole</a></b></span>(QPalette::ColorRole)</li>
 <li class="fn" translate="no"><span class="name"><b><a href="https://doc.qt.io/qt/qwidget.html#baseSize-prop" translate="no">setBaseSize</a></b></span>(const QSize &amp;)</li>
 <li class="fn" translate="no"><span class="name"><b><a href="https://doc.qt.io/qt/qwidget.html#setBaseSize-1" translate="no">setBaseSize</a></b></span>(int, int)</li>
-<li class="fn" translate="no"><span class="name"><b><a href="https://doc.qt.io/qt/qlabel.html#setBuddy" translate="no">setBuddy</a></b></span>(QWidget *)</li>
+<li class="fn" translate="no"><span class="name"><b><a href="https://doc.qt.io/qt/qabstractspinbox.html#buttonSymbols-prop" translate="no">setButtonSymbols</a></b></span>(QAbstractSpinBox::ButtonSymbols)</li>
 <li class="fn" translate="no"><span class="name"><b><a href="https://doc.qt.io/qt/qwidget.html#setContentsMargins" translate="no">setContentsMargins</a></b></span>(int, int, int, int)</li>
 <li class="fn" translate="no"><span class="name"><b><a href="https://doc.qt.io/qt/qwidget.html#setContentsMargins-1" translate="no">setContentsMargins</a></b></span>(const QMargins &amp;)</li>
 <li class="fn" translate="no"><span class="name"><b><a href="https://doc.qt.io/qt/qwidget.html#contextMenuPolicy-prop" translate="no">setContextMenuPolicy</a></b></span>(Qt::ContextMenuPolicy)</li>
+<li class="fn" translate="no"><span class="name"><b><a href="https://doc.qt.io/qt/qabstractspinbox.html#correctionMode-prop" translate="no">setCorrectionMode</a></b></span>(QAbstractSpinBox::CorrectionMode)</li>
 <li class="fn" translate="no"><span class="name"><b><a href="https://doc.qt.io/qt/qwidget.html#cursor-prop" translate="no">setCursor</a></b></span>(const QCursor &amp;)</li>
 <li class="fn" translate="no"><span class="name"><b><a href="https://doc.qt.io/qt/qwidget.html#setDisabled" translate="no">setDisabled</a></b></span>(bool)</li>
-<li class="fn" translate="no"><span class="name"><b><a href="qctmeditlabel.html#setEditButtonIcon" translate="no">setEditButtonIcon</a></b></span>(const QIcon &amp;)</li>
+<li class="fn" translate="no"><span class="name"><b><a href="qctmlonglongspinbox.html#setDisplayIntegerBase" translate="no">setDisplayIntegerBase</a></b></span>(int)</li>
 <li class="fn" translate="no"><span class="name"><b><a href="https://doc.qt.io/qt/qwidget.html#setEditFocus" translate="no">setEditFocus</a></b></span>(bool)</li>
 <li class="fn" translate="no"><span class="name"><b><a href="https://doc.qt.io/qt/qwidget.html#enabled-prop" translate="no">setEnabled</a></b></span>(bool)</li>
-<li class="fn" translate="no"><span class="name"><b><a href="qctmeditlabel.html#setFinishButtonIcon" translate="no">setFinishButtonIcon</a></b></span>(const QIcon &amp;)</li>
 <li class="fn" translate="no"><span class="name"><b><a href="https://doc.qt.io/qt/qwidget.html#setFixedHeight" translate="no">setFixedHeight</a></b></span>(int)</li>
 <li class="fn" translate="no"><span class="name"><b><a href="https://doc.qt.io/qt/qwidget.html#setFixedSize" translate="no">setFixedSize</a></b></span>(const QSize &amp;)</li>
 <li class="fn" translate="no"><span class="name"><b><a href="https://doc.qt.io/qt/qwidget.html#setFixedSize-1" translate="no">setFixedSize</a></b></span>(int, int)</li>
@@ -359,71 +353,63 @@
 <li class="fn" translate="no"><span class="name"><b><a href="https://doc.qt.io/qt/qwidget.html#setFocusProxy" translate="no">setFocusProxy</a></b></span>(QWidget *)</li>
 <li class="fn" translate="no"><span class="name"><b><a href="https://doc.qt.io/qt/qwidget.html#font-prop" translate="no">setFont</a></b></span>(const QFont &amp;)</li>
 <li class="fn" translate="no"><span class="name"><b><a href="https://doc.qt.io/qt/qwidget.html#setForegroundRole" translate="no">setForegroundRole</a></b></span>(QPalette::ColorRole)</li>
-<li class="fn" translate="no"><span class="name"><b><a href="https://doc.qt.io/qt/qframe.html#frameRect-prop" translate="no">setFrameRect</a></b></span>(const QRect &amp;)</li>
-<li class="fn" translate="no"><span class="name"><b><a href="https://doc.qt.io/qt/qframe.html#frameShadow-prop" translate="no">setFrameShadow</a></b></span>(QFrame::Shadow)</li>
-<li class="fn" translate="no"><span class="name"><b><a href="https://doc.qt.io/qt/qframe.html#frameShape-prop" translate="no">setFrameShape</a></b></span>(QFrame::Shape)</li>
-<li class="fn" translate="no"><span class="name"><b><a href="https://doc.qt.io/qt/qframe.html#setFrameStyle" translate="no">setFrameStyle</a></b></span>(int)</li>
+<li class="fn" translate="no"><span class="name"><b><a href="https://doc.qt.io/qt/qabstractspinbox.html#frame-prop" translate="no">setFrame</a></b></span>(bool)</li>
 <li class="fn" translate="no"><span class="name"><b><a href="https://doc.qt.io/qt/qwidget.html#geometry-prop" translate="no">setGeometry</a></b></span>(const QRect &amp;)</li>
 <li class="fn" translate="no"><span class="name"><b><a href="https://doc.qt.io/qt/qwidget.html#setGeometry-1" translate="no">setGeometry</a></b></span>(int, int, int, int)</li>
 <li class="fn" translate="no"><span class="name"><b><a href="https://doc.qt.io/qt/qwidget.html#setGraphicsEffect" translate="no">setGraphicsEffect</a></b></span>(QGraphicsEffect *)</li>
+<li class="fn" translate="no"><span class="name"><b><a href="https://doc.qt.io/qt/qabstractspinbox.html#showGroupSeparator-prop" translate="no">setGroupSeparatorShown</a></b></span>(bool)</li>
 <li class="fn" translate="no"><span class="name"><b><a href="https://doc.qt.io/qt/qwidget.html#setHidden" translate="no">setHidden</a></b></span>(bool)</li>
-<li class="fn" translate="no"><span class="name"><b><a href="https://doc.qt.io/qt/qlabel.html#indent-prop" translate="no">setIndent</a></b></span>(int)</li>
 <li class="fn" translate="no"><span class="name"><b><a href="https://doc.qt.io/qt/qwidget.html#inputMethodHints-prop" translate="no">setInputMethodHints</a></b></span>(Qt::InputMethodHints)</li>
+<li class="fn" translate="no"><span class="name"><b><a href="https://doc.qt.io/qt/qabstractspinbox.html#keyboardTracking-prop" translate="no">setKeyboardTracking</a></b></span>(bool)</li>
 <li class="fn" translate="no"><span class="name"><b><a href="https://doc.qt.io/qt/qwidget.html#setLayout" translate="no">setLayout</a></b></span>(QLayout *)</li>
 <li class="fn" translate="no"><span class="name"><b><a href="https://doc.qt.io/qt/qwidget.html#layoutDirection-prop" translate="no">setLayoutDirection</a></b></span>(Qt::LayoutDirection)</li>
-<li class="fn" translate="no"><span class="name"><b><a href="https://doc.qt.io/qt/qframe.html#lineWidth-prop" translate="no">setLineWidth</a></b></span>(int)</li>
+<li class="fn" translate="no"><span class="name"><b><a href="https://doc.qt.io/qt/qabstractspinbox.html#setLineEdit" translate="no">setLineEdit</a></b></span>(QLineEdit *)</li>
 <li class="fn" translate="no"><span class="name"><b><a href="https://doc.qt.io/qt/qwidget.html#locale-prop" translate="no">setLocale</a></b></span>(const QLocale &amp;)</li>
-<li class="fn" translate="no"><span class="name"><b><a href="https://doc.qt.io/qt/qlabel.html#margin-prop" translate="no">setMargin</a></b></span>(int)</li>
 <li class="fn" translate="no"><span class="name"><b><a href="https://doc.qt.io/qt/qwidget.html#setMask" translate="no">setMask</a></b></span>(const QBitmap &amp;)</li>
 <li class="fn" translate="no"><span class="name"><b><a href="https://doc.qt.io/qt/qwidget.html#setMask-1" translate="no">setMask</a></b></span>(const QRegion &amp;)</li>
+<li class="fn" translate="no"><span class="name"><b><a href="qctmlonglongspinbox.html#setMaximum" translate="no">setMaximum</a></b></span>(qlonglong)</li>
 <li class="fn" translate="no"><span class="name"><b><a href="https://doc.qt.io/qt/qwidget.html#maximumHeight-prop" translate="no">setMaximumHeight</a></b></span>(int)</li>
 <li class="fn" translate="no"><span class="name"><b><a href="https://doc.qt.io/qt/qwidget.html#maximumSize-prop" translate="no">setMaximumSize</a></b></span>(const QSize &amp;)</li>
 <li class="fn" translate="no"><span class="name"><b><a href="https://doc.qt.io/qt/qwidget.html#setMaximumSize-1" translate="no">setMaximumSize</a></b></span>(int, int)</li>
 <li class="fn" translate="no"><span class="name"><b><a href="https://doc.qt.io/qt/qwidget.html#maximumWidth-prop" translate="no">setMaximumWidth</a></b></span>(int)</li>
-<li class="fn" translate="no"><span class="name"><b><a href="https://doc.qt.io/qt/qframe.html#midLineWidth-prop" translate="no">setMidLineWidth</a></b></span>(int)</li>
+<li class="fn" translate="no"><span class="name"><b><a href="qctmlonglongspinbox.html#setMinimum" translate="no">setMinimum</a></b></span>(qlonglong)</li>
 <li class="fn" translate="no"><span class="name"><b><a href="https://doc.qt.io/qt/qwidget.html#minimumHeight-prop" translate="no">setMinimumHeight</a></b></span>(int)</li>
 <li class="fn" translate="no"><span class="name"><b><a href="https://doc.qt.io/qt/qwidget.html#minimumSize-prop" translate="no">setMinimumSize</a></b></span>(const QSize &amp;)</li>
 <li class="fn" translate="no"><span class="name"><b><a href="https://doc.qt.io/qt/qwidget.html#setMinimumSize-1" translate="no">setMinimumSize</a></b></span>(int, int)</li>
 <li class="fn" translate="no"><span class="name"><b><a href="https://doc.qt.io/qt/qwidget.html#minimumWidth-prop" translate="no">setMinimumWidth</a></b></span>(int)</li>
 <li class="fn" translate="no"><span class="name"><b><a href="https://doc.qt.io/qt/qwidget.html#mouseTracking-prop" translate="no">setMouseTracking</a></b></span>(bool)</li>
-<li class="fn" translate="no"><span class="name"><b><a href="https://doc.qt.io/qt/qlabel.html#setMovie" translate="no">setMovie</a></b></span>(QMovie *)</li>
-<li class="fn" translate="no"><span class="name"><b><a href="https://doc.qt.io/qt/qlabel.html#setNum" translate="no">setNum</a></b></span>(int)</li>
-<li class="fn" translate="no"><span class="name"><b><a href="https://doc.qt.io/qt/qlabel.html#setNum-1" translate="no">setNum</a></b></span>(double)</li>
 <li class="fn" translate="no"><span class="name"><b><a href="https://doc.qt.io/qt/qobject.html#setObjectName" translate="no">setObjectName</a></b></span>(const QString &amp;)</li>
 <li class="fn" translate="no"><span class="name"><b><a href="https://doc.qt.io/qt/qobject.html#setObjectName-1" translate="no">setObjectName</a></b></span>(QAnyStringView)</li>
-<li class="fn" translate="no"><span class="name"><b><a href="https://doc.qt.io/qt/qlabel.html#openExternalLinks-prop" translate="no">setOpenExternalLinks</a></b></span>(bool)</li>
 <li class="fn" translate="no"><span class="name"><b><a href="https://doc.qt.io/qt/qwidget.html#palette-prop" translate="no">setPalette</a></b></span>(const QPalette &amp;)</li>
 <li class="fn" translate="no"><span class="name"><b><a href="https://doc.qt.io/qt/qwidget.html#setParent" translate="no">setParent</a></b></span>(QWidget *)</li>
 <li class="fn" translate="no"><span class="name"><b><a href="https://doc.qt.io/qt/qobject.html#setParent" translate="no">setParent</a></b></span>(QObject *)</li>
 <li class="fn" translate="no"><span class="name"><b><a href="https://doc.qt.io/qt/qwidget.html#setParent-1" translate="no">setParent</a></b></span>(QWidget *, Qt::WindowFlags)</li>
-<li class="fn" translate="no"><span class="name"><b><a href="https://doc.qt.io/qt/qlabel.html#setPicture" translate="no">setPicture</a></b></span>(const QPicture &amp;)</li>
-<li class="fn" translate="no"><span class="name"><b><a href="https://doc.qt.io/qt/qlabel.html#pixmap-prop" translate="no">setPixmap</a></b></span>(const QPixmap &amp;)</li>
+<li class="fn" translate="no"><span class="name"><b><a href="qctmlonglongspinbox.html#setPrefix" translate="no">setPrefix</a></b></span>(const QString &amp;)</li>
 <li class="fn" translate="no"><span class="name"><b><a href="https://doc.qt.io/qt/qobject.html#setProperty" translate="no">setProperty</a></b></span>(const char *, const QVariant &amp;) : bool</li>
 <li class="fn" translate="no"><span class="name"><b><a href="https://doc.qt.io/qt/qobject.html#setProperty-1" translate="no">setProperty</a></b></span>(const char *, QVariant &amp;&amp;) : bool</li>
-<li class="fn" translate="no"><span class="name"><b><a href="qctmeditlabel.html#setReadOnly" translate="no">setReadOnly</a></b></span>(bool)</li>
-<li class="fn" translate="no"><span class="name"><b><a href="https://doc.qt.io/qt/qlabel.html#setResourceProvider" translate="no">setResourceProvider</a></b></span>(const QTextDocument::ResourceProvider &amp;)</li>
-<li class="fn" translate="no"><span class="name"><b><a href="qctmeditlabel.html#setRevertButtonIcon" translate="no">setRevertButtonIcon</a></b></span>(const QIcon &amp;)</li>
-<li class="fn" translate="no"><span class="name"><b><a href="https://doc.qt.io/qt/qlabel.html#scaledContents-prop" translate="no">setScaledContents</a></b></span>(bool)</li>
+<li class="fn" translate="no"><span class="name"><b><a href="qctmlonglongspinbox.html#setRange" translate="no">setRange</a></b></span>(qlonglong, qlonglong)</li>
+<li class="fn" translate="no"><span class="name"><b><a href="https://doc.qt.io/qt/qabstractspinbox.html#readOnly-prop" translate="no">setReadOnly</a></b></span>(bool)</li>
 <li class="fn" translate="no"><span class="name"><b><a href="https://doc.qt.io/qt/qwidget.html#setScreen" translate="no">setScreen</a></b></span>(QScreen *)</li>
-<li class="fn" translate="no"><span class="name"><b><a href="https://doc.qt.io/qt/qlabel.html#setSelection" translate="no">setSelection</a></b></span>(int, int)</li>
 <li class="fn" translate="no"><span class="name"><b><a href="https://doc.qt.io/qt/qwidget.html#setShortcutAutoRepeat" translate="no">setShortcutAutoRepeat</a></b></span>(int, bool)</li>
 <li class="fn" translate="no"><span class="name"><b><a href="https://doc.qt.io/qt/qwidget.html#setShortcutEnabled" translate="no">setShortcutEnabled</a></b></span>(int, bool)</li>
+<li class="fn" translate="no"><span class="name"><b><a href="qctmlonglongspinbox.html#setSingleStep" translate="no">setSingleStep</a></b></span>(qlonglong)</li>
 <li class="fn" translate="no"><span class="name"><b><a href="https://doc.qt.io/qt/qwidget.html#sizeIncrement-prop" translate="no">setSizeIncrement</a></b></span>(const QSize &amp;)</li>
 <li class="fn" translate="no"><span class="name"><b><a href="https://doc.qt.io/qt/qwidget.html#setSizeIncrement-1" translate="no">setSizeIncrement</a></b></span>(int, int)</li>
 <li class="fn" translate="no"><span class="name"><b><a href="https://doc.qt.io/qt/qwidget.html#sizePolicy-prop" translate="no">setSizePolicy</a></b></span>(QSizePolicy)</li>
 <li class="fn" translate="no"><span class="name"><b><a href="https://doc.qt.io/qt/qwidget.html#setSizePolicy-1" translate="no">setSizePolicy</a></b></span>(QSizePolicy::Policy, QSizePolicy::Policy)</li>
+<li class="fn" translate="no"><span class="name"><b><a href="https://doc.qt.io/qt/qabstractspinbox.html#specialValueText-prop" translate="no">setSpecialValueText</a></b></span>(const QString &amp;)</li>
 <li class="fn" translate="no"><span class="name"><b><a href="https://doc.qt.io/qt/qwidget.html#statusTip-prop" translate="no">setStatusTip</a></b></span>(const QString &amp;)</li>
+<li class="fn" translate="no"><span class="name"><b><a href="qctmlonglongspinbox.html#setStepType" translate="no">setStepType</a></b></span>(QAbstractSpinBox::StepType)</li>
 <li class="fn" translate="no"><span class="name"><b><a href="https://doc.qt.io/qt/qwidget.html#setStyle" translate="no">setStyle</a></b></span>(QStyle *)</li>
 <li class="fn" translate="no"><span class="name"><b><a href="https://doc.qt.io/qt/qwidget.html#styleSheet-prop" translate="no">setStyleSheet</a></b></span>(const QString &amp;)</li>
+<li class="fn" translate="no"><span class="name"><b><a href="qctmlonglongspinbox.html#setSuffix" translate="no">setSuffix</a></b></span>(const QString &amp;)</li>
 <li class="fn" translate="no"><span class="name"><b><a href="https://doc.qt.io/qt/qwidget.html#setTabOrder" translate="no">setTabOrder</a></b></span>(QWidget *, QWidget *)</li>
 <li class="fn" translate="no"><span class="name"><b><a href="https://doc.qt.io/qt/qwidget.html#setTabOrder-1" translate="no">setTabOrder</a></b></span>(std::initializer_list&lt;QWidget *&gt;)</li>
 <li class="fn" translate="no"><span class="name"><b><a href="https://doc.qt.io/qt/qwidget.html#tabletTracking-prop" translate="no">setTabletTracking</a></b></span>(bool)</li>
-<li class="fn" translate="no"><span class="name"><b><a href="https://doc.qt.io/qt/qlabel.html#text-prop" translate="no">setText</a></b></span>(const QString &amp;)</li>
-<li class="fn" translate="no"><span class="name"><b><a href="https://doc.qt.io/qt/qlabel.html#textFormat-prop" translate="no">setTextFormat</a></b></span>(Qt::TextFormat)</li>
-<li class="fn" translate="no"><span class="name"><b><a href="https://doc.qt.io/qt/qlabel.html#textInteractionFlags-prop" translate="no">setTextInteractionFlags</a></b></span>(Qt::TextInteractionFlags)</li>
 <li class="fn" translate="no"><span class="name"><b><a href="https://doc.qt.io/qt/qwidget.html#toolTip-prop" translate="no">setToolTip</a></b></span>(const QString &amp;)</li>
 <li class="fn" translate="no"><span class="name"><b><a href="https://doc.qt.io/qt/qwidget.html#toolTipDuration-prop" translate="no">setToolTipDuration</a></b></span>(int)</li>
 <li class="fn" translate="no"><span class="name"><b><a href="https://doc.qt.io/qt/qwidget.html#updatesEnabled-prop" translate="no">setUpdatesEnabled</a></b></span>(bool)</li>
+<li class="fn" translate="no"><span class="name"><b><a href="qctmlonglongspinbox.html#setValue" translate="no">setValue</a></b></span>(qlonglong)</li>
 <li class="fn" translate="no"><span class="name"><b><a href="https://doc.qt.io/qt/qwidget.html#visible-prop" translate="no">setVisible</a></b></span>(bool)</li>
 <li class="fn" translate="no"><span class="name"><b><a href="https://doc.qt.io/qt/qwidget.html#whatsThis-prop" translate="no">setWhatsThis</a></b></span>(const QString &amp;)</li>
 <li class="fn" translate="no"><span class="name"><b><a href="https://doc.qt.io/qt/qwidget.html#windowFilePath-prop" translate="no">setWindowFilePath</a></b></span>(const QString &amp;)</li>
@@ -437,34 +423,44 @@
 <li class="fn" translate="no"><span class="name"><b><a href="https://doc.qt.io/qt/qwidget.html#setWindowRole" translate="no">setWindowRole</a></b></span>(const QString &amp;)</li>
 <li class="fn" translate="no"><span class="name"><b><a href="https://doc.qt.io/qt/qwidget.html#setWindowState" translate="no">setWindowState</a></b></span>(Qt::WindowStates)</li>
 <li class="fn" translate="no"><span class="name"><b><a href="https://doc.qt.io/qt/qwidget.html#windowTitle-prop" translate="no">setWindowTitle</a></b></span>(const QString &amp;)</li>
-<li class="fn" translate="no"><span class="name"><b><a href="https://doc.qt.io/qt/qlabel.html#wordWrap-prop" translate="no">setWordWrap</a></b></span>(bool)</li>
+<li class="fn" translate="no"><span class="name"><b><a href="https://doc.qt.io/qt/qabstractspinbox.html#wrapping-prop" translate="no">setWrapping</a></b></span>(bool)</li>
 <li class="fn" translate="no"><span class="name"><b><a href="https://doc.qt.io/qt/qwidget.html#setupUi" translate="no">setupUi</a></b></span>(QWidget *)</li>
 <li class="fn" translate="no"><span class="name"><b><a href="https://doc.qt.io/qt/qwidget.html#show" translate="no">show</a></b></span>()</li>
+<li class="fn" translate="no"><span class="name"><b><a href="https://doc.qt.io/qt/qabstractspinbox.html#showEvent" translate="no">showEvent</a></b></span>(QShowEvent *)</li>
 <li class="fn" translate="no"><span class="name"><b><a href="https://doc.qt.io/qt/qwidget.html#showEvent" translate="no">showEvent</a></b></span>(QShowEvent *)</li>
 <li class="fn" translate="no"><span class="name"><b><a href="https://doc.qt.io/qt/qwidget.html#showFullScreen" translate="no">showFullScreen</a></b></span>()</li>
 <li class="fn" translate="no"><span class="name"><b><a href="https://doc.qt.io/qt/qwidget.html#showMaximized" translate="no">showMaximized</a></b></span>()</li>
 <li class="fn" translate="no"><span class="name"><b><a href="https://doc.qt.io/qt/qwidget.html#showMinimized" translate="no">showMinimized</a></b></span>()</li>
 <li class="fn" translate="no"><span class="name"><b><a href="https://doc.qt.io/qt/qwidget.html#showNormal" translate="no">showNormal</a></b></span>()</li>
 <li class="fn" translate="no"><span class="name"><b><a href="https://doc.qt.io/qt/qobject.html#signalsBlocked" translate="no">signalsBlocked</a></b></span>() const : bool</li>
+<li class="fn" translate="no"><span class="name"><b><a href="qctmlonglongspinbox.html#singleStep" translate="no">singleStep</a></b></span>() const : qlonglong</li>
 <li class="fn" translate="no"><span class="name"><b><a href="https://doc.qt.io/qt/qwidget.html#size-prop" translate="no">size</a></b></span>() const : QSize</li>
-<li class="fn" translate="no"><span class="name"><b><a href="https://doc.qt.io/qt/qlabel.html#sizeHint" translate="no">sizeHint</a></b></span>() const : QSize</li>
-<li class="fn" translate="no"><span class="name"><b><a href="https://doc.qt.io/qt/qframe.html#sizeHint" translate="no">sizeHint</a></b></span>() const : QSize</li>
+<li class="fn" translate="no"><span class="name"><b><a href="https://doc.qt.io/qt/qabstractspinbox.html#sizeHint" translate="no">sizeHint</a></b></span>() const : QSize</li>
 <li class="fn" translate="no"><span class="name"><b><a href="https://doc.qt.io/qt/qwidget.html#sizeHint-prop" translate="no">sizeHint</a></b></span>() const : QSize</li>
 <li class="fn" translate="no"><span class="name"><b><a href="https://doc.qt.io/qt/qwidget.html#sizeIncrement-prop" translate="no">sizeIncrement</a></b></span>() const : QSize</li>
 <li class="fn" translate="no"><span class="name"><b><a href="https://doc.qt.io/qt/qwidget.html#sizePolicy-prop" translate="no">sizePolicy</a></b></span>() const : QSizePolicy</li>
+<li class="fn" translate="no"><span class="name"><b><a href="https://doc.qt.io/qt/qabstractspinbox.html#specialValueText-prop" translate="no">specialValueText</a></b></span>() const : QString</li>
 <li class="fn" translate="no"><span class="name"><b><a href="https://doc.qt.io/qt/qwidget.html#stackUnder" translate="no">stackUnder</a></b></span>(QWidget *)</li>
 <li class="fn" translate="no"><span class="name"><b><a href="https://doc.qt.io/qt/qobject.html#startTimer" translate="no">startTimer</a></b></span>(int, Qt::TimerType) : int</li>
 <li class="fn" translate="no"><span class="name"><b><a href="https://doc.qt.io/qt/qobject.html#startTimer-1" translate="no">startTimer</a></b></span>(std::chrono::milliseconds, Qt::TimerType) : int</li>
 <li class="fn" translate="no"><span class="name"><b><a href="https://doc.qt.io/qt/qobject.html#staticMetaObject-var" translate="no">staticMetaObject</a></b></span> : </li>
 <li class="fn" translate="no"><span class="name"><b><a href="https://doc.qt.io/qt/qwidget.html#statusTip-prop" translate="no">statusTip</a></b></span>() const : QString</li>
+<li class="fn" translate="no"><span class="name"><b><a href="qctmlonglongspinbox.html#stepBy" translate="no">stepBy</a></b></span>(int)</li>
+<li class="fn" translate="no"><span class="name"><b><a href="https://doc.qt.io/qt/qabstractspinbox.html#stepBy" translate="no">stepBy</a></b></span>(int)</li>
+<li class="fn" translate="no"><span class="name"><b><a href="https://doc.qt.io/qt/qabstractspinbox.html#stepDown" translate="no">stepDown</a></b></span>()</li>
+<li class="fn" translate="no"><span class="name"><b><a href="qctmlonglongspinbox.html#stepEnabled" translate="no">stepEnabled</a></b></span>() const : QAbstractSpinBox::StepEnabled</li>
+<li class="fn" translate="no"><span class="name"><b><a href="https://doc.qt.io/qt/qabstractspinbox.html#stepEnabled" translate="no">stepEnabled</a></b></span>() const : QAbstractSpinBox::StepEnabled</li>
+<li class="fn" translate="no"><span class="name"><b><a href="qctmlonglongspinbox.html#stepType" translate="no">stepType</a></b></span>() const : QAbstractSpinBox::StepType</li>
+<li class="fn" translate="no"><span class="name"><b><a href="https://doc.qt.io/qt/qabstractspinbox.html#stepUp" translate="no">stepUp</a></b></span>()</li>
 <li class="fn" translate="no"><span class="name"><b><a href="https://doc.qt.io/qt/qwidget.html#style" translate="no">style</a></b></span>() const : QStyle *</li>
 <li class="fn" translate="no"><span class="name"><b><a href="https://doc.qt.io/qt/qwidget.html#styleSheet-prop" translate="no">styleSheet</a></b></span>() const : QString</li>
+<li class="fn" translate="no"><span class="name"><b><a href="qctmlonglongspinbox.html#suffix" translate="no">suffix</a></b></span>() const : QString</li>
 <li class="fn" translate="no"><span class="name"><b><a href="https://doc.qt.io/qt/qwidget.html#tabletEvent" translate="no">tabletEvent</a></b></span>(QTabletEvent *)</li>
 <li class="fn" translate="no"><span class="name"><b><a href="https://doc.qt.io/qt/qwidget.html#testAttribute" translate="no">testAttribute</a></b></span>(Qt::WidgetAttribute) const : bool</li>
-<li class="fn" translate="no"><span class="name"><b><a href="https://doc.qt.io/qt/qlabel.html#text-prop" translate="no">text</a></b></span>() const : QString</li>
-<li class="fn" translate="no"><span class="name"><b><a href="https://doc.qt.io/qt/qlabel.html#textFormat-prop" translate="no">textFormat</a></b></span>() const : Qt::TextFormat</li>
-<li class="fn" translate="no"><span class="name"><b><a href="https://doc.qt.io/qt/qlabel.html#textInteractionFlags-prop" translate="no">textInteractionFlags</a></b></span>() const : Qt::TextInteractionFlags</li>
+<li class="fn" translate="no"><span class="name"><b><a href="https://doc.qt.io/qt/qabstractspinbox.html#text-prop" translate="no">text</a></b></span>() const : QString</li>
+<li class="fn" translate="no"><span class="name"><b><a href="qctmlonglongspinbox.html#textFromValue" translate="no">textFromValue</a></b></span>(qlonglong) const : QString</li>
 <li class="fn" translate="no"><span class="name"><b><a href="https://doc.qt.io/qt/qobject.html#thread" translate="no">thread</a></b></span>() const : QThread *</li>
+<li class="fn" translate="no"><span class="name"><b><a href="https://doc.qt.io/qt/qabstractspinbox.html#timerEvent" translate="no">timerEvent</a></b></span>(QTimerEvent *)</li>
 <li class="fn" translate="no"><span class="name"><b><a href="https://doc.qt.io/qt/qobject.html#timerEvent" translate="no">timerEvent</a></b></span>(QTimerEvent *)</li>
 <li class="fn" translate="no"><span class="name"><b><a href="https://doc.qt.io/qt/qwidget.html#toolTip-prop" translate="no">toolTip</a></b></span>() const : QString</li>
 <li class="fn" translate="no"><span class="name"><b><a href="https://doc.qt.io/qt/qwidget.html#toolTipDuration-prop" translate="no">toolTipDuration</a></b></span>() const : int</li>
@@ -481,8 +477,14 @@
 <li class="fn" translate="no"><span class="name"><b><a href="https://doc.qt.io/qt/qwidget.html#updateGeometry" translate="no">updateGeometry</a></b></span>()</li>
 <li class="fn" translate="no"><span class="name"><b><a href="https://doc.qt.io/qt/qwidget.html#updateMicroFocus" translate="no">updateMicroFocus</a></b></span>(Qt::InputMethodQuery)</li>
 <li class="fn" translate="no"><span class="name"><b><a href="https://doc.qt.io/qt/qwidget.html#updatesEnabled-prop" translate="no">updatesEnabled</a></b></span>() const : bool</li>
+<li class="fn" translate="no"><span class="name"><b><a href="qctmlonglongspinbox.html#validate" translate="no">validate</a></b></span>(QString &amp;, int &amp;) const : QValidator::State</li>
+<li class="fn" translate="no"><span class="name"><b><a href="https://doc.qt.io/qt/qabstractspinbox.html#validate" translate="no">validate</a></b></span>(QString &amp;, int &amp;) const : QValidator::State</li>
+<li class="fn" translate="no"><span class="name"><b><a href="qctmlonglongspinbox.html#value" translate="no">value</a></b></span>() const : qlonglong</li>
+<li class="fn" translate="no"><span class="name"><b><a href="qctmlonglongspinbox.html#value-prop" translate="no">valueChanged</a></b></span>(qlonglong)</li>
+<li class="fn" translate="no"><span class="name"><b><a href="qctmlonglongspinbox.html#valueFromText" translate="no">valueFromText</a></b></span>(const QString &amp;) const : qlonglong</li>
 <li class="fn" translate="no"><span class="name"><b><a href="https://doc.qt.io/qt/qwidget.html#visibleRegion" translate="no">visibleRegion</a></b></span>() const : QRegion</li>
 <li class="fn" translate="no"><span class="name"><b><a href="https://doc.qt.io/qt/qwidget.html#whatsThis-prop" translate="no">whatsThis</a></b></span>() const : QString</li>
+<li class="fn" translate="no"><span class="name"><b><a href="https://doc.qt.io/qt/qabstractspinbox.html#wheelEvent" translate="no">wheelEvent</a></b></span>(QWheelEvent *)</li>
 <li class="fn" translate="no"><span class="name"><b><a href="https://doc.qt.io/qt/qwidget.html#wheelEvent" translate="no">wheelEvent</a></b></span>(QWheelEvent *)</li>
 <li class="fn" translate="no"><span class="name"><b><a href="https://doc.qt.io/qt/qwidget.html#width-prop" translate="no">width</a></b></span>() const : int</li>
 <li class="fn" translate="no"><span class="name"><b><a href="https://doc.qt.io/qt/qpaintdevice.html#width" translate="no">width</a></b></span>() const : int</li>
@@ -502,7 +504,7 @@
 <li class="fn" translate="no"><span class="name"><b><a href="https://doc.qt.io/qt/qwidget.html#windowTitle-prop" translate="no">windowTitle</a></b></span>() const : QString</li>
 <li class="fn" translate="no"><span class="name"><b><a href="https://doc.qt.io/qt/qwidget.html#windowTitleChanged" translate="no">windowTitleChanged</a></b></span>(const QString &amp;)</li>
 <li class="fn" translate="no"><span class="name"><b><a href="https://doc.qt.io/qt/qwidget.html#windowType" translate="no">windowType</a></b></span>() const : Qt::WindowType</li>
-<li class="fn" translate="no"><span class="name"><b><a href="https://doc.qt.io/qt/qlabel.html#wordWrap-prop" translate="no">wordWrap</a></b></span>() const : bool</li>
+<li class="fn" translate="no"><span class="name"><b><a href="https://doc.qt.io/qt/qabstractspinbox.html#wrapping-prop" translate="no">wrapping</a></b></span>() const : bool</li>
 <li class="fn" translate="no"><span class="name"><b><a href="https://doc.qt.io/qt/qwidget.html#x-prop" translate="no">x</a></b></span>() const : int</li>
 <li class="fn" translate="no"><span class="name"><b><a href="https://doc.qt.io/qt/qwidget.html#y-prop" translate="no">y</a></b></span>() const : int</li>
 </ul>

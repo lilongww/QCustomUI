@@ -4,7 +4,7 @@
   <meta charset="utf-8">
 <!-- QCtmAbstractMultiPageItemModel.cpp -->
   <meta name="description" content="分页 Model 基类.">
-  <title>QCtmAbstractMultiPageItemModel Class | QCustomUi 1.14.0</title>
+  <title>QCtmAbstractMultiPageItemModel Class | QCustomUi 1.15.0</title>
   <link rel="stylesheet" type="text/css" href="style/offline-simple.css" />
   <script type="text/javascript">
     document.getElementsByTagName("link").item(0).setAttribute("href", "style/offline.css");
@@ -26,10 +26,10 @@
     <div class="main-rounded">
         <div class="navigationbar">
         <ul>
-<li><a href="index.html" translate="no">QCustomUi 1.14.0</a></li>
+<li><a href="index.html" translate="no">QCustomUi 1.15.0</a></li>
 <li><a href="qcustomui-module.html" translate="no">QCustomUi</a></li>
 <li>QCtmAbstractMultiPageItemModel</li>
-<li id="buildversion">QCustomUi 1.14.0 Reference Documentation</li>
+<li id="buildversion">QCustomUi 1.15.0 Reference Documentation</li>
     </ul>
     </div>
 </div>
@@ -89,11 +89,11 @@
 <div class="func">
 <h2>Member Function Documentation</h2>
 <!-- $$$QCtmAbstractMultiPageItemModel[overload1]$$$QCtmAbstractMultiPageItemModelQObject* -->
-<h3 class="fn" translate="no" id="QCtmAbstractMultiPageItemModel"><code translate="no">[explicit] </code>QCtmAbstractMultiPageItemModel::<span class="name">QCtmAbstractMultiPageItemModel</span>(<span class="type"><a href="https://doc.qt.io/qt/qobject.html#QObject" translate="no">QObject</a></span> *<i>parent</i> = nullptr)</h3>
+<h3 class="fn" translate="no" id="QCtmAbstractMultiPageItemModel"><code class="details extra" translate="no">[explicit]</code> QCtmAbstractMultiPageItemModel::<span class="name">QCtmAbstractMultiPageItemModel</span>(<span class="type"><a href="https://doc.qt.io/qt/qobject.html#QObject" translate="no">QObject</a></span> *<i>parent</i> = nullptr)</h3>
 <p>构造函数 <i translate="no">parent</i>.</p>
 <!-- @@@QCtmAbstractMultiPageItemModel -->
 <!-- $$$~QCtmAbstractMultiPageItemModel[overload1]$$$~QCtmAbstractMultiPageItemModel -->
-<h3 class="fn" translate="no" id="dtor.QCtmAbstractMultiPageItemModel"><code translate="no">[virtual noexcept] </code>QCtmAbstractMultiPageItemModel::<span class="name">~QCtmAbstractMultiPageItemModel</span>()</h3>
+<h3 class="fn" translate="no" id="dtor.QCtmAbstractMultiPageItemModel"><code class="details extra" translate="no">[virtual noexcept]</code> QCtmAbstractMultiPageItemModel::<span class="name">~QCtmAbstractMultiPageItemModel</span>()</h3>
 <p>析构函数.</p>
 <!-- @@@~QCtmAbstractMultiPageItemModel -->
 <!-- $$$currentPage[overload1]$$$currentPage -->
@@ -102,12 +102,12 @@
 <p><b>See also </b><a href="qctmabstractmultipageitemmodel.html#setCurrentPage" translate="no">setCurrentPage</a>.</p>
 <!-- @@@currentPage -->
 <!-- $$$currentPageChanged[overload1]$$$currentPageChangedint -->
-<h3 class="fn" translate="no" id="currentPageChanged"><code translate="no">[signal] </code><span class="type">void</span> QCtmAbstractMultiPageItemModel::<span class="name">currentPageChanged</span>(<span class="type">int</span> <i>page</i>)</h3>
+<h3 class="fn" translate="no" id="currentPageChanged"><code class="details extra" translate="no">[signal]</code> <span class="type">void</span> QCtmAbstractMultiPageItemModel::<span class="name">currentPageChanged</span>(<span class="type">int</span> <i>page</i>)</h3>
 <p>当前页面 <i translate="no">page</i> 改变时发送该信号.</p>
 <p><b>See also </b><a href="qctmabstractmultipageitemmodel.html#setCurrentPage" translate="no">setCurrentPage</a> and <a href="qctmabstractmultipageitemmodel.html#currentPage" translate="no">currentPage</a>.</p>
 <!-- @@@currentPageChanged -->
 <!-- $$$next[overload1]$$$next -->
-<h3 class="fn" translate="no" id="next"><code translate="no">[virtual slot] </code><span class="type">void</span> QCtmAbstractMultiPageItemModel::<span class="name">next</span>()</h3>
+<h3 class="fn" translate="no" id="next"><code class="details extra" translate="no">[virtual slot]</code> <span class="type">void</span> QCtmAbstractMultiPageItemModel::<span class="name">next</span>()</h3>
 <p>转到下一页.</p>
 <p><b>See also </b><a href="qctmabstractmultipageitemmodel.html#prev" translate="no">prev</a>.</p>
 <!-- @@@next -->
@@ -116,11 +116,11 @@
 <p>返回数据偏移量，即首行在所有数据中的位置.</p>
 <!-- @@@offset -->
 <!-- $$$pageCount[overload1]$$$pageCount -->
-<h3 class="fn" translate="no" id="pageCount"><code translate="no">[pure virtual] </code><span class="type">int</span> QCtmAbstractMultiPageItemModel::<span class="name">pageCount</span>() const</h3>
+<h3 class="fn" translate="no" id="pageCount"><code class="details extra" translate="no">[pure virtual]</code> <span class="type">int</span> QCtmAbstractMultiPageItemModel::<span class="name">pageCount</span>() const</h3>
 <p>返回页面数量.</p>
 <!-- @@@pageCount -->
 <!-- $$$pageCountChanged[overload1]$$$pageCountChangedint -->
-<h3 class="fn" translate="no" id="pageCountChanged"><code translate="no">[signal] </code><span class="type">void</span> QCtmAbstractMultiPageItemModel::<span class="name">pageCountChanged</span>(<span class="type">int</span> <i>count</i>)</h3>
+<h3 class="fn" translate="no" id="pageCountChanged"><code class="details extra" translate="no">[signal]</code> <span class="type">void</span> QCtmAbstractMultiPageItemModel::<span class="name">pageCountChanged</span>(<span class="type">int</span> <i>count</i>)</h3>
 <p>页面数量 <i translate="no">count</i> 改变时发送该信号.</p>
 <!-- @@@pageCountChanged -->
 <!-- $$$pageRowCount[overload1]$$$pageRowCount -->
@@ -129,17 +129,17 @@
 <p><b>See also </b><a href="qctmabstractmultipageitemmodel.html#setPageRowCount" translate="no">setPageRowCount</a>.</p>
 <!-- @@@pageRowCount -->
 <!-- $$$prev[overload1]$$$prev -->
-<h3 class="fn" translate="no" id="prev"><code translate="no">[virtual slot] </code><span class="type">void</span> QCtmAbstractMultiPageItemModel::<span class="name">prev</span>()</h3>
+<h3 class="fn" translate="no" id="prev"><code class="details extra" translate="no">[virtual slot]</code> <span class="type">void</span> QCtmAbstractMultiPageItemModel::<span class="name">prev</span>()</h3>
 <p>转到上一页.</p>
 <p><b>See also </b><a href="qctmabstractmultipageitemmodel.html#next" translate="no">next</a>.</p>
 <!-- @@@prev -->
 <!-- $$$setCurrentPage[overload1]$$$setCurrentPageint -->
-<h3 class="fn" translate="no" id="setCurrentPage"><code translate="no">[virtual slot] </code><span class="type">void</span> QCtmAbstractMultiPageItemModel::<span class="name">setCurrentPage</span>(<span class="type">int</span> <i>page</i>)</h3>
+<h3 class="fn" translate="no" id="setCurrentPage"><code class="details extra" translate="no">[virtual slot]</code> <span class="type">void</span> QCtmAbstractMultiPageItemModel::<span class="name">setCurrentPage</span>(<span class="type">int</span> <i>page</i>)</h3>
 <p>设置当前页 <i translate="no">page</i>.</p>
 <p><b>See also </b><a href="qctmabstractmultipageitemmodel.html#currentPage" translate="no">currentPage</a>.</p>
 <!-- @@@setCurrentPage -->
 <!-- $$$setPageRowCount[overload1]$$$setPageRowCountint -->
-<h3 class="fn" translate="no" id="setPageRowCount"><code translate="no">[virtual slot] </code><span class="type">void</span> QCtmAbstractMultiPageItemModel::<span class="name">setPageRowCount</span>(<span class="type">int</span> <i>rowCount</i>)</h3>
+<h3 class="fn" translate="no" id="setPageRowCount"><code class="details extra" translate="no">[virtual slot]</code> <span class="type">void</span> QCtmAbstractMultiPageItemModel::<span class="name">setPageRowCount</span>(<span class="type">int</span> <i>rowCount</i>)</h3>
 <p>设置每页的行数量 <i translate="no">rowCount</i>.</p>
 <p><b>See also </b><a href="qctmabstractmultipageitemmodel.html#pageRowCount" translate="no">pageRowCount</a>.</p>
 <!-- @@@setPageRowCount -->

@@ -4,7 +4,7 @@
   <meta charset="utf-8">
 <!-- QCtmLoadingDialog.cpp -->
   <meta name="description" content="等待加载窗口.">
-  <title>QCtmLoadingDialog Class | QCustomUi 1.14.0</title>
+  <title>QCtmLoadingDialog Class | QCustomUi 1.15.0</title>
   <link rel="stylesheet" type="text/css" href="style/offline-simple.css" />
   <script type="text/javascript">
     document.getElementsByTagName("link").item(0).setAttribute("href", "style/offline.css");
@@ -26,10 +26,10 @@
     <div class="main-rounded">
         <div class="navigationbar">
         <ul>
-<li><a href="index.html" translate="no">QCustomUi 1.14.0</a></li>
+<li><a href="index.html" translate="no">QCustomUi 1.15.0</a></li>
 <li><a href="qcustomui-module.html" translate="no">QCustomUi</a></li>
 <li>QCtmLoadingDialog</li>
-<li id="buildversion">QCustomUi 1.14.0 Reference Documentation</li>
+<li id="buildversion">QCustomUi 1.15.0 Reference Documentation</li>
     </ul>
     </div>
 </div>
@@ -109,11 +109,11 @@
 <p>构造函数，在 <i translate="no">parent</i> 的顶层窗口上覆盖加载窗口.</p>
 <!-- @@@QCtmLoadingDialog -->
 <!-- $$$~QCtmLoadingDialog[overload1]$$$~QCtmLoadingDialog -->
-<h3 class="fn" translate="no" id="dtor.QCtmLoadingDialog"><code translate="no">[virtual noexcept] </code>QCtmLoadingDialog::<span class="name">~QCtmLoadingDialog</span>()</h3>
+<h3 class="fn" translate="no" id="dtor.QCtmLoadingDialog"><code class="details extra" translate="no">[virtual noexcept]</code> QCtmLoadingDialog::<span class="name">~QCtmLoadingDialog</span>()</h3>
 <p>析构该窗口对象.</p>
 <!-- @@@~QCtmLoadingDialog -->
 <!-- $$$cancel[overload1]$$$cancel -->
-<h3 class="fn" translate="no" id="cancel"><code translate="no">[slot] </code><span class="type">void</span> QCtmLoadingDialog::<span class="name">cancel</span>()</h3>
+<h3 class="fn" translate="no" id="cancel"><code class="details extra" translate="no">[slot]</code> <span class="type">void</span> QCtmLoadingDialog::<span class="name">cancel</span>()</h3>
 <p>Loading 窗口加载未完成时调用该函数，此时exec返回Cancel.</p>
 <p><b>See also </b><a href="qctmloadingdialog.html#done" translate="no">done</a>.</p>
 <!-- @@@cancel -->
@@ -124,29 +124,29 @@
 </div><p><b>See also </b><a href="qctmloadingdialog.html#setCancelEnable" translate="no">setCancelEnable</a>.</p>
 <!-- @@@cancelEnable -->
 <!-- $$$closeEvent[overload1]$$$closeEventQCloseEvent* -->
-<h3 class="fn" translate="no" id="closeEvent"><code translate="no">[override virtual protected] </code><span class="type">void</span> QCtmLoadingDialog::<span class="name">closeEvent</span>(<span class="type"><a href="https://doc.qt.io/qt/qcloseevent.html" translate="no">QCloseEvent</a></span> *<i>event</i>)</h3>
+<h3 class="fn" translate="no" id="closeEvent"><code class="details extra" translate="no">[override virtual protected]</code> <span class="type">void</span> QCtmLoadingDialog::<span class="name">closeEvent</span>(<span class="type"><a href="https://doc.qt.io/qt/qcloseevent.html" translate="no">QCloseEvent</a></span> *<i>event</i>)</h3>
 <!-- @@@closeEvent -->
 <!-- $$$done[overload1]$$$done -->
-<h3 class="fn" translate="no" id="done"><code translate="no">[slot] </code><span class="type">void</span> QCtmLoadingDialog::<span class="name">done</span>()</h3>
+<h3 class="fn" translate="no" id="done"><code class="details extra" translate="no">[slot]</code> <span class="type">void</span> QCtmLoadingDialog::<span class="name">done</span>()</h3>
 <p>Loading 窗口加载完成时调用该函数，测试exec返回Done.</p>
 <p><b>See also </b><a href="qctmloadingdialog.html#cancel" translate="no">cancel</a>.</p>
 <!-- @@@done -->
 <!-- $$$eventFilter[overload1]$$$eventFilterQObject*QEvent* -->
-<h3 class="fn" translate="no" id="eventFilter"><code translate="no">[override virtual protected] </code><span class="type">bool</span> QCtmLoadingDialog::<span class="name">eventFilter</span>(<span class="type"><a href="https://doc.qt.io/qt/qobject.html#QObject" translate="no">QObject</a></span> *<i>watched</i>, <span class="type"><a href="https://doc.qt.io/qt/qevent.html" translate="no">QEvent</a></span> *<i>event</i>)</h3>
+<h3 class="fn" translate="no" id="eventFilter"><code class="details extra" translate="no">[override virtual protected]</code> <span class="type">bool</span> QCtmLoadingDialog::<span class="name">eventFilter</span>(<span class="type"><a href="https://doc.qt.io/qt/qobject.html#QObject" translate="no">QObject</a></span> *<i>watched</i>, <span class="type"><a href="https://doc.qt.io/qt/qevent.html" translate="no">QEvent</a></span> *<i>event</i>)</h3>
 <p>Reimplements: <a href="https://doc.qt.io/qt/qobject.html#eventFilter" translate="no">QObject::eventFilter</a>(QObject *watched, QEvent *event).</p>
 <!-- @@@eventFilter -->
 <!-- $$$exec[overload1]$$$exec -->
-<h3 class="fn" translate="no" id="exec"><code translate="no">[slot] </code><span class="type"><a href="qctmloadingdialog.html#Result-enum" translate="no">QCtmLoadingDialog::Result</a></span> QCtmLoadingDialog::<span class="name">exec</span>()</h3>
+<h3 class="fn" translate="no" id="exec"><code class="details extra" translate="no">[slot]</code> <span class="type"><a href="qctmloadingdialog.html#Result-enum" translate="no">QCtmLoadingDialog::Result</a></span> QCtmLoadingDialog::<span class="name">exec</span>()</h3>
 <p>阻塞并显示 loading 窗口.</p>
 <div class="admonition note">
 <p><b>Note: </b>不应使用show来显示loading.</p>
 </div>
 <!-- @@@exec -->
 <!-- $$$hideEvent[overload1]$$$hideEventQHideEvent* -->
-<h3 class="fn" translate="no" id="hideEvent"><code translate="no">[override virtual protected] </code><span class="type">void</span> QCtmLoadingDialog::<span class="name">hideEvent</span>(<span class="type"><a href="https://doc.qt.io/qt/qhideevent.html" translate="no">QHideEvent</a></span> *<i>event</i>)</h3>
+<h3 class="fn" translate="no" id="hideEvent"><code class="details extra" translate="no">[override virtual protected]</code> <span class="type">void</span> QCtmLoadingDialog::<span class="name">hideEvent</span>(<span class="type"><a href="https://doc.qt.io/qt/qhideevent.html" translate="no">QHideEvent</a></span> *<i>event</i>)</h3>
 <!-- @@@hideEvent -->
 <!-- $$$keyPressEvent[overload1]$$$keyPressEventQKeyEvent* -->
-<h3 class="fn" translate="no" id="keyPressEvent"><code translate="no">[override virtual protected] </code><span class="type">void</span> QCtmLoadingDialog::<span class="name">keyPressEvent</span>(<span class="type"><a href="https://doc.qt.io/qt/qkeyevent.html" translate="no">QKeyEvent</a></span> *<i>event</i>)</h3>
+<h3 class="fn" translate="no" id="keyPressEvent"><code class="details extra" translate="no">[override virtual protected]</code> <span class="type">void</span> QCtmLoadingDialog::<span class="name">keyPressEvent</span>(<span class="type"><a href="https://doc.qt.io/qt/qkeyevent.html" translate="no">QKeyEvent</a></span> *<i>event</i>)</h3>
 <!-- @@@keyPressEvent -->
 <!-- $$$movie[overload1]$$$movie -->
 <h3 class="fn" translate="no" id="movie"><span class="type"><a href="https://doc.qt.io/qt/qmovie.html" translate="no">QMovie</a></span> *QCtmLoadingDialog::<span class="name">movie</span>() const</h3>
@@ -165,7 +165,7 @@
 <p><b>See also </b><a href="qctmloadingdialog.html#movie" translate="no">movie</a>.</p>
 <!-- @@@setMovie -->
 <!-- $$$showEvent[overload1]$$$showEventQShowEvent* -->
-<h3 class="fn" translate="no" id="showEvent"><code translate="no">[override virtual protected] </code><span class="type">void</span> QCtmLoadingDialog::<span class="name">showEvent</span>(<span class="type"><a href="https://doc.qt.io/qt/qshowevent.html" translate="no">QShowEvent</a></span> *<i>e</i>)</h3>
+<h3 class="fn" translate="no" id="showEvent"><code class="details extra" translate="no">[override virtual protected]</code> <span class="type">void</span> QCtmLoadingDialog::<span class="name">showEvent</span>(<span class="type"><a href="https://doc.qt.io/qt/qshowevent.html" translate="no">QShowEvent</a></span> *<i>e</i>)</h3>
 <!-- @@@showEvent -->
 </div>
         </div>

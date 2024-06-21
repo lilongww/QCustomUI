@@ -66,7 +66,7 @@ signals:
     void textChanged(const QString&);
 
 protected:
-    virtual QString textFromValue(qlonglong val) const;
+    virtual QString textFromValue(qlonglong value) const;
     virtual qlonglong valueFromText(const QString& text) const;
     QValidator::State validate(QString& input, int& pos) const override;
     void fixup(QString& str) const override;

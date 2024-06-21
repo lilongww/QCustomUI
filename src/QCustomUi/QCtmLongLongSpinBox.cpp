@@ -22,6 +22,15 @@
 #include <QStyleOption>
 #include <private/qabstractspinbox_p.h>
 
+/*!
+    \class      QCtmLongLongSpinBox
+    \brief      64位长整型输入框，弥补Qt库QSpinBox输入框仅支持32位整型，API接口与QSpinBox一致.
+    \inherits   QAbstractSpinBox
+    \ingroup    QCustomUi
+    \inmodule   QCustomUi
+    \inheaderfile QCtmLongLongSpinBox.h
+*/
+
 class QCtmLongLongSpinBoxPrivate : public QAbstractSpinBoxPrivate
 {
     Q_DECLARE_PUBLIC(QCtmLongLongSpinBox)
@@ -184,26 +193,44 @@ QVariant QCtmLongLongSpinBoxPrivate::calculateAdaptiveDecimalStep(int steps) con
     return static_cast<qlonglong>(std::pow(10, log));
 }
 
+/*!
+    \brief      构造函数 \a parent.
+*/
 QCtmLongLongSpinBox::QCtmLongLongSpinBox(QWidget* parent /*= nullptr*/) : QAbstractSpinBox(*new QCtmLongLongSpinBoxPrivate, parent)
 {
     Q_D(QCtmLongLongSpinBox);
     d->init();
 }
 
+/*!
+    \brief      析构函数.
+*/
 QCtmLongLongSpinBox::~QCtmLongLongSpinBox() {}
 
+/*!
+    \brief      设置值 \a value.
+    \sa         value
+*/
 void QCtmLongLongSpinBox::setValue(qlonglong value)
 {
     Q_D(QCtmLongLongSpinBox);
     d->setValue(QVariant(value), EmitIfChanged);
 }
 
+/*!
+    \brief      获取值.
+    \sa         setValue
+*/
 qlonglong QCtmLongLongSpinBox::value() const
 {
     Q_D(const QCtmLongLongSpinBox);
     return d->value.toLongLong();
 }
 
+/*!
+    \brief      设置前缀 \a prefix.
+    \sa         prefix
+*/
 void QCtmLongLongSpinBox::setPrefix(const QString& prefix)
 {
     Q_D(QCtmLongLongSpinBox);
@@ -216,12 +243,20 @@ void QCtmLongLongSpinBox::setPrefix(const QString& prefix)
     updateGeometry();
 }
 
+/*!
+    \brief      返回前缀.
+    \sa         setPrefix
+*/
 QString QCtmLongLongSpinBox::prefix() const
 {
     Q_D(const QCtmLongLongSpinBox);
     return d->prefix;
 }
 
+/*!
+    \brief      设置后缀 \a suffix.
+    \sa         prefix
+*/
 void QCtmLongLongSpinBox::setSuffix(const QString& suffix)
 {
     Q_D(QCtmLongLongSpinBox);
@@ -233,18 +268,29 @@ void QCtmLongLongSpinBox::setSuffix(const QString& suffix)
     updateGeometry();
 }
 
+/*!
+    \brief      返回后缀.
+    \sa         setSuffix
+*/
 QString QCtmLongLongSpinBox::suffix() const
 {
     Q_D(const QCtmLongLongSpinBox);
     return d->suffix;
 }
 
+/*!
+    \brief      返回值的文本, 不包括前缀，后缀，前导空格，结尾空格.
+*/
 QString QCtmLongLongSpinBox::cleanText() const
 {
     Q_D(const QCtmLongLongSpinBox);
     return d->stripped(d->edit->displayText());
 }
 
+/*!
+    \brief      设置步进 \a value.
+    \sa         singleStep
+*/
 void QCtmLongLongSpinBox::setSingleStep(qlonglong value)
 {
     Q_D(QCtmLongLongSpinBox);
@@ -255,12 +301,20 @@ void QCtmLongLongSpinBox::setSingleStep(qlonglong value)
     }
 }
 
+/*!
+    \brief      返回步进.
+    \sa         setSingleStep
+*/
 qlonglong QCtmLongLongSpinBox::singleStep() const
 {
     Q_D(const QCtmLongLongSpinBox);
     return d->singleStep.toLongLong();
 }
 
+/*!
+    \brief      设置最小值 \a minimum.
+    \sa         minimum
+*/
 void QCtmLongLongSpinBox::setMinimum(qlonglong minimum)
 {
     Q_D(QCtmLongLongSpinBox);
@@ -268,12 +322,20 @@ void QCtmLongLongSpinBox::setMinimum(qlonglong minimum)
     d->setRange(m, (QCtmLongLongSpinBoxPrivate::variantCompare(d->maximum, m) > 0 ? d->maximum : m));
 }
 
+/*!
+    \brief      返回最小值.
+    \sa         setMinimum
+*/
 qlonglong QCtmLongLongSpinBox::minimum() const
 {
     Q_D(const QCtmLongLongSpinBox);
     return d->minimum.toLongLong();
 }
 
+/*!
+    \brief      设置最大值 \a maximum.
+    \sa         maximum
+*/
 void QCtmLongLongSpinBox::setMaximum(qlonglong maximum)
 {
     Q_D(QCtmLongLongSpinBox);
@@ -281,30 +343,49 @@ void QCtmLongLongSpinBox::setMaximum(qlonglong maximum)
     d->setRange((QCtmLongLongSpinBoxPrivate::variantCompare(d->minimum, m) < 0 ? d->minimum : m), m);
 }
 
+/*!
+    \brief      返回最大值.
+    \sa         setMaximum
+*/
 qlonglong QCtmLongLongSpinBox::maximum() const
 {
     Q_D(const QCtmLongLongSpinBox);
     return d->maximum.toLongLong();
 }
 
+/*!
+    \brief      设置值范围 \a minimum, \a maximum.
+*/
 void QCtmLongLongSpinBox::setRange(qlonglong minimum, qlonglong maximum)
 {
     Q_D(QCtmLongLongSpinBox);
     d->setRange(QVariant(minimum), QVariant(maximum));
 }
 
+/*!
+    \brief      设置步进类型 \a stepType.
+    \sa         stepType
+*/
 void QCtmLongLongSpinBox::setStepType(QAbstractSpinBox::StepType stepType)
 {
     Q_D(QCtmLongLongSpinBox);
     d->stepType = stepType;
 }
 
+/*!
+    \brief      返回步进类型.
+    \sa         setStepType
+*/
 QAbstractSpinBox::StepType QCtmLongLongSpinBox::stepType() const
 {
     Q_D(const QCtmLongLongSpinBox);
     return d->stepType;
 }
 
+/*!
+    \brief      设置显示进制 \a base.
+    \sa         displayIntegerBase
+*/
 void QCtmLongLongSpinBox::setDisplayIntegerBase(int base)
 {
     Q_D(QCtmLongLongSpinBox);
@@ -322,12 +403,20 @@ void QCtmLongLongSpinBox::setDisplayIntegerBase(int base)
     }
 }
 
+/*!
+    \brief      返回显示进制.
+    \sa         setDisplayIntegerBase
+*/
 int QCtmLongLongSpinBox::displayIntegerBase() const
 {
     Q_D(const QCtmLongLongSpinBox);
     return d->displayIntegerBase;
 }
 
+/*!
+    \brief      将值 \a value 转换为文本.
+    \sa         valueFromText
+*/
 QString QCtmLongLongSpinBox::textFromValue(qlonglong value) const
 {
     Q_D(const QCtmLongLongSpinBox);
@@ -350,6 +439,10 @@ QString QCtmLongLongSpinBox::textFromValue(qlonglong value) const
     return str;
 }
 
+/*!
+    \brief      将文本 \a text 转换为值.
+    \sa         textFromValue
+*/
 qlonglong QCtmLongLongSpinBox::valueFromText(const QString& text) const
 {
     Q_D(const QCtmLongLongSpinBox);
@@ -360,6 +453,9 @@ qlonglong QCtmLongLongSpinBox::valueFromText(const QString& text) const
     return d->validateAndInterpret(copy, pos, state).toLongLong();
 }
 
+/*!
+    \reimp
+*/
 QValidator::State QCtmLongLongSpinBox::validate(QString& input, int& pos) const
 {
     Q_D(const QCtmLongLongSpinBox);
@@ -369,12 +465,18 @@ QValidator::State QCtmLongLongSpinBox::validate(QString& input, int& pos) const
     return state;
 }
 
+/*!
+    \reimp
+*/
 void QCtmLongLongSpinBox::fixup(QString& str) const
 {
     if (!isGroupSeparatorShown())
         str.remove(locale().groupSeparator());
 }
 
+/*!
+    \reimp
+*/
 bool QCtmLongLongSpinBox::event(QEvent* event)
 {
     Q_D(QCtmLongLongSpinBox);
@@ -387,6 +489,9 @@ bool QCtmLongLongSpinBox::event(QEvent* event)
     return QAbstractSpinBox::event(event);
 }
 
+/*!
+    \reimp
+*/
 QAbstractSpinBox::StepEnabled QCtmLongLongSpinBox::stepEnabled() const
 {
     Q_D(const QCtmLongLongSpinBox);
@@ -406,6 +511,9 @@ QAbstractSpinBox::StepEnabled QCtmLongLongSpinBox::stepEnabled() const
     return ret;
 }
 
+/*!
+    \reimp
+*/
 void QCtmLongLongSpinBox::stepBy(int steps)
 {
     Q_D(QCtmLongLongSpinBox);

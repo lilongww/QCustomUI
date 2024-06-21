@@ -4,7 +4,7 @@
   <meta charset="utf-8">
 <!-- QCtmTableView.cpp -->
   <meta name="description" content="自定义外观的 TableView.">
-  <title>List of All Members for QCtmTableView | QCustomUi 1.14.0</title>
+  <title>List of All Members for QCtmTableView | QCustomUi 1.15.0</title>
   <link rel="stylesheet" type="text/css" href="style/offline-simple.css" />
   <script type="text/javascript">
     document.getElementsByTagName("link").item(0).setAttribute("href", "style/offline.css");
@@ -26,10 +26,10 @@
     <div class="main-rounded">
         <div class="navigationbar">
         <ul>
-<li><a href="index.html" translate="no">QCustomUi 1.14.0</a></li>
+<li><a href="index.html" translate="no">QCustomUi 1.15.0</a></li>
 <li><a href="qcustomui-module.html" translate="no">QCustomUi</a></li>
 <li>QCtmTableView</li>
-<li id="buildversion">QCustomUi 1.14.0 Reference Documentation</li>
+<li id="buildversion">QCustomUi 1.15.0 Reference Documentation</li>
     </ul>
     </div>
 </div>
@@ -191,8 +191,9 @@
 <li class="fn" translate="no"><span class="name"><b><a href="https://doc.qt.io/qt/qobject.html#eventFilter" translate="no">eventFilter</a></b></span>(QObject *, QEvent *) : bool</li>
 <li class="fn" translate="no"><span class="name"><b><a href="https://doc.qt.io/qt/qabstractitemview.html#executeDelayedItemsLayout" translate="no">executeDelayedItemsLayout</a></b></span>()</li>
 <li class="fn" translate="no"><span class="name"><b><a href="https://doc.qt.io/qt/qwidget.html#find" translate="no">find</a></b></span>(WId) : QWidget *</li>
-<li class="fn" translate="no"><span class="name"><b><a href="https://doc.qt.io/qt/qobject.html#findChild" translate="no">findChild</a></b></span>(const QString &amp;, Qt::FindChildOptions) const : T</li>
-<li class="fn" translate="no"><span class="name"><b><a href="https://doc.qt.io/qt/qobject.html#findChildren" translate="no">findChildren</a></b></span>(const QString &amp;, Qt::FindChildOptions) const : QList&lt;T&gt;</li>
+<li class="fn" translate="no"><span class="name"><b><a href="https://doc.qt.io/qt/qobject.html#findChild" translate="no">findChild</a></b></span>(QAnyStringView, Qt::FindChildOptions) const : T</li>
+<li class="fn" translate="no"><span class="name"><b><a href="https://doc.qt.io/qt/qobject.html#findChild-1" translate="no">findChild</a></b></span>(Qt::FindChildOptions) const : T</li>
+<li class="fn" translate="no"><span class="name"><b><a href="https://doc.qt.io/qt/qobject.html#findChildren" translate="no">findChildren</a></b></span>(QAnyStringView, Qt::FindChildOptions) const : QList&lt;T&gt;</li>
 <li class="fn" translate="no"><span class="name"><b><a href="https://doc.qt.io/qt/qobject.html#findChildren-1" translate="no">findChildren</a></b></span>(Qt::FindChildOptions) const : QList&lt;T&gt;</li>
 <li class="fn" translate="no"><span class="name"><b><a href="https://doc.qt.io/qt/qobject.html#findChildren-2" translate="no">findChildren</a></b></span>(const QRegularExpression &amp;, Qt::FindChildOptions) const : QList&lt;T&gt;</li>
 <li class="fn" translate="no"><span class="name"><b><a href="https://doc.qt.io/qt/qabstractitemview.html#focusInEvent" translate="no">focusInEvent</a></b></span>(QFocusEvent *)</li>
@@ -353,7 +354,7 @@
 <li class="fn" translate="no"><span class="name"><b><a href="https://doc.qt.io/qt/qtableview.html#moveCursor" translate="no">moveCursor</a></b></span>(QAbstractItemView::CursorAction, Qt::KeyboardModifiers) : QModelIndex</li>
 <li class="fn" translate="no"><span class="name"><b><a href="https://doc.qt.io/qt/qabstractitemview.html#moveCursor" translate="no">moveCursor</a></b></span>(QAbstractItemView::CursorAction, Qt::KeyboardModifiers) : QModelIndex</li>
 <li class="fn" translate="no"><span class="name"><b><a href="https://doc.qt.io/qt/qwidget.html#moveEvent" translate="no">moveEvent</a></b></span>(QMoveEvent *)</li>
-<li class="fn" translate="no"><span class="name"><b><a href="https://doc.qt.io/qt/qobject.html#moveToThread" translate="no">moveToThread</a></b></span>(QThread *)</li>
+<li class="fn" translate="no"><span class="name"><b><a href="https://doc.qt.io/qt/qobject.html#moveToThread" translate="no">moveToThread</a></b></span>(QThread *) : bool</li>
 <li class="fn" translate="no"><span class="name"><b><a href="https://doc.qt.io/qt/qwidget.html#nativeEvent" translate="no">nativeEvent</a></b></span>(const QByteArray &amp;, void *, qintptr *) : bool</li>
 <li class="fn" translate="no"><span class="name"><b><a href="https://doc.qt.io/qt/qwidget.html#nativeParentWidget" translate="no">nativeParentWidget</a></b></span>() const : QWidget *</li>
 <li class="fn" translate="no"><span class="name"><b><a href="https://doc.qt.io/qt/qwidget.html#nextInFocusChain" translate="no">nextInFocusChain</a></b></span>() const : QWidget *</li>
@@ -363,8 +364,8 @@
 <li class="fn" translate="no"><span class="name"><b><a href="https://doc.qt.io/qt/qabstractitemview.html#openPersistentEditor" translate="no">openPersistentEditor</a></b></span>(const QModelIndex &amp;)</li>
 <li class="fn" translate="no"><span class="name"><b><a href="https://doc.qt.io/qt/qwidget.html#overrideWindowFlags" translate="no">overrideWindowFlags</a></b></span>(Qt::WindowFlags)</li>
 <li class="fn" translate="no"><span class="name"><b><a href="https://doc.qt.io/qt/qwidget.html#paintEngine" translate="no">paintEngine</a></b></span>() const : QPaintEngine *</li>
-<li class="fn" translate="no"><span class="name"><b><a href="https://doc.qt.io/qt/qpaintdevice.html#paintEngine" translate="no">paintEngine</a></b></span>() const : QPaintEngine *</li>
 </ul></td><td class="topAlign"><ul>
+<li class="fn" translate="no"><span class="name"><b><a href="https://doc.qt.io/qt/qpaintdevice.html#paintEngine" translate="no">paintEngine</a></b></span>() const : QPaintEngine *</li>
 <li class="fn" translate="no"><span class="name"><b><a href="https://doc.qt.io/qt/qtableview.html#paintEvent" translate="no">paintEvent</a></b></span>(QPaintEvent *)</li>
 <li class="fn" translate="no"><span class="name"><b><a href="https://doc.qt.io/qt/qabstractscrollarea.html#paintEvent" translate="no">paintEvent</a></b></span>(QPaintEvent *)</li>
 <li class="fn" translate="no"><span class="name"><b><a href="https://doc.qt.io/qt/qframe.html#paintEvent" translate="no">paintEvent</a></b></span>(QPaintEvent *)</li>

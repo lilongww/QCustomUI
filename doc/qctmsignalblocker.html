@@ -4,7 +4,7 @@
   <meta charset="utf-8">
 <!-- QCtmSignalBlocker.qdoc -->
   <meta name="description" content="QSignalBlocker的增强版本，支持多个QObject对象的信号阻断，而QSignalBlocker仅支持一个QObject对象的信号的阻断.">
-  <title>QCtmSignalBlocker Class | QCustomUi 1.14.0</title>
+  <title>QCtmSignalBlocker Class | QCustomUi 1.15.0</title>
   <link rel="stylesheet" type="text/css" href="style/offline-simple.css" />
   <script type="text/javascript">
     document.getElementsByTagName("link").item(0).setAttribute("href", "style/offline.css");
@@ -26,10 +26,10 @@
     <div class="main-rounded">
         <div class="navigationbar">
         <ul>
-<li><a href="index.html" translate="no">QCustomUi 1.14.0</a></li>
+<li><a href="index.html" translate="no">QCustomUi 1.15.0</a></li>
 <li><a href="qcustomui-module.html" translate="no">QCustomUi</a></li>
 <li>QCtmSignalBlocker</li>
-<li id="buildversion">QCustomUi 1.14.0 Reference Documentation</li>
+<li id="buildversion">QCustomUi 1.15.0 Reference Documentation</li>
     </ul>
     </div>
 </div>
@@ -72,27 +72,27 @@
 <div class="func">
 <h2>Member Function Documentation</h2>
 <!-- $$$QCtmSignalBlocker[overload1]$$$QCtmSignalBlockerArgs&&... -->
-<h3 class="fn" translate="no" id="QCtmSignalBlocker">template &lt;typename Args&gt; QCtmSignalBlocker::<span class="name">QCtmSignalBlocker</span>(<span class="type">Args</span> &amp;&amp;... <i>objs</i>)</h3>
+<h3 class="fn" translate="no" id="QCtmSignalBlocker">template &lt;typename... Args&gt; QCtmSignalBlocker::<span class="name">QCtmSignalBlocker</span>(<span class="type">Args</span> &amp;&amp;... <i>objs</i>)</h3>
 <p>构造函数，支持一次传入多个<a href="https://doc.qt.io/qt/qobject.html" translate="no">QObject</a>对象 <i translate="no">objs</i>.</p>
 <!-- @@@QCtmSignalBlocker -->
 <!-- $$$QCtmSignalBlocker$$$QCtmSignalBlockerQCtmSignalBlocker&& -->
-<h3 class="fn" translate="no" id="QCtmSignalBlocker-1"><code translate="no">[noexcept] </code>QCtmSignalBlocker::<span class="name">QCtmSignalBlocker</span>(<span class="type"><a href="qctmsignalblocker.html#QCtmSignalBlocker" translate="no">QCtmSignalBlocker</a></span> &amp;&amp;<i>other</i>)</h3>
+<h3 class="fn" translate="no" id="QCtmSignalBlocker-1"><code class="details extra" translate="no">[noexcept]</code> QCtmSignalBlocker::<span class="name">QCtmSignalBlocker</span>(<span class="type"><a href="qctmsignalblocker.html#QCtmSignalBlocker" translate="no">QCtmSignalBlocker</a></span> &amp;&amp;<i>other</i>)</h3>
 <p>移动构造函数 <i translate="no">other</i>.</p>
 <!-- @@@QCtmSignalBlocker -->
 <!-- $$$~QCtmSignalBlocker[overload1]$$$~QCtmSignalBlocker -->
-<h3 class="fn" translate="no" id="dtor.QCtmSignalBlocker"><code translate="no">[noexcept] </code>QCtmSignalBlocker::<span class="name">~QCtmSignalBlocker</span>()</h3>
+<h3 class="fn" translate="no" id="dtor.QCtmSignalBlocker"><code class="details extra" translate="no">[noexcept]</code> QCtmSignalBlocker::<span class="name">~QCtmSignalBlocker</span>()</h3>
 <p>析构函数.</p>
 <!-- @@@~QCtmSignalBlocker -->
 <!-- $$$reblock[overload1]$$$reblock -->
-<h3 class="fn" translate="no" id="reblock"><code translate="no">[noexcept] </code><span class="type">void</span> QCtmSignalBlocker::<span class="name">reblock</span>()</h3>
+<h3 class="fn" translate="no" id="reblock"><code class="details extra" translate="no">[noexcept]</code> <span class="type">void</span> QCtmSignalBlocker::<span class="name">reblock</span>()</h3>
 <p>重新阻断所有对象信号.</p>
 <!-- @@@reblock -->
 <!-- $$$unblock[overload1]$$$unblock -->
-<h3 class="fn" translate="no" id="unblock"><code translate="no">[noexcept] </code><span class="type">void</span> QCtmSignalBlocker::<span class="name">unblock</span>()</h3>
+<h3 class="fn" translate="no" id="unblock"><code class="details extra" translate="no">[noexcept]</code> <span class="type">void</span> QCtmSignalBlocker::<span class="name">unblock</span>()</h3>
 <p>将所有对象的信号阻断状态恢复到本次阻断之前的状态，注意，如果对象在本次阻断之前就已经阻断，调用本函数并不会解除阻断.</p>
 <!-- @@@unblock -->
 <!-- $$$operator=[overload1]$$$operator=QCtmSignalBlocker&& -->
-<h3 class="fn" translate="no" id="operator-eq"><code translate="no">[noexcept] </code><span class="type"><a href="qctmsignalblocker.html#QCtmSignalBlocker" translate="no">QCtmSignalBlocker</a></span> &amp;QCtmSignalBlocker::<span class="name">operator=</span>(<span class="type"><a href="qctmsignalblocker.html#QCtmSignalBlocker" translate="no">QCtmSignalBlocker</a></span> &amp;&amp;<i>other</i>)</h3>
+<h3 class="fn" translate="no" id="operator-eq"><code class="details extra" translate="no">[noexcept]</code> <span class="type"><a href="qctmsignalblocker.html#QCtmSignalBlocker" translate="no">QCtmSignalBlocker</a></span> &amp;QCtmSignalBlocker::<span class="name">operator=</span>(<span class="type"><a href="qctmsignalblocker.html#QCtmSignalBlocker" translate="no">QCtmSignalBlocker</a></span> &amp;&amp;<i>other</i>)</h3>
 <p>移动赋值运算符重载 <i translate="no">other</i>.</p>
 <!-- @@@operator= -->
 </div>
