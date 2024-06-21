@@ -16,18 +16,42 @@
 **  You should have received a copy of the GNU Lesser General Public License    **
 **  along with QCustomUi.  If not, see <https://www.gnu.org/licenses/>.         **
 **********************************************************************************/
-#include "ComboBox.h"
+#include "ULongLongSpinBox.h"
 
-#include <QCustomUi/QCtmComboBox.h>
+#include <QCustomUi/QCtmULongLongSpinBox.h>
 
-ComboBox::ComboBox(QObject* parent /*= nullptr*/) : QObject(parent) {}
+ULongLongSpinBox::ULongLongSpinBox(QObject* parent /*= nullptr*/) : QObject(parent) {}
 
-QString ComboBox::domXml() const
+bool ULongLongSpinBox::isContainer() const { return false; }
+
+bool ULongLongSpinBox::isInitialized() const { return m_initialized; }
+
+QIcon ULongLongSpinBox::icon() const { return {}; }
+
+QString ULongLongSpinBox::domXml() const
 {
     return "<ui language=\"c++\">\n"
-           " <widget class=\"QCtmComboBox\" name=\"comboBox\">\n"
+           " <widget class=\"QCtmULongLongSpinBox\" name=\"spinBox\">\n"
            " </widget>\n"
            "</ui>\n";
 }
 
-QWidget* ComboBox::createWidget(QWidget* parent) { return new QCtmComboBox(parent); }
+QString ULongLongSpinBox::group() const { return "Input Widgets"; }
+
+QString ULongLongSpinBox::includeFile() const { return "QCustomUi/QCtmULongLongSpinBox.h"; }
+
+QString ULongLongSpinBox::name() const { return "QCtmULongLongSpinBox"; }
+
+QString ULongLongSpinBox::toolTip() const { return "QCtmULongLongSpinBox"; }
+
+QString ULongLongSpinBox::whatsThis() const { return "QCtmULongLongSpinBox"; }
+
+QWidget* ULongLongSpinBox::createWidget(QWidget* parent) { return new QCtmULongLongSpinBox(parent); }
+
+void ULongLongSpinBox::initialize(QDesignerFormEditorInterface* core)
+{
+    if (m_initialized)
+        return;
+
+    m_initialized = true;
+}

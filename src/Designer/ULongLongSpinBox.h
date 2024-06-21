@@ -16,18 +16,31 @@
 **  You should have received a copy of the GNU Lesser General Public License    **
 **  along with QCustomUi.  If not, see <https://www.gnu.org/licenses/>.         **
 **********************************************************************************/
-#include "ComboBox.h"
+#pragma once
 
-#include <QCustomUi/QCtmComboBox.h>
+#include <QDesignerCustomWidgetInterface>
 
-ComboBox::ComboBox(QObject* parent /*= nullptr*/) : QObject(parent) {}
-
-QString ComboBox::domXml() const
+class ULongLongSpinBox
+    : public QObject
+    , public QDesignerCustomWidgetInterface
 {
-    return "<ui language=\"c++\">\n"
-           " <widget class=\"QCtmComboBox\" name=\"comboBox\">\n"
-           " </widget>\n"
-           "</ui>\n";
-}
+    Q_OBJECT
+    Q_INTERFACES(QDesignerCustomWidgetInterface)
+public:
+    explicit ULongLongSpinBox(QObject* parent = nullptr);
 
-QWidget* ComboBox::createWidget(QWidget* parent) { return new QCtmComboBox(parent); }
+    bool isContainer() const override;
+    bool isInitialized() const override;
+    QIcon icon() const override;
+    QString domXml() const override;
+    QString group() const override;
+    QString includeFile() const override;
+    QString name() const override;
+    QString toolTip() const override;
+    QString whatsThis() const override;
+    QWidget* createWidget(QWidget* parent) override;
+    void initialize(QDesignerFormEditorInterface* core) override;
+
+private:
+    bool m_initialized { false };
+};
