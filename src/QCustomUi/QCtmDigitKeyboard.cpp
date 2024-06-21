@@ -23,6 +23,7 @@
 #include "QCtmULongLongSpinBox.h"
 #include "ui_QCtmDigitKeyboard.h"
 
+#include <QDebug>
 #include <QDoubleSpinBox>
 #include <QKeyEvent>
 #include <QLineEdit>
@@ -330,7 +331,7 @@ void QCtmDigitKeyboard::bindBox(QAbstractSpinBox* box)
     }
     else
     {
-        qFatal() << "Unknown SpinBox.";
+        qFatal("Unknown SpinBox.");
     }
     if (m_impl->bindedBox)
         m_impl->bindedBox->findChild<QLineEdit*>()->removeEventFilter(this);

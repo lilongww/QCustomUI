@@ -440,6 +440,8 @@ void QCtmLongLongSpinBox::stepBy(int steps)
     {
         d->emitSignals(e, old);
     }
+#if QT_VERSION >= QT_VERSION_CHECK(6, 0, 0)
     if (style()->styleHint(QStyle::SH_SpinBox_SelectOnStep, nullptr, this, nullptr))
+#endif
         selectAll();
 }

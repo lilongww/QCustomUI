@@ -21,11 +21,38 @@
 #include <private/qabstractspinbox_p.h>
 #include <private/qdatetimeparser_p.h>
 
-/*!
-    \internal
-    Constructs a QAbstractSpinBoxPrivate object
-*/
-
+#if QT_VERSION < QT_VERSION_CHECK(6, 0, 0)
+QAbstractSpinBoxPrivate::QAbstractSpinBoxPrivate()
+    : edit(nullptr)
+    , type(QMetaType::UnknownType)
+    , spinClickTimerId(-1)
+    , spinClickTimerInterval(100)
+    , spinClickThresholdTimerId(-1)
+    , spinClickThresholdTimerInterval(-1)
+    , effectiveSpinRepeatRate(1)
+    , buttonState(None)
+    , cachedText(QLatin1String("\x01"))
+    , cachedState(QValidator::Invalid)
+    , pendingEmit(false)
+    , readOnly(false)
+    , wrapping(false)
+    , ignoreCursorPositionChanged(false)
+    , frame(true)
+    , accelerate(false)
+    , keyboardTracking(true)
+    , cleared(false)
+    , ignoreUpdateEdit(false)
+    , correctionMode(QAbstractSpinBox::CorrectToPreviousValue)
+    , stepModifier(Qt::ControlModifier)
+    , acceleration(0)
+    , hoverControl(QStyle::SC_None)
+    , buttonSymbols(QAbstractSpinBox::UpDownArrows)
+    , validator(nullptr)
+    , showGroupSeparator(0)
+    , wheelDeltaRemainder(0)
+{
+}
+#else
 QAbstractSpinBoxPrivate::QAbstractSpinBoxPrivate()
     : pendingEmit(false)
     , readOnly(false)
@@ -39,7 +66,7 @@ QAbstractSpinBoxPrivate::QAbstractSpinBoxPrivate()
     , showGroupSeparator(false)
 {
 }
-
+#endif
 /*
    \internal
    Called when the QAbstractSpinBoxPrivate is destroyed
@@ -147,7 +174,11 @@ void QAbstractSpinBoxPrivate::emitSignals(EmitPolicy, const QVariant&) {}
     signal.
 */
 
+#if QT_VERSION < QT_VERSION_CHECK(6, 0, 0)
+void QAbstractSpinBoxPrivate::_q_editorTextChanged(const QString& t)
+#else
 void QAbstractSpinBoxPrivate::editorTextChanged(const QString& t)
+#endif
 {
     Q_Q(QAbstractSpinBox);
 
@@ -183,7 +214,11 @@ void QAbstractSpinBoxPrivate::editorTextChanged(const QString& t)
     the different sections etc.
 */
 
+#if QT_VERSION < QT_VERSION_CHECK(6, 0, 0)
+void QAbstractSpinBoxPrivate::_q_editorCursorPositionChanged(int oldpos, int newpos)
+#else
 void QAbstractSpinBoxPrivate::editorCursorPositionChanged(int oldpos, int newpos)
+#endif
 {
     if (!edit->hasSelectedText() && !ignoreCursorPositionChanged && !specialValue())
     {
@@ -302,7 +337,11 @@ void QAbstractSpinBoxPrivate::updateState(bool up, bool fromKeyboard /* = false 
     {
         buttonState = (up ? Up : Down) | (fromKeyboard ? Keyboard : Mouse);
         int steps   = up ? 1 : -1;
+#if QT_VERSION < QT_VERSION_CHECK(6, 0, 0)
+        if (QGuiApplication::keyboardModifiers() & stepModifier)
+#else
         if (keyboardModifiers & stepModifier)
+#endif
             steps *= 10;
         q->stepBy(steps);
         spinClickThresholdTimerId = q->startTimer(spinClickThresholdTimerInterval);
@@ -469,6 +508,12 @@ QVariant QAbstractSpinBoxPrivate::getZeroVariant() const
     case QMetaType::Double:
         ret = QVariant(0.0);
         break;
+    case QMetaType::LongLong:
+        ret = QVariant(0LL);
+        break;
+    case QMetaType::ULongLong:
+        ret = QVariant(0ULL);
+        break;
     default:
         break;
     }
@@ -633,6 +678,46 @@ QVariant operator+(const QVariant& arg1, const QVariant& arg2)
             }
             break;
         }
+    case QMetaType::LongLong:
+        {
+            const auto int1 = arg1.toLongLong();
+            const auto int2 = arg2.toLongLong();
+            if (int1 > 0 && (int2 >= std::numeric_limits<qlonglong>::max() - int1))
+            {
+                // The increment overflows
+                ret = QVariant(std::numeric_limits<qlonglong>::max());
+            }
+            else if (int1 < 0 && (int2 <= std::numeric_limits<qlonglong>::min() - int1))
+            {
+                // The increment underflows
+                ret = QVariant(std::numeric_limits<qlonglong>::min());
+            }
+            else
+            {
+                ret = QVariant(int1 + int2);
+            }
+            break;
+        }
+    case QMetaType::ULongLong:
+        {
+            const auto int1 = arg1.toULongLong();
+            const auto int2 = arg2.toULongLong();
+            if (int1 > 0 && (int2 >= std::numeric_limits<qulonglong>::max() - int1))
+            {
+                // The increment overflows
+                ret = QVariant(std::numeric_limits<qulonglong>::max());
+            }
+            else if (int1 < 0 && (int2 <= std::numeric_limits<qulonglong>::min() - int1))
+            {
+                // The increment underflows
+                ret = QVariant(std::numeric_limits<qulonglong>::min());
+            }
+            else
+            {
+                ret = QVariant(int1 + int2);
+            }
+            break;
+        }
     case QMetaType::Double:
         ret = QVariant(arg1.toDouble() + arg2.toDouble());
         break;
@@ -667,6 +752,12 @@ QVariant operator-(const QVariant& arg1, const QVariant& arg2)
     {
     case QMetaType::Int:
         ret = QVariant(arg1.toInt() - arg2.toInt());
+        break;
+    case QMetaType::LongLong:
+        ret = QVariant(arg1.toLongLong() - arg2.toLongLong());
+        break;
+    case QMetaType::ULongLong:
+        ret = QVariant(arg1.toULongLong() - arg2.toULongLong());
         break;
     case QMetaType::Double:
         ret = QVariant(arg1.toDouble() - arg2.toDouble());
@@ -711,6 +802,14 @@ QVariant operator*(const QVariant& arg1, double multiplier)
     case QMetaType::Int:
         ret = static_cast<int>(qBound<double>(INT_MIN, arg1.toInt() * multiplier, INT_MAX));
         break;
+    case QMetaType::LongLong:
+        ret = static_cast<qlonglong>(
+            qBound<double>(std::numeric_limits<qlonglong>::min(), arg1.toLongLong() * multiplier, std::numeric_limits<qlonglong>::max()));
+        break;
+    case QMetaType::ULongLong:
+        ret = static_cast<qulonglong>(qBound<double>(
+            std::numeric_limits<qulonglong>::min(), arg1.toULongLong() * multiplier, std::numeric_limits<qulonglong>::max()));
+        break;
     case QMetaType::Double:
         ret = QVariant(arg1.toDouble() * multiplier);
         break;
@@ -743,6 +842,14 @@ double operator/(const QVariant& arg1, const QVariant& arg2)
     case QMetaType::Int:
         a1 = (double)arg1.toInt();
         a2 = (double)arg2.toInt();
+        break;
+    case QMetaType::LongLong:
+        a1 = (double)arg1.toLongLong();
+        a2 = (double)arg2.toLongLong();
+        break;
+    case QMetaType::ULongLong:
+        a1 = (double)arg1.toULongLong();
+        a2 = (double)arg2.toULongLong();
         break;
     case QMetaType::Double:
         a1 = arg1.toDouble();
