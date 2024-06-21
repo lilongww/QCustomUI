@@ -36,7 +36,8 @@ public:
     enum class InputMode
     {
         IntInput = 1,
-        DoubleInput
+        DoubleInput,
+        LongLongInput
     };
 
     struct Unit

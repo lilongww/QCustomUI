@@ -1,6 +1,7 @@
 ﻿#include "DigitKeyboardExample.h"
 
 #include <QCustomUi/QCtmDigitKeyboard.h>
+#include <QCustomUi/QCtmLongLongSpinBox.h>
 
 #include <QDebug>
 #include <QDoubleSpinBox>
@@ -18,7 +19,7 @@ DigitKeyboardExample::DigitKeyboardExample(QWidget* parent) : QCtmWindow(parent)
     auto doubleSpinBox = new QDoubleSpinBox(this);
     layout->addWidget(doubleSpinBox);
     doubleSpinBox->setSuffix("MHz");
-    auto sp = new QSpinBox(this);
+    auto sp = new QCtmLongLongSpinBox(this);
     sp->setSuffix("KHz");
     sp->setRange(0, 1000);
     sp->setValue(100);
@@ -32,6 +33,7 @@ DigitKeyboardExample::DigitKeyboardExample(QWidget* parent) : QCtmWindow(parent)
     keyboard2->setUnits({ { "Hz", 0, std::giga::num }, { "KHz", 0, std::mega::num }, { "MHz", 0, std::kilo::num }, { "GHz", 0, 1 } });
     auto keyboard3 = new QCtmDigitKeyboard(this);
     keyboard3->bindBox(sp);
+    keyboard3->setUnits({ { "Hz", 0, std::giga::num }, { "KHz", 0, std::mega::num }, { "MHz", 0, std::kilo::num }, { "GHz", 0, 1 } });
     sp->setValue(10000);
     connect(spinbox, &QSpinBox::textChanged, this, [=](auto text) { qDebug() << text; });
 }
