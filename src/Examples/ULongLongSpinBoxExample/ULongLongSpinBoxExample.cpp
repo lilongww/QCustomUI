@@ -23,8 +23,9 @@ void ULongLongSpinBoxExample::init()
             {
                 qDebug() << QString::number(value); // QCtmMessageBox::information(this, "Value Changed", QString::number(value));
             });
-    box->setSuffix("V");
-    box->setPrefix("Data:");
+    box->setMinimumWidth(200);
+    // box->setSuffix("V");
+    // box->setPrefix("Data:");
     layout->addWidget(box);
     layout->addStretch(1);
 }

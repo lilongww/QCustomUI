@@ -106,6 +106,14 @@ IP地址输入框
 
 ![image-20220519154616413](README.assets/image-20220519154616413.png)
 
+#### QCtmLongLongSpinBox
+
+#### QCtmULongLongSpinBox
+
+提供64位长整型的数字输入框
+
+![image-20240621150955630](README.assets\image-20240621150955630.png)
+
 ### 5.消息窗口
 
 #### QCtmMessageBox
