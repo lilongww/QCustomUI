@@ -352,7 +352,11 @@ void QCtmWinFramelessDelegate::setWindowLong()
     {
         extendFrameIntoClientArea(m_impl->parent->windowHandle(), -1, -1, -1, -1);
     }
+#if QT_VERSION < QT_VERSION_CHECK(6, 0, 0)
+    if (!(m_impl->parent->windowFlags().testFlag(Qt::Tool) || m_impl->parent->windowFlags().testFlag(Qt::ToolTip)))
+#else
     if (!m_impl->parent->windowFlags().testAnyFlags(Qt::Tool | Qt::ToolTip))
+#endif
     {
         RECT rect;
         GetWindowRect(hwnd, &rect);

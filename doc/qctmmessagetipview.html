@@ -4,7 +4,7 @@
   <meta charset="utf-8">
 <!-- QCtmMessageTipView.cpp -->
   <meta name="description" content="QCtmMessageTipView 是显示具体消息的列表.">
-  <title>QCtmMessageTipView Class | QCustomUi 1.14.0</title>
+  <title>QCtmMessageTipView Class | QCustomUi 1.15.0</title>
   <link rel="stylesheet" type="text/css" href="style/offline-simple.css" />
   <script type="text/javascript">
     document.getElementsByTagName("link").item(0).setAttribute("href", "style/offline.css");
@@ -26,10 +26,10 @@
     <div class="main-rounded">
         <div class="navigationbar">
         <ul>
-<li><a href="index.html" translate="no">QCustomUi 1.14.0</a></li>
+<li><a href="index.html" translate="no">QCustomUi 1.15.0</a></li>
 <li><a href="qcustomui-module.html" translate="no">QCustomUi</a></li>
 <li>QCtmMessageTipView</li>
-<li id="buildversion">QCustomUi 1.14.0 Reference Documentation</li>
+<li id="buildversion">QCustomUi 1.15.0 Reference Documentation</li>
     </ul>
     </div>
 </div>
@@ -156,23 +156,23 @@
 <p>构造一个父对象为 <i translate="no">parent</i> 的消息列表.</p>
 <!-- @@@QCtmMessageTipView -->
 <!-- $$$~QCtmMessageTipView[overload1]$$$~QCtmMessageTipView -->
-<h3 class="fn" translate="no" id="dtor.QCtmMessageTipView"><code translate="no">[virtual noexcept] </code>QCtmMessageTipView::<span class="name">~QCtmMessageTipView</span>()</h3>
+<h3 class="fn" translate="no" id="dtor.QCtmMessageTipView"><code class="details extra" translate="no">[virtual noexcept]</code> QCtmMessageTipView::<span class="name">~QCtmMessageTipView</span>()</h3>
 <p>销毁该消息列表.</p>
 <!-- @@@~QCtmMessageTipView -->
 <!-- $$$aboutToClearAllMessages[overload1]$$$aboutToClearAllMessages -->
-<h3 class="fn" translate="no" id="aboutToClearAllMessages"><code translate="no">[signal] </code><span class="type">bool</span> QCtmMessageTipView::<span class="name">aboutToClearAllMessages</span>()</h3>
+<h3 class="fn" translate="no" id="aboutToClearAllMessages"><code class="details extra" translate="no">[signal]</code> <span class="type">bool</span> QCtmMessageTipView::<span class="name">aboutToClearAllMessages</span>()</h3>
 <p>如果要在清除所有消息时，弹出确认窗口，连接该信号，并在槽函数中返回是否删除.</p>
 <!-- @@@aboutToClearAllMessages -->
 <!-- $$$aboutToCloseMessage[overload1]$$$aboutToCloseMessageQCtmMessageTipDataPtr -->
-<h3 class="fn" translate="no" id="aboutToCloseMessage"><code translate="no">[signal] </code><span class="type">bool</span> QCtmMessageTipView::<span class="name">aboutToCloseMessage</span>(<span class="type">QCtmMessageTipDataPtr</span> <i>message</i>)</h3>
+<h3 class="fn" translate="no" id="aboutToCloseMessage"><code class="details extra" translate="no">[signal]</code> <span class="type">bool</span> QCtmMessageTipView::<span class="name">aboutToCloseMessage</span>(<span class="type">QCtmMessageTipDataPtr</span> <i>message</i>)</h3>
 <p>如果要在关闭消息时，弹出确认窗口，连接该信号，并在槽函数中返回是否删除 <i translate="no">message</i>.</p>
 <!-- @@@aboutToCloseMessage -->
 <!-- $$$clearAll[overload1]$$$clearAll -->
-<h3 class="fn" translate="no" id="clearAll"><code translate="no">[slot] </code><span class="type">void</span> QCtmMessageTipView::<span class="name">clearAll</span>()</h3>
+<h3 class="fn" translate="no" id="clearAll"><code class="details extra" translate="no">[slot]</code> <span class="type">void</span> QCtmMessageTipView::<span class="name">clearAll</span>()</h3>
 <p>清空所有消息.</p>
 <!-- @@@clearAll -->
 <!-- $$$closeButtonClicked[overload1]$$$closeButtonClickedconstQModelIndex& -->
-<h3 class="fn" translate="no" id="closeButtonClicked"><code translate="no">[signal] </code><span class="type">void</span> QCtmMessageTipView::<span class="name">closeButtonClicked</span>(const <span class="type"><a href="https://doc.qt.io/qt/qmodelindex.html" translate="no">QModelIndex</a></span> &amp;<i>index</i>)</h3>
+<h3 class="fn" translate="no" id="closeButtonClicked"><code class="details extra" translate="no">[signal]</code> <span class="type">void</span> QCtmMessageTipView::<span class="name">closeButtonClicked</span>(const <span class="type"><a href="https://doc.qt.io/qt/qmodelindex.html" translate="no">QModelIndex</a></span> &amp;<i>index</i>)</h3>
 <p>当 <i translate="no">index</i> 位置的消息的关闭按钮被点击时，发送该信号.</p>
 <p><b>See also </b><a href="qctmmessagetipview.html#messageClicked" translate="no">messageClicked</a>.</p>
 <!-- @@@closeButtonClicked -->
@@ -189,22 +189,22 @@
 </div><p><b>See also </b><a href="qctmmessagetipview.html#setDecoration" translate="no">setDecoration</a>.</p>
 <!-- @@@decoration -->
 <!-- $$$eventFilter[overload1]$$$eventFilterQObject*QEvent* -->
-<h3 class="fn" translate="no" id="eventFilter"><code translate="no">[override virtual protected] </code><span class="type">bool</span> QCtmMessageTipView::<span class="name">eventFilter</span>(<span class="type"><a href="https://doc.qt.io/qt/qobject.html#QObject" translate="no">QObject</a></span> *<i>o</i>, <span class="type"><a href="https://doc.qt.io/qt/qevent.html" translate="no">QEvent</a></span> *<i>e</i>)</h3>
+<h3 class="fn" translate="no" id="eventFilter"><code class="details extra" translate="no">[override virtual protected]</code> <span class="type">bool</span> QCtmMessageTipView::<span class="name">eventFilter</span>(<span class="type"><a href="https://doc.qt.io/qt/qobject.html#QObject" translate="no">QObject</a></span> *<i>o</i>, <span class="type"><a href="https://doc.qt.io/qt/qevent.html" translate="no">QEvent</a></span> *<i>e</i>)</h3>
 <p>Reimplements: <a href="qctmnavigationsidepane.html#eventFilter" translate="no">QCtmNavigationSidePane::eventFilter</a>(QObject *o, QEvent *e).</p>
 <!-- @@@eventFilter -->
 <!-- $$$messageClicked[overload1]$$$messageClickedQCtmMessageTipDataPtr -->
-<h3 class="fn" translate="no" id="messageClicked"><code translate="no">[signal] </code><span class="type">void</span> QCtmMessageTipView::<span class="name">messageClicked</span>(<span class="type">QCtmMessageTipDataPtr</span> <i>message</i>)</h3>
+<h3 class="fn" translate="no" id="messageClicked"><code class="details extra" translate="no">[signal]</code> <span class="type">void</span> QCtmMessageTipView::<span class="name">messageClicked</span>(<span class="type">QCtmMessageTipDataPtr</span> <i>message</i>)</h3>
 <p>当消息被点击时，发送该信号 <i translate="no">message</i>.</p>
 <p><b>See also </b><a href="qctmmessagetipview.html#closeButtonClicked" translate="no">closeButtonClicked</a>.</p>
 <!-- @@@messageClicked -->
 <!-- $$$model[overload1]$$$model -->
-<h3 class="fn" translate="no" id="model"><code translate="no">[override virtual] </code><span class="type"><a href="qctmabstractmessagetipmodel.html" translate="no">QCtmAbstractMessageTipModel</a></span> *QCtmMessageTipView::<span class="name">model</span>() const</h3>
+<h3 class="fn" translate="no" id="model"><code class="details extra" translate="no">[override virtual]</code> <span class="type"><a href="qctmabstractmessagetipmodel.html" translate="no">QCtmAbstractMessageTipModel</a></span> *QCtmMessageTipView::<span class="name">model</span>() const</h3>
 <p>Reimplements: <a href="qctmabstractmessagetipview.html#model" translate="no">QCtmAbstractMessageTipView::model() const</a>.</p>
 <p>返回消息 model.</p>
 <p><b>See also </b><a href="qctmmessagetipview.html#setModel" translate="no">setModel</a>.</p>
 <!-- @@@model -->
 <!-- $$$resizeEvent[overload1]$$$resizeEventQResizeEvent* -->
-<h3 class="fn" translate="no" id="resizeEvent"><code translate="no">[override virtual protected] </code><span class="type">void</span> QCtmMessageTipView::<span class="name">resizeEvent</span>(<span class="type"><a href="https://doc.qt.io/qt/qresizeevent.html" translate="no">QResizeEvent</a></span> *<i>e</i>)</h3>
+<h3 class="fn" translate="no" id="resizeEvent"><code class="details extra" translate="no">[override virtual protected]</code> <span class="type">void</span> QCtmMessageTipView::<span class="name">resizeEvent</span>(<span class="type"><a href="https://doc.qt.io/qt/qresizeevent.html" translate="no">QResizeEvent</a></span> *<i>e</i>)</h3>
 <!-- @@@resizeEvent -->
 <!-- $$$setCloseButtonIcon -->
 <h3 class="fn" translate="no" id="setCloseButtonIcon"><span class="type">void</span> QCtmMessageTipView::<span class="name">setCloseButtonIcon</span>(const <span class="type"><a href="https://doc.qt.io/qt/qpixmap.html" translate="no">QPixmap</a></span> &amp;<i>icon</i>)</h3>
@@ -219,7 +219,7 @@
 </div><p><b>See also </b><a href="qctmmessagetipview.html#decoration" translate="no">decoration</a>().</p>
 <!-- @@@setDecoration -->
 <!-- $$$setModel[overload1]$$$setModelQCtmAbstractMessageTipModel* -->
-<h3 class="fn" translate="no" id="setModel"><code translate="no">[override virtual] </code><span class="type">void</span> QCtmMessageTipView::<span class="name">setModel</span>(<span class="type"><a href="qctmabstractmessagetipmodel.html" translate="no">QCtmAbstractMessageTipModel</a></span> *<i>model</i>)</h3>
+<h3 class="fn" translate="no" id="setModel"><code class="details extra" translate="no">[override virtual]</code> <span class="type">void</span> QCtmMessageTipView::<span class="name">setModel</span>(<span class="type"><a href="qctmabstractmessagetipmodel.html" translate="no">QCtmAbstractMessageTipModel</a></span> *<i>model</i>)</h3>
 <p>Reimplements: <a href="qctmabstractmessagetipview.html#setModel" translate="no">QCtmAbstractMessageTipView::setModel</a>(QCtmAbstractMessageTipModel *model).</p>
 <p>设置消息 <i translate="no">model</i>.</p>
 <p><b>See also </b><a href="qctmmessagetipview.html#model" translate="no">model</a>().</p>
@@ -243,7 +243,7 @@
 </div><p><b>See also </b><a href="qctmmessagetipview.html#touchControlStyle" translate="no">touchControlStyle</a>.</p>
 <!-- @@@setTouchControlStyle -->
 <!-- $$$showEvent[overload1]$$$showEventQShowEvent* -->
-<h3 class="fn" translate="no" id="showEvent"><code translate="no">[override virtual protected] </code><span class="type">void</span> QCtmMessageTipView::<span class="name">showEvent</span>(<span class="type"><a href="https://doc.qt.io/qt/qshowevent.html" translate="no">QShowEvent</a></span> *<i>e</i>)</h3>
+<h3 class="fn" translate="no" id="showEvent"><code class="details extra" translate="no">[override virtual protected]</code> <span class="type">void</span> QCtmMessageTipView::<span class="name">showEvent</span>(<span class="type"><a href="https://doc.qt.io/qt/qshowevent.html" translate="no">QShowEvent</a></span> *<i>e</i>)</h3>
 <p>Reimplements: <a href="qctmnavigationsidepane.html#showEvent" translate="no">QCtmNavigationSidePane::showEvent</a>(QShowEvent *event).</p>
 <!-- @@@showEvent -->
 <!-- $$$timeColor -->

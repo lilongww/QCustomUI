@@ -4,7 +4,7 @@
   <meta charset="utf-8">
 <!-- QCtmComboBox.cpp -->
   <meta name="description" content="提供一个下拉列表可被样式表设置的combobox，以及其他功能补丁.">
-  <title>List of All Members for QCtmComboBox | QCustomUi 1.14.0</title>
+  <title>List of All Members for QCtmComboBox | QCustomUi 1.15.0</title>
   <link rel="stylesheet" type="text/css" href="style/offline-simple.css" />
   <script type="text/javascript">
     document.getElementsByTagName("link").item(0).setAttribute("href", "style/offline.css");
@@ -26,10 +26,10 @@
     <div class="main-rounded">
         <div class="navigationbar">
         <ul>
-<li><a href="index.html" translate="no">QCustomUi 1.14.0</a></li>
+<li><a href="index.html" translate="no">QCustomUi 1.15.0</a></li>
 <li><a href="qcustomui-module.html" translate="no">QCustomUi</a></li>
 <li>QCtmComboBox</li>
-<li id="buildversion">QCustomUi 1.14.0 Reference Documentation</li>
+<li id="buildversion">QCustomUi 1.15.0 Reference Documentation</li>
     </ul>
     </div>
 </div>
@@ -149,8 +149,9 @@
 <li class="fn" translate="no"><span class="name"><b><a href="https://doc.qt.io/qt/qobject.html#event" translate="no">event</a></b></span>(QEvent *) : bool</li>
 <li class="fn" translate="no"><span class="name"><b><a href="https://doc.qt.io/qt/qobject.html#eventFilter" translate="no">eventFilter</a></b></span>(QObject *, QEvent *) : bool</li>
 <li class="fn" translate="no"><span class="name"><b><a href="https://doc.qt.io/qt/qwidget.html#find" translate="no">find</a></b></span>(WId) : QWidget *</li>
-<li class="fn" translate="no"><span class="name"><b><a href="https://doc.qt.io/qt/qobject.html#findChild" translate="no">findChild</a></b></span>(const QString &amp;, Qt::FindChildOptions) const : T</li>
-<li class="fn" translate="no"><span class="name"><b><a href="https://doc.qt.io/qt/qobject.html#findChildren" translate="no">findChildren</a></b></span>(const QString &amp;, Qt::FindChildOptions) const : QList&lt;T&gt;</li>
+<li class="fn" translate="no"><span class="name"><b><a href="https://doc.qt.io/qt/qobject.html#findChild" translate="no">findChild</a></b></span>(QAnyStringView, Qt::FindChildOptions) const : T</li>
+<li class="fn" translate="no"><span class="name"><b><a href="https://doc.qt.io/qt/qobject.html#findChild-1" translate="no">findChild</a></b></span>(Qt::FindChildOptions) const : T</li>
+<li class="fn" translate="no"><span class="name"><b><a href="https://doc.qt.io/qt/qobject.html#findChildren" translate="no">findChildren</a></b></span>(QAnyStringView, Qt::FindChildOptions) const : QList&lt;T&gt;</li>
 <li class="fn" translate="no"><span class="name"><b><a href="https://doc.qt.io/qt/qobject.html#findChildren-1" translate="no">findChildren</a></b></span>(Qt::FindChildOptions) const : QList&lt;T&gt;</li>
 <li class="fn" translate="no"><span class="name"><b><a href="https://doc.qt.io/qt/qobject.html#findChildren-2" translate="no">findChildren</a></b></span>(const QRegularExpression &amp;, Qt::FindChildOptions) const : QList&lt;T&gt;</li>
 <li class="fn" translate="no"><span class="name"><b><a href="https://doc.qt.io/qt/qcombobox.html#findData" translate="no">findData</a></b></span>(const QVariant &amp;, int, Qt::MatchFlags) const : int</li>
@@ -276,8 +277,8 @@
 <li class="fn" translate="no"><span class="name"><b><a href="https://doc.qt.io/qt/qwidget.html#minimumSizeHint-prop" translate="no">minimumSizeHint</a></b></span>() const : QSize</li>
 <li class="fn" translate="no"><span class="name"><b><a href="https://doc.qt.io/qt/qwidget.html#minimumWidth-prop" translate="no">minimumWidth</a></b></span>() const : int</li>
 <li class="fn" translate="no"><span class="name"><b><a href="https://doc.qt.io/qt/qcombobox.html#model" translate="no">model</a></b></span>() const : QAbstractItemModel *</li>
-<li class="fn" translate="no"><span class="name"><b><a href="https://doc.qt.io/qt/qcombobox.html#modelColumn-prop" translate="no">modelColumn</a></b></span>() const : int</li>
 </ul></td><td class="topAlign"><ul>
+<li class="fn" translate="no"><span class="name"><b><a href="https://doc.qt.io/qt/qcombobox.html#modelColumn-prop" translate="no">modelColumn</a></b></span>() const : int</li>
 <li class="fn" translate="no"><span class="name"><b><a href="https://doc.qt.io/qt/qwidget.html#mouseDoubleClickEvent" translate="no">mouseDoubleClickEvent</a></b></span>(QMouseEvent *)</li>
 <li class="fn" translate="no"><span class="name"><b><a href="https://doc.qt.io/qt/qwidget.html#mouseGrabber" translate="no">mouseGrabber</a></b></span>() : QWidget *</li>
 <li class="fn" translate="no"><span class="name"><b><a href="https://doc.qt.io/qt/qwidget.html#mouseMoveEvent" translate="no">mouseMoveEvent</a></b></span>(QMouseEvent *)</li>
@@ -288,7 +289,7 @@
 <li class="fn" translate="no"><span class="name"><b><a href="https://doc.qt.io/qt/qwidget.html#pos-prop" translate="no">move</a></b></span>(const QPoint &amp;)</li>
 <li class="fn" translate="no"><span class="name"><b><a href="https://doc.qt.io/qt/qwidget.html#move-1" translate="no">move</a></b></span>(int, int)</li>
 <li class="fn" translate="no"><span class="name"><b><a href="https://doc.qt.io/qt/qwidget.html#moveEvent" translate="no">moveEvent</a></b></span>(QMoveEvent *)</li>
-<li class="fn" translate="no"><span class="name"><b><a href="https://doc.qt.io/qt/qobject.html#moveToThread" translate="no">moveToThread</a></b></span>(QThread *)</li>
+<li class="fn" translate="no"><span class="name"><b><a href="https://doc.qt.io/qt/qobject.html#moveToThread" translate="no">moveToThread</a></b></span>(QThread *) : bool</li>
 <li class="fn" translate="no"><span class="name"><b><a href="https://doc.qt.io/qt/qwidget.html#nativeEvent" translate="no">nativeEvent</a></b></span>(const QByteArray &amp;, void *, qintptr *) : bool</li>
 <li class="fn" translate="no"><span class="name"><b><a href="https://doc.qt.io/qt/qwidget.html#nativeParentWidget" translate="no">nativeParentWidget</a></b></span>() const : QWidget *</li>
 <li class="fn" translate="no"><span class="name"><b><a href="https://doc.qt.io/qt/qwidget.html#nextInFocusChain" translate="no">nextInFocusChain</a></b></span>() const : QWidget *</li>
