@@ -37,7 +37,8 @@ public:
     {
         IntInput = 1,
         DoubleInput,
-        LongLongInput
+        LongLongInput,
+        ULongLongInput,
     };
 
     struct Unit

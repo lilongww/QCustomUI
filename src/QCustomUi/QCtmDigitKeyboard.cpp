@@ -20,6 +20,7 @@
 #include "QCtmDigitKeyboard.h"
 #include "QCtmLongLongSpinBox.h"
 #include "QCtmMessageBox.h"
+#include "QCtmULongLongSpinBox.h"
 #include "ui_QCtmDigitKeyboard.h"
 
 #include <QDoubleSpinBox>
@@ -161,13 +162,17 @@ void QCtmDigitKeyboard::setValue(const QVariant& value)
         {
             sp->setValue(m_impl->value.toInt());
         }
+        else if (auto sp = qobject_cast<QDoubleSpinBox*>(m_impl->box))
+        {
+            sp->setValue(m_impl->value.toDouble());
+        }
         else if (auto sp = qobject_cast<QCtmLongLongSpinBox*>(m_impl->box); sp)
         {
             sp->setValue(m_impl->value.toLongLong());
         }
-        else
+        else if (auto sp = qobject_cast<QCtmULongLongSpinBox*>(m_impl->box); sp)
         {
-            qobject_cast<QDoubleSpinBox*>(m_impl->box)->setValue(m_impl->value.toDouble());
+            sp->setValue(m_impl->value.toULongLong());
         }
     }
 }
@@ -319,6 +324,10 @@ void QCtmDigitKeyboard::bindBox(QAbstractSpinBox* box)
     {
         setInputMode(InputMode::LongLongInput);
     }
+    else if (qobject_cast<QCtmULongLongSpinBox*>(box))
+    {
+        setInputMode(InputMode::ULongLongInput);
+    }
     else
     {
         qFatal() << "Unknown SpinBox.";
@@ -337,6 +346,9 @@ void QCtmDigitKeyboard::bindBox(QAbstractSpinBox* box)
         break;
     case InputMode::LongLongInput:
         connect(qobject_cast<QCtmLongLongSpinBox*>(box), &QCtmLongLongSpinBox::valueChanged, this, &QCtmDigitKeyboard::setValue);
+        break;
+    case InputMode::ULongLongInput:
+        connect(qobject_cast<QCtmULongLongSpinBox*>(box), &QCtmULongLongSpinBox::valueChanged, this, &QCtmDigitKeyboard::setValue);
         break;
     }
 
@@ -460,6 +472,20 @@ void QCtmDigitKeyboard::ensureConnect()
         m_impl->box = box;
         setValue(box->value());
         connect(box, &QCtmLongLongSpinBox::valueChanged, this, [this](auto val) { emit valueChanged(val); });
+    }
+    else if (m_impl->mode == InputMode::ULongLongInput)
+    {
+        auto box = new QCtmULongLongSpinBox(this);
+        box->setSingleStep(m_impl->step.toULongLong());
+        box->setRange(m_impl->minimum.toULongLong(), m_impl->maximum.toULongLong());
+        box->setValue(m_impl->value.toULongLong());
+        if (!m_impl->units.empty())
+        {
+            box->setSuffix(m_impl->units.at(m_impl->currentUnitIndex).unit);
+        }
+        m_impl->box = box;
+        setValue(box->value());
+        connect(box, &QCtmULongLongSpinBox::valueChanged, this, [this](auto val) { emit valueChanged(val); });
     }
     m_impl->ui.inputLayout->addWidget(m_impl->box);
 
@@ -696,6 +722,8 @@ void QCtmDigitKeyboard::showAfter(const QVariant& beforeValue, const QString& be
             QMetaObject::invokeMethod(m_impl->bindedBox, "valueChanged", Q_ARG(int, val.toInt()));
         else if (qobject_cast<QCtmLongLongSpinBox*>(m_impl->bindedBox))
             QMetaObject::invokeMethod(m_impl->bindedBox, "valueChanged", Q_ARG(qlonglong, val.toLongLong()));
+        else if (qobject_cast<QCtmULongLongSpinBox*>(m_impl->bindedBox))
+            QMetaObject::invokeMethod(m_impl->bindedBox, "valueChanged", Q_ARG(qulonglong, val.toULongLong()));
         QMetaObject::invokeMethod(m_impl->bindedBox, "textChanged", Q_ARG(QString, m_impl->bindedBox->text()));
     }
     else if (beforeUnit != unit)
