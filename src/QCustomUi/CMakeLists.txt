@@ -60,6 +60,7 @@ set(INPUT_HEADERS
  "QCtmInputDialog.h"
  "QCtmPathBrowser.h"
  "QCtmDigitKeyboard.h"
+ "QCtmLongLongSpinBox.h"
 )
 
 set(INPUT_SOURCES
@@ -69,6 +70,7 @@ set(INPUT_SOURCES
  "QCtmInputDialog.cpp"
  "QCtmPathBrowser.cpp"
  "QCtmDigitKeyboard.cpp"
+ "QCtmLongLongSpinBox.cpp"
 )
 
 set(CONTAINERS_HEADERS
