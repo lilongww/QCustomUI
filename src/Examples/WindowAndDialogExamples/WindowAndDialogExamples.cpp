@@ -2,8 +2,8 @@
 
 #include <QCustomUi/QCtmDialog.h>
 #include <QCustomUi/QCtmLoadingDialog.h>
-#include <QCustomUi/QCtmTitleBar.h>
 #include <QCustomUi/QCtmMessageBox.h>
+#include <QCustomUi/QCtmTitleBar.h>
 
 #include <QLineEdit>
 #include <QMenu>
@@ -23,7 +23,7 @@ WindowAndDialogExamples::WindowAndDialogExamples(QWidget* parent) : QCtmWindow(p
     layout->addWidget(btn);
     connect(ui.popDialogBtn, &QPushButton::clicked, this, [=]() { dlg->exec(); });
     connect(btn, &QPushButton::clicked, this, [=]() { QCtmMessageBox::information(dlg, "Test", "Test"); });
-
+    // this->titleBar()->setFixedHeight(50);
     this->titleBar()->addAction(new QAction(tr("Test Button")));
     auto action = new QWidgetAction(this);
     action->setDefaultWidget(new QLineEdit(this));

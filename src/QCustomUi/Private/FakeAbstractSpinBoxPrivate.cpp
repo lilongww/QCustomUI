@@ -174,7 +174,7 @@ void QAbstractSpinBoxPrivate::emitSignals(EmitPolicy, const QVariant&) {}
     signal.
 */
 
-#if QT_VERSION < QT_VERSION_CHECK(6, 0, 0)
+#if QT_VERSION < QT_VERSION_CHECK(6, 7, 0)
 void QAbstractSpinBoxPrivate::_q_editorTextChanged(const QString& t)
 #else
 void QAbstractSpinBoxPrivate::editorTextChanged(const QString& t)
@@ -214,7 +214,7 @@ void QAbstractSpinBoxPrivate::editorTextChanged(const QString& t)
     the different sections etc.
 */
 
-#if QT_VERSION < QT_VERSION_CHECK(6, 0, 0)
+#if QT_VERSION < QT_VERSION_CHECK(6, 7, 0)
 void QAbstractSpinBoxPrivate::_q_editorCursorPositionChanged(int oldpos, int newpos)
 #else
 void QAbstractSpinBoxPrivate::editorCursorPositionChanged(int oldpos, int newpos)

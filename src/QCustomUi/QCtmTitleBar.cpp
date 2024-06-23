@@ -27,6 +27,7 @@
 #include <QPainter>
 #include <QPointer>
 #include <QResizeEvent>
+#include <QStyle>
 #include <QStyleOption>
 
 Q_CONSTEXPR int leftMargin   = 5;
@@ -75,6 +76,14 @@ QCtmTitleBar::QCtmTitleBar(QWidget* parent) : QWidget(parent), ui(new Ui::QCtmTi
 
     parent->installEventFilter(this);
     setAttribute(Qt::WA_StyledBackground);
+    QStyleOption opt;
+    opt.initFrom(this);
+    auto h = this->style()->pixelMetric(QStyle::PM_TitleBarHeight, &opt, this);
+#if QT_VERSION >= QT_VERSION_CHECK(6, 7, 0) //  Qt6.7更改了pixelMetric的算法，返回的数字是计算分辨率缩放之后的。
+    h = std::max<int>(std::ceil(this->devicePixelRatio() * h),
+                      32); // https://learn.microsoft.com/zh-cn/windows/apps/design/basics/titlebar-design
+#endif
+    setFixedHeight(h);
 }
 
 /*!
