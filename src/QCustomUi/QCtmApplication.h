@@ -34,8 +34,11 @@ public:
     ~QCtmApplication();
 
     bool checkOtherProcess(const QString& key);
-
+    #ifdef WIN32
+    static void setGetObjectDisabled(bool d);
+    #endif
 private:
     struct Impl;
     std::unique_ptr<Impl> m_impl;
+    friend class WindowsEventFilter;
 };

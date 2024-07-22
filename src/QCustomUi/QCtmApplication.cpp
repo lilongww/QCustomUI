@@ -27,10 +27,21 @@
 #include <QLocalSocket>
 #include <QWidget>
 #include <QWindow>
+#include <QAbstractNativeEventFilter>
 
 #ifdef Q_OS_WIN
 #include <qt_windows.h>
+#endif
 
+struct QCtmApplication::Impl
+{
+    QLocalServer server;
+    QLocalSocket client;
+    QString serverName;
+    inline static bool disableGetObject { false };
+};
+
+#ifdef Q_OS_WIN
 class WindowsEventFilter : public QAbstractNativeEventFilter
 {
 public:
@@ -55,18 +66,12 @@ public:
                 return false;
             }
         }
+        if (QCtmApplication::Impl::disableGetObject && msg->message == WM_GETOBJECT)
+            return true;
         return false;
     }
 };
-
 #endif // Q_OS_WIN
-
-struct QCtmApplication::Impl
-{
-    QLocalServer server;
-    QLocalSocket client;
-    QString serverName;
-};
 
 /*!
     \class      QCtmApplication
@@ -136,3 +141,10 @@ bool QCtmApplication::checkOtherProcess(const QString& key)
     }
     return false;
 }
+
+#ifdef WIN32
+/*!
+    \brief      禁用 WM_GETOBJECT 消息，解决Qt Bug导致的有道词典取词功能，致程序卡死的问题，默认不启用.
+*/
+void QCtmApplication::setGetObjectDisabled(bool d) { Impl::disableGetObject = d; }
+#endif
