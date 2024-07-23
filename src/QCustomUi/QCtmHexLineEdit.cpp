@@ -105,12 +105,29 @@ void QCtmHexValidator::fixup(QString& input) const
     ctx.fixup();
     input = QString::fromStdString(ctx.output);
 }
+/*!
+    \class      QCtmHexLineEdit
+    \brief      16进制单行编辑框.
+    \inherits   QLineEdit
+    \ingroup    QCustomUi
+    \inmodule   QCustomUi
+    \inheaderfile QCtmHexLineEdit.h
+*/
 
+/*!
+    \brief      构造函数 \a parent.
+*/
 QCtmHexLineEdit::QCtmHexLineEdit(QWidget* parent) : QLineEdit(parent) { setValidator(new QCtmHexValidator(this)); }
 
+/*!
+    \brief      构造函数 \a text, \a parent.
+*/
 QCtmHexLineEdit::QCtmHexLineEdit(const QString& text, QWidget* parent /*= nullptr*/) : QLineEdit(text, parent)
 {
     setValidator(new QCtmHexValidator(this));
 }
 
+/*!
+    \brief      析构函数.
+*/
 QCtmHexLineEdit::~QCtmHexLineEdit() {}
