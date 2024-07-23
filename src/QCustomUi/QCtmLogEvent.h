@@ -35,7 +35,7 @@ public:
     {
         QCtmLog = QEvent::User + 0xFE
     };
-    QCtmLogEvent(QCtmLogDataPtr log);
+    explicit QCtmLogEvent(QCtmLogDataPtr log);
     ~QCtmLogEvent();
 
     QCtmLogDataPtr log() const;

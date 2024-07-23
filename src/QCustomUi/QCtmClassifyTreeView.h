@@ -36,7 +36,7 @@ public:
     {
         NodeTypeRole = Qt::UserRole + 1
     };
-    QCtmClassifyTreeView(QWidget* parent);
+    explicit QCtmClassifyTreeView(QWidget* parent = nullptr);
     ~QCtmClassifyTreeView();
 
     void setHorizontalSpace(int space);

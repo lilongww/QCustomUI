@@ -28,7 +28,7 @@ class QCtmLogFilterModel : public QSortFilterProxyModel
     Q_OBJECT
 
 public:
-    QCtmLogFilterModel(QObject* parent);
+    explicit QCtmLogFilterModel(QObject* parent = nullptr);
     ~QCtmLogFilterModel();
 
     void search(const QString& keyword);

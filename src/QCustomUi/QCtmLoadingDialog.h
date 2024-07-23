@@ -34,7 +34,7 @@ public:
         Cancel,
         Done
     };
-    QCtmLoadingDialog(QWidget* parent);
+    explicit QCtmLoadingDialog(QWidget* parent);
     ~QCtmLoadingDialog();
 
     void setCancelEnable(bool flag);

@@ -34,7 +34,7 @@ class QCUSTOMUI_EXPORT QCtmIPAddressEdit : public QWidget
     Q_PROPERTY(bool readOnly READ isReadOnly WRITE setReadOnly)
     Q_PROPERTY(QString ipAddress READ ipAddress WRITE setIPAddress)
 public:
-    QCtmIPAddressEdit(QWidget* parent);
+    explicit QCtmIPAddressEdit(QWidget* parent = nullptr);
     ~QCtmIPAddressEdit();
 
     void setIPAddress(const QString& ip);

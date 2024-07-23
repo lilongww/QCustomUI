@@ -28,7 +28,7 @@ class QCUSTOMUI_EXPORT QCtmMultiPageButtonBox : public QWidget
 {
     Q_OBJECT
 public:
-    explicit QCtmMultiPageButtonBox(QWidget* parent);
+    explicit QCtmMultiPageButtonBox(QWidget* parent = nullptr);
     ~QCtmMultiPageButtonBox();
     virtual void setModel(QCtmAbstractMultiPageItemModel* model);
     QCtmAbstractMultiPageItemModel* model() const;

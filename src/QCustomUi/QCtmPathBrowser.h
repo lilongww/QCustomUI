@@ -33,7 +33,7 @@ class QCUSTOMUI_EXPORT QCtmPathBrowser : public QWidget
     Q_PROPERTY(bool readOnly READ readOnly WRITE setReadOnly)
     Q_OBJECT
 public:
-    QCtmPathBrowser(QWidget* parent = nullptr);
+    explicit QCtmPathBrowser(QWidget* parent = nullptr);
     ~QCtmPathBrowser();
 
     void setPath(QString path);

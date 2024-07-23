@@ -30,7 +30,7 @@ class QCUSTOMUI_EXPORT QCtmMessageTipModel : public QCtmAbstractMessageTipModel
     Q_PROPERTY(QColor titleColor READ titleColor WRITE setTitleColor)
     Q_PROPERTY(QColor timeColor READ timeColor WRITE setTimeColor)
 public:
-    QCtmMessageTipModel(QObject* parent);
+    explicit QCtmMessageTipModel(QObject* parent = nullptr);
     ~QCtmMessageTipModel();
 
     QVariant data(const QModelIndex& index, int role) const override;

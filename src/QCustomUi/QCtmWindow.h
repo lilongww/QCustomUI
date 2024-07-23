@@ -39,7 +39,7 @@ class QCUSTOMUI_EXPORT QCtmWindow : public QWidget
     Q_OBJECT
 
 public:
-    QCtmWindow(QWidget* parent = nullptr);
+    explicit QCtmWindow(QWidget* parent = nullptr);
     ~QCtmWindow();
 
     void setStatusBar(QStatusBar* statusBar);

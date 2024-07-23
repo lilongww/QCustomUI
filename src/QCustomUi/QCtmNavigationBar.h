@@ -40,7 +40,7 @@ public:
         Center,
         Right
     };
-    QCtmNavigationBar(QWidget* parent);
+    explicit QCtmNavigationBar(QWidget* parent);
     ~QCtmNavigationBar();
 
     void addAction(QAction* action, ActionPosition pos);

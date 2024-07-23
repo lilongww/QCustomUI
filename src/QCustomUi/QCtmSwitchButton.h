@@ -34,7 +34,7 @@ class QCUSTOMUI_EXPORT QCtmSwitchButton : public QAbstractButton
     Q_PROPERTY(QBrush checkedHandleBrush READ checkedHandleBrush WRITE setCheckedHandleBrush)
     Q_PROPERTY(QColor checkedHandleBorderColor READ checkedHandleBorderColor WRITE setCheckedHandleBorderColor)
 public:
-    explicit QCtmSwitchButton(QWidget* parent);
+    explicit QCtmSwitchButton(QWidget* parent = nullptr);
     ~QCtmSwitchButton();
 
     void setUncheckedBackground(const QBrush& brush);

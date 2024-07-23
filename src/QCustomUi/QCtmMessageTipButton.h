@@ -34,7 +34,7 @@ class QCUSTOMUI_EXPORT QCtmMessageTipButton : public QAbstractButton
     Q_OBJECT
     Q_PROPERTY(QColor tipColor READ tipColor WRITE setTipColor)
 public:
-    QCtmMessageTipButton(QWidget* parent);
+    explicit QCtmMessageTipButton(QWidget* parent = nullptr);
     ~QCtmMessageTipButton();
 
     void setModel(QCtmAbstractMessageTipModel* model);

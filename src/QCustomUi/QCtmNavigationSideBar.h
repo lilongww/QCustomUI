@@ -36,7 +36,7 @@ public:
         Top,
         Bottom
     };
-    QCtmNavigationSideBar(QWidget* parent);
+    explicit QCtmNavigationSideBar(QWidget* parent);
     ~QCtmNavigationSideBar();
 
     QAction* addAction(const QIcon& icon, const QString& text, ActionPosition pos);

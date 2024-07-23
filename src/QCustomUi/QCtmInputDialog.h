@@ -27,7 +27,7 @@ class QCtmTitleBar;
 class QCUSTOMUI_EXPORT QCtmInputDialog : public QInputDialog
 {
 public:
-    QCtmInputDialog(QWidget* parent = nullptr, Qt::WindowFlags flags = Qt::WindowFlags());
+    explicit QCtmInputDialog(QWidget* parent = nullptr, Qt::WindowFlags flags = Qt::WindowFlags());
     ~QCtmInputDialog();
 
     void setTitleBar(QCtmTitleBar* titleBar);

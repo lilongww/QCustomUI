@@ -94,12 +94,12 @@ public:
     };
     Q_ENUM(Icon)
 
-    QCtmMessageBox(QWidget* parent = Q_NULLPTR);
+    explicit QCtmMessageBox(QWidget* parent = nullptr);
     QCtmMessageBox(Icon icon,
                    const QString& title,
                    const QString& text,
                    StandardButtons buttons = NoButton,
-                   QWidget* parent         = Q_NULLPTR,
+                   QWidget* parent         = nullptr,
                    Qt::WindowFlags f       = Qt::Dialog | Qt::MSWindowsFixedSizeDialogHint);
     ~QCtmMessageBox();
 

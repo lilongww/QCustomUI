@@ -33,7 +33,7 @@ class QCUSTOMUI_EXPORT QCtmAbstractLogModel : public QAbstractTableModel
     Q_OBJECT
 
 public:
-    QCtmAbstractLogModel(const QString& objectName, QObject* parent);
+    explicit QCtmAbstractLogModel(const QString& objectName, QObject* parent = nullptr);
     ~QCtmAbstractLogModel();
     virtual void clear() = 0;
     bool insertRows(int row, int count, const QModelIndex& parent = QModelIndex()) override;

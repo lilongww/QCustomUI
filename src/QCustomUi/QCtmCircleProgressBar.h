@@ -36,7 +36,7 @@ class QCUSTOMUI_EXPORT QCtmCircleProgressBar : public QWidget
     Q_PROPERTY(QBrush barBrush READ barBrush WRITE setBarBrush)
     Q_PROPERTY(QBrush backgroundBrush READ backgroundBrush WRITE setBackgroundBrush)
 public:
-    QCtmCircleProgressBar(QWidget* parent);
+    explicit QCtmCircleProgressBar(QWidget* parent = nullptr);
     ~QCtmCircleProgressBar();
 
     int value() const;

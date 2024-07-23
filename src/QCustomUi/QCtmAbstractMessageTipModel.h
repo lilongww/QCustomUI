@@ -32,7 +32,7 @@ class QCUSTOMUI_EXPORT QCtmAbstractMessageTipModel : public QAbstractTableModel
     Q_OBJECT
     Q_PROPERTY(bool reversedOrder READ reversedOrder WRITE setReversedOrder)
 public:
-    QCtmAbstractMessageTipModel(QObject* parent);
+    explicit QCtmAbstractMessageTipModel(QObject* parent = nullptr);
     ~QCtmAbstractMessageTipModel();
 
     void addMessage(QCtmAbstractMessageTipDataPtr msg);

@@ -54,6 +54,7 @@ struct QCtmLoadingDialog::Impl
 
 /*!
     \brief      构造函数，在 \a parent 的顶层窗口上覆盖加载窗口.
+    \note       \a parent 不能为空.
 */
 QCtmLoadingDialog::QCtmLoadingDialog(QWidget* parent) : QWidget(parent->topLevelWidget()), m_impl(std::make_unique<Impl>())
 {
