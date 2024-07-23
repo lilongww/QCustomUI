@@ -22,11 +22,11 @@
 #include "qcustomui_global.h"
 
 #include <QColor>
-#include <QObject>
+#include <QMetaObject>
 
-class QCUSTOMUI_EXPORT QCtmColor : QObject
+class QCUSTOMUI_EXPORT QCtmColor
 {
-    Q_OBJECT
+    Q_GADGET
 public:
     QCtmColor() = delete;
     enum Colors

@@ -3,6 +3,12 @@ set(CMAKE_AUTOMOC ON)
 set(CMAKE_AUTOUIC ON)
 set(CMAKE_AUTORCC ON)
 
+#FetchContent_Declare(
+#  pegtl
+#  GIT_REPOSITORY https://github.com/taocpp/PEGTL.git
+#)
+#FetchContent_MakeAvailable(pegtl)
+#find_package(pegtl CONFIG REQUIRED)
 find_package(QT NAMES Qt6 Qt5 REQUIRED COMPONENTS Core)
 if(${QT_VERSION_MAJOR} EQUAL 5)
     find_package(Qt${QT_VERSION_MAJOR} COMPONENTS Core Gui Widgets Network WinExtras REQUIRED)

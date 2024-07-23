@@ -1,4 +1,5 @@
-﻿#include <QCustomUi/QCtmNavigationBar.h>
+﻿#include <QCustomUi/QCtmColor.h>
+#include <QCustomUi/QCtmNavigationBar.h>
 #include <QCustomUi/QCtmTitleBar.h>
 #include <QCustomUi/QCtmWindow.h>
 
