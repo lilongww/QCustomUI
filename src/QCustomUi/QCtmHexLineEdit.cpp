@@ -18,6 +18,7 @@
 **********************************************************************************/
 #include "QCtmHexLineEdit.h"
 
+#include <QValidator>
 #include <tao/pegtl.hpp>
 
 namespace PEG
@@ -78,6 +79,14 @@ struct Action<Char>
 };
 } // namespace PEG
 
+class QCUSTOMUI_EXPORT QCtmHexValidator : public QValidator
+{
+public:
+    using QValidator::QValidator;
+    State validate(QString&, int&) const override;
+    void fixup(QString&) const override;
+};
+
 QValidator::State QCtmHexValidator::validate(QString& input, int& pos) const
 {
     PEG::Context ctx;
@@ -97,6 +106,11 @@ void QCtmHexValidator::fixup(QString& input) const
     input = QString::fromStdString(ctx.output);
 }
 
-QCtmHexLineEdit::QCtmHexLineEdit(QWidget* parent) { setValidator(new QCtmHexValidator(this)); }
+QCtmHexLineEdit::QCtmHexLineEdit(QWidget* parent) : QLineEdit(parent) { setValidator(new QCtmHexValidator(this)); }
+
+QCtmHexLineEdit::QCtmHexLineEdit(const QString& text, QWidget* parent /*= nullptr*/) : QLineEdit(text, parent)
+{
+    setValidator(new QCtmHexValidator(this));
+}
 
 QCtmHexLineEdit::~QCtmHexLineEdit() {}

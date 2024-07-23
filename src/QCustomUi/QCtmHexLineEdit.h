@@ -21,21 +21,12 @@
 #include "qcustomui_global.h"
 
 #include <QLineEdit>
-#include <QValidator>
-
-class QCUSTOMUI_EXPORT QCtmHexValidator : public QValidator
-{
-    Q_OBJECT
-public:
-    using QValidator::QValidator;
-    State validate(QString&, int&) const override;
-    void fixup(QString&) const override;
-};
 
 class QCUSTOMUI_EXPORT QCtmHexLineEdit : public QLineEdit
 {
     Q_OBJECT
 public:
     explicit QCtmHexLineEdit(QWidget* parent = nullptr);
+    explicit QCtmHexLineEdit(const QString& text, QWidget* parent = nullptr);
     ~QCtmHexLineEdit();
 };

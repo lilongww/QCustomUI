@@ -31,7 +31,7 @@ QIcon HexLineEdit::icon() const { return {}; }
 QString HexLineEdit::domXml() const
 {
     return "<ui language=\"c++\">\n"
-           " <widget class=\"QCtmHexLineEdit\" name=\"lineEdit\">\n"
+           " <widget class=\"QCtmHexLineEdit\" name=\"hexLineEdit\">\n"
            " </widget>\n"
            "</ui>\n";
 }
