@@ -28,7 +28,6 @@ set(RESOURCES
 
 set(HEADERS
  "qcustomui_global.h"
- "resource.h"
 )
 
 set(SOURCES )
@@ -37,7 +36,6 @@ set(LOG_HEADERS
  "QCtmLogEvent.h"
  "QCtmLogManager.h"
  "QCtmLogData.h"
- "QCtmLogFilterModel.h"
  "QCtmLogModel.h"
  "QCtmLogWidget.h"
  "QCtmAbstractLogModel.h"
@@ -46,7 +44,6 @@ set(LOG_HEADERS
 set(LOG_SOURCES
  "QCtmLogWidget.cpp"
  "QCtmLogEvent.cpp"
- "QCtmLogFilterModel.cpp"
  "QCtmLogManager.cpp"
  "QCtmLogModel.cpp"
  "QCtmLogData.cpp"
@@ -266,8 +263,6 @@ endif(WIN32)
 set_target_properties(${TARGET_NAME} PROPERTIES VERSION ${PROJECT_VERSION} SOVERSION 1)
 
 file(GLOB PUBLIC_HEADERS ./*.h)
-file(GLOB _RESOURCE_HEADER_LIST "./resource.h")
-list(REMOVE_ITEM PUBLIC_HEADERS "${_RESOURCE_HEADER_LIST}")
 list(APPEND PUBLIC_HEADERS ${QCUSTOMUI_VERSION_H})
 set_target_properties(${TARGET_NAME} PROPERTIES PUBLIC_HEADER "${PUBLIC_HEADERS}")
 

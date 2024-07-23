@@ -18,9 +18,9 @@
 **********************************************************************************/
 
 #include "QCtmLogWidget.h"
+#include "Private/QCtmLogFilterModel.h"
 #include "Private/QCtmToolButton_p.h"
 #include "QCtmComboBox.h"
-#include "QCtmLogFilterModel.h"
 #include "QCtmLogModel.h"
 #include "QCtmTableView.h"
 
