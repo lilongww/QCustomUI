@@ -3,12 +3,19 @@ set(CMAKE_AUTOMOC ON)
 set(CMAKE_AUTOUIC ON)
 set(CMAKE_AUTORCC ON)
 
-#FetchContent_Declare(
-#  pegtl
-#  GIT_REPOSITORY https://github.com/taocpp/PEGTL.git
-#)
-#FetchContent_MakeAvailable(pegtl)
-#find_package(pegtl CONFIG REQUIRED)
+message("Find or download pegtl...")
+include(FetchContent)
+FetchContent_Declare(
+  pegtl
+  #GIT_REPOSITORY https://github.com/taocpp/PEGTL.git #github 原仓库地址
+  GIT_REPOSITORY https://gitee.com/llongww/PEGTL.git #gitee镜像地址
+  GIT_TAG        main
+  FIND_PACKAGE_ARGS NAMES pegtl
+)
+set(PEGTL_BUILD_TESTS OFF)
+set(PEGTL_BUILD_EXAMPLES OFF)
+FetchContent_MakeAvailable(pegtl)
+
 find_package(QT NAMES Qt6 Qt5 REQUIRED COMPONENTS Core)
 if(${QT_VERSION_MAJOR} EQUAL 5)
     find_package(Qt${QT_VERSION_MAJOR} COMPONENTS Core Gui Widgets Network WinExtras REQUIRED)
@@ -65,6 +72,7 @@ set(INPUT_HEADERS
  "QCtmDigitKeyboard.h"
  "QCtmLongLongSpinBox.h"
  "QCtmULongLongSpinBox.h"
+ "QCtmHexLineEdit.h"
 )
 
 set(INPUT_SOURCES
@@ -76,6 +84,7 @@ set(INPUT_SOURCES
  "QCtmDigitKeyboard.cpp"
  "QCtmLongLongSpinBox.cpp"
  "QCtmULongLongSpinBox.cpp"
+ "QCtmHexLineEdit.cpp"
 )
 
 set(CONTAINERS_HEADERS
@@ -259,12 +268,12 @@ add_library(${TARGET_NAME} SHARED
 
 if(WIN32)
     if(${QT_VERSION_MAJOR} EQUAL 5)
-        target_link_libraries(${TARGET_NAME} PUBLIC dwmapi PRIVATE Qt${QT_VERSION_MAJOR}::Core Qt${QT_VERSION_MAJOR}::Gui Qt${QT_VERSION_MAJOR}::Widgets Qt${QT_VERSION_MAJOR}::Network Qt${QT_VERSION_MAJOR}::WinExtras Qt${QT_VERSION_MAJOR}::WidgetsPrivate)
+        target_link_libraries(${TARGET_NAME} PUBLIC dwmapi PRIVATE Qt::Widgets Qt::Network Qt::WinExtras Qt::WidgetsPrivate taocpp::pegtl)
     else(${QT_VERSION_MAJOR} EQUAL 5)
-        target_link_libraries(${TARGET_NAME} PUBLIC dwmapi PRIVATE Qt${QT_VERSION_MAJOR}::Core Qt${QT_VERSION_MAJOR}::Gui Qt${QT_VERSION_MAJOR}::Widgets Qt${QT_VERSION_MAJOR}::Network Qt${QT_VERSION_MAJOR}::WidgetsPrivate)
+        target_link_libraries(${TARGET_NAME} PUBLIC dwmapi PRIVATE Qt::Widgets Qt::Network Qt::WidgetsPrivate taocpp::pegtl)
     endif(${QT_VERSION_MAJOR} EQUAL 5)
 else ()
-    target_link_libraries(${TARGET_NAME} PRIVATE Qt${QT_VERSION_MAJOR}::Core Qt${QT_VERSION_MAJOR}::Gui Qt${QT_VERSION_MAJOR}::Widgets Qt${QT_VERSION_MAJOR}::Network Qt${QT_VERSION_MAJOR}::WidgetsPrivate)
+    target_link_libraries(${TARGET_NAME} PRIVATE Qt::Widgets Qt::Network Qt::WidgetsPrivate taocpp::pegtl)
 endif(WIN32)
 set_target_properties(${TARGET_NAME} PROPERTIES VERSION ${PROJECT_VERSION} SOVERSION 1)
 

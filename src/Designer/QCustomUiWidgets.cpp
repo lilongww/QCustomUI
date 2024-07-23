@@ -21,6 +21,7 @@
 #include "ClassifyTreeView.h"
 #include "ComboBox.h"
 #include "EditLabel.h"
+#include "HexLineEdit.h"
 #include "IPAddressEdit.h"
 #include "LongLongSpinBox.h"
 #include "MultiComboBox.h"
@@ -55,6 +56,7 @@ QCustomUiWidgets::QCustomUiWidgets(QObject* parent /*= 0*/) : QObject(parent), m
     m_impl->widgets.push_back(new SelectionButtonBox(this));
     m_impl->widgets.push_back(new LongLongSpinBox(this));
     m_impl->widgets.push_back(new ULongLongSpinBox(this));
+    m_impl->widgets.push_back(new HexLineEdit(this));
 
     qApp->setStyleSheet(QCtmStyleSheet::defaultStyleSheet());
 }
