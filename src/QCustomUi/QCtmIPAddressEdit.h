@@ -36,12 +36,11 @@ class QCUSTOMUI_EXPORT QCtmIPAddressEdit : public QWidget
 public:
     explicit QCtmIPAddressEdit(QWidget* parent = nullptr);
     ~QCtmIPAddressEdit();
-
     void setIPAddress(const QString& ip);
     QString ipAddress() const;
-
     void setReadOnly(bool ro);
     bool isReadOnly() const;
+    void clear();
 signals:
     void editChanged();
     void editingFinished();

@@ -212,6 +212,22 @@ void QCtmIPAddressEdit::setReadOnly(bool ro)
 bool QCtmIPAddressEdit::isReadOnly() const { return m_impl->readOnly; }
 
 /*!
+    \brief      清除IP地址文本.
+*/
+void QCtmIPAddressEdit::clear()
+{
+    {
+        QSignalBlocker blocker(this);
+        for (auto& textLayout : m_impl->textLayouts)
+        {
+            setText(textLayout, "");
+        }
+        update();
+    }
+    emit editChanged();
+}
+
+/*!
     \brief      Returns the section of the given \a position.
     \sa         rectOfIpSection, boundRect
 */
