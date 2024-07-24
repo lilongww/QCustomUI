@@ -18,9 +18,9 @@ FetchContent_MakeAvailable(pegtl)
 
 find_package(QT NAMES Qt6 Qt5 REQUIRED COMPONENTS Core)
 if(${QT_VERSION_MAJOR} EQUAL 5)
-    find_package(Qt${QT_VERSION_MAJOR} COMPONENTS Core Gui Widgets Network WinExtras REQUIRED)
+    find_package(Qt${QT_VERSION_MAJOR} COMPONENTS Widgets Network WinExtras SerialPort REQUIRED)
 else(${QT_VERSION_MAJOR} EQUAL 5)
-    find_package(Qt${QT_VERSION_MAJOR} COMPONENTS Core Gui Widgets Network REQUIRED)
+    find_package(Qt${QT_VERSION_MAJOR} COMPONENTS Widgets Network SerialPort REQUIRED)
 endif(${QT_VERSION_MAJOR} EQUAL 5)
 file(REAL_PATH "${QT_DIR}/../../.." QTDIR)
 message("-- Found Qt ${QT_VERSION}")
@@ -73,6 +73,7 @@ set(INPUT_HEADERS
  "QCtmLongLongSpinBox.h"
  "QCtmULongLongSpinBox.h"
  "QCtmHexLineEdit.h"
+ "QCtmSerialPortComboBox.h"
 )
 
 set(INPUT_SOURCES
@@ -85,6 +86,7 @@ set(INPUT_SOURCES
  "QCtmLongLongSpinBox.cpp"
  "QCtmULongLongSpinBox.cpp"
  "QCtmHexLineEdit.cpp"
+ "QCtmSerialPortComboBox.cpp"
 )
 
 set(CONTAINERS_HEADERS
@@ -268,12 +270,12 @@ add_library(${TARGET_NAME} SHARED
 
 if(WIN32)
     if(${QT_VERSION_MAJOR} EQUAL 5)
-        target_link_libraries(${TARGET_NAME} PUBLIC dwmapi PRIVATE Qt::Widgets Qt::Network Qt::WinExtras Qt::WidgetsPrivate taocpp::pegtl)
+        target_link_libraries(${TARGET_NAME} PUBLIC dwmapi PRIVATE Qt::Widgets Qt::Network Qt::WinExtras Qt::WidgetsPrivate Qt::SerialPort taocpp::pegtl)
     else(${QT_VERSION_MAJOR} EQUAL 5)
-        target_link_libraries(${TARGET_NAME} PUBLIC dwmapi PRIVATE Qt::Widgets Qt::Network Qt::WidgetsPrivate taocpp::pegtl)
+        target_link_libraries(${TARGET_NAME} PUBLIC dwmapi PRIVATE Qt::Widgets Qt::Network Qt::WidgetsPrivate Qt::SerialPort taocpp::pegtl)
     endif(${QT_VERSION_MAJOR} EQUAL 5)
 else ()
-    target_link_libraries(${TARGET_NAME} PRIVATE Qt::Widgets Qt::Network Qt::WidgetsPrivate taocpp::pegtl)
+    target_link_libraries(${TARGET_NAME} PRIVATE Qt::Widgets Qt::Network Qt::WidgetsPrivate Qt::SerialPort taocpp::pegtl)
 endif(WIN32)
 set_target_properties(${TARGET_NAME} PROPERTIES VERSION ${PROJECT_VERSION} SOVERSION 1)
 

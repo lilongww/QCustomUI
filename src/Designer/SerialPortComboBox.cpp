@@ -1,4 +1,4 @@
-﻿/*********************************************************************************
+/*********************************************************************************
 **                                                                              **
 **  Copyright (C) 2019-2024 LiLong                                              **
 **  This file is part of QCustomUi.                                             **
@@ -16,23 +16,28 @@
 **  You should have received a copy of the GNU Lesser General Public License    **
 **  along with QCustomUi.  If not, see <https://www.gnu.org/licenses/>.         **
 **********************************************************************************/
+#include "SerialPortComboBox.h"
 
-#pragma once
+#include <QCustomUi/QCtmSerialPortComboBox.h>
 
-#include "qcustomui_global.h"
+SerialPortComboBox::SerialPortComboBox(QObject* parent /*= nullptr*/) : QObject(parent) {}
 
-#include <QComboBox>
+QIcon SerialPortComboBox::icon() const { return {}; }
 
-class QCUSTOMUI_EXPORT QCtmComboBox : public QComboBox
+QString SerialPortComboBox::domXml() const
 {
-    Q_OBJECT
-public:
-    explicit QCtmComboBox(QWidget* parent = nullptr);
-    ~QCtmComboBox();
+    return "<ui language=\"c++\">\n"
+           " <widget class=\"QCtmSerialPortComboBox\" name=\"serialPortComboBox\">\n"
+           " </widget>\n"
+           "</ui>\n";
+}
 
-signals:
-    void aboutToShowPopup();
+QWidget* SerialPortComboBox::createWidget(QWidget* parent) { return new QCtmSerialPortComboBox(parent); }
 
-protected:
-    void showPopup() override;
-};
+void SerialPortComboBox::initialize(QDesignerFormEditorInterface* core)
+{
+    if (m_initialized)
+        return;
+
+    m_initialized = true;
+}

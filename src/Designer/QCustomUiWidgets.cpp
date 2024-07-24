@@ -31,6 +31,7 @@
 #include "SwitchButton.h"
 #include "TableView.h"
 #include "ULongLongSpinBox.h"
+#include "SerialPortComboBox.h"
 
 #include <QCustomUi/QCtmStyleSheet.h>
 
@@ -57,6 +58,7 @@ QCustomUiWidgets::QCustomUiWidgets(QObject* parent /*= 0*/) : QObject(parent), m
     m_impl->widgets.push_back(new LongLongSpinBox(this));
     m_impl->widgets.push_back(new ULongLongSpinBox(this));
     m_impl->widgets.push_back(new HexLineEdit(this));
+    m_impl->widgets.push_back(new SerialPortComboBox(this));
 
     qApp->setStyleSheet(QCtmStyleSheet::defaultStyleSheet());
 }

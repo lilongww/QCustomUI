@@ -1,4 +1,4 @@
-﻿/*********************************************************************************
+/*********************************************************************************
 **                                                                              **
 **  Copyright (C) 2019-2024 LiLong                                              **
 **  This file is part of QCustomUi.                                             **
@@ -16,23 +16,31 @@
 **  You should have received a copy of the GNU Lesser General Public License    **
 **  along with QCustomUi.  If not, see <https://www.gnu.org/licenses/>.         **
 **********************************************************************************/
-
 #pragma once
 
-#include "qcustomui_global.h"
+#include <QDesignerCustomWidgetInterface>
 
-#include <QComboBox>
-
-class QCUSTOMUI_EXPORT QCtmComboBox : public QComboBox
+class SerialPortComboBox
+    : public QObject
+    , public QDesignerCustomWidgetInterface
 {
     Q_OBJECT
+    Q_INTERFACES(QDesignerCustomWidgetInterface)
 public:
-    explicit QCtmComboBox(QWidget* parent = nullptr);
-    ~QCtmComboBox();
+    explicit SerialPortComboBox(QObject* parent = nullptr);
 
-signals:
-    void aboutToShowPopup();
+    bool isContainer() const override { return false; }
+    bool isInitialized() const override { return m_initialized; }
+    QIcon icon() const override;
+    QString domXml() const override;
+    QString group() const override { return "Input Widgets"; }
+    QString includeFile() const override { return "QCustomUi/QCtmSerialPortComboBox.h"; }
+    QString name() const override { return "QCtmSerialPortComboBox"; }
+    QString toolTip() const override { return "QCtmSerialPortComboBox"; }
+    QString whatsThis() const override { return "QCtmSerialPortComboBox"; }
+    QWidget* createWidget(QWidget* parent) override;
+    void initialize(QDesignerFormEditorInterface* core) override;
 
-protected:
-    void showPopup() override;
+private:
+    bool m_initialized { false };
 };

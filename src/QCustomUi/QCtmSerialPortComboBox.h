@@ -16,23 +16,21 @@
 **  You should have received a copy of the GNU Lesser General Public License    **
 **  along with QCustomUi.  If not, see <https://www.gnu.org/licenses/>.         **
 **********************************************************************************/
-
 #pragma once
 
-#include "qcustomui_global.h"
+#include "QCtmComboBox.h"
 
-#include <QComboBox>
-
-class QCUSTOMUI_EXPORT QCtmComboBox : public QComboBox
+class QCUSTOMUI_EXPORT QCtmSerialPortComboBox : public QCtmComboBox
 {
     Q_OBJECT
 public:
-    explicit QCtmComboBox(QWidget* parent = nullptr);
-    ~QCtmComboBox();
+    explicit QCtmSerialPortComboBox(QWidget* parent = nullptr);
+    ~QCtmSerialPortComboBox();
 
-signals:
-    void aboutToShowPopup();
+protected slots:
+    virtual void onAboutToShowPopup();
 
-protected:
-    void showPopup() override;
+private:
+    struct Impl;
+    std::unique_ptr<Impl> m_impl;
 };
