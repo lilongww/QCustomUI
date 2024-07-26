@@ -27,7 +27,13 @@ message("-- Found Qt ${QT_VERSION}")
 message("-- QTDIR: ${QTDIR}")
 include_directories("./")
 
-add_compile_definitions(QCUSTOMUI_LIB UNICODE _WIN32_WINNT=0x0600)
+option(FRAMELESS_PURE_QT_BACKEND "Frameless window pure Qt backend" FALSE)
+
+if(${FRAMELESS_PURE_QT_BACKEND})
+    add_compile_definitions(QCUSTOMUI_LIB UNICODE _WIN32_WINNT=0x0600 QCUSTOMUI_FRAMELESS_USE_PURE_QT)
+else()
+    add_compile_definitions(QCUSTOMUI_LIB UNICODE _WIN32_WINNT=0x0600)
+endif()
 
 file(GLOB PRIVATRE_HEADERS ./Private/*.h)
 file(GLOB PRIVATRE_SOURCES ./Private/*.cpp)

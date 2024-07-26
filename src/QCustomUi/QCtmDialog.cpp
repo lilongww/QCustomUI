@@ -34,10 +34,10 @@ struct QCtmDialog::Impl
     QPointer<QCtmTitleBar> title;
     QWidget* content { nullptr };
     QVBoxLayout* layout { nullptr };
-#ifdef Q_OS_WIN
-    QCtmWinFramelessDelegate* delegate { nullptr };
-#else
+#ifdef QCUSTOMUI_FRAMELESS_USE_PURE_QT
     QCtmFramelessDelegate* delegate { nullptr };
+#elif QCUSTOMUI_FRAMELESS_USE_WINDOWS
+    QCtmWinFramelessDelegate* delegate { nullptr };
 #endif
 };
 
@@ -65,12 +65,11 @@ QCtmDialog::QCtmDialog(QWidget* parent) : QDialog(parent), m_impl(std::make_uniq
     m_impl->layout->setStretch(0, 0);
     m_impl->layout->setStretch(1, 1);
     m_impl->layout->setAlignment(Qt::AlignLeft | Qt::AlignTop);
-
-#ifdef Q_OS_WIN
-    m_impl->delegate = new QCtmWinFramelessDelegate(this, m_impl->title);
-#else
+#ifdef QCUSTOMUI_FRAMELESS_USE_PURE_QT
     m_impl->delegate = new QCtmFramelessDelegate(this, m_impl->title);
     setWindowFlag(Qt::Dialog);
+#elif QCUSTOMUI_FRAMELESS_USE_WINDOWS
+    m_impl->delegate = new QCtmWinFramelessDelegate(this, m_impl->title);
 #endif
     setCentralWidget(new QWidget(this));
 }
@@ -159,8 +158,8 @@ void QCtmDialog::addMoveBar(QWidget* moveBar) { m_impl->delegate->addMoveBar(mov
     \sa         addMoveBar
 */
 void QCtmDialog::removeMoveBar(QWidget* moveBar) { m_impl->delegate->removeMoveBar(moveBar); }
-#ifndef Q_OS_WIN
 
+#ifdef QCUSTOMUI_FRAMELESS_USE_PURE_QT
 /*!
     \if         !defined(Q_OS_WIN)
     \brief      Sets the window being shadowless, \a flag.
@@ -221,15 +220,15 @@ bool QCtmDialog::nativeEvent(const QByteArray& eventType, void* message, long* r
 bool QCtmDialog::nativeEvent(const QByteArray& eventType, void* message, qintptr* result)
 #endif
 {
-#ifdef Q_OS_WIN
+#ifdef QCUSTOMUI_FRAMELESS_USE_PURE_QT
+    return QDialog::nativeEvent(eventType, message, result);
+#elif QCUSTOMUI_FRAMELESS_USE_WINDOWS
     if (!m_impl->delegate)
         return QDialog::nativeEvent(eventType, message, result);
     if (!m_impl->delegate->nativeEvent(eventType, message, result))
         return QDialog::nativeEvent(eventType, message, result);
     else
         return true;
-#else
-    return QDialog::nativeEvent(eventType, message, result);
 #endif
 }
 

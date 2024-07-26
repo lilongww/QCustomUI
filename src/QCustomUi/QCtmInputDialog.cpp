@@ -17,12 +17,9 @@
 **  along with QCustomUi.  If not, see <https://www.gnu.org/licenses/>.         **
 **********************************************************************************/
 #include "QCtmInputDialog.h"
-#include "QCtmTitleBar.h"
-#ifdef Q_OS_WIN
-#include "Private/QCtmFramelessDelegate_win.h"
-#else
 #include "Private/QCtmFramelessDelegate_p.h"
-#endif
+#include "Private/QCtmFramelessDelegate_win.h"
+#include "QCtmTitleBar.h"
 
 #include "private/qwidget_p.h"
 #include <QApplication>
@@ -35,10 +32,10 @@
 struct QCtmInputDialog::Impl
 {
     QCtmTitleBar* title { nullptr };
-#ifdef Q_OS_WIN
-    QCtmWinFramelessDelegate* delegate { nullptr };
-#else
+#ifdef QCUSTOMUI_FRAMELESS_USE_PURE_QT
     QCtmFramelessDelegate* delegate { nullptr };
+#elif QCUSTOMUI_FRAMELESS_USE_WINDOWS
+    QCtmWinFramelessDelegate* delegate { nullptr };
 #endif
     QVBoxLayout* layout { nullptr };
     QLayout* mainLayout { nullptr };
@@ -78,11 +75,11 @@ QCtmInputDialog::QCtmInputDialog(QWidget* parent, Qt::WindowFlags flags) : QInpu
         m_impl->layout->addWidget(w, 1);
     }
     setLayout(m_impl->layout);
-#ifdef Q_OS_WIN
-    m_impl->delegate = new QCtmWinFramelessDelegate(this, m_impl->title);
-#else
+#ifdef QCUSTOMUI_FRAMELESS_USE_PURE_QT
     m_impl->delegate = new QCtmFramelessDelegate(this, m_impl->title);
     setWindowFlag(Qt::Dialog);
+#elif QCUSTOMUI_FRAMELESS_USE_WINDOWS
+    m_impl->delegate = new QCtmWinFramelessDelegate(this, m_impl->title);
 #endif
     setWindowFlag(Qt::WindowMinMaxButtonsHint, false);
 }
@@ -367,15 +364,15 @@ bool QCtmInputDialog::nativeEvent(const QByteArray& eventType, void* message, lo
 bool QCtmInputDialog::nativeEvent(const QByteArray& eventType, void* message, qintptr* result)
 #endif
 {
-#ifdef Q_OS_WIN
+#ifdef QCUSTOMUI_FRAMELESS_USE_PURE_QT
+    return QInputDialog::nativeEvent(eventType, message, result);
+#elif QCUSTOMUI_FRAMELESS_USE_WINDOWS
     if (!m_impl->delegate)
         return QInputDialog::nativeEvent(eventType, message, result);
     if (!m_impl->delegate->nativeEvent(eventType, message, result))
         return QInputDialog::nativeEvent(eventType, message, result);
     else
         return true;
-#else
-    return QInputDialog::nativeEvent(eventType, message, result);
 #endif
 }
 
