@@ -99,7 +99,15 @@ QCtmRecentView::~QCtmRecentView() {}
                 设置数据 \a model.
     \sa         model
 */
-void QCtmRecentView::setModel(QCtmRecentModel* model) { QTreeView::setModel(model); }
+void QCtmRecentView::setModel(QCtmRecentModel* model)
+{
+    if (this->model())
+    {
+        disconnect(this->model(), &QCtmRecentModel::rowsRemoved, this, &QCtmRecentView::onRowsRemoved);
+    }
+    QTreeView::setModel(model);
+    connect(model, &QCtmRecentModel::rowsRemoved, this, &QCtmRecentView::onRowsRemoved);
+}
 
 /*!
     \overload
@@ -160,4 +168,12 @@ void QCtmRecentView::reset()
 void QCtmRecentView::onTopButtonClicked(const QModelIndex& index)
 {
     model()->setData(index, !index.data(QCtmRecentModel::Roles::isTop).toBool(), QCtmRecentModel::Roles::isTop);
+}
+
+void QCtmRecentView::onRowsRemoved(const QModelIndex& parent, int, int)
+{
+    if (!model()->rowCount(parent))
+    {
+        setRowHidden(parent.row(), {}, true);
+    }
 }

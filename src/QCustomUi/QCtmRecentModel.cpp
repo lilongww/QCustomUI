@@ -279,7 +279,9 @@ void QCtmRecentModel::removeData(const QModelIndex& index)
     auto d = dataOfIndex(index);
     if (!d)
         return;
-    beginRemoveRows(index.parent(), index.row(), index.row());
+    auto parent = index.parent();
+    beginRemoveRows(parent, index.row(), index.row());
     m_impl->d.removeOne(*d);
+    m_impl->sorted[index.parent().row()].removeOne(*d);
     endRemoveRows();
 }

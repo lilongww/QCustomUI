@@ -35,6 +35,26 @@ struct QCtmRecentData
     QDateTime time;
     QIcon icon;
     bool isTop { false };
+    inline bool operator==(const QCtmRecentData& other) const
+    {
+        return name == other.name && path == other.path && time == other.time && isTop == other.isTop;
+    }
+    inline bool operator<(const QCtmRecentData& other) const
+    {
+        if (name == other.name)
+        {
+            if (path == other.path)
+            {
+                if (time == other.time)
+                {
+                    return isTop < other.isTop;
+                }
+                return time < other.time;
+            }
+            return path < other.path;
+        }
+        return name < other.name;
+    }
 };
 
 class QCUSTOMUI_EXPORT QCtmRecentModel : public QAbstractItemModel

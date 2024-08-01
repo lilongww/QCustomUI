@@ -45,10 +45,10 @@ signals:
     void recentDoubleClicked(const QCtmRecentData& data);
 
 protected:
-    using QTreeView::model;
-    using QTreeView::setModel;
     void reset() override;
     virtual void onTopButtonClicked(const QModelIndex& index);
+private slots:
+    void onRowsRemoved(const QModelIndex& parent, int, int);
 
 private:
     struct Impl;
