@@ -4,7 +4,7 @@
   <meta charset="utf-8">
 <!-- QCtmApplication.cpp -->
   <meta name="description" content="QApplication 的扩展，设置了默认样式和单实例运行的接口.">
-  <title>QCtmApplication Class | QCustomUi 1.15.0</title>
+  <title>QCtmApplication Class | QCustomUi 1.16.0</title>
   <link rel="stylesheet" type="text/css" href="style/offline-simple.css" />
   <script type="text/javascript">
     document.getElementsByTagName("link").item(0).setAttribute("href", "style/offline.css");
@@ -26,10 +26,10 @@
     <div class="main-rounded">
         <div class="navigationbar">
         <ul>
-<li><a href="index.html" translate="no">QCustomUi 1.15.0</a></li>
+<li><a href="index.html" translate="no">QCustomUi 1.16.0</a></li>
 <li><a href="qcustomui-module.html" translate="no">QCustomUi</a></li>
 <li>QCtmApplication</li>
-<li id="buildversion">QCustomUi 1.15.0 Reference Documentation</li>
+<li id="buildversion">QCustomUi 1.16.0 Reference Documentation</li>
     </ul>
     </div>
 </div>
@@ -41,6 +41,7 @@
 <h3 id="toc">Contents</h3>
 <ul>
 <li class="level1"><a href="#public-functions">Public Functions</a></li>
+<li class="level1"><a href="#static-public-members">Static Public Members</a></li>
 <li class="level1"><a href="#details">Detailed Description</a></li>
 </ul>
 </div>
@@ -62,6 +63,10 @@
 <tr><td class="memItemLeft rightAlign topAlign"> virtual </td><td class="memItemRight bottomAlign"><b><a href="qctmapplication.html#dtor.QCtmApplication" translate="no">~QCtmApplication</a></b>()</td></tr>
 <tr><td class="memItemLeft rightAlign topAlign"> bool </td><td class="memItemRight bottomAlign"><b><a href="qctmapplication.html#checkOtherProcess" translate="no">checkOtherProcess</a></b>(const QString &amp;<i>key</i>)</td></tr>
 </table></div>
+<h2 id="static-public-members">Static Public Members</h2>
+<div class="table"><table class="alignedsummary" translate="no">
+<tr><td class="memItemLeft rightAlign topAlign"> void </td><td class="memItemRight bottomAlign"><b><a href="qctmapplication.html#setGetObjectDisabled" translate="no">setGetObjectDisabled</a></b>(bool <i>d</i>)</td></tr>
+</table></div>
 <!-- $$$QCtmApplication-description -->
 <div class="descr">
 <h2 id="details">Detailed Description</h2>
@@ -81,6 +86,10 @@
 <h3 class="fn" translate="no" id="checkOtherProcess"><span class="type">bool</span> QCtmApplication::<span class="name">checkOtherProcess</span>(const <span class="type"><a href="https://doc.qt.io/qt/qstring.html" translate="no">QString</a></span> &amp;<i>key</i>)</h3>
 <p>检测并返回其他程序是否持有相同的 <i translate="no">key</i>.</p>
 <!-- @@@checkOtherProcess -->
+<!-- $$$setGetObjectDisabled[overload1]$$$setGetObjectDisabledbool -->
+<h3 class="fn" translate="no" id="setGetObjectDisabled"><code class="details extra" translate="no">[static]</code> <span class="type">void</span> QCtmApplication::<span class="name">setGetObjectDisabled</span>(<span class="type">bool</span> <i>d</i>)</h3>
+<p>禁用 WM_GETOBJECT 消息，解决Qt Bug导致的有道词典取词功能，致程序卡死的问题，默认不启用 <i translate="no">d</i>.</p>
+<!-- @@@setGetObjectDisabled -->
 </div>
         </div>
        </div>

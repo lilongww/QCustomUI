@@ -86,9 +86,9 @@
         <page name="https://code.qt.io/" href="https://code.qt.io/" status="active" location="qt-webpages.qdoc" documented="true" subtype="externalpage" title="Public Qt Repository" fulltitle="Public Qt Repository" subtitle=""/>
         <page name="http://www.python.org/" href="http://www.python.org/" status="active" location="external-resources.qdoc" documented="true" subtype="externalpage" title="Python" fulltitle="Python" subtitle=""/>
         <class name="QCtmAbstractLogModel" href="qctmabstractlogmodel.html" status="active" access="public" location="QCtmAbstractLogModel.h" documented="true" groups="QCustomUi" bases="QAbstractTableModel" module="QCustomUi" brief="日志 model 接口类">
-            <function name="QCtmAbstractLogModel" fullname="QCtmAbstractLogModel::QCtmAbstractLogModel" href="qctmabstractlogmodel.html#QCtmAbstractLogModel" status="active" access="public" location="QCtmAbstractLogModel.h" documented="true" meta="constructor" brief="构造一个日志 model 设置 objectName 和父对象 parent" signature="QCtmAbstractLogModel(const QString &amp;objectName, QObject *parent)">
+            <function name="QCtmAbstractLogModel" fullname="QCtmAbstractLogModel::QCtmAbstractLogModel" href="qctmabstractlogmodel.html#QCtmAbstractLogModel" status="active" access="public" location="QCtmAbstractLogModel.h" documented="true" meta="constructor" explicit="true" brief="构造一个日志 model 设置 objectName 和父对象 parent" signature="QCtmAbstractLogModel(const QString &amp;objectName, QObject *parent)">
                 <parameter type="const QString &amp;" name="objectName" default=""/>
-                <parameter type="QObject *" name="parent" default=""/>
+                <parameter type="QObject *" name="parent" default="nullptr"/>
             </function>
             <function name="clear" fullname="QCtmAbstractLogModel::clear" href="qctmabstractlogmodel.html#clear" status="active" access="public" location="QCtmAbstractLogModel.h" documented="true" meta="plain" virtual="pure" type="void" brief="清空日志" signature="void clear() = 0"/>
             <function name="event" fullname="QCtmAbstractLogModel::event" href="qctmabstractlogmodel.html#event" status="active" access="protected" location="QCtmAbstractLogModel.h" documented="true" meta="plain" virtual="virtual" override="true" type="bool" signature="bool event(QEvent *e) override">
@@ -125,8 +125,8 @@
             <function name="~QCtmAbstractMessageTipData" fullname="QCtmAbstractMessageTipData::~QCtmAbstractMessageTipData" href="qctmabstractmessagetipdata.html#dtor.QCtmAbstractMessageTipData" status="active" access="public" location="QCtmMessageTipData.h" documented="true" meta="destructor" virtual="virtual" noexcept="true" brief="析构函数" signature="~QCtmAbstractMessageTipData()"/>
         </class>
         <class name="QCtmAbstractMessageTipModel" href="qctmabstractmessagetipmodel.html" status="active" access="public" location="QCtmAbstractMessageTipModel.h" documented="true" groups="QCustomUi" bases="QAbstractTableModel" module="QCustomUi" brief="消息model接口类，定义消息model的基本接口，要定义自己的消息model可以继承自该类">
-            <function name="QCtmAbstractMessageTipModel" fullname="QCtmAbstractMessageTipModel::QCtmAbstractMessageTipModel" href="qctmabstractmessagetipmodel.html#QCtmAbstractMessageTipModel" status="active" access="public" location="QCtmAbstractMessageTipModel.h" documented="true" meta="constructor" brief="构造一个父对象为 parent 的消息对象" signature="QCtmAbstractMessageTipModel(QObject *parent)">
-                <parameter type="QObject *" name="parent" default=""/>
+            <function name="QCtmAbstractMessageTipModel" fullname="QCtmAbstractMessageTipModel::QCtmAbstractMessageTipModel" href="qctmabstractmessagetipmodel.html#QCtmAbstractMessageTipModel" status="active" access="public" location="QCtmAbstractMessageTipModel.h" documented="true" meta="constructor" explicit="true" brief="构造一个父对象为 parent 的消息对象" signature="QCtmAbstractMessageTipModel(QObject *parent)">
+                <parameter type="QObject *" name="parent" default="nullptr"/>
             </function>
             <function name="addMessage" fullname="QCtmAbstractMessageTipModel::addMessage" href="qctmabstractmessagetipmodel.html#addMessage" status="active" access="public" location="QCtmAbstractMessageTipModel.h" documented="true" meta="plain" type="void" brief="添加一条消息 msg" signature="void addMessage(QCtmAbstractMessageTipDataPtr msg)">
                 <parameter type="QCtmAbstractMessageTipDataPtr" name="msg" default=""/>
@@ -170,7 +170,7 @@
             </property>
         </class>
         <class name="QCtmAbstractMessageTipView" href="qctmabstractmessagetipview.html" status="active" access="public" location="QCtmAbstractMessageTipView.h" documented="true" groups="QCustomUi" bases="QCtmNavigationSidePane" module="QCustomUi" brief="消息提示视图接口类">
-            <function name="QCtmAbstractMessageTipView" fullname="QCtmAbstractMessageTipView::QCtmAbstractMessageTipView" href="qctmabstractmessagetipview.html#QCtmAbstractMessageTipView" status="active" access="public" location="QCtmAbstractMessageTipView.h" documented="true" meta="constructor" brief="构造函数 parent" signature="QCtmAbstractMessageTipView(QCtmNavigationBar *parent)">
+            <function name="QCtmAbstractMessageTipView" fullname="QCtmAbstractMessageTipView::QCtmAbstractMessageTipView" href="qctmabstractmessagetipview.html#QCtmAbstractMessageTipView" status="active" access="public" location="QCtmAbstractMessageTipView.h" documented="true" meta="constructor" explicit="true" brief="构造函数 parent" signature="QCtmAbstractMessageTipView(QCtmNavigationBar *parent)">
                 <parameter type="QCtmNavigationBar *" name="parent" default=""/>
             </function>
             <function name="model" fullname="QCtmAbstractMessageTipView::model" href="qctmabstractmessagetipview.html#model" status="active" access="public" location="QCtmAbstractMessageTipView.h" documented="true" meta="plain" virtual="pure" const="true" type="QCtmAbstractMessageTipModel *" brief="返回消息提示 model" signature="QCtmAbstractMessageTipModel * model() const = 0"/>
@@ -241,11 +241,14 @@
             <function name="checkOtherProcess" fullname="QCtmApplication::checkOtherProcess" href="qctmapplication.html#checkOtherProcess" status="active" access="public" location="QCtmApplication.h" documented="true" meta="plain" type="bool" brief="检测并返回其他程序是否持有相同的 key" signature="bool checkOtherProcess(const QString &amp;key)">
                 <parameter type="const QString &amp;" name="key" default=""/>
             </function>
+            <function name="setGetObjectDisabled" fullname="QCtmApplication::setGetObjectDisabled" href="qctmapplication.html#setGetObjectDisabled" status="active" access="public" location="QCtmApplication.h" documented="true" meta="plain" static="true" type="void" brief="禁用 WM_GETOBJECT 消息，解决Qt Bug导致的有道词典取词功能，致程序卡死的问题，默认不启用 d" signature="void setGetObjectDisabled(bool d)">
+                <parameter type="bool" name="d" default=""/>
+            </function>
             <function name="~QCtmApplication" fullname="QCtmApplication::~QCtmApplication" href="qctmapplication.html#dtor.QCtmApplication" status="active" access="public" location="QCtmApplication.h" documented="true" meta="destructor" virtual="virtual" noexcept="true" brief="析构函数" signature="~QCtmApplication()"/>
         </class>
         <class name="QCtmCircleProgressBar" href="qctmcircleprogressbar.html" status="active" access="public" location="QCtmCircleProgressBar.h" documented="true" groups="QCustomUi" bases="QWidget" module="QCustomUi" brief="圆形进度条">
-            <function name="QCtmCircleProgressBar" fullname="QCtmCircleProgressBar::QCtmCircleProgressBar" href="qctmcircleprogressbar.html#QCtmCircleProgressBar" status="active" access="public" location="QCtmCircleProgressBar.h" documented="true" meta="constructor" brief="构造函数 parent" signature="QCtmCircleProgressBar(QWidget *parent)">
-                <parameter type="QWidget *" name="parent" default=""/>
+            <function name="QCtmCircleProgressBar" fullname="QCtmCircleProgressBar::QCtmCircleProgressBar" href="qctmcircleprogressbar.html#QCtmCircleProgressBar" status="active" access="public" location="QCtmCircleProgressBar.h" documented="true" meta="constructor" explicit="true" brief="构造函数 parent" signature="QCtmCircleProgressBar(QWidget *parent)">
+                <parameter type="QWidget *" name="parent" default="nullptr"/>
             </function>
             <function name="backgroundBrush" fullname="QCtmCircleProgressBar::backgroundBrush" href="qctmcircleprogressbar.html#backgroundBrush" status="active" access="public" location="QCtmCircleProgressBar.h" documented="true" meta="plain" const="true" associated-property="backgroundBrush" type="const QBrush &amp;" brief="返回背景画刷" signature="const QBrush &amp; backgroundBrush() const"/>
             <function name="barBrush" fullname="QCtmCircleProgressBar::barBrush" href="qctmcircleprogressbar.html#barBrush" status="active" access="public" location="QCtmCircleProgressBar.h" documented="true" meta="plain" const="true" associated-property="barBrush" type="const QBrush &amp;" brief="返回进度条画刷" signature="const QBrush &amp; barBrush() const"/>
@@ -405,8 +408,8 @@
             </enum>
         </class>
         <class name="QCtmClassifyTreeModel" href="qctmclassifytreemodel.html" status="active" access="public" location="QCtmClassifyTreeModel.h" documented="true" groups="QCustomUi" bases="QAbstractItemModel" module="QCustomUi" brief="标准归类树 model">
-            <function name="QCtmClassifyTreeModel" fullname="QCtmClassifyTreeModel::QCtmClassifyTreeModel" href="qctmclassifytreemodel.html#QCtmClassifyTreeModel" status="active" access="public" location="QCtmClassifyTreeModel.h" documented="true" meta="constructor" brief="构造函数 parent" signature="QCtmClassifyTreeModel(QObject *parent)">
-                <parameter type="QObject *" name="parent" default=""/>
+            <function name="QCtmClassifyTreeModel" fullname="QCtmClassifyTreeModel::QCtmClassifyTreeModel" href="qctmclassifytreemodel.html#QCtmClassifyTreeModel" status="active" access="public" location="QCtmClassifyTreeModel.h" documented="true" meta="constructor" explicit="true" brief="构造函数 parent" signature="QCtmClassifyTreeModel(QObject *parent)">
+                <parameter type="QObject *" name="parent" default="nullptr"/>
             </function>
             <function name="addItem" fullname="QCtmClassifyTreeModel::addItem" href="qctmclassifytreemodel.html#addItem" status="active" access="public" location="QCtmClassifyTreeModel.h" documented="true" meta="plain" type="void" brief="添加根节点 item" signature="void addItem(QCtmClassifyTreeItem *item)">
                 <parameter type="QCtmClassifyTreeItem *" name="item" default=""/>
@@ -443,8 +446,8 @@
             <function name="~QCtmClassifyTreeModel" fullname="QCtmClassifyTreeModel::~QCtmClassifyTreeModel" href="qctmclassifytreemodel.html#dtor.QCtmClassifyTreeModel" status="active" access="public" location="QCtmClassifyTreeModel.h" documented="true" meta="destructor" virtual="virtual" noexcept="true" brief="析构函数" signature="~QCtmClassifyTreeModel()"/>
         </class>
         <class name="QCtmClassifyTreeView" href="qctmclassifytreeview.html" status="active" access="public" location="QCtmClassifyTreeView.h" documented="true" groups="QCustomUi" bases="QAbstractItemView" module="QCustomUi" brief="归类树视图">
-            <function name="QCtmClassifyTreeView" fullname="QCtmClassifyTreeView::QCtmClassifyTreeView" href="qctmclassifytreeview.html#QCtmClassifyTreeView" status="active" access="public" location="QCtmClassifyTreeView.h" documented="true" meta="constructor" brief="构造函数 parent" signature="QCtmClassifyTreeView(QWidget *parent)">
-                <parameter type="QWidget *" name="parent" default=""/>
+            <function name="QCtmClassifyTreeView" fullname="QCtmClassifyTreeView::QCtmClassifyTreeView" href="qctmclassifytreeview.html#QCtmClassifyTreeView" status="active" access="public" location="QCtmClassifyTreeView.h" documented="true" meta="constructor" explicit="true" brief="构造函数 parent" signature="QCtmClassifyTreeView(QWidget *parent)">
+                <parameter type="QWidget *" name="parent" default="nullptr"/>
             </function>
             <function name="collapse" fullname="QCtmClassifyTreeView::collapse" href="qctmclassifytreeview.html#collapse" status="active" access="public" location="QCtmClassifyTreeView.h" documented="true" meta="slot" type="void" brief="收缩 index 项目" signature="void collapse(const QModelIndex &amp;index)">
                 <parameter type="const QModelIndex &amp;" name="index" default=""/>
@@ -525,7 +528,7 @@
             </function>
             <function name="~QCtmClassifyTreeView" fullname="QCtmClassifyTreeView::~QCtmClassifyTreeView" href="qctmclassifytreeview.html#dtor.QCtmClassifyTreeView" status="active" access="public" location="QCtmClassifyTreeView.h" documented="true" meta="destructor" virtual="virtual" noexcept="true" brief="析构函数" signature="~QCtmClassifyTreeView()"/>
         </class>
-        <class name="QCtmColor" href="qctmcolor.html" status="active" access="public" location="QCtmColor.h" documented="true" groups="QCustomUi" bases="QObject" module="QCustomUi" brief="部分常用颜色和颜色计算方法">
+        <class name="QCtmColor" href="qctmcolor.html" status="active" access="public" location="QCtmColor.h" documented="true" groups="QCustomUi" module="QCustomUi" brief="部分常用颜色和颜色计算方法">
             <function name="generateBackgroundColor" fullname="QCtmColor::generateBackgroundColor" href="qctmcolor.html#generateBackgroundColor" status="active" access="public" location="QCtmColor.h" documented="true" meta="plain" static="true" type="QColor" brief="生成背景色 index, 如果 index 超过20，从头开始循环" signature="QColor generateBackgroundColor(int index)">
                 <parameter type="int" name="index" default=""/>
             </function>
@@ -556,8 +559,8 @@
             </enum>
         </class>
         <class name="QCtmComboBox" href="qctmcombobox.html" status="active" access="public" location="QCtmComboBox.h" documented="true" groups="QCustomUi" bases="QComboBox" module="QCustomUi" brief="提供一个下拉列表可被样式表设置的combobox，以及其他功能补丁">
-            <function name="QCtmComboBox" fullname="QCtmComboBox::QCtmComboBox" href="qctmcombobox.html#QCtmComboBox" status="active" access="public" location="QCtmComboBox.h" documented="true" meta="constructor" brief="构造一个父窗口为 parent 的combobox对象" signature="QCtmComboBox(QWidget *parent)">
-                <parameter type="QWidget *" name="parent" default=""/>
+            <function name="QCtmComboBox" fullname="QCtmComboBox::QCtmComboBox" href="qctmcombobox.html#QCtmComboBox" status="active" access="public" location="QCtmComboBox.h" documented="true" meta="constructor" explicit="true" brief="构造一个父窗口为 parent 的combobox对象" signature="QCtmComboBox(QWidget *parent)">
+                <parameter type="QWidget *" name="parent" default="nullptr"/>
             </function>
             <function name="aboutToShowPopup" fullname="QCtmComboBox::aboutToShowPopup" href="qctmcombobox.html#aboutToShowPopup" status="active" access="public" location="QCtmComboBox.h" documented="true" meta="signal" type="void" brief="弹出框显示前发送该信号" signature="void aboutToShowPopup()"/>
             <function name="showPopup" fullname="QCtmComboBox::showPopup" href="qctmcombobox.html#showPopup" status="active" access="protected" location="QCtmComboBox.h" documented="true" meta="plain" virtual="virtual" override="true" type="void" signature="void showPopup() override"/>
@@ -860,9 +863,9 @@
             </function>
         </class>
         <class name="QCtmHeaderView" href="qctmheaderview.html" status="active" access="public" location="QCtmHeaderView.h" documented="true" groups="QCustomUi" bases="QHeaderView" module="QCustomUi" brief="自定义表头，提供了 checkbox 勾选功能">
-            <function name="QCtmHeaderView" fullname="QCtmHeaderView::QCtmHeaderView" href="qctmheaderview.html#QCtmHeaderView" status="active" access="public" location="QCtmHeaderView.h" documented="true" meta="constructor" brief="构造函数 orientation, parent" signature="QCtmHeaderView(Qt::Orientation orientation, QWidget *parent)">
+            <function name="QCtmHeaderView" fullname="QCtmHeaderView::QCtmHeaderView" href="qctmheaderview.html#QCtmHeaderView" status="active" access="public" location="QCtmHeaderView.h" documented="true" meta="constructor" explicit="true" brief="构造函数 orientation, parent" signature="QCtmHeaderView(Qt::Orientation orientation, QWidget *parent)">
                 <parameter type="Qt::Orientation" name="orientation" default=""/>
-                <parameter type="QWidget *" name="parent" default=""/>
+                <parameter type="QWidget *" name="parent" default="nullptr"/>
             </function>
             <function name="doCheckBoxRect" fullname="QCtmHeaderView::doCheckBoxRect" href="qctmheaderview.html#doCheckBoxRect" status="active" access="protected" location="QCtmHeaderView.h" documented="true" meta="plain" const="true" type="QRect" brief="计算 checkbox 的包围盒 logicalIndex" signature="QRect doCheckBoxRect(int logicalIndex) const">
                 <parameter type="int" name="logicalIndex" default=""/>
@@ -888,14 +891,25 @@
             </function>
             <function name="~QCtmHeaderView" fullname="QCtmHeaderView::~QCtmHeaderView" href="qctmheaderview.html#dtor.QCtmHeaderView" status="active" access="public" location="QCtmHeaderView.h" documented="true" meta="destructor" virtual="virtual" noexcept="true" brief="析构函数" signature="~QCtmHeaderView()"/>
         </class>
+        <class name="QCtmHexLineEdit" href="qctmhexlineedit.html" status="active" access="public" location="QCtmHexLineEdit.h" documented="true" groups="QCustomUi" bases="QLineEdit" module="QCustomUi" brief="16进制单行编辑框">
+            <function name="QCtmHexLineEdit" fullname="QCtmHexLineEdit::QCtmHexLineEdit" href="qctmhexlineedit.html#QCtmHexLineEdit" status="active" access="public" location="QCtmHexLineEdit.h" documented="true" meta="constructor" explicit="true" brief="构造函数 parent" signature="QCtmHexLineEdit(QWidget *parent)">
+                <parameter type="QWidget *" name="parent" default="nullptr"/>
+            </function>
+            <function name="QCtmHexLineEdit" fullname="QCtmHexLineEdit::QCtmHexLineEdit" href="qctmhexlineedit.html#QCtmHexLineEdit-1" status="active" access="public" location="QCtmHexLineEdit.h" documented="true" meta="constructor" explicit="true" overload="true" overload-number="1" brief="构造函数 text, parent" signature="QCtmHexLineEdit(const QString &amp;text, QWidget *parent)">
+                <parameter type="const QString &amp;" name="text" default=""/>
+                <parameter type="QWidget *" name="parent" default="nullptr"/>
+            </function>
+            <function name="~QCtmHexLineEdit" fullname="QCtmHexLineEdit::~QCtmHexLineEdit" href="qctmhexlineedit.html#dtor.QCtmHexLineEdit" status="active" access="public" location="QCtmHexLineEdit.h" documented="true" meta="destructor" virtual="virtual" noexcept="true" brief="析构函数" signature="~QCtmHexLineEdit()"/>
+        </class>
         <class name="QCtmIPAddressEdit" href="qctmipaddressedit.html" status="active" access="public" location="QCtmIPAddressEdit.h" documented="true" groups="QCustomUi" bases="QWidget" module="QCustomUi" brief="IPv4 输入框">
-            <function name="QCtmIPAddressEdit" fullname="QCtmIPAddressEdit::QCtmIPAddressEdit" href="qctmipaddressedit.html#QCtmIPAddressEdit" status="active" access="public" location="QCtmIPAddressEdit.h" documented="true" meta="constructor" brief="构造函数 parent" signature="QCtmIPAddressEdit(QWidget *parent)">
-                <parameter type="QWidget *" name="parent" default=""/>
+            <function name="QCtmIPAddressEdit" fullname="QCtmIPAddressEdit::QCtmIPAddressEdit" href="qctmipaddressedit.html#QCtmIPAddressEdit" status="active" access="public" location="QCtmIPAddressEdit.h" documented="true" meta="constructor" explicit="true" brief="构造函数 parent" signature="QCtmIPAddressEdit(QWidget *parent)">
+                <parameter type="QWidget *" name="parent" default="nullptr"/>
             </function>
             <function name="boundRect" fullname="QCtmIPAddressEdit::boundRect" href="qctmipaddressedit.html#boundRect" status="active" access="private" location="QCtmIPAddressEdit.h" documented="true" meta="plain" const="true" type="QRect" brief="Returns the bound rect of the given section and rect" signature="QRect boundRect(int section, const QRect &amp;rect) const">
                 <parameter type="int" name="section" default=""/>
                 <parameter type="const QRect &amp;" name="rect" default=""/>
             </function>
+            <function name="clear" fullname="QCtmIPAddressEdit::clear" href="qctmipaddressedit.html#clear" status="active" access="public" location="QCtmIPAddressEdit.h" documented="true" meta="plain" type="void" brief="清除IP地址文本" signature="void clear()"/>
             <function name="clearSelection" fullname="QCtmIPAddressEdit::clearSelection" href="qctmipaddressedit.html#clearSelection" status="active" access="private" location="QCtmIPAddressEdit.h" documented="true" meta="plain" type="void" brief="Clear the selections" signature="void clearSelection()"/>
             <function name="deleteSelectedText" fullname="QCtmIPAddressEdit::deleteSelectedText" href="qctmipaddressedit.html#deleteSelectedText" status="active" access="private" location="QCtmIPAddressEdit.h" documented="true" meta="plain" type="void" brief="Delete the selected texts" signature="void deleteSelectedText()"/>
             <function name="editChanged" fullname="QCtmIPAddressEdit::editChanged" href="qctmipaddressedit.html#editChanged" status="active" access="public" location="QCtmIPAddressEdit.h" documented="true" meta="signal" type="void" brief="当文本变化时发送该信号" signature="void editChanged()"/>
@@ -975,7 +989,7 @@
             </property>
         </class>
         <class name="QCtmInputDialog" href="qctminputdialog.html" status="active" access="public" location="QCtmInputDialog.h" documented="true" groups="QCustomUi" bases="QInputDialog" module="QCustomUi" brief="功能与QInputDialog相同，实现了QCustomUi的窗口风格">
-            <function name="QCtmInputDialog" fullname="QCtmInputDialog::QCtmInputDialog" href="qctminputdialog.html#QCtmInputDialog" status="active" access="public" location="QCtmInputDialog.h" documented="true" meta="constructor" brief="构造函数 parent, flags" signature="QCtmInputDialog(QWidget *parent, Qt::WindowFlags flags)">
+            <function name="QCtmInputDialog" fullname="QCtmInputDialog::QCtmInputDialog" href="qctminputdialog.html#QCtmInputDialog" status="active" access="public" location="QCtmInputDialog.h" documented="true" meta="constructor" explicit="true" brief="构造函数 parent, flags" signature="QCtmInputDialog(QWidget *parent, Qt::WindowFlags flags)">
                 <parameter type="QWidget *" name="parent" default="nullptr"/>
                 <parameter type="Qt::WindowFlags" name="flags" default="Qt::WindowFlags()"/>
             </function>
@@ -1054,7 +1068,7 @@
             <function name="~QCtmInputDialog" fullname="QCtmInputDialog::~QCtmInputDialog" href="qctminputdialog.html#dtor.QCtmInputDialog" status="active" access="public" location="QCtmInputDialog.h" documented="true" meta="destructor" virtual="virtual" noexcept="true" brief="析构函数" signature="~QCtmInputDialog()"/>
         </class>
         <class name="QCtmLoadingDialog" href="qctmloadingdialog.html" status="active" access="public" location="QCtmLoadingDialog.h" documented="true" groups="QCustomUi" bases="QWidget" module="QCustomUi" brief="等待加载窗口">
-            <function name="QCtmLoadingDialog" fullname="QCtmLoadingDialog::QCtmLoadingDialog" href="qctmloadingdialog.html#QCtmLoadingDialog" status="active" access="public" location="QCtmLoadingDialog.h" documented="true" meta="constructor" brief="构造函数，在 parent 的顶层窗口上覆盖加载窗口" signature="QCtmLoadingDialog(QWidget *parent)">
+            <function name="QCtmLoadingDialog" fullname="QCtmLoadingDialog::QCtmLoadingDialog" href="qctmloadingdialog.html#QCtmLoadingDialog" status="active" access="public" location="QCtmLoadingDialog.h" documented="true" meta="constructor" explicit="true" brief="构造函数，在 parent 的顶层窗口上覆盖加载窗口" signature="QCtmLoadingDialog(QWidget *parent)">
                 <parameter type="QWidget *" name="parent" default=""/>
             </function>
             <function name="cancel" fullname="QCtmLoadingDialog::cancel" href="qctmloadingdialog.html#cancel" status="active" access="public" location="QCtmLoadingDialog.h" documented="true" meta="slot" type="void" brief="Loading 窗口加载未完成时调用该函数，此时exec返回Cancel" signature="void cancel()"/>
@@ -1107,15 +1121,15 @@
             </enum>
         </class>
         <class name="QCtmLogEvent" href="qctmlogevent.html" status="active" access="public" location="QCtmLogEvent.h" documented="true" groups="QCustomUi" bases="QEvent" module="QCustomUi" brief="日志事件">
-            <function name="QCtmLogEvent" fullname="QCtmLogEvent::QCtmLogEvent" href="qctmlogevent.html#QCtmLogEvent" status="active" access="public" location="QCtmLogEvent.h" documented="true" meta="constructor" brief="构造函数 log" signature="QCtmLogEvent(QCtmLogDataPtr log)">
+            <function name="QCtmLogEvent" fullname="QCtmLogEvent::QCtmLogEvent" href="qctmlogevent.html#QCtmLogEvent" status="active" access="public" location="QCtmLogEvent.h" documented="true" meta="constructor" explicit="true" brief="构造函数 log" signature="QCtmLogEvent(QCtmLogDataPtr log)">
                 <parameter type="QCtmLogDataPtr" name="log" default=""/>
             </function>
             <function name="log" fullname="QCtmLogEvent::log" href="qctmlogevent.html#log" status="active" access="public" location="QCtmLogEvent.h" documented="true" meta="plain" const="true" type="QCtmLogDataPtr" brief="返回日志内容" signature="QCtmLogDataPtr log() const"/>
             <function name="~QCtmLogEvent" fullname="QCtmLogEvent::~QCtmLogEvent" href="qctmlogevent.html#dtor.QCtmLogEvent" status="active" access="public" location="QCtmLogEvent.h" documented="true" meta="destructor" virtual="virtual" noexcept="true" brief="析构函数" signature="~QCtmLogEvent()"/>
         </class>
         <class name="QCtmLogFilterModel" href="qctmlogfiltermodel.html" status="active" access="public" location="QCtmLogFilterModel.h" documented="true" groups="QCustomUi" bases="QSortFilterProxyModel" module="QCustomUi" brief="日志筛选 model">
-            <function name="QCtmLogFilterModel" fullname="QCtmLogFilterModel::QCtmLogFilterModel" href="qctmlogfiltermodel.html#QCtmLogFilterModel" status="active" access="public" location="QCtmLogFilterModel.h" documented="true" meta="constructor" brief="构造函数 parent" signature="QCtmLogFilterModel(QObject *parent)">
-                <parameter type="QObject *" name="parent" default=""/>
+            <function name="QCtmLogFilterModel" fullname="QCtmLogFilterModel::QCtmLogFilterModel" href="qctmlogfiltermodel.html#QCtmLogFilterModel" status="active" access="public" location="QCtmLogFilterModel.h" documented="true" meta="constructor" explicit="true" brief="构造函数 parent" signature="QCtmLogFilterModel(QObject *parent)">
+                <parameter type="QObject *" name="parent" default="nullptr"/>
             </function>
             <function name="filterAcceptsRow" fullname="QCtmLogFilterModel::filterAcceptsRow" href="qctmlogfiltermodel.html#filterAcceptsRow" status="active" access="public" location="QCtmLogFilterModel.h" documented="true" meta="plain" virtual="virtual" const="true" override="true" type="bool" signature="bool filterAcceptsRow(int sourceRow, const QModelIndex &amp;sourceParent) const override">
                 <parameter type="int" name="sourceRow" default=""/>
@@ -1173,9 +1187,9 @@
             </enum>
         </class>
         <class name="QCtmLogModel" href="qctmlogmodel.html" status="active" access="public" location="QCtmLogModel.h" documented="true" groups="QCustomUi" bases="QCtmAbstractLogModel" module="QCustomUi" brief="标准日志 model">
-            <function name="QCtmLogModel" fullname="QCtmLogModel::QCtmLogModel" href="qctmlogmodel.html#QCtmLogModel" status="active" access="public" location="QCtmLogModel.h" documented="true" meta="constructor" brief="构造函数 objectName, parent" signature="QCtmLogModel(const QString &amp;objectName, QObject *parent)">
+            <function name="QCtmLogModel" fullname="QCtmLogModel::QCtmLogModel" href="qctmlogmodel.html#QCtmLogModel" status="active" access="public" location="QCtmLogModel.h" documented="true" meta="constructor" explicit="true" brief="构造函数 objectName, parent" signature="QCtmLogModel(const QString &amp;objectName, QObject *parent)">
                 <parameter type="const QString &amp;" name="objectName" default=""/>
-                <parameter type="QObject *" name="parent" default=""/>
+                <parameter type="QObject *" name="parent" default="nullptr"/>
             </function>
             <function name="clear" fullname="QCtmLogModel::clear" href="qctmlogmodel.html#clear" status="active" access="public" location="QCtmLogModel.h" documented="true" meta="plain" virtual="virtual" override="true" type="void" brief="清除所有日志" signature="void clear() override"/>
             <function name="columnCount" fullname="QCtmLogModel::columnCount" href="qctmlogmodel.html#columnCount" status="active" access="public" location="QCtmLogModel.h" documented="true" meta="plain" virtual="virtual" const="true" override="true" type="int" signature="int columnCount(const QModelIndex &amp;parent) const override">
@@ -1228,9 +1242,9 @@
             <function name="~QCtmLogModel" fullname="QCtmLogModel::~QCtmLogModel" href="qctmlogmodel.html#dtor.QCtmLogModel" status="active" access="public" location="QCtmLogModel.h" documented="true" meta="destructor" virtual="virtual" noexcept="true" brief="析构函数" signature="~QCtmLogModel()"/>
         </class>
         <class name="QCtmLogWidget" href="qctmlogwidget.html" status="active" access="public" location="QCtmLogWidget.h" documented="true" groups="QCustomUi" bases="QWidget" module="QCustomUi" brief="标准日志窗口">
-            <function name="QCtmLogWidget" fullname="QCtmLogWidget::QCtmLogWidget" href="qctmlogwidget.html#QCtmLogWidget" status="active" access="public" location="QCtmLogWidget.h" documented="true" meta="constructor" brief="构造函数 objectName, parent" signature="QCtmLogWidget(const QString &amp;objectName, QWidget *parent)">
+            <function name="QCtmLogWidget" fullname="QCtmLogWidget::QCtmLogWidget" href="qctmlogwidget.html#QCtmLogWidget" status="active" access="public" location="QCtmLogWidget.h" documented="true" meta="constructor" explicit="true" brief="构造函数 objectName, parent" signature="QCtmLogWidget(const QString &amp;objectName, QWidget *parent)">
                 <parameter type="const QString &amp;" name="objectName" default=""/>
-                <parameter type="QWidget *" name="parent" default="Q_NULLPTR"/>
+                <parameter type="QWidget *" name="parent" default="nullptr"/>
             </function>
             <function name="changeEvent" fullname="QCtmLogWidget::changeEvent" href="qctmlogwidget.html#changeEvent" status="active" access="private" location="QCtmLogWidget.h" documented="true" meta="plain" virtual="virtual" override="true" type="void" signature="void changeEvent(QEvent *e) override">
                 <parameter type="QEvent *" name="e" default=""/>
@@ -1350,15 +1364,15 @@
             <function name="~QCtmLongLongSpinBox" fullname="QCtmLongLongSpinBox::~QCtmLongLongSpinBox" href="qctmlonglongspinbox.html#dtor.QCtmLongLongSpinBox" status="active" access="public" location="QCtmLongLongSpinBox.h" documented="true" meta="destructor" virtual="virtual" noexcept="true" brief="析构函数" signature="~QCtmLongLongSpinBox()"/>
         </class>
         <class name="QCtmMessageBox" href="qctmmessagebox.html" status="active" access="public" location="QCtmMessageBox.h" documented="true" groups="QCustomUi" bases="QCtmDialog" module="QCustomUi" brief="自定义外观的消息框，用法参考 QMessageBox">
-            <function name="QCtmMessageBox" fullname="QCtmMessageBox::QCtmMessageBox" href="qctmmessagebox.html#QCtmMessageBox" status="active" access="public" location="QCtmMessageBox.h" documented="true" meta="constructor" brief="构造函数 parent" signature="QCtmMessageBox(QWidget *parent)">
-                <parameter type="QWidget *" name="parent" default="Q_NULLPTR"/>
+            <function name="QCtmMessageBox" fullname="QCtmMessageBox::QCtmMessageBox" href="qctmmessagebox.html#QCtmMessageBox" status="active" access="public" location="QCtmMessageBox.h" documented="true" meta="constructor" explicit="true" brief="构造函数 parent" signature="QCtmMessageBox(QWidget *parent)">
+                <parameter type="QWidget *" name="parent" default="nullptr"/>
             </function>
             <function name="QCtmMessageBox" fullname="QCtmMessageBox::QCtmMessageBox" href="qctmmessagebox.html#QCtmMessageBox-1" status="active" access="public" location="QCtmMessageBox.h" documented="true" meta="constructor" overload="true" overload-number="1" brief="构造函数，并指定显示图标 icon, 标题文本 title, 显示文本 text, 按钮集合 buttons, 父窗口 parent, 窗口风格 f" signature="QCtmMessageBox(QCtmMessageBox::Icon icon, const QString &amp;title, const QString &amp;text, QCtmMessageBox::StandardButtons buttons, QWidget *parent, Qt::WindowFlags f)">
                 <parameter type="QCtmMessageBox::Icon" name="icon" default=""/>
                 <parameter type="const QString &amp;" name="title" default=""/>
                 <parameter type="const QString &amp;" name="text" default=""/>
                 <parameter type="QCtmMessageBox::StandardButtons" name="buttons" default="NoButton"/>
-                <parameter type="QWidget *" name="parent" default="Q_NULLPTR"/>
+                <parameter type="QWidget *" name="parent" default="nullptr"/>
                 <parameter type="Qt::WindowFlags" name="f" default="Qt::Dialog | Qt::MSWindowsFixedSizeDialogHint"/>
             </function>
             <function name="addButton" fullname="QCtmMessageBox::addButton" href="qctmmessagebox.html#addButton" status="active" access="public" location="QCtmMessageBox.h" documented="true" meta="plain" type="void" brief="添加按钮 button 并指定其角色 role" signature="void addButton(QAbstractButton *button, QCtmMessageBox::ButtonRole role)">
@@ -1556,8 +1570,8 @@
             </property>
         </class>
         <class name="QCtmMessageTipButton" href="qctmmessagetipbutton.html" status="active" access="public" location="QCtmMessageTipButton.h" documented="true" groups="QCustomUi" bases="QAbstractButton" module="QCustomUi" brief="消息提示按钮">
-            <function name="QCtmMessageTipButton" fullname="QCtmMessageTipButton::QCtmMessageTipButton" href="qctmmessagetipbutton.html#QCtmMessageTipButton" status="active" access="public" location="QCtmMessageTipButton.h" documented="true" meta="constructor" brief="构造一个父对象为 parent 的消息提示按钮" signature="QCtmMessageTipButton(QWidget *parent)">
-                <parameter type="QWidget *" name="parent" default=""/>
+            <function name="QCtmMessageTipButton" fullname="QCtmMessageTipButton::QCtmMessageTipButton" href="qctmmessagetipbutton.html#QCtmMessageTipButton" status="active" access="public" location="QCtmMessageTipButton.h" documented="true" meta="constructor" explicit="true" brief="构造一个父对象为 parent 的消息提示按钮" signature="QCtmMessageTipButton(QWidget *parent)">
+                <parameter type="QWidget *" name="parent" default="nullptr"/>
             </function>
             <function name="connectView" fullname="QCtmMessageTipButton::connectView" href="qctmmessagetipbutton.html#connectView" status="active" access="private" location="QCtmMessageTipButton.h" documented="true" meta="plain" type="void" brief="连接 model 和视图" signature="void connectView()"/>
             <function name="initStyleOption" fullname="QCtmMessageTipButton::initStyleOption" href="qctmmessagetipbutton.html#initStyleOption" status="active" access="private" location="QCtmMessageTipButton.h" documented="true" meta="plain" type="void" brief="初始化样式选项 opt" signature="void initStyleOption(QStyleOptionButton *opt)">
@@ -1610,8 +1624,8 @@
             <function name="~QCtmMessageTipData" fullname="QCtmMessageTipData::~QCtmMessageTipData" href="qctmmessagetipdata.html#dtor.QCtmMessageTipData" status="active" access="public" location="QCtmMessageTipData.h" documented="true" meta="destructor" virtual="virtual" noexcept="true" brief="析构函数" signature="~QCtmMessageTipData()"/>
         </class>
         <class name="QCtmMessageTipModel" href="qctmmessagetipmodel.html" status="active" access="public" location="QCtmMessageTipModel.h" documented="true" groups="QCustomUi" bases="QCtmAbstractMessageTipModel" module="QCustomUi" brief="消息提示model的一般实现">
-            <function name="QCtmMessageTipModel" fullname="QCtmMessageTipModel::QCtmMessageTipModel" href="qctmmessagetipmodel.html#QCtmMessageTipModel" status="active" access="public" location="QCtmMessageTipModel.h" documented="true" meta="constructor" brief="构造一个父对象为 parent 的消息model" signature="QCtmMessageTipModel(QObject *parent)">
-                <parameter type="QObject *" name="parent" default=""/>
+            <function name="QCtmMessageTipModel" fullname="QCtmMessageTipModel::QCtmMessageTipModel" href="qctmmessagetipmodel.html#QCtmMessageTipModel" status="active" access="public" location="QCtmMessageTipModel.h" documented="true" meta="constructor" explicit="true" brief="构造一个父对象为 parent 的消息model" signature="QCtmMessageTipModel(QObject *parent)">
+                <parameter type="QObject *" name="parent" default="nullptr"/>
             </function>
             <function name="columnCount" fullname="QCtmMessageTipModel::columnCount" href="qctmmessagetipmodel.html#columnCount" status="active" access="public" location="QCtmMessageTipModel.h" documented="true" meta="plain" virtual="virtual" const="true" override="true" type="int" signature="int columnCount(const QModelIndex &amp;parent) const override">
                 <parameter type="const QModelIndex &amp;" name="parent" default=""/>
@@ -1642,7 +1656,7 @@
             </property>
         </class>
         <class name="QCtmMessageTipView" href="qctmmessagetipview.html" status="active" access="public" location="QCtmMessageTipView.h" documented="true" groups="QCustomUi" bases="QCtmAbstractMessageTipView" module="QCustomUi" brief="是显示具体消息的列表">
-            <function name="QCtmMessageTipView" fullname="QCtmMessageTipView::QCtmMessageTipView" href="qctmmessagetipview.html#QCtmMessageTipView" status="active" access="public" location="QCtmMessageTipView.h" documented="true" meta="constructor" brief="构造一个父对象为 parent 的消息列表" signature="QCtmMessageTipView(QCtmNavigationBar *parent)">
+            <function name="QCtmMessageTipView" fullname="QCtmMessageTipView::QCtmMessageTipView" href="qctmmessagetipview.html#QCtmMessageTipView" status="active" access="public" location="QCtmMessageTipView.h" documented="true" meta="constructor" explicit="true" brief="构造一个父对象为 parent 的消息列表" signature="QCtmMessageTipView(QCtmNavigationBar *parent)">
                 <parameter type="QCtmNavigationBar *" name="parent" default=""/>
             </function>
             <function name="aboutToClearAllMessages" fullname="QCtmMessageTipView::aboutToClearAllMessages" href="qctmmessagetipview.html#aboutToClearAllMessages" status="active" access="public" location="QCtmMessageTipView.h" documented="true" meta="signal" type="bool" brief="如果要在清除所有消息时，弹出确认窗口，连接该信号，并在槽函数中返回是否删除" signature="bool aboutToClearAllMessages()"/>
@@ -1715,8 +1729,8 @@
             </property>
         </class>
         <class name="QCtmMultiComboBox" href="qctmmulticombobox.html" status="active" access="public" location="QCtmMultiComboBox.h" documented="true" groups="QCustomUi" bases="QComboBox" module="QCustomUi" brief="可多选的ComboBox">
-            <function name="QCtmMultiComboBox" fullname="QCtmMultiComboBox::QCtmMultiComboBox" href="qctmmulticombobox.html#QCtmMultiComboBox" status="active" access="public" location="QCtmMultiComboBox.h" documented="true" meta="constructor" brief="构造函数 parent" signature="QCtmMultiComboBox(QWidget *parent)">
-                <parameter type="QWidget *" name="parent" default=""/>
+            <function name="QCtmMultiComboBox" fullname="QCtmMultiComboBox::QCtmMultiComboBox" href="qctmmulticombobox.html#QCtmMultiComboBox" status="active" access="public" location="QCtmMultiComboBox.h" documented="true" meta="constructor" explicit="true" brief="构造函数 parent" signature="QCtmMultiComboBox(QWidget *parent)">
+                <parameter type="QWidget *" name="parent" default="nullptr"/>
             </function>
             <function name="checkedDatas" fullname="QCtmMultiComboBox::checkedDatas" href="qctmmulticombobox.html#checkedDatas" status="active" access="public" location="QCtmMultiComboBox.h" documented="true" meta="plain" const="true" type="QVariantList" brief="返回被选中的项目数据" signature="QVariantList checkedDatas() const"/>
             <function name="checkedItems" fullname="QCtmMultiComboBox::checkedItems" href="qctmmulticombobox.html#checkedItems" status="active" access="public" location="QCtmMultiComboBox.h" documented="true" meta="plain" const="true" type="QStringList" brief="返回被选中的项目" signature="QStringList checkedItems() const"/>
@@ -1742,7 +1756,7 @@
         </class>
         <class name="QCtmMultiPageButtonBox" href="qctmmultipagebuttonbox.html" status="active" access="public" location="QCtmMultiPageButtonBox.h" documented="true" groups="QCustomUi" bases="QWidget" module="QCustomUi" brief="分页按钮组合">
             <function name="QCtmMultiPageButtonBox" fullname="QCtmMultiPageButtonBox::QCtmMultiPageButtonBox" href="qctmmultipagebuttonbox.html#QCtmMultiPageButtonBox" status="active" access="public" location="QCtmMultiPageButtonBox.h" documented="true" meta="constructor" explicit="true" brief="构造函数 parent" signature="QCtmMultiPageButtonBox(QWidget *parent)">
-                <parameter type="QWidget *" name="parent" default=""/>
+                <parameter type="QWidget *" name="parent" default="nullptr"/>
             </function>
             <function name="model" fullname="QCtmMultiPageButtonBox::model" href="qctmmultipagebuttonbox.html#model" status="active" access="public" location="QCtmMultiPageButtonBox.h" documented="true" meta="plain" const="true" type="QCtmAbstractMultiPageItemModel *" brief="返回数据源" signature="QCtmAbstractMultiPageItemModel * model() const"/>
             <function name="nextButton" fullname="QCtmMultiPageButtonBox::nextButton" href="qctmmultipagebuttonbox.html#nextButton" status="active" access="public" location="QCtmMultiPageButtonBox.h" documented="true" meta="plain" const="true" type="QPushButton *" brief="返回下一页按钮的地址" signature="QPushButton * nextButton() const"/>
@@ -1794,7 +1808,7 @@
             <function name="~QCtmMultiPageStringListModel" fullname="QCtmMultiPageStringListModel::~QCtmMultiPageStringListModel" href="qctmmultipagestringlistmodel.html#dtor.QCtmMultiPageStringListModel" status="active" access="public" location="QCtmMultiPageStringListModel.h" documented="true" meta="destructor" virtual="virtual" noexcept="true" brief="析构函数" signature="~QCtmMultiPageStringListModel()"/>
         </class>
         <class name="QCtmNavigationBar" href="qctmnavigationbar.html" status="active" access="public" location="QCtmNavigationBar.h" documented="true" groups="QCustomUi" bases="QWidget" module="QCustomUi" brief="QCtmNavigationBar类似于QToolBar，它可以配合QCtmWindow和QCtmNavigationPane使用">
-            <function name="QCtmNavigationBar" fullname="QCtmNavigationBar::QCtmNavigationBar" href="qctmnavigationbar.html#QCtmNavigationBar" status="active" access="public" location="QCtmNavigationBar.h" documented="true" meta="constructor" brief="构造一个父对象为 parent 的QCtmNavigationBar" signature="QCtmNavigationBar(QWidget *parent)">
+            <function name="QCtmNavigationBar" fullname="QCtmNavigationBar::QCtmNavigationBar" href="qctmnavigationbar.html#QCtmNavigationBar" status="active" access="public" location="QCtmNavigationBar.h" documented="true" meta="constructor" explicit="true" brief="构造一个父对象为 parent 的QCtmNavigationBar" signature="QCtmNavigationBar(QWidget *parent)">
                 <parameter type="QWidget *" name="parent" default=""/>
             </function>
             <function name="actionAt" fullname="QCtmNavigationBar::actionAt" href="qctmnavigationbar.html#actionAt" status="active" access="public" location="QCtmNavigationBar.h" documented="true" meta="plain" const="true" type="QAction *" brief="返回 pos index 位置的action" signature="QAction * actionAt(int index, QCtmNavigationBar::ActionPosition pos) const">
@@ -1932,7 +1946,7 @@
             </enum>
         </class>
         <class name="QCtmNavigationSideBar" href="qctmnavigationsidebar.html" status="active" access="public" location="QCtmNavigationSideBar.h" documented="true" groups="QCustomUi" bases="QWidget" module="QCustomUi" brief="导航侧边栏，类似一个ToolBox">
-            <function name="QCtmNavigationSideBar" fullname="QCtmNavigationSideBar::QCtmNavigationSideBar" href="qctmnavigationsidebar.html#QCtmNavigationSideBar" status="active" access="public" location="QCtmNavigationSideBar.h" documented="true" meta="constructor" brief="构造一个父窗口为 parent 的导航侧边栏对象" signature="QCtmNavigationSideBar(QWidget *parent)">
+            <function name="QCtmNavigationSideBar" fullname="QCtmNavigationSideBar::QCtmNavigationSideBar" href="qctmnavigationsidebar.html#QCtmNavigationSideBar" status="active" access="public" location="QCtmNavigationSideBar.h" documented="true" meta="constructor" explicit="true" brief="构造一个父窗口为 parent 的导航侧边栏对象" signature="QCtmNavigationSideBar(QWidget *parent)">
                 <parameter type="QWidget *" name="parent" default=""/>
             </function>
             <function name="actionAt" fullname="QCtmNavigationSideBar::actionAt" href="qctmnavigationsidebar.html#actionAt" status="active" access="public" location="QCtmNavigationSideBar.h" documented="true" meta="plain" const="true" type="QAction *" brief="返回位于 pos index 的Action" signature="QAction * actionAt(int index, QCtmNavigationSideBar::ActionPosition pos) const">
@@ -1990,7 +2004,7 @@
             <function name="QCtmNavigationSidePane" fullname="QCtmNavigationSidePane::QCtmNavigationSidePane" href="qctmnavigationsidepane.html#QCtmNavigationSidePane" status="active" access="public" location="QCtmNavigationSidePane.h" documented="true" meta="constructor" explicit="true" brief="构造函数 parent" signature="QCtmNavigationSidePane(QCtmNavigationBar *parent)">
                 <parameter type="QCtmNavigationBar *" name="parent" default=""/>
             </function>
-            <function name="QCtmNavigationSidePane" fullname="QCtmNavigationSidePane::QCtmNavigationSidePane" href="qctmnavigationsidepane.html#QCtmNavigationSidePane-1" status="active" access="public" location="QCtmNavigationSidePane.h" documented="true" meta="constructor" overload="true" overload-number="1" brief="构造函数，构造时确定其停靠位置 area, parent" signature="QCtmNavigationSidePane(QCtmNavigationSidePane::DockArea area, QCtmNavigationBar *parent)">
+            <function name="QCtmNavigationSidePane" fullname="QCtmNavigationSidePane::QCtmNavigationSidePane" href="qctmnavigationsidepane.html#QCtmNavigationSidePane-1" status="active" access="public" location="QCtmNavigationSidePane.h" documented="true" meta="constructor" explicit="true" overload="true" overload-number="1" brief="构造函数，构造时确定其停靠位置 area, parent" signature="QCtmNavigationSidePane(QCtmNavigationSidePane::DockArea area, QCtmNavigationBar *parent)">
                 <parameter type="QCtmNavigationSidePane::DockArea" name="area" default=""/>
                 <parameter type="QCtmNavigationBar *" name="parent" default=""/>
             </function>
@@ -2058,7 +2072,7 @@
             </enum>
         </class>
         <class name="QCtmPathBrowser" href="qctmpathbrowser.html" status="active" access="public" location="QCtmPathBrowser.h" documented="true" groups="QCustomUi" bases="QWidget" module="QCustomUi" brief="路径浏览器">
-            <function name="QCtmPathBrowser" fullname="QCtmPathBrowser::QCtmPathBrowser" href="qctmpathbrowser.html#QCtmPathBrowser" status="active" access="public" location="QCtmPathBrowser.h" documented="true" meta="constructor" brief="构造函数 parent" signature="QCtmPathBrowser(QWidget *parent)">
+            <function name="QCtmPathBrowser" fullname="QCtmPathBrowser::QCtmPathBrowser" href="qctmpathbrowser.html#QCtmPathBrowser" status="active" access="public" location="QCtmPathBrowser.h" documented="true" meta="constructor" explicit="true" brief="构造函数 parent" signature="QCtmPathBrowser(QWidget *parent)">
                 <parameter type="QWidget *" name="parent" default="nullptr"/>
             </function>
             <function name="cancelEditor" fullname="QCtmPathBrowser::cancelEditor" href="qctmpathbrowser.html#cancelEditor" status="active" access="protected" location="QCtmPathBrowser.h" documented="true" meta="plain" type="void" brief="取消编辑操作" signature="void cancelEditor()"/>
@@ -2109,7 +2123,7 @@
         </struct>
         <class name="QCtmRecentModel" href="qctmrecentmodel.html" status="active" access="public" location="QCtmRecentModel.h" documented="true" groups="QCustomUi" bases="QAbstractItemModel" module="QCustomUi" brief="仿vs启动界面最近项目表model">
             <function name="QCtmRecentModel" fullname="QCtmRecentModel::QCtmRecentModel" href="qctmrecentmodel.html#QCtmRecentModel" status="active" access="public" location="QCtmRecentModel.h" documented="true" meta="constructor" explicit="true" brief="构造函数 parent" signature="QCtmRecentModel(QObject *parent)">
-                <parameter type="QObject *" name="parent" default=""/>
+                <parameter type="QObject *" name="parent" default="nullptr"/>
             </function>
             <function name="columnCount" fullname="QCtmRecentModel::columnCount" href="qctmrecentmodel.html#columnCount" status="active" access="public" location="QCtmRecentModel.h" documented="true" meta="plain" virtual="virtual" const="true" override="true" type="int" signature="int columnCount(const QModelIndex &amp;parent) const override">
                 <parameter type="const QModelIndex &amp;" name="parent" default="QModelIndex()"/>
@@ -2134,7 +2148,10 @@
             <function name="parent" fullname="QCtmRecentModel::parent" href="qctmrecentmodel.html#parent" status="active" access="public" location="QCtmRecentModel.h" documented="true" meta="plain" virtual="virtual" const="true" override="true" type="QModelIndex" signature="QModelIndex parent(const QModelIndex &amp;child) const override">
                 <parameter type="const QModelIndex &amp;" name="child" default=""/>
             </function>
-            <function name="recentDatas" fullname="QCtmRecentModel::recentDatas" href="qctmrecentmodel.html#recentDatas" status="active" access="public" location="QCtmRecentModel.h" documented="true" meta="plain" const="true" type="const QVector&lt;QCtmRecentData&gt; &amp;" brief="返回最近使用的项目数据列表" signature="const QVector&lt;QCtmRecentData&gt; &amp; recentDatas() const"/>
+            <function name="recentDatas" fullname="QCtmRecentModel::recentDatas" href="qctmrecentmodel.html#recentDatas" status="active" access="public" location="QCtmRecentModel.h" documented="true" meta="plain" const="true" type="const std::vector&lt;QCtmRecentData&gt; &amp;" brief="返回最近使用的项目数据列表" signature="const std::vector&lt;QCtmRecentData&gt; &amp; recentDatas() const"/>
+            <function name="removeData" fullname="QCtmRecentModel::removeData" href="qctmrecentmodel.html#removeData" status="active" access="public" location="QCtmRecentModel.h" documented="true" meta="plain" type="void" brief="删除位于 index 项目" signature="void removeData(const QModelIndex &amp;index)">
+                <parameter type="const QModelIndex &amp;" name="index" default=""/>
+            </function>
             <function name="rowCount" fullname="QCtmRecentModel::rowCount" href="qctmrecentmodel.html#rowCount" status="active" access="public" location="QCtmRecentModel.h" documented="true" meta="plain" virtual="virtual" const="true" override="true" type="int" signature="int rowCount(const QModelIndex &amp;parent) const override">
                 <parameter type="const QModelIndex &amp;" name="parent" default="QModelIndex()"/>
             </function>
@@ -2147,17 +2164,17 @@
                 <parameter type="const QVariant &amp;" name="value" default=""/>
                 <parameter type="int" name="role" default="Qt::EditRole"/>
             </function>
-            <function name="setRecentDatas" fullname="QCtmRecentModel::setRecentDatas" href="qctmrecentmodel.html#setRecentDatas" status="active" access="public" location="QCtmRecentModel.h" documented="true" meta="plain" type="void" brief="设置最近使用的项目数据 datas, model会自动根据数据的时间和是否置顶来自动分类" signature="void setRecentDatas(const QVector&lt;QCtmRecentData&gt; &amp;datas)">
-                <parameter type="const QVector&lt;QCtmRecentData&gt; &amp;" name="datas" default=""/>
+            <function name="setRecentDatas" fullname="QCtmRecentModel::setRecentDatas" href="qctmrecentmodel.html#setRecentDatas" status="active" access="public" location="QCtmRecentModel.h" documented="true" meta="plain" type="void" brief="设置最近使用的项目数据 datas, model会自动根据数据的时间和是否置顶来自动分类" signature="void setRecentDatas(const std::vector&lt;QCtmRecentData&gt; &amp;datas)">
+                <parameter type="const std::vector&lt;QCtmRecentData&gt; &amp;" name="datas" default=""/>
             </function>
-            <function name="setRecentDatas" fullname="QCtmRecentModel::setRecentDatas" href="qctmrecentmodel.html#setRecentDatas-1" status="active" access="public" location="QCtmRecentModel.h" documented="true" meta="plain" overload="true" overload-number="1" type="void" signature="void setRecentDatas(QVector&lt;QCtmRecentData&gt; &amp;&amp;datas)">
-                <parameter type="QVector&lt;QCtmRecentData&gt; &amp;&amp;" name="datas" default=""/>
+            <function name="setRecentDatas" fullname="QCtmRecentModel::setRecentDatas" href="qctmrecentmodel.html#setRecentDatas-1" status="active" access="public" location="QCtmRecentModel.h" documented="true" meta="plain" overload="true" overload-number="1" type="void" signature="void setRecentDatas(std::vector&lt;QCtmRecentData&gt; &amp;&amp;datas)">
+                <parameter type="std::vector&lt;QCtmRecentData&gt; &amp;&amp;" name="datas" default=""/>
             </function>
             <function name="~QCtmRecentModel" fullname="QCtmRecentModel::~QCtmRecentModel" href="qctmrecentmodel.html#dtor.QCtmRecentModel" status="active" access="public" location="QCtmRecentModel.h" documented="true" meta="destructor" virtual="virtual" noexcept="true" brief="析构函数" signature="~QCtmRecentModel()"/>
         </class>
         <class name="QCtmRecentView" href="qctmrecentview.html" status="active" access="public" location="QCtmRecentView.h" documented="true" groups="QCustomUi" bases="QTreeView" module="QCustomUi" brief="仿vs启动界面最近项目表view">
             <function name="QCtmRecentView" fullname="QCtmRecentView::QCtmRecentView" href="qctmrecentview.html#QCtmRecentView" status="active" access="public" location="QCtmRecentView.h" documented="true" meta="constructor" explicit="true" brief="构造函数 parent" signature="QCtmRecentView(QWidget *parent)">
-                <parameter type="QWidget *" name="parent" default=""/>
+                <parameter type="QWidget *" name="parent" default="nullptr"/>
             </function>
             <function name="model" fullname="QCtmRecentView::model" href="qctmrecentview.html#model" status="active" access="public" location="QCtmRecentView.h" documented="true" meta="plain" const="true" type="QCtmRecentModel *" signature="QCtmRecentModel * model() const"/>
             <function name="onTopButtonClicked" fullname="QCtmRecentView::onTopButtonClicked" href="qctmrecentview.html#onTopButtonClicked" status="active" access="protected" location="QCtmRecentView.h" documented="true" meta="plain" virtual="virtual" type="void" brief="响应置顶按钮点击信号，修改项目数据 index 的置顶状态" signature="void onTopButtonClicked(const QModelIndex &amp;index)">
@@ -2260,11 +2277,11 @@
             <function name="QCtmSelectionButtonBox" fullname="QCtmSelectionButtonBox::QCtmSelectionButtonBox" href="qctmselectionbuttonbox.html#QCtmSelectionButtonBox" status="active" access="public" location="QCtmSelectionButtonBox.h" documented="true" meta="constructor" explicit="true" brief="构造函数 parent" signature="QCtmSelectionButtonBox(QWidget *parent)">
                 <parameter type="QWidget *" name="parent" default="nullptr"/>
             </function>
-            <function name="QCtmSelectionButtonBox" fullname="QCtmSelectionButtonBox::QCtmSelectionButtonBox" href="qctmselectionbuttonbox.html#QCtmSelectionButtonBox-1" status="active" access="public" location="QCtmSelectionButtonBox.h" documented="true" meta="constructor" overload="true" overload-number="1" brief="构造函数重载 orientation, parent" signature="QCtmSelectionButtonBox(Qt::Orientation orientation, QWidget *parent)">
+            <function name="QCtmSelectionButtonBox" fullname="QCtmSelectionButtonBox::QCtmSelectionButtonBox" href="qctmselectionbuttonbox.html#QCtmSelectionButtonBox-1" status="active" access="public" location="QCtmSelectionButtonBox.h" documented="true" meta="constructor" explicit="true" overload="true" overload-number="1" brief="构造函数重载 orientation, parent" signature="QCtmSelectionButtonBox(Qt::Orientation orientation, QWidget *parent)">
                 <parameter type="Qt::Orientation" name="orientation" default=""/>
                 <parameter type="QWidget *" name="parent" default="nullptr"/>
             </function>
-            <function name="QCtmSelectionButtonBox" fullname="QCtmSelectionButtonBox::QCtmSelectionButtonBox" href="qctmselectionbuttonbox.html#QCtmSelectionButtonBox-2" status="active" access="public" location="QCtmSelectionButtonBox.h" documented="true" meta="constructor" overload="true" overload-number="2" brief="构造函数重载 texts, orientation, parent" signature="QCtmSelectionButtonBox(const QStringList &amp;texts, Qt::Orientation orientation, QWidget *parent)">
+            <function name="QCtmSelectionButtonBox" fullname="QCtmSelectionButtonBox::QCtmSelectionButtonBox" href="qctmselectionbuttonbox.html#QCtmSelectionButtonBox-2" status="active" access="public" location="QCtmSelectionButtonBox.h" documented="true" meta="constructor" explicit="true" overload="true" overload-number="2" brief="构造函数重载 texts, orientation, parent" signature="QCtmSelectionButtonBox(const QStringList &amp;texts, Qt::Orientation orientation, QWidget *parent)">
                 <parameter type="const QStringList &amp;" name="texts" default=""/>
                 <parameter type="Qt::Orientation" name="orientation" default="Qt::Horizontal"/>
                 <parameter type="QWidget *" name="parent" default="nullptr"/>
@@ -2332,6 +2349,13 @@
                 <value name="ExclusiveOptional" value="2"/>
             </enum>
         </class>
+        <class name="QCtmSerialPortComboBox" href="qctmserialportcombobox.html" status="active" access="public" location="QCtmSerialPortComboBox.h" documented="true" groups="QCustomUi" bases="QCtmComboBox" module="QCustomUi" brief="串口选择框，下拉选择时自动刷新串口列表">
+            <function name="QCtmSerialPortComboBox" fullname="QCtmSerialPortComboBox::QCtmSerialPortComboBox" href="qctmserialportcombobox.html#QCtmSerialPortComboBox" status="active" access="public" location="QCtmSerialPortComboBox.h" documented="true" meta="constructor" explicit="true" brief="构造函数 parent" signature="QCtmSerialPortComboBox(QWidget *parent)">
+                <parameter type="QWidget *" name="parent" default="nullptr"/>
+            </function>
+            <function name="onAboutToShowPopup" fullname="QCtmSerialPortComboBox::onAboutToShowPopup" href="qctmserialportcombobox.html#onAboutToShowPopup" status="active" access="protected" location="QCtmSerialPortComboBox.h" documented="true" meta="slot" virtual="virtual" type="void" brief="响应弹出框消息，刷新串口列表" signature="void onAboutToShowPopup()"/>
+            <function name="~QCtmSerialPortComboBox" fullname="QCtmSerialPortComboBox::~QCtmSerialPortComboBox" href="qctmserialportcombobox.html#dtor.QCtmSerialPortComboBox" status="active" access="public" location="QCtmSerialPortComboBox.h" documented="true" meta="destructor" virtual="virtual" noexcept="true" brief="析构函数" signature="~QCtmSerialPortComboBox()"/>
+        </class>
         <class name="QCtmSignalBlocker" href="qctmsignalblocker.html" status="active" access="public" location="QCtmSignalBlocker.h" documented="true" groups="QCustomUi" module="QCustomUi" brief="QSignalBlocker的增强版本，支持多个QObject对象的信号阻断，而QSignalBlocker仅支持一个QObject对象的信号的阻断">
             <function name="QCtmSignalBlocker" fullname="QCtmSignalBlocker::QCtmSignalBlocker" href="qctmsignalblocker.html#QCtmSignalBlocker" status="active" access="public" location="QCtmSignalBlocker.h" documented="true" meta="constructor" brief="构造函数，支持一次传入多个QObject对象 objs" signature="QCtmSignalBlocker(Args &amp;&amp;... objs)">
                 <parameter type="Args &amp;&amp;..." name="objs" default=""/>
@@ -2347,8 +2371,8 @@
             <function name="~QCtmSignalBlocker" fullname="QCtmSignalBlocker::~QCtmSignalBlocker" href="qctmsignalblocker.html#dtor.QCtmSignalBlocker" status="active" access="public" location="QCtmSignalBlocker.h" documented="true" meta="destructor" noexcept="true" brief="析构函数" signature="~QCtmSignalBlocker()"/>
         </class>
         <class name="QCtmStageProgressBar" href="qctmstageprogressbar.html" status="active" access="public" location="QCtmStageProgressBar.h" documented="true" groups="QCustomUi" bases="QWidget" module="QCustomUi" brief="阶段进度条">
-            <function name="QCtmStageProgressBar" fullname="QCtmStageProgressBar::QCtmStageProgressBar" href="qctmstageprogressbar.html#QCtmStageProgressBar" status="active" access="public" location="QCtmStageProgressBar.h" documented="true" meta="constructor" brief="构造函数 parent" signature="QCtmStageProgressBar(QWidget *parent)">
-                <parameter type="QWidget *" name="parent" default=""/>
+            <function name="QCtmStageProgressBar" fullname="QCtmStageProgressBar::QCtmStageProgressBar" href="qctmstageprogressbar.html#QCtmStageProgressBar" status="active" access="public" location="QCtmStageProgressBar.h" documented="true" meta="constructor" explicit="true" brief="构造函数 parent" signature="QCtmStageProgressBar(QWidget *parent)">
+                <parameter type="QWidget *" name="parent" default="nullptr"/>
             </function>
             <function name="doMinimumHeight" fullname="QCtmStageProgressBar::doMinimumHeight" href="qctmstageprogressbar.html#doMinimumHeight" status="active" access="protected" location="QCtmStageProgressBar.h" documented="true" meta="plain" const="true" type="int" brief="计算最小高度" signature="int doMinimumHeight() const"/>
             <function name="doMinimumWidth" fullname="QCtmStageProgressBar::doMinimumWidth" href="qctmstageprogressbar.html#doMinimumWidth" status="active" access="protected" location="QCtmStageProgressBar.h" documented="true" meta="plain" const="true" type="int" brief="计算最小宽度" signature="int doMinimumWidth() const"/>
@@ -2435,7 +2459,7 @@
         </class>
         <class name="QCtmSwitchButton" href="qctmswitchbutton.html" status="active" access="public" location="QCtmSwitchButton.h" documented="true" groups="QCustomUi" bases="QAbstractButton" module="QCustomUi" brief="状态切换按钮">
             <function name="QCtmSwitchButton" fullname="QCtmSwitchButton::QCtmSwitchButton" href="qctmswitchbutton.html#QCtmSwitchButton" status="active" access="public" location="QCtmSwitchButton.h" documented="true" meta="constructor" explicit="true" brief="构造函数 parent" signature="QCtmSwitchButton(QWidget *parent)">
-                <parameter type="QWidget *" name="parent" default=""/>
+                <parameter type="QWidget *" name="parent" default="nullptr"/>
             </function>
             <function name="checkedBackground" fullname="QCtmSwitchButton::checkedBackground" href="qctmswitchbutton.html#checkedBackground-prop" status="active" access="public" location="QCtmSwitchButton.h" meta="plain" const="true" associated-property="checkedBackground" type="const QBrush &amp;" signature="const QBrush &amp; checkedBackground() const"/>
             <function name="checkedBackgroundBorderColor" fullname="QCtmSwitchButton::checkedBackgroundBorderColor" href="qctmswitchbutton.html#checkedBackgroundBorderColor-prop" status="active" access="public" location="QCtmSwitchButton.h" meta="plain" const="true" associated-property="checkedBackgroundBorderColor" type="const QColor &amp;" signature="const QColor &amp; checkedBackgroundBorderColor() const"/>
@@ -2561,7 +2585,7 @@
             <function name="~QCtmTabPage" fullname="QCtmTabPage::~QCtmTabPage" href="qctmtabpage.html#dtor.QCtmTabPage" status="active" access="protected" location="QCtmTabPage.h" documented="true" meta="destructor" virtual="virtual" noexcept="true" brief="析构函数" signature="~QCtmTabPage()"/>
         </class>
         <class name="QCtmTabWidget" href="qctmtabwidget.html" status="active" access="public" location="QCtmTabWidget.h" documented="true" groups="QCustomUi" bases="QTabWidget" module="QCustomUi" brief="与QTableWidget相似，扩展了角落窗口的功能">
-            <function name="QCtmTabWidget" fullname="QCtmTabWidget::QCtmTabWidget" href="qctmtabwidget.html#QCtmTabWidget" status="active" access="public" location="QCtmTabWidget.h" documented="true" meta="constructor" brief="构造函数 parent" signature="QCtmTabWidget(QWidget *parent)">
+            <function name="QCtmTabWidget" fullname="QCtmTabWidget::QCtmTabWidget" href="qctmtabwidget.html#QCtmTabWidget" status="active" access="public" location="QCtmTabWidget.h" documented="true" meta="constructor" explicit="true" brief="构造函数 parent" signature="QCtmTabWidget(QWidget *parent)">
                 <parameter type="QWidget *" name="parent" default="nullptr"/>
             </function>
             <function name="addTab" fullname="QCtmTabWidget::addTab" href="qctmtabwidget.html#addTab" status="active" access="public" location="QCtmTabWidget.h" documented="true" meta="plain" type="QCtmTabPage *" signature="QCtmTabPage * addTab(QWidget *widget, const QString &amp;label)">
@@ -2597,7 +2621,7 @@
             <function name="~QCtmTabWidget" fullname="QCtmTabWidget::~QCtmTabWidget" href="qctmtabwidget.html#dtor.QCtmTabWidget" status="active" access="public" location="QCtmTabWidget.h" documented="true" meta="destructor" virtual="virtual" noexcept="true" brief="析构函数" signature="~QCtmTabWidget()"/>
         </class>
         <class name="QCtmTableItemDelegate" href="qctmtableitemdelegate.html" status="active" access="public" location="QCtmTableItemDelegate.h" documented="true" groups="QCustomUi" bases="QStyledItemDelegate" module="QCustomUi" brief="自定义 TableView 的委托，实现行的 hover">
-            <function name="QCtmTableItemDelegate" fullname="QCtmTableItemDelegate::QCtmTableItemDelegate" href="qctmtableitemdelegate.html#QCtmTableItemDelegate" status="active" access="public" location="QCtmTableItemDelegate.h" documented="true" meta="constructor" brief="构造函数 parent" signature="QCtmTableItemDelegate(QTableView *parent)">
+            <function name="QCtmTableItemDelegate" fullname="QCtmTableItemDelegate::QCtmTableItemDelegate" href="qctmtableitemdelegate.html#QCtmTableItemDelegate" status="active" access="public" location="QCtmTableItemDelegate.h" documented="true" meta="constructor" explicit="true" brief="构造函数 parent" signature="QCtmTableItemDelegate(QTableView *parent)">
                 <parameter type="QTableView *" name="parent" default=""/>
             </function>
             <function name="paint" fullname="QCtmTableItemDelegate::paint" href="qctmtableitemdelegate.html#paint" status="active" access="protected" location="QCtmTableItemDelegate.h" documented="true" meta="plain" virtual="virtual" const="true" override="true" type="void" signature="void paint(QPainter *painter, const QStyleOptionViewItem &amp;option, const QModelIndex &amp;index) const override">
@@ -2608,7 +2632,7 @@
             <function name="~QCtmTableItemDelegate" fullname="QCtmTableItemDelegate::~QCtmTableItemDelegate" href="qctmtableitemdelegate.html#dtor.QCtmTableItemDelegate" status="active" access="public" location="QCtmTableItemDelegate.h" documented="true" meta="destructor" virtual="virtual" noexcept="true" brief="析构函数" signature="~QCtmTableItemDelegate()"/>
         </class>
         <class name="QCtmTableView" href="qctmtableview.html" status="active" access="public" location="QCtmTableView.h" documented="true" groups="QCustomUi" bases="QTableView" module="QCustomUi" brief="自定义外观的 TableView">
-            <function name="QCtmTableView" fullname="QCtmTableView::QCtmTableView" href="qctmtableview.html#QCtmTableView" status="active" access="public" location="QCtmTableView.h" documented="true" meta="constructor" brief="构造函数 parent" signature="QCtmTableView(QWidget *parent)">
+            <function name="QCtmTableView" fullname="QCtmTableView::QCtmTableView" href="qctmtableview.html#QCtmTableView" status="active" access="public" location="QCtmTableView.h" documented="true" meta="constructor" explicit="true" brief="构造函数 parent" signature="QCtmTableView(QWidget *parent)">
                 <parameter type="QWidget *" name="parent" default="nullptr"/>
             </function>
             <function name="setHoverIndex" fullname="QCtmTableView::setHoverIndex" href="qctmtableview.html#setHoverIndex" status="active" access="protected" location="QCtmTableView.h" documented="true" meta="plain" virtual="virtual" type="void" brief="设置 hover 的 index" signature="void setHoverIndex(const QModelIndex &amp;index)">
@@ -2620,8 +2644,8 @@
             <function name="~QCtmTableView" fullname="QCtmTableView::~QCtmTableView" href="qctmtableview.html#dtor.QCtmTableView" status="active" access="public" location="QCtmTableView.h" documented="true" meta="destructor" virtual="virtual" noexcept="true" brief="析构函数" signature="~QCtmTableView()"/>
         </class>
         <class name="QCtmTitleBar" href="qctmtitlebar.html" status="active" access="public" location="QCtmTitleBar.h" documented="true" groups="QCustomUi" bases="QWidget" module="QCustomUi" brief="QCtmWindow 和 QCtmDialog 的自定义标题栏">
-            <function name="QCtmTitleBar" fullname="QCtmTitleBar::QCtmTitleBar" href="qctmtitlebar.html#QCtmTitleBar" status="active" access="public" location="QCtmTitleBar.h" documented="true" meta="constructor" brief="构造函数 parent" signature="QCtmTitleBar(QWidget *parent)">
-                <parameter type="QWidget *" name="parent" default="Q_NULLPTR"/>
+            <function name="QCtmTitleBar" fullname="QCtmTitleBar::QCtmTitleBar" href="qctmtitlebar.html#QCtmTitleBar" status="active" access="public" location="QCtmTitleBar.h" documented="true" meta="constructor" explicit="true" brief="构造函数 parent" signature="QCtmTitleBar(QWidget *parent)">
+                <parameter type="QWidget *" name="parent" default="nullptr"/>
             </function>
             <function name="actionEvent" fullname="QCtmTitleBar::actionEvent" href="qctmtitlebar.html#actionEvent" status="active" access="protected" location="QCtmTitleBar.h" documented="true" meta="plain" virtual="virtual" override="true" type="void" signature="void actionEvent(QActionEvent *event) override">
                 <parameter type="QActionEvent *" name="event" default=""/>
@@ -2774,7 +2798,7 @@
             <function name="~QCtmULongLongSpinBox" fullname="QCtmULongLongSpinBox::~QCtmULongLongSpinBox" href="qctmulonglongspinbox.html#dtor.QCtmULongLongSpinBox" status="active" access="public" location="QCtmULongLongSpinBox.h" documented="true" meta="destructor" virtual="virtual" noexcept="true" brief="析构函数" signature="~QCtmULongLongSpinBox()"/>
         </class>
         <class name="QCtmWindow" href="qctmwindow.html" status="active" access="public" location="QCtmWindow.h" documented="true" groups="QCustomUi" bases="QWidget" module="QCustomUi" brief="顶层自定义无边框窗口">
-            <function name="QCtmWindow" fullname="QCtmWindow::QCtmWindow" href="qctmwindow.html#QCtmWindow" status="active" access="public" location="QCtmWindow.h" documented="true" meta="constructor" brief="构造函数 parent" signature="QCtmWindow(QWidget *parent)">
+            <function name="QCtmWindow" fullname="QCtmWindow::QCtmWindow" href="qctmwindow.html#QCtmWindow" status="active" access="public" location="QCtmWindow.h" documented="true" meta="constructor" explicit="true" brief="构造函数 parent" signature="QCtmWindow(QWidget *parent)">
                 <parameter type="QWidget *" name="parent" default="nullptr"/>
             </function>
             <function name="addMoveBar" fullname="QCtmWindow::addMoveBar" href="qctmwindow.html#addMoveBar" status="active" access="public" location="QCtmWindow.h" documented="true" meta="plain" type="void" brief="添加移动窗口 moveBar, 移动窗口可通过鼠标拖动来拖动窗口" signature="void addMoveBar(QWidget *moveBar)">

@@ -27,7 +27,6 @@
 #include <QLocalSocket>
 #include <QWidget>
 #include <QWindow>
-#include <QAbstractNativeEventFilter>
 
 #ifdef Q_OS_WIN
 #include <qt_windows.h>
@@ -142,9 +141,13 @@ bool QCtmApplication::checkOtherProcess(const QString& key)
     return false;
 }
 
-#ifdef WIN32
+#ifdef Q_OS_WIN
 /*!
-    \brief      禁用 WM_GETOBJECT 消息，解决Qt Bug导致的有道词典取词功能，致程序卡死的问题，默认不启用.
+    \if         defined(Q_OS_WIN)
+    \brief      禁用 WM_GETOBJECT 消息，解决Qt Bug导致的有道词典取词功能，致程序卡死的问题，默认不启用 \a d.
+    \else
+    \internal
+    \endif
 */
 void QCtmApplication::setGetObjectDisabled(bool d) { Impl::disableGetObject = d; }
 #endif

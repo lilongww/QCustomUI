@@ -34,9 +34,9 @@ public:
     ~QCtmApplication();
 
     bool checkOtherProcess(const QString& key);
-    #ifdef WIN32
+#ifdef Q_OS_WIN
     static void setGetObjectDisabled(bool d);
-    #endif
+#endif
 private:
     struct Impl;
     std::unique_ptr<Impl> m_impl;
