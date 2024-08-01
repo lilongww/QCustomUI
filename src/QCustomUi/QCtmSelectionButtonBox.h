@@ -42,8 +42,8 @@ public:
     };
     Q_ENUM(ExclusionPolicy)
     explicit QCtmSelectionButtonBox(QWidget* parent = nullptr);
-    QCtmSelectionButtonBox(Qt::Orientation orientation, QWidget* parent = nullptr);
-    QCtmSelectionButtonBox(const QStringList& texts, Qt::Orientation orientation = Qt::Horizontal, QWidget* parent = nullptr);
+    explicit QCtmSelectionButtonBox(Qt::Orientation orientation, QWidget* parent = nullptr);
+    explicit QCtmSelectionButtonBox(const QStringList& texts, Qt::Orientation orientation = Qt::Horizontal, QWidget* parent = nullptr);
     ~QCtmSelectionButtonBox();
     void setExclusionPolicy(ExclusionPolicy policy);
     ExclusionPolicy exclusionPolicy() const;

@@ -39,7 +39,7 @@ class QCUSTOMUI_EXPORT QCtmTitleBar : public QWidget
     Q_PROPERTY(bool iconIsVisible READ iconIsVisible WRITE setIconVisible)
     Q_PROPERTY(QSize iconSize READ iconSize WRITE setIconSize NOTIFY iconSizeChanged)
 public:
-    QCtmTitleBar(QWidget* parent = Q_NULLPTR);
+    explicit QCtmTitleBar(QWidget* parent = nullptr);
     ~QCtmTitleBar();
 
     void setMenuBar(QMenuBar* menu);

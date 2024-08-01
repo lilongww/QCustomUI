@@ -31,7 +31,7 @@ class QCUSTOMUI_EXPORT QCtmHeaderView : public QHeaderView
     Q_OBJECT
 
 public:
-    QCtmHeaderView(Qt::Orientation orientation, QWidget* parent);
+    explicit QCtmHeaderView(Qt::Orientation orientation, QWidget* parent = nullptr);
     ~QCtmHeaderView();
 
     void setModel(QAbstractItemModel* model) override;

@@ -29,7 +29,7 @@ class QCUSTOMUI_EXPORT QCtmTableItemDelegate : public QStyledItemDelegate
     Q_OBJECT
 
 public:
-    QCtmTableItemDelegate(QTableView* parent);
+    explicit QCtmTableItemDelegate(QTableView* parent);
     ~QCtmTableItemDelegate();
 
     void setHoverIndex(const QModelIndex& index) { m_index = index; }

@@ -18,15 +18,19 @@
 **********************************************************************************/
 #pragma once
 
-#include <QStyledItemDelegate>
+#include "QCtmComboBox.h"
 
-class QCtmClassifyTreeDelegate : public QStyledItemDelegate
+class QCUSTOMUI_EXPORT QCtmSerialPortComboBox : public QCtmComboBox
 {
     Q_OBJECT
-
 public:
-    QCtmClassifyTreeDelegate(QObject* parent);
-    ~QCtmClassifyTreeDelegate();
+    explicit QCtmSerialPortComboBox(QWidget* parent = nullptr);
+    ~QCtmSerialPortComboBox();
 
-    void paint(QPainter* painter, const QStyleOptionViewItem& option, const QModelIndex& index) const override;
+protected slots:
+    virtual void onAboutToShowPopup();
+
+private:
+    struct Impl;
+    std::unique_ptr<Impl> m_impl;
 };

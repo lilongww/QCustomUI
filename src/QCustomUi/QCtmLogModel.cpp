@@ -259,7 +259,7 @@ void QCtmLogModel::logEvent(QCtmLogEvent* e)
             m_impl->errorCount--;
             break;
         default:
-            continue;
+            return;
         }
         beginRemoveRows(QModelIndex(), 0, 0);
         if (m_impl->logInsertPolicy == QCtmLogData::LogInsertPolicy::ASC)

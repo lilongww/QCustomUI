@@ -148,6 +148,11 @@ QCtmIPAddressEdit::~QCtmIPAddressEdit() {}
 */
 void QCtmIPAddressEdit::setIPAddress(const QString& ip)
 {
+    if (ip.isEmpty())
+    {
+        clear();
+        return;
+    }
     auto tmp = ip.split('.');
     if (tmp.size() == 4)
     {
@@ -210,6 +215,22 @@ void QCtmIPAddressEdit::setReadOnly(bool ro)
     \sa         setReadOnly
 */
 bool QCtmIPAddressEdit::isReadOnly() const { return m_impl->readOnly; }
+
+/*!
+    \brief      清除IP地址文本.
+*/
+void QCtmIPAddressEdit::clear()
+{
+    {
+        QSignalBlocker blocker(this);
+        for (auto& textLayout : m_impl->textLayouts)
+        {
+            setText(textLayout, "");
+        }
+        update();
+    }
+    emit editChanged();
+}
 
 /*!
     \brief      Returns the section of the given \a position.

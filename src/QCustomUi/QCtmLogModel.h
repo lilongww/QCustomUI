@@ -46,7 +46,7 @@ public:
         TypeRole = Qt::UserRole + 1
     };
 
-    QCtmLogModel(const QString& objectName, QObject* parent);
+    explicit QCtmLogModel(const QString& objectName, QObject* parent = nullptr);
     ~QCtmLogModel();
 
     void clear() override;

@@ -30,7 +30,7 @@ class QCUSTOMUI_EXPORT QCtmTableView : public QTableView
     Q_OBJECT
 
 public:
-    QCtmTableView(QWidget* parent = nullptr);
+    explicit QCtmTableView(QWidget* parent = nullptr);
     ~QCtmTableView();
 
 protected:

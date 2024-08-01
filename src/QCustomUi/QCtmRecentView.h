@@ -31,7 +31,7 @@ class QCUSTOMUI_EXPORT QCtmRecentView : public QTreeView
     Q_PROPERTY(bool topButtonVisible READ topButtonVisible WRITE setTopButtonVisible)
     Q_OBJECT
 public:
-    explicit QCtmRecentView(QWidget* parent);
+    explicit QCtmRecentView(QWidget* parent = nullptr);
     ~QCtmRecentView();
     virtual void setModel(QCtmRecentModel* model);
     QCtmRecentModel* model() const;
@@ -45,10 +45,10 @@ signals:
     void recentDoubleClicked(const QCtmRecentData& data);
 
 protected:
-    using QTreeView::model;
-    using QTreeView::setModel;
     void reset() override;
     virtual void onTopButtonClicked(const QModelIndex& index);
+private slots:
+    void onRowsRemoved(const QModelIndex& parent, int, int);
 
 private:
     struct Impl;

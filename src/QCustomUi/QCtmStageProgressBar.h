@@ -41,7 +41,7 @@ class QCUSTOMUI_EXPORT QCtmStageProgressBar : public QWidget
     Q_PROPERTY(Qt::Orientation orientation READ orientation WRITE setOrientation)
 
 public:
-    QCtmStageProgressBar(QWidget* parent);
+    explicit QCtmStageProgressBar(QWidget* parent = nullptr);
     ~QCtmStageProgressBar();
     Qt::Orientation orientation() const;
     void setStageCount(int count);

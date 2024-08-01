@@ -16,27 +16,31 @@
 **  You should have received a copy of the GNU Lesser General Public License    **
 **  along with QCustomUi.  If not, see <https://www.gnu.org/licenses/>.         **
 **********************************************************************************/
-
 #pragma once
 
-#include <QSortFilterProxyModel>
+#include <QDesignerCustomWidgetInterface>
 
-#include <memory>
-
-class QCtmLogFilterModel : public QSortFilterProxyModel
+class HexLineEdit
+    : public QObject
+    , public QDesignerCustomWidgetInterface
 {
     Q_OBJECT
-
+    Q_INTERFACES(QDesignerCustomWidgetInterface)
 public:
-    QCtmLogFilterModel(QObject* parent);
-    ~QCtmLogFilterModel();
+    explicit HexLineEdit(QObject* parent = nullptr);
 
-    void search(const QString& keyword);
-    bool filterAcceptsRow(int sourceRow, const QModelIndex& sourceParent) const override;
-public slots:
-    void showLog(QtMsgType type, bool show);
+    bool isContainer() const override;
+    bool isInitialized() const override;
+    QIcon icon() const override;
+    QString domXml() const override;
+    QString group() const override;
+    QString includeFile() const override;
+    QString name() const override;
+    QString toolTip() const override;
+    QString whatsThis() const override;
+    QWidget* createWidget(QWidget* parent) override;
+    void initialize(QDesignerFormEditorInterface* core) override;
 
 private:
-    struct Impl;
-    std::unique_ptr<Impl> m_impl;
+    bool m_initialized { false };
 };

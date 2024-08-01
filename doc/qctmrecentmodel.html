@@ -4,7 +4,7 @@
   <meta charset="utf-8">
 <!-- QCtmRecentModel.cpp -->
   <meta name="description" content="仿vs启动界面最近项目表model.">
-  <title>QCtmRecentModel Class | QCustomUi 1.15.0</title>
+  <title>QCtmRecentModel Class | QCustomUi 1.16.0</title>
   <link rel="stylesheet" type="text/css" href="style/offline-simple.css" />
   <script type="text/javascript">
     document.getElementsByTagName("link").item(0).setAttribute("href", "style/offline.css");
@@ -26,10 +26,10 @@
     <div class="main-rounded">
         <div class="navigationbar">
         <ul>
-<li><a href="index.html" translate="no">QCustomUi 1.15.0</a></li>
+<li><a href="index.html" translate="no">QCustomUi 1.16.0</a></li>
 <li><a href="qcustomui-module.html" translate="no">QCustomUi</a></li>
 <li>QCtmRecentModel</li>
-<li id="buildversion">QCustomUi 1.15.0 Reference Documentation</li>
+<li id="buildversion">QCustomUi 1.16.0 Reference Documentation</li>
     </ul>
     </div>
 </div>
@@ -59,13 +59,14 @@
 </ul>
 <h2 id="public-functions">Public Functions</h2>
 <div class="table"><table class="alignedsummary" translate="no">
-<tr><td class="memItemLeft rightAlign topAlign"> </td><td class="memItemRight bottomAlign"><b><a href="qctmrecentmodel.html#QCtmRecentModel" translate="no">QCtmRecentModel</a></b>(QObject *<i>parent</i>)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> </td><td class="memItemRight bottomAlign"><b><a href="qctmrecentmodel.html#QCtmRecentModel" translate="no">QCtmRecentModel</a></b>(QObject *<i>parent</i> = nullptr)</td></tr>
 <tr><td class="memItemLeft rightAlign topAlign"> virtual </td><td class="memItemRight bottomAlign"><b><a href="qctmrecentmodel.html#dtor.QCtmRecentModel" translate="no">~QCtmRecentModel</a></b>()</td></tr>
 <tr><td class="memItemLeft rightAlign topAlign"> std::optional&lt;QCtmRecentData&gt; </td><td class="memItemRight bottomAlign"><b><a href="qctmrecentmodel.html#dataOfIndex" translate="no">dataOfIndex</a></b>(const QModelIndex &amp;<i>index</i>) const</td></tr>
-<tr><td class="memItemLeft rightAlign topAlign"> const QVector&lt;QCtmRecentData&gt; &amp;</td><td class="memItemRight bottomAlign"><b><a href="qctmrecentmodel.html#recentDatas" translate="no">recentDatas</a></b>() const</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> const std::vector&lt;QCtmRecentData&gt; &amp;</td><td class="memItemRight bottomAlign"><b><a href="qctmrecentmodel.html#recentDatas" translate="no">recentDatas</a></b>() const</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> void </td><td class="memItemRight bottomAlign"><b><a href="qctmrecentmodel.html#removeData" translate="no">removeData</a></b>(const QModelIndex &amp;<i>index</i>)</td></tr>
 <tr><td class="memItemLeft rightAlign topAlign"> void </td><td class="memItemRight bottomAlign"><b><a href="qctmrecentmodel.html#search" translate="no">search</a></b>(const QString &amp;<i>name</i>, Qt::CaseSensitivity <i>cs</i>)</td></tr>
-<tr><td class="memItemLeft rightAlign topAlign"> void </td><td class="memItemRight bottomAlign"><b><a href="qctmrecentmodel.html#setRecentDatas" translate="no">setRecentDatas</a></b>(const QVector&lt;QCtmRecentData&gt; &amp;<i>datas</i>)</td></tr>
-<tr><td class="memItemLeft rightAlign topAlign"> void </td><td class="memItemRight bottomAlign"><b><a href="qctmrecentmodel.html#setRecentDatas-1" translate="no">setRecentDatas</a></b>(QVector&lt;QCtmRecentData&gt; &amp;&amp;<i>datas</i>)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> void </td><td class="memItemRight bottomAlign"><b><a href="qctmrecentmodel.html#setRecentDatas" translate="no">setRecentDatas</a></b>(const std::vector&lt;QCtmRecentData&gt; &amp;<i>datas</i>)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> void </td><td class="memItemRight bottomAlign"><b><a href="qctmrecentmodel.html#setRecentDatas-1" translate="no">setRecentDatas</a></b>(std::vector&lt;QCtmRecentData&gt; &amp;&amp;<i>datas</i>)</td></tr>
 </table></div>
 <h2 id="reimplemented-public-functions">Reimplemented Public Functions</h2>
 <div class="table"><table class="alignedsummary" translate="no">
@@ -85,7 +86,7 @@
 <div class="func">
 <h2>Member Function Documentation</h2>
 <!-- $$$QCtmRecentModel[overload1]$$$QCtmRecentModelQObject* -->
-<h3 class="fn" translate="no" id="QCtmRecentModel"><code class="details extra" translate="no">[explicit]</code> QCtmRecentModel::<span class="name">QCtmRecentModel</span>(<span class="type"><a href="https://doc.qt.io/qt/qobject.html#QObject" translate="no">QObject</a></span> *<i>parent</i>)</h3>
+<h3 class="fn" translate="no" id="QCtmRecentModel"><code class="details extra" translate="no">[explicit]</code> QCtmRecentModel::<span class="name">QCtmRecentModel</span>(<span class="type"><a href="https://doc.qt.io/qt/qobject.html#QObject" translate="no">QObject</a></span> *<i>parent</i> = nullptr)</h3>
 <p>构造函数 <i translate="no">parent</i>.</p>
 <!-- @@@QCtmRecentModel -->
 <!-- $$$~QCtmRecentModel[overload1]$$$~QCtmRecentModel -->
@@ -118,10 +119,14 @@
 <p>Reimplements: <a href="https://doc.qt.io/qt/qabstractitemmodel.html#parent" translate="no">QAbstractItemModel::parent(const QModelIndex &amp;index) const</a>.</p>
 <!-- @@@parent -->
 <!-- $$$recentDatas[overload1]$$$recentDatas -->
-<h3 class="fn" translate="no" id="recentDatas">const <span class="type"><a href="https://doc.qt.io/qt/qvector.html" translate="no">QVector</a></span>&lt;<span class="type"><a href="qctmrecentdata.html" translate="no">QCtmRecentData</a></span>&gt; &amp;QCtmRecentModel::<span class="name">recentDatas</span>() const</h3>
+<h3 class="fn" translate="no" id="recentDatas">const <span class="type">std::vector</span>&lt;<span class="type"><a href="qctmrecentdata.html" translate="no">QCtmRecentData</a></span>&gt; &amp;QCtmRecentModel::<span class="name">recentDatas</span>() const</h3>
 <p>返回最近使用的项目数据列表.</p>
 <p><b>See also </b><a href="qctmrecentmodel.html#setRecentDatas" translate="no">setRecentDatas</a>.</p>
 <!-- @@@recentDatas -->
+<!-- $$$removeData[overload1]$$$removeDataconstQModelIndex& -->
+<h3 class="fn" translate="no" id="removeData"><span class="type">void</span> QCtmRecentModel::<span class="name">removeData</span>(const <span class="type"><a href="https://doc.qt.io/qt/qmodelindex.html" translate="no">QModelIndex</a></span> &amp;<i>index</i>)</h3>
+<p>删除位于 <i translate="no">index</i> 项目.</p>
+<!-- @@@removeData -->
 <!-- $$$rowCount[overload1]$$$rowCountconstQModelIndex& -->
 <h3 class="fn" translate="no" id="rowCount"><code class="details extra" translate="no">[override virtual]</code> <span class="type">int</span> QCtmRecentModel::<span class="name">rowCount</span>(const <span class="type"><a href="https://doc.qt.io/qt/qmodelindex.html" translate="no">QModelIndex</a></span> &amp;<i>parent</i> = QModelIndex()) const</h3>
 <p>Reimplements: <a href="https://doc.qt.io/qt/qabstractitemmodel.html#rowCount" translate="no">QAbstractItemModel::rowCount(const QModelIndex &amp;parent) const</a>.</p>
@@ -135,13 +140,13 @@
 <p>Reimplements: <a href="https://doc.qt.io/qt/qabstractitemmodel.html#setData" translate="no">QAbstractItemModel::setData</a>(const QModelIndex &amp;index, const QVariant &amp;value, int role).</p>
 <p><b>See also </b><a href="qctmrecentmodel.html#data" translate="no">data</a>().</p>
 <!-- @@@setData -->
-<!-- $$$setRecentDatas[overload1]$$$setRecentDatasconstQVector<QCtmRecentData>& -->
-<h3 class="fn" translate="no" id="setRecentDatas"><span class="type">void</span> QCtmRecentModel::<span class="name">setRecentDatas</span>(const <span class="type"><a href="https://doc.qt.io/qt/qvector.html" translate="no">QVector</a></span>&lt;<span class="type"><a href="qctmrecentdata.html" translate="no">QCtmRecentData</a></span>&gt; &amp;<i>datas</i>)</h3>
+<!-- $$$setRecentDatas[overload1]$$$setRecentDatasconststd::vector<QCtmRecentData>& -->
+<h3 class="fn" translate="no" id="setRecentDatas"><span class="type">void</span> QCtmRecentModel::<span class="name">setRecentDatas</span>(const <span class="type">std::vector</span>&lt;<span class="type"><a href="qctmrecentdata.html" translate="no">QCtmRecentData</a></span>&gt; &amp;<i>datas</i>)</h3>
 <p>设置最近使用的项目数据 <i translate="no">datas</i>, model会自动根据数据的时间和是否置顶来自动分类.</p>
 <p><b>See also </b><a href="qctmrecentmodel.html#recentDatas" translate="no">recentDatas</a>.</p>
 <!-- @@@setRecentDatas -->
-<!-- $$$setRecentDatas$$$setRecentDatasQVector<QCtmRecentData>&& -->
-<h3 class="fn" translate="no" id="setRecentDatas-1"><span class="type">void</span> QCtmRecentModel::<span class="name">setRecentDatas</span>(<span class="type"><a href="https://doc.qt.io/qt/qvector.html" translate="no">QVector</a></span>&lt;<span class="type"><a href="qctmrecentdata.html" translate="no">QCtmRecentData</a></span>&gt; &amp;&amp;<i>datas</i>)</h3>
+<!-- $$$setRecentDatas$$$setRecentDatasstd::vector<QCtmRecentData>&& -->
+<h3 class="fn" translate="no" id="setRecentDatas-1"><span class="type">void</span> QCtmRecentModel::<span class="name">setRecentDatas</span>(<span class="type">std::vector</span>&lt;<span class="type"><a href="qctmrecentdata.html" translate="no">QCtmRecentData</a></span>&gt; &amp;&amp;<i>datas</i>)</h3>
 <p>This is an overloaded function.</p>
 <p>重载函数, 右值优化版本 <i translate="no">datas</i>.</p>
 <p><b>See also </b><a href="qctmrecentmodel.html#setRecentDatas" translate="no">setRecentDatas</a> and <a href="qctmrecentmodel.html#recentDatas" translate="no">recentDatas</a>.</p>

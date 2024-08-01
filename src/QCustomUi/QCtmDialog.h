@@ -41,7 +41,7 @@ public:
     QCtmTitleBar* titleBar() const;
     void addMoveBar(QWidget* moveBar);
     void removeMoveBar(QWidget* moveBar);
-#ifndef Q_OS_WIN
+#ifdef QCUSTOMUI_FRAMELESS_USE_PURE_QT
     void setShadowless(bool flag);
     bool shadowless() const;
 #endif

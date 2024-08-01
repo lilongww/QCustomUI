@@ -28,14 +28,11 @@ class QCUSTOMUI_EXPORT QCtmMultiComboBox : public QComboBox
     Q_OBJECT
 
 public:
-    QCtmMultiComboBox(QWidget* parent);
+    explicit QCtmMultiComboBox(QWidget* parent = nullptr);
     ~QCtmMultiComboBox();
-
     QAbstractItemModel* model() const;
-
     QStringList checkedItems() const;
     QVariantList checkedDatas() const;
-
     void setChecked(int index, bool checked);
     bool isChecked(int index) const;
 

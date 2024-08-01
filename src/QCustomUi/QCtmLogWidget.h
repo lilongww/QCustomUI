@@ -41,7 +41,7 @@ public:
         Description
     };
 
-    QCtmLogWidget(const QString& objectName, QWidget* parent = Q_NULLPTR);
+    explicit QCtmLogWidget(const QString& objectName, QWidget* parent = nullptr);
     ~QCtmLogWidget();
 
     void setLogInsertPolicy(QCtmLogData::LogInsertPolicy policy);

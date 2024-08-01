@@ -37,7 +37,7 @@ class QCUSTOMUI_EXPORT QCtmMessageTipView : public QCtmAbstractMessageTipView
     Q_PROPERTY(QPixmap closeButtonIcon READ closeButtonIcon WRITE setCloseButtonIcon)
     Q_PROPERTY(bool touchControlStyle READ touchControlStyle WRITE setTouchControlStyle)
 public:
-    QCtmMessageTipView(QCtmNavigationBar* parent);
+    explicit QCtmMessageTipView(QCtmNavigationBar* parent);
     ~QCtmMessageTipView();
 
     virtual void setModel(QCtmAbstractMessageTipModel* model);

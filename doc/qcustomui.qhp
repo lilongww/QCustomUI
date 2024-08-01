@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <QtHelpProject version="1.0">
-    <namespace>com.qcustomui.1.15.0</namespace>
+    <namespace>com.qcustomui.1.16.0</namespace>
     <virtualFolder>qcustomui</virtualFolder>
     <metaData name="version" value=""/>
     <customFilter name="QCustomUi">
@@ -76,6 +76,9 @@
                     </section>
                     <section ref="qctmheaderview.html" title="QCtmHeaderView Class Reference">
                         <section ref="qctmheaderview-members.html" title="List of all members"/>
+                    </section>
+                    <section ref="qctmhexlineedit.html" title="QCtmHexLineEdit Class Reference">
+                        <section ref="qctmhexlineedit-members.html" title="List of all members"/>
                     </section>
                     <section ref="qctmipaddressedit.html" title="QCtmIPAddressEdit Class Reference">
                         <section ref="qctmipaddressedit-members.html" title="List of all members"/>
@@ -154,6 +157,9 @@
                     </section>
                     <section ref="qctmselectionbuttonbox.html" title="QCtmSelectionButtonBox Class Reference">
                         <section ref="qctmselectionbuttonbox-members.html" title="List of all members"/>
+                    </section>
+                    <section ref="qctmserialportcombobox.html" title="QCtmSerialPortComboBox Class Reference">
+                        <section ref="qctmserialportcombobox-members.html" title="List of all members"/>
                     </section>
                     <section ref="qctmsignalblocker.html" title="QCtmSignalBlocker Class Reference">
                         <section ref="qctmsignalblocker-members.html" title="List of all members"/>
@@ -241,6 +247,7 @@
             <keyword name="QCtmEditLabel" id="QCtmEditLabel" ref="qctmeditlabel.html"/>
             <keyword name="QCtmFile" id="QCtmFile" ref="qctmfile.html"/>
             <keyword name="QCtmHeaderView" id="QCtmHeaderView" ref="qctmheaderview.html"/>
+            <keyword name="QCtmHexLineEdit" id="QCtmHexLineEdit" ref="qctmhexlineedit.html"/>
             <keyword name="QCtmIPAddressEdit" id="QCtmIPAddressEdit" ref="qctmipaddressedit.html"/>
             <keyword name="QCtmInputDialog" id="QCtmInputDialog" ref="qctminputdialog.html"/>
             <keyword name="QCtmLoadingDialog" id="QCtmLoadingDialog" ref="qctmloadingdialog.html"/>
@@ -335,6 +342,7 @@
             <keyword name="QCtmSelectionButtonBox::Exclusive" id="QCtmSelectionButtonBox::Exclusive" ref="qctmselectionbuttonbox.html#ExclusionPolicy-enum"/>
             <keyword name="QCtmSelectionButtonBox::ExclusiveOptional" id="QCtmSelectionButtonBox::ExclusiveOptional" ref="qctmselectionbuttonbox.html#ExclusionPolicy-enum"/>
             <keyword name="QCtmSelectionButtonBox::None" id="QCtmSelectionButtonBox::None" ref="qctmselectionbuttonbox.html#ExclusionPolicy-enum"/>
+            <keyword name="QCtmSerialPortComboBox" id="QCtmSerialPortComboBox" ref="qctmserialportcombobox.html"/>
             <keyword name="QCtmSignalBlocker" id="QCtmSignalBlocker" ref="qctmsignalblocker.html"/>
             <keyword name="QCtmStageProgressBar" id="QCtmStageProgressBar" ref="qctmstageprogressbar.html"/>
             <keyword name="QCtmStyleSheet" id="QCtmStyleSheet" ref="qctmstylesheet.html"/>
@@ -411,6 +419,7 @@
             <keyword name="clear" id="QCtmAbstractLogModel::clear" ref="qctmabstractlogmodel.html#clear"/>
             <keyword name="clear" id="QCtmAbstractMessageTipModel::clear" ref="qctmabstractmessagetipmodel.html#clear"/>
             <keyword name="clear" id="QCtmClassifyTreeGroupItem::clear" ref="qctmclassifytreegroupitem.html#clear"/>
+            <keyword name="clear" id="QCtmIPAddressEdit::clear" ref="qctmipaddressedit.html#clear"/>
             <keyword name="clear" id="QCtmLogModel::clear" ref="qctmlogmodel.html#clear"/>
             <keyword name="clearAll" id="QCtmMessageTipView::clearAll" ref="qctmmessagetipview.html#clearAll"/>
             <keyword name="clickedButton" id="QCtmMessageBox::clickedButton" ref="qctmmessagebox.html#clickedButton"/>
@@ -696,6 +705,7 @@
             <keyword name="next" id="QCtmAbstractMultiPageItemModel::next" ref="qctmabstractmultipageitemmodel.html#next"/>
             <keyword name="nextButton" id="QCtmMultiPageButtonBox::nextButton" ref="qctmmultipagebuttonbox.html#nextButton"/>
             <keyword name="offset" id="QCtmAbstractMultiPageItemModel::offset" ref="qctmabstractmultipageitemmodel.html#offset"/>
+            <keyword name="onAboutToShowPopup" id="QCtmSerialPortComboBox::onAboutToShowPopup" ref="qctmserialportcombobox.html#onAboutToShowPopup"/>
             <keyword name="onTopButtonClicked" id="QCtmRecentView::onTopButtonClicked" ref="qctmrecentview.html#onTopButtonClicked"/>
             <keyword name="operator=" id="QCtmSignalBlocker::operator=" ref="qctmsignalblocker.html#operator-eq"/>
             <keyword name="orientation" id="QCtmSelectionButtonBox::orientation" ref="qctmselectionbuttonbox.html#orientation"/>
@@ -748,6 +758,7 @@
             <keyword name="removeButton" id="QCtmMessageBox::removeButton" ref="qctmmessagebox.html#removeButton"/>
             <keyword name="removeChild" id="QCtmClassifyTreeGroupItem::removeChild" ref="qctmclassifytreegroupitem.html#removeChild"/>
             <keyword name="removeColumns" id="QCtmAbstractLogModel::removeColumns" ref="qctmabstractlogmodel.html#removeColumns"/>
+            <keyword name="removeData" id="QCtmRecentModel::removeData" ref="qctmrecentmodel.html#removeData"/>
             <keyword name="removeItem" id="QCtmClassifyTreeModel::removeItem" ref="qctmclassifytreemodel.html#removeItem"/>
             <keyword name="removeItem" id="QCtmDrawerWidget::removeItem" ref="qctmdrawerwidget.html#removeItem"/>
             <keyword name="removeMessage" id="QCtmAbstractMessageTipModel::removeMessage" ref="qctmabstractmessagetipmodel.html#removeMessage"/>
@@ -817,6 +828,7 @@
             <keyword name="setExpand" id="QCtmDrawerItemWidget::setExpand" ref="qctmdraweritemwidget.html#setExpand"/>
             <keyword name="setFinishButtonIcon" id="QCtmEditLabel::setFinishButtonIcon" ref="qctmeditlabel.html#setFinishButtonIcon"/>
             <keyword name="setFormat" id="QCtmCircleProgressBar::setFormat" ref="qctmcircleprogressbar.html#setFormat"/>
+            <keyword name="setGetObjectDisabled" id="QCtmApplication::setGetObjectDisabled" ref="qctmapplication.html#setGetObjectDisabled"/>
             <keyword name="setHorizontalSpace" id="QCtmClassifyTreeView::setHorizontalSpace" ref="qctmclassifytreeview.html#setHorizontalSpace"/>
             <keyword name="setHoverIndex" id="QCtmTableView::setHoverIndex" ref="qctmtableview.html#setHoverIndex"/>
             <keyword name="setIPAddress" id="QCtmIPAddressEdit::setIPAddress" ref="qctmipaddressedit.html#setIPAddress"/>
@@ -1111,6 +1123,7 @@
             <keyword name="~QCtmDrawerWidget" id="QCtmDrawerWidget::~QCtmDrawerWidget" ref="qctmdrawerwidget.html#dtor.QCtmDrawerWidget"/>
             <keyword name="~QCtmEditLabel" id="QCtmEditLabel::~QCtmEditLabel" ref="qctmeditlabel.html#dtor.QCtmEditLabel"/>
             <keyword name="~QCtmHeaderView" id="QCtmHeaderView::~QCtmHeaderView" ref="qctmheaderview.html#dtor.QCtmHeaderView"/>
+            <keyword name="~QCtmHexLineEdit" id="QCtmHexLineEdit::~QCtmHexLineEdit" ref="qctmhexlineedit.html#dtor.QCtmHexLineEdit"/>
             <keyword name="~QCtmIPAddressEdit" id="QCtmIPAddressEdit::~QCtmIPAddressEdit" ref="qctmipaddressedit.html#dtor.QCtmIPAddressEdit"/>
             <keyword name="~QCtmInputDialog" id="QCtmInputDialog::~QCtmInputDialog" ref="qctminputdialog.html#dtor.QCtmInputDialog"/>
             <keyword name="~QCtmLoadingDialog" id="QCtmLoadingDialog::~QCtmLoadingDialog" ref="qctmloadingdialog.html#dtor.QCtmLoadingDialog"/>
@@ -1137,6 +1150,7 @@
             <keyword name="~QCtmRecentView" id="QCtmRecentView::~QCtmRecentView" ref="qctmrecentview.html#dtor.QCtmRecentView"/>
             <keyword name="~QCtmRecentViewDelegate" id="QCtmRecentViewDelegate::~QCtmRecentViewDelegate" ref="qctmrecentviewdelegate.html#dtor.QCtmRecentViewDelegate"/>
             <keyword name="~QCtmSelectionButtonBox" id="QCtmSelectionButtonBox::~QCtmSelectionButtonBox" ref="qctmselectionbuttonbox.html#dtor.QCtmSelectionButtonBox"/>
+            <keyword name="~QCtmSerialPortComboBox" id="QCtmSerialPortComboBox::~QCtmSerialPortComboBox" ref="qctmserialportcombobox.html#dtor.QCtmSerialPortComboBox"/>
             <keyword name="~QCtmSignalBlocker" id="QCtmSignalBlocker::~QCtmSignalBlocker" ref="qctmsignalblocker.html#dtor.QCtmSignalBlocker"/>
             <keyword name="~QCtmStageProgressBar" id="QCtmStageProgressBar::~QCtmStageProgressBar" ref="qctmstageprogressbar.html#dtor.QCtmStageProgressBar"/>
             <keyword name="~QCtmSwitchButton" id="QCtmSwitchButton::~QCtmSwitchButton" ref="qctmswitchbutton.html#dtor.QCtmSwitchButton"/>
@@ -1216,6 +1230,8 @@
             <file>qctmfile.html</file>
             <file>qctmheaderview-members.html</file>
             <file>qctmheaderview.html</file>
+            <file>qctmhexlineedit-members.html</file>
+            <file>qctmhexlineedit.html</file>
             <file>qctminputdialog-members.html</file>
             <file>qctminputdialog.html</file>
             <file>qctmipaddressedit-members.html</file>
@@ -1270,6 +1286,8 @@
             <file>qctmrecentviewdelegate.html</file>
             <file>qctmselectionbuttonbox-members.html</file>
             <file>qctmselectionbuttonbox.html</file>
+            <file>qctmserialportcombobox-members.html</file>
+            <file>qctmserialportcombobox.html</file>
             <file>qctmsignalblocker-members.html</file>
             <file>qctmsignalblocker.html</file>
             <file>qctmstageprogressbar-members.html</file>

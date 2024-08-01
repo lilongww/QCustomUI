@@ -49,11 +49,10 @@ struct QCtmWindow::Impl
     QPointer<QCtmNavigationBar> navigationMenuBar;
     QPointer<QStatusBar> statusBar;
     QPointer<QWidget> content;
-
-#ifdef Q_OS_WIN
-    QCtmWinFramelessDelegate* delegate { nullptr };
-#else
+#ifdef QCUSTOMUI_FRAMELESS_USE_PURE_QT
     QCtmFramelessDelegate* delegate { nullptr };
+#elif QCUSTOMUI_FRAMELESS_USE_WINDOWS
+    QCtmWinFramelessDelegate* delegate { nullptr };
 #endif
 };
 
@@ -71,11 +70,11 @@ QCtmWindow::QCtmWindow(QWidget* parent) : QWidget(parent), m_impl(std::make_uniq
     ui->contentLayout->addWidget(m_impl->content);
     m_impl->content->installEventFilter(this);
 
-#ifdef Q_OS_WIN
-    m_impl->delegate = new QCtmWinFramelessDelegate(this, m_impl->title);
-#else
+#ifdef QCUSTOMUI_FRAMELESS_USE_PURE_QT
     m_impl->delegate = new QCtmFramelessDelegate(this, m_impl->title);
     m_impl->content->setAutoFillBackground(true);
+#elif QCUSTOMUI_FRAMELESS_USE_WINDOWS
+    m_impl->delegate = new QCtmWinFramelessDelegate(this, m_impl->title);
 #endif
 }
 
@@ -269,7 +268,7 @@ void QCtmWindow::addMoveBar(QWidget* moveBar) { m_impl->delegate->addMoveBar(mov
 */
 void QCtmWindow::removeMoveBar(QWidget* moveBar) { m_impl->delegate->removeMoveBar(moveBar); }
 
-#ifndef Q_OS_WIN
+#ifdef QCUSTOMUI_FRAMELESS_USE_PURE_QT
 
 /*!
     \if         !defined(Q_OS_WIN)
@@ -338,15 +337,15 @@ bool QCtmWindow::nativeEvent(const QByteArray& eventType, void* message, long* r
 bool QCtmWindow::nativeEvent(const QByteArray& eventType, void* message, qintptr* result)
 #endif
 {
-#ifdef Q_OS_WIN
+#ifdef QCUSTOMUI_FRAMELESS_USE_PURE_QT
+    return QWidget::nativeEvent(eventType, message, result);
+#elif QCUSTOMUI_FRAMELESS_USE_WINDOWS
     if (!m_impl->delegate)
         return QWidget::nativeEvent(eventType, message, result);
     if (!m_impl->delegate->nativeEvent(eventType, message, result))
         return QWidget::nativeEvent(eventType, message, result);
     else
         return true;
-#else
-    return QWidget::nativeEvent(eventType, message, result);
 #endif
 }
 

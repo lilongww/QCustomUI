@@ -31,7 +31,7 @@ class QCUSTOMUI_EXPORT QCtmClassifyTreeModel : public QAbstractItemModel
     Q_OBJECT
 
 public:
-    QCtmClassifyTreeModel(QObject* parent);
+    explicit QCtmClassifyTreeModel(QObject* parent = nullptr);
     ~QCtmClassifyTreeModel();
 
     void addItem(QCtmClassifyTreeItem* item);

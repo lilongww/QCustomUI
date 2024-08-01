@@ -34,7 +34,7 @@ class QCUSTOMUI_EXPORT QCtmTabWidget : public QTabWidget
     Q_OBJECT
     Q_PROPERTY(QSize iconSize READ iconSize WRITE setIconSize NOTIFY iconSizeChanged)
 public:
-    QCtmTabWidget(QWidget* parent = nullptr);
+    explicit QCtmTabWidget(QWidget* parent = nullptr);
     ~QCtmTabWidget();
 
 public:

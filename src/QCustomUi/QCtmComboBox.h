@@ -26,9 +26,8 @@
 class QCUSTOMUI_EXPORT QCtmComboBox : public QComboBox
 {
     Q_OBJECT
-
 public:
-    QCtmComboBox(QWidget* parent);
+    explicit QCtmComboBox(QWidget* parent = nullptr);
     ~QCtmComboBox();
 
 signals:
