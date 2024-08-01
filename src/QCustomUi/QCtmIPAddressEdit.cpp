@@ -148,6 +148,11 @@ QCtmIPAddressEdit::~QCtmIPAddressEdit() {}
 */
 void QCtmIPAddressEdit::setIPAddress(const QString& ip)
 {
+    if (ip.isEmpty())
+    {
+        clear();
+        return;
+    }
     auto tmp = ip.split('.');
     if (tmp.size() == 4)
     {
