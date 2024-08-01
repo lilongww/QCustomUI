@@ -23,8 +23,8 @@ struct QCtmRecentModel::Impl
 {
     QString filter;
     Qt::CaseSensitivity cs;
-    QVector<QCtmRecentData> d;
-    QVector<QVector<std::reference_wrapper<QCtmRecentData>>> sorted { static_cast<int>(Classification::ClassificationSize) };
+    std::vector<QCtmRecentData> d;
+    std::vector<std::vector<std::reference_wrapper<QCtmRecentData>>> sorted { static_cast<int>(Classification::ClassificationSize) };
 
     inline void sortDatas()
     {
@@ -84,11 +84,11 @@ int QCtmRecentModel::rowCount(const QModelIndex& parent /*= QModelIndex()*/) con
     if (parent.isValid())
     {
         if (!parent.parent().isValid())
-            return m_impl->sorted[parent.row()].size();
+            return static_cast<int>(m_impl->sorted[parent.row()].size());
         return 0;
     }
     else
-        return m_impl->sorted.size();
+        return static_cast<int>(m_impl->sorted.size());
 }
 
 /*!
@@ -181,7 +181,7 @@ bool QCtmRecentModel::setData(const QModelIndex& index, const QVariant& value, i
     \brief      设置最近使用的项目数据 \a datas, model会自动根据数据的时间和是否置顶来自动分类.
     \sa         recentDatas
 */
-void QCtmRecentModel::setRecentDatas(const QVector<QCtmRecentData>& datas)
+void QCtmRecentModel::setRecentDatas(const std::vector<QCtmRecentData>& datas)
 {
     beginResetModel();
     m_impl->d = datas;
@@ -194,7 +194,7 @@ void QCtmRecentModel::setRecentDatas(const QVector<QCtmRecentData>& datas)
                 重载函数, 右值优化版本 \a datas.
     \sa         setRecentDatas, recentDatas
 */
-void QCtmRecentModel::setRecentDatas(QVector<QCtmRecentData>&& datas)
+void QCtmRecentModel::setRecentDatas(std::vector<QCtmRecentData>&& datas)
 {
     beginResetModel();
     m_impl->d = std::move(datas);
@@ -247,7 +247,7 @@ QModelIndex QCtmRecentModel::index(int row, int column, const QModelIndex& paren
     \brief      返回最近使用的项目数据列表.
     \sa         setRecentDatas
 */
-const QVector<QCtmRecentData>& QCtmRecentModel::recentDatas() const { return m_impl->d; }
+const std::vector<QCtmRecentData>& QCtmRecentModel::recentDatas() const { return m_impl->d; }
 
 /*!
     \brief      返回 \a index 对应的最近使用的项目.
@@ -281,7 +281,7 @@ void QCtmRecentModel::removeData(const QModelIndex& index)
         return;
     auto parent = index.parent();
     beginRemoveRows(parent, index.row(), index.row());
-    m_impl->d.removeOne(*d);
-    m_impl->sorted[index.parent().row()].removeOne(*d);
+    std::erase(m_impl->d, *d);
+    std::erase(m_impl->sorted[index.parent().row()], *d);
     endRemoveRows();
 }

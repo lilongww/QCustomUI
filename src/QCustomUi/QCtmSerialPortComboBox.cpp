@@ -42,7 +42,7 @@ void QCtmSerialPortComboBox::onAboutToShowPopup()
     {
         items.push_back(port.portName());
     }
-    std::ranges::sort(items);
+    std::sort(items.begin(), items.end());
     if (m_impl->items == items)
         return;
     m_impl->items = items;

@@ -24,9 +24,9 @@
 #include <QDateTime>
 #include <QIcon>
 #include <QString>
-#include <QVector>
 
 #include <optional>
+#include <vector>
 
 struct QCtmRecentData
 {
@@ -86,12 +86,12 @@ public:
     QVariant data(const QModelIndex& index, int role = Qt::DisplayRole) const override;
     QVariant headerData(int section, Qt::Orientation orientation, int role = Qt::DisplayRole) const override;
     bool setData(const QModelIndex& index, const QVariant& value, int role = Qt::EditRole) override;
-    void setRecentDatas(const QVector<QCtmRecentData>& datas);
-    void setRecentDatas(QVector<QCtmRecentData>&& datas);
+    void setRecentDatas(const std::vector<QCtmRecentData>& datas);
+    void setRecentDatas(std::vector<QCtmRecentData>&& datas);
     QModelIndex parent(const QModelIndex& child) const override;
     QModelIndex index(int row, int column, const QModelIndex& parent) const override;
 
-    const QVector<QCtmRecentData>& recentDatas() const;
+    const std::vector<QCtmRecentData>& recentDatas() const;
     std::optional<QCtmRecentData> dataOfIndex(const QModelIndex& index) const;
     void search(const QString& name, Qt::CaseSensitivity cs);
     void removeData(const QModelIndex& index);
