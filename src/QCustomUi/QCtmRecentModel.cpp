@@ -270,3 +270,16 @@ void QCtmRecentModel::search(const QString& name, Qt::CaseSensitivity cs)
     m_impl->sortDatas();
     endResetModel();
 }
+
+/*!
+    \brief      删除位于 \a index 项目.
+*/
+void QCtmRecentModel::removeData(const QModelIndex& index)
+{
+    auto d = dataOfIndex(index);
+    if (!d)
+        return;
+    beginRemoveRows(index.parent(), index.row(), index.row());
+    m_impl->d.removeOne(*d);
+    endRemoveRows();
+}
