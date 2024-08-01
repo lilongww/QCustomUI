@@ -19,7 +19,7 @@ QCustomUi是一个自定义UI库，主要提供无边框窗口和一些自定义
 FetchContent_Declare(
   pegtl
   #GIT_REPOSITORY https://github.com/taocpp/PEGTL.git #github 原仓库地址
-  GIT_REPOSITORY https://gitee.com/llongww/PEGTL.git #gitee镜像地址
+  GIT_REPOSITORY https://gitee.com/mirrors/pegtl.git #gitee镜像地址
   GIT_TAG        main
   FIND_PACKAGE_ARGS NAMES pegtl
 )
