@@ -20,6 +20,23 @@
 
 #include <tao/pegtl.hpp>
 
+#include <QStringList>
+
+#include <optional>
+
+struct CssRule
+{
+    QStringList selectors;
+    std::pair<QString, QString> properties;
+};
+
+struct CssContext
+{
+    std::optional<CssRule> globalRule;
+    std::vector<CssRule> rules;
+    CssRule* current { nullptr };
+};
+
 namespace PEG
 {
 using namespace tao::pegtl;
@@ -62,4 +79,19 @@ struct RuleSets : seq<star<ascii::space>, star<RuleSet, star<ascii::space>>> {};
 template <typename T>
 struct Action {};
 // clang-format on
+
+template<>
+struct Action<RuleSelector>
+{
+    template<typename ParseInput>
+    void apply(ParseInput& input, CssContext& context)
+    {
+        std::string str(input.begin(), input.end());
+        if (str == ":root")
+        {
+            context.globalRule = CssRule { ":root" };
+            context.current    = &context.globalRule.value();
+        }
+    }
+};
 } // namespace PEG
