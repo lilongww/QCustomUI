@@ -31,7 +31,7 @@ QIcon MultiPageButtonBox::icon() const { return {}; }
 QString MultiPageButtonBox::domXml() const
 {
     return "<ui language=\"c++\">\n"
-           " <widget class=\"QCtmMultiPageButtonBox\" name=\"MultiPageButtonBox\">\n"
+           " <widget class=\"QCtmMultiPageButtonBox\" name=\"multiPageButtonBox\">\n"
            " </widget>\n"
            "</ui>\n";
 }
