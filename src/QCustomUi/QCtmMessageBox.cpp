@@ -22,6 +22,7 @@
 #include "QCtmTitleBar.h"
 
 #include <QApplication>
+#include <QCloseEvent>
 #include <QDialogButtonBox>
 #include <QLabel>
 #include <QPushButton>
@@ -568,6 +569,7 @@ QCtmMessageBox::StandardButton QCtmMessageBox::warning(QWidget* parent,
 */
 void QCtmMessageBox::showEvent(QShowEvent* event)
 {
+    m_impl->clickedButton = nullptr;
     updateSize();
 #ifdef Q_OS_WIN
     setAttribute(Qt::WA_Moved, false);
@@ -592,6 +594,16 @@ void QCtmMessageBox::done(int r)
         m_impl->timer.stop();
         m_impl->timeline.stop();
     }
+    detectEscapeButton();
+    if (!m_impl->escapeButton)
+    {
+        return;
+    }
+    if (!m_impl->clickedButton)
+    {
+        m_impl->clickedButton = m_impl->escapeButton;
+    }
+
     QCtmDialog::done(r);
 }
 
