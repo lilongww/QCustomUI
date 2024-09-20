@@ -228,7 +228,7 @@ void QCtmHeaderView::mousePressEvent(QMouseEvent* e)
 */
 QRect QCtmHeaderView::doCheckBoxRect(int logicalIndex) const
 {
-    auto position = sectionPosition(logicalIndex);
+    auto position = sectionViewportPosition(logicalIndex);
     auto size     = sectionSize(logicalIndex);
     QStyleOptionButton opt;
     if (orientation() == Qt::Horizontal)
