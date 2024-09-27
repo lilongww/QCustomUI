@@ -80,6 +80,7 @@ set(INPUT_HEADERS
  "QCtmULongLongSpinBox.h"
  "QCtmHexLineEdit.h"
  "QCtmSerialPortComboBox.h"
+ "QCtmRangeSlider.h"
 )
 
 set(INPUT_SOURCES
@@ -93,6 +94,7 @@ set(INPUT_SOURCES
  "QCtmULongLongSpinBox.cpp"
  "QCtmHexLineEdit.cpp"
  "QCtmSerialPortComboBox.cpp"
+ "QCtmRangeSlider.cpp"
 )
 
 set(CONTAINERS_HEADERS
