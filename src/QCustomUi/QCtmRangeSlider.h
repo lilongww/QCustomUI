@@ -56,10 +56,6 @@ public:
 signals:
     void valueChanged(int first, int second);
     void rangeChanged(int minimum, int maximum);
-    void firstSliderPressed();
-    void firstSliderReleased();
-    void secondSliderPressed();
-    void secondSliderReleased();
     void sliderMoved(int first, int second);
 public slots:
     void setRange(int minimum, int maximum);
