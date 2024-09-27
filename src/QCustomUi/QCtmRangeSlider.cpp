@@ -51,6 +51,7 @@ public:
     Handle pressedHandle;
     Handle hoverHandle;
     QRect hoverRect;
+    bool chunkVisible { false };
     void init();
     inline void resetLayoutItemMargins()
     {
@@ -313,8 +314,7 @@ void QCtmRangeSlider::setSliderPosition(int lower, int upper)
     std::tie(lower, upper) = std::minmax({ lower, upper });
     auto l                 = std::clamp(lower, d->minimum, d->maximum);
     auto u                 = std::clamp(upper, d->minimum, d->maximum);
-    qDebug() << lower << ":" << upper;
-    bool emitValueChanged = (l != d->lower || u != d->upper);
+    bool emitValueChanged  = (l != d->lower || u != d->upper);
 
     d->lower = l;
     d->upper = u;
@@ -375,6 +375,19 @@ QSize QCtmRangeSlider::minimumSizeHint() const
     return s;
 }
 
+void QCtmRangeSlider::setChunkVisible(bool visible)
+{
+    Q_D(QCtmRangeSlider);
+    d->chunkVisible = visible;
+    update();
+}
+
+bool QCtmRangeSlider::chunkVisible() const
+{
+    Q_D(const QCtmRangeSlider);
+    return d->chunkVisible;
+}
+
 void QCtmRangeSlider::setRange(int minimum, int maximum)
 {
     Q_D(QCtmRangeSlider);
@@ -432,12 +445,18 @@ void QCtmRangeSlider::paintEvent(QPaintEvent* event)
     QStyleOptionSlider opt2;
     initStyleOption(opt1, true);
     initStyleOption(opt2, false);
-    opt1.subControls = QStyle::SC_SliderGroove | QStyle::SC_SliderHandle;
-    if (d->tickPosition != QSlider::NoTicks)
-        opt1.subControls |= QStyle::SC_SliderTickmarks;
 
+    opt1.subControls = QStyle::SC_SliderGroove;
+    if (d->tickPosition != QSlider::NoTicks)
+    {
+        opt1.subControls |= QStyle::SC_SliderTickmarks;
+    }
     p.drawComplexControl(QStyle::CC_Slider, opt1);
+    opt1.subControls = QStyle::SC_SliderHandle;
     opt2.subControls = QStyle::SC_SliderHandle;
+    if (d->chunkVisible)
+        drawRangeBackground(&p, opt1, opt2);
+    p.drawComplexControl(QStyle::CC_Slider, opt1);
     p.drawComplexControl(QStyle::CC_Slider, opt2);
 }
 
@@ -548,6 +567,25 @@ void QCtmRangeSlider::mouseReleaseEvent(QMouseEvent* ev)
     update(style()->subControlRect(QStyle::CC_Slider, &opt, oldPressed, this));
 }
 
+void QCtmRangeSlider::drawRangeBackground(QStylePainter* painter, QStyleOptionSlider& opt1, QStyleOptionSlider& opt2)
+{
+    Q_D(QCtmRangeSlider);
+    auto p1         = style()->subControlRect(QStyle::CC_Slider, &opt1, QStyle::SubControl::SC_SliderHandle, this).center();
+    auto p2         = style()->subControlRect(QStyle::CC_Slider, &opt2, QStyle::SubControl::SC_SliderHandle, this).center();
+    auto grooveRect = style()->subControlRect(QStyle::CC_Slider, &opt2, QStyle::SubControl::SC_SliderGroove, this);
+
+    QRect rangeRect(p1.x(), grooveRect.top(), std::abs(p2.x() - p1.x()), grooveRect.height());
+
+    QStyleOptionProgressBar chunk;
+    chunk.initFrom(this);
+    chunk.minimum  = 0;
+    chunk.maximum  = 100;
+    chunk.progress = 100;
+    chunk.rect     = rangeRect;
+
+    painter->drawPrimitive(QStyle::PE_IndicatorProgressChunk, chunk);
+}
+
 void QCtmRangeSlider::initStyleOption(QStyleOptionSlider& option, bool first) const
 {
     Q_D(const QCtmRangeSlider);
@@ -562,9 +600,9 @@ void QCtmRangeSlider::initStyleOption(QStyleOptionSlider& option, bool first) co
     option.tickInterval      = d->tickInterval;
     option.upsideDown =
         (d->orientation == Qt::Horizontal) ? (d->invertedAppearance != (option.direction == Qt::RightToLeft)) : (!d->invertedAppearance);
-    option.direction      = first ? Qt::LeftToRight : Qt::RightToLeft; // we use the upsideDown option instead
-    option.sliderPosition = first ? d->lowerPosition : (d->maximum - d->upperPosition);
-    option.sliderValue    = first ? d->lower : (d->maximum - d->upper);
+    option.direction      = Qt::LeftToRight;
+    option.sliderPosition = first ? d->lowerPosition : d->upperPosition;
+    option.sliderValue    = first ? d->lower : d->upper;
     option.singleStep     = d->singleStep;
     option.pageStep       = d->pageStep;
     if (d->orientation == Qt::Horizontal)
@@ -572,8 +610,12 @@ void QCtmRangeSlider::initStyleOption(QStyleOptionSlider& option, bool first) co
 
     if (d->pressedControl)
     {
-        option.activeSubControls = d->pressedControl;
-        option.state |= QStyle::State_Sunken;
+        if ((first && d->hoverHandle == QCtmRangeSliderPrivate::Handle::Lower) ||
+            (!first && d->hoverHandle == QCtmRangeSliderPrivate::Handle::Upper))
+        {
+            option.activeSubControls = d->pressedControl;
+            option.state |= QStyle::State_Sunken;
+        }
     }
     else
     {

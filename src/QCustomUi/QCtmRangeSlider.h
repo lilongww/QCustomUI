@@ -24,6 +24,7 @@
 
 class QStyleOptionSlider;
 class QCtmRangeSliderPrivate;
+class QStylePainter;
 class QCUSTOMUI_EXPORT QCtmRangeSlider : public QWidget
 {
     Q_OBJECT
@@ -49,10 +50,10 @@ public:
     void setSliderPosition(int lower, int upper);
     int lowerSliderPosition() const;
     int upperSliderPosition() const;
-
     QSize sizeHint() const override;
     QSize minimumSizeHint() const override;
-
+    void setChunkVisible(bool visible);
+    bool chunkVisible() const;
 signals:
     void valueChanged(int first, int second);
     void rangeChanged(int minimum, int maximum);
@@ -68,5 +69,6 @@ protected:
     void mouseMoveEvent(QMouseEvent* event) override;
     void mousePressEvent(QMouseEvent* event) override;
     void mouseReleaseEvent(QMouseEvent* event) override;
+    virtual void drawRangeBackground(QStylePainter* painter, QStyleOptionSlider& opt1, QStyleOptionSlider& opt2);
     virtual void initStyleOption(QStyleOptionSlider& option, bool first) const;
 };
