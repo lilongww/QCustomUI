@@ -394,8 +394,8 @@ void QCtmRangeSlider::setRange(int minimum, int maximum)
         return;
     std::tie(d->minimum, d->maximum) = std::minmax(minimum, maximum);
 
-    emit rangeChanged(d->minimum, d->maximum);
     setValue(d->lower, d->upper);
+    emit rangeChanged(d->minimum, d->maximum);
     update();
 }
 
