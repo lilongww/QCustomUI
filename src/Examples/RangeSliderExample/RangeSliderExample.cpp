@@ -39,6 +39,41 @@ RangeSliderExample::RangeSliderExample(QWidget* parent /*= nullptr*/) : QCtmWind
                               "    background: none;"
                               "}");
     }
+
+    {
+        auto slider = new QCtmRangeSlider(this);
+        slider->setOrientation(Qt::Vertical);
+        layout->addWidget(slider);
+        slider->setValue(24, 75);
+        slider->setTickPosition(QCtmRangeSlider::TickPosition::TicksBelow);
+    }
+
+    {
+        auto slider = new QCtmRangeSlider(this);
+        slider->setOrientation(Qt::Vertical);
+        layout->addWidget(slider);
+        slider->setValue(24, 75);
+        slider->setChunkVisible(true);
+        slider->setStyleSheet("QCtmRangeSlider::chunk"
+                              "{"
+                              "    margin-left: 5px;"
+                              "    margin-right: 5px;"
+                              "    background: #4a737a;"
+                              "    border-radius: 5px;"
+                              "}"
+                              "QCtmRangeSlider::groove:vertical"
+                              "{"
+                              "    border: none;"
+                              "    background: #ffffff;"
+                              "    margin-left: 5px;"
+                              "    margin-right: 5px;"
+                              "    border-radius: 5px;"
+                              "}"
+                              "QCtmRangeSlider::handle:vertical"
+                              "{"
+                              "    background: none;"
+                              "}");
+    }
 }
 
 RangeSliderExample::~RangeSliderExample() {}

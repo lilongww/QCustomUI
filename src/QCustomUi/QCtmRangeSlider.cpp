@@ -43,9 +43,7 @@ public:
     int lower { 0 }, upper { 0 };
     int lowerPosition { 0 }, upperPosition { 0 };
     bool tracking { true };
-    bool invertedAppearance { false };
-    int singleStep { 1 };
-    int pageStep { 10 };
+    bool invertedAppearance { true };
     QStyle::SubControl pressedControl;
     QStyle::SubControl hoverControl;
     Handle pressedHandle;
@@ -57,8 +55,6 @@ public:
     {
         Q_Q(QCtmRangeSlider);
         QStyleOptionSlider opt;
-        // ### This is (also) reached from the ctor which is unfortunate since a possible
-        // ### re-implementation of initStyleOption is then not called.
         q->initStyleOption(opt, true);
         setLayoutItemMargins(QStyle::SE_SliderLayoutItem, &opt);
     }
@@ -574,7 +570,11 @@ void QCtmRangeSlider::drawRangeBackground(QStylePainter* painter, QStyleOptionSl
     auto p2         = style()->subControlRect(QStyle::CC_Slider, &opt2, QStyle::SubControl::SC_SliderHandle, this).center();
     auto grooveRect = style()->subControlRect(QStyle::CC_Slider, &opt2, QStyle::SubControl::SC_SliderGroove, this);
 
-    QRect rangeRect(p1.x(), grooveRect.top(), std::abs(p2.x() - p1.x()), grooveRect.height());
+    QRect rangeRect;
+    if (d->orientation == Qt::Horizontal)
+        rangeRect = QRect(p1.x(), grooveRect.top(), std::abs(p2.x() - p1.x()), grooveRect.height());
+    else
+        rangeRect = QRect(grooveRect.left(), p1.y(), grooveRect.width(), std::abs(p1.y() - p2.y()));
 
     QStyleOptionProgressBar chunk;
     chunk.initFrom(this);
@@ -598,13 +598,13 @@ void QCtmRangeSlider::initStyleOption(QStyleOptionSlider& option, bool first) co
     option.minimum           = d->minimum;
     option.tickPosition      = d->tickPosition;
     option.tickInterval      = d->tickInterval;
-    option.upsideDown =
-        (d->orientation == Qt::Horizontal) ? (d->invertedAppearance != (option.direction == Qt::RightToLeft)) : (!d->invertedAppearance);
+    option.upsideDown        = false;
+    //(d->orientation == Qt::Horizontal) ? (d->invertedAppearance != (option.direction == Qt::RightToLeft)) : (!d->invertedAppearance);
     option.direction      = Qt::LeftToRight;
     option.sliderPosition = first ? d->lowerPosition : d->upperPosition;
     option.sliderValue    = first ? d->lower : d->upper;
-    option.singleStep     = d->singleStep;
-    option.pageStep       = d->pageStep;
+    option.singleStep     = 1;
+    option.pageStep       = 10;
     if (d->orientation == Qt::Horizontal)
         option.state |= QStyle::State_Horizontal;
 
