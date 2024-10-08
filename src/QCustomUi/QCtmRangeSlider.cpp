@@ -214,86 +214,152 @@ void QCtmRangeSliderPrivate::init()
     resetLayoutItemMargins();
 }
 
+/*!
+    \class      QCtmRangeSlider
+    \brief      范围选择器.
+    \inherits   QWidget
+    \ingroup    QCustomUi
+    \inmodule   QCustomUi
+    \inheaderfile QCtmRangeSlider.h
+*/
+
+/*!
+    \brief      构造函数 \a parent.
+*/
 QCtmRangeSlider::QCtmRangeSlider(QWidget* parent /*= nullptr*/) : QWidget(*new QCtmRangeSliderPrivate, parent, {})
 {
     Q_D(QCtmRangeSlider);
     d->init();
 }
 
+/*!
+    \brief      构造函数 \a orientation, \a parent.
+*/
 QCtmRangeSlider::QCtmRangeSlider(Qt::Orientation orientation, QWidget* parent /*= nullptr*/) : QCtmRangeSlider(parent)
 {
     Q_D(QCtmRangeSlider);
     setOrientation(orientation);
 }
 
+/*!
+    \brief      析构函数.
+*/
 QCtmRangeSlider::~QCtmRangeSlider() {}
 
+/*!
+    \brief      返回该部件的朝向.
+    \sa         setOrientation
+*/
 Qt::Orientation QCtmRangeSlider::orientation() const
 {
     Q_D(const QCtmRangeSlider);
     return d->orientation;
 }
 
+/*!
+    \brief      设置最小值 \a minimum.
+    \sa         minimum
+*/
 void QCtmRangeSlider::setMinimum(int minimum)
 {
     Q_D(QCtmRangeSlider);
     setRange(minimum, std::max(minimum, d->maximum));
 }
 
+/*!
+    \brief      返回最小值.
+    \sa         setMinimum
+*/
 int QCtmRangeSlider::minimum() const
 {
     Q_D(const QCtmRangeSlider);
     return d->minimum;
 }
 
+/*!
+    \brief      设置最大值 \a maximum.
+    \sa         maximum
+*/
 void QCtmRangeSlider::setMaximum(int maximum)
 {
     Q_D(QCtmRangeSlider);
     setRange(std::min(maximum, d->minimum), maximum);
 }
 
+/*!
+    \brief      返回最大值.
+    \sa         setMaximum
+*/
 int QCtmRangeSlider::maximum() const
 {
     Q_D(const QCtmRangeSlider);
     return d->maximum;
 }
 
+/*!
+    \brief      设置范围下限 \a value.
+    \sa         lower
+*/
 void QCtmRangeSlider::setLower(int value)
 {
     Q_D(QCtmRangeSlider);
     setValue(value, d->upper);
 }
 
+/*!
+    \brief      返回范围下限.
+    \sa         setLower
+*/
 int QCtmRangeSlider::lower() const
 {
     Q_D(const QCtmRangeSlider);
     return d->lower;
 }
 
+/*!
+    \brief      设置范围上限 \a value.
+    \sa         lower
+*/
 void QCtmRangeSlider::setUpper(int value)
 {
     Q_D(QCtmRangeSlider);
     setValue(d->lower, value);
 }
 
+/*!
+    \brief      返回范围上限.
+    \sa         setUpper
+*/
 int QCtmRangeSlider::upper() const
 {
     Q_D(const QCtmRangeSlider);
     return d->upper;
 }
 
+/*!
+    \brief      设置 valueChange 信号是否跟踪拖拽发送 \a on.
+    \sa         hasTracking
+*/
 void QCtmRangeSlider::setTracking(bool on)
 {
     Q_D(QCtmRangeSlider);
     d->tracking = on;
 }
 
+/*!
+    \brief      返回 valueChange 信号是否跟踪拖拽发送.
+    \sa         setTracking
+*/
 bool QCtmRangeSlider::hasTracking() const
 {
     Q_D(const QCtmRangeSlider);
     return d->tracking;
 }
 
+/*!
+    \brief      设置刻度显示位置 \a pos.
+    \sa         tickPosition
+*/
 void QCtmRangeSlider::setTickPosition(TickPosition pos)
 {
     Q_D(QCtmRangeSlider);
@@ -304,12 +370,20 @@ void QCtmRangeSlider::setTickPosition(TickPosition pos)
     updateGeometry();
 }
 
+/*!
+    \brief      返回刻度显示位置.
+    \sa         setTickPosition
+*/
 QCtmRangeSlider::TickPosition QCtmRangeSlider::tickPosition() const
 {
     Q_D(const QCtmRangeSlider);
     return d->tickPosition;
 }
 
+/*!
+    \brief      设置滑块位置 \a lower, \a upper.
+    \sa         lowerSliderPosition, upperSliderPosition
+*/
 void QCtmRangeSlider::setSliderPosition(int lower, int upper)
 {
     Q_D(QCtmRangeSlider);
@@ -327,18 +401,29 @@ void QCtmRangeSlider::setSliderPosition(int lower, int upper)
         setValue(d->lowerPosition, d->upperPosition);
 }
 
+/*!
+    \brief      返回下限滑块位置.
+    \sa         setSliderPosition
+*/
 int QCtmRangeSlider::lowerSliderPosition() const
 {
     Q_D(const QCtmRangeSlider);
     return d->lowerPosition;
 }
 
+/*!
+    \brief      返回上限滑块位置.
+    \sa         setSliderPosition
+*/
 int QCtmRangeSlider::upperSliderPosition() const
 {
     Q_D(const QCtmRangeSlider);
     return d->upperPosition;
 }
 
+/*!
+    \reimp
+*/
 QSize QCtmRangeSlider::sizeHint() const
 {
     Q_D(const QCtmRangeSlider);
@@ -360,6 +445,9 @@ QSize QCtmRangeSlider::sizeHint() const
     return style()->sizeFromContents(QStyle::CT_Slider, &opt, QSize(w, h), this);
 }
 
+/*!
+    \reimp
+*/
 QSize QCtmRangeSlider::minimumSizeHint() const
 {
     Q_D(const QCtmRangeSlider);
@@ -374,6 +462,10 @@ QSize QCtmRangeSlider::minimumSizeHint() const
     return s;
 }
 
+/*!
+    \brief      设置滑块之间的区块是否显示，若要对其设置样式表，则先设置为显示 \a visible.
+    \sa         chunkVisible
+*/
 void QCtmRangeSlider::setChunkVisible(bool visible)
 {
     Q_D(QCtmRangeSlider);
@@ -381,12 +473,20 @@ void QCtmRangeSlider::setChunkVisible(bool visible)
     update();
 }
 
+/*!
+    \brief      返回滑块之间的区块是否显示.
+    \sa         setChunkVisible
+*/
 bool QCtmRangeSlider::chunkVisible() const
 {
     Q_D(const QCtmRangeSlider);
     return d->chunkVisible;
 }
 
+/*!
+    \brief      设置最大值和最小值 \a minimum, \a maximum.
+    \sa         setMinimum, setMaximum
+*/
 void QCtmRangeSlider::setRange(int minimum, int maximum)
 {
     Q_D(QCtmRangeSlider);
@@ -399,6 +499,10 @@ void QCtmRangeSlider::setRange(int minimum, int maximum)
     update();
 }
 
+/*!
+    \brief      设置上下限 \a lower, \a upper.
+    \sa         setLower, setUpper
+*/
 void QCtmRangeSlider::setValue(int lower, int upper)
 {
     Q_D(QCtmRangeSlider);
@@ -420,6 +524,10 @@ void QCtmRangeSlider::setValue(int lower, int upper)
     update();
 }
 
+/*!
+    \brief      设置部件方向 \a orientation.
+    \sa         orientation
+*/
 void QCtmRangeSlider::setOrientation(Qt::Orientation orientation)
 {
     Q_D(QCtmRangeSlider);
@@ -435,6 +543,9 @@ void QCtmRangeSlider::setOrientation(Qt::Orientation orientation)
     updateGeometry();
 }
 
+/*!
+    \reimp
+*/
 void QCtmRangeSlider::paintEvent(QPaintEvent* event)
 {
     Q_D(QCtmRangeSlider);
@@ -459,6 +570,9 @@ void QCtmRangeSlider::paintEvent(QPaintEvent* event)
     p.drawComplexControl(QStyle::CC_Slider, opt2);
 }
 
+/*!
+    \reimp
+*/
 bool QCtmRangeSlider::event(QEvent* event)
 {
     Q_D(QCtmRangeSlider);
@@ -481,6 +595,9 @@ bool QCtmRangeSlider::event(QEvent* event)
     return QWidget::event(event);
 }
 
+/*!
+    \reimp
+*/
 void QCtmRangeSlider::mouseMoveEvent(QMouseEvent* event)
 {
     Q_D(QCtmRangeSlider);
@@ -508,6 +625,9 @@ void QCtmRangeSlider::mouseMoveEvent(QMouseEvent* event)
     }
 }
 
+/*!
+    \reimp
+*/
 void QCtmRangeSlider::mousePressEvent(QMouseEvent* ev)
 {
     Q_D(QCtmRangeSlider);
@@ -549,6 +669,9 @@ void QCtmRangeSlider::mousePressEvent(QMouseEvent* ev)
     }
 }
 
+/*!
+    \reimp
+*/
 void QCtmRangeSlider::mouseReleaseEvent(QMouseEvent* ev)
 {
     Q_D(QCtmRangeSlider);
@@ -570,6 +693,9 @@ void QCtmRangeSlider::mouseReleaseEvent(QMouseEvent* ev)
     }
 }
 
+/*!
+    \brief      绘制滑块之间的区块, \a painter, \a opt1, \a opt2.
+*/
 void QCtmRangeSlider::drawRangeBackground(QStylePainter* painter, QStyleOptionSlider& opt1, QStyleOptionSlider& opt2)
 {
     Q_D(QCtmRangeSlider);
@@ -593,6 +719,9 @@ void QCtmRangeSlider::drawRangeBackground(QStylePainter* painter, QStyleOptionSl
     painter->drawPrimitive(QStyle::PE_IndicatorProgressChunk, chunk);
 }
 
+/*!
+    \brief      初始化样式选项 \a option, first.
+*/
 void QCtmRangeSlider::initStyleOption(QStyleOptionSlider& option, bool first) const
 {
     Q_D(const QCtmRangeSlider);
