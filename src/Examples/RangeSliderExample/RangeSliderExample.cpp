@@ -11,7 +11,9 @@ RangeSliderExample::RangeSliderExample(QWidget* parent /*= nullptr*/) : QCtmWind
         auto slider = new QCtmRangeSlider(this);
         layout->addWidget(slider);
         slider->setValue(24, 75);
+        slider->setTracking(false);
         slider->setTickPosition(QCtmRangeSlider::TickPosition::TicksBelow);
+        connect(slider, &QCtmRangeSlider::valueChanged, this, [](int l, int u) { qDebug() << l << "-" << u; });
     }
 
     {
@@ -19,6 +21,7 @@ RangeSliderExample::RangeSliderExample(QWidget* parent /*= nullptr*/) : QCtmWind
         layout->addWidget(slider);
         slider->setValue(24, 75);
         slider->setChunkVisible(true);
+        connect(slider, &QCtmRangeSlider::valueChanged, this, [](int l, int u) { qDebug() << l << "-" << u; });
         slider->setStyleSheet("QCtmRangeSlider::chunk"
                               "{"
                               "    margin-top: 5px;"
@@ -45,6 +48,7 @@ RangeSliderExample::RangeSliderExample(QWidget* parent /*= nullptr*/) : QCtmWind
         slider->setOrientation(Qt::Vertical);
         layout->addWidget(slider);
         slider->setValue(24, 75);
+        connect(slider, &QCtmRangeSlider::valueChanged, this, [](int l, int u) { qDebug() << l << "-" << u; });
         slider->setTickPosition(QCtmRangeSlider::TickPosition::TicksBelow);
     }
 
@@ -54,6 +58,7 @@ RangeSliderExample::RangeSliderExample(QWidget* parent /*= nullptr*/) : QCtmWind
         layout->addWidget(slider);
         slider->setValue(24, 75);
         slider->setChunkVisible(true);
+        connect(slider, &QCtmRangeSlider::valueChanged, this, [](int l, int u) { qDebug() << l << "-" << u; });
         slider->setStyleSheet("QCtmRangeSlider::chunk"
                               "{"
                               "    margin-left: 5px;"

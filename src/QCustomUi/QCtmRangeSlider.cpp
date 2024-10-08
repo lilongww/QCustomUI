@@ -220,6 +220,12 @@ QCtmRangeSlider::QCtmRangeSlider(QWidget* parent /*= nullptr*/) : QWidget(*new Q
     d->init();
 }
 
+QCtmRangeSlider::QCtmRangeSlider(Qt::Orientation orientation, QWidget* parent /*= nullptr*/) : QCtmRangeSlider(parent)
+{
+    Q_D(QCtmRangeSlider);
+    setOrientation(orientation);
+}
+
 QCtmRangeSlider::~QCtmRangeSlider() {}
 
 Qt::Orientation QCtmRangeSlider::orientation() const
@@ -310,10 +316,7 @@ void QCtmRangeSlider::setSliderPosition(int lower, int upper)
     std::tie(lower, upper) = std::minmax({ lower, upper });
     auto l                 = std::clamp(lower, d->minimum, d->maximum);
     auto u                 = std::clamp(upper, d->minimum, d->maximum);
-    bool emitValueChanged  = (l != d->lower || u != d->upper);
 
-    d->lower = l;
-    d->upper = u;
     if (d->lowerPosition != l || d->upperPosition != u)
     {
         d->lowerPosition = l;
@@ -561,6 +564,10 @@ void QCtmRangeSlider::mouseReleaseEvent(QMouseEvent* ev)
     initStyleOption(opt, d->pressedHandle == QCtmRangeSliderPrivate::Handle::Lower);
     opt.subControls = oldPressed;
     update(style()->subControlRect(QStyle::CC_Slider, &opt, oldPressed, this));
+    if (!d->tracking)
+    {
+        setValue(d->lowerPosition, d->upperPosition);
+    }
 }
 
 void QCtmRangeSlider::drawRangeBackground(QStylePainter* painter, QStyleOptionSlider& opt1, QStyleOptionSlider& opt2)

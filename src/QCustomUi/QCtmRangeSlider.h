@@ -29,10 +29,17 @@ class QCUSTOMUI_EXPORT QCtmRangeSlider : public QWidget
 {
     Q_OBJECT
     Q_DECLARE_PRIVATE(QCtmRangeSlider)
-
+    Q_PROPERTY(Qt::Orientation orientation READ orientation WRITE setOrientation)
+    Q_PROPERTY(int minimum READ minimum WRITE setMinimum)
+    Q_PROPERTY(int maximum READ maximum WRITE setMaximum)
+    Q_PROPERTY(int lower READ lower WRITE setLower)
+    Q_PROPERTY(int upper READ upper WRITE setUpper)
+    Q_PROPERTY(bool tracking READ hasTracking WRITE setTracking)
+    Q_PROPERTY(bool chunkVisible READ chunkVisible WRITE setChunkVisible)
 public:
     using TickPosition = QSlider::TickPosition;
     explicit QCtmRangeSlider(QWidget* parent = nullptr);
+    explicit QCtmRangeSlider(Qt::Orientation orientation, QWidget* parent = nullptr);
     ~QCtmRangeSlider();
     Qt::Orientation orientation() const;
     void setMinimum(int minimum);
