@@ -224,6 +224,21 @@ void QCtmRangeSliderPrivate::init()
 */
 
 /*!
+    \fn         void QCtmRangeSlider::valueChanged(int lower, int upper);
+    \brief      部件上下限发生变化时发送该信号, \a lower, \a upper.
+*/
+
+/*!
+    \fn         void QCtmRangeSlider::rangeChanged(int minimum, int maximum);
+    \brief      部件范围发生变化时发送该信号, \a minimum, \a maximum.
+*/
+
+/*!
+    \fn         void QCtmRangeSlider::sliderMoved(int lower, int upper);
+    \brief      部件滑块发生变化时发送该信号, \a lower, \a upper.
+*/
+
+/*!
     \brief      构造函数 \a parent.
 */
 QCtmRangeSlider::QCtmRangeSlider(QWidget* parent /*= nullptr*/) : QWidget(*new QCtmRangeSliderPrivate, parent, {})

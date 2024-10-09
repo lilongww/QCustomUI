@@ -62,9 +62,9 @@ public:
     void setChunkVisible(bool visible);
     bool chunkVisible() const;
 signals:
-    void valueChanged(int first, int second);
+    void valueChanged(int lower, int upper);
     void rangeChanged(int minimum, int maximum);
-    void sliderMoved(int first, int second);
+    void sliderMoved(int lower, int upper);
 public slots:
     void setRange(int minimum, int maximum);
     void setValue(int lower, int upper);
