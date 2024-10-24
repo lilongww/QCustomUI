@@ -25,6 +25,9 @@ void LongLongSpinBoxExample::init()
             });
     box->setSuffix("V");
     box->setPrefix("Data:");
+    // box->setDisplayFieldWidth(8);
+    // box->setDisplayFillChar('0');
+    // box->setDisplayIntegerBase(16);
     layout->addWidget(box);
     layout->addStretch(1);
 }

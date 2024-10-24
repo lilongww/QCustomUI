@@ -58,6 +58,10 @@ public:
     StepType stepType() const;
     void setDisplayIntegerBase(int base);
     int displayIntegerBase() const;
+    void setDisplayFieldWidth(int width);
+    int displayFieldWidth() const;
+    void setDisplayFillChar(QChar ch);
+    QChar displayFillChar() const;
 public slots:
     void setValue(qlonglong value);
 
