@@ -37,6 +37,8 @@ class QCUSTOMUI_EXPORT QCtmULongLongSpinBox : public QAbstractSpinBox
     Q_PROPERTY(StepType stepType READ stepType WRITE setStepType)
     Q_PROPERTY(qulonglong value READ value WRITE setValue NOTIFY valueChanged USER true)
     Q_PROPERTY(int displayIntegerBase READ displayIntegerBase WRITE setDisplayIntegerBase)
+    Q_PROPERTY(int displayFieldWidth READ displayFieldWidth WRITE setDisplayFieldWidth)
+    Q_PROPERTY(QChar displayFillChar READ displayFillChar WRITE setDisplayFillChar)
 
 public:
     explicit QCtmULongLongSpinBox(QWidget* parent = nullptr);
@@ -58,6 +60,10 @@ public:
     StepType stepType() const;
     void setDisplayIntegerBase(int base);
     int displayIntegerBase() const;
+    void setDisplayFieldWidth(int width);
+    int displayFieldWidth() const;
+    void setDisplayFillChar(QChar ch);
+    QChar displayFillChar() const;
 public slots:
     void setValue(qulonglong value);
 

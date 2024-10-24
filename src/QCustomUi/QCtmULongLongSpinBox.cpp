@@ -37,21 +37,20 @@ class QCtmULongLongSpinBoxPrivate : public QAbstractSpinBoxPrivate
 public:
     QCtmULongLongSpinBoxPrivate();
     void emitSignals(EmitPolicy ep, const QVariant&) override;
-
     virtual QVariant valueFromText(const QString& n) const override;
     virtual QString textFromValue(const QVariant& n) const override;
     QVariant validateAndInterpret(QString& input, int& pos, QValidator::State& state) const;
-
     inline void init()
     {
         Q_Q(QCtmULongLongSpinBox);
         q->setInputMethodHints(Qt::ImhDigitsOnly);
         setLayoutItemMargins(QStyle::SE_SpinBoxLayoutItem);
     }
+    QVariant calculateAdaptiveDecimalStep(int steps) const override;
 
     int displayIntegerBase;
-
-    QVariant calculateAdaptiveDecimalStep(int steps) const override;
+    int displayFieldWidth { 0 };
+    QChar displayFillChar { u8' ' };
 };
 
 QCtmULongLongSpinBoxPrivate::QCtmULongLongSpinBoxPrivate()
@@ -414,6 +413,48 @@ int QCtmULongLongSpinBox::displayIntegerBase() const
 }
 
 /*!
+    \brief      设置文本显示宽度 \a width, 文本不足显示宽度时，填充 displayFillChar.
+    \sa         displayFieldWidth
+*/
+void QCtmULongLongSpinBox::setDisplayFieldWidth(int width)
+{
+    Q_D(QCtmULongLongSpinBox);
+    d->displayFieldWidth = width;
+    update();
+}
+
+/*!
+    \brief      返回文本显示宽度.
+    \sa         setDisplayFieldWidth
+*/
+int QCtmULongLongSpinBox::displayFieldWidth() const
+{
+    Q_D(const QCtmULongLongSpinBox);
+    return d->displayFieldWidth;
+}
+
+/*!
+    \brief      设置文本显示填充字符 \a ch.
+    \sa         displayFillChar
+*/
+void QCtmULongLongSpinBox::setDisplayFillChar(QChar ch)
+{
+    Q_D(QCtmULongLongSpinBox);
+    d->displayFillChar = ch;
+    update();
+}
+
+/*!
+    \brief      返回文本填充字符.
+    \sa         setDisplayFillChar
+*/
+QChar QCtmULongLongSpinBox::displayFillChar() const
+{
+    Q_D(const QCtmULongLongSpinBox);
+    return d->displayFillChar;
+}
+
+/*!
     \brief      将值 \a value 转换为文本.
     \sa         valueFromText
 */
@@ -435,7 +476,8 @@ QString QCtmULongLongSpinBox::textFromValue(qulonglong value) const
             str.remove(locale().groupSeparator());
         }
     }
-
+    if (d->displayFieldWidth > 0)
+        str = QString("%1").arg(str, d->displayFieldWidth, d->displayFillChar);
     return str;
 }
 
