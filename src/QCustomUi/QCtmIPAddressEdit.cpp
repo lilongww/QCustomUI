@@ -364,7 +364,15 @@ void QCtmIPAddressEdit::keyPressEvent(QKeyEvent* event)
                     m_impl->cursorPosition++;
                     if (txt.size() == SECTION_CURSOR_COUNT - 1 &&
                         sectionOfCursorPosition(m_impl->cursorPosition) != SECTION_CURSOR_COUNT - 1)
+                    {
+                        auto old = sectionOfCursorPosition(m_impl->cursorPosition);
                         m_impl->cursorPosition++;
+                        auto now = sectionOfCursorPosition(m_impl->cursorPosition);
+                        if (old != now) // 全选下一个section
+                        {
+                            selectAll(now);
+                        }
+                    }
                 }
             }
         }
@@ -507,6 +515,7 @@ void QCtmIPAddressEdit::keyPressEvent(QKeyEvent* event)
         if (!txtLayout.text().isEmpty() && section < SECTION_COUNT - 1 && txtLayout.text().size() == m_impl->cursorPosition % 4)
         {
             m_impl->cursorPosition = (section + 1) * SECTION_CURSOR_COUNT;
+            selectAll(sectionOfCursorPosition(m_impl->cursorPosition));
         }
     }
     else if (event->key() == Qt::Key_Escape)
@@ -530,14 +539,7 @@ void QCtmIPAddressEdit::mouseDoubleClickEvent(QMouseEvent* event)
         clearSelection();
         auto cursor  = xToCursor(event->pos().x());
         auto section = sectionOfCursorPosition(cursor);
-        QTextLayout::FormatRange range;
-        range.start            = 0;
-        range.length           = m_impl->textLayouts[section].text().size();
-        m_impl->cursorPosition = section * SECTION_CURSOR_COUNT + range.length;
-        range.format.setBackground(palette().brush(QPalette::Highlight));
-        range.format.setForeground(palette().brush(QPalette::HighlightedText));
-        m_impl->selections[section].push_back(range);
-        update();
+        selectAll(section);
     }
 }
 
@@ -855,6 +857,19 @@ void QCtmIPAddressEdit::initActions()
 
     addAction(m_impl->copy);
     addAction(m_impl->paste);
+}
+
+void QCtmIPAddressEdit::selectAll(int section)
+{
+    clearSelection();
+    QTextLayout::FormatRange range;
+    range.start            = 0;
+    range.length           = m_impl->textLayouts[section].text().size();
+    m_impl->cursorPosition = section * SECTION_CURSOR_COUNT + range.length;
+    range.format.setBackground(palette().brush(QPalette::Highlight));
+    range.format.setForeground(palette().brush(QPalette::HighlightedText));
+    m_impl->selections[section].push_back(range);
+    update();
 }
 
 /*!

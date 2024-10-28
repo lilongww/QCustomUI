@@ -73,6 +73,7 @@ private:
     void deleteSelectedText();
     bool hasSelection() const;
     void initActions();
+    void selectAll(int section);
 private slots:
     void updateTextLayout();
     void onCustomContextMenuRequested(const QPoint& pos);
