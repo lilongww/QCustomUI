@@ -17,6 +17,7 @@
 **  along with QCustomUi.  If not, see <https://www.gnu.org/licenses/>.         **
 **********************************************************************************/
 #include "QCtmRangeSlider.h"
+#include "Private/QtVersionAdapter.h"
 
 #include <QDebug>
 #include <QStyleOption>
@@ -598,7 +599,7 @@ bool QCtmRangeSlider::event(QEvent* event)
     case QEvent::HoverLeave:
     case QEvent::HoverMove:
         if (const QHoverEvent* he = static_cast<const QHoverEvent*>(event))
-            d->updateHoverControl(he->position().toPoint());
+            d->updateHoverControl(QtVersionAdapter::eventPos(he));
         break;
     case QEvent::StyleChange:
     case QEvent::MacSizeChange:
@@ -623,7 +624,7 @@ void QCtmRangeSlider::mouseMoveEvent(QMouseEvent* event)
     }
     event->accept();
     int newPosition =
-        d->pixelPosToRangeValue(d->pick(event->position().toPoint()), d->pressedHandle == QCtmRangeSliderPrivate::Handle::Lower);
+        d->pixelPosToRangeValue(d->pick(QtVersionAdapter::eventPos(event)), d->pressedHandle == QCtmRangeSliderPrivate::Handle::Lower);
     if (d->pressedHandle == QCtmRangeSliderPrivate::Handle::Lower)
     {
         auto [l, u] = std::minmax(newPosition, d->upperPosition);
@@ -656,14 +657,14 @@ void QCtmRangeSlider::mousePressEvent(QMouseEvent* ev)
     if ((ev->button() & style()->styleHint(QStyle::SH_Slider_PageSetButtons)) == ev->button())
     {
         QStyleOptionSlider opt;
-        d->updatePressedHandle(ev->position().toPoint());
+        d->updatePressedHandle(QtVersionAdapter::eventPos(ev));
         bool lower = d->pressedHandle == QCtmRangeSliderPrivate::Handle::Lower;
         initStyleOption(opt, lower);
-        d->pressedControl = style()->hitTestComplexControl(QStyle::CC_Slider, &opt, ev->position().toPoint(), this);
+        d->pressedControl = style()->hitTestComplexControl(QStyle::CC_Slider, &opt, QtVersionAdapter::eventPos(ev), this);
         if (d->pressedControl == QStyle::SC_SliderGroove)
         {
             const QRect sliderRect = style()->subControlRect(QStyle::CC_Slider, &opt, QStyle::SC_SliderHandle, this);
-            int pressValue = d->pixelPosToRangeValue(d->pick(ev->position().toPoint() - sliderRect.center() + sliderRect.topLeft()));
+            int pressValue = d->pixelPosToRangeValue(d->pick(QtVersionAdapter::eventPos(ev) - sliderRect.center() + sliderRect.topLeft()));
             if (lower)
             {
                 setSliderPosition(pressValue, d->upperPosition);

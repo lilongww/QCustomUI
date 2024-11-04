@@ -21,7 +21,8 @@
 
 namespace QtVersionAdapter
 {
-inline QPoint eventPos(QMouseEvent* e)
+template<typename Event>
+inline QPoint eventPos(Event* e)
 {
 #if QT_VERSION_MAJOR < 6
     return e->pos();

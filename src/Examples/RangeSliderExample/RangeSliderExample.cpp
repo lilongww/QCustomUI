@@ -2,6 +2,7 @@
 
 #include <QCustomUi/QCtmRangeSlider.h>
 
+#include <QDebug>
 #include <QVBoxLayout>
 
 RangeSliderExample::RangeSliderExample(QWidget* parent /*= nullptr*/) : QCtmWindow(parent)

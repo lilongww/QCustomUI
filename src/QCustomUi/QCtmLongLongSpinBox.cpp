@@ -482,7 +482,7 @@ QString QCtmLongLongSpinBox::textFromValue(qlonglong value) const
     {
         bool hasMinus { false };
         if (hasMinus = str.startsWith("-"); hasMinus)
-            str.removeAt(0);
+            str.remove(0, 1);
         str = (hasMinus ? QString("-%1") : QString("%1")).arg(str, d->displayFieldWidth, d->displayFillChar);
     }
     return str;
