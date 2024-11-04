@@ -1,6 +1,6 @@
 ﻿cmake_minimum_required(VERSION 3.20)
 
-project(QCustomUi VERSION "1.16.2")
+project(QCustomUi VERSION "1.17.0")
 enable_testing()
 
 set(CMAKE_BUILD_WITH_INSTALL_RPATH TRUE)
@@ -25,5 +25,7 @@ endif()
 include(${PROJECT_SOURCE_DIR}/cmake/ExportHelper.cmake)
 
 export_config(${PROJECT_NAME} ${INSTALL_LIBRARYDIR} ${INSTALL_INCLUDEDIR})
+
+option(BUILD_STATIC "Build QCustomUi static library." OFF)
 
 add_subdirectory(src)

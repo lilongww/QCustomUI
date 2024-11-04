@@ -18,6 +18,8 @@
 **********************************************************************************/
 #pragma once
 
+#ifndef BUILD_STATIC
+
 #include "qcustomui_global.h"
 
 #include <QAbstractSpinBox>
@@ -37,6 +39,8 @@ class QCUSTOMUI_EXPORT QCtmLongLongSpinBox : public QAbstractSpinBox
     Q_PROPERTY(StepType stepType READ stepType WRITE setStepType)
     Q_PROPERTY(qlonglong value READ value WRITE setValue NOTIFY valueChanged USER true)
     Q_PROPERTY(int displayIntegerBase READ displayIntegerBase WRITE setDisplayIntegerBase)
+    Q_PROPERTY(int displayFieldWidth READ displayFieldWidth WRITE setDisplayFieldWidth)
+    Q_PROPERTY(QChar displayFillChar READ displayFillChar WRITE setDisplayFillChar)
 
 public:
     explicit QCtmLongLongSpinBox(QWidget* parent = nullptr);
@@ -58,6 +62,10 @@ public:
     StepType stepType() const;
     void setDisplayIntegerBase(int base);
     int displayIntegerBase() const;
+    void setDisplayFieldWidth(int width);
+    int displayFieldWidth() const;
+    void setDisplayFillChar(QChar ch);
+    QChar displayFillChar() const;
 public slots:
     void setValue(qlonglong value);
 
@@ -78,3 +86,4 @@ private:
     Q_DISABLE_COPY(QCtmLongLongSpinBox)
     Q_DECLARE_PRIVATE(QCtmLongLongSpinBox)
 };
+#endif

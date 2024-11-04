@@ -36,11 +36,13 @@ class QCUSTOMUI_EXPORT QCtmIPAddressEdit : public QWidget
 public:
     explicit QCtmIPAddressEdit(QWidget* parent = nullptr);
     ~QCtmIPAddressEdit();
-    void setIPAddress(const QString& ip);
     QString ipAddress() const;
     void setReadOnly(bool ro);
     bool isReadOnly() const;
+public slots:
+    void setIPAddress(const QString& ip);
     void clear();
+
 signals:
     void editChanged();
     void editingFinished();
@@ -73,6 +75,7 @@ private:
     void deleteSelectedText();
     bool hasSelection() const;
     void initActions();
+    void selectAll(int section);
 private slots:
     void updateTextLayout();
     void onCustomContextMenuRequested(const QPoint& pos);

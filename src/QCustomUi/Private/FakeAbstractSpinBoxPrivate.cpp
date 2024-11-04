@@ -17,6 +17,8 @@
 **  along with QCustomUi.  If not, see <https://www.gnu.org/licenses/>.         **
 **********************************************************************************/
 
+#ifndef BUILD_STATIC
+
 #include <QAccessibleValueChangeEvent>
 #include <private/qabstractspinbox_p.h>
 #include <private/qdatetimeparser_p.h>
@@ -998,3 +1000,5 @@ QVariant QAbstractSpinBoxPrivate::variantBound(const QVariant& min, const QVaria
         return min;
     }
 }
+
+#endif

@@ -186,11 +186,14 @@ bool QCtmDialog::shadowless() const { return m_impl->delegate->shadowless(); }
 */
 void QCtmDialog::hideEvent(QHideEvent* e)
 {
-    auto closeBtn = m_impl->title->findChild<QWidget*>("closeBtn");
-    if (closeBtn)
+    if (m_impl->title)
     {
-        auto e = new QEvent(QEvent::Type::Leave);
-        qApp->sendEvent(closeBtn, e);
+        auto closeBtn = m_impl->title->findChild<QWidget*>("closeBtn");
+        if (closeBtn)
+        {
+            auto e = new QEvent(QEvent::Type::Leave);
+            qApp->sendEvent(closeBtn, e);
+        }
     }
     QDialog::hideEvent(e);
 }

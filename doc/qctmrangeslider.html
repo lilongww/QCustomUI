@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+<!-- QCtmRangeSlider.cpp -->
+  <meta name="description" content="范围选择器.">
+  <title>QCtmRangeSlider Class | QCustomUi 1.17.0</title>
+  <link rel="stylesheet" type="text/css" href="style/offline-simple.css" />
+  <script type="text/javascript">
+    document.getElementsByTagName("link").item(0).setAttribute("href", "style/offline.css");
+    // loading style sheet breaks anchors that were jumped to before
+    // so force jumping to anchor again
+    setTimeout(function() {
+        var anchor = location.hash;
+        // need to jump to different anchor first (e.g. none)
+        location.hash = "#";
+        setTimeout(function() {
+            location.hash = anchor;
+        }, 0);
+    }, 0);
+  </script>
+</head>
+<body>
+<div class="header" id="qtdocheader">
+    <div class="main">
+    <div class="main-rounded">
+        <div class="navigationbar">
+        <ul>
+<li><a href="index.html">QCustomUi 1.17.0</a></li>
+<li><a href="qcustomui-module.html" translate="no">QCustomUi</a></li>
+<li>QCtmRangeSlider</li>
+<li id="buildversion">QCustomUi 1.17.0 Reference Documentation</li>
+    </ul>
+    </div>
+</div>
+<div class="content">
+<div class="line">
+<div class="content mainContent">
+<div class="sidebar">
+<div class="toc">
+<h3 id="toc">Contents</h3>
+<ul>
+<li class="level1"><a href="#properties">Properties</a></li>
+<li class="level1"><a href="#public-functions">Public Functions</a></li>
+<li class="level1"><a href="#reimplemented-public-functions">Reimplemented Public Functions</a></li>
+<li class="level1"><a href="#public-slots">Public Slots</a></li>
+<li class="level1"><a href="#signals">Signals</a></li>
+<li class="level1"><a href="#protected-functions">Protected Functions</a></li>
+<li class="level1"><a href="#reimplemented-protected-functions">Reimplemented Protected Functions</a></li>
+<li class="level1"><a href="#details">Detailed Description</a></li>
+</ul>
+</div>
+<div class="sidebar-content" id="sidebar-content"></div></div>
+<h1 class="title" translate="no">QCtmRangeSlider Class</h1>
+<!-- $$$QCtmRangeSlider-brief -->
+<p>范围选择器. <a href="#details">More...</a></p>
+<!-- @@@QCtmRangeSlider -->
+<div class="table"><table class="alignedsummary requisites" translate="no">
+<tr><td class="memItemLeft rightAlign topAlign"> Header:</td><td class="memItemRight bottomAlign"> <code translate="no">#include &lt;QCtmRangeSlider.h&gt;</code></td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> Inherits:</td><td class="memItemRight bottomAlign"> <a href="https://doc.qt.io/qt/qwidget.html" translate="no">QWidget</a></td></tr>
+</table></div>
+<ul>
+<li><a href="qctmrangeslider-members.html">List of all members, including inherited members</a></li>
+</ul>
+<h2 id="properties">Properties</h2>
+<ul>
+<li class="fn" translate="no"><b><a href="qctmrangeslider.html#tracking-prop" translate="no">tracking</a></b> : bool</li>
+</ul>
+<h2 id="public-functions">Public Functions</h2>
+<div class="table"><table class="alignedsummary" translate="no">
+<tr><td class="memItemLeft rightAlign topAlign"> </td><td class="memItemRight bottomAlign"><b><a href="qctmrangeslider.html#QCtmRangeSlider" translate="no">QCtmRangeSlider</a></b>(QWidget *<i>parent</i> = nullptr)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> </td><td class="memItemRight bottomAlign"><b><a href="qctmrangeslider.html#QCtmRangeSlider-1" translate="no">QCtmRangeSlider</a></b>(Qt::Orientation <i>orientation</i>, QWidget *<i>parent</i> = nullptr)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> virtual </td><td class="memItemRight bottomAlign"><b><a href="qctmrangeslider.html#dtor.QCtmRangeSlider" translate="no">~QCtmRangeSlider</a></b>()</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> bool </td><td class="memItemRight bottomAlign"><b><a href="qctmrangeslider.html#chunkVisible" translate="no">chunkVisible</a></b>() const</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> bool </td><td class="memItemRight bottomAlign"><b><a href="qctmrangeslider.html#hasTracking" translate="no">hasTracking</a></b>() const</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> int </td><td class="memItemRight bottomAlign"><b><a href="qctmrangeslider.html#lower" translate="no">lower</a></b>() const</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> int </td><td class="memItemRight bottomAlign"><b><a href="qctmrangeslider.html#lowerSliderPosition" translate="no">lowerSliderPosition</a></b>() const</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> int </td><td class="memItemRight bottomAlign"><b><a href="qctmrangeslider.html#maximum" translate="no">maximum</a></b>() const</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> int </td><td class="memItemRight bottomAlign"><b><a href="qctmrangeslider.html#minimum" translate="no">minimum</a></b>() const</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> Qt::Orientation </td><td class="memItemRight bottomAlign"><b><a href="qctmrangeslider.html#orientation" translate="no">orientation</a></b>() const</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> void </td><td class="memItemRight bottomAlign"><b><a href="qctmrangeslider.html#setChunkVisible" translate="no">setChunkVisible</a></b>(bool <i>visible</i>)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> void </td><td class="memItemRight bottomAlign"><b><a href="qctmrangeslider.html#setLower" translate="no">setLower</a></b>(int <i>value</i>)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> void </td><td class="memItemRight bottomAlign"><b><a href="qctmrangeslider.html#setMaximum" translate="no">setMaximum</a></b>(int <i>maximum</i>)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> void </td><td class="memItemRight bottomAlign"><b><a href="qctmrangeslider.html#setMinimum" translate="no">setMinimum</a></b>(int <i>minimum</i>)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> void </td><td class="memItemRight bottomAlign"><b><a href="qctmrangeslider.html#setSliderPosition" translate="no">setSliderPosition</a></b>(int <i>lower</i>, int <i>upper</i>)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> void </td><td class="memItemRight bottomAlign"><b><a href="qctmrangeslider.html#setTickPosition" translate="no">setTickPosition</a></b>(QCtmRangeSlider::TickPosition <i>pos</i>)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> void </td><td class="memItemRight bottomAlign"><b><a href="qctmrangeslider.html#setTracking" translate="no">setTracking</a></b>(bool <i>on</i>)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> void </td><td class="memItemRight bottomAlign"><b><a href="qctmrangeslider.html#setUpper" translate="no">setUpper</a></b>(int <i>value</i>)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> QCtmRangeSlider::TickPosition </td><td class="memItemRight bottomAlign"><b><a href="qctmrangeslider.html#tickPosition" translate="no">tickPosition</a></b>() const</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> int </td><td class="memItemRight bottomAlign"><b><a href="qctmrangeslider.html#upper" translate="no">upper</a></b>() const</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> int </td><td class="memItemRight bottomAlign"><b><a href="qctmrangeslider.html#upperSliderPosition" translate="no">upperSliderPosition</a></b>() const</td></tr>
+</table></div>
+<h2 id="reimplemented-public-functions">Reimplemented Public Functions</h2>
+<div class="table"><table class="alignedsummary" translate="no">
+<tr><td class="memItemLeft rightAlign topAlign"> virtual QSize </td><td class="memItemRight bottomAlign"><b><a href="qctmrangeslider.html#minimumSizeHint" translate="no">minimumSizeHint</a></b>() const override</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> virtual QSize </td><td class="memItemRight bottomAlign"><b><a href="qctmrangeslider.html#sizeHint" translate="no">sizeHint</a></b>() const override</td></tr>
+</table></div>
+<h2 id="public-slots">Public Slots</h2>
+<div class="table"><table class="alignedsummary" translate="no">
+<tr><td class="memItemLeft rightAlign topAlign"> void </td><td class="memItemRight bottomAlign"><b><a href="qctmrangeslider.html#setOrientation" translate="no">setOrientation</a></b>(Qt::Orientation <i>orientation</i>)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> void </td><td class="memItemRight bottomAlign"><b><a href="qctmrangeslider.html#setRange" translate="no">setRange</a></b>(int <i>minimum</i>, int <i>maximum</i>)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> void </td><td class="memItemRight bottomAlign"><b><a href="qctmrangeslider.html#setValue" translate="no">setValue</a></b>(int <i>lower</i>, int <i>upper</i>)</td></tr>
+</table></div>
+<h2 id="signals">Signals</h2>
+<div class="table"><table class="alignedsummary" translate="no">
+<tr><td class="memItemLeft rightAlign topAlign"> void </td><td class="memItemRight bottomAlign"><b><a href="qctmrangeslider.html#rangeChanged" translate="no">rangeChanged</a></b>(int <i>minimum</i>, int <i>maximum</i>)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> void </td><td class="memItemRight bottomAlign"><b><a href="qctmrangeslider.html#sliderMoved" translate="no">sliderMoved</a></b>(int <i>lower</i>, int <i>upper</i>)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> void </td><td class="memItemRight bottomAlign"><b><a href="qctmrangeslider.html#valueChanged" translate="no">valueChanged</a></b>(int <i>lower</i>, int <i>upper</i>)</td></tr>
+</table></div>
+<h2 id="protected-functions">Protected Functions</h2>
+<div class="table"><table class="alignedsummary" translate="no">
+<tr><td class="memItemLeft rightAlign topAlign"> virtual void </td><td class="memItemRight bottomAlign"><b><a href="qctmrangeslider.html#drawRangeBackground" translate="no">drawRangeBackground</a></b>(QStylePainter *<i>painter</i>, QStyleOptionSlider &amp;<i>opt1</i>, QStyleOptionSlider &amp;<i>opt2</i>)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> virtual void </td><td class="memItemRight bottomAlign"><b><a href="qctmrangeslider.html#initStyleOption" translate="no">initStyleOption</a></b>(QStyleOptionSlider &amp;<i>option</i>, bool <i>first</i>) const</td></tr>
+</table></div>
+<h2 id="reimplemented-protected-functions">Reimplemented Protected Functions</h2>
+<div class="table"><table class="alignedsummary" translate="no">
+<tr><td class="memItemLeft rightAlign topAlign"> virtual bool </td><td class="memItemRight bottomAlign"><b><a href="qctmrangeslider.html#event" translate="no">event</a></b>(QEvent *<i>event</i>) override</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> virtual void </td><td class="memItemRight bottomAlign"><b><a href="qctmrangeslider.html#mouseMoveEvent" translate="no">mouseMoveEvent</a></b>(QMouseEvent *<i>event</i>) override</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> virtual void </td><td class="memItemRight bottomAlign"><b><a href="qctmrangeslider.html#mousePressEvent" translate="no">mousePressEvent</a></b>(QMouseEvent *<i>ev</i>) override</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> virtual void </td><td class="memItemRight bottomAlign"><b><a href="qctmrangeslider.html#mouseReleaseEvent" translate="no">mouseReleaseEvent</a></b>(QMouseEvent *<i>ev</i>) override</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> virtual void </td><td class="memItemRight bottomAlign"><b><a href="qctmrangeslider.html#paintEvent" translate="no">paintEvent</a></b>(QPaintEvent *<i>event</i>) override</td></tr>
+</table></div>
+<!-- $$$QCtmRangeSlider-description -->
+<div class="descr">
+<h2 id="details">Detailed Description</h2>
+</div>
+<!-- @@@QCtmRangeSlider -->
+<div class="prop">
+<h2>Property Documentation</h2>
+<!-- $$$tracking-prop$$$hasTracking$$$setTrackingbool -->
+<h3 class="fn" translate="no" id="tracking-prop"><span class="name">tracking</span> : <span class="type">bool</span></h3>
+<p>表示valueChange 信号是否跟踪拖拽发送。</p>
+<p><b>Access functions:</b></p>
+<div class="table"><table class="alignedsummary" translate="no">
+<tr><td class="memItemLeft topAlign rightAlign"> bool </td><td class="memItemRight bottomAlign"><span class="name"><b><a href="qctmrangeslider.html#hasTracking" translate="no">hasTracking</a></b></span>() const</td></tr>
+<tr><td class="memItemLeft topAlign rightAlign"> void </td><td class="memItemRight bottomAlign"><span class="name"><b><a href="qctmrangeslider.html#setTracking" translate="no">setTracking</a></b></span>(bool <i>on</i>)</td></tr>
+</table></div>
+<p><b>See also </b><a href="qctmrangeslider.html#setTracking" translate="no">setTracking</a> and <a href="qctmrangeslider.html#hasTracking" translate="no">hasTracking</a>.</p>
+<!-- @@@tracking -->
+</div>
+<div class="func">
+<h2>Member Function Documentation</h2>
+<!-- $$$QCtmRangeSlider[overload1]$$$QCtmRangeSliderQWidget* -->
+<h3 class="fn" translate="no" id="QCtmRangeSlider"><code class="details extra" translate="no">[explicit]</code> QCtmRangeSlider::<span class="name">QCtmRangeSlider</span>(<span class="type"><a href="https://doc.qt.io/qt/qwidget.html#QWidget" translate="no">QWidget</a></span> *<i>parent</i> = nullptr)</h3>
+<p>构造函数 <i translate="no">parent</i>.</p>
+<!-- @@@QCtmRangeSlider -->
+<!-- $$$QCtmRangeSlider$$$QCtmRangeSliderQt::OrientationQWidget* -->
+<h3 class="fn" translate="no" id="QCtmRangeSlider-1"><code class="details extra" translate="no">[explicit]</code> QCtmRangeSlider::<span class="name">QCtmRangeSlider</span>(<span class="type"><a href="https://doc.qt.io/qt/qt.html#Orientation-enum" translate="no">Qt::Orientation</a></span> <i>orientation</i>, <span class="type"><a href="https://doc.qt.io/qt/qwidget.html#QWidget" translate="no">QWidget</a></span> *<i>parent</i> = nullptr)</h3>
+<p>构造函数 <i translate="no">orientation</i>, <i translate="no">parent</i>.</p>
+<!-- @@@QCtmRangeSlider -->
+<!-- $$$~QCtmRangeSlider[overload1]$$$~QCtmRangeSlider -->
+<h3 class="fn" translate="no" id="dtor.QCtmRangeSlider"><code class="details extra" translate="no">[virtual noexcept]</code> QCtmRangeSlider::<span class="name">~QCtmRangeSlider</span>()</h3>
+<p>析构函数.</p>
+<!-- @@@~QCtmRangeSlider -->
+<!-- $$$chunkVisible -->
+<h3 class="fn" translate="no" id="chunkVisible"><span class="type">bool</span> QCtmRangeSlider::<span class="name">chunkVisible</span>() const</h3>
+<p>返回滑块之间的区块是否显示.</p>
+<div class="admonition note"><p><b>Note: </b>Getter function for property chunkVisible. </p>
+</div><p><b>See also </b><a href="qctmrangeslider.html#setChunkVisible" translate="no">setChunkVisible</a>.</p>
+<!-- @@@chunkVisible -->
+<!-- $$$drawRangeBackground[overload1]$$$drawRangeBackgroundQStylePainter*QStyleOptionSlider&QStyleOptionSlider& -->
+<h3 class="fn" translate="no" id="drawRangeBackground"><code class="details extra" translate="no">[virtual protected]</code> <span class="type">void</span> QCtmRangeSlider::<span class="name">drawRangeBackground</span>(<span class="type"><a href="https://doc.qt.io/qt/qstylepainter.html" translate="no">QStylePainter</a></span> *<i>painter</i>, <span class="type"><a href="https://doc.qt.io/qt/qstyleoptionslider.html" translate="no">QStyleOptionSlider</a></span> &amp;<i>opt1</i>, <span class="type"><a href="https://doc.qt.io/qt/qstyleoptionslider.html" translate="no">QStyleOptionSlider</a></span> &amp;<i>opt2</i>)</h3>
+<p>绘制滑块之间的区块, <i translate="no">painter</i>, <i translate="no">opt1</i>, <i translate="no">opt2</i>.</p>
+<!-- @@@drawRangeBackground -->
+<!-- $$$event[overload1]$$$eventQEvent* -->
+<h3 class="fn" translate="no" id="event"><code class="details extra" translate="no">[override virtual protected]</code> <span class="type">bool</span> QCtmRangeSlider::<span class="name">event</span>(<span class="type"><a href="https://doc.qt.io/qt/qevent.html" translate="no">QEvent</a></span> *<i>event</i>)</h3>
+<p>Reimplements: <a href="https://doc.qt.io/qt/qwidget.html#event" translate="no">QWidget::event</a>(QEvent *event).</p>
+<!-- @@@event -->
+<!-- $$$hasTracking -->
+<h3 class="fn" translate="no" id="hasTracking"><span class="type">bool</span> QCtmRangeSlider::<span class="name">hasTracking</span>() const</h3>
+<p>返回 valueChange 信号是否跟踪拖拽发送.</p>
+<div class="admonition note"><p><b>Note: </b>Getter function for property <a href="qctmrangeslider.html#tracking-prop" translate="no">tracking</a>. </p>
+</div><p><b>See also </b><a href="qctmrangeslider.html#setTracking" translate="no">setTracking</a>.</p>
+<!-- @@@hasTracking -->
+<!-- $$$initStyleOption[overload1]$$$initStyleOptionQStyleOptionSlider&bool -->
+<h3 class="fn" translate="no" id="initStyleOption"><code class="details extra" translate="no">[virtual protected]</code> <span class="type">void</span> QCtmRangeSlider::<span class="name">initStyleOption</span>(<span class="type"><a href="https://doc.qt.io/qt/qstyleoptionslider.html" translate="no">QStyleOptionSlider</a></span> &amp;<i>option</i>, <span class="type">bool</span> <i>first</i>) const</h3>
+<p>初始化样式选项 <i translate="no">option</i>, <i translate="no">first</i>.</p>
+<!-- @@@initStyleOption -->
+<!-- $$$lower -->
+<h3 class="fn" translate="no" id="lower"><span class="type">int</span> QCtmRangeSlider::<span class="name">lower</span>() const</h3>
+<p>返回范围下限.</p>
+<div class="admonition note"><p><b>Note: </b>Getter function for property lower. </p>
+</div><p><b>See also </b><a href="qctmrangeslider.html#setLower" translate="no">setLower</a>.</p>
+<!-- @@@lower -->
+<!-- $$$lowerSliderPosition[overload1]$$$lowerSliderPosition -->
+<h3 class="fn" translate="no" id="lowerSliderPosition"><span class="type">int</span> QCtmRangeSlider::<span class="name">lowerSliderPosition</span>() const</h3>
+<p>返回下限滑块位置.</p>
+<p><b>See also </b><a href="qctmrangeslider.html#setSliderPosition" translate="no">setSliderPosition</a>.</p>
+<!-- @@@lowerSliderPosition -->
+<!-- $$$maximum -->
+<h3 class="fn" translate="no" id="maximum"><span class="type">int</span> QCtmRangeSlider::<span class="name">maximum</span>() const</h3>
+<p>返回最大值.</p>
+<div class="admonition note"><p><b>Note: </b>Getter function for property maximum. </p>
+</div><p><b>See also </b><a href="qctmrangeslider.html#setMaximum" translate="no">setMaximum</a>.</p>
+<!-- @@@maximum -->
+<!-- $$$minimum -->
+<h3 class="fn" translate="no" id="minimum"><span class="type">int</span> QCtmRangeSlider::<span class="name">minimum</span>() const</h3>
+<p>返回最小值.</p>
+<div class="admonition note"><p><b>Note: </b>Getter function for property minimum. </p>
+</div><p><b>See also </b><a href="qctmrangeslider.html#setMinimum" translate="no">setMinimum</a>.</p>
+<!-- @@@minimum -->
+<!-- $$$minimumSizeHint[overload1]$$$minimumSizeHint -->
+<h3 class="fn" translate="no" id="minimumSizeHint"><code class="details extra" translate="no">[override virtual]</code> <span class="type"><a href="https://doc.qt.io/qt/qsize.html" translate="no">QSize</a></span> QCtmRangeSlider::<span class="name">minimumSizeHint</span>() const</h3>
+<p>Reimplements an access function for property: <a href="https://doc.qt.io/qt/qwidget.html#minimumSizeHint-prop" translate="no">QWidget::minimumSizeHint</a>.</p>
+<!-- @@@minimumSizeHint -->
+<!-- $$$mouseMoveEvent[overload1]$$$mouseMoveEventQMouseEvent* -->
+<h3 class="fn" translate="no" id="mouseMoveEvent"><code class="details extra" translate="no">[override virtual protected]</code> <span class="type">void</span> QCtmRangeSlider::<span class="name">mouseMoveEvent</span>(<span class="type"><a href="https://doc.qt.io/qt/qmouseevent.html" translate="no">QMouseEvent</a></span> *<i>event</i>)</h3>
+<p>Reimplements: <a href="https://doc.qt.io/qt/qwidget.html#mouseMoveEvent" translate="no">QWidget::mouseMoveEvent</a>(QMouseEvent *event).</p>
+<!-- @@@mouseMoveEvent -->
+<!-- $$$mousePressEvent[overload1]$$$mousePressEventQMouseEvent* -->
+<h3 class="fn" translate="no" id="mousePressEvent"><code class="details extra" translate="no">[override virtual protected]</code> <span class="type">void</span> QCtmRangeSlider::<span class="name">mousePressEvent</span>(<span class="type"><a href="https://doc.qt.io/qt/qmouseevent.html" translate="no">QMouseEvent</a></span> *<i>ev</i>)</h3>
+<p>Reimplements: <a href="https://doc.qt.io/qt/qwidget.html#mousePressEvent" translate="no">QWidget::mousePressEvent</a>(QMouseEvent *event).</p>
+<!-- @@@mousePressEvent -->
+<!-- $$$mouseReleaseEvent[overload1]$$$mouseReleaseEventQMouseEvent* -->
+<h3 class="fn" translate="no" id="mouseReleaseEvent"><code class="details extra" translate="no">[override virtual protected]</code> <span class="type">void</span> QCtmRangeSlider::<span class="name">mouseReleaseEvent</span>(<span class="type"><a href="https://doc.qt.io/qt/qmouseevent.html" translate="no">QMouseEvent</a></span> *<i>ev</i>)</h3>
+<p>Reimplements: <a href="https://doc.qt.io/qt/qwidget.html#mouseReleaseEvent" translate="no">QWidget::mouseReleaseEvent</a>(QMouseEvent *event).</p>
+<!-- @@@mouseReleaseEvent -->
+<!-- $$$orientation -->
+<h3 class="fn" translate="no" id="orientation"><span class="type"><a href="https://doc.qt.io/qt/qt.html#Orientation-enum" translate="no">Qt::Orientation</a></span> QCtmRangeSlider::<span class="name">orientation</span>() const</h3>
+<p>返回该部件的朝向.</p>
+<div class="admonition note"><p><b>Note: </b>Getter function for property orientation. </p>
+</div><p><b>See also </b><a href="qctmrangeslider.html#setOrientation" translate="no">setOrientation</a>.</p>
+<!-- @@@orientation -->
+<!-- $$$paintEvent[overload1]$$$paintEventQPaintEvent* -->
+<h3 class="fn" translate="no" id="paintEvent"><code class="details extra" translate="no">[override virtual protected]</code> <span class="type">void</span> QCtmRangeSlider::<span class="name">paintEvent</span>(<span class="type"><a href="https://doc.qt.io/qt/qpaintevent.html" translate="no">QPaintEvent</a></span> *<i>event</i>)</h3>
+<p>Reimplements: <a href="https://doc.qt.io/qt/qwidget.html#paintEvent" translate="no">QWidget::paintEvent</a>(QPaintEvent *event).</p>
+<!-- @@@paintEvent -->
+<!-- $$$rangeChanged[overload1]$$$rangeChangedintint -->
+<h3 class="fn" translate="no" id="rangeChanged"><code class="details extra" translate="no">[signal]</code> <span class="type">void</span> QCtmRangeSlider::<span class="name">rangeChanged</span>(<span class="type">int</span> <i>minimum</i>, <span class="type">int</span> <i>maximum</i>)</h3>
+<p>部件范围发生变化时发送该信号, <i translate="no">minimum</i>, <i translate="no">maximum</i>.</p>
+<!-- @@@rangeChanged -->
+<!-- $$$setChunkVisible -->
+<h3 class="fn" translate="no" id="setChunkVisible"><span class="type">void</span> QCtmRangeSlider::<span class="name">setChunkVisible</span>(<span class="type">bool</span> <i>visible</i>)</h3>
+<p>设置滑块之间的区块是否显示，若要对其设置样式表，则先设置为显示 <i translate="no">visible</i>.</p>
+<div class="admonition note"><p><b>Note: </b>Setter function for property <a href="qctmrangeslider.html#chunkVisible" translate="no">chunkVisible</a>. </p>
+</div><p><b>See also </b><a href="qctmrangeslider.html#chunkVisible" translate="no">chunkVisible</a>.</p>
+<!-- @@@setChunkVisible -->
+<!-- $$$setLower -->
+<h3 class="fn" translate="no" id="setLower"><span class="type">void</span> QCtmRangeSlider::<span class="name">setLower</span>(<span class="type">int</span> <i>value</i>)</h3>
+<p>设置范围下限 <i translate="no">value</i>.</p>
+<div class="admonition note"><p><b>Note: </b>Setter function for property <a href="qctmrangeslider.html#lower" translate="no">lower</a>. </p>
+</div><p><b>See also </b><a href="qctmrangeslider.html#lower" translate="no">lower</a>.</p>
+<!-- @@@setLower -->
+<!-- $$$setMaximum -->
+<h3 class="fn" translate="no" id="setMaximum"><span class="type">void</span> QCtmRangeSlider::<span class="name">setMaximum</span>(<span class="type">int</span> <i>maximum</i>)</h3>
+<p>设置最大值 <i translate="no">maximum</i>.</p>
+<div class="admonition note"><p><b>Note: </b>Setter function for property <a href="qctmrangeslider.html#maximum" translate="no">maximum</a>. </p>
+</div><p><b>See also </b><a href="qctmrangeslider.html#maximum" translate="no">maximum</a>.</p>
+<!-- @@@setMaximum -->
+<!-- $$$setMinimum -->
+<h3 class="fn" translate="no" id="setMinimum"><span class="type">void</span> QCtmRangeSlider::<span class="name">setMinimum</span>(<span class="type">int</span> <i>minimum</i>)</h3>
+<p>设置最小值 <i translate="no">minimum</i>.</p>
+<div class="admonition note"><p><b>Note: </b>Setter function for property <a href="qctmrangeslider.html#minimum" translate="no">minimum</a>. </p>
+</div><p><b>See also </b><a href="qctmrangeslider.html#minimum" translate="no">minimum</a>.</p>
+<!-- @@@setMinimum -->
+<!-- $$$setOrientation -->
+<h3 class="fn" translate="no" id="setOrientation"><code class="details extra" translate="no">[slot]</code> <span class="type">void</span> QCtmRangeSlider::<span class="name">setOrientation</span>(<span class="type"><a href="https://doc.qt.io/qt/qt.html#Orientation-enum" translate="no">Qt::Orientation</a></span> <i>orientation</i>)</h3>
+<p>设置部件方向 <i translate="no">orientation</i>.</p>
+<div class="admonition note"><p><b>Note: </b>Setter function for property <a href="qctmrangeslider.html#orientation" translate="no">orientation</a>. </p>
+</div><p><b>See also </b><a href="qctmrangeslider.html#orientation" translate="no">orientation</a>.</p>
+<!-- @@@setOrientation -->
+<!-- $$$setRange[overload1]$$$setRangeintint -->
+<h3 class="fn" translate="no" id="setRange"><code class="details extra" translate="no">[slot]</code> <span class="type">void</span> QCtmRangeSlider::<span class="name">setRange</span>(<span class="type">int</span> <i>minimum</i>, <span class="type">int</span> <i>maximum</i>)</h3>
+<p>设置最大值和最小值 <i translate="no">minimum</i>, <i translate="no">maximum</i>.</p>
+<p><b>See also </b><a href="qctmrangeslider.html#setMinimum" translate="no">setMinimum</a> and <a href="qctmrangeslider.html#setMaximum" translate="no">setMaximum</a>.</p>
+<!-- @@@setRange -->
+<!-- $$$setSliderPosition[overload1]$$$setSliderPositionintint -->
+<h3 class="fn" translate="no" id="setSliderPosition"><span class="type">void</span> QCtmRangeSlider::<span class="name">setSliderPosition</span>(<span class="type">int</span> <i>lower</i>, <span class="type">int</span> <i>upper</i>)</h3>
+<p>设置滑块位置 <i translate="no">lower</i>, <i translate="no">upper</i>.</p>
+<p><b>See also </b><a href="qctmrangeslider.html#lowerSliderPosition" translate="no">lowerSliderPosition</a> and <a href="qctmrangeslider.html#upperSliderPosition" translate="no">upperSliderPosition</a>.</p>
+<!-- @@@setSliderPosition -->
+<!-- $$$setTickPosition[overload1]$$$setTickPositionQCtmRangeSlider::TickPosition -->
+<h3 class="fn" translate="no" id="setTickPosition"><span class="type">void</span> QCtmRangeSlider::<span class="name">setTickPosition</span>(<span class="type">QCtmRangeSlider::TickPosition</span> <i>pos</i>)</h3>
+<p>设置刻度显示位置 <i translate="no">pos</i>.</p>
+<p><b>See also </b><a href="qctmrangeslider.html#tickPosition" translate="no">tickPosition</a>.</p>
+<!-- @@@setTickPosition -->
+<!-- $$$setTracking -->
+<h3 class="fn" translate="no" id="setTracking"><span class="type">void</span> QCtmRangeSlider::<span class="name">setTracking</span>(<span class="type">bool</span> <i>on</i>)</h3>
+<p>设置 valueChange 信号是否跟踪拖拽发送 <i translate="no">on</i>.</p>
+<div class="admonition note"><p><b>Note: </b>Setter function for property <a href="qctmrangeslider.html#tracking-prop" translate="no">tracking</a>. </p>
+</div><p><b>See also </b><a href="qctmrangeslider.html#hasTracking" translate="no">hasTracking</a>.</p>
+<!-- @@@setTracking -->
+<!-- $$$setUpper -->
+<h3 class="fn" translate="no" id="setUpper"><span class="type">void</span> QCtmRangeSlider::<span class="name">setUpper</span>(<span class="type">int</span> <i>value</i>)</h3>
+<p>设置范围上限 <i translate="no">value</i>.</p>
+<div class="admonition note"><p><b>Note: </b>Setter function for property <a href="qctmrangeslider.html#upper" translate="no">upper</a>. </p>
+</div><p><b>See also </b><a href="qctmrangeslider.html#upper" translate="no">upper</a>() and <a href="qctmrangeslider.html#lower" translate="no">lower</a>.</p>
+<!-- @@@setUpper -->
+<!-- $$$setValue[overload1]$$$setValueintint -->
+<h3 class="fn" translate="no" id="setValue"><code class="details extra" translate="no">[slot]</code> <span class="type">void</span> QCtmRangeSlider::<span class="name">setValue</span>(<span class="type">int</span> <i>lower</i>, <span class="type">int</span> <i>upper</i>)</h3>
+<p>设置上下限 <i translate="no">lower</i>, <i translate="no">upper</i>.</p>
+<p><b>See also </b><a href="qctmrangeslider.html#setLower" translate="no">setLower</a> and <a href="qctmrangeslider.html#setUpper" translate="no">setUpper</a>.</p>
+<!-- @@@setValue -->
+<!-- $$$sizeHint[overload1]$$$sizeHint -->
+<h3 class="fn" translate="no" id="sizeHint"><code class="details extra" translate="no">[override virtual]</code> <span class="type"><a href="https://doc.qt.io/qt/qsize.html" translate="no">QSize</a></span> QCtmRangeSlider::<span class="name">sizeHint</span>() const</h3>
+<p>Reimplements an access function for property: <a href="https://doc.qt.io/qt/qwidget.html#sizeHint-prop" translate="no">QWidget::sizeHint</a>.</p>
+<!-- @@@sizeHint -->
+<!-- $$$sliderMoved[overload1]$$$sliderMovedintint -->
+<h3 class="fn" translate="no" id="sliderMoved"><code class="details extra" translate="no">[signal]</code> <span class="type">void</span> QCtmRangeSlider::<span class="name">sliderMoved</span>(<span class="type">int</span> <i>lower</i>, <span class="type">int</span> <i>upper</i>)</h3>
+<p>部件滑块发生变化时发送该信号, <i translate="no">lower</i>, <i translate="no">upper</i>.</p>
+<!-- @@@sliderMoved -->
+<!-- $$$tickPosition[overload1]$$$tickPosition -->
+<h3 class="fn" translate="no" id="tickPosition"><span class="type">QCtmRangeSlider::TickPosition</span> QCtmRangeSlider::<span class="name">tickPosition</span>() const</h3>
+<p>返回刻度显示位置.</p>
+<p><b>See also </b><a href="qctmrangeslider.html#setTickPosition" translate="no">setTickPosition</a>.</p>
+<!-- @@@tickPosition -->
+<!-- $$$upper -->
+<h3 class="fn" translate="no" id="upper"><span class="type">int</span> QCtmRangeSlider::<span class="name">upper</span>() const</h3>
+<p>返回范围上限.</p>
+<div class="admonition note"><p><b>Note: </b>Getter function for property upper. </p>
+</div><p><b>See also </b><a href="qctmrangeslider.html#setUpper" translate="no">setUpper</a>.</p>
+<!-- @@@upper -->
+<!-- $$$upperSliderPosition[overload1]$$$upperSliderPosition -->
+<h3 class="fn" translate="no" id="upperSliderPosition"><span class="type">int</span> QCtmRangeSlider::<span class="name">upperSliderPosition</span>() const</h3>
+<p>返回上限滑块位置.</p>
+<p><b>See also </b><a href="qctmrangeslider.html#setSliderPosition" translate="no">setSliderPosition</a>.</p>
+<!-- @@@upperSliderPosition -->
+<!-- $$$valueChanged[overload1]$$$valueChangedintint -->
+<h3 class="fn" translate="no" id="valueChanged"><code class="details extra" translate="no">[signal]</code> <span class="type">void</span> QCtmRangeSlider::<span class="name">valueChanged</span>(<span class="type">int</span> <i>lower</i>, <span class="type">int</span> <i>upper</i>)</h3>
+<p>部件上下限发生变化时发送该信号, <i translate="no">lower</i>, <i translate="no">upper</i>.</p>
+<!-- @@@valueChanged -->
+</div>
+        </div>
+       </div>
+   </div>
+   </div>
+</div>
+<div class="footer">
+   <p>
+   <acronym title="Copyright">&copy;</acronym> QCustomUi
+   Documentation contributions included herein are the copyrights of
+   their respective owners.<br/>    The documentation provided herein is licensed under the terms of the    <a href="http://www.gnu.org/licenses/fdl.html">GNU Free Documentation    License version 1.3</a> as published by the Free Software Foundation.<br/> </div>
+</body>
+</html>

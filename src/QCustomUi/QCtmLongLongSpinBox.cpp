@@ -16,6 +16,8 @@
 **  You should have received a copy of the GNU Lesser General Public License    **
 **  along with QCustomUi.  If not, see <https://www.gnu.org/licenses/>.         **
 **********************************************************************************/
+
+#ifndef BUILD_STATIC
 #include "QCtmLongLongSpinBox.h"
 
 #include <QStyle>
@@ -37,21 +39,20 @@ class QCtmLongLongSpinBoxPrivate : public QAbstractSpinBoxPrivate
 public:
     QCtmLongLongSpinBoxPrivate();
     void emitSignals(EmitPolicy ep, const QVariant&) override;
-
     virtual QVariant valueFromText(const QString& n) const override;
     virtual QString textFromValue(const QVariant& n) const override;
     QVariant validateAndInterpret(QString& input, int& pos, QValidator::State& state) const;
-
     inline void init()
     {
         Q_Q(QCtmLongLongSpinBox);
         q->setInputMethodHints(Qt::ImhDigitsOnly);
         setLayoutItemMargins(QStyle::SE_SpinBoxLayoutItem);
     }
+    QVariant calculateAdaptiveDecimalStep(int steps) const override;
 
     int displayIntegerBase;
-
-    QVariant calculateAdaptiveDecimalStep(int steps) const override;
+    int displayFieldWidth { 0 };
+    QChar displayFillChar { u8' ' };
 };
 
 QCtmLongLongSpinBoxPrivate::QCtmLongLongSpinBoxPrivate()
@@ -414,6 +415,48 @@ int QCtmLongLongSpinBox::displayIntegerBase() const
 }
 
 /*!
+    \brief      设置文本显示宽度 \a width, 文本不足显示宽度时，填充 displayFillChar.
+    \sa         displayFieldWidth
+*/
+void QCtmLongLongSpinBox::setDisplayFieldWidth(int width)
+{
+    Q_D(QCtmLongLongSpinBox);
+    d->displayFieldWidth = width;
+    update();
+}
+
+/*!
+    \brief      返回文本显示宽度.
+    \sa         setDisplayFieldWidth
+*/
+int QCtmLongLongSpinBox::displayFieldWidth() const
+{
+    Q_D(const QCtmLongLongSpinBox);
+    return d->displayFieldWidth;
+}
+
+/*!
+    \brief      设置文本显示填充字符 \a ch.
+    \sa         displayFillChar
+*/
+void QCtmLongLongSpinBox::setDisplayFillChar(QChar ch)
+{
+    Q_D(QCtmLongLongSpinBox);
+    d->displayFillChar = ch;
+    update();
+}
+
+/*!
+    \brief      返回文本填充字符.
+    \sa         setDisplayFillChar
+*/
+QChar QCtmLongLongSpinBox::displayFillChar() const
+{
+    Q_D(const QCtmLongLongSpinBox);
+    return d->displayFillChar;
+}
+
+/*!
     \brief      将值 \a value 转换为文本.
     \sa         valueFromText
 */
@@ -435,7 +478,13 @@ QString QCtmLongLongSpinBox::textFromValue(qlonglong value) const
             str.remove(locale().groupSeparator());
         }
     }
-
+    if (d->displayFieldWidth > 0)
+    {
+        bool hasMinus { false };
+        if (hasMinus = str.startsWith("-"); hasMinus)
+            str.remove(0, 1);
+        str = (hasMinus ? QString("-%1") : QString("%1")).arg(str, d->displayFieldWidth, d->displayFillChar);
+    }
     return str;
 }
 
@@ -553,3 +602,4 @@ void QCtmLongLongSpinBox::stepBy(int steps)
 #endif
         selectAll();
 }
+#endif

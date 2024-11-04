@@ -4,7 +4,7 @@
   <meta charset="utf-8">
 <!-- QCtmRecentViewDelegate.cpp -->
   <meta name="description" content="仿vs启动界面最近项目表委托.">
-  <title>QCtmRecentViewDelegate Class | QCustomUi 1.16.0</title>
+  <title>QCtmRecentViewDelegate Class | QCustomUi 1.17.0</title>
   <link rel="stylesheet" type="text/css" href="style/offline-simple.css" />
   <script type="text/javascript">
     document.getElementsByTagName("link").item(0).setAttribute("href", "style/offline.css");
@@ -26,10 +26,10 @@
     <div class="main-rounded">
         <div class="navigationbar">
         <ul>
-<li><a href="index.html" translate="no">QCustomUi 1.16.0</a></li>
+<li><a href="index.html">QCustomUi 1.17.0</a></li>
 <li><a href="qcustomui-module.html" translate="no">QCustomUi</a></li>
 <li>QCtmRecentViewDelegate</li>
-<li id="buildversion">QCustomUi 1.16.0 Reference Documentation</li>
+<li id="buildversion">QCustomUi 1.17.0 Reference Documentation</li>
     </ul>
     </div>
 </div>
@@ -52,9 +52,9 @@
 <!-- $$$QCtmRecentViewDelegate-brief -->
 <p>仿vs启动界面最近项目表委托. <a href="#details">More...</a></p>
 <!-- @@@QCtmRecentViewDelegate -->
-<div class="table"><table class="alignedsummary" translate="no">
-<tr><td class="memItemLeft rightAlign topAlign"> Header:</td><td class="memItemRight bottomAlign">  <span class="preprocessor">#include &lt;QCtmRecentViewDelegate.h&gt;</span></td></tr>
-<tr><td class="memItemLeft rightAlign topAlign"> Inherits:</td><td class="memItemRight bottomAlign"> <a href="https://doc.qt.io/qt/qstyleditemdelegate.html" translate="no">QStyledItemDelegate</a></td></tr>
+<div class="table"><table class="alignedsummary requisites" translate="no">
+<tr><td class="memItemLeft rightAlign topAlign"> Header:</td><td class="memItemRight bottomAlign"> <code translate="no">#include &lt;QCtmRecentViewDelegate.h&gt;</code></td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> Inherits:</td><td class="memItemRight bottomAlign"> QStyledItemDelegate</td></tr>
 </table></div>
 <ul>
 <li><a href="qctmrecentviewdelegate-members.html">List of all members, including inherited members</a></li>
@@ -148,11 +148,11 @@
 <!-- @@@drawTopButton -->
 <!-- $$$eventFilter[overload1]$$$eventFilterQObject*QEvent* -->
 <h3 class="fn" translate="no" id="eventFilter"><code class="details extra" translate="no">[override virtual protected]</code> <span class="type">bool</span> QCtmRecentViewDelegate::<span class="name">eventFilter</span>(<span class="type"><a href="https://doc.qt.io/qt/qobject.html#QObject" translate="no">QObject</a></span> *<i>object</i>, <span class="type"><a href="https://doc.qt.io/qt/qevent.html" translate="no">QEvent</a></span> *<i>event</i>)</h3>
-<p>Reimplements: <a href="https://doc.qt.io/qt/qstyleditemdelegate.html#eventFilter" translate="no">QStyledItemDelegate::eventFilter</a>(QObject *editor, QEvent *event).</p>
+<p>Reimplements: <a href="https://doc.qt.io/qt/qobject.html#eventFilter" translate="no">QObject::eventFilter</a>(QObject *watched, QEvent *event).</p>
 <!-- @@@eventFilter -->
 <!-- $$$paint[overload1]$$$paintQPainter*constQStyleOptionViewItem&constQModelIndex& -->
 <h3 class="fn" translate="no" id="paint"><code class="details extra" translate="no">[override virtual]</code> <span class="type">void</span> QCtmRecentViewDelegate::<span class="name">paint</span>(<span class="type"><a href="https://doc.qt.io/qt/qpainter.html" translate="no">QPainter</a></span> *<i>painter</i>, const <span class="type"><a href="https://doc.qt.io/qt/qstyleoptionviewitem.html" translate="no">QStyleOptionViewItem</a></span> &amp;<i>option</i>, const <span class="type"><a href="https://doc.qt.io/qt/qmodelindex.html" translate="no">QModelIndex</a></span> &amp;<i>index</i>) const</h3>
-<p>Reimplements: <a href="https://doc.qt.io/qt/qstyleditemdelegate.html#paint" translate="no">QStyledItemDelegate::paint(QPainter *painter, const QStyleOptionViewItem &amp;option, const QModelIndex &amp;index) const</a>.</p>
+<p>Reimplements: <a href="https://doc.qt.io/qt/qabstractitemdelegate.html#paint" translate="no">QAbstractItemDelegate::paint</a>(QPainter *painter, const QStyleOptionViewItem &amp;option, const QModelIndex &amp;index) const.</p>
 <!-- @@@paint -->
 <!-- $$$setTopButtonIcon -->
 <h3 class="fn" translate="no" id="setTopButtonIcon"><span class="type">void</span> QCtmRecentViewDelegate::<span class="name">setTopButtonIcon</span>(const <span class="type"><a href="https://doc.qt.io/qt/qicon.html" translate="no">QIcon</a></span> &amp;<i>icon</i>)</h3>
@@ -168,7 +168,7 @@
 <!-- @@@setTopButtonVisible -->
 <!-- $$$sizeHint[overload1]$$$sizeHintconstQStyleOptionViewItem&constQModelIndex& -->
 <h3 class="fn" translate="no" id="sizeHint"><code class="details extra" translate="no">[override virtual]</code> <span class="type"><a href="https://doc.qt.io/qt/qsize.html" translate="no">QSize</a></span> QCtmRecentViewDelegate::<span class="name">sizeHint</span>(const <span class="type"><a href="https://doc.qt.io/qt/qstyleoptionviewitem.html" translate="no">QStyleOptionViewItem</a></span> &amp;<i>option</i>, const <span class="type"><a href="https://doc.qt.io/qt/qmodelindex.html" translate="no">QModelIndex</a></span> &amp;<i>index</i>) const</h3>
-<p>Reimplements: <a href="https://doc.qt.io/qt/qstyleditemdelegate.html#sizeHint" translate="no">QStyledItemDelegate::sizeHint(const QStyleOptionViewItem &amp;option, const QModelIndex &amp;index) const</a>.</p>
+<p>Reimplements: <a href="https://doc.qt.io/qt/qabstractitemdelegate.html#sizeHint" translate="no">QAbstractItemDelegate::sizeHint</a>(const QStyleOptionViewItem &amp;option, const QModelIndex &amp;index) const.</p>
 <!-- @@@sizeHint -->
 <!-- $$$topButtonClicked[overload1]$$$topButtonClickedconstQModelIndex& -->
 <h3 class="fn" translate="no" id="topButtonClicked"><code class="details extra" translate="no">[signal]</code> <span class="type">void</span> QCtmRecentViewDelegate::<span class="name">topButtonClicked</span>(const <span class="type"><a href="https://doc.qt.io/qt/qmodelindex.html" translate="no">QModelIndex</a></span> &amp;<i>index</i>)</h3>
