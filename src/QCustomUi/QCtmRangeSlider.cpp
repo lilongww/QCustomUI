@@ -240,6 +240,12 @@ void QCtmRangeSliderPrivate::init()
 */
 
 /*!
+    \property   QCtmRangeSlider::tracking
+    \brief      表示valueChange 信号是否跟踪拖拽发送。
+    \sa         setTracking, hasTracking
+*/
+
+/*!
     \brief      构造函数 \a parent.
 */
 QCtmRangeSlider::QCtmRangeSlider(QWidget* parent /*= nullptr*/) : QWidget(*new QCtmRangeSliderPrivate, parent, {})
@@ -736,7 +742,7 @@ void QCtmRangeSlider::drawRangeBackground(QStylePainter* painter, QStyleOptionSl
 }
 
 /*!
-    \brief      初始化样式选项 \a option, first.
+    \brief      初始化样式选项 \a option, \a first.
 */
 void QCtmRangeSlider::initStyleOption(QStyleOptionSlider& option, bool first) const
 {
