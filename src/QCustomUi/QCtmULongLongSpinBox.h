@@ -17,6 +17,7 @@
 **  along with QCustomUi.  If not, see <https://www.gnu.org/licenses/>.         **
 **********************************************************************************/
 #pragma once
+#ifndef BUILD_STATIC
 
 #include "qcustomui_global.h"
 
@@ -84,3 +85,4 @@ private:
     Q_DISABLE_COPY(QCtmULongLongSpinBox)
     Q_DECLARE_PRIVATE(QCtmULongLongSpinBox)
 };
+#endif

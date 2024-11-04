@@ -16,6 +16,8 @@
 **  You should have received a copy of the GNU Lesser General Public License    **
 **  along with QCustomUi.  If not, see <https://www.gnu.org/licenses/>.         **
 **********************************************************************************/
+
+#ifndef BUILD_STATIC
 #include "QCtmLongLongSpinBox.h"
 
 #include <QStyle>
@@ -600,3 +602,4 @@ void QCtmLongLongSpinBox::stepBy(int steps)
 #endif
         selectAll();
 }
+#endif

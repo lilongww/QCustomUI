@@ -18,6 +18,8 @@
 **********************************************************************************/
 #pragma once
 
+#ifndef BUILD_STATIC
+
 #include "qcustomui_global.h"
 
 #include <QAbstractSpinBox>
@@ -84,3 +86,4 @@ private:
     Q_DISABLE_COPY(QCtmLongLongSpinBox)
     Q_DECLARE_PRIVATE(QCtmLongLongSpinBox)
 };
+#endif
