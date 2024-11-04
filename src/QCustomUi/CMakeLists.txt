@@ -247,7 +247,13 @@ source_group("UI" FILES ${UI})
 source_group("UI/Private" FILES ${UI_PRIVATE})
 source_group("Resource" FILES ${RESOURCES})
 
-add_library(${TARGET_NAME} SHARED
+if(NOT ${BUILD_STATIC})
+    set(_QCUSTOMUI_OPTION SHARED)
+else()
+    add_compile_definitions(-DBUILD_STATIC)
+endif()
+
+add_library(${TARGET_NAME} ${_QCUSTOMUI_OPTION}
  ${HEADERS}
  ${PRIVATRE_HEADERS}
  ${LOG_HEADERS}

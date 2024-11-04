@@ -167,6 +167,7 @@ void QCtmDigitKeyboard::setValue(const QVariant& value)
         {
             sp->setValue(m_impl->value.toDouble());
         }
+#ifndef BUILD_STATIC
         else if (auto sp = qobject_cast<QCtmLongLongSpinBox*>(m_impl->box); sp)
         {
             sp->setValue(m_impl->value.toLongLong());
@@ -175,6 +176,7 @@ void QCtmDigitKeyboard::setValue(const QVariant& value)
         {
             sp->setValue(m_impl->value.toULongLong());
         }
+#endif
     }
 }
 
@@ -321,6 +323,7 @@ void QCtmDigitKeyboard::bindBox(QAbstractSpinBox* box)
     {
         setInputMode(InputMode::DoubleInput);
     }
+#ifndef BUILD_STATIC
     else if (qobject_cast<QCtmLongLongSpinBox*>(box))
     {
         setInputMode(InputMode::LongLongInput);
@@ -329,6 +332,7 @@ void QCtmDigitKeyboard::bindBox(QAbstractSpinBox* box)
     {
         setInputMode(InputMode::ULongLongInput);
     }
+#endif
     else
     {
         qFatal("Unknown SpinBox.");
@@ -345,12 +349,14 @@ void QCtmDigitKeyboard::bindBox(QAbstractSpinBox* box)
     case InputMode::DoubleInput:
         connect(qobject_cast<QDoubleSpinBox*>(box), qOverload<double>(&QDoubleSpinBox::valueChanged), this, &QCtmDigitKeyboard::setValue);
         break;
+#ifndef BUILD_STATIC
     case InputMode::LongLongInput:
         connect(qobject_cast<QCtmLongLongSpinBox*>(box), &QCtmLongLongSpinBox::valueChanged, this, &QCtmDigitKeyboard::setValue);
         break;
     case InputMode::ULongLongInput:
         connect(qobject_cast<QCtmULongLongSpinBox*>(box), &QCtmULongLongSpinBox::valueChanged, this, &QCtmDigitKeyboard::setValue);
         break;
+#endif
     }
 
     box->findChild<QLineEdit*>()->installEventFilter(this);
@@ -460,6 +466,7 @@ void QCtmDigitKeyboard::ensureConnect()
         setValue(box->value());
         connect(box, qOverload<double>(&QDoubleSpinBox::valueChanged), this, [this](auto val) { emit valueChanged(val); });
     }
+#ifndef BUILD_STATIC
     else if (m_impl->mode == InputMode::LongLongInput)
     {
         auto box = new QCtmLongLongSpinBox(this);
@@ -488,6 +495,7 @@ void QCtmDigitKeyboard::ensureConnect()
         setValue(box->value());
         connect(box, &QCtmULongLongSpinBox::valueChanged, this, [this](auto val) { emit valueChanged(val); });
     }
+#endif
     m_impl->ui.inputLayout->addWidget(m_impl->box);
 
     auto sendBox = [=](Qt::Key key)
@@ -721,10 +729,12 @@ void QCtmDigitKeyboard::showAfter(const QVariant& beforeValue, const QString& be
             QMetaObject::invokeMethod(m_impl->bindedBox, "valueChanged", Q_ARG(double, val.toDouble()));
         else if (qobject_cast<QSpinBox*>(m_impl->bindedBox))
             QMetaObject::invokeMethod(m_impl->bindedBox, "valueChanged", Q_ARG(int, val.toInt()));
+#ifndef BUILD_STATIC
         else if (qobject_cast<QCtmLongLongSpinBox*>(m_impl->bindedBox))
             QMetaObject::invokeMethod(m_impl->bindedBox, "valueChanged", Q_ARG(qlonglong, val.toLongLong()));
         else if (qobject_cast<QCtmULongLongSpinBox*>(m_impl->bindedBox))
             QMetaObject::invokeMethod(m_impl->bindedBox, "valueChanged", Q_ARG(qulonglong, val.toULongLong()));
+#endif
         QMetaObject::invokeMethod(m_impl->bindedBox, "textChanged", Q_ARG(QString, m_impl->bindedBox->text()));
     }
     else if (beforeUnit != unit)

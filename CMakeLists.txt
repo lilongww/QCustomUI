@@ -26,4 +26,6 @@ include(${PROJECT_SOURCE_DIR}/cmake/ExportHelper.cmake)
 
 export_config(${PROJECT_NAME} ${INSTALL_LIBRARYDIR} ${INSTALL_INCLUDEDIR})
 
+option(BUILD_STATIC "Build QCustomUi static library." OFF)
+
 add_subdirectory(src)
