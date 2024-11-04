@@ -4,7 +4,7 @@
   <meta charset="utf-8">
 <!-- QCtmRecentModel.cpp -->
   <meta name="description" content="仿vs启动界面最近项目表model.">
-  <title>QCtmRecentModel Class | QCustomUi 1.16.0</title>
+  <title>QCtmRecentModel Class | QCustomUi 1.17.0</title>
   <link rel="stylesheet" type="text/css" href="style/offline-simple.css" />
   <script type="text/javascript">
     document.getElementsByTagName("link").item(0).setAttribute("href", "style/offline.css");
@@ -26,10 +26,10 @@
     <div class="main-rounded">
         <div class="navigationbar">
         <ul>
-<li><a href="index.html" translate="no">QCustomUi 1.16.0</a></li>
+<li><a href="index.html">QCustomUi 1.17.0</a></li>
 <li><a href="qcustomui-module.html" translate="no">QCustomUi</a></li>
 <li>QCtmRecentModel</li>
-<li id="buildversion">QCustomUi 1.16.0 Reference Documentation</li>
+<li id="buildversion">QCustomUi 1.17.0 Reference Documentation</li>
     </ul>
     </div>
 </div>
@@ -50,8 +50,8 @@
 <!-- $$$QCtmRecentModel-brief -->
 <p>仿vs启动界面最近项目表model. <a href="#details">More...</a></p>
 <!-- @@@QCtmRecentModel -->
-<div class="table"><table class="alignedsummary" translate="no">
-<tr><td class="memItemLeft rightAlign topAlign"> Header:</td><td class="memItemRight bottomAlign">  <span class="preprocessor">#include &lt;QCtmRecentModel.h&gt;</span></td></tr>
+<div class="table"><table class="alignedsummary requisites" translate="no">
+<tr><td class="memItemLeft rightAlign topAlign"> Header:</td><td class="memItemRight bottomAlign"> <code translate="no">#include &lt;QCtmRecentModel.h&gt;</code></td></tr>
 <tr><td class="memItemLeft rightAlign topAlign"> Inherits:</td><td class="memItemRight bottomAlign"> <a href="https://doc.qt.io/qt/qabstractitemmodel.html" translate="no">QAbstractItemModel</a></td></tr>
 </table></div>
 <ul>
@@ -95,11 +95,11 @@
 <!-- @@@~QCtmRecentModel -->
 <!-- $$$columnCount[overload1]$$$columnCountconstQModelIndex& -->
 <h3 class="fn" translate="no" id="columnCount"><code class="details extra" translate="no">[override virtual]</code> <span class="type">int</span> QCtmRecentModel::<span class="name">columnCount</span>(const <span class="type"><a href="https://doc.qt.io/qt/qmodelindex.html" translate="no">QModelIndex</a></span> &amp;<i>parent</i> = QModelIndex()) const</h3>
-<p>Reimplements: <a href="https://doc.qt.io/qt/qabstractitemmodel.html#columnCount" translate="no">QAbstractItemModel::columnCount(const QModelIndex &amp;parent) const</a>.</p>
+<p>Reimplements: <a href="https://doc.qt.io/qt/qabstractitemmodel.html#columnCount" translate="no">QAbstractItemModel::columnCount</a>(const QModelIndex &amp;parent) const.</p>
 <!-- @@@columnCount -->
 <!-- $$$data[overload1]$$$dataconstQModelIndex&int -->
 <h3 class="fn" translate="no" id="data"><code class="details extra" translate="no">[override virtual]</code> <span class="type"><a href="https://doc.qt.io/qt/qvariant.html" translate="no">QVariant</a></span> QCtmRecentModel::<span class="name">data</span>(const <span class="type"><a href="https://doc.qt.io/qt/qmodelindex.html" translate="no">QModelIndex</a></span> &amp;<i>index</i>, <span class="type">int</span> <i>role</i> = Qt::DisplayRole) const</h3>
-<p>Reimplements: <a href="https://doc.qt.io/qt/qabstractitemmodel.html#data" translate="no">QAbstractItemModel::data(const QModelIndex &amp;index, int role) const</a>.</p>
+<p>Reimplements: <a href="https://doc.qt.io/qt/qabstractitemmodel.html#data" translate="no">QAbstractItemModel::data</a>(const QModelIndex &amp;index, int role) const.</p>
 <p><b>See also </b><a href="qctmrecentmodel.html#setData" translate="no">setData</a>().</p>
 <!-- @@@data -->
 <!-- $$$dataOfIndex[overload1]$$$dataOfIndexconstQModelIndex& -->
@@ -108,15 +108,15 @@
 <!-- @@@dataOfIndex -->
 <!-- $$$headerData[overload1]$$$headerDataintQt::Orientationint -->
 <h3 class="fn" translate="no" id="headerData"><code class="details extra" translate="no">[override virtual]</code> <span class="type"><a href="https://doc.qt.io/qt/qvariant.html" translate="no">QVariant</a></span> QCtmRecentModel::<span class="name">headerData</span>(<span class="type">int</span> <i>section</i>, <span class="type"><a href="https://doc.qt.io/qt/qt.html#Orientation-enum" translate="no">Qt::Orientation</a></span> <i>orientation</i>, <span class="type">int</span> <i>role</i> = Qt::DisplayRole) const</h3>
-<p>Reimplements: <a href="https://doc.qt.io/qt/qabstractitemmodel.html#headerData" translate="no">QAbstractItemModel::headerData(int section, Qt::Orientation orientation, int role) const</a>.</p>
+<p>Reimplements: <a href="https://doc.qt.io/qt/qabstractitemmodel.html#headerData" translate="no">QAbstractItemModel::headerData</a>(int section, Qt::Orientation orientation, int role) const.</p>
 <!-- @@@headerData -->
 <!-- $$$index[overload1]$$$indexintintconstQModelIndex& -->
 <h3 class="fn" translate="no" id="index"><code class="details extra" translate="no">[override virtual]</code> <span class="type"><a href="https://doc.qt.io/qt/qmodelindex.html" translate="no">QModelIndex</a></span> QCtmRecentModel::<span class="name">index</span>(<span class="type">int</span> <i>row</i>, <span class="type">int</span> <i>column</i>, const <span class="type"><a href="https://doc.qt.io/qt/qmodelindex.html" translate="no">QModelIndex</a></span> &amp;<i>parent</i>) const</h3>
-<p>Reimplements: <a href="https://doc.qt.io/qt/qabstractitemmodel.html#index" translate="no">QAbstractItemModel::index(int row, int column, const QModelIndex &amp;parent) const</a>.</p>
+<p>Reimplements: <a href="https://doc.qt.io/qt/qabstractitemmodel.html#index" translate="no">QAbstractItemModel::index</a>(int row, int column, const QModelIndex &amp;parent) const.</p>
 <!-- @@@index -->
 <!-- $$$parent[overload1]$$$parentconstQModelIndex& -->
 <h3 class="fn" translate="no" id="parent"><code class="details extra" translate="no">[override virtual]</code> <span class="type"><a href="https://doc.qt.io/qt/qmodelindex.html" translate="no">QModelIndex</a></span> QCtmRecentModel::<span class="name">parent</span>(const <span class="type"><a href="https://doc.qt.io/qt/qmodelindex.html" translate="no">QModelIndex</a></span> &amp;<i>child</i>) const</h3>
-<p>Reimplements: <a href="https://doc.qt.io/qt/qabstractitemmodel.html#parent" translate="no">QAbstractItemModel::parent(const QModelIndex &amp;index) const</a>.</p>
+<p>Reimplements: <a href="https://doc.qt.io/qt/qabstractitemmodel.html#parent" translate="no">QAbstractItemModel::parent</a>(const QModelIndex &amp;index) const.</p>
 <!-- @@@parent -->
 <!-- $$$recentDatas[overload1]$$$recentDatas -->
 <h3 class="fn" translate="no" id="recentDatas">const <span class="type">std::vector</span>&lt;<span class="type"><a href="qctmrecentdata.html" translate="no">QCtmRecentData</a></span>&gt; &amp;QCtmRecentModel::<span class="name">recentDatas</span>() const</h3>
@@ -129,7 +129,7 @@
 <!-- @@@removeData -->
 <!-- $$$rowCount[overload1]$$$rowCountconstQModelIndex& -->
 <h3 class="fn" translate="no" id="rowCount"><code class="details extra" translate="no">[override virtual]</code> <span class="type">int</span> QCtmRecentModel::<span class="name">rowCount</span>(const <span class="type"><a href="https://doc.qt.io/qt/qmodelindex.html" translate="no">QModelIndex</a></span> &amp;<i>parent</i> = QModelIndex()) const</h3>
-<p>Reimplements: <a href="https://doc.qt.io/qt/qabstractitemmodel.html#rowCount" translate="no">QAbstractItemModel::rowCount(const QModelIndex &amp;parent) const</a>.</p>
+<p>Reimplements: <a href="https://doc.qt.io/qt/qabstractitemmodel.html#rowCount" translate="no">QAbstractItemModel::rowCount</a>(const QModelIndex &amp;parent) const.</p>
 <!-- @@@rowCount -->
 <!-- $$$search[overload1]$$$searchconstQString&Qt::CaseSensitivity -->
 <h3 class="fn" translate="no" id="search"><span class="type">void</span> QCtmRecentModel::<span class="name">search</span>(const <span class="type"><a href="https://doc.qt.io/qt/qstring.html" translate="no">QString</a></span> &amp;<i>name</i>, <span class="type"><a href="https://doc.qt.io/qt/qt.html#CaseSensitivity-enum" translate="no">Qt::CaseSensitivity</a></span> <i>cs</i>)</h3>

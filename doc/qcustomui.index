@@ -14,6 +14,7 @@
         <page name="https://developer.android.com/guide/topics/manifest/uses-permission-element" href="https://developer.android.com/guide/topics/manifest/uses-permission-element" status="active" location="external-resources.qdoc" documented="true" subtype="externalpage" title="Android: &lt;uses-permission&gt;" fulltitle="Android: &lt;uses-permission&gt;" subtitle=""/>
         <page name="https://developer.android.com/studio/publish/versioning#appversioning" href="https://developer.android.com/studio/publish/versioning#appversioning" status="active" location="external-resources.qdoc" documented="true" subtype="externalpage" title="Android: App Versioning" fulltitle="Android: App Versioning" subtitle=""/>
         <page name="https://source.android.com/setup/start/build-numbers" href="https://source.android.com/setup/start/build-numbers" status="active" location="external-resources.qdoc" documented="true" subtype="externalpage" title="Android: Build Numbers" fulltitle="Android: Build Numbers" subtitle=""/>
+        <page name="https://developer.android.com/build/configure-app-module" href="https://developer.android.com/build/configure-app-module" status="active" location="external-resources.qdoc" documented="true" subtype="externalpage" title="Android: Configure the app module" fulltitle="Android: Configure the app module" subtitle=""/>
         <page name="https://developer.android.com/training/app-links/deep-linking" href="https://developer.android.com/training/app-links/deep-linking" status="active" location="external-resources.qdoc" documented="true" subtype="externalpage" title="Android: Create Deep Links to App Content" fulltitle="Android: Create Deep Links to App Content" subtitle=""/>
         <page name="https://developer.android.com/studio/command-line/adb#devicestatus" href="https://developer.android.com/studio/command-line/adb#devicestatus" status="active" location="external-resources.qdoc" documented="true" subtype="externalpage" title="Android: Query for devices" fulltitle="Android: Query for devices" subtitle=""/>
         <page name="https://source.android.com/devices/tech/debug/tagged-pointers" href="https://source.android.com/devices/tech/debug/tagged-pointers" status="active" location="external-resources.qdoc" documented="true" subtype="externalpage" title="Android: Tagged Pointers" fulltitle="Android: Tagged Pointers" subtitle=""/>
@@ -231,11 +232,11 @@
                 <parameter type="const QModelIndex &amp;" name="idx" default=""/>
             </function>
         </class>
-        <class name="QCtmApplication" href="qctmapplication.html" status="active" access="public" location="QCtmApplication.h" documented="true" groups="QCustomUi" bases="QApplication" module="QCustomUi" brief="QApplication 的扩展，设置了默认样式和单实例运行的接口">
+        <class name="QCtmApplication" href="qctmapplication.html" status="active" access="public" location="QCtmApplication.h" documented="true" groups="QCustomUi" module="QCustomUi" brief="QApplication 的扩展，设置了默认样式和单实例运行的接口">
             <function name="QCtmApplication" fullname="QCtmApplication::QCtmApplication" href="qctmapplication.html#QCtmApplication" status="active" access="public" location="QCtmApplication.h" documented="true" meta="constructor" brief="构造函数 argc, argv, f, defaultStyle" signature="QCtmApplication(int &amp;argc, char **argv, int f, bool defaultStyle)">
                 <parameter type="int &amp;" name="argc" default=""/>
                 <parameter type="char **" name="argv" default=""/>
-                <parameter type="int" name="f" default="ApplicationFlags"/>
+                <parameter type="int" name="f" default=""/>
                 <parameter type="bool" name="defaultStyle" default="true"/>
             </function>
             <function name="checkOtherProcess" fullname="QCtmApplication::checkOtherProcess" href="qctmapplication.html#checkOtherProcess" status="active" access="public" location="QCtmApplication.h" documented="true" meta="plain" type="bool" brief="检测并返回其他程序是否持有相同的 key" signature="bool checkOtherProcess(const QString &amp;key)">
@@ -244,7 +245,7 @@
             <function name="setGetObjectDisabled" fullname="QCtmApplication::setGetObjectDisabled" href="qctmapplication.html#setGetObjectDisabled" status="active" access="public" location="QCtmApplication.h" documented="true" meta="plain" static="true" type="void" brief="禁用 WM_GETOBJECT 消息，解决Qt Bug导致的有道词典取词功能，致程序卡死的问题，默认不启用 d" signature="void setGetObjectDisabled(bool d)">
                 <parameter type="bool" name="d" default=""/>
             </function>
-            <function name="~QCtmApplication" fullname="QCtmApplication::~QCtmApplication" href="qctmapplication.html#dtor.QCtmApplication" status="active" access="public" location="QCtmApplication.h" documented="true" meta="destructor" virtual="virtual" noexcept="true" brief="析构函数" signature="~QCtmApplication()"/>
+            <function name="~QCtmApplication" fullname="QCtmApplication::~QCtmApplication" href="qctmapplication.html#dtor.QCtmApplication" status="active" access="public" location="QCtmApplication.h" documented="true" meta="destructor" noexcept="true" brief="析构函数" signature="~QCtmApplication()"/>
         </class>
         <class name="QCtmCircleProgressBar" href="qctmcircleprogressbar.html" status="active" access="public" location="QCtmCircleProgressBar.h" documented="true" groups="QCustomUi" bases="QWidget" module="QCustomUi" brief="圆形进度条">
             <function name="QCtmCircleProgressBar" fullname="QCtmCircleProgressBar::QCtmCircleProgressBar" href="qctmcircleprogressbar.html#QCtmCircleProgressBar" status="active" access="public" location="QCtmCircleProgressBar.h" documented="true" meta="constructor" explicit="true" brief="构造函数 parent" signature="QCtmCircleProgressBar(QWidget *parent)">
@@ -697,13 +698,13 @@
                 <parameter type="int" name="index" default=""/>
                 <parameter type="QAction *" name="action" default=""/>
             </function>
-            <function name="insertAction" fullname="QCtmDrawerItemWidget::insertAction" href="qctmdraweritemwidget.html#insertAction-1" status="active" access="public" location="QCtmDrawerItemWidget.h" documented="true" meta="plain" overload="true" overload-number="1" type="QAction *" signature="QAction * insertAction(int index, const QIcon &amp;icon, const QString &amp;text)">
+            <function name="insertAction" fullname="QCtmDrawerItemWidget::insertAction" href="qctmdraweritemwidget.html#insertAction-1" status="active" access="public" location="QCtmDrawerItemWidget.h" documented="true" meta="plain" overload="true" overload-number="1" type="QAction *" signature="QAction * insertAction(int index, const QString &amp;text)">
                 <parameter type="int" name="index" default=""/>
-                <parameter type="const QIcon &amp;" name="icon" default=""/>
                 <parameter type="const QString &amp;" name="text" default=""/>
             </function>
-            <function name="insertAction" fullname="QCtmDrawerItemWidget::insertAction" href="qctmdraweritemwidget.html#insertAction-2" status="active" access="public" location="QCtmDrawerItemWidget.h" documented="true" meta="plain" overload="true" overload-number="2" type="QAction *" signature="QAction * insertAction(int index, const QString &amp;text)">
+            <function name="insertAction" fullname="QCtmDrawerItemWidget::insertAction" href="qctmdraweritemwidget.html#insertAction-2" status="active" access="public" location="QCtmDrawerItemWidget.h" documented="true" meta="plain" overload="true" overload-number="2" type="QAction *" signature="QAction * insertAction(int index, const QIcon &amp;icon, const QString &amp;text)">
                 <parameter type="int" name="index" default=""/>
+                <parameter type="const QIcon &amp;" name="icon" default=""/>
                 <parameter type="const QString &amp;" name="text" default=""/>
             </function>
             <function name="isExpand" fullname="QCtmDrawerItemWidget::isExpand" href="qctmdraweritemwidget.html#isExpand" status="active" access="public" location="QCtmDrawerItemWidget.h" documented="true" meta="plain" const="true" type="bool" brief="返回该抽屉项的展开状态" signature="bool isExpand() const"/>
@@ -851,7 +852,7 @@
                 <setter name="setReadOnly"/>
             </property>
         </class>
-        <class name="QCtmFile" href="qctmfile.html" status="active" access="public" location="QCtmFile.h" documented="true" groups="QCustomUi" bases="QFile" module="QCustomUi" brief="文件操作类，提供文件读写的便捷方法">
+        <class name="QCtmFile" href="qctmfile.html" status="active" access="public" location="QCtmFile.h" documented="true" groups="QCustomUi" module="QCustomUi" brief="文件操作类，提供文件读写的便捷方法">
             <function name="load" fullname="QCtmFile::load" href="qctmfile.html#load" status="active" access="public" location="QCtmFile.h" documented="true" meta="plain" static="true" type="std::optional&lt;QByteArray&gt;" brief="加载文件 file, 可设置文件打开模式 mode, 如果读取文件失败返回 std::nullopt，读取成功返回文件内容" signature="std::optional&lt;QByteArray&gt; load(const QString &amp;file, QIODeviceBase::OpenMode mode)">
                 <parameter type="const QString &amp;" name="file" default=""/>
                 <parameter type="QIODeviceBase::OpenMode" name="mode" default="QIODevice::ReadOnly"/>
@@ -909,7 +910,7 @@
                 <parameter type="int" name="section" default=""/>
                 <parameter type="const QRect &amp;" name="rect" default=""/>
             </function>
-            <function name="clear" fullname="QCtmIPAddressEdit::clear" href="qctmipaddressedit.html#clear" status="active" access="public" location="QCtmIPAddressEdit.h" documented="true" meta="plain" type="void" brief="清除IP地址文本" signature="void clear()"/>
+            <function name="clear" fullname="QCtmIPAddressEdit::clear" href="qctmipaddressedit.html#clear" status="active" access="public" location="QCtmIPAddressEdit.h" documented="true" meta="slot" type="void" brief="清除IP地址文本" signature="void clear()"/>
             <function name="clearSelection" fullname="QCtmIPAddressEdit::clearSelection" href="qctmipaddressedit.html#clearSelection" status="active" access="private" location="QCtmIPAddressEdit.h" documented="true" meta="plain" type="void" brief="Clear the selections" signature="void clearSelection()"/>
             <function name="deleteSelectedText" fullname="QCtmIPAddressEdit::deleteSelectedText" href="qctmipaddressedit.html#deleteSelectedText" status="active" access="private" location="QCtmIPAddressEdit.h" documented="true" meta="plain" type="void" brief="Delete the selected texts" signature="void deleteSelectedText()"/>
             <function name="editChanged" fullname="QCtmIPAddressEdit::editChanged" href="qctmipaddressedit.html#editChanged" status="active" access="public" location="QCtmIPAddressEdit.h" documented="true" meta="signal" type="void" brief="当文本变化时发送该信号" signature="void editChanged()"/>
@@ -964,7 +965,7 @@
             <function name="sectionOfCursorPosition" fullname="QCtmIPAddressEdit::sectionOfCursorPosition" href="qctmipaddressedit.html#sectionOfCursorPosition" status="active" access="private" location="QCtmIPAddressEdit.h" documented="true" meta="plain" const="true" type="int" brief="Returns the section of the given position" signature="int sectionOfCursorPosition(int position) const">
                 <parameter type="int" name="position" default=""/>
             </function>
-            <function name="setIPAddress" fullname="QCtmIPAddressEdit::setIPAddress" href="qctmipaddressedit.html#setIPAddress" status="active" access="public" location="QCtmIPAddressEdit.h" documented="true" meta="plain" associated-property="ipAddress" type="void" brief="设置 ip 地址" signature="void setIPAddress(const QString &amp;ip)">
+            <function name="setIPAddress" fullname="QCtmIPAddressEdit::setIPAddress" href="qctmipaddressedit.html#setIPAddress" status="active" access="public" location="QCtmIPAddressEdit.h" documented="true" meta="slot" associated-property="ipAddress" type="void" brief="设置 ip 地址" signature="void setIPAddress(const QString &amp;ip)">
                 <parameter type="const QString &amp;" name="ip" default=""/>
             </function>
             <function name="setReadOnly" fullname="QCtmIPAddressEdit::setReadOnly" href="qctmipaddressedit.html#setReadOnly" status="active" access="public" location="QCtmIPAddressEdit.h" documented="true" meta="plain" associated-property="readOnly" type="void" brief="设置是否只读 ro" signature="void setReadOnly(bool ro)">
@@ -1120,12 +1121,12 @@
                 <value name="DESC" value="1"/>
             </enum>
         </class>
-        <class name="QCtmLogEvent" href="qctmlogevent.html" status="active" access="public" location="QCtmLogEvent.h" documented="true" groups="QCustomUi" bases="QEvent" module="QCustomUi" brief="日志事件">
+        <class name="QCtmLogEvent" href="qctmlogevent.html" status="active" access="public" location="QCtmLogEvent.h" documented="true" groups="QCustomUi" module="QCustomUi" brief="日志事件">
             <function name="QCtmLogEvent" fullname="QCtmLogEvent::QCtmLogEvent" href="qctmlogevent.html#QCtmLogEvent" status="active" access="public" location="QCtmLogEvent.h" documented="true" meta="constructor" explicit="true" brief="构造函数 log" signature="QCtmLogEvent(QCtmLogDataPtr log)">
                 <parameter type="QCtmLogDataPtr" name="log" default=""/>
             </function>
             <function name="log" fullname="QCtmLogEvent::log" href="qctmlogevent.html#log" status="active" access="public" location="QCtmLogEvent.h" documented="true" meta="plain" const="true" type="QCtmLogDataPtr" brief="返回日志内容" signature="QCtmLogDataPtr log() const"/>
-            <function name="~QCtmLogEvent" fullname="QCtmLogEvent::~QCtmLogEvent" href="qctmlogevent.html#dtor.QCtmLogEvent" status="active" access="public" location="QCtmLogEvent.h" documented="true" meta="destructor" virtual="virtual" noexcept="true" brief="析构函数" signature="~QCtmLogEvent()"/>
+            <function name="~QCtmLogEvent" fullname="QCtmLogEvent::~QCtmLogEvent" href="qctmlogevent.html#dtor.QCtmLogEvent" status="active" access="public" location="QCtmLogEvent.h" documented="true" meta="destructor" noexcept="true" brief="析构函数" signature="~QCtmLogEvent()"/>
         </class>
         <class name="QCtmLogFilterModel" href="qctmlogfiltermodel.html" status="active" access="public" location="QCtmLogFilterModel.h" documented="true" groups="QCustomUi" bases="QSortFilterProxyModel" module="QCustomUi" brief="日志筛选 model">
             <function name="QCtmLogFilterModel" fullname="QCtmLogFilterModel::QCtmLogFilterModel" href="qctmlogfiltermodel.html#QCtmLogFilterModel" status="active" access="public" location="QCtmLogFilterModel.h" documented="true" meta="constructor" explicit="true" brief="构造函数 parent" signature="QCtmLogFilterModel(QObject *parent)">
@@ -1302,6 +1303,8 @@
                 <parameter type="QWidget *" name="parent" default="nullptr"/>
             </function>
             <function name="cleanText" fullname="QCtmLongLongSpinBox::cleanText" href="qctmlonglongspinbox.html#cleanText" status="active" access="public" location="QCtmLongLongSpinBox.h" documented="true" meta="plain" const="true" associated-property="cleanText" type="QString" brief="返回值的文本, 不包括前缀，后缀，前导空格，结尾空格" signature="QString cleanText() const"/>
+            <function name="displayFieldWidth" fullname="QCtmLongLongSpinBox::displayFieldWidth" href="qctmlonglongspinbox.html#displayFieldWidth" status="active" access="public" location="QCtmLongLongSpinBox.h" documented="true" meta="plain" const="true" associated-property="displayFieldWidth" type="int" brief="返回文本显示宽度" signature="int displayFieldWidth() const"/>
+            <function name="displayFillChar" fullname="QCtmLongLongSpinBox::displayFillChar" href="qctmlonglongspinbox.html#displayFillChar" status="active" access="public" location="QCtmLongLongSpinBox.h" documented="true" meta="plain" const="true" associated-property="displayFillChar" type="QChar" brief="返回文本填充字符" signature="QChar displayFillChar() const"/>
             <function name="displayIntegerBase" fullname="QCtmLongLongSpinBox::displayIntegerBase" href="qctmlonglongspinbox.html#displayIntegerBase" status="active" access="public" location="QCtmLongLongSpinBox.h" documented="true" meta="plain" const="true" associated-property="displayIntegerBase" type="int" brief="返回显示进制" signature="int displayIntegerBase() const"/>
             <function name="event" fullname="QCtmLongLongSpinBox::event" href="qctmlonglongspinbox.html#event" status="active" access="protected" location="QCtmLongLongSpinBox.h" documented="true" meta="plain" virtual="virtual" override="true" type="bool" signature="bool event(QEvent *event) override">
                 <parameter type="QEvent *" name="event" default=""/>
@@ -1312,6 +1315,12 @@
             <function name="maximum" fullname="QCtmLongLongSpinBox::maximum" href="qctmlonglongspinbox.html#maximum" status="active" access="public" location="QCtmLongLongSpinBox.h" documented="true" meta="plain" const="true" associated-property="maximum" type="qlonglong" brief="返回最大值" signature="qlonglong maximum() const"/>
             <function name="minimum" fullname="QCtmLongLongSpinBox::minimum" href="qctmlonglongspinbox.html#minimum" status="active" access="public" location="QCtmLongLongSpinBox.h" documented="true" meta="plain" const="true" associated-property="minimum" type="qlonglong" brief="返回最小值" signature="qlonglong minimum() const"/>
             <function name="prefix" fullname="QCtmLongLongSpinBox::prefix" href="qctmlonglongspinbox.html#prefix" status="active" access="public" location="QCtmLongLongSpinBox.h" documented="true" meta="plain" const="true" associated-property="prefix" type="QString" brief="返回前缀" signature="QString prefix() const"/>
+            <function name="setDisplayFieldWidth" fullname="QCtmLongLongSpinBox::setDisplayFieldWidth" href="qctmlonglongspinbox.html#setDisplayFieldWidth" status="active" access="public" location="QCtmLongLongSpinBox.h" documented="true" meta="plain" associated-property="displayFieldWidth" type="void" brief="设置文本显示宽度 width, 文本不足显示宽度时，填充 displayFillChar" signature="void setDisplayFieldWidth(int width)">
+                <parameter type="int" name="width" default=""/>
+            </function>
+            <function name="setDisplayFillChar" fullname="QCtmLongLongSpinBox::setDisplayFillChar" href="qctmlonglongspinbox.html#setDisplayFillChar" status="active" access="public" location="QCtmLongLongSpinBox.h" documented="true" meta="plain" associated-property="displayFillChar" type="void" brief="设置文本显示填充字符 ch" signature="void setDisplayFillChar(QChar ch)">
+                <parameter type="QChar" name="ch" default=""/>
+            </function>
             <function name="setDisplayIntegerBase" fullname="QCtmLongLongSpinBox::setDisplayIntegerBase" href="qctmlonglongspinbox.html#setDisplayIntegerBase" status="active" access="public" location="QCtmLongLongSpinBox.h" documented="true" meta="plain" associated-property="displayIntegerBase" type="void" brief="设置显示进制 base" signature="void setDisplayIntegerBase(int base)">
                 <parameter type="int" name="base" default=""/>
             </function>
@@ -1379,12 +1388,12 @@
                 <parameter type="QAbstractButton *" name="button" default=""/>
                 <parameter type="QCtmMessageBox::ButtonRole" name="role" default=""/>
             </function>
-            <function name="addButton" fullname="QCtmMessageBox::addButton" href="qctmmessagebox.html#addButton-1" status="active" access="public" location="QCtmMessageBox.h" documented="true" meta="plain" overload="true" overload-number="1" type="QPushButton *" brief="创建文本为 text 的按钮并指定其角色 role" signature="QPushButton * addButton(const QString &amp;text, QCtmMessageBox::ButtonRole role)">
+            <function name="addButton" fullname="QCtmMessageBox::addButton" href="qctmmessagebox.html#addButton-1" status="active" access="public" location="QCtmMessageBox.h" documented="true" meta="plain" overload="true" overload-number="1" type="QPushButton *" brief="添加标准按钮 button" signature="QPushButton * addButton(QCtmMessageBox::StandardButton button)">
+                <parameter type="QCtmMessageBox::StandardButton" name="button" default=""/>
+            </function>
+            <function name="addButton" fullname="QCtmMessageBox::addButton" href="qctmmessagebox.html#addButton-2" status="active" access="public" location="QCtmMessageBox.h" documented="true" meta="plain" overload="true" overload-number="2" type="QPushButton *" brief="创建文本为 text 的按钮并指定其角色 role" signature="QPushButton * addButton(const QString &amp;text, QCtmMessageBox::ButtonRole role)">
                 <parameter type="const QString &amp;" name="text" default=""/>
                 <parameter type="QCtmMessageBox::ButtonRole" name="role" default=""/>
-            </function>
-            <function name="addButton" fullname="QCtmMessageBox::addButton" href="qctmmessagebox.html#addButton-2" status="active" access="public" location="QCtmMessageBox.h" documented="true" meta="plain" overload="true" overload-number="2" type="QPushButton *" brief="添加标准按钮 button" signature="QPushButton * addButton(QCtmMessageBox::StandardButton button)">
-                <parameter type="QCtmMessageBox::StandardButton" name="button" default=""/>
             </function>
             <function name="clickedButton" fullname="QCtmMessageBox::clickedButton" href="qctmmessagebox.html#clickedButton" status="active" access="public" location="QCtmMessageBox.h" documented="true" meta="plain" const="true" type="QAbstractButton *" brief="返回点击的按钮" signature="QAbstractButton * clickedButton() const"/>
             <function name="critical" fullname="QCtmMessageBox::critical" href="qctmmessagebox.html#critical" status="active" access="public" location="QCtmMessageBox.h" documented="true" meta="plain" static="true" type="QCtmMessageBox::StandardButton" brief="构造一个错误消息弹窗，并指定标题文本 title, 显示文本 text, 按钮集合 buttons, 默认按钮 defaultButton, 父窗口 parent" signature="QCtmMessageBox::StandardButton critical(QWidget *parent, const QString &amp;title, const QString &amp;text, QCtmMessageBox::StandardButtons buttons, QCtmMessageBox::StandardButton defaultButton)">
@@ -1774,12 +1783,12 @@
             <function name="QCtmMultiPageStringListModel" fullname="QCtmMultiPageStringListModel::QCtmMultiPageStringListModel" href="qctmmultipagestringlistmodel.html#QCtmMultiPageStringListModel" status="active" access="public" location="QCtmMultiPageStringListModel.h" documented="true" meta="constructor" explicit="true" brief="构造函数 parent" signature="QCtmMultiPageStringListModel(QObject *parent)">
                 <parameter type="QObject *" name="parent" default="nullptr"/>
             </function>
-            <function name="QCtmMultiPageStringListModel" fullname="QCtmMultiPageStringListModel::QCtmMultiPageStringListModel" href="qctmmultipagestringlistmodel.html#QCtmMultiPageStringListModel-1" status="active" access="public" location="QCtmMultiPageStringListModel.h" documented="true" meta="constructor" explicit="true" overload="true" overload-number="1" brief="构造函数 strings, parent" signature="QCtmMultiPageStringListModel(const QStringList &amp;strings, QObject *parent)">
-                <parameter type="const QStringList &amp;" name="strings" default=""/>
+            <function name="QCtmMultiPageStringListModel" fullname="QCtmMultiPageStringListModel::QCtmMultiPageStringListModel" href="qctmmultipagestringlistmodel.html#QCtmMultiPageStringListModel-1" status="active" access="public" location="QCtmMultiPageStringListModel.h" documented="true" meta="constructor" explicit="true" overload="true" overload-number="1" brief="构造函数 strings, parent" signature="QCtmMultiPageStringListModel(QStringList &amp;&amp;strings, QObject *parent)">
+                <parameter type="QStringList &amp;&amp;" name="strings" default=""/>
                 <parameter type="QObject *" name="parent" default="nullptr"/>
             </function>
-            <function name="QCtmMultiPageStringListModel" fullname="QCtmMultiPageStringListModel::QCtmMultiPageStringListModel" href="qctmmultipagestringlistmodel.html#QCtmMultiPageStringListModel-2" status="active" access="public" location="QCtmMultiPageStringListModel.h" documented="true" meta="constructor" explicit="true" overload="true" overload-number="2" brief="构造函数 strings, parent" signature="QCtmMultiPageStringListModel(QStringList &amp;&amp;strings, QObject *parent)">
-                <parameter type="QStringList &amp;&amp;" name="strings" default=""/>
+            <function name="QCtmMultiPageStringListModel" fullname="QCtmMultiPageStringListModel::QCtmMultiPageStringListModel" href="qctmmultipagestringlistmodel.html#QCtmMultiPageStringListModel-2" status="active" access="public" location="QCtmMultiPageStringListModel.h" documented="true" meta="constructor" explicit="true" overload="true" overload-number="2" brief="构造函数 strings, parent" signature="QCtmMultiPageStringListModel(const QStringList &amp;strings, QObject *parent)">
+                <parameter type="const QStringList &amp;" name="strings" default=""/>
                 <parameter type="QObject *" name="parent" default="nullptr"/>
             </function>
             <function name="columnCount" fullname="QCtmMultiPageStringListModel::columnCount" href="qctmmultipagestringlistmodel.html#columnCount" status="active" access="public" location="QCtmMultiPageStringListModel.h" documented="true" meta="plain" virtual="virtual" const="true" override="true" type="int" signature="int columnCount(const QModelIndex &amp;parent) const override">
@@ -1825,12 +1834,12 @@
                 <parameter type="QAction *" name="action" default=""/>
                 <parameter type="QCtmNavigationBar::ActionPosition" name="pos" default=""/>
             </function>
-            <function name="addAction" fullname="QCtmNavigationBar::addAction" href="qctmnavigationbar.html#addAction-1" status="active" access="public" location="QCtmNavigationBar.h" documented="true" meta="plain" overload="true" overload-number="1" type="QAction *" signature="QAction * addAction(const QIcon &amp;icon, const QString &amp;text, QCtmNavigationBar::ActionPosition pos)">
-                <parameter type="const QIcon &amp;" name="icon" default=""/>
+            <function name="addAction" fullname="QCtmNavigationBar::addAction" href="qctmnavigationbar.html#addAction-1" status="active" access="public" location="QCtmNavigationBar.h" documented="true" meta="plain" overload="true" overload-number="1" type="QAction *" signature="QAction * addAction(const QString &amp;text, QCtmNavigationBar::ActionPosition pos)">
                 <parameter type="const QString &amp;" name="text" default=""/>
                 <parameter type="QCtmNavigationBar::ActionPosition" name="pos" default=""/>
             </function>
-            <function name="addAction" fullname="QCtmNavigationBar::addAction" href="qctmnavigationbar.html#addAction-2" status="active" access="public" location="QCtmNavigationBar.h" documented="true" meta="plain" overload="true" overload-number="2" type="QAction *" signature="QAction * addAction(const QString &amp;text, QCtmNavigationBar::ActionPosition pos)">
+            <function name="addAction" fullname="QCtmNavigationBar::addAction" href="qctmnavigationbar.html#addAction-2" status="active" access="public" location="QCtmNavigationBar.h" documented="true" meta="plain" overload="true" overload-number="2" type="QAction *" signature="QAction * addAction(const QIcon &amp;icon, const QString &amp;text, QCtmNavigationBar::ActionPosition pos)">
+                <parameter type="const QIcon &amp;" name="icon" default=""/>
                 <parameter type="const QString &amp;" name="text" default=""/>
                 <parameter type="QCtmNavigationBar::ActionPosition" name="pos" default=""/>
             </function>
@@ -1848,13 +1857,13 @@
                 <parameter type="QCtmNavigationBar::ActionPosition" name="pos" default=""/>
                 <parameter type="QCtmNavigationSidePane *" name="pane" default=""/>
             </function>
-            <function name="addPane" fullname="QCtmNavigationBar::addPane" href="qctmnavigationbar.html#addPane-1" status="active" access="public" location="QCtmNavigationBar.h" documented="true" meta="plain" overload="true" overload-number="1" type="QAction *" signature="QAction * addPane(const QIcon &amp;icon, const QString &amp;text, QCtmNavigationBar::ActionPosition pos, QCtmNavigationSidePane *pane)">
-                <parameter type="const QIcon &amp;" name="icon" default=""/>
+            <function name="addPane" fullname="QCtmNavigationBar::addPane" href="qctmnavigationbar.html#addPane-1" status="active" access="public" location="QCtmNavigationBar.h" documented="true" meta="plain" overload="true" overload-number="1" type="QAction *" signature="QAction * addPane(const QString &amp;text, QCtmNavigationBar::ActionPosition pos, QCtmNavigationSidePane *pane)">
                 <parameter type="const QString &amp;" name="text" default=""/>
                 <parameter type="QCtmNavigationBar::ActionPosition" name="pos" default=""/>
                 <parameter type="QCtmNavigationSidePane *" name="pane" default=""/>
             </function>
-            <function name="addPane" fullname="QCtmNavigationBar::addPane" href="qctmnavigationbar.html#addPane-2" status="active" access="public" location="QCtmNavigationBar.h" documented="true" meta="plain" overload="true" overload-number="2" type="QAction *" signature="QAction * addPane(const QString &amp;text, QCtmNavigationBar::ActionPosition pos, QCtmNavigationSidePane *pane)">
+            <function name="addPane" fullname="QCtmNavigationBar::addPane" href="qctmnavigationbar.html#addPane-2" status="active" access="public" location="QCtmNavigationBar.h" documented="true" meta="plain" overload="true" overload-number="2" type="QAction *" signature="QAction * addPane(const QIcon &amp;icon, const QString &amp;text, QCtmNavigationBar::ActionPosition pos, QCtmNavigationSidePane *pane)">
+                <parameter type="const QIcon &amp;" name="icon" default=""/>
                 <parameter type="const QString &amp;" name="text" default=""/>
                 <parameter type="QCtmNavigationBar::ActionPosition" name="pos" default=""/>
                 <parameter type="QCtmNavigationSidePane *" name="pane" default=""/>
@@ -1882,14 +1891,14 @@
                 <parameter type="QAction *" name="action" default=""/>
                 <parameter type="QCtmNavigationBar::ActionPosition" name="pos" default=""/>
             </function>
-            <function name="insertAction" fullname="QCtmNavigationBar::insertAction" href="qctmnavigationbar.html#insertAction-1" status="active" access="public" location="QCtmNavigationBar.h" documented="true" meta="plain" overload="true" overload-number="1" type="QAction *" brief="该重载函数创建并返回一个图标为 icon, 文本为 text 的action，并插入到 index 位置，显示到 pos 位置" signature="QAction * insertAction(int index, const QIcon &amp;icon, const QString &amp;text, QCtmNavigationBar::ActionPosition pos)">
+            <function name="insertAction" fullname="QCtmNavigationBar::insertAction" href="qctmnavigationbar.html#insertAction-1" status="active" access="public" location="QCtmNavigationBar.h" documented="true" meta="plain" overload="true" overload-number="1" type="QAction *" signature="QAction * insertAction(int index, const QString &amp;text, QCtmNavigationBar::ActionPosition pos)">
                 <parameter type="int" name="index" default=""/>
-                <parameter type="const QIcon &amp;" name="icon" default=""/>
                 <parameter type="const QString &amp;" name="text" default=""/>
                 <parameter type="QCtmNavigationBar::ActionPosition" name="pos" default=""/>
             </function>
-            <function name="insertAction" fullname="QCtmNavigationBar::insertAction" href="qctmnavigationbar.html#insertAction-2" status="active" access="public" location="QCtmNavigationBar.h" documented="true" meta="plain" overload="true" overload-number="2" type="QAction *" signature="QAction * insertAction(int index, const QString &amp;text, QCtmNavigationBar::ActionPosition pos)">
+            <function name="insertAction" fullname="QCtmNavigationBar::insertAction" href="qctmnavigationbar.html#insertAction-2" status="active" access="public" location="QCtmNavigationBar.h" documented="true" meta="plain" overload="true" overload-number="2" type="QAction *" brief="该重载函数创建并返回一个图标为 icon, 文本为 text 的action，并插入到 index 位置，显示到 pos 位置" signature="QAction * insertAction(int index, const QIcon &amp;icon, const QString &amp;text, QCtmNavigationBar::ActionPosition pos)">
                 <parameter type="int" name="index" default=""/>
+                <parameter type="const QIcon &amp;" name="icon" default=""/>
                 <parameter type="const QString &amp;" name="text" default=""/>
                 <parameter type="QCtmNavigationBar::ActionPosition" name="pos" default=""/>
             </function>
@@ -1910,15 +1919,15 @@
                 <parameter type="QCtmNavigationBar::ActionPosition" name="pos" default=""/>
                 <parameter type="QCtmNavigationSidePane *" name="pane" default=""/>
             </function>
-            <function name="insertPane" fullname="QCtmNavigationBar::insertPane" href="qctmnavigationbar.html#insertPane-1" status="active" access="public" location="QCtmNavigationBar.h" documented="true" meta="plain" overload="true" overload-number="1" type="QAction *" signature="QAction * insertPane(int index, const QIcon &amp;icon, const QString &amp;text, QCtmNavigationBar::ActionPosition pos, QCtmNavigationSidePane *pane)">
+            <function name="insertPane" fullname="QCtmNavigationBar::insertPane" href="qctmnavigationbar.html#insertPane-1" status="active" access="public" location="QCtmNavigationBar.h" documented="true" meta="plain" overload="true" overload-number="1" type="QAction *" signature="QAction * insertPane(int index, const QString &amp;text, QCtmNavigationBar::ActionPosition pos, QCtmNavigationSidePane *pane)">
                 <parameter type="int" name="index" default=""/>
-                <parameter type="const QIcon &amp;" name="icon" default=""/>
                 <parameter type="const QString &amp;" name="text" default=""/>
                 <parameter type="QCtmNavigationBar::ActionPosition" name="pos" default=""/>
                 <parameter type="QCtmNavigationSidePane *" name="pane" default=""/>
             </function>
-            <function name="insertPane" fullname="QCtmNavigationBar::insertPane" href="qctmnavigationbar.html#insertPane-2" status="active" access="public" location="QCtmNavigationBar.h" documented="true" meta="plain" overload="true" overload-number="2" type="QAction *" signature="QAction * insertPane(int index, const QString &amp;text, QCtmNavigationBar::ActionPosition pos, QCtmNavigationSidePane *pane)">
+            <function name="insertPane" fullname="QCtmNavigationBar::insertPane" href="qctmnavigationbar.html#insertPane-2" status="active" access="public" location="QCtmNavigationBar.h" documented="true" meta="plain" overload="true" overload-number="2" type="QAction *" signature="QAction * insertPane(int index, const QIcon &amp;icon, const QString &amp;text, QCtmNavigationBar::ActionPosition pos, QCtmNavigationSidePane *pane)">
                 <parameter type="int" name="index" default=""/>
+                <parameter type="const QIcon &amp;" name="icon" default=""/>
                 <parameter type="const QString &amp;" name="text" default=""/>
                 <parameter type="QCtmNavigationBar::ActionPosition" name="pos" default=""/>
                 <parameter type="QCtmNavigationSidePane *" name="pane" default=""/>
@@ -1956,13 +1965,13 @@
             <function name="actionEvent" fullname="QCtmNavigationSideBar::actionEvent" href="qctmnavigationsidebar.html#actionEvent" status="active" access="protected" location="QCtmNavigationSideBar.h" documented="true" meta="plain" virtual="virtual" override="true" type="void" signature="void actionEvent(QActionEvent *event) override">
                 <parameter type="QActionEvent *" name="event" default=""/>
             </function>
-            <function name="addAction" fullname="QCtmNavigationSideBar::addAction" href="qctmnavigationsidebar.html#addAction" status="active" access="public" location="QCtmNavigationSideBar.h" documented="true" meta="plain" type="QAction *" signature="QAction * addAction(const QIcon &amp;icon, const QString &amp;text, QCtmNavigationSideBar::ActionPosition pos)">
-                <parameter type="const QIcon &amp;" name="icon" default=""/>
-                <parameter type="const QString &amp;" name="text" default=""/>
+            <function name="addAction" fullname="QCtmNavigationSideBar::addAction" href="qctmnavigationsidebar.html#addAction" status="active" access="public" location="QCtmNavigationSideBar.h" documented="true" meta="plain" type="void" signature="void addAction(QAction *action, QCtmNavigationSideBar::ActionPosition pos)">
+                <parameter type="QAction *" name="action" default=""/>
                 <parameter type="QCtmNavigationSideBar::ActionPosition" name="pos" default=""/>
             </function>
-            <function name="addAction" fullname="QCtmNavigationSideBar::addAction" href="qctmnavigationsidebar.html#addAction-1" status="active" access="public" location="QCtmNavigationSideBar.h" documented="true" meta="plain" overload="true" overload-number="1" type="void" signature="void addAction(QAction *action, QCtmNavigationSideBar::ActionPosition pos)">
-                <parameter type="QAction *" name="action" default=""/>
+            <function name="addAction" fullname="QCtmNavigationSideBar::addAction" href="qctmnavigationsidebar.html#addAction-1" status="active" access="public" location="QCtmNavigationSideBar.h" documented="true" meta="plain" overload="true" overload-number="1" type="QAction *" signature="QAction * addAction(const QIcon &amp;icon, const QString &amp;text, QCtmNavigationSideBar::ActionPosition pos)">
+                <parameter type="const QIcon &amp;" name="icon" default=""/>
+                <parameter type="const QString &amp;" name="text" default=""/>
                 <parameter type="QCtmNavigationSideBar::ActionPosition" name="pos" default=""/>
             </function>
             <function name="count" fullname="QCtmNavigationSideBar::count" href="qctmnavigationsidebar.html#count" status="active" access="public" location="QCtmNavigationSideBar.h" documented="true" meta="plain" const="true" type="int" brief="返回 pos 位置的Action数量" signature="int count(QCtmNavigationSideBar::ActionPosition pos) const">
@@ -1975,15 +1984,15 @@
             <function name="indexOf" fullname="QCtmNavigationSideBar::indexOf" href="qctmnavigationsidebar.html#indexOf" status="active" access="public" location="QCtmNavigationSideBar.h" documented="true" meta="plain" const="true" type="int" brief="返回 action 的序号" signature="int indexOf(QAction *action) const">
                 <parameter type="QAction *" name="action" default=""/>
             </function>
-            <function name="insertAction" fullname="QCtmNavigationSideBar::insertAction" href="qctmnavigationsidebar.html#insertAction" status="active" access="public" location="QCtmNavigationSideBar.h" documented="true" meta="plain" type="QAction *" signature="QAction * insertAction(int index, const QIcon &amp;icon, const QString &amp;text, QCtmNavigationSideBar::ActionPosition pos)">
+            <function name="insertAction" fullname="QCtmNavigationSideBar::insertAction" href="qctmnavigationsidebar.html#insertAction" status="active" access="public" location="QCtmNavigationSideBar.h" documented="true" meta="plain" type="void" signature="void insertAction(int index, QAction *action, QCtmNavigationSideBar::ActionPosition pos)">
+                <parameter type="int" name="index" default=""/>
+                <parameter type="QAction *" name="action" default=""/>
+                <parameter type="QCtmNavigationSideBar::ActionPosition" name="pos" default=""/>
+            </function>
+            <function name="insertAction" fullname="QCtmNavigationSideBar::insertAction" href="qctmnavigationsidebar.html#insertAction-1" status="active" access="public" location="QCtmNavigationSideBar.h" documented="true" meta="plain" overload="true" overload-number="1" type="QAction *" signature="QAction * insertAction(int index, const QIcon &amp;icon, const QString &amp;text, QCtmNavigationSideBar::ActionPosition pos)">
                 <parameter type="int" name="index" default=""/>
                 <parameter type="const QIcon &amp;" name="icon" default=""/>
                 <parameter type="const QString &amp;" name="text" default=""/>
-                <parameter type="QCtmNavigationSideBar::ActionPosition" name="pos" default=""/>
-            </function>
-            <function name="insertAction" fullname="QCtmNavigationSideBar::insertAction" href="qctmnavigationsidebar.html#insertAction-1" status="active" access="public" location="QCtmNavigationSideBar.h" documented="true" meta="plain" overload="true" overload-number="1" type="void" signature="void insertAction(int index, QAction *action, QCtmNavigationSideBar::ActionPosition pos)">
-                <parameter type="int" name="index" default=""/>
-                <parameter type="QAction *" name="action" default=""/>
                 <parameter type="QCtmNavigationSideBar::ActionPosition" name="pos" default=""/>
             </function>
             <function name="setIconSize" fullname="QCtmNavigationSideBar::setIconSize" href="qctmnavigationsidebar.html#setIconSize" status="active" access="public" location="QCtmNavigationSideBar.h" documented="true" meta="plain" associated-property="iconSize" type="void" brief="设置Action的图标大小 size" signature="void setIconSize(const QSize &amp;size)">
@@ -2061,7 +2070,7 @@
             </function>
             <function name="title" fullname="QCtmNavigationSidePane::title" href="qctmnavigationsidepane.html#title" status="active" access="public" location="QCtmNavigationSidePane.h" documented="true" meta="plain" const="true" type="QString" brief="返回标题栏文字" signature="QString title() const"/>
             <function name="titleBarIsVisible" fullname="QCtmNavigationSidePane::titleBarIsVisible" href="qctmnavigationsidepane.html#titleBarIsVisible" status="active" access="public" location="QCtmNavigationSidePane.h" documented="true" meta="plain" const="true" type="bool" brief="返回标题栏是否可见" signature="bool titleBarIsVisible() const"/>
-            <function name="viewContainer" fullname="QCtmNavigationSidePane::viewContainer" href="qctmnavigationsidepane.html#viewContainer" status="active" access="public" location="QCtmNavigationSidePane.h" documented="true" meta="plain" const="true" type="QScrollArea *" brief="返回容器窗口" signature="QScrollArea * viewContainer() const"/>
+            <function name="viewContainer" fullname="QCtmNavigationSidePane::viewContainer" href="qctmnavigationsidepane.html#viewContainer" status="active" access="public" location="QCtmNavigationSidePane.h" documented="true" meta="plain" const="true" type="int *" brief="返回容器窗口" signature="int * viewContainer() const"/>
             <function name="widget" fullname="QCtmNavigationSidePane::widget" href="qctmnavigationsidepane.html#widget" status="active" access="public" location="QCtmNavigationSidePane.h" documented="true" meta="plain" const="true" type="QWidget *" brief="返回设置的窗口" signature="QWidget * widget() const"/>
             <function name="~QCtmNavigationSidePane" fullname="QCtmNavigationSidePane::~QCtmNavigationSidePane" href="qctmnavigationsidepane.html#dtor.QCtmNavigationSidePane" status="active" access="public" location="QCtmNavigationSidePane.h" documented="true" meta="destructor" virtual="virtual" noexcept="true" brief="析构函数" signature="~QCtmNavigationSidePane()"/>
             <enum name="DockArea" fullname="QCtmNavigationSidePane::DockArea" href="qctmnavigationsidepane.html#DockArea-enum" status="active" access="public" location="QCtmNavigationSidePane.h" documented="true" scoped="true">
@@ -2113,6 +2122,104 @@
             </function>
             <function name="sizeHint" fullname="QCtmPathBrowser::sizeHint" href="qctmpathbrowser.html#sizeHint" status="active" access="protected" location="QCtmPathBrowser.h" documented="true" meta="plain" virtual="virtual" const="true" override="true" type="QSize" signature="QSize sizeHint() const override"/>
             <function name="~QCtmPathBrowser" fullname="QCtmPathBrowser::~QCtmPathBrowser" href="qctmpathbrowser.html#dtor.QCtmPathBrowser" status="active" access="public" location="QCtmPathBrowser.h" documented="true" meta="destructor" virtual="virtual" noexcept="true" brief="析构函数" signature="~QCtmPathBrowser()"/>
+        </class>
+        <class name="QCtmRangeSlider" href="qctmrangeslider.html" status="active" access="public" location="QCtmRangeSlider.h" documented="true" groups="QCustomUi" bases="QWidget" module="QCustomUi" brief="范围选择器">
+            <function name="QCtmRangeSlider" fullname="QCtmRangeSlider::QCtmRangeSlider" href="qctmrangeslider.html#QCtmRangeSlider" status="active" access="public" location="QCtmRangeSlider.h" documented="true" meta="constructor" explicit="true" brief="构造函数 parent" signature="QCtmRangeSlider(QWidget *parent)">
+                <parameter type="QWidget *" name="parent" default="nullptr"/>
+            </function>
+            <function name="QCtmRangeSlider" fullname="QCtmRangeSlider::QCtmRangeSlider" href="qctmrangeslider.html#QCtmRangeSlider-1" status="active" access="public" location="QCtmRangeSlider.h" documented="true" meta="constructor" explicit="true" overload="true" overload-number="1" brief="构造函数 orientation, parent" signature="QCtmRangeSlider(Qt::Orientation orientation, QWidget *parent)">
+                <parameter type="Qt::Orientation" name="orientation" default=""/>
+                <parameter type="QWidget *" name="parent" default="nullptr"/>
+            </function>
+            <function name="chunkVisible" fullname="QCtmRangeSlider::chunkVisible" href="qctmrangeslider.html#chunkVisible" status="active" access="public" location="QCtmRangeSlider.h" documented="true" meta="plain" const="true" associated-property="chunkVisible" type="bool" brief="返回滑块之间的区块是否显示" signature="bool chunkVisible() const"/>
+            <function name="drawRangeBackground" fullname="QCtmRangeSlider::drawRangeBackground" href="qctmrangeslider.html#drawRangeBackground" status="active" access="protected" location="QCtmRangeSlider.h" documented="true" meta="plain" virtual="virtual" type="void" brief="绘制滑块之间的区块, painter, opt1, opt2" signature="void drawRangeBackground(QStylePainter *painter, QStyleOptionSlider &amp;opt1, QStyleOptionSlider &amp;opt2)">
+                <parameter type="QStylePainter *" name="painter" default=""/>
+                <parameter type="QStyleOptionSlider &amp;" name="opt1" default=""/>
+                <parameter type="QStyleOptionSlider &amp;" name="opt2" default=""/>
+            </function>
+            <function name="event" fullname="QCtmRangeSlider::event" href="qctmrangeslider.html#event" status="active" access="protected" location="QCtmRangeSlider.h" documented="true" meta="plain" virtual="virtual" override="true" type="bool" signature="bool event(QEvent *event) override">
+                <parameter type="QEvent *" name="event" default=""/>
+            </function>
+            <function name="hasTracking" fullname="QCtmRangeSlider::hasTracking" href="qctmrangeslider.html#hasTracking" status="active" access="public" location="QCtmRangeSlider.h" documented="true" meta="plain" const="true" associated-property="tracking" type="bool" brief="返回 valueChange 信号是否跟踪拖拽发送" signature="bool hasTracking() const"/>
+            <function name="initStyleOption" fullname="QCtmRangeSlider::initStyleOption" href="qctmrangeslider.html#initStyleOption" status="active" access="protected" location="QCtmRangeSlider.h" documented="true" meta="plain" virtual="virtual" const="true" type="void" brief="初始化样式选项 option, first" signature="void initStyleOption(QStyleOptionSlider &amp;option, bool first) const">
+                <parameter type="QStyleOptionSlider &amp;" name="option" default=""/>
+                <parameter type="bool" name="first" default=""/>
+            </function>
+            <function name="lower" fullname="QCtmRangeSlider::lower" href="qctmrangeslider.html#lower" status="active" access="public" location="QCtmRangeSlider.h" documented="true" meta="plain" const="true" associated-property="lower" type="int" brief="返回范围下限" signature="int lower() const"/>
+            <function name="lowerSliderPosition" fullname="QCtmRangeSlider::lowerSliderPosition" href="qctmrangeslider.html#lowerSliderPosition" status="active" access="public" location="QCtmRangeSlider.h" documented="true" meta="plain" const="true" type="int" brief="返回下限滑块位置" signature="int lowerSliderPosition() const"/>
+            <function name="maximum" fullname="QCtmRangeSlider::maximum" href="qctmrangeslider.html#maximum" status="active" access="public" location="QCtmRangeSlider.h" documented="true" meta="plain" const="true" associated-property="maximum" type="int" brief="返回最大值" signature="int maximum() const"/>
+            <function name="minimum" fullname="QCtmRangeSlider::minimum" href="qctmrangeslider.html#minimum" status="active" access="public" location="QCtmRangeSlider.h" documented="true" meta="plain" const="true" associated-property="minimum" type="int" brief="返回最小值" signature="int minimum() const"/>
+            <function name="minimumSizeHint" fullname="QCtmRangeSlider::minimumSizeHint" href="qctmrangeslider.html#minimumSizeHint" status="active" access="public" location="QCtmRangeSlider.h" documented="true" meta="plain" virtual="virtual" const="true" override="true" type="QSize" signature="QSize minimumSizeHint() const override"/>
+            <function name="mouseMoveEvent" fullname="QCtmRangeSlider::mouseMoveEvent" href="qctmrangeslider.html#mouseMoveEvent" status="active" access="protected" location="QCtmRangeSlider.h" documented="true" meta="plain" virtual="virtual" override="true" type="void" signature="void mouseMoveEvent(QMouseEvent *event) override">
+                <parameter type="QMouseEvent *" name="event" default=""/>
+            </function>
+            <function name="mousePressEvent" fullname="QCtmRangeSlider::mousePressEvent" href="qctmrangeslider.html#mousePressEvent" status="active" access="protected" location="QCtmRangeSlider.h" documented="true" meta="plain" virtual="virtual" override="true" type="void" signature="void mousePressEvent(QMouseEvent *ev) override">
+                <parameter type="QMouseEvent *" name="ev" default=""/>
+            </function>
+            <function name="mouseReleaseEvent" fullname="QCtmRangeSlider::mouseReleaseEvent" href="qctmrangeslider.html#mouseReleaseEvent" status="active" access="protected" location="QCtmRangeSlider.h" documented="true" meta="plain" virtual="virtual" override="true" type="void" signature="void mouseReleaseEvent(QMouseEvent *ev) override">
+                <parameter type="QMouseEvent *" name="ev" default=""/>
+            </function>
+            <function name="orientation" fullname="QCtmRangeSlider::orientation" href="qctmrangeslider.html#orientation" status="active" access="public" location="QCtmRangeSlider.h" documented="true" meta="plain" const="true" associated-property="orientation" type="Qt::Orientation" brief="返回该部件的朝向" signature="Qt::Orientation orientation() const"/>
+            <function name="paintEvent" fullname="QCtmRangeSlider::paintEvent" href="qctmrangeslider.html#paintEvent" status="active" access="protected" location="QCtmRangeSlider.h" documented="true" meta="plain" virtual="virtual" override="true" type="void" signature="void paintEvent(QPaintEvent *event) override">
+                <parameter type="QPaintEvent *" name="event" default=""/>
+            </function>
+            <function name="rangeChanged" fullname="QCtmRangeSlider::rangeChanged" href="qctmrangeslider.html#rangeChanged" status="active" access="public" location="QCtmRangeSlider.h" documented="true" meta="signal" type="void" brief="部件范围发生变化时发送该信号, minimum, maximum" signature="void rangeChanged(int minimum, int maximum)">
+                <parameter type="int" name="minimum" default=""/>
+                <parameter type="int" name="maximum" default=""/>
+            </function>
+            <function name="setChunkVisible" fullname="QCtmRangeSlider::setChunkVisible" href="qctmrangeslider.html#setChunkVisible" status="active" access="public" location="QCtmRangeSlider.h" documented="true" meta="plain" associated-property="chunkVisible" type="void" brief="设置滑块之间的区块是否显示，若要对其设置样式表，则先设置为显示 visible" signature="void setChunkVisible(bool visible)">
+                <parameter type="bool" name="visible" default=""/>
+            </function>
+            <function name="setLower" fullname="QCtmRangeSlider::setLower" href="qctmrangeslider.html#setLower" status="active" access="public" location="QCtmRangeSlider.h" documented="true" meta="plain" associated-property="lower" type="void" brief="设置范围下限 value" signature="void setLower(int value)">
+                <parameter type="int" name="value" default=""/>
+            </function>
+            <function name="setMaximum" fullname="QCtmRangeSlider::setMaximum" href="qctmrangeslider.html#setMaximum" status="active" access="public" location="QCtmRangeSlider.h" documented="true" meta="plain" associated-property="maximum" type="void" brief="设置最大值 maximum" signature="void setMaximum(int maximum)">
+                <parameter type="int" name="maximum" default=""/>
+            </function>
+            <function name="setMinimum" fullname="QCtmRangeSlider::setMinimum" href="qctmrangeslider.html#setMinimum" status="active" access="public" location="QCtmRangeSlider.h" documented="true" meta="plain" associated-property="minimum" type="void" brief="设置最小值 minimum" signature="void setMinimum(int minimum)">
+                <parameter type="int" name="minimum" default=""/>
+            </function>
+            <function name="setOrientation" fullname="QCtmRangeSlider::setOrientation" href="qctmrangeslider.html#setOrientation" status="active" access="public" location="QCtmRangeSlider.h" documented="true" meta="slot" associated-property="orientation" type="void" brief="设置部件方向 orientation" signature="void setOrientation(Qt::Orientation orientation)">
+                <parameter type="Qt::Orientation" name="orientation" default=""/>
+            </function>
+            <function name="setRange" fullname="QCtmRangeSlider::setRange" href="qctmrangeslider.html#setRange" status="active" access="public" location="QCtmRangeSlider.h" documented="true" meta="slot" type="void" brief="设置最大值和最小值 minimum, maximum" signature="void setRange(int minimum, int maximum)">
+                <parameter type="int" name="minimum" default=""/>
+                <parameter type="int" name="maximum" default=""/>
+            </function>
+            <function name="setSliderPosition" fullname="QCtmRangeSlider::setSliderPosition" href="qctmrangeslider.html#setSliderPosition" status="active" access="public" location="QCtmRangeSlider.h" documented="true" meta="plain" type="void" brief="设置滑块位置 lower, upper" signature="void setSliderPosition(int lower, int upper)">
+                <parameter type="int" name="lower" default=""/>
+                <parameter type="int" name="upper" default=""/>
+            </function>
+            <function name="setTickPosition" fullname="QCtmRangeSlider::setTickPosition" href="qctmrangeslider.html#setTickPosition" status="active" access="public" location="QCtmRangeSlider.h" documented="true" meta="plain" type="void" brief="设置刻度显示位置 pos" signature="void setTickPosition(QCtmRangeSlider::TickPosition pos)">
+                <parameter type="QCtmRangeSlider::TickPosition" name="pos" default=""/>
+            </function>
+            <function name="setTracking" fullname="QCtmRangeSlider::setTracking" href="qctmrangeslider.html#setTracking" status="active" access="public" location="QCtmRangeSlider.h" documented="true" meta="plain" associated-property="tracking" type="void" brief="设置 valueChange 信号是否跟踪拖拽发送 on" signature="void setTracking(bool on)">
+                <parameter type="bool" name="on" default=""/>
+            </function>
+            <function name="setUpper" fullname="QCtmRangeSlider::setUpper" href="qctmrangeslider.html#setUpper" status="active" access="public" location="QCtmRangeSlider.h" documented="true" meta="plain" associated-property="upper" type="void" brief="设置范围上限 value" signature="void setUpper(int value)">
+                <parameter type="int" name="value" default=""/>
+            </function>
+            <function name="setValue" fullname="QCtmRangeSlider::setValue" href="qctmrangeslider.html#setValue" status="active" access="public" location="QCtmRangeSlider.h" documented="true" meta="slot" type="void" brief="设置上下限 lower, upper" signature="void setValue(int lower, int upper)">
+                <parameter type="int" name="lower" default=""/>
+                <parameter type="int" name="upper" default=""/>
+            </function>
+            <function name="sizeHint" fullname="QCtmRangeSlider::sizeHint" href="qctmrangeslider.html#sizeHint" status="active" access="public" location="QCtmRangeSlider.h" documented="true" meta="plain" virtual="virtual" const="true" override="true" type="QSize" signature="QSize sizeHint() const override"/>
+            <function name="sliderMoved" fullname="QCtmRangeSlider::sliderMoved" href="qctmrangeslider.html#sliderMoved" status="active" access="public" location="QCtmRangeSlider.h" documented="true" meta="signal" type="void" brief="部件滑块发生变化时发送该信号, lower, upper" signature="void sliderMoved(int lower, int upper)">
+                <parameter type="int" name="lower" default=""/>
+                <parameter type="int" name="upper" default=""/>
+            </function>
+            <function name="tickPosition" fullname="QCtmRangeSlider::tickPosition" href="qctmrangeslider.html#tickPosition" status="active" access="public" location="QCtmRangeSlider.h" documented="true" meta="plain" const="true" type="QCtmRangeSlider::TickPosition" brief="返回刻度显示位置" signature="QCtmRangeSlider::TickPosition tickPosition() const"/>
+            <function name="upper" fullname="QCtmRangeSlider::upper" href="qctmrangeslider.html#upper" status="active" access="public" location="QCtmRangeSlider.h" documented="true" meta="plain" const="true" associated-property="upper" type="int" brief="返回范围上限" signature="int upper() const"/>
+            <function name="upperSliderPosition" fullname="QCtmRangeSlider::upperSliderPosition" href="qctmrangeslider.html#upperSliderPosition" status="active" access="public" location="QCtmRangeSlider.h" documented="true" meta="plain" const="true" type="int" brief="返回上限滑块位置" signature="int upperSliderPosition() const"/>
+            <function name="valueChanged" fullname="QCtmRangeSlider::valueChanged" href="qctmrangeslider.html#valueChanged" status="active" access="public" location="QCtmRangeSlider.h" documented="true" meta="signal" type="void" brief="部件上下限发生变化时发送该信号, lower, upper" signature="void valueChanged(int lower, int upper)">
+                <parameter type="int" name="lower" default=""/>
+                <parameter type="int" name="upper" default=""/>
+            </function>
+            <function name="~QCtmRangeSlider" fullname="QCtmRangeSlider::~QCtmRangeSlider" href="qctmrangeslider.html#dtor.QCtmRangeSlider" status="active" access="public" location="QCtmRangeSlider.h" documented="true" meta="destructor" virtual="virtual" noexcept="true" brief="析构函数" signature="~QCtmRangeSlider()"/>
+            <property name="tracking" fullname="QCtmRangeSlider::tracking" href="qctmrangeslider.html#tracking-prop" status="active" access="public" location="QCtmRangeSlider.h" documented="true" brief="表示valueChange 信号是否跟踪拖拽发送。">
+                <getter name="hasTracking"/>
+                <setter name="setTracking"/>
+            </property>
         </class>
         <struct name="QCtmRecentData" href="qctmrecentdata.html" status="active" access="public" location="QCtmRecentModel.h" documented="true" groups="QCustomUi" module="QCustomUi" brief="最近打开的项目数据结构">
             <variable name="icon" fullname="QCtmRecentData::icon" href="qctmrecentdata.html#icon-var" status="active" access="public" location="QCtmRecentModel.h" documented="true" type="QIcon" static="false" brief="项目图标"/>
@@ -2563,14 +2670,14 @@
                 <parameter type="int" name="index" default=""/>
                 <parameter type="const QString &amp;" name="text" default=""/>
             </function>
-            <function name="insertAction" fullname="QCtmTabPage::insertAction" href="qctmtabpage.html#insertAction-1" status="active" access="public" location="QCtmTabPage.h" documented="true" meta="plain" overload="true" overload-number="1" type="QAction *" signature="QAction * insertAction(int index, const QIcon &amp;icon, const QString &amp;text)">
+            <function name="insertAction" fullname="QCtmTabPage::insertAction" href="qctmtabpage.html#insertAction-1" status="active" access="public" location="QCtmTabPage.h" documented="true" meta="plain" overload="true" overload-number="1" type="void" signature="void insertAction(int index, QAction *action)">
+                <parameter type="int" name="index" default=""/>
+                <parameter type="QAction *" name="action" default=""/>
+            </function>
+            <function name="insertAction" fullname="QCtmTabPage::insertAction" href="qctmtabpage.html#insertAction-2" status="active" access="public" location="QCtmTabPage.h" documented="true" meta="plain" overload="true" overload-number="2" type="QAction *" signature="QAction * insertAction(int index, const QIcon &amp;icon, const QString &amp;text)">
                 <parameter type="int" name="index" default=""/>
                 <parameter type="const QIcon &amp;" name="icon" default=""/>
                 <parameter type="const QString &amp;" name="text" default=""/>
-            </function>
-            <function name="insertAction" fullname="QCtmTabPage::insertAction" href="qctmtabpage.html#insertAction-2" status="active" access="public" location="QCtmTabPage.h" documented="true" meta="plain" overload="true" overload-number="2" type="void" signature="void insertAction(int index, QAction *action)">
-                <parameter type="int" name="index" default=""/>
-                <parameter type="QAction *" name="action" default=""/>
             </function>
             <function name="paintEvent" fullname="QCtmTabPage::paintEvent" href="qctmtabpage.html#paintEvent" status="active" access="protected" location="QCtmTabPage.h" documented="true" meta="plain" virtual="virtual" override="true" type="void" signature="void paintEvent(QPaintEvent *event) override">
                 <parameter type="QPaintEvent *" name="event" default=""/>
@@ -2736,6 +2843,8 @@
                 <parameter type="QWidget *" name="parent" default="nullptr"/>
             </function>
             <function name="cleanText" fullname="QCtmULongLongSpinBox::cleanText" href="qctmulonglongspinbox.html#cleanText" status="active" access="public" location="QCtmULongLongSpinBox.h" documented="true" meta="plain" const="true" associated-property="cleanText" type="QString" brief="返回值的文本, 不包括前缀，后缀，前导空格，结尾空格" signature="QString cleanText() const"/>
+            <function name="displayFieldWidth" fullname="QCtmULongLongSpinBox::displayFieldWidth" href="qctmulonglongspinbox.html#displayFieldWidth" status="active" access="public" location="QCtmULongLongSpinBox.h" documented="true" meta="plain" const="true" associated-property="displayFieldWidth" type="int" brief="返回文本显示宽度" signature="int displayFieldWidth() const"/>
+            <function name="displayFillChar" fullname="QCtmULongLongSpinBox::displayFillChar" href="qctmulonglongspinbox.html#displayFillChar" status="active" access="public" location="QCtmULongLongSpinBox.h" documented="true" meta="plain" const="true" associated-property="displayFillChar" type="QChar" brief="返回文本填充字符" signature="QChar displayFillChar() const"/>
             <function name="displayIntegerBase" fullname="QCtmULongLongSpinBox::displayIntegerBase" href="qctmulonglongspinbox.html#displayIntegerBase" status="active" access="public" location="QCtmULongLongSpinBox.h" documented="true" meta="plain" const="true" associated-property="displayIntegerBase" type="int" brief="返回显示进制" signature="int displayIntegerBase() const"/>
             <function name="event" fullname="QCtmULongLongSpinBox::event" href="qctmulonglongspinbox.html#event" status="active" access="protected" location="QCtmULongLongSpinBox.h" documented="true" meta="plain" virtual="virtual" override="true" type="bool" signature="bool event(QEvent *event) override">
                 <parameter type="QEvent *" name="event" default=""/>
@@ -2746,6 +2855,12 @@
             <function name="maximum" fullname="QCtmULongLongSpinBox::maximum" href="qctmulonglongspinbox.html#maximum" status="active" access="public" location="QCtmULongLongSpinBox.h" documented="true" meta="plain" const="true" associated-property="maximum" type="qulonglong" brief="返回最大值" signature="qulonglong maximum() const"/>
             <function name="minimum" fullname="QCtmULongLongSpinBox::minimum" href="qctmulonglongspinbox.html#minimum" status="active" access="public" location="QCtmULongLongSpinBox.h" documented="true" meta="plain" const="true" associated-property="minimum" type="qulonglong" brief="返回最小值" signature="qulonglong minimum() const"/>
             <function name="prefix" fullname="QCtmULongLongSpinBox::prefix" href="qctmulonglongspinbox.html#prefix" status="active" access="public" location="QCtmULongLongSpinBox.h" documented="true" meta="plain" const="true" associated-property="prefix" type="QString" brief="返回前缀" signature="QString prefix() const"/>
+            <function name="setDisplayFieldWidth" fullname="QCtmULongLongSpinBox::setDisplayFieldWidth" href="qctmulonglongspinbox.html#setDisplayFieldWidth" status="active" access="public" location="QCtmULongLongSpinBox.h" documented="true" meta="plain" associated-property="displayFieldWidth" type="void" brief="设置文本显示宽度 width, 文本不足显示宽度时，填充 displayFillChar" signature="void setDisplayFieldWidth(int width)">
+                <parameter type="int" name="width" default=""/>
+            </function>
+            <function name="setDisplayFillChar" fullname="QCtmULongLongSpinBox::setDisplayFillChar" href="qctmulonglongspinbox.html#setDisplayFillChar" status="active" access="public" location="QCtmULongLongSpinBox.h" documented="true" meta="plain" associated-property="displayFillChar" type="void" brief="设置文本显示填充字符 ch" signature="void setDisplayFillChar(QChar ch)">
+                <parameter type="QChar" name="ch" default=""/>
+            </function>
             <function name="setDisplayIntegerBase" fullname="QCtmULongLongSpinBox::setDisplayIntegerBase" href="qctmulonglongspinbox.html#setDisplayIntegerBase" status="active" access="public" location="QCtmULongLongSpinBox.h" documented="true" meta="plain" associated-property="displayIntegerBase" type="void" brief="设置显示进制 base" signature="void setDisplayIntegerBase(int base)">
                 <parameter type="int" name="base" default=""/>
             </function>
@@ -2831,13 +2946,13 @@
             <function name="setNavigationBar" fullname="QCtmWindow::setNavigationBar" href="qctmwindow.html#setNavigationBar" status="active" access="public" location="QCtmWindow.h" documented="true" meta="plain" type="void" brief="设置导航栏 bar, bar 为nullptr时删除导航栏" signature="void setNavigationBar(QCtmNavigationBar *bar)">
                 <parameter type="QCtmNavigationBar *" name="bar" default=""/>
             </function>
-            <function name="setStatusBar" fullname="QCtmWindow::setStatusBar" href="qctmwindow.html#setStatusBar" status="active" access="public" location="QCtmWindow.h" documented="true" meta="plain" type="void" brief="设置状态栏 statusBar, 当设置 statusBar 为 nullptr 时将删除状态栏" signature="void setStatusBar(QStatusBar *statusBar)">
-                <parameter type="QStatusBar *" name="statusBar" default=""/>
+            <function name="setStatusBar" fullname="QCtmWindow::setStatusBar" href="qctmwindow.html#setStatusBar" status="active" access="public" location="QCtmWindow.h" documented="true" meta="plain" type="void" brief="设置状态栏 statusBar, 当设置 statusBar 为 nullptr 时将删除状态栏" signature="void setStatusBar(int *statusBar)">
+                <parameter type="int *" name="statusBar" default=""/>
             </function>
             <function name="setTitleBar" fullname="QCtmWindow::setTitleBar" href="qctmwindow.html#setTitleBar" status="active" access="public" location="QCtmWindow.h" documented="true" meta="plain" type="void" brief="设置标题栏 titleBar, 当 titleBar 为 nullptr 时删除标题栏，如果删除标题栏后导航栏存在，则导航栏替代标题栏响应鼠标拖拽功能" signature="void setTitleBar(QCtmTitleBar *titleBar)">
                 <parameter type="QCtmTitleBar *" name="titleBar" default=""/>
             </function>
-            <function name="statusBar" fullname="QCtmWindow::statusBar" href="qctmwindow.html#statusBar" status="active" access="public" location="QCtmWindow.h" documented="true" meta="plain" const="true" type="QStatusBar *" brief="返回状态栏，如果状态栏对象不存在，QCtmWindow会自动创建一个状态栏对象返回" signature="QStatusBar * statusBar() const"/>
+            <function name="statusBar" fullname="QCtmWindow::statusBar" href="qctmwindow.html#statusBar" status="active" access="public" location="QCtmWindow.h" documented="true" meta="plain" const="true" type="int *" brief="返回状态栏，如果状态栏对象不存在，QCtmWindow会自动创建一个状态栏对象返回" signature="int * statusBar() const"/>
             <function name="titleBar" fullname="QCtmWindow::titleBar" href="qctmwindow.html#titleBar" status="active" access="public" location="QCtmWindow.h" documented="true" meta="plain" const="true" type="QCtmTitleBar *" brief="返回标题栏，当标题栏不存在时自动创建并返回标题栏" signature="QCtmTitleBar * titleBar() const"/>
             <function name="~QCtmWindow" fullname="QCtmWindow::~QCtmWindow" href="qctmwindow.html#dtor.QCtmWindow" status="active" access="public" location="QCtmWindow.h" documented="true" meta="destructor" virtual="virtual" noexcept="true" brief="析构函数" signature="~QCtmWindow()"/>
         </class>
@@ -2866,6 +2981,7 @@
         <page name="https://doc.qt.io/qtcreator/creator-beautifier.html" href="https://doc.qt.io/qtcreator/creator-beautifier.html" status="active" location="qtcreator.qdoc" documented="true" subtype="externalpage" title="Qt Creator: Beautifying Source Code" fulltitle="Qt Creator: Beautifying Source Code" subtitle=""/>
         <page name="https://doc.qt.io/qtcreator/creator-sidebar-views.html" href="https://doc.qt.io/qtcreator/creator-sidebar-views.html" status="active" location="qtcreator.qdoc" documented="true" subtype="externalpage" title="Qt Creator: Browsing Project Contents" fulltitle="Qt Creator: Browsing Project Contents" subtitle=""/>
         <page name="https://doc.qt.io/qtcreator/creator-project-other.html" href="https://doc.qt.io/qtcreator/creator-project-other.html" status="active" location="qtcreator.qdoc" documented="true" subtype="externalpage" title="Qt Creator: Build Systems" fulltitle="Qt Creator: Build Systems" subtitle=""/>
+        <page name="https://doc.qt.io/qtcreator/creator-how-to-build-and-run-tests.html" href="https://doc.qt.io/qtcreator/creator-how-to-build-and-run-tests.html" status="active" location="qtcreator.qdoc" documented="true" subtype="externalpage" title="Qt Creator: Build and Run Tests" fulltitle="Qt Creator: Build and Run Tests" subtitle=""/>
         <page name="https://doc.qt.io/qtcreator/creator-setup-webassembly.html" href="https://doc.qt.io/qtcreator/creator-setup-webassembly.html" status="active" location="qtcreator.qdoc" documented="true" subtype="externalpage" title="Qt Creator: Building Applications for the Web" fulltitle="Qt Creator: Building Applications for the Web" subtitle=""/>
         <page name="https://doc.qt.io/qtcreator/creator-building-running.html" href="https://doc.qt.io/qtcreator/creator-building-running.html" status="active" location="qtcreator.qdoc" documented="true" subtype="externalpage" title="Qt Creator: Building and Running" fulltitle="Qt Creator: Building and Running" subtitle=""/>
         <page name="https://doc.qt.io/qtcreator/creator-build-example-application.html" href="https://doc.qt.io/qtcreator/creator-build-example-application.html" status="active" location="qtcreator.qdoc" documented="true" subtype="externalpage" title="Qt Creator: Building and Running an Example" fulltitle="Qt Creator: Building and Running an Example" subtitle=""/>
@@ -2946,7 +3062,7 @@
         <page name="https://doc.qt.io/qtcreator/creator-projects-view.html" href="https://doc.qt.io/qtcreator/creator-projects-view.html" status="active" location="qtcreator.qdoc" documented="true" subtype="externalpage" title="Qt Creator: Projects" fulltitle="Qt Creator: Projects" subtitle=""/>
         <page name="https://doc.qt.io/qtcreator/creator-build-settings-qbs.html" href="https://doc.qt.io/qtcreator/creator-build-settings-qbs.html" status="active" location="qtcreator.qdoc" documented="true" subtype="externalpage" title="Qt Creator: Qbs Build Configuration" fulltitle="Qt Creator: Qbs Build Configuration" subtitle=""/>
         <page name="https://doc.qt.io/qtcreator/creator-editor-refactoring.html" href="https://doc.qt.io/qtcreator/creator-editor-refactoring.html" status="active" location="qtcreator.qdoc" documented="true" subtype="externalpage" title="Qt Creator: Refactoring" fulltitle="Qt Creator: Refactoring" subtitle=""/>
-        <page name="https://doc.qt.io/qtcreator/creator-autotest.html" href="https://doc.qt.io/qtcreator/creator-autotest.html" status="active" location="qtcreator.qdoc" documented="true" subtype="externalpage" title="Qt Creator: Running Autotests" fulltitle="Qt Creator: Running Autotests" subtitle=""/>
+        <page name="https://doc.qt.io/qtcreator/creator-how-to-build-and-run-tests.html" href="https://doc.qt.io/qtcreator/creator-how-to-build-and-run-tests.html" status="active" location="qtcreator.qdoc" documented="true" subtype="externalpage" title="Qt Creator: Running Autotests" fulltitle="Qt Creator: Running Autotests" subtitle=""/>
         <page name="https://doc.qt.io/qtcreator/creator-running-valgrind-remotely.html" href="https://doc.qt.io/qtcreator/creator-running-valgrind-remotely.html" status="active" location="qtcreator.qdoc" documented="true" subtype="externalpage" title="Qt Creator: Running Valgrind Tools on External Applications" fulltitle="Qt Creator: Running Valgrind Tools on External Applications" subtitle=""/>
         <page name="https://doc.qt.io/qtcreator/creator-running-targets.html" href="https://doc.qt.io/qtcreator/creator-running-targets.html" status="active" location="qtcreator.qdoc" documented="true" subtype="externalpage" title="Qt Creator: Running on Multiple Platforms" fulltitle="Qt Creator: Running on Multiple Platforms" subtitle=""/>
         <page name="https://doc.qt.io/qtcreator/creator-editor-locator.html" href="https://doc.qt.io/qtcreator/creator-editor-locator.html" status="active" location="qtcreator.qdoc" documented="true" subtype="externalpage" title="Qt Creator: Searching with the Locator" fulltitle="Qt Creator: Searching with the Locator" subtitle=""/>
@@ -3210,12 +3326,14 @@
         <page name="https://datatracker.ietf.org/doc/html/rfc6347" href="https://datatracker.ietf.org/doc/html/rfc6347" status="active" location="rfc.qdoc" documented="true" subtype="externalpage" title="RFC 6347" fulltitle="RFC 6347" subtitle=""/>
         <page name="https://datatracker.ietf.org/doc/html/rfc6347#section-4.2.1" href="https://datatracker.ietf.org/doc/html/rfc6347#section-4.2.1" status="active" location="rfc.qdoc" documented="true" subtype="externalpage" title="RFC 6347, section 4.2.1" fulltitle="RFC 6347, section 4.2.1" subtitle=""/>
         <page name="https://datatracker.ietf.org/doc/html/rfc6347#section-4.2.8" href="https://datatracker.ietf.org/doc/html/rfc6347#section-4.2.8" status="active" location="rfc.qdoc" documented="true" subtype="externalpage" title="RFC 6347, section 4.2.8" fulltitle="RFC 6347, section 4.2.8" subtitle=""/>
+        <page name="https://datatracker.ietf.org/doc/html/rfc6698" href="https://datatracker.ietf.org/doc/html/rfc6698" status="active" location="rfc.qdoc" documented="true" subtype="externalpage" title="RFC 6698" fulltitle="RFC 6698" subtitle=""/>
         <page name="https://datatracker.ietf.org/doc/html/rfc6724" href="https://datatracker.ietf.org/doc/html/rfc6724" status="active" location="rfc.qdoc" documented="true" subtype="externalpage" title="RFC 6724" fulltitle="RFC 6724" subtitle=""/>
         <page name="https://datatracker.ietf.org/doc/html/rfc7049" href="https://datatracker.ietf.org/doc/html/rfc7049" status="active" location="rfc.qdoc" documented="true" subtype="externalpage" title="RFC 7049" fulltitle="RFC 7049" subtitle=""/>
         <page name="https://datatracker.ietf.org/doc/html/rfc7049#section-3.10" href="https://datatracker.ietf.org/doc/html/rfc7049#section-3.10" status="active" location="rfc.qdoc" documented="true" subtype="externalpage" title="RFC 7049, section 3.10" fulltitle="RFC 7049, section 3.10" subtitle=""/>
         <page name="https://datatracker.ietf.org/doc/html/rfc7049#section-3.9" href="https://datatracker.ietf.org/doc/html/rfc7049#section-3.9" status="active" location="rfc.qdoc" documented="true" subtype="externalpage" title="RFC 7049, section 3.9" fulltitle="RFC 7049, section 3.9" subtitle=""/>
         <page name="https://datatracker.ietf.org/doc/html/rfc7049#section-6" href="https://datatracker.ietf.org/doc/html/rfc7049#section-6" status="active" location="rfc.qdoc" documented="true" subtype="externalpage" title="RFC 7049, section 6" fulltitle="RFC 7049, section 6" subtitle=""/>
         <page name="https://datatracker.ietf.org/doc/html/rfc7252" href="https://datatracker.ietf.org/doc/html/rfc7252" status="active" location="rfc.qdoc" documented="true" subtype="externalpage" title="RFC 7252" fulltitle="RFC 7252" subtitle=""/>
+        <page name="https://datatracker.ietf.org/doc/html/rfc7858" href="https://datatracker.ietf.org/doc/html/rfc7858" status="active" location="rfc.qdoc" documented="true" subtype="externalpage" title="RFC 7858" fulltitle="RFC 7858" subtitle=""/>
         <page name="https://datatracker.ietf.org/doc/html/rfc8018#section-5.1" href="https://datatracker.ietf.org/doc/html/rfc8018#section-5.1" status="active" location="rfc.qdoc" documented="true" subtype="externalpage" title="RFC 8018, section 5.1" fulltitle="RFC 8018, section 5.1" subtitle=""/>
         <page name="https://datatracker.ietf.org/doc/html/rfc8018#section-5.2" href="https://datatracker.ietf.org/doc/html/rfc8018#section-5.2" status="active" location="rfc.qdoc" documented="true" subtype="externalpage" title="RFC 8018, section 5.2" fulltitle="RFC 8018, section 5.2" subtitle=""/>
         <page name="https://datatracker.ietf.org/doc/html/rfc8152" href="https://datatracker.ietf.org/doc/html/rfc8152" status="active" location="rfc.qdoc" documented="true" subtype="externalpage" title="RFC 8152" fulltitle="RFC 8152" subtitle=""/>

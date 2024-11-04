@@ -4,7 +4,7 @@
   <meta charset="utf-8">
 <!-- QCtmDrawerItemWidget.cpp -->
   <meta name="description" content="抽屉窗口 QCtmDrawerWidget 的抽屉项.">
-  <title>QCtmDrawerItemWidget Class | QCustomUi 1.16.0</title>
+  <title>QCtmDrawerItemWidget Class | QCustomUi 1.17.0</title>
   <link rel="stylesheet" type="text/css" href="style/offline-simple.css" />
   <script type="text/javascript">
     document.getElementsByTagName("link").item(0).setAttribute("href", "style/offline.css");
@@ -26,10 +26,10 @@
     <div class="main-rounded">
         <div class="navigationbar">
         <ul>
-<li><a href="index.html" translate="no">QCustomUi 1.16.0</a></li>
+<li><a href="index.html">QCustomUi 1.17.0</a></li>
 <li><a href="qcustomui-module.html" translate="no">QCustomUi</a></li>
 <li>QCtmDrawerItemWidget</li>
-<li id="buildversion">QCustomUi 1.16.0 Reference Documentation</li>
+<li id="buildversion">QCustomUi 1.17.0 Reference Documentation</li>
     </ul>
     </div>
 </div>
@@ -51,9 +51,9 @@
 <!-- $$$QCtmDrawerItemWidget-brief -->
 <p>抽屉窗口 <a href="qctmdrawerwidget.html" translate="no">QCtmDrawerWidget</a> 的抽屉项. <a href="#details">More...</a></p>
 <!-- @@@QCtmDrawerItemWidget -->
-<div class="table"><table class="alignedsummary" translate="no">
-<tr><td class="memItemLeft rightAlign topAlign"> Header:</td><td class="memItemRight bottomAlign">  <span class="preprocessor">#include &lt;QCtmDrawerItemWidget.h&gt;</span></td></tr>
-<tr><td class="memItemLeft rightAlign topAlign"> Inherits:</td><td class="memItemRight bottomAlign"> QWidget</td></tr>
+<div class="table"><table class="alignedsummary requisites" translate="no">
+<tr><td class="memItemLeft rightAlign topAlign"> Header:</td><td class="memItemRight bottomAlign"> <code translate="no">#include &lt;QCtmDrawerItemWidget.h&gt;</code></td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> Inherits:</td><td class="memItemRight bottomAlign"> <a href="https://doc.qt.io/qt/qwidget.html" translate="no">QWidget</a></td></tr>
 </table></div>
 <ul>
 <li><a href="qctmdraweritemwidget-members.html">List of all members, including inherited members</a></li>
@@ -67,8 +67,8 @@
 <tr><td class="memItemLeft rightAlign topAlign"> int </td><td class="memItemRight bottomAlign"><b><a href="qctmdraweritemwidget.html#count" translate="no">count</a></b>() const</td></tr>
 <tr><td class="memItemLeft rightAlign topAlign"> const QSize &amp;</td><td class="memItemRight bottomAlign"><b><a href="qctmdraweritemwidget.html#iconSize" translate="no">iconSize</a></b>() const</td></tr>
 <tr><td class="memItemLeft rightAlign topAlign"> int </td><td class="memItemRight bottomAlign"><b><a href="qctmdraweritemwidget.html#indexOf" translate="no">indexOf</a></b>(QAction *<i>action</i>)</td></tr>
-<tr><td class="memItemLeft rightAlign topAlign"> QAction *</td><td class="memItemRight bottomAlign"><b><a href="qctmdraweritemwidget.html#insertAction-1" translate="no">insertAction</a></b>(int <i>index</i>, const QIcon &amp;<i>icon</i>, const QString &amp;<i>text</i>)</td></tr>
-<tr><td class="memItemLeft rightAlign topAlign"> QAction *</td><td class="memItemRight bottomAlign"><b><a href="qctmdraweritemwidget.html#insertAction-2" translate="no">insertAction</a></b>(int <i>index</i>, const QString &amp;<i>text</i>)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> QAction *</td><td class="memItemRight bottomAlign"><b><a href="qctmdraweritemwidget.html#insertAction-1" translate="no">insertAction</a></b>(int <i>index</i>, const QString &amp;<i>text</i>)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> QAction *</td><td class="memItemRight bottomAlign"><b><a href="qctmdraweritemwidget.html#insertAction-2" translate="no">insertAction</a></b>(int <i>index</i>, const QIcon &amp;<i>icon</i>, const QString &amp;<i>text</i>)</td></tr>
 <tr><td class="memItemLeft rightAlign topAlign"> bool </td><td class="memItemRight bottomAlign"><b><a href="qctmdraweritemwidget.html#isExpand" translate="no">isExpand</a></b>() const</td></tr>
 <tr><td class="memItemLeft rightAlign topAlign"> void </td><td class="memItemRight bottomAlign"><b><a href="qctmdraweritemwidget.html#removeAction" translate="no">removeAction</a></b>(QAction *<i>action</i>)</td></tr>
 <tr><td class="memItemLeft rightAlign topAlign"> void </td><td class="memItemRight bottomAlign"><b><a href="qctmdraweritemwidget.html#setExpand" translate="no">setExpand</a></b>(bool <i>expand</i>)</td></tr>
@@ -153,16 +153,16 @@
 <p>返回 <i translate="no">action</i> 的位置.</p>
 <p><b>See also </b><a href="qctmdraweritemwidget.html#actionAt" translate="no">actionAt</a>.</p>
 <!-- @@@indexOf -->
-<!-- $$$insertAction$$$insertActionintconstQIcon&constQString& -->
-<h3 class="fn" translate="no" id="insertAction-1"><span class="type"><a href="https://doc.qt.io/qt/qaction.html" translate="no">QAction</a></span> *QCtmDrawerItemWidget::<span class="name">insertAction</span>(<span class="type">int</span> <i>index</i>, const <span class="type"><a href="https://doc.qt.io/qt/qicon.html" translate="no">QIcon</a></span> &amp;<i>icon</i>, const <span class="type"><a href="https://doc.qt.io/qt/qstring.html" translate="no">QString</a></span> &amp;<i>text</i>)</h3>
-<p>This function overloads insertAction.</p>
-<p>在标题栏上的 <i translate="no">index</i> 位置插入一个图标为 <i translate="no">icon</i> 文本为 <i translate="no">text</i> 的Action.</p>
-<p><b>See also </b>QCtmDrawerItemWidget::insertAction and <a href="qctmdraweritemwidget.html#removeAction" translate="no">removeAction</a>.</p>
-<!-- @@@insertAction -->
 <!-- $$$insertAction$$$insertActionintconstQString& -->
-<h3 class="fn" translate="no" id="insertAction-2"><span class="type"><a href="https://doc.qt.io/qt/qaction.html" translate="no">QAction</a></span> *QCtmDrawerItemWidget::<span class="name">insertAction</span>(<span class="type">int</span> <i>index</i>, const <span class="type"><a href="https://doc.qt.io/qt/qstring.html" translate="no">QString</a></span> &amp;<i>text</i>)</h3>
+<h3 class="fn" translate="no" id="insertAction-1"><span class="type"><a href="https://doc.qt.io/qt/qaction.html" translate="no">QAction</a></span> *QCtmDrawerItemWidget::<span class="name">insertAction</span>(<span class="type">int</span> <i>index</i>, const <span class="type"><a href="https://doc.qt.io/qt/qstring.html" translate="no">QString</a></span> &amp;<i>text</i>)</h3>
 <p>This function overloads insertAction.</p>
 <p>在标题栏上的 <i translate="no">index</i> 位置插入一个文本为 <i translate="no">text</i> 的Action.</p>
+<p><b>See also </b>QCtmDrawerItemWidget::insertAction and <a href="qctmdraweritemwidget.html#removeAction" translate="no">removeAction</a>.</p>
+<!-- @@@insertAction -->
+<!-- $$$insertAction$$$insertActionintconstQIcon&constQString& -->
+<h3 class="fn" translate="no" id="insertAction-2"><span class="type"><a href="https://doc.qt.io/qt/qaction.html" translate="no">QAction</a></span> *QCtmDrawerItemWidget::<span class="name">insertAction</span>(<span class="type">int</span> <i>index</i>, const <span class="type"><a href="https://doc.qt.io/qt/qicon.html" translate="no">QIcon</a></span> &amp;<i>icon</i>, const <span class="type"><a href="https://doc.qt.io/qt/qstring.html" translate="no">QString</a></span> &amp;<i>text</i>)</h3>
+<p>This function overloads insertAction.</p>
+<p>在标题栏上的 <i translate="no">index</i> 位置插入一个图标为 <i translate="no">icon</i> 文本为 <i translate="no">text</i> 的Action.</p>
 <p><b>See also </b><a href="qctmdraweritemwidget.html#insertAction-1" translate="no">QCtmDrawerItemWidget::insertAction</a> and <a href="qctmdraweritemwidget.html#removeAction" translate="no">removeAction</a>.</p>
 <!-- @@@insertAction -->
 <!-- $$$isExpand[overload1]$$$isExpand -->
@@ -192,7 +192,7 @@
 <p><b>See also </b><a href="qctmdraweritemwidget.html#title" translate="no">title</a>().</p>
 <!-- @@@setTitle -->
 <!-- $$$setWidget[overload1]$$$setWidgetQWidget* -->
-<h3 class="fn" translate="no" id="setWidget"><span class="type">void</span> QCtmDrawerItemWidget::<span class="name">setWidget</span>(<span class="type">QWidget</span> *<i>widget</i>)</h3>
+<h3 class="fn" translate="no" id="setWidget"><span class="type">void</span> QCtmDrawerItemWidget::<span class="name">setWidget</span>(<span class="type"><a href="https://doc.qt.io/qt/qwidget.html#QWidget" translate="no">QWidget</a></span> *<i>widget</i>)</h3>
 <p>设置抽屉项容纳的部件 <i translate="no">widget</i>.</p>
 <p><b>See also </b><a href="qctmdraweritemwidget.html#widget" translate="no">widget</a>().</p>
 <!-- @@@setWidget -->
@@ -207,7 +207,7 @@
 <p><b>See also </b><a href="qctmdraweritemwidget.html#expandChanged" translate="no">QCtmDrawerItemWidget::expandChanged</a>.</p>
 <!-- @@@titleClicked -->
 <!-- $$$widget[overload1]$$$widget -->
-<h3 class="fn" translate="no" id="widget"><span class="type">QWidget</span> *QCtmDrawerItemWidget::<span class="name">widget</span>() const</h3>
+<h3 class="fn" translate="no" id="widget"><span class="type"><a href="https://doc.qt.io/qt/qwidget.html#QWidget" translate="no">QWidget</a></span> *QCtmDrawerItemWidget::<span class="name">widget</span>() const</h3>
 <p>返回该抽屉项容纳的部件.</p>
 <p><b>See also </b><a href="qctmdraweritemwidget.html#setWidget" translate="no">setWidget</a>.</p>
 <!-- @@@widget -->

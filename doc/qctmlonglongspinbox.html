@@ -4,7 +4,7 @@
   <meta charset="utf-8">
 <!-- QCtmLongLongSpinBox.cpp -->
   <meta name="description" content="64位长整型输入框，弥补Qt库QSpinBox输入框仅支持32位整型，API接口与QSpinBox一致.">
-  <title>QCtmLongLongSpinBox Class | QCustomUi 1.16.0</title>
+  <title>QCtmLongLongSpinBox Class | QCustomUi 1.17.0</title>
   <link rel="stylesheet" type="text/css" href="style/offline-simple.css" />
   <script type="text/javascript">
     document.getElementsByTagName("link").item(0).setAttribute("href", "style/offline.css");
@@ -26,10 +26,10 @@
     <div class="main-rounded">
         <div class="navigationbar">
         <ul>
-<li><a href="index.html" translate="no">QCustomUi 1.16.0</a></li>
+<li><a href="index.html">QCustomUi 1.17.0</a></li>
 <li><a href="qcustomui-module.html" translate="no">QCustomUi</a></li>
 <li>QCtmLongLongSpinBox</li>
-<li id="buildversion">QCustomUi 1.16.0 Reference Documentation</li>
+<li id="buildversion">QCustomUi 1.17.0 Reference Documentation</li>
     </ul>
     </div>
 </div>
@@ -53,8 +53,8 @@
 <!-- $$$QCtmLongLongSpinBox-brief -->
 <p>64位长整型输入框，弥补Qt库<a href="https://doc.qt.io/qt/qspinbox.html" translate="no">QSpinBox</a>输入框仅支持32位整型，API接口与<a href="https://doc.qt.io/qt/qspinbox.html" translate="no">QSpinBox</a>一致. <a href="#details">More...</a></p>
 <!-- @@@QCtmLongLongSpinBox -->
-<div class="table"><table class="alignedsummary" translate="no">
-<tr><td class="memItemLeft rightAlign topAlign"> Header:</td><td class="memItemRight bottomAlign">  <span class="preprocessor">#include &lt;QCtmLongLongSpinBox.h&gt;</span></td></tr>
+<div class="table"><table class="alignedsummary requisites" translate="no">
+<tr><td class="memItemLeft rightAlign topAlign"> Header:</td><td class="memItemRight bottomAlign"> <code translate="no">#include &lt;QCtmLongLongSpinBox.h&gt;</code></td></tr>
 <tr><td class="memItemLeft rightAlign topAlign"> Inherits:</td><td class="memItemRight bottomAlign"> <a href="https://doc.qt.io/qt/qabstractspinbox.html" translate="no">QAbstractSpinBox</a></td></tr>
 </table></div>
 <ul>
@@ -65,10 +65,14 @@
 <tr><td class="memItemLeft rightAlign topAlign"> </td><td class="memItemRight bottomAlign"><b><a href="qctmlonglongspinbox.html#QCtmLongLongSpinBox" translate="no">QCtmLongLongSpinBox</a></b>(QWidget *<i>parent</i> = nullptr)</td></tr>
 <tr><td class="memItemLeft rightAlign topAlign"> virtual </td><td class="memItemRight bottomAlign"><b><a href="qctmlonglongspinbox.html#dtor.QCtmLongLongSpinBox" translate="no">~QCtmLongLongSpinBox</a></b>()</td></tr>
 <tr><td class="memItemLeft rightAlign topAlign"> QString </td><td class="memItemRight bottomAlign"><b><a href="qctmlonglongspinbox.html#cleanText" translate="no">cleanText</a></b>() const</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> int </td><td class="memItemRight bottomAlign"><b><a href="qctmlonglongspinbox.html#displayFieldWidth" translate="no">displayFieldWidth</a></b>() const</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> QChar </td><td class="memItemRight bottomAlign"><b><a href="qctmlonglongspinbox.html#displayFillChar" translate="no">displayFillChar</a></b>() const</td></tr>
 <tr><td class="memItemLeft rightAlign topAlign"> int </td><td class="memItemRight bottomAlign"><b><a href="qctmlonglongspinbox.html#displayIntegerBase" translate="no">displayIntegerBase</a></b>() const</td></tr>
 <tr><td class="memItemLeft rightAlign topAlign"> qlonglong </td><td class="memItemRight bottomAlign"><b><a href="qctmlonglongspinbox.html#maximum" translate="no">maximum</a></b>() const</td></tr>
 <tr><td class="memItemLeft rightAlign topAlign"> qlonglong </td><td class="memItemRight bottomAlign"><b><a href="qctmlonglongspinbox.html#minimum" translate="no">minimum</a></b>() const</td></tr>
 <tr><td class="memItemLeft rightAlign topAlign"> QString </td><td class="memItemRight bottomAlign"><b><a href="qctmlonglongspinbox.html#prefix" translate="no">prefix</a></b>() const</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> void </td><td class="memItemRight bottomAlign"><b><a href="qctmlonglongspinbox.html#setDisplayFieldWidth" translate="no">setDisplayFieldWidth</a></b>(int <i>width</i>)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> void </td><td class="memItemRight bottomAlign"><b><a href="qctmlonglongspinbox.html#setDisplayFillChar" translate="no">setDisplayFillChar</a></b>(QChar <i>ch</i>)</td></tr>
 <tr><td class="memItemLeft rightAlign topAlign"> void </td><td class="memItemRight bottomAlign"><b><a href="qctmlonglongspinbox.html#setDisplayIntegerBase" translate="no">setDisplayIntegerBase</a></b>(int <i>base</i>)</td></tr>
 <tr><td class="memItemLeft rightAlign topAlign"> void </td><td class="memItemRight bottomAlign"><b><a href="qctmlonglongspinbox.html#setMaximum" translate="no">setMaximum</a></b>(qlonglong <i>maximum</i>)</td></tr>
 <tr><td class="memItemLeft rightAlign topAlign"> void </td><td class="memItemRight bottomAlign"><b><a href="qctmlonglongspinbox.html#setMinimum" translate="no">setMinimum</a></b>(qlonglong <i>minimum</i>)</td></tr>
@@ -123,6 +127,18 @@
 <p>返回值的文本, 不包括前缀，后缀，前导空格，结尾空格.</p>
 <div class="admonition note"><p><b>Note: </b>Getter function for property cleanText. </p>
 </div><!-- @@@cleanText -->
+<!-- $$$displayFieldWidth -->
+<h3 class="fn" translate="no" id="displayFieldWidth"><span class="type">int</span> QCtmLongLongSpinBox::<span class="name">displayFieldWidth</span>() const</h3>
+<p>返回文本显示宽度.</p>
+<div class="admonition note"><p><b>Note: </b>Getter function for property displayFieldWidth. </p>
+</div><p><b>See also </b><a href="qctmlonglongspinbox.html#setDisplayFieldWidth" translate="no">setDisplayFieldWidth</a>.</p>
+<!-- @@@displayFieldWidth -->
+<!-- $$$displayFillChar -->
+<h3 class="fn" translate="no" id="displayFillChar"><span class="type"><a href="https://doc.qt.io/qt/qchar.html" translate="no">QChar</a></span> QCtmLongLongSpinBox::<span class="name">displayFillChar</span>() const</h3>
+<p>返回文本填充字符.</p>
+<div class="admonition note"><p><b>Note: </b>Getter function for property displayFillChar. </p>
+</div><p><b>See also </b><a href="qctmlonglongspinbox.html#setDisplayFillChar" translate="no">setDisplayFillChar</a>.</p>
+<!-- @@@displayFillChar -->
 <!-- $$$displayIntegerBase -->
 <h3 class="fn" translate="no" id="displayIntegerBase"><span class="type">int</span> QCtmLongLongSpinBox::<span class="name">displayIntegerBase</span>() const</h3>
 <p>返回显示进制.</p>
@@ -135,7 +151,7 @@
 <!-- @@@event -->
 <!-- $$$fixup[overload1]$$$fixupQString& -->
 <h3 class="fn" translate="no" id="fixup"><code class="details extra" translate="no">[override virtual protected]</code> <span class="type">void</span> QCtmLongLongSpinBox::<span class="name">fixup</span>(<span class="type"><a href="https://doc.qt.io/qt/qstring.html" translate="no">QString</a></span> &amp;<i>str</i>) const</h3>
-<p>Reimplements: <a href="https://doc.qt.io/qt/qabstractspinbox.html#fixup" translate="no">QAbstractSpinBox::fixup(QString &amp;input) const</a>.</p>
+<p>Reimplements: <a href="https://doc.qt.io/qt/qabstractspinbox.html#fixup" translate="no">QAbstractSpinBox::fixup</a>(QString &amp;input) const.</p>
 <!-- @@@fixup -->
 <!-- $$$maximum -->
 <h3 class="fn" translate="no" id="maximum"><span class="type"><a href="https://doc.qt.io/qt/qttypes.html#qlonglong-typedef" translate="no">qlonglong</a></span> QCtmLongLongSpinBox::<span class="name">maximum</span>() const</h3>
@@ -155,6 +171,18 @@
 <div class="admonition note"><p><b>Note: </b>Getter function for property prefix. </p>
 </div><p><b>See also </b><a href="qctmlonglongspinbox.html#setPrefix" translate="no">setPrefix</a>.</p>
 <!-- @@@prefix -->
+<!-- $$$setDisplayFieldWidth -->
+<h3 class="fn" translate="no" id="setDisplayFieldWidth"><span class="type">void</span> QCtmLongLongSpinBox::<span class="name">setDisplayFieldWidth</span>(<span class="type">int</span> <i>width</i>)</h3>
+<p>设置文本显示宽度 <i translate="no">width</i>, 文本不足显示宽度时，填充 <a href="qctmlonglongspinbox.html#displayFillChar" translate="no">displayFillChar</a>.</p>
+<div class="admonition note"><p><b>Note: </b>Setter function for property <a href="qctmlonglongspinbox.html#displayFieldWidth" translate="no">displayFieldWidth</a>. </p>
+</div><p><b>See also </b><a href="qctmlonglongspinbox.html#displayFieldWidth" translate="no">displayFieldWidth</a>.</p>
+<!-- @@@setDisplayFieldWidth -->
+<!-- $$$setDisplayFillChar -->
+<h3 class="fn" translate="no" id="setDisplayFillChar"><span class="type">void</span> QCtmLongLongSpinBox::<span class="name">setDisplayFillChar</span>(<span class="type"><a href="https://doc.qt.io/qt/qchar.html" translate="no">QChar</a></span> <i>ch</i>)</h3>
+<p>设置文本显示填充字符 <i translate="no">ch</i>.</p>
+<div class="admonition note"><p><b>Note: </b>Setter function for property <a href="qctmlonglongspinbox.html#displayFillChar" translate="no">displayFillChar</a>. </p>
+</div><p><b>See also </b><a href="qctmlonglongspinbox.html#displayFillChar" translate="no">displayFillChar</a>.</p>
+<!-- @@@setDisplayFillChar -->
 <!-- $$$setDisplayIntegerBase -->
 <h3 class="fn" translate="no" id="setDisplayIntegerBase"><span class="type">void</span> QCtmLongLongSpinBox::<span class="name">setDisplayIntegerBase</span>(<span class="type">int</span> <i>base</i>)</h3>
 <p>设置显示进制 <i translate="no">base</i>.</p>
@@ -219,7 +247,7 @@
 <!-- @@@stepBy -->
 <!-- $$$stepEnabled[overload1]$$$stepEnabled -->
 <h3 class="fn" translate="no" id="stepEnabled"><code class="details extra" translate="no">[override virtual protected]</code> <span class="type"><a href="https://doc.qt.io/qt/qabstractspinbox.html#StepEnabledFlag-enum" translate="no">QAbstractSpinBox::StepEnabled</a></span> QCtmLongLongSpinBox::<span class="name">stepEnabled</span>() const</h3>
-<p>Reimplements: <a href="https://doc.qt.io/qt/qabstractspinbox.html#stepEnabled" translate="no">QAbstractSpinBox::stepEnabled() const</a>.</p>
+<p>Reimplements: <a href="https://doc.qt.io/qt/qabstractspinbox.html#stepEnabled" translate="no">QAbstractSpinBox::stepEnabled</a>() const.</p>
 <!-- @@@stepEnabled -->
 <!-- $$$stepType -->
 <h3 class="fn" translate="no" id="stepType"><span class="type"><a href="https://doc.qt.io/qt/qabstractspinbox.html#StepType-enum" translate="no">QAbstractSpinBox::StepType</a></span> QCtmLongLongSpinBox::<span class="name">stepType</span>() const</h3>
@@ -240,7 +268,7 @@
 <!-- @@@textFromValue -->
 <!-- $$$validate[overload1]$$$validateQString&int& -->
 <h3 class="fn" translate="no" id="validate"><code class="details extra" translate="no">[override virtual protected]</code> <span class="type"><a href="https://doc.qt.io/qt/qvalidator.html#State-enum" translate="no">QValidator::State</a></span> QCtmLongLongSpinBox::<span class="name">validate</span>(<span class="type"><a href="https://doc.qt.io/qt/qstring.html" translate="no">QString</a></span> &amp;<i>input</i>, <span class="type">int</span> &amp;<i>pos</i>) const</h3>
-<p>Reimplements: <a href="https://doc.qt.io/qt/qabstractspinbox.html#validate" translate="no">QAbstractSpinBox::validate(QString &amp;input, int &amp;pos) const</a>.</p>
+<p>Reimplements: <a href="https://doc.qt.io/qt/qabstractspinbox.html#validate" translate="no">QAbstractSpinBox::validate</a>(QString &amp;input, int &amp;pos) const.</p>
 <!-- @@@validate -->
 <!-- $$$value -->
 <h3 class="fn" translate="no" id="value"><span class="type"><a href="https://doc.qt.io/qt/qttypes.html#qlonglong-typedef" translate="no">qlonglong</a></span> QCtmLongLongSpinBox::<span class="name">value</span>() const</h3>

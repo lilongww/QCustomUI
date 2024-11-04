@@ -4,7 +4,7 @@
   <meta charset="utf-8">
 <!-- QCtmMessageBox.cpp -->
   <meta name="description" content="自定义外观的消息框，用法参考 QMessageBox.">
-  <title>QCtmMessageBox Class | QCustomUi 1.16.0</title>
+  <title>QCtmMessageBox Class | QCustomUi 1.17.0</title>
   <link rel="stylesheet" type="text/css" href="style/offline-simple.css" />
   <script type="text/javascript">
     document.getElementsByTagName("link").item(0).setAttribute("href", "style/offline.css");
@@ -26,10 +26,10 @@
     <div class="main-rounded">
         <div class="navigationbar">
         <ul>
-<li><a href="index.html" translate="no">QCustomUi 1.16.0</a></li>
+<li><a href="index.html">QCustomUi 1.17.0</a></li>
 <li><a href="qcustomui-module.html" translate="no">QCustomUi</a></li>
 <li>QCtmMessageBox</li>
-<li id="buildversion">QCustomUi 1.16.0 Reference Documentation</li>
+<li id="buildversion">QCustomUi 1.17.0 Reference Documentation</li>
     </ul>
     </div>
 </div>
@@ -53,8 +53,8 @@
 <!-- $$$QCtmMessageBox-brief -->
 <p>自定义外观的消息框，用法参考 <a href="https://doc.qt.io/qt/qmessagebox.html" translate="no">QMessageBox</a>. <a href="#details">More...</a></p>
 <!-- @@@QCtmMessageBox -->
-<div class="table"><table class="alignedsummary" translate="no">
-<tr><td class="memItemLeft rightAlign topAlign"> Header:</td><td class="memItemRight bottomAlign">  <span class="preprocessor">#include &lt;QCtmMessageBox.h&gt;</span></td></tr>
+<div class="table"><table class="alignedsummary requisites" translate="no">
+<tr><td class="memItemLeft rightAlign topAlign"> Header:</td><td class="memItemRight bottomAlign"> <code translate="no">#include &lt;QCtmMessageBox.h&gt;</code></td></tr>
 <tr><td class="memItemLeft rightAlign topAlign"> Inherits:</td><td class="memItemRight bottomAlign"> <a href="qctmdialog.html" translate="no">QCtmDialog</a></td></tr>
 </table></div>
 <ul>
@@ -86,8 +86,8 @@
 <tr><td class="memItemLeft rightAlign topAlign"> </td><td class="memItemRight bottomAlign"><b><a href="qctmmessagebox.html#QCtmMessageBox-1" translate="no">QCtmMessageBox</a></b>(QCtmMessageBox::Icon <i>icon</i>, const QString &amp;<i>title</i>, const QString &amp;<i>text</i>, QCtmMessageBox::StandardButtons <i>buttons</i> = NoButton, QWidget *<i>parent</i> = nullptr, Qt::WindowFlags <i>f</i> = Qt::Dialog | Qt::MSWindowsFixedSizeDialogHint)</td></tr>
 <tr><td class="memItemLeft rightAlign topAlign"> virtual </td><td class="memItemRight bottomAlign"><b><a href="qctmmessagebox.html#dtor.QCtmMessageBox" translate="no">~QCtmMessageBox</a></b>()</td></tr>
 <tr><td class="memItemLeft rightAlign topAlign"> void </td><td class="memItemRight bottomAlign"><b><a href="qctmmessagebox.html#addButton" translate="no">addButton</a></b>(QAbstractButton *<i>button</i>, QCtmMessageBox::ButtonRole <i>role</i>)</td></tr>
-<tr><td class="memItemLeft rightAlign topAlign"> QPushButton *</td><td class="memItemRight bottomAlign"><b><a href="qctmmessagebox.html#addButton-1" translate="no">addButton</a></b>(const QString &amp;<i>text</i>, QCtmMessageBox::ButtonRole <i>role</i>)</td></tr>
-<tr><td class="memItemLeft rightAlign topAlign"> QPushButton *</td><td class="memItemRight bottomAlign"><b><a href="qctmmessagebox.html#addButton-2" translate="no">addButton</a></b>(QCtmMessageBox::StandardButton <i>button</i>)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> QPushButton *</td><td class="memItemRight bottomAlign"><b><a href="qctmmessagebox.html#addButton-1" translate="no">addButton</a></b>(QCtmMessageBox::StandardButton <i>button</i>)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> QPushButton *</td><td class="memItemRight bottomAlign"><b><a href="qctmmessagebox.html#addButton-2" translate="no">addButton</a></b>(const QString &amp;<i>text</i>, QCtmMessageBox::ButtonRole <i>role</i>)</td></tr>
 <tr><td class="memItemLeft rightAlign topAlign"> QAbstractButton *</td><td class="memItemRight bottomAlign"><b><a href="qctmmessagebox.html#clickedButton" translate="no">clickedButton</a></b>() const</td></tr>
 <tr><td class="memItemLeft rightAlign topAlign"> QCtmMessageBox::StandardButton </td><td class="memItemRight bottomAlign"><b><a href="qctmmessagebox.html#defaultButton" translate="no">defaultButton</a></b>()</td></tr>
 <tr><td class="memItemLeft rightAlign topAlign"> QCtmMessageBox::Icon </td><td class="memItemRight bottomAlign"><b><a href="qctmmessagebox.html#icon" translate="no">icon</a></b>() const</td></tr>
@@ -276,24 +276,24 @@
 <p>析构函数.</p>
 <!-- @@@~QCtmMessageBox -->
 <!-- $$$addButton[overload1]$$$addButtonQAbstractButton*QCtmMessageBox::ButtonRole -->
-<h3 class="fn" translate="no" id="addButton"><span class="type">void</span> QCtmMessageBox::<span class="name">addButton</span>(<span class="type"><a href="https://doc.qt.io/qt/qabstractbutton.html" translate="no">QAbstractButton</a></span> *<i>button</i>, <span class="type"><a href="qctmmessagebox.html#ButtonRole-enum" translate="no">QCtmMessageBox::ButtonRole</a></span> <i>role</i>)</h3>
+<h3 class="fn" translate="no" id="addButton"><span class="type">void</span> QCtmMessageBox::<span class="name">addButton</span>(<span class="type">QAbstractButton</span> *<i>button</i>, <span class="type"><a href="qctmmessagebox.html#ButtonRole-enum" translate="no">QCtmMessageBox::ButtonRole</a></span> <i>role</i>)</h3>
 <p>添加按钮 <i translate="no">button</i> 并指定其角色 <i translate="no">role</i>.</p>
 <p><b>See also </b><a href="qctmmessagebox.html#removeButton" translate="no">removeButton</a>.</p>
 <!-- @@@addButton -->
-<!-- $$$addButton$$$addButtonconstQString&QCtmMessageBox::ButtonRole -->
-<h3 class="fn" translate="no" id="addButton-1"><span class="type"><a href="https://doc.qt.io/qt/qpushbutton.html" translate="no">QPushButton</a></span> *QCtmMessageBox::<span class="name">addButton</span>(const <span class="type"><a href="https://doc.qt.io/qt/qstring.html" translate="no">QString</a></span> &amp;<i>text</i>, <span class="type"><a href="qctmmessagebox.html#ButtonRole-enum" translate="no">QCtmMessageBox::ButtonRole</a></span> <i>role</i>)</h3>
-<p>创建文本为 <i translate="no">text</i> 的按钮并指定其角色 <i translate="no">role</i>.</p>
-<p>This function overloads addButton.</p>
-<p><b>See also </b><a href="qctmmessagebox.html#removeButton" translate="no">removeButton</a>.</p>
-<!-- @@@addButton -->
 <!-- $$$addButton$$$addButtonQCtmMessageBox::StandardButton -->
-<h3 class="fn" translate="no" id="addButton-2"><span class="type"><a href="https://doc.qt.io/qt/qpushbutton.html" translate="no">QPushButton</a></span> *QCtmMessageBox::<span class="name">addButton</span>(<span class="type"><a href="qctmmessagebox.html#StandardButton-enum" translate="no">QCtmMessageBox::StandardButton</a></span> <i>button</i>)</h3>
+<h3 class="fn" translate="no" id="addButton-1"><span class="type"><a href="https://doc.qt.io/qt/qpushbutton.html" translate="no">QPushButton</a></span> *QCtmMessageBox::<span class="name">addButton</span>(<span class="type"><a href="qctmmessagebox.html#StandardButton-enum" translate="no">QCtmMessageBox::StandardButton</a></span> <i>button</i>)</h3>
 <p>添加标准按钮 <i translate="no">button</i>.</p>
 <p>This function overloads addButton.</p>
 <p><b>See also </b><a href="qctmmessagebox.html#removeButton" translate="no">removeButton</a>.</p>
 <!-- @@@addButton -->
+<!-- $$$addButton$$$addButtonconstQString&QCtmMessageBox::ButtonRole -->
+<h3 class="fn" translate="no" id="addButton-2"><span class="type"><a href="https://doc.qt.io/qt/qpushbutton.html" translate="no">QPushButton</a></span> *QCtmMessageBox::<span class="name">addButton</span>(const <span class="type"><a href="https://doc.qt.io/qt/qstring.html" translate="no">QString</a></span> &amp;<i>text</i>, <span class="type"><a href="qctmmessagebox.html#ButtonRole-enum" translate="no">QCtmMessageBox::ButtonRole</a></span> <i>role</i>)</h3>
+<p>创建文本为 <i translate="no">text</i> 的按钮并指定其角色 <i translate="no">role</i>.</p>
+<p>This function overloads addButton.</p>
+<p><b>See also </b><a href="qctmmessagebox.html#removeButton" translate="no">removeButton</a>.</p>
+<!-- @@@addButton -->
 <!-- $$$clickedButton[overload1]$$$clickedButton -->
-<h3 class="fn" translate="no" id="clickedButton"><span class="type"><a href="https://doc.qt.io/qt/qabstractbutton.html" translate="no">QAbstractButton</a></span> *QCtmMessageBox::<span class="name">clickedButton</span>() const</h3>
+<h3 class="fn" translate="no" id="clickedButton"><span class="type">QAbstractButton</span> *QCtmMessageBox::<span class="name">clickedButton</span>() const</h3>
 <p>返回点击的按钮.</p>
 <!-- @@@clickedButton -->
 <!-- $$$critical[overload1]$$$criticalQWidget*constQString&constQString&QCtmMessageBox::StandardButtonsQCtmMessageBox::StandardButton -->
@@ -314,7 +314,6 @@
 <!-- @@@defaultButton -->
 <!-- $$$done[overload1]$$$doneint -->
 <h3 class="fn" translate="no" id="done"><code class="details extra" translate="no">[override virtual protected]</code> <span class="type">void</span> QCtmMessageBox::<span class="name">done</span>(<span class="type">int</span> <i>r</i>)</h3>
-<p>Reimplements: <a href="https://doc.qt.io/qt/qdialog.html#done" translate="no">QDialog::done</a>(int r).</p>
 <!-- @@@done -->
 <!-- $$$icon -->
 <h3 class="fn" translate="no" id="icon"><span class="type"><a href="qctmmessagebox.html#Icon-enum" translate="no">QCtmMessageBox::Icon</a></span> QCtmMessageBox::<span class="name">icon</span>() const</h3>
@@ -351,7 +350,7 @@
 <p><b>See also </b><a href="https://doc.qt.io/qt/qmessagebox.html#question" translate="no">QMessageBox::question</a>.</p>
 <!-- @@@question -->
 <!-- $$$removeButton[overload1]$$$removeButtonQAbstractButton* -->
-<h3 class="fn" translate="no" id="removeButton"><span class="type">void</span> QCtmMessageBox::<span class="name">removeButton</span>(<span class="type"><a href="https://doc.qt.io/qt/qabstractbutton.html" translate="no">QAbstractButton</a></span> *<i>button</i>)</h3>
+<h3 class="fn" translate="no" id="removeButton"><span class="type">void</span> QCtmMessageBox::<span class="name">removeButton</span>(<span class="type">QAbstractButton</span> *<i>button</i>)</h3>
 <p>移除按钮 <i translate="no">button</i>.</p>
 <p><b>See also </b><a href="qctmmessagebox.html#addButton" translate="no">addButton</a>.</p>
 <!-- @@@removeButton -->
@@ -409,10 +408,10 @@
 <!-- @@@setTimeoutVisible -->
 <!-- $$$showEvent[overload1]$$$showEventQShowEvent* -->
 <h3 class="fn" translate="no" id="showEvent"><code class="details extra" translate="no">[override virtual protected]</code> <span class="type">void</span> QCtmMessageBox::<span class="name">showEvent</span>(<span class="type"><a href="https://doc.qt.io/qt/qshowevent.html" translate="no">QShowEvent</a></span> *<i>event</i>)</h3>
-<p>Reimplements: <a href="https://doc.qt.io/qt/qdialog.html#showEvent" translate="no">QDialog::showEvent</a>(QShowEvent *event).</p>
+<p>Reimplements: <a href="https://doc.qt.io/qt/qwidget.html#showEvent" translate="no">QWidget::showEvent</a>(QShowEvent *event).</p>
 <!-- @@@showEvent -->
 <!-- $$$standardButton[overload1]$$$standardButtonQAbstractButton* -->
-<h3 class="fn" translate="no" id="standardButton"><span class="type"><a href="qctmmessagebox.html#StandardButton-enum" translate="no">QCtmMessageBox::StandardButton</a></span> QCtmMessageBox::<span class="name">standardButton</span>(<span class="type"><a href="https://doc.qt.io/qt/qabstractbutton.html" translate="no">QAbstractButton</a></span> *<i>button</i>) const</h3>
+<h3 class="fn" translate="no" id="standardButton"><span class="type"><a href="qctmmessagebox.html#StandardButton-enum" translate="no">QCtmMessageBox::StandardButton</a></span> QCtmMessageBox::<span class="name">standardButton</span>(<span class="type">QAbstractButton</span> *<i>button</i>) const</h3>
 <p>返回按钮对应的标准按钮 <i translate="no">button</i>.</p>
 <!-- @@@standardButton -->
 <!-- $$$standardButtons -->

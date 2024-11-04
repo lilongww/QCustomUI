@@ -369,9 +369,18 @@ h3.fn, span.fn {
 .fngroup h3.fngroupitem {
     margin-bottom: 5px;
 }
-h3.fn code {
+
+h3.fn code,
+h3.flags code,
+td.tblQmlFuncNode > p > code,
+td.tblQmlPropNode > p > code {
     float: right;
 }
+
+code.extra.summary {
+    font-size: 12px;
+}
+
 h3.fn:target {
     background-color: #F6F6D6;
 }
@@ -633,14 +642,7 @@ Content table
 
 @media print {
     .toc {
-        float: right;
-        clear: right;
-        padding-bottom: 10px;
-        padding-top: 50px;
-        width: 100%;
-        background-image: url(../images/bgrContent.png);
-        background-position: top;
-        background-repeat: no-repeat;
+        display: none;
     }
 }
 
@@ -722,6 +724,9 @@ Landing page
     vertical-align: top;
 }
 
+.landing {
+    display: flex;
+}
 
 .landing h2 {
     background-color: transparent;
@@ -736,19 +741,14 @@ Landing page
 }
 
 .col-1 {
-    display: inline-block;
     white-space: normal;
     width: 70%;
-    height: 100%;
-    float: left;
 }
 
 .col-2 {
-    display: inline-block;
     white-space: normal;
     width: 20%;
     margin-left: 5%;
-    position: relative;
     top: -20px;
 }
 
