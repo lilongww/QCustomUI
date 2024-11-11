@@ -22,12 +22,15 @@
 
 #include <QGraphicsView>
 
+class QCtmFlowChartBackgroundItem;
 class QCUSTOMUI_EXPORT QCtmFlowChart : public QGraphicsView
 {
     Q_OBJECT
 public:
     QCtmFlowChart(QWidget* parent = nullptr);
     ~QCtmFlowChart();
+    void setBackgroundItem(QCtmFlowChartBackgroundItem* item);
+    QCtmFlowChartBackgroundItem* backgroundItem() const;
 
 protected:
     void wheelEvent(QWheelEvent* event) override;

@@ -17,14 +17,14 @@
 **  along with QCustomUi.  If not, see <https://www.gnu.org/licenses/>.         **
 **********************************************************************************/
 #include "QCtmFlowChart.h"
-#include "Private/QCtmFlowChartBackgroundItem.h"
+#include "QCtmFlowChartBackgroundItem.h"
 
 #include <QGraphicsScene>
 #include <QWheelEvent>
 
 struct QCtmFlowChart::Impl
 {
-    QCtmFlowChartBackgroundItem* backgroundItem;
+    QCtmFlowChartBackgroundItem* backgroundItem { nullptr };
     QGraphicsScene* scene;
     double scale { 1.0 };
 };
@@ -33,10 +33,20 @@ QCtmFlowChart::QCtmFlowChart(QWidget* parent) : m_impl(std::make_unique<Impl>())
 {
     this->setScene(m_impl->scene = new QGraphicsScene(this));
     m_impl->scene->setBackgroundBrush(QBrush(0xeaeaea));
-    m_impl->scene->addItem(m_impl->backgroundItem = new QCtmFlowChartBackgroundItem);
+    setBackgroundItem(new QCtmFlowChartBackgroundItem);
 }
 
 QCtmFlowChart::~QCtmFlowChart() {}
+
+void QCtmFlowChart::setBackgroundItem(QCtmFlowChartBackgroundItem* item)
+{
+    if (m_impl->backgroundItem)
+        delete m_impl->backgroundItem;
+    m_impl->backgroundItem = item;
+    m_impl->scene->addItem(item);
+}
+
+QCtmFlowChartBackgroundItem* QCtmFlowChart::backgroundItem() const { return m_impl->backgroundItem; }
 
 void QCtmFlowChart::wheelEvent(QWheelEvent* event)
 {

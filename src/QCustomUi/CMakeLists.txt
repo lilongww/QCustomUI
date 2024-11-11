@@ -148,6 +148,7 @@ set(DISPLAYWIDGETS_HEADERS
  "QCtmTitleBar.h"
  "QCtmCircleProgressBar.h"
  "QCtmFlowChart.h"
+ "QCtmFlowChartBackgroundItem.h"
 )
 set(DISPLAYWIDGETS_SOURCES
  "QCtmEditLabel.cpp"
@@ -158,6 +159,7 @@ set(DISPLAYWIDGETS_SOURCES
  "QCtmTitleBar.cpp"
  "QCtmCircleProgressBar.cpp"
  "QCtmFlowChart.cpp"
+ "QCtmFlowChartBackgroundItem.cpp"
 )
 
 set(VIEW_HEADERS

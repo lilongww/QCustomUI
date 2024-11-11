@@ -31,7 +31,7 @@ struct QCtmFlowChartBackgroundItem::Impl
     QPen tickPen { 0xe5e5e5 };
     QPen subTickPen { 0xf6f6f6 };
     QPen borderPen { 0xc0c0c0 };
-    QMargins margin { 20, 20, 20, 20 };
+    QMargins margin { 40, 40, 40, 40 };
     int gridSize { 120 };
     int subTickCount { 4 };
     inline Impl(QGraphicsObject* p)

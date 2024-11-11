@@ -19,10 +19,13 @@
 
 #pragma once
 
+#include "qcustomui_global.h"
+
 #include <QGraphicsObject>
 
-class QCtmFlowChartBackgroundItem : public QGraphicsObject
+class QCUSTOMUI_EXPORT QCtmFlowChartBackgroundItem : public QGraphicsObject
 {
+    Q_OBJECT
 public:
     explicit QCtmFlowChartBackgroundItem(QGraphicsItem* parent = nullptr);
     ~QCtmFlowChartBackgroundItem();
