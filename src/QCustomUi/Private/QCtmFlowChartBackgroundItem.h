@@ -32,12 +32,17 @@ public:
     const QPen& tickPen() const;
     void setSubTickPen(const QPen& pen);
     const QPen& subTickPen() const;
+    void setBorderPen(const QPen& pen);
+    const QPen& borderPen() const;
+    void setGridSize(int size);
+    int gridSize() const;
 
 protected:
     void paint(QPainter* painter, const QStyleOptionGraphicsItem* option, QWidget* widget = nullptr) override;
     QRectF boundingRect() const override;
     virtual void drawBackground(QPainter* painter, const QStyleOptionGraphicsItem* option, QWidget* widget);
-    virtual void drawTicks(QPainter* painter, const QStyleOptionGraphicsItem* option, QWidget* widget);
+    virtual void drawBorder(QPainter* painter, const QStyleOptionGraphicsItem* option, const QRect& rect, QWidget* widget);
+    virtual void drawTicks(QPainter* painter, const QStyleOptionGraphicsItem* option, const QRect& rect, QWidget* widget);
 
 private:
     struct Impl;

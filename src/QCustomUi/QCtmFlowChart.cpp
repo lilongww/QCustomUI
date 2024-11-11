@@ -32,6 +32,7 @@ struct QCtmFlowChart::Impl
 QCtmFlowChart::QCtmFlowChart(QWidget* parent) : m_impl(std::make_unique<Impl>())
 {
     this->setScene(m_impl->scene = new QGraphicsScene(this));
+    m_impl->scene->setBackgroundBrush(QBrush(0xeaeaea));
     m_impl->scene->addItem(m_impl->backgroundItem = new QCtmFlowChartBackgroundItem);
 }
 
