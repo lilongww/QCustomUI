@@ -1,6 +1,6 @@
 ﻿cmake_minimum_required(VERSION 3.20)
 
-project(QCustomUi VERSION "1.17.0")
+project(QCustomUi VERSION "1.17.1")
 enable_testing()
 
 set(CMAKE_BUILD_WITH_INSTALL_RPATH TRUE)

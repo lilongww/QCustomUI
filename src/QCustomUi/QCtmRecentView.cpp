@@ -66,7 +66,7 @@ QCtmRecentView::QCtmRecentView(QWidget* parent) : QTreeView(parent), m_impl(std:
     setSelectionMode(QAbstractItemView::SingleSelection);
     setEditTriggers(QAbstractItemView::NoEditTriggers);
     connect(d, &QCtmRecentViewDelegate::topButtonClicked, this, &QCtmRecentView::topButtonClicked);
-    connect(this, &QCtmRecentView::topButtonClicked, this, &QCtmRecentView::onTopButtonClicked);
+    connect(d, &QCtmRecentViewDelegate::topButtonClicked, this, &QCtmRecentView::onTopButtonClicked);
     connect(this,
             &QAbstractItemView::clicked,
             this,
