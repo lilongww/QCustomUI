@@ -44,6 +44,11 @@ public:
 #else
     bool nativeEvent(const QByteArray& eventType, void* message, qintptr* result);
 #endif
+public slots:
+    void showMaximized();
+    void showNormal();
+    void showMinimized();
+
 protected:
     bool eventFilter(QObject* watched, QEvent* event) override;
 

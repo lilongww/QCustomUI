@@ -174,17 +174,26 @@ void QCtmTitleBar::onCloseBtn() { this->window()->close(); }
 */
 void QCtmTitleBar::onMaximumSizeBtn()
 {
+    auto delegate = this->window()->findChild<QObject*>("qcustomui_frameless_delegate");
+    if (!delegate)
+        return;
     if (this->window()->isMaximized() || this->window()->isFullScreen())
-        this->window()->showNormal();
+        QMetaObject::invokeMethod(delegate, "showNormal");
     else
-        this->window()->showMaximized();
+        QMetaObject::invokeMethod(delegate, "showMaximized");
 }
 
 /*!
     \brief      响应最小化按钮.
     \sa         onCloseBtn(), onMaximumSizeBtn()
 */
-void QCtmTitleBar::onMinimumSizeBtn() { this->window()->showMinimized(); }
+void QCtmTitleBar::onMinimumSizeBtn()
+{
+    auto delegate = this->window()->findChild<QObject*>("qcustomui_frameless_delegate");
+    if (!delegate)
+        return;
+    QMetaObject::invokeMethod(delegate, "showMinimized");
+}
 
 /*!
     \reimp

@@ -116,6 +116,7 @@ QCtmFramelessDelegate::QCtmFramelessDelegate(QWidget* parent, const QWidgetList&
     parent->setWindowFlags(Qt::FramelessWindowHint | Qt::WindowMinMaxButtonsHint | Qt::WindowCloseButtonHint);
     parent->setAttribute(Qt::WA_TranslucentBackground);
     parent->setAttribute(Qt::WA_Hover);
+    setObjectName("qcustomui_frameless_delegate");
 
     m_impl->moveBars = moveBars;
     for (auto& w : moveBars)
@@ -162,6 +163,12 @@ void QCtmFramelessDelegate::setShadowless(bool flag)
 }
 
 bool QCtmFramelessDelegate::shadowless() const { return m_impl->shadowless; }
+
+void QCtmFramelessDelegate::showMaximized() { m_impl->parent->showMaximized(); }
+
+void QCtmFramelessDelegate::showNormal() { m_impl->parent->showNormal(); }
+
+void QCtmFramelessDelegate::showMinimized() { m_impl->parent->showMinimized(); }
 
 bool QCtmFramelessDelegate::eventFilter(QObject* obj, QEvent* event)
 {

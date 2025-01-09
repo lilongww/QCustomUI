@@ -36,6 +36,10 @@ public:
     void removeMoveBar(QWidget* widget);
     void setShadowless(bool flag);
     bool shadowless() const;
+public slots:
+    void showMaximized();
+    void showNormal();
+    void showMinimized();
 
 protected:
     bool eventFilter(QObject* obj, QEvent* e) override;

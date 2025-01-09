@@ -121,6 +121,7 @@ QCtmWinFramelessDelegate::QCtmWinFramelessDelegate(QWidget* parent, const QWidge
 
     parent->installEventFilter(this);
     m_impl->moveBars = moveBars;
+    setObjectName("qcustomui_frameless_delegate");
 }
 
 QCtmWinFramelessDelegate::QCtmWinFramelessDelegate(QWidget* parent, QWidget* title)
@@ -196,6 +197,7 @@ bool QCtmWinFramelessDelegate::nativeEvent(const QByteArray& eventType, void* me
         break;
     case WM_NCCALCSIZE:
         {
+            return true;
             if (msg->wParam)
             {
                 if (IsZoomed(msg->hwnd))
@@ -281,6 +283,21 @@ bool QCtmWinFramelessDelegate::nativeEvent(const QByteArray& eventType, void* me
         break;
     }
     return false;
+}
+
+void QCtmWinFramelessDelegate::showMaximized()
+{
+    ::SendMessage(reinterpret_cast<HWND>(m_impl->parent->winId()), WM_SYSCOMMAND, SC_MAXIMIZE, 0);
+}
+
+void QCtmWinFramelessDelegate::showNormal()
+{
+    ::SendMessage(reinterpret_cast<HWND>(m_impl->parent->winId()), WM_SYSCOMMAND, SC_RESTORE, 0);
+}
+
+void QCtmWinFramelessDelegate::showMinimized()
+{
+    ::SendMessage(reinterpret_cast<HWND>(m_impl->parent->winId()), WM_SYSCOMMAND, SC_MINIMIZE, 0);
 }
 
 bool QCtmWinFramelessDelegate::eventFilter(QObject* watched, QEvent* event)
