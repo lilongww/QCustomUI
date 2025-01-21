@@ -69,6 +69,8 @@ public:
     QAction* actionAt(int index, ActionPosition pos) const;
     void setIconSize(const QSize& size);
     const QSize& iconSize() const;
+    void setToolButtonStyle(Qt::ToolButtonStyle style);
+    Qt::ToolButtonStyle toolButtonStyle() const;
     QSize sizeHint() const override;
     QSize minimumSizeHint() const override;
 signals:

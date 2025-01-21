@@ -51,6 +51,8 @@ struct QCtmNavigationBar::Impl
     QHBoxLayout* centerLayout;
     QHBoxLayout* rightLayout;
 
+    Qt::ToolButtonStyle toolButtonStyle { Qt::ToolButtonTextBesideIcon };
+
     QSize iconSize { 16, 16 };
 
     QCtmWidgetItemPtr find(QAction* action)
@@ -316,8 +318,7 @@ void QCtmNavigationBar::insertPane(int index, QAction* action, ActionPosition po
                     pane->hide();
             });
 
-    connect(
-        pane, &QCtmNavigationSidePane::paneClosed, this, [=]() { action->setChecked(false); }, Qt::QueuedConnection);
+    connect(pane, &QCtmNavigationSidePane::paneClosed, this, [=]() { action->setChecked(false); }, Qt::QueuedConnection);
 }
 
 /*!
@@ -516,6 +517,28 @@ void QCtmNavigationBar::setIconSize(const QSize& size)
 const QSize& QCtmNavigationBar::iconSize() const { return m_impl->iconSize; }
 
 /*!
+    \brief      设置 ToolButtonStyle \a style.
+    \sa         toolButtonStyle
+*/
+void QCtmNavigationBar::setToolButtonStyle(Qt::ToolButtonStyle style)
+{
+    if (style == m_impl->toolButtonStyle)
+        return;
+    m_impl->toolButtonStyle = style;
+    for (auto action : this->actions())
+    {
+        action->setProperty(QCtmWidgetItem::BtnStyle, style);
+        emit action->changed();
+    }
+}
+
+/*!
+    \brief      返回 ToolButtonStyle.
+    \sa         setToolButtonStyle
+*/
+Qt::ToolButtonStyle QCtmNavigationBar::toolButtonStyle() const { return m_impl->toolButtonStyle; }
+
+/*!
     \reimp
 */
 QSize QCtmNavigationBar::sizeHint() const { return minimumSizeHint(); }
@@ -538,6 +561,7 @@ void QCtmNavigationBar::actionEvent(QActionEvent* event)
 
     if (event->type() == QEvent::ActionAdded)
     {
+        event->action()->setProperty(QCtmWidgetItem::BtnStyle, m_impl->toolButtonStyle);
         auto item = std::make_shared<QCtmWidgetItem>(event->action(), Qt::Horizontal, m_impl->iconSize, this);
         connect(this, &QCtmNavigationBar::iconSizeChanged, item.get(), &QCtmWidgetItem::iconSizeChanged);
         switch (pos)

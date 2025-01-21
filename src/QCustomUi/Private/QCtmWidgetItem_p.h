@@ -27,6 +27,7 @@ class QCtmWidgetItem : public QObject
 {
     Q_OBJECT
 public:
+    constexpr static auto BtnStyle = "qcustomui_button_style";
     QCtmWidgetItem(QAction* action, Qt::Orientation orientation, const QSize& iconSize = QSize(16, 16), QWidget* parent = nullptr);
     ~QCtmWidgetItem();
 

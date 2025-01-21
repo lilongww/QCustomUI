@@ -27,7 +27,11 @@ inline void setToolButtonProperty(QAction* action, QCtmToolButton* btn)
 {
     auto setToolButtonStyle = [](QAction* action, QCtmToolButton* btn)
     {
-        if (action->icon().isNull())
+        if (auto val = action->property(QCtmWidgetItem::BtnStyle); val.isValid())
+        {
+            btn->setToolButtonStyle(val.value<Qt::ToolButtonStyle>());
+        }
+        else if (action->icon().isNull())
             btn->setToolButtonStyle(Qt::ToolButtonTextOnly);
         else if (action->text().isEmpty())
             btn->setToolButtonStyle(Qt::ToolButtonIconOnly);
