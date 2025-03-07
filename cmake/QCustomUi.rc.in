@@ -1,4 +1,4 @@
-#include <winres.h>
+﻿#include <winres.h>
 
 VS_VERSION_INFO VERSIONINFO
  FILEVERSION ${PROJECT_VERSION_MAJOR}, ${PROJECT_VERSION_MINOR}, ${PROJECT_VERSION_PATCH}
@@ -20,7 +20,7 @@ BEGIN
             VALUE "FileDescription", "QCustomUi"
             VALUE "FileVersion", "${PROJECT_VERSION_MAJOR}.${PROJECT_VERSION_MINOR}.${PROJECT_VERSION_PATCH}"
             VALUE "InternalName", "QCustomUi"
-            VALUE "LegalCopyright", "Copyright (C) 2019-2024 QCustomUi"
+            VALUE "LegalCopyright", "Copyright (C) 2019-2025 QCustomUi"
             VALUE "OriginalFilename", "QCustomUi.dll"
             VALUE "ProductName", "QCustomUi"
             VALUE "ProductVersion", "${PROJECT_VERSION_MAJOR}.${PROJECT_VERSION_MINOR}.${PROJECT_VERSION_PATCH}"

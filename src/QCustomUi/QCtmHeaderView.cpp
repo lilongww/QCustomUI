@@ -98,54 +98,70 @@ void QCtmHeaderView::setReadOnly(int logicIndex, bool enable)
 */
 void QCtmHeaderView::paintSection(QPainter* painter, const QRect& rect, int logicalIndex) const
 {
-    auto [show, state] = m_impl->state[logicalIndex];
-    auto boxRect       = doCheckBoxRect(logicalIndex);
+    auto [showCheckBox, state] = m_impl->state[logicalIndex];
+    auto boxRect               = doCheckBoxRect(logicalIndex);
     if (!rect.isValid())
         return;
-    { // header
-#if QT_VERSION_MAJOR < 6
-        QStyleOptionHeader opt;
-#else
-        QStyleOptionHeaderV2 opt;
-#endif
-        QPointF oldBO = painter->brushOrigin();
-        initStyleOption(&opt);
-        QBrush oBrushButton = opt.palette.brush(QPalette::Button);
-        QBrush oBrushWindow = opt.palette.brush(QPalette::Window);
-        initStyleOptionForIndex(&opt, logicalIndex);
-        opt.rect            = rect;
-        opt.text            = "";
-        QBrush nBrushButton = opt.palette.brush(QPalette::Button);
-        QBrush nBrushWindow = opt.palette.brush(QPalette::Window);
-        if (oBrushButton != nBrushButton || oBrushWindow != nBrushWindow)
-        {
-            painter->setBrushOrigin(opt.rect.topLeft());
-        }
+    if (alternatingRowColors() && orientation() == Qt::Vertical)
+    { // alternating support
+        QStyleOptionViewItem opt;
+        opt.initFrom(this);
+        opt.rect = rect;
+        opt.features.setFlag(QStyleOptionViewItem::Alternate, logicalIndex % 2);
         painter->save();
-        style()->drawControl(QStyle::CE_Header, &opt, painter, this);
+        style()->drawPrimitive(QStyle::PE_PanelItemViewRow, &opt, painter, this);
         painter->restore();
-        painter->setBrushOrigin(oldBO);
-        if (!model())
-            return;
-        QTextOption txtOpt(opt.textAlignment);
-        txtOpt.setWrapMode(QTextOption::ManualWrap);
-        painter->drawText(show ? QRect(boxRect.right(), rect.top(), rect.width() - (boxRect.right() - rect.left()), rect.height()) : rect,
-                          this->model()->headerData(logicalIndex, Qt::Horizontal, Qt::DisplayRole).toString(),
-                          txtOpt);
     }
-    if (!show)
-        return;
-    { // button
-        QStyleOptionButton opt;
-        opt.rect = boxRect;
-        if (state == Qt::Checked)
-            opt.state = QStyle::State_On;
-        else if (state == Qt::PartiallyChecked)
-            opt.state = QStyle::State_NoChange;
-        else
-            opt.state = QStyle::State_Off;
-        opt.state |= QStyle::State_Enabled;
-        style()->drawPrimitive(QStyle::PE_IndicatorCheckBox, &opt, painter, this);
+    if (!showCheckBox)
+    {
+        QHeaderView::paintSection(painter, rect, logicalIndex);
+    }
+    else
+    {
+        { // header
+#if QT_VERSION_MAJOR < 6
+            QStyleOptionHeader opt;
+#else
+            QStyleOptionHeaderV2 opt;
+#endif
+            QPointF oldBO = painter->brushOrigin();
+            initStyleOption(&opt);
+            QBrush oBrushButton = opt.palette.brush(QPalette::Button);
+            QBrush oBrushWindow = opt.palette.brush(QPalette::Window);
+            initStyleOptionForIndex(&opt, logicalIndex);
+            opt.rect            = rect;
+            opt.text            = "";
+            QBrush nBrushButton = opt.palette.brush(QPalette::Button);
+            QBrush nBrushWindow = opt.palette.brush(QPalette::Window);
+            if (oBrushButton != nBrushButton || oBrushWindow != nBrushWindow)
+            {
+                painter->setBrushOrigin(opt.rect.topLeft());
+            }
+            painter->save();
+            style()->drawControl(QStyle::CE_Header, &opt, painter, this);
+            painter->restore();
+            painter->setBrushOrigin(oldBO);
+            if (!model())
+                return;
+            QTextOption txtOpt(opt.textAlignment);
+            txtOpt.setWrapMode(QTextOption::ManualWrap);
+            painter->drawText(
+                showCheckBox ? QRect(boxRect.right(), rect.top(), rect.width() - (boxRect.right() - rect.left()), rect.height()) : rect,
+                this->model()->headerData(logicalIndex, orientation(), Qt::DisplayRole).toString(),
+                txtOpt);
+        }
+        { // button
+            QStyleOptionButton opt;
+            opt.rect = boxRect;
+            if (state == Qt::Checked)
+                opt.state = QStyle::State_On;
+            else if (state == Qt::PartiallyChecked)
+                opt.state = QStyle::State_NoChange;
+            else
+                opt.state = QStyle::State_Off;
+            opt.state |= QStyle::State_Enabled;
+            style()->drawPrimitive(QStyle::PE_IndicatorCheckBox, &opt, painter, this);
+        }
     }
 }
 
@@ -393,7 +409,7 @@ void QCtmHeaderView::onModelReset()
     if (!model())
         return;
     const bool isHorizontal = orientation() == Qt::Horizontal;
-    m_impl->state.resize(model()->columnCount());
+    m_impl->state.resize(isHorizontal ? model()->columnCount() : model()->rowCount());
     int jCount = isHorizontal ? model()->columnCount() : model()->rowCount();
     for (int j = 0; j < jCount; j++)
     {
