@@ -501,13 +501,17 @@ void QCtmDigitKeyboard::ensureConnect()
     auto sendBox = [=](Qt::Key key)
     {
         {
-            auto evt =
-                new QKeyEvent(QEvent::KeyPress, key, Qt::KeyboardModifier::NoModifier, key < Qt::Key_AsciiTilde ? QChar(key) : QString());
+            auto evt = new QKeyEvent(QEvent::KeyPress,
+                                     key,
+                                     Qt::KeyboardModifier::NoModifier,
+                                     key < Qt::Key_AsciiTilde ? QChar(static_cast<int>(key)) : QString());
             qApp->postEvent(m_impl->box->findChild<QLineEdit*>(), evt);
         }
         {
-            auto evt =
-                new QKeyEvent(QEvent::KeyRelease, key, Qt::KeyboardModifier::NoModifier, key < Qt::Key_AsciiTilde ? QChar(key) : QString());
+            auto evt = new QKeyEvent(QEvent::KeyRelease,
+                                     key,
+                                     Qt::KeyboardModifier::NoModifier,
+                                     key < Qt::Key_AsciiTilde ? QChar(static_cast<int>(key)) : QString());
             qApp->postEvent(m_impl->box->findChild<QLineEdit*>(), evt);
         }
     };

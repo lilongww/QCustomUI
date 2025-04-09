@@ -23,6 +23,8 @@
 #include <private/qabstractspinbox_p.h>
 #include <private/qdatetimeparser_p.h>
 
+using namespace std::chrono_literals;
+
 #if QT_VERSION < QT_VERSION_CHECK(6, 0, 0)
 QAbstractSpinBoxPrivate::QAbstractSpinBoxPrivate()
     : edit(nullptr)
@@ -52,6 +54,20 @@ QAbstractSpinBoxPrivate::QAbstractSpinBoxPrivate()
     , validator(nullptr)
     , showGroupSeparator(0)
     , wheelDeltaRemainder(0)
+{
+}
+#elif QT_VERSION < QT_VERSION_CHECK(6, 9, 0)
+QAbstractSpinBoxPrivate::QAbstractSpinBoxPrivate()
+    : pendingEmit(false)
+    , readOnly(false)
+    , wrapping(false)
+    , ignoreCursorPositionChanged(false)
+    , frame(true)
+    , accelerate(false)
+    , keyboardTracking(true)
+    , cleared(false)
+    , ignoreUpdateEdit(false)
+    , showGroupSeparator(false)
 {
 }
 #else
@@ -305,7 +321,7 @@ void QAbstractSpinBoxPrivate::init()
     Resets the state of the spinbox. E.g. the state is set to
     (Keyboard|Up) if Key up is currently pressed.
 */
-
+#if QT_VERSION < QT_VERSION_CHECK(6, 9, 0)
 void QAbstractSpinBoxPrivate::reset()
 {
     Q_Q(QAbstractSpinBox);
@@ -322,7 +338,21 @@ void QAbstractSpinBoxPrivate::reset()
         q->update();
     }
 }
+#else
+void QAbstractSpinBoxPrivate::reset()
+{
+    Q_Q(QAbstractSpinBox);
 
+    buttonState = None;
+    if (q)
+    {
+        spinClickTimer.stop();
+        spinClickThresholdTimer.stop();
+        acceleration = 0;
+        q->update();
+    }
+}
+#endif
 /*!
     \internal
 
@@ -346,7 +376,11 @@ void QAbstractSpinBoxPrivate::updateState(bool up, bool fromKeyboard /* = false 
 #endif
             steps *= 10;
         q->stepBy(steps);
+#if QT_VERSION < QT_VERSION_CHECK(6, 9, 0)
         spinClickThresholdTimerId = q->startTimer(spinClickThresholdTimerInterval);
+#else
+        spinClickThresholdTimer.start(spinClickThresholdTimerInterval * 1ms, q);
+#endif
 #if QT_CONFIG(accessibility)
         QAccessibleValueChangeEvent event(q, value);
         QAccessible::updateAccessibility(&event);

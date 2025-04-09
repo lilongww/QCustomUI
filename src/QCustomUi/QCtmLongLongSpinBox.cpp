@@ -52,7 +52,7 @@ public:
 
     int displayIntegerBase;
     int displayFieldWidth { 0 };
-    QChar displayFillChar { u8' ' };
+    QChar displayFillChar { ' ' };
 };
 
 QCtmLongLongSpinBoxPrivate::QCtmLongLongSpinBoxPrivate()
