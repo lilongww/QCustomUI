@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <QtHelpProject version="1.0">
-    <namespace>com.qcustomui.1.17.0</namespace>
+    <namespace>com.qcustomui.1.18.1</namespace>
     <virtualFolder>qcustomui</virtualFolder>
     <metaData name="version" value=""/>
     <customFilter name="QCustomUi">
@@ -204,6 +204,7 @@
             </section>
         </toc>
         <keywords>
+            <keyword name="&lt;Qt Tool&gt; Documentation" id="&lt;Qt Tool&gt; Documentation" ref="index.html"/>
             <keyword name="QCtmAbstractLogModel" id="QCtmAbstractLogModel" ref="qctmabstractlogmodel.html"/>
             <keyword name="QCtmAbstractMessageTipData" id="QCtmAbstractMessageTipData" ref="qctmabstractmessagetipdata.html"/>
             <keyword name="QCtmAbstractMessageTipModel" id="QCtmAbstractMessageTipModel" ref="qctmabstractmessagetipmodel.html"/>
@@ -978,6 +979,7 @@
             <keyword name="setTitleBarVisible" id="QCtmNavigationSidePane::setTitleBarVisible" ref="qctmnavigationsidepane.html#setTitleBarVisible"/>
             <keyword name="setTitleColor" id="QCtmMessageTipModel::setTitleColor" ref="qctmmessagetipmodel.html#setTitleColor"/>
             <keyword name="setTitleColor" id="QCtmMessageTipView::setTitleColor" ref="qctmmessagetipview.html#setTitleColor"/>
+            <keyword name="setToolButtonStyle" id="QCtmNavigationBar::setToolButtonStyle" ref="qctmnavigationbar.html#setToolButtonStyle"/>
             <keyword name="setTopButtonIcon" id="QCtmRecentView::setTopButtonIcon" ref="qctmrecentview.html#setTopButtonIcon"/>
             <keyword name="setTopButtonIcon" id="QCtmRecentViewDelegate::setTopButtonIcon" ref="qctmrecentviewdelegate.html#setTopButtonIcon"/>
             <keyword name="setTopButtonVisible" id="QCtmRecentView::setTopButtonVisible" ref="qctmrecentview.html#setTopButtonVisible"/>
@@ -1090,6 +1092,7 @@
             <keyword name="titleColor" id="QCtmMessageTipView::titleColor" ref="qctmmessagetipview.html#titleColor"/>
             <keyword name="titleColor" id="QCtmMessageTipView::titleColor" ref="qctmmessagetipview.html#titleColor-prop"/>
             <keyword name="toggled" id="QCtmSelectionButtonBox::toggled" ref="qctmselectionbuttonbox.html#toggled"/>
+            <keyword name="toolButtonStyle" id="QCtmNavigationBar::toolButtonStyle" ref="qctmnavigationbar.html#toolButtonStyle"/>
             <keyword name="topButtonClicked" id="QCtmRecentView::topButtonClicked" ref="qctmrecentview.html#topButtonClicked"/>
             <keyword name="topButtonClicked" id="QCtmRecentViewDelegate::topButtonClicked" ref="qctmrecentviewdelegate.html#topButtonClicked"/>
             <keyword name="topButtonIcon" id="QCtmRecentView::topButtonIcon" ref="qctmrecentview.html#topButtonIcon"/>
@@ -1221,13 +1224,17 @@
             <file>images/bgrContent.png</file>
             <file>images/btn_next.png</file>
             <file>images/btn_prev.png</file>
+            <file>images/build-32x32.png</file>
             <file>images/bullet_dn.png</file>
             <file>images/bullet_sq.png</file>
+            <file>images/demo-32x32.png</file>
+            <file>images/getting-started.png</file>
             <file>images/home.png</file>
-            <file>images/ico_note.png</file>
-            <file>images/ico_note_attention.png</file>
             <file>images/ico_out.png</file>
+            <file>images/installation.png</file>
             <file>images/logo.png</file>
+            <file>images/settings-32x32.png</file>
+            <file>images/tutorials.png</file>
             <file>index.html</file>
             <file>qctmabstractlogmodel-members.html</file>
             <file>qctmabstractlogmodel.html</file>
