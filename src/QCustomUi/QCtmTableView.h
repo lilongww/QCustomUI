@@ -40,4 +40,5 @@ protected:
 private:
     QCtmTableItemDelegate* m_delegate;
     QModelIndex m_hover;
+    friend class QCtmTableViewButtonsDelegate;
 };
