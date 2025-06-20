@@ -91,7 +91,7 @@ void tst_QCtmIPAddressEdit::taskEditChanged()
     edit.show();
     QSignalSpy spy(&edit, SIGNAL(editChanged()));
     QTest::keyClicks(&edit, "192.168.1.1");
-    QVERIFY(spy.count() == 8);
+    QVERIFY(spy.count() == 11);
 }
 
 // 测试editFinished信号
