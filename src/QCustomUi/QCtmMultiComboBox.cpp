@@ -67,6 +67,12 @@ struct QCtmMultiComboBox::Impl
 */
 
 /*!
+    \fn         void QCtmMultiComboBox::checkStateChanged(int index, bool checked);
+    \brief      当第 \a index 项的选中状态发生改变时发送该信号 \a checked.
+    \sa         setChecked(), isChecked(), checkedItems(), checkedDatas(), checkedIndexes()
+*/
+
+/*!
     \brief      构造函数 \a parent.
 */
 QCtmMultiComboBox::QCtmMultiComboBox(QWidget* parent) : QComboBox(parent), m_impl(std::make_unique<Impl>())
