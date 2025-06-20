@@ -414,6 +414,7 @@ bool QCtmTableViewButtonsDelegate::eventFilter(QObject* object, QEvent* event)
             break;
         case QEvent::Leave:
             m_impl->clearHover();
+            update();
             break;
         default:
             break;
