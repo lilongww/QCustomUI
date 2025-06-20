@@ -147,7 +147,11 @@ struct QCtmTableViewButtonsDelegate::Impl
 
     inline QMouseEvent makeMouseEvent(ButtonData& btn, const QRect& rect, QMouseEvent* e)
     {
+#if QT_VERSION < QT_VERSION_CHECK(6, 0, 0)
+        return QMouseEvent(e->type(), btn.mapFromView(rect, e->pos()), e->globalPos(), e->button(), e->buttons(), e->modifiers());
+#else
         return QMouseEvent(e->type(), btn.mapFromView(rect, e->position()), e->globalPosition(), e->button(), e->buttons(), e->modifiers());
+#endif
     }
 };
 
@@ -341,8 +345,12 @@ bool QCtmTableViewButtonsDelegate::eventFilter(QObject* object, QEvent* event)
     {
         auto createOption = [this](const QModelIndex& index)
         {
+#if QT_VERSION < QT_VERSION_CHECK(6, 0, 0)
+            QStyleOptionViewItem option = m_impl->view->viewOptions();
+#else
             QStyleOptionViewItem option;
             m_impl->view->initViewItemOption(&option);
+#endif
             option.rect = m_impl->view->visualRect(index);
             this->initStyleOption(&option, index);
             return option;
