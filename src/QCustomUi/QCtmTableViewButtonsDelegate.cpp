@@ -191,7 +191,7 @@ QSize QCtmTableViewButtonsDelegate::sizeHint(const QStyleOptionViewItem& option,
 }
 
 /*!
-    \brief      添加一个按钮，文本为 \a text，背景色为 \a background，悬停时背景色为 \a hover，按下时背景色为 \a pressed，文本颜色为 \a
+    \brief      添加一个按钮，文本为 \a text, 背景色为 \a background, 悬停时背景色为 \a hover, 按下时背景色为 \a pressed, 文本颜色为 \a
                 textColor.
 */
 void QCtmTableViewButtonsDelegate::addButton(const QString& text,

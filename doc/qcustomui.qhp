@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <QtHelpProject version="1.0">
-    <namespace>com.qcustomui.1.18.1</namespace>
+    <namespace>com.qcustomui.1.19.0</namespace>
     <virtualFolder>qcustomui</virtualFolder>
     <metaData name="version" value=""/>
     <customFilter name="QCustomUi">
@@ -188,6 +188,9 @@
                     <section ref="qctmtableview.html" title="QCtmTableView Class Reference">
                         <section ref="qctmtableview-members.html" title="List of all members"/>
                     </section>
+                    <section ref="qctmtableviewbuttonsdelegate.html" title="QCtmTableViewButtonsDelegate Class Reference">
+                        <section ref="qctmtableviewbuttonsdelegate-members.html" title="List of all members"/>
+                    </section>
                     <section ref="qctmtitlebar.html" title="QCtmTitleBar Class Reference">
                         <section ref="qctmtitlebar-members.html" title="List of all members"/>
                     </section>
@@ -356,6 +359,7 @@
             <keyword name="QCtmTabWidget" id="QCtmTabWidget" ref="qctmtabwidget.html"/>
             <keyword name="QCtmTableItemDelegate" id="QCtmTableItemDelegate" ref="qctmtableitemdelegate.html"/>
             <keyword name="QCtmTableView" id="QCtmTableView" ref="qctmtableview.html"/>
+            <keyword name="QCtmTableViewButtonsDelegate" id="QCtmTableViewButtonsDelegate" ref="qctmtableviewbuttonsdelegate.html"/>
             <keyword name="QCtmTitleBar" id="QCtmTitleBar" ref="qctmtitlebar.html"/>
             <keyword name="QCtmToolBox" id="QCtmToolBox" ref="qctmtoolbox.html"/>
             <keyword name="QCtmULongLongSpinBox" id="QCtmULongLongSpinBox" ref="qctmulonglongspinbox.html"/>
@@ -380,6 +384,7 @@
             <keyword name="addAction" id="QCtmNavigationSideBar::addAction" ref="qctmnavigationsidebar.html#addAction"/>
             <keyword name="addAction" id="QCtmTabPage::addAction" ref="qctmtabpage.html#addAction"/>
             <keyword name="addButton" id="QCtmMessageBox::addButton" ref="qctmmessagebox.html#addButton"/>
+            <keyword name="addButton" id="QCtmTableViewButtonsDelegate::addButton" ref="qctmtableviewbuttonsdelegate.html#addButton"/>
             <keyword name="addChild" id="QCtmClassifyTreeGroupItem::addChild" ref="qctmclassifytreegroupitem.html#addChild"/>
             <keyword name="addHelp" id="QCtmNavigationBar::addHelp" ref="qctmnavigationbar.html#addHelp"/>
             <keyword name="addItem" id="QCtmClassifyTreeModel::addItem" ref="qctmclassifytreemodel.html#addItem"/>
@@ -393,6 +398,8 @@
             <keyword name="addUser" id="QCtmNavigationBar::addUser" ref="qctmnavigationbar.html#addUser"/>
             <keyword name="addWidget" id="QCtmDrawerWidget::addWidget" ref="qctmdrawerwidget.html#addWidget"/>
             <keyword name="addWidget" id="QCtmToolBox::addWidget" ref="qctmtoolbox.html#addWidget"/>
+            <keyword name="alignment" id="QCtmIPAddressEdit::alignment" ref="qctmipaddressedit.html#alignment"/>
+            <keyword name="alignment" id="QCtmTableViewButtonsDelegate::alignment" ref="qctmtableviewbuttonsdelegate.html#alignment"/>
             <keyword name="backgroundBrush" id="QCtmCircleProgressBar::backgroundBrush" ref="qctmcircleprogressbar.html#backgroundBrush"/>
             <keyword name="backgroundBrush" id="QCtmCircleProgressBar::backgroundBrush" ref="qctmcircleprogressbar.html#backgroundBrush-prop"/>
             <keyword name="barBrush" id="QCtmCircleProgressBar::barBrush" ref="qctmcircleprogressbar.html#barBrush"/>
@@ -400,6 +407,7 @@
             <keyword name="barWidth" id="QCtmCircleProgressBar::barWidth" ref="qctmcircleprogressbar.html#barWidth"/>
             <keyword name="barWidth" id="QCtmCircleProgressBar::barWidth" ref="qctmcircleprogressbar.html#barWidth-prop"/>
             <keyword name="bindBox" id="QCtmDigitKeyboard::bindBox" ref="qctmdigitkeyboard.html#bindBox"/>
+            <keyword name="buttonSize" id="QCtmTableViewButtonsDelegate::buttonSize" ref="qctmtableviewbuttonsdelegate.html#buttonSize"/>
             <keyword name="cancel" id="QCtmLoadingDialog::cancel" ref="qctmloadingdialog.html#cancel"/>
             <keyword name="cancelEditor" id="QCtmPathBrowser::cancelEditor" ref="qctmpathbrowser.html#cancelEditor"/>
             <keyword name="cancelEnable" id="QCtmLoadingDialog::cancelEnable" ref="qctmloadingdialog.html#cancelEnable"/>
@@ -408,6 +416,7 @@
             <keyword name="centralWidget" id="QCtmWindow::centralWidget" ref="qctmwindow.html#centralWidget"/>
             <keyword name="checkFile" id="QCtmLogManager::checkFile" ref="qctmlogmanager.html#checkFile"/>
             <keyword name="checkOtherProcess" id="QCtmApplication::checkOtherProcess" ref="qctmapplication.html#checkOtherProcess"/>
+            <keyword name="checkStateChanged" id="QCtmMultiComboBox::checkStateChanged" ref="qctmmulticombobox.html#checkStateChanged"/>
             <keyword name="checkedBackground" id="QCtmSwitchButton::checkedBackground" ref="qctmswitchbutton.html#checkedBackground-prop"/>
             <keyword name="checkedBackground" id="QCtmSwitchButton::checkedBackground" ref="qctmswitchbutton.html#checkedBackground-prop"/>
             <keyword name="checkedBackgroundBorderColor" id="QCtmSwitchButton::checkedBackgroundBorderColor" ref="qctmswitchbutton.html#checkedBackgroundBorderColor-prop"/>
@@ -417,6 +426,7 @@
             <keyword name="checkedHandleBorderColor" id="QCtmSwitchButton::checkedHandleBorderColor" ref="qctmswitchbutton.html#checkedHandleBorderColor-prop"/>
             <keyword name="checkedHandleBrush" id="QCtmSwitchButton::checkedHandleBrush" ref="qctmswitchbutton.html#checkedHandleBrush-prop"/>
             <keyword name="checkedHandleBrush" id="QCtmSwitchButton::checkedHandleBrush" ref="qctmswitchbutton.html#checkedHandleBrush-prop"/>
+            <keyword name="checkedIndexes" id="QCtmMultiComboBox::checkedIndexes" ref="qctmmulticombobox.html#checkedIndexes"/>
             <keyword name="checkedItems" id="QCtmMultiComboBox::checkedItems" ref="qctmmulticombobox.html#checkedItems"/>
             <keyword name="child" id="QCtmClassifyTreeGroupItem::child" ref="qctmclassifytreegroupitem.html#child"/>
             <keyword name="chunkVisible" id="QCtmRangeSlider::chunkVisible" ref="qctmrangeslider.html#chunkVisible"/>
@@ -489,6 +499,7 @@
             <keyword name="dockArea" id="QCtmNavigationSidePane::dockArea" ref="qctmnavigationsidepane.html#dockArea"/>
             <keyword name="done" id="QCtmLoadingDialog::done" ref="qctmloadingdialog.html#done"/>
             <keyword name="done" id="QCtmMessageBox::done" ref="qctmmessagebox.html#done"/>
+            <keyword name="drawButtons" id="QCtmTableViewButtonsDelegate::drawButtons" ref="qctmtableviewbuttonsdelegate.html#drawButtons"/>
             <keyword name="drawIcon" id="QCtmRecentViewDelegate::drawIcon" ref="qctmrecentviewdelegate.html#drawIcon"/>
             <keyword name="drawName" id="QCtmRecentViewDelegate::drawName" ref="qctmrecentviewdelegate.html#drawName"/>
             <keyword name="drawPath" id="QCtmRecentViewDelegate::drawPath" ref="qctmrecentviewdelegate.html#drawPath"/>
@@ -524,6 +535,7 @@
             <keyword name="eventFilter" id="QCtmNavigationSidePane::eventFilter" ref="qctmnavigationsidepane.html#eventFilter"/>
             <keyword name="eventFilter" id="QCtmPathBrowser::eventFilter" ref="qctmpathbrowser.html#eventFilter"/>
             <keyword name="eventFilter" id="QCtmRecentViewDelegate::eventFilter" ref="qctmrecentviewdelegate.html#eventFilter"/>
+            <keyword name="eventFilter" id="QCtmTableViewButtonsDelegate::eventFilter" ref="qctmtableviewbuttonsdelegate.html#eventFilter"/>
             <keyword name="eventFilter" id="QCtmTitleBar::eventFilter" ref="qctmtitlebar.html#eventFilter"/>
             <keyword name="eventFilter" id="QCtmWindow::eventFilter" ref="qctmwindow.html#eventFilter"/>
             <keyword name="exclusionPolicy" id="QCtmSelectionButtonBox::exclusionPolicy" ref="qctmselectionbuttonbox.html#exclusionPolicy"/>
@@ -608,6 +620,7 @@
             <keyword name="initStyleOption" id="QCtmPathBrowser::initStyleOption" ref="qctmpathbrowser.html#initStyleOption"/>
             <keyword name="initStyleOption" id="QCtmRangeSlider::initStyleOption" ref="qctmrangeslider.html#initStyleOption"/>
             <keyword name="initStyleOption" id="QCtmStageProgressBar::initStyleOption" ref="qctmstageprogressbar.html#initStyleOption"/>
+            <keyword name="initStyleOption" id="QCtmTableViewButtonsDelegate::initStyleOption" ref="qctmtableviewbuttonsdelegate.html#initStyleOption"/>
             <keyword name="inputMethodEvent" id="QCtmIPAddressEdit::inputMethodEvent" ref="qctmipaddressedit.html#inputMethodEvent"/>
             <keyword name="inputMode" id="QCtmDigitKeyboard::inputMode" ref="qctmdigitkeyboard.html#inputMode"/>
             <keyword name="insertAction" id="QCtmNavigationBar::insertAction" ref="qctmnavigationbar.html#insertAction"/>
@@ -702,17 +715,20 @@
             <keyword name="mouseMoveEvent" id="QCtmIPAddressEdit::mouseMoveEvent" ref="qctmipaddressedit.html#mouseMoveEvent"/>
             <keyword name="mouseMoveEvent" id="QCtmRangeSlider::mouseMoveEvent" ref="qctmrangeslider.html#mouseMoveEvent"/>
             <keyword name="mouseMoveEvent" id="QCtmSelectionButtonBox::mouseMoveEvent" ref="qctmselectionbuttonbox.html#mouseMoveEvent"/>
+            <keyword name="mouseMoveEvent" id="QCtmTableViewButtonsDelegate::mouseMoveEvent" ref="qctmtableviewbuttonsdelegate.html#mouseMoveEvent"/>
             <keyword name="mousePressEvent" id="QCtmClassifyTreeView::mousePressEvent" ref="qctmclassifytreeview.html#mousePressEvent"/>
             <keyword name="mousePressEvent" id="QCtmHeaderView::mousePressEvent" ref="qctmheaderview.html#mousePressEvent"/>
             <keyword name="mousePressEvent" id="QCtmIPAddressEdit::mousePressEvent" ref="qctmipaddressedit.html#mousePressEvent"/>
             <keyword name="mousePressEvent" id="QCtmNavigationSidePane::mousePressEvent" ref="qctmnavigationsidepane.html#mousePressEvent"/>
             <keyword name="mousePressEvent" id="QCtmPathBrowser::mousePressEvent" ref="qctmpathbrowser.html#mousePressEvent"/>
             <keyword name="mousePressEvent" id="QCtmRangeSlider::mousePressEvent" ref="qctmrangeslider.html#mousePressEvent"/>
+            <keyword name="mousePressEvent" id="QCtmTableViewButtonsDelegate::mousePressEvent" ref="qctmtableviewbuttonsdelegate.html#mousePressEvent"/>
             <keyword name="mouseReleaseEvent" id="QCtmClassifyTreeView::mouseReleaseEvent" ref="qctmclassifytreeview.html#mouseReleaseEvent"/>
             <keyword name="mouseReleaseEvent" id="QCtmIPAddressEdit::mouseReleaseEvent" ref="qctmipaddressedit.html#mouseReleaseEvent"/>
             <keyword name="mouseReleaseEvent" id="QCtmPathBrowser::mouseReleaseEvent" ref="qctmpathbrowser.html#mouseReleaseEvent"/>
             <keyword name="mouseReleaseEvent" id="QCtmRangeSlider::mouseReleaseEvent" ref="qctmrangeslider.html#mouseReleaseEvent"/>
             <keyword name="mouseReleaseEvent" id="QCtmSelectionButtonBox::mouseReleaseEvent" ref="qctmselectionbuttonbox.html#mouseReleaseEvent"/>
+            <keyword name="mouseReleaseEvent" id="QCtmTableViewButtonsDelegate::mouseReleaseEvent" ref="qctmtableviewbuttonsdelegate.html#mouseReleaseEvent"/>
             <keyword name="moveCursor" id="QCtmClassifyTreeView::moveCursor" ref="qctmclassifytreeview.html#moveCursor"/>
             <keyword name="movie" id="QCtmLoadingDialog::movie" ref="qctmloadingdialog.html#movie"/>
             <keyword name="msg" id="QCtmLogData::msg" ref="qctmlogdata.html#msg"/>
@@ -738,6 +754,7 @@
             <keyword name="pageRowCount" id="QCtmAbstractMultiPageItemModel::pageRowCount" ref="qctmabstractmultipageitemmodel.html#pageRowCount"/>
             <keyword name="paint" id="QCtmRecentViewDelegate::paint" ref="qctmrecentviewdelegate.html#paint"/>
             <keyword name="paint" id="QCtmTableItemDelegate::paint" ref="qctmtableitemdelegate.html#paint"/>
+            <keyword name="paint" id="QCtmTableViewButtonsDelegate::paint" ref="qctmtableviewbuttonsdelegate.html#paint"/>
             <keyword name="paintEvent" id="QCtmCircleProgressBar::paintEvent" ref="qctmcircleprogressbar.html#paintEvent"/>
             <keyword name="paintEvent" id="QCtmClassifyTreeView::paintEvent" ref="qctmclassifytreeview.html#paintEvent"/>
             <keyword name="paintEvent" id="QCtmIPAddressEdit::paintEvent" ref="qctmipaddressedit.html#paintEvent"/>
@@ -814,9 +831,12 @@
             <keyword name="search" id="QCtmLogFilterModel::search" ref="qctmlogfiltermodel.html#search"/>
             <keyword name="search" id="QCtmRecentModel::search" ref="qctmrecentmodel.html#search"/>
             <keyword name="sectionSizeFromContents" id="QCtmHeaderView::sectionSizeFromContents" ref="qctmheaderview.html#sectionSizeFromContents"/>
+            <keyword name="setAlignment" id="QCtmIPAddressEdit::setAlignment" ref="qctmipaddressedit.html#setAlignment"/>
+            <keyword name="setAlignment" id="QCtmTableViewButtonsDelegate::setAlignment" ref="qctmtableviewbuttonsdelegate.html#setAlignment"/>
             <keyword name="setBackgroundBrush" id="QCtmCircleProgressBar::setBackgroundBrush" ref="qctmcircleprogressbar.html#setBackgroundBrush"/>
             <keyword name="setBarBrush" id="QCtmCircleProgressBar::setBarBrush" ref="qctmcircleprogressbar.html#setBarBrush"/>
             <keyword name="setBarWidth" id="QCtmCircleProgressBar::setBarWidth" ref="qctmcircleprogressbar.html#setBarWidth"/>
+            <keyword name="setButtonSize" id="QCtmTableViewButtonsDelegate::setButtonSize" ref="qctmtableviewbuttonsdelegate.html#setButtonSize"/>
             <keyword name="setCancelEnable" id="QCtmLoadingDialog::setCancelEnable" ref="qctmloadingdialog.html#setCancelEnable"/>
             <keyword name="setCentralWidget" id="QCtmDialog::setCentralWidget" ref="qctmdialog.html#setCentralWidget"/>
             <keyword name="setCentralWidget" id="QCtmTabPage::setCentralWidget" ref="qctmtabpage.html#setCentralWidget"/>
@@ -944,6 +964,7 @@
             <keyword name="setSizes" id="QCtmDrawerWidget::setSizes" ref="qctmdrawerwidget.html#setSizes"/>
             <keyword name="setSizes" id="QCtmToolBox::setSizes" ref="qctmtoolbox.html#setSizes"/>
             <keyword name="setSliderPosition" id="QCtmRangeSlider::setSliderPosition" ref="qctmrangeslider.html#setSliderPosition"/>
+            <keyword name="setSpace" id="QCtmTableViewButtonsDelegate::setSpace" ref="qctmtableviewbuttonsdelegate.html#setSpace"/>
             <keyword name="setStageCircleRadius" id="QCtmStageProgressBar::setStageCircleRadius" ref="qctmstageprogressbar.html#setStageCircleRadius"/>
             <keyword name="setStageCount" id="QCtmStageProgressBar::setStageCount" ref="qctmstageprogressbar.html#setStageCount"/>
             <keyword name="setStageIndexTextPen" id="QCtmStageProgressBar::setStageIndexTextPen" ref="qctmstageprogressbar.html#setStageIndexTextPen"/>
@@ -990,6 +1011,7 @@
             <keyword name="setUncheckedBackgroundBorderColor" id="QCtmSwitchButton::setUncheckedBackgroundBorderColor" ref="qctmswitchbutton.html#uncheckedBackgroundBorderColor-prop"/>
             <keyword name="setUncheckedHandleBorderColor" id="QCtmSwitchButton::setUncheckedHandleBorderColor" ref="qctmswitchbutton.html#uncheckedHandleBorderColor-prop"/>
             <keyword name="setUncheckedHandleBrush" id="QCtmSwitchButton::setUncheckedHandleBrush" ref="qctmswitchbutton.html#uncheckedHandleBrush-prop"/>
+            <keyword name="setUniformButtonSize" id="QCtmTableViewButtonsDelegate::setUniformButtonSize" ref="qctmtableviewbuttonsdelegate.html#setUniformButtonSize"/>
             <keyword name="setUniformSize" id="QCtmSelectionButtonBox::setUniformSize" ref="qctmselectionbuttonbox.html#setUniformSize"/>
             <keyword name="setUnits" id="QCtmDigitKeyboard::setUnits" ref="qctmdigitkeyboard.html#setUnits"/>
             <keyword name="setUpper" id="QCtmRangeSlider::setUpper" ref="qctmrangeslider.html#setUpper"/>
@@ -1032,10 +1054,12 @@
             <keyword name="sizeHint" id="QCtmSelectionButtonBox::sizeHint" ref="qctmselectionbuttonbox.html#sizeHint"/>
             <keyword name="sizeHint" id="QCtmStageProgressBar::sizeHint" ref="qctmstageprogressbar.html#sizeHint"/>
             <keyword name="sizeHint" id="QCtmSwitchButton::sizeHint" ref="qctmswitchbutton.html#sizeHint"/>
+            <keyword name="sizeHint" id="QCtmTableViewButtonsDelegate::sizeHint" ref="qctmtableviewbuttonsdelegate.html#sizeHint"/>
             <keyword name="sizes" id="QCtmToolBox::sizes" ref="qctmtoolbox.html#sizes"/>
             <keyword name="sliderMoved" id="QCtmRangeSlider::sliderMoved" ref="qctmrangeslider.html#sliderMoved"/>
             <keyword name="smartPosition" id="QCtmNavigationSidePane::smartPosition" ref="qctmnavigationsidepane.html#smartPosition"/>
             <keyword name="smartSize" id="QCtmNavigationSidePane::smartSize" ref="qctmnavigationsidepane.html#smartSize"/>
+            <keyword name="space" id="QCtmTableViewButtonsDelegate::space" ref="qctmtableviewbuttonsdelegate.html#space"/>
             <keyword name="stageCircleRadius" id="QCtmStageProgressBar::stageCircleRadius" ref="qctmstageprogressbar.html#stageCircleRadius"/>
             <keyword name="stageCount" id="QCtmStageProgressBar::stageCount" ref="qctmstageprogressbar.html#stageCount"/>
             <keyword name="stageIndexTextPen" id="QCtmStageProgressBar::stageIndexTextPen" ref="qctmstageprogressbar.html#stageIndexTextPen"/>
@@ -1113,8 +1137,10 @@
             <keyword name="uncheckedHandleBorderColor" id="QCtmSwitchButton::uncheckedHandleBorderColor" ref="qctmswitchbutton.html#uncheckedHandleBorderColor-prop"/>
             <keyword name="uncheckedHandleBrush" id="QCtmSwitchButton::uncheckedHandleBrush" ref="qctmswitchbutton.html#uncheckedHandleBrush-prop"/>
             <keyword name="uncheckedHandleBrush" id="QCtmSwitchButton::uncheckedHandleBrush" ref="qctmswitchbutton.html#uncheckedHandleBrush-prop"/>
+            <keyword name="uniformButtonSize" id="QCtmTableViewButtonsDelegate::uniformButtonSize" ref="qctmtableviewbuttonsdelegate.html#uniformButtonSize"/>
             <keyword name="uniformSize" id="QCtmSelectionButtonBox::uniformSize" ref="qctmselectionbuttonbox.html#uniformSize"/>
             <keyword name="units" id="QCtmDigitKeyboard::units" ref="qctmdigitkeyboard.html#units"/>
+            <keyword name="update" id="QCtmTableViewButtonsDelegate::update" ref="qctmtableviewbuttonsdelegate.html#update"/>
             <keyword name="updateGeometries" id="QCtmClassifyTreeView::updateGeometries" ref="qctmclassifytreeview.html#updateGeometries"/>
             <keyword name="upper" id="QCtmRangeSlider::upper" ref="qctmrangeslider.html#upper"/>
             <keyword name="upperSliderPosition" id="QCtmRangeSlider::upperSliderPosition" ref="qctmrangeslider.html#upperSliderPosition"/>
@@ -1204,6 +1230,7 @@
             <keyword name="~QCtmTabWidget" id="QCtmTabWidget::~QCtmTabWidget" ref="qctmtabwidget.html#dtor.QCtmTabWidget"/>
             <keyword name="~QCtmTableItemDelegate" id="QCtmTableItemDelegate::~QCtmTableItemDelegate" ref="qctmtableitemdelegate.html#dtor.QCtmTableItemDelegate"/>
             <keyword name="~QCtmTableView" id="QCtmTableView::~QCtmTableView" ref="qctmtableview.html#dtor.QCtmTableView"/>
+            <keyword name="~QCtmTableViewButtonsDelegate" id="QCtmTableViewButtonsDelegate::~QCtmTableViewButtonsDelegate" ref="qctmtableviewbuttonsdelegate.html#dtor.QCtmTableViewButtonsDelegate"/>
             <keyword name="~QCtmTitleBar" id="QCtmTitleBar::~QCtmTitleBar" ref="qctmtitlebar.html#dtor.QCtmTitleBar"/>
             <keyword name="~QCtmToolBox" id="QCtmToolBox::~QCtmToolBox" ref="qctmtoolbox.html#dtor.QCtmToolBox"/>
             <keyword name="~QCtmULongLongSpinBox" id="QCtmULongLongSpinBox::~QCtmULongLongSpinBox" ref="qctmulonglongspinbox.html#dtor.QCtmULongLongSpinBox"/>
@@ -1352,6 +1379,8 @@
             <file>qctmtableitemdelegate.html</file>
             <file>qctmtableview-members.html</file>
             <file>qctmtableview.html</file>
+            <file>qctmtableviewbuttonsdelegate-members.html</file>
+            <file>qctmtableviewbuttonsdelegate.html</file>
             <file>qctmtabpage-members.html</file>
             <file>qctmtabpage.html</file>
             <file>qctmtabwidget-members.html</file>

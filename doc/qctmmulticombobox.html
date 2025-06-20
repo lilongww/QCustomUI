@@ -4,7 +4,7 @@
   <meta charset="utf-8">
 <!-- QCtmMultiComboBox.cpp -->
   <meta name="description" content="可多选的ComboBox.">
-  <title>QCtmMultiComboBox Class | QCustomUi 1.18.1</title>
+  <title>QCtmMultiComboBox Class | QCustomUi 1.19.0</title>
   <link rel="stylesheet" type="text/css" href="style/offline-simple.css" />
   <script type="text/javascript">
     document.getElementsByTagName("link").item(0).setAttribute("href", "style/offline.css");
@@ -26,10 +26,10 @@
     <div class="main-rounded">
         <div class="navigationbar">
         <ul>
-<li><a href="index.html">QCustomUi 1.18.1</a></li>
+<li><a href="index.html">QCustomUi 1.19.0</a></li>
 <li><a href="qcustomui-module.html" translate="no">QCustomUi</a></li>
 <li>QCtmMultiComboBox</li>
-<li id="buildversion">QCustomUi 1.18.1 Reference Documentation</li>
+<li id="buildversion">QCustomUi 1.19.0 Reference Documentation</li>
     </ul>
     </div>
 </div>
@@ -41,6 +41,7 @@
 <h3 id="toc">Contents</h3>
 <ul>
 <li class="level1"><a href="#public-functions">Public Functions</a></li>
+<li class="level1"><a href="#signals">Signals</a></li>
 <li class="level1"><a href="#reimplemented-protected-functions">Reimplemented Protected Functions</a></li>
 <li class="level1"><a href="#details">Detailed Description</a></li>
 </ul>
@@ -62,10 +63,15 @@
 <tr><td class="memItemLeft rightAlign topAlign"> </td><td class="memItemRight bottomAlign"><b><a href="qctmmulticombobox.html#QCtmMultiComboBox" translate="no">QCtmMultiComboBox</a></b>(QWidget *<i>parent</i> = nullptr)</td></tr>
 <tr><td class="memItemLeft rightAlign topAlign"> virtual </td><td class="memItemRight bottomAlign"><b><a href="qctmmulticombobox.html#dtor.QCtmMultiComboBox" translate="no">~QCtmMultiComboBox</a></b>()</td></tr>
 <tr><td class="memItemLeft rightAlign topAlign"> QVariantList </td><td class="memItemRight bottomAlign"><b><a href="qctmmulticombobox.html#checkedDatas" translate="no">checkedDatas</a></b>() const</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> QList&lt;int&gt; </td><td class="memItemRight bottomAlign"><b><a href="qctmmulticombobox.html#checkedIndexes" translate="no">checkedIndexes</a></b>() const</td></tr>
 <tr><td class="memItemLeft rightAlign topAlign"> QStringList </td><td class="memItemRight bottomAlign"><b><a href="qctmmulticombobox.html#checkedItems" translate="no">checkedItems</a></b>() const</td></tr>
 <tr><td class="memItemLeft rightAlign topAlign"> bool </td><td class="memItemRight bottomAlign"><b><a href="qctmmulticombobox.html#isChecked" translate="no">isChecked</a></b>(int <i>index</i>) const</td></tr>
 <tr><td class="memItemLeft rightAlign topAlign"> QAbstractItemModel *</td><td class="memItemRight bottomAlign"><b><a href="qctmmulticombobox.html#model" translate="no">model</a></b>() const</td></tr>
 <tr><td class="memItemLeft rightAlign topAlign"> void </td><td class="memItemRight bottomAlign"><b><a href="qctmmulticombobox.html#setChecked" translate="no">setChecked</a></b>(int <i>index</i>, bool <i>checked</i>)</td></tr>
+</table></div>
+<h2 id="signals">Signals</h2>
+<div class="table"><table class="alignedsummary" translate="no">
+<tr><td class="memItemLeft rightAlign topAlign"> void </td><td class="memItemRight bottomAlign"><b><a href="qctmmulticombobox.html#checkStateChanged" translate="no">checkStateChanged</a></b>(int <i>index</i>, bool <i>checked</i>)</td></tr>
 </table></div>
 <h2 id="reimplemented-protected-functions">Reimplemented Protected Functions</h2>
 <div class="table"><table class="alignedsummary" translate="no">
@@ -87,11 +93,20 @@
 <h3 class="fn" translate="no" id="dtor.QCtmMultiComboBox"><code class="details extra" translate="no">[virtual noexcept]</code> QCtmMultiComboBox::<span class="name">~QCtmMultiComboBox</span>()</h3>
 <p>析构函数.</p>
 <!-- @@@~QCtmMultiComboBox -->
+<!-- $$$checkStateChanged[overload1]$$$checkStateChangedintbool -->
+<h3 class="fn" translate="no" id="checkStateChanged"><code class="details extra" translate="no">[signal]</code> <span class="type">void</span> QCtmMultiComboBox::<span class="name">checkStateChanged</span>(<span class="type">int</span> <i>index</i>, <span class="type">bool</span> <i>checked</i>)</h3>
+<p>当第 <i translate="no">index</i> 项的选中状态发生改变时发送该信号 <i translate="no">checked</i>.</p>
+<p><b>See also </b><a href="qctmmulticombobox.html#setChecked" translate="no">setChecked</a>(), <a href="qctmmulticombobox.html#isChecked" translate="no">isChecked</a>(), <a href="qctmmulticombobox.html#checkedItems" translate="no">checkedItems</a>(), <a href="qctmmulticombobox.html#checkedDatas" translate="no">checkedDatas</a>(), and <a href="qctmmulticombobox.html#checkedIndexes" translate="no">checkedIndexes</a>().</p>
+<!-- @@@checkStateChanged -->
 <!-- $$$checkedDatas[overload1]$$$checkedDatas -->
 <h3 class="fn" translate="no" id="checkedDatas"><span class="type"><a href="https://doc.qt.io/qt/qvariant.html#QVariantList-typedef" translate="no">QVariantList</a></span> QCtmMultiComboBox::<span class="name">checkedDatas</span>() const</h3>
 <p>返回被选中的项目数据.</p>
 <p><b>See also </b><a href="qctmmulticombobox.html#checkedItems" translate="no">checkedItems</a>() and <a href="qctmmulticombobox.html#setChecked" translate="no">setChecked</a>.</p>
 <!-- @@@checkedDatas -->
+<!-- $$$checkedIndexes[overload1]$$$checkedIndexes -->
+<h3 class="fn" translate="no" id="checkedIndexes"><span class="type"><a href="https://doc.qt.io/qt/qlist.html" translate="no">QList</a></span>&lt;<span class="type">int</span>&gt; QCtmMultiComboBox::<span class="name">checkedIndexes</span>() const</h3>
+<p>返回被选中的项目索引列表.</p>
+<!-- @@@checkedIndexes -->
 <!-- $$$checkedItems[overload1]$$$checkedItems -->
 <h3 class="fn" translate="no" id="checkedItems"><span class="type"><a href="https://doc.qt.io/qt/qstringlist.html" translate="no">QStringList</a></span> QCtmMultiComboBox::<span class="name">checkedItems</span>() const</h3>
 <p>返回被选中的项目.</p>
