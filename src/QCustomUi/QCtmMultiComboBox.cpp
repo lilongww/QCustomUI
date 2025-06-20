@@ -179,8 +179,11 @@ QList<int> QCtmMultiComboBox::checkedIndexes() const
 */
 void QCtmMultiComboBox::setChecked(int index, bool checked)
 {
+    if (isChecked(index) == checked)
+        return;
     auto in = m_impl->model->index(index, 0);
     m_impl->model->setData(in, checked ? Qt::Checked : Qt::Unchecked, Qt::CheckStateRole);
+    emit checkStateChanged(index, checked);
 }
 
 /*!
@@ -212,8 +215,7 @@ bool QCtmMultiComboBox::eventFilter(QObject* watched, QEvent* event)
                 auto index       = this->view()->indexAt(evt->pos());
                 if (index.isValid())
                 {
-                    this->model()->setData(
-                        index, index.data(Qt::CheckStateRole).toInt() == Qt::Checked ? Qt::Unchecked : Qt::Checked, Qt::CheckStateRole);
+                    setChecked(index.row(), !isChecked(index.row()));
                 }
                 return false;
             }
