@@ -77,6 +77,7 @@ struct QCtmIPAddressEdit::Impl
     int pressedSection { 0 };
     int pressedCursor { 0 };
     bool pressed { false };
+    Qt::Alignment alignment { Qt::AlignLeft };
 
     QTextLayout textLayouts[SECTION_COUNT];
     QTimer timer;
@@ -140,7 +141,9 @@ QCtmIPAddressEdit::QCtmIPAddressEdit(QWidget* parent) : QWidget(parent), m_impl(
 /*!
     \brief      析构函数.
 */
-QCtmIPAddressEdit::~QCtmIPAddressEdit() {}
+QCtmIPAddressEdit::~QCtmIPAddressEdit()
+{
+}
 
 /*!
     \brief      设置 \a ip 地址.
@@ -214,7 +217,31 @@ void QCtmIPAddressEdit::setReadOnly(bool ro)
     \brief      返回是否只读.
     \sa         setReadOnly
 */
-bool QCtmIPAddressEdit::isReadOnly() const { return m_impl->readOnly; }
+bool QCtmIPAddressEdit::isReadOnly() const
+{
+    return m_impl->readOnly;
+}
+
+/*!
+    \brief      设置文本布局 \a alignment.
+    \sa         alignment
+*/
+void QCtmIPAddressEdit::setAlignment(Qt::Alignment alignment)
+{
+    if (alignment == m_impl->alignment)
+        return;
+    m_impl->alignment = alignment;
+    update();
+}
+
+/*!
+    \brief      返回文本布局的对齐方式.
+    \sa         setAlignment
+*/
+Qt::Alignment QCtmIPAddressEdit::alignment() const
+{
+    return m_impl->alignment;
+}
 
 /*!
     \brief      清除IP地址文本.
@@ -264,8 +291,21 @@ QRect QCtmIPAddressEdit::rectOfIpSection(int section) const
     if (rect.isEmpty())
         rect = QRect(QPoint(0, 0), this->rect().size());
 
+    int x = 0;
+    switch (m_impl->alignment)
+    {
+    case Qt::AlignCenter:
+        x = rect.x() + (rect.width() - (SECTION_COUNT * dotWidth + SECTION_COUNT * opt.fontMetrics.horizontalAdvance(" 000 "))) / 2;
+        break;
+    case Qt::AlignRight:
+        x = rect.x() + rect.width() - (SECTION_COUNT * dotWidth + SECTION_COUNT * opt.fontMetrics.horizontalAdvance(" 000 "));
+        break;
+    default:
+        x = rect.x();
+    }
+
     int ipSectionWidth = opt.fontMetrics.horizontalAdvance(" 000 ");
-    return { rect.left() + (dotWidth * section) + section * ipSectionWidth, rect.top(), ipSectionWidth, rect.height() };
+    return { x + (dotWidth * section) + section * ipSectionWidth, rect.top(), ipSectionWidth, rect.height() };
 }
 
 /*!
@@ -672,7 +712,10 @@ QVariant QCtmIPAddressEdit::inputMethodQuery(Qt::InputMethodQuery query) const
 /*!
     \reimp
 */
-QSize QCtmIPAddressEdit::sizeHint() const { return minimumSizeHint(); }
+QSize QCtmIPAddressEdit::sizeHint() const
+{
+    return minimumSizeHint();
+}
 
 /*!
     \reimp

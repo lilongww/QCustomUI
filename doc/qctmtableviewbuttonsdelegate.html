@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+<!-- QCtmTableViewButtonsDelegate.cpp -->
+  <meta name="description" content="TableView按钮委托类.">
+  <title>QCtmTableViewButtonsDelegate Class | QCustomUi 1.19.0</title>
+  <link rel="stylesheet" type="text/css" href="style/offline-simple.css" />
+  <script type="text/javascript">
+    document.getElementsByTagName("link").item(0).setAttribute("href", "style/offline.css");
+    // loading style sheet breaks anchors that were jumped to before
+    // so force jumping to anchor again
+    setTimeout(function() {
+        var anchor = location.hash;
+        // need to jump to different anchor first (e.g. none)
+        location.hash = "#";
+        setTimeout(function() {
+            location.hash = anchor;
+        }, 0);
+    }, 0);
+  </script>
+</head>
+<body>
+<div class="header" id="qtdocheader">
+    <div class="main">
+    <div class="main-rounded">
+        <div class="navigationbar">
+        <ul>
+<li><a href="index.html">QCustomUi 1.19.0</a></li>
+<li><a href="qcustomui-module.html" translate="no">QCustomUi</a></li>
+<li>QCtmTableViewButtonsDelegate</li>
+<li id="buildversion">QCustomUi 1.19.0 Reference Documentation</li>
+    </ul>
+    </div>
+</div>
+<div class="content">
+<div class="line">
+<div class="content mainContent">
+<div class="sidebar">
+<div class="toc">
+<h3 id="toc">Contents</h3>
+<ul>
+<li class="level1"><a href="#public-functions">Public Functions</a></li>
+<li class="level1"><a href="#reimplemented-public-functions">Reimplemented Public Functions</a></li>
+<li class="level1"><a href="#protected-functions">Protected Functions</a></li>
+<li class="level1"><a href="#reimplemented-protected-functions">Reimplemented Protected Functions</a></li>
+<li class="level1"><a href="#details">Detailed Description</a></li>
+</ul>
+</div>
+<div class="sidebar-content" id="sidebar-content"></div></div>
+<h1 class="title" translate="no">QCtmTableViewButtonsDelegate Class</h1>
+<!-- $$$QCtmTableViewButtonsDelegate-brief -->
+<p>TableView按钮委托类. <a href="#details">More...</a></p>
+<!-- @@@QCtmTableViewButtonsDelegate -->
+<div class="table"><table class="alignedsummary requisites" translate="no">
+<tr><td class="memItemLeft rightAlign topAlign"> Header:</td><td class="memItemRight bottomAlign"> <code translate="no">#include &lt;QCtmTableViewButtonsDelegate.h&gt;</code></td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> Inherits:</td><td class="memItemRight bottomAlign"> <a href="qctmtableitemdelegate.html" translate="no">QCtmTableItemDelegate</a></td></tr>
+</table></div>
+<ul>
+<li><a href="qctmtableviewbuttonsdelegate-members.html">List of all members, including inherited members</a></li>
+</ul>
+<h2 id="public-functions">Public Functions</h2>
+<div class="table"><table class="alignedsummary" translate="no">
+<tr><td class="memItemLeft rightAlign topAlign"> </td><td class="memItemRight bottomAlign"><b><a href="qctmtableviewbuttonsdelegate.html#QCtmTableViewButtonsDelegate" translate="no">QCtmTableViewButtonsDelegate</a></b>(QCtmTableView *<i>parent</i>)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> virtual </td><td class="memItemRight bottomAlign"><b><a href="qctmtableviewbuttonsdelegate.html#dtor.QCtmTableViewButtonsDelegate" translate="no">~QCtmTableViewButtonsDelegate</a></b>()</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> void </td><td class="memItemRight bottomAlign"><b><a href="qctmtableviewbuttonsdelegate.html#addButton" translate="no">addButton</a></b>(const QString &amp;<i>text</i>, const QBrush &amp;<i>background</i>, const QBrush &amp;<i>hover</i>, const QBrush &amp;<i>pressed</i> = {}, const QColor &amp;<i>textColor</i> = {})</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> Qt::Alignment </td><td class="memItemRight bottomAlign"><b><a href="qctmtableviewbuttonsdelegate.html#alignment" translate="no">alignment</a></b>() const</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> const QSize &amp;</td><td class="memItemRight bottomAlign"><b><a href="qctmtableviewbuttonsdelegate.html#buttonSize" translate="no">buttonSize</a></b>(int <i>button</i>) const</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> void </td><td class="memItemRight bottomAlign"><b><a href="qctmtableviewbuttonsdelegate.html#setAlignment" translate="no">setAlignment</a></b>(Qt::Alignment <i>alignment</i>)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> void </td><td class="memItemRight bottomAlign"><b><a href="qctmtableviewbuttonsdelegate.html#setButtonSize" translate="no">setButtonSize</a></b>(int <i>button</i>, const QSize &amp;<i>size</i>)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> void </td><td class="memItemRight bottomAlign"><b><a href="qctmtableviewbuttonsdelegate.html#setSpace" translate="no">setSpace</a></b>(int <i>space</i>)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> void </td><td class="memItemRight bottomAlign"><b><a href="qctmtableviewbuttonsdelegate.html#setUniformButtonSize" translate="no">setUniformButtonSize</a></b>(bool <i>on</i>)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> int </td><td class="memItemRight bottomAlign"><b><a href="qctmtableviewbuttonsdelegate.html#space" translate="no">space</a></b>() const</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> bool </td><td class="memItemRight bottomAlign"><b><a href="qctmtableviewbuttonsdelegate.html#uniformButtonSize" translate="no">uniformButtonSize</a></b>() const</td></tr>
+</table></div>
+<h2 id="reimplemented-public-functions">Reimplemented Public Functions</h2>
+<div class="table"><table class="alignedsummary" translate="no">
+<tr><td class="memItemLeft rightAlign topAlign"> virtual QSize </td><td class="memItemRight bottomAlign"><b><a href="qctmtableviewbuttonsdelegate.html#sizeHint" translate="no">sizeHint</a></b>(const QStyleOptionViewItem &amp;<i>option</i>, const QModelIndex &amp;<i>index</i>) const override</td></tr>
+</table></div>
+<h2 id="protected-functions">Protected Functions</h2>
+<div class="table"><table class="alignedsummary" translate="no">
+<tr><td class="memItemLeft rightAlign topAlign"> virtual void </td><td class="memItemRight bottomAlign"><b><a href="qctmtableviewbuttonsdelegate.html#drawButtons" translate="no">drawButtons</a></b>(QPainter *<i>painter</i>, const QStyleOptionViewItem &amp;<i>option</i>, const QModelIndex &amp;<i>index</i>) const</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> virtual void </td><td class="memItemRight bottomAlign"><b><a href="qctmtableviewbuttonsdelegate.html#mouseMoveEvent" translate="no">mouseMoveEvent</a></b>(int <i>button</i>, const QModelIndex &amp;<i>index</i>, QMouseEvent *<i>e</i>)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> virtual void </td><td class="memItemRight bottomAlign"><b><a href="qctmtableviewbuttonsdelegate.html#mousePressEvent" translate="no">mousePressEvent</a></b>(int <i>button</i>, const QModelIndex &amp;<i>index</i>, QMouseEvent *<i>e</i>)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> virtual void </td><td class="memItemRight bottomAlign"><b><a href="qctmtableviewbuttonsdelegate.html#mouseReleaseEvent" translate="no">mouseReleaseEvent</a></b>(int <i>button</i>, const QModelIndex &amp;<i>index</i>, QMouseEvent *<i>e</i>)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> void </td><td class="memItemRight bottomAlign"><b><a href="qctmtableviewbuttonsdelegate.html#update" translate="no">update</a></b>()</td></tr>
+</table></div>
+<h2 id="reimplemented-protected-functions">Reimplemented Protected Functions</h2>
+<div class="table"><table class="alignedsummary" translate="no">
+<tr><td class="memItemLeft rightAlign topAlign"> virtual bool </td><td class="memItemRight bottomAlign"><b><a href="qctmtableviewbuttonsdelegate.html#eventFilter" translate="no">eventFilter</a></b>(QObject *<i>object</i>, QEvent *<i>event</i>) override</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> virtual void </td><td class="memItemRight bottomAlign"><b><a href="qctmtableviewbuttonsdelegate.html#initStyleOption" translate="no">initStyleOption</a></b>(QStyleOptionViewItem *<i>option</i>, const QModelIndex &amp;<i>index</i>) const override</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> virtual void </td><td class="memItemRight bottomAlign"><b><a href="qctmtableviewbuttonsdelegate.html#paint" translate="no">paint</a></b>(QPainter *<i>painter</i>, const QStyleOptionViewItem &amp;<i>option</i>, const QModelIndex &amp;<i>index</i>) const override</td></tr>
+</table></div>
+<!-- $$$QCtmTableViewButtonsDelegate-description -->
+<div class="descr">
+<h2 id="details">Detailed Description</h2>
+</div>
+<!-- @@@QCtmTableViewButtonsDelegate -->
+<div class="func">
+<h2>Member Function Documentation</h2>
+<!-- $$$QCtmTableViewButtonsDelegate[overload1]$$$QCtmTableViewButtonsDelegateQCtmTableView* -->
+<h3 class="fn" translate="no" id="QCtmTableViewButtonsDelegate"><code class="details extra" translate="no">[explicit]</code> QCtmTableViewButtonsDelegate::<span class="name">QCtmTableViewButtonsDelegate</span>(<span class="type"><a href="qctmtableview.html" translate="no">QCtmTableView</a></span> *<i>parent</i>)</h3>
+<p>构造函数 <i translate="no">parent</i>.</p>
+<!-- @@@QCtmTableViewButtonsDelegate -->
+<!-- $$$~QCtmTableViewButtonsDelegate[overload1]$$$~QCtmTableViewButtonsDelegate -->
+<h3 class="fn" translate="no" id="dtor.QCtmTableViewButtonsDelegate"><code class="details extra" translate="no">[virtual noexcept]</code> QCtmTableViewButtonsDelegate::<span class="name">~QCtmTableViewButtonsDelegate</span>()</h3>
+<p>析构函数.</p>
+<!-- @@@~QCtmTableViewButtonsDelegate -->
+<!-- $$$addButton[overload1]$$$addButtonconstQString&constQBrush&constQBrush&constQBrush&constQColor& -->
+<h3 class="fn" translate="no" id="addButton"><span class="type">void</span> QCtmTableViewButtonsDelegate::<span class="name">addButton</span>(const <span class="type"><a href="https://doc.qt.io/qt/qstring.html" translate="no">QString</a></span> &amp;<i>text</i>, const <span class="type"><a href="https://doc.qt.io/qt/qbrush.html" translate="no">QBrush</a></span> &amp;<i>background</i>, const <span class="type"><a href="https://doc.qt.io/qt/qbrush.html" translate="no">QBrush</a></span> &amp;<i>hover</i>, const <span class="type"><a href="https://doc.qt.io/qt/qbrush.html" translate="no">QBrush</a></span> &amp;<i>pressed</i> = {}, const <span class="type"><a href="https://doc.qt.io/qt/qcolor.html" translate="no">QColor</a></span> &amp;<i>textColor</i> = {})</h3>
+<p>添加一个按钮，文本为 <i translate="no">text</i>, 背景色为 <i translate="no">background</i>, 悬停时背景色为 <i translate="no">hover</i>, 按下时背景色为 <i translate="no">pressed</i>, 文本颜色为 <i translate="no">textColor</i>.</p>
+<!-- @@@addButton -->
+<!-- $$$alignment -->
+<h3 class="fn" translate="no" id="alignment"><span class="type"><a href="https://doc.qt.io/qt/qt.html#AlignmentFlag-enum" translate="no">Qt::Alignment</a></span> QCtmTableViewButtonsDelegate::<span class="name">alignment</span>() const</h3>
+<p>返回水平对齐方式，默认为 <a href="https://doc.qt.io/qt/qt.html#AlignmentFlag-enum" translate="no">Qt::AlignCenter</a>.</p>
+<div class="admonition note"><p><b>Note: </b>Getter function for property alignment. </p>
+</div><p><b>See also </b><a href="qctmtableviewbuttonsdelegate.html#setAlignment" translate="no">setAlignment</a>.</p>
+<!-- @@@alignment -->
+<!-- $$$buttonSize[overload1]$$$buttonSizeint -->
+<h3 class="fn" translate="no" id="buttonSize">const <span class="type"><a href="https://doc.qt.io/qt/qsize.html" translate="no">QSize</a></span> &amp;QCtmTableViewButtonsDelegate::<span class="name">buttonSize</span>(<span class="type">int</span> <i>button</i>) const</h3>
+<p>返回按钮 <i translate="no">button</i> 的大小.</p>
+<p><b>See also </b><a href="qctmtableviewbuttonsdelegate.html#setButtonSize" translate="no">setButtonSize</a>.</p>
+<!-- @@@buttonSize -->
+<!-- $$$drawButtons[overload1]$$$drawButtonsQPainter*constQStyleOptionViewItem&constQModelIndex& -->
+<h3 class="fn" translate="no" id="drawButtons"><code class="details extra" translate="no">[virtual protected]</code> <span class="type">void</span> QCtmTableViewButtonsDelegate::<span class="name">drawButtons</span>(<span class="type"><a href="https://doc.qt.io/qt/qpainter.html" translate="no">QPainter</a></span> *<i>painter</i>, const <span class="type"><a href="https://doc.qt.io/qt/qstyleoptionviewitem.html" translate="no">QStyleOptionViewItem</a></span> &amp;<i>option</i>, const <span class="type"><a href="https://doc.qt.io/qt/qmodelindex.html" translate="no">QModelIndex</a></span> &amp;<i>index</i>) const</h3>
+<p>绘制按钮，使用 <i translate="no">painter</i> 绘制，使用 <i translate="no">option</i> 作为样式选项，使用 <i translate="no">index</i> 作为模型索引.</p>
+<!-- @@@drawButtons -->
+<!-- $$$eventFilter[overload1]$$$eventFilterQObject*QEvent* -->
+<h3 class="fn" translate="no" id="eventFilter"><code class="details extra" translate="no">[override virtual protected]</code> <span class="type">bool</span> QCtmTableViewButtonsDelegate::<span class="name">eventFilter</span>(<span class="type"><a href="https://doc.qt.io/qt/qobject.html#QObject" translate="no">QObject</a></span> *<i>object</i>, <span class="type"><a href="https://doc.qt.io/qt/qevent.html" translate="no">QEvent</a></span> *<i>event</i>)</h3>
+<p>Reimplements: <a href="https://doc.qt.io/qt/qobject.html#eventFilter" translate="no">QObject::eventFilter</a>(QObject *watched, QEvent *event).</p>
+<!-- @@@eventFilter -->
+<!-- $$$initStyleOption[overload1]$$$initStyleOptionQStyleOptionViewItem*constQModelIndex& -->
+<h3 class="fn" translate="no" id="initStyleOption"><code class="details extra" translate="no">[override virtual protected]</code> <span class="type">void</span> QCtmTableViewButtonsDelegate::<span class="name">initStyleOption</span>(<span class="type"><a href="https://doc.qt.io/qt/qstyleoptionviewitem.html" translate="no">QStyleOptionViewItem</a></span> *<i>option</i>, const <span class="type"><a href="https://doc.qt.io/qt/qmodelindex.html" translate="no">QModelIndex</a></span> &amp;<i>index</i>) const</h3>
+<!-- @@@initStyleOption -->
+<!-- $$$mouseMoveEvent[overload1]$$$mouseMoveEventintconstQModelIndex&QMouseEvent* -->
+<h3 class="fn" translate="no" id="mouseMoveEvent"><code class="details extra" translate="no">[virtual protected]</code> <span class="type">void</span> QCtmTableViewButtonsDelegate::<span class="name">mouseMoveEvent</span>(<span class="type">int</span> <i>button</i>, const <span class="type"><a href="https://doc.qt.io/qt/qmodelindex.html" translate="no">QModelIndex</a></span> &amp;<i>index</i>, <span class="type"><a href="https://doc.qt.io/qt/qmouseevent.html" translate="no">QMouseEvent</a></span> *<i>e</i>)</h3>
+<p>鼠标移动事件处理，<i translate="no">button</i> 为按钮索引，<i translate="no">index</i> 为模型索引，<i translate="no">e</i> 为鼠标事件.</p>
+<!-- @@@mouseMoveEvent -->
+<!-- $$$mousePressEvent[overload1]$$$mousePressEventintconstQModelIndex&QMouseEvent* -->
+<h3 class="fn" translate="no" id="mousePressEvent"><code class="details extra" translate="no">[virtual protected]</code> <span class="type">void</span> QCtmTableViewButtonsDelegate::<span class="name">mousePressEvent</span>(<span class="type">int</span> <i>button</i>, const <span class="type"><a href="https://doc.qt.io/qt/qmodelindex.html" translate="no">QModelIndex</a></span> &amp;<i>index</i>, <span class="type"><a href="https://doc.qt.io/qt/qmouseevent.html" translate="no">QMouseEvent</a></span> *<i>e</i>)</h3>
+<p>鼠标按下事件处理，<i translate="no">button</i> 为按钮索引，<i translate="no">index</i> 为模型索引，<i translate="no">e</i> 为鼠标事件.</p>
+<!-- @@@mousePressEvent -->
+<!-- $$$mouseReleaseEvent[overload1]$$$mouseReleaseEventintconstQModelIndex&QMouseEvent* -->
+<h3 class="fn" translate="no" id="mouseReleaseEvent"><code class="details extra" translate="no">[virtual protected]</code> <span class="type">void</span> QCtmTableViewButtonsDelegate::<span class="name">mouseReleaseEvent</span>(<span class="type">int</span> <i>button</i>, const <span class="type"><a href="https://doc.qt.io/qt/qmodelindex.html" translate="no">QModelIndex</a></span> &amp;<i>index</i>, <span class="type"><a href="https://doc.qt.io/qt/qmouseevent.html" translate="no">QMouseEvent</a></span> *<i>e</i>)</h3>
+<p>鼠标释放事件处理，<i translate="no">button</i> 为按钮索引，<i translate="no">index</i> 为模型索引，<i translate="no">e</i> 为鼠标事件.</p>
+<!-- @@@mouseReleaseEvent -->
+<!-- $$$paint[overload1]$$$paintQPainter*constQStyleOptionViewItem&constQModelIndex& -->
+<h3 class="fn" translate="no" id="paint"><code class="details extra" translate="no">[override virtual protected]</code> <span class="type">void</span> QCtmTableViewButtonsDelegate::<span class="name">paint</span>(<span class="type"><a href="https://doc.qt.io/qt/qpainter.html" translate="no">QPainter</a></span> *<i>painter</i>, const <span class="type"><a href="https://doc.qt.io/qt/qstyleoptionviewitem.html" translate="no">QStyleOptionViewItem</a></span> &amp;<i>option</i>, const <span class="type"><a href="https://doc.qt.io/qt/qmodelindex.html" translate="no">QModelIndex</a></span> &amp;<i>index</i>) const</h3>
+<p>Reimplements: <a href="qctmtableitemdelegate.html#paint" translate="no">QCtmTableItemDelegate::paint</a>(QPainter *painter, const QStyleOptionViewItem &amp;option, const QModelIndex &amp;index) const.</p>
+<!-- @@@paint -->
+<!-- $$$setAlignment -->
+<h3 class="fn" translate="no" id="setAlignment"><span class="type">void</span> QCtmTableViewButtonsDelegate::<span class="name">setAlignment</span>(<span class="type"><a href="https://doc.qt.io/qt/qt.html#AlignmentFlag-enum" translate="no">Qt::Alignment</a></span> <i>alignment</i>)</h3>
+<p>设置水平对齐方式为 <i translate="no">alignment</i>, 默认为 <a href="https://doc.qt.io/qt/qt.html#AlignmentFlag-enum" translate="no">Qt::AlignCenter</a>.</p>
+<div class="admonition note"><p><b>Note: </b>Setter function for property <a href="qctmtableviewbuttonsdelegate.html#alignment" translate="no">alignment</a>. </p>
+</div><p><b>See also </b><a href="qctmtableviewbuttonsdelegate.html#alignment" translate="no">alignment</a>.</p>
+<!-- @@@setAlignment -->
+<!-- $$$setButtonSize[overload1]$$$setButtonSizeintconstQSize& -->
+<h3 class="fn" translate="no" id="setButtonSize"><span class="type">void</span> QCtmTableViewButtonsDelegate::<span class="name">setButtonSize</span>(<span class="type">int</span> <i>button</i>, const <span class="type"><a href="https://doc.qt.io/qt/qsize.html" translate="no">QSize</a></span> &amp;<i>size</i>)</h3>
+<p>设置按钮 <i translate="no">button</i> 的大小为 <i translate="no">size</i>, 如果 <a href="qctmtableviewbuttonsdelegate.html#uniformButtonSize" translate="no">uniformButtonSize</a>() 为 true，则所有按钮的大小都会被设置为 <i translate="no">size</i>.</p>
+<p><b>See also </b><a href="qctmtableviewbuttonsdelegate.html#buttonSize" translate="no">buttonSize</a>.</p>
+<!-- @@@setButtonSize -->
+<!-- $$$setSpace -->
+<h3 class="fn" translate="no" id="setSpace"><span class="type">void</span> QCtmTableViewButtonsDelegate::<span class="name">setSpace</span>(<span class="type">int</span> <i>space</i>)</h3>
+<p>设置按钮之间的间距为 <i translate="no">space</i>, 默认为 5.</p>
+<div class="admonition note"><p><b>Note: </b>Setter function for property <a href="qctmtableviewbuttonsdelegate.html#space" translate="no">space</a>. </p>
+</div><p><b>See also </b><a href="qctmtableviewbuttonsdelegate.html#space" translate="no">space</a>.</p>
+<!-- @@@setSpace -->
+<!-- $$$setUniformButtonSize -->
+<h3 class="fn" translate="no" id="setUniformButtonSize"><span class="type">void</span> QCtmTableViewButtonsDelegate::<span class="name">setUniformButtonSize</span>(<span class="type">bool</span> <i>on</i>)</h3>
+<p>设置按钮的大小是否统一，<i translate="no">on</i> 为 true 时表示统一大小，默认为 true.</p>
+<div class="admonition note"><p><b>Note: </b>Setter function for property <a href="qctmtableviewbuttonsdelegate.html#uniformButtonSize" translate="no">uniformButtonSize</a>. </p>
+</div><p><b>See also </b><a href="qctmtableviewbuttonsdelegate.html#uniformButtonSize" translate="no">uniformButtonSize</a>.</p>
+<!-- @@@setUniformButtonSize -->
+<!-- $$$sizeHint[overload1]$$$sizeHintconstQStyleOptionViewItem&constQModelIndex& -->
+<h3 class="fn" translate="no" id="sizeHint"><code class="details extra" translate="no">[override virtual]</code> <span class="type"><a href="https://doc.qt.io/qt/qsize.html" translate="no">QSize</a></span> QCtmTableViewButtonsDelegate::<span class="name">sizeHint</span>(const <span class="type"><a href="https://doc.qt.io/qt/qstyleoptionviewitem.html" translate="no">QStyleOptionViewItem</a></span> &amp;<i>option</i>, const <span class="type"><a href="https://doc.qt.io/qt/qmodelindex.html" translate="no">QModelIndex</a></span> &amp;<i>index</i>) const</h3>
+<p>Reimplements: <a href="https://doc.qt.io/qt/qabstractitemdelegate.html#sizeHint" translate="no">QAbstractItemDelegate::sizeHint</a>(const QStyleOptionViewItem &amp;option, const QModelIndex &amp;index) const.</p>
+<!-- @@@sizeHint -->
+<!-- $$$space -->
+<h3 class="fn" translate="no" id="space"><span class="type">int</span> QCtmTableViewButtonsDelegate::<span class="name">space</span>() const</h3>
+<p>返回按钮之间的间距，默认为 5.</p>
+<div class="admonition note"><p><b>Note: </b>Getter function for property space. </p>
+</div><p><b>See also </b><a href="qctmtableviewbuttonsdelegate.html#setSpace" translate="no">setSpace</a>.</p>
+<!-- @@@space -->
+<!-- $$$uniformButtonSize -->
+<h3 class="fn" translate="no" id="uniformButtonSize"><span class="type">bool</span> QCtmTableViewButtonsDelegate::<span class="name">uniformButtonSize</span>() const</h3>
+<p>返回按钮的大小是否统一，默认为 true.</p>
+<div class="admonition note"><p><b>Note: </b>Getter function for property uniformButtonSize. </p>
+</div><p><b>See also </b><a href="qctmtableviewbuttonsdelegate.html#setUniformButtonSize" translate="no">setUniformButtonSize</a>.</p>
+<!-- @@@uniformButtonSize -->
+<!-- $$$update[overload1]$$$update -->
+<h3 class="fn" translate="no" id="update"><code class="details extra" translate="no">[protected]</code> <span class="type">void</span> QCtmTableViewButtonsDelegate::<span class="name">update</span>()</h3>
+<p>刷新视图，触发重绘.</p>
+<!-- @@@update -->
+</div>
+        </div>
+       </div>
+   </div>
+   </div>
+</div>
+<div class="footer">
+   <p>
+   <acronym title="Copyright">&copy;</acronym> QCustomUi
+   Documentation contributions included herein are the copyrights of
+   their respective owners.<br/>    The documentation provided herein is licensed under the terms of the    <a href="http://www.gnu.org/licenses/fdl.html">GNU Free Documentation    License version 1.3</a> as published by the Free Software Foundation.<br/> </div>
+</body>
+</html>

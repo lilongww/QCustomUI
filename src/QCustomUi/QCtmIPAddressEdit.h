@@ -33,12 +33,15 @@ class QCUSTOMUI_EXPORT QCtmIPAddressEdit : public QWidget
     Q_OBJECT
     Q_PROPERTY(bool readOnly READ isReadOnly WRITE setReadOnly)
     Q_PROPERTY(QString ipAddress READ ipAddress WRITE setIPAddress)
+    Q_PROPERTY(Qt::Alignment alignment READ alignment WRITE setAlignment)
 public:
     explicit QCtmIPAddressEdit(QWidget* parent = nullptr);
     ~QCtmIPAddressEdit();
     QString ipAddress() const;
     void setReadOnly(bool ro);
     bool isReadOnly() const;
+    void setAlignment(Qt::Alignment alignment);
+    Qt::Alignment alignment() const;
 public slots:
     void setIPAddress(const QString& ip);
     void clear();

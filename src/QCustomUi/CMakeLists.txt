@@ -172,6 +172,7 @@ set(VIEW_HEADERS
  "QCtmRecentModel.h"
  "QCtmRecentView.h"
  "QCtmRecentViewDelegate.h"
+ "QCtmTableViewButtonsDelegate.h"
 )
 set(VIEW_SOURCES
  "QCtmTableItemDelegate.cpp"
@@ -187,6 +188,7 @@ set(VIEW_SOURCES
  "QCtmRecentModel.cpp"
  "QCtmRecentView.cpp"
  "QCtmRecentViewDelegate.cpp"
+ "QCtmTableViewButtonsDelegate.cpp"
 )
 
 set(TOOLS_HEADERS

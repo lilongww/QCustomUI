@@ -895,6 +895,7 @@
             <function name="QCtmIPAddressEdit" fullname="QCtmIPAddressEdit::QCtmIPAddressEdit" href="qctmipaddressedit.html#QCtmIPAddressEdit" status="active" access="public" location="QCtmIPAddressEdit.h" documented="true" meta="constructor" explicit="true" brief="构造函数 parent" signature="QCtmIPAddressEdit(QWidget *parent)">
                 <parameter type="QWidget *" name="parent" default="nullptr"/>
             </function>
+            <function name="alignment" fullname="QCtmIPAddressEdit::alignment" href="qctmipaddressedit.html#alignment" status="active" access="public" location="QCtmIPAddressEdit.h" documented="true" meta="plain" const="true" associated-property="alignment" type="Qt::Alignment" brief="返回文本布局的对齐方式" signature="Qt::Alignment alignment() const"/>
             <function name="boundRect" fullname="QCtmIPAddressEdit::boundRect" href="qctmipaddressedit.html#boundRect" status="active" access="private" location="QCtmIPAddressEdit.h" documented="true" meta="plain" const="true" type="QRect" brief="Returns the bound rect of the given section and rect" signature="QRect boundRect(int section, const QRect &amp;rect) const">
                 <parameter type="int" name="section" default=""/>
                 <parameter type="const QRect &amp;" name="rect" default=""/>
@@ -953,6 +954,9 @@
             </function>
             <function name="sectionOfCursorPosition" fullname="QCtmIPAddressEdit::sectionOfCursorPosition" href="qctmipaddressedit.html#sectionOfCursorPosition" status="active" access="private" location="QCtmIPAddressEdit.h" documented="true" meta="plain" const="true" type="int" brief="Returns the section of the given position" signature="int sectionOfCursorPosition(int position) const">
                 <parameter type="int" name="position" default=""/>
+            </function>
+            <function name="setAlignment" fullname="QCtmIPAddressEdit::setAlignment" href="qctmipaddressedit.html#setAlignment" status="active" access="public" location="QCtmIPAddressEdit.h" documented="true" meta="plain" associated-property="alignment" type="void" brief="设置文本布局 alignment" signature="void setAlignment(Qt::Alignment alignment)">
+                <parameter type="Qt::Alignment" name="alignment" default=""/>
             </function>
             <function name="setIPAddress" fullname="QCtmIPAddressEdit::setIPAddress" href="qctmipaddressedit.html#setIPAddress" status="active" access="public" location="QCtmIPAddressEdit.h" documented="true" meta="slot" associated-property="ipAddress" type="void" brief="设置 ip 地址" signature="void setIPAddress(const QString &amp;ip)">
                 <parameter type="const QString &amp;" name="ip" default=""/>
@@ -1730,7 +1734,12 @@
             <function name="QCtmMultiComboBox" fullname="QCtmMultiComboBox::QCtmMultiComboBox" href="qctmmulticombobox.html#QCtmMultiComboBox" status="active" access="public" location="QCtmMultiComboBox.h" documented="true" meta="constructor" explicit="true" brief="构造函数 parent" signature="QCtmMultiComboBox(QWidget *parent)">
                 <parameter type="QWidget *" name="parent" default="nullptr"/>
             </function>
+            <function name="checkStateChanged" fullname="QCtmMultiComboBox::checkStateChanged" href="qctmmulticombobox.html#checkStateChanged" status="active" access="public" location="QCtmMultiComboBox.h" documented="true" meta="signal" type="void" brief="当第 index 项的选中状态发生改变时发送该信号 checked" signature="void checkStateChanged(int index, bool checked)">
+                <parameter type="int" name="index" default=""/>
+                <parameter type="bool" name="checked" default=""/>
+            </function>
             <function name="checkedDatas" fullname="QCtmMultiComboBox::checkedDatas" href="qctmmulticombobox.html#checkedDatas" status="active" access="public" location="QCtmMultiComboBox.h" documented="true" meta="plain" const="true" type="QVariantList" brief="返回被选中的项目数据" signature="QVariantList checkedDatas() const"/>
+            <function name="checkedIndexes" fullname="QCtmMultiComboBox::checkedIndexes" href="qctmmulticombobox.html#checkedIndexes" status="active" access="public" location="QCtmMultiComboBox.h" documented="true" meta="plain" const="true" type="QList&lt;int&gt;" brief="返回被选中的项目索引列表" signature="QList&lt;int&gt; checkedIndexes() const"/>
             <function name="checkedItems" fullname="QCtmMultiComboBox::checkedItems" href="qctmmulticombobox.html#checkedItems" status="active" access="public" location="QCtmMultiComboBox.h" documented="true" meta="plain" const="true" type="QStringList" brief="返回被选中的项目" signature="QStringList checkedItems() const"/>
             <function name="eventFilter" fullname="QCtmMultiComboBox::eventFilter" href="qctmmulticombobox.html#eventFilter" status="active" access="private" location="QCtmMultiComboBox.h" documented="true" meta="plain" virtual="virtual" override="true" type="bool" signature="bool eventFilter(QObject *watched, QEvent *event) override">
                 <parameter type="QObject *" name="watched" default=""/>
@@ -2742,6 +2751,76 @@
                 <parameter type="QEvent *" name="event" default=""/>
             </function>
             <function name="~QCtmTableView" fullname="QCtmTableView::~QCtmTableView" href="qctmtableview.html#dtor.QCtmTableView" status="active" access="public" location="QCtmTableView.h" documented="true" meta="destructor" virtual="virtual" noexcept="true" brief="析构函数" signature="~QCtmTableView()"/>
+        </class>
+        <class name="QCtmTableViewButtonsDelegate" href="qctmtableviewbuttonsdelegate.html" status="active" access="public" location="QCtmTableViewButtonsDelegate.h" documented="true" groups="QCustomUi" bases="QCtmTableItemDelegate" module="QCustomUi" brief="TableView按钮委托类">
+            <function name="QCtmTableViewButtonsDelegate" fullname="QCtmTableViewButtonsDelegate::QCtmTableViewButtonsDelegate" href="qctmtableviewbuttonsdelegate.html#QCtmTableViewButtonsDelegate" status="active" access="public" location="QCtmTableViewButtonsDelegate.h" documented="true" meta="constructor" explicit="true" brief="构造函数 parent" signature="QCtmTableViewButtonsDelegate(QCtmTableView *parent)">
+                <parameter type="QCtmTableView *" name="parent" default=""/>
+            </function>
+            <function name="addButton" fullname="QCtmTableViewButtonsDelegate::addButton" href="qctmtableviewbuttonsdelegate.html#addButton" status="active" access="public" location="QCtmTableViewButtonsDelegate.h" documented="true" meta="plain" type="void" brief="添加一个按钮，文本为 text, 背景色为 background, 悬停时背景色为 hover, 按下时背景色为 pressed, 文本颜色为 textColor" signature="void addButton(const QString &amp;text, const QBrush &amp;background, const QBrush &amp;hover, const QBrush &amp;pressed, const QColor &amp;textColor)">
+                <parameter type="const QString &amp;" name="text" default=""/>
+                <parameter type="const QBrush &amp;" name="background" default=""/>
+                <parameter type="const QBrush &amp;" name="hover" default=""/>
+                <parameter type="const QBrush &amp;" name="pressed" default="{}"/>
+                <parameter type="const QColor &amp;" name="textColor" default="{}"/>
+            </function>
+            <function name="alignment" fullname="QCtmTableViewButtonsDelegate::alignment" href="qctmtableviewbuttonsdelegate.html#alignment" status="active" access="public" location="QCtmTableViewButtonsDelegate.h" documented="true" meta="plain" const="true" associated-property="alignment" type="Qt::Alignment" brief="返回水平对齐方式，默认为 Qt::AlignCenter" signature="Qt::Alignment alignment() const"/>
+            <function name="buttonSize" fullname="QCtmTableViewButtonsDelegate::buttonSize" href="qctmtableviewbuttonsdelegate.html#buttonSize" status="active" access="public" location="QCtmTableViewButtonsDelegate.h" documented="true" meta="plain" const="true" type="const QSize &amp;" brief="返回按钮 button 的大小" signature="const QSize &amp; buttonSize(int button) const">
+                <parameter type="int" name="button" default=""/>
+            </function>
+            <function name="drawButtons" fullname="QCtmTableViewButtonsDelegate::drawButtons" href="qctmtableviewbuttonsdelegate.html#drawButtons" status="active" access="protected" location="QCtmTableViewButtonsDelegate.h" documented="true" meta="plain" virtual="virtual" const="true" type="void" brief="绘制按钮，使用 painter 绘制，使用 option 作为样式选项，使用 index 作为模型索引" signature="void drawButtons(QPainter *painter, const QStyleOptionViewItem &amp;option, const QModelIndex &amp;index) const">
+                <parameter type="QPainter *" name="painter" default=""/>
+                <parameter type="const QStyleOptionViewItem &amp;" name="option" default=""/>
+                <parameter type="const QModelIndex &amp;" name="index" default=""/>
+            </function>
+            <function name="eventFilter" fullname="QCtmTableViewButtonsDelegate::eventFilter" href="qctmtableviewbuttonsdelegate.html#eventFilter" status="active" access="protected" location="QCtmTableViewButtonsDelegate.h" documented="true" meta="plain" virtual="virtual" override="true" type="bool" signature="bool eventFilter(QObject *object, QEvent *event) override">
+                <parameter type="QObject *" name="object" default=""/>
+                <parameter type="QEvent *" name="event" default=""/>
+            </function>
+            <function name="initStyleOption" fullname="QCtmTableViewButtonsDelegate::initStyleOption" href="qctmtableviewbuttonsdelegate.html#initStyleOption" status="active" access="protected" location="QCtmTableViewButtonsDelegate.h" documented="true" meta="plain" virtual="virtual" const="true" override="true" type="void" signature="void initStyleOption(QStyleOptionViewItem *option, const QModelIndex &amp;index) const override">
+                <parameter type="QStyleOptionViewItem *" name="option" default=""/>
+                <parameter type="const QModelIndex &amp;" name="index" default=""/>
+            </function>
+            <function name="mouseMoveEvent" fullname="QCtmTableViewButtonsDelegate::mouseMoveEvent" href="qctmtableviewbuttonsdelegate.html#mouseMoveEvent" status="active" access="protected" location="QCtmTableViewButtonsDelegate.h" documented="true" meta="plain" virtual="virtual" type="void" brief="鼠标移动事件处理，button 为按钮索引，index 为模型索引，e 为鼠标事件" signature="void mouseMoveEvent(int button, const QModelIndex &amp;index, QMouseEvent *e)">
+                <parameter type="int" name="button" default=""/>
+                <parameter type="const QModelIndex &amp;" name="index" default=""/>
+                <parameter type="QMouseEvent *" name="e" default=""/>
+            </function>
+            <function name="mousePressEvent" fullname="QCtmTableViewButtonsDelegate::mousePressEvent" href="qctmtableviewbuttonsdelegate.html#mousePressEvent" status="active" access="protected" location="QCtmTableViewButtonsDelegate.h" documented="true" meta="plain" virtual="virtual" type="void" brief="鼠标按下事件处理，button 为按钮索引，index 为模型索引，e 为鼠标事件" signature="void mousePressEvent(int button, const QModelIndex &amp;index, QMouseEvent *e)">
+                <parameter type="int" name="button" default=""/>
+                <parameter type="const QModelIndex &amp;" name="index" default=""/>
+                <parameter type="QMouseEvent *" name="e" default=""/>
+            </function>
+            <function name="mouseReleaseEvent" fullname="QCtmTableViewButtonsDelegate::mouseReleaseEvent" href="qctmtableviewbuttonsdelegate.html#mouseReleaseEvent" status="active" access="protected" location="QCtmTableViewButtonsDelegate.h" documented="true" meta="plain" virtual="virtual" type="void" brief="鼠标释放事件处理，button 为按钮索引，index 为模型索引，e 为鼠标事件" signature="void mouseReleaseEvent(int button, const QModelIndex &amp;index, QMouseEvent *e)">
+                <parameter type="int" name="button" default=""/>
+                <parameter type="const QModelIndex &amp;" name="index" default=""/>
+                <parameter type="QMouseEvent *" name="e" default=""/>
+            </function>
+            <function name="paint" fullname="QCtmTableViewButtonsDelegate::paint" href="qctmtableviewbuttonsdelegate.html#paint" status="active" access="protected" location="QCtmTableViewButtonsDelegate.h" documented="true" meta="plain" virtual="virtual" const="true" override="true" type="void" signature="void paint(QPainter *painter, const QStyleOptionViewItem &amp;option, const QModelIndex &amp;index) const override">
+                <parameter type="QPainter *" name="painter" default=""/>
+                <parameter type="const QStyleOptionViewItem &amp;" name="option" default=""/>
+                <parameter type="const QModelIndex &amp;" name="index" default=""/>
+            </function>
+            <function name="setAlignment" fullname="QCtmTableViewButtonsDelegate::setAlignment" href="qctmtableviewbuttonsdelegate.html#setAlignment" status="active" access="public" location="QCtmTableViewButtonsDelegate.h" documented="true" meta="plain" associated-property="alignment" type="void" brief="设置水平对齐方式为 alignment, 默认为 Qt::AlignCenter" signature="void setAlignment(Qt::Alignment alignment)">
+                <parameter type="Qt::Alignment" name="alignment" default=""/>
+            </function>
+            <function name="setButtonSize" fullname="QCtmTableViewButtonsDelegate::setButtonSize" href="qctmtableviewbuttonsdelegate.html#setButtonSize" status="active" access="public" location="QCtmTableViewButtonsDelegate.h" documented="true" meta="plain" type="void" brief="设置按钮 button 的大小为 size, 如果 uniformButtonSize() 为 true，则所有按钮的大小都会被设置为 size" signature="void setButtonSize(int button, const QSize &amp;size)">
+                <parameter type="int" name="button" default=""/>
+                <parameter type="const QSize &amp;" name="size" default=""/>
+            </function>
+            <function name="setSpace" fullname="QCtmTableViewButtonsDelegate::setSpace" href="qctmtableviewbuttonsdelegate.html#setSpace" status="active" access="public" location="QCtmTableViewButtonsDelegate.h" documented="true" meta="plain" associated-property="space" type="void" brief="设置按钮之间的间距为 space, 默认为 5" signature="void setSpace(int space)">
+                <parameter type="int" name="space" default=""/>
+            </function>
+            <function name="setUniformButtonSize" fullname="QCtmTableViewButtonsDelegate::setUniformButtonSize" href="qctmtableviewbuttonsdelegate.html#setUniformButtonSize" status="active" access="public" location="QCtmTableViewButtonsDelegate.h" documented="true" meta="plain" associated-property="uniformButtonSize" type="void" brief="设置按钮的大小是否统一，on 为 true 时表示统一大小，默认为 true" signature="void setUniformButtonSize(bool on)">
+                <parameter type="bool" name="on" default=""/>
+            </function>
+            <function name="sizeHint" fullname="QCtmTableViewButtonsDelegate::sizeHint" href="qctmtableviewbuttonsdelegate.html#sizeHint" status="active" access="public" location="QCtmTableViewButtonsDelegate.h" documented="true" meta="plain" virtual="virtual" const="true" override="true" type="QSize" signature="QSize sizeHint(const QStyleOptionViewItem &amp;option, const QModelIndex &amp;index) const override">
+                <parameter type="const QStyleOptionViewItem &amp;" name="option" default=""/>
+                <parameter type="const QModelIndex &amp;" name="index" default=""/>
+            </function>
+            <function name="space" fullname="QCtmTableViewButtonsDelegate::space" href="qctmtableviewbuttonsdelegate.html#space" status="active" access="public" location="QCtmTableViewButtonsDelegate.h" documented="true" meta="plain" const="true" associated-property="space" type="int" brief="返回按钮之间的间距，默认为 5" signature="int space() const"/>
+            <function name="uniformButtonSize" fullname="QCtmTableViewButtonsDelegate::uniformButtonSize" href="qctmtableviewbuttonsdelegate.html#uniformButtonSize" status="active" access="public" location="QCtmTableViewButtonsDelegate.h" documented="true" meta="plain" const="true" associated-property="uniformButtonSize" type="bool" brief="返回按钮的大小是否统一，默认为 true" signature="bool uniformButtonSize() const"/>
+            <function name="update" fullname="QCtmTableViewButtonsDelegate::update" href="qctmtableviewbuttonsdelegate.html#update" status="active" access="protected" location="QCtmTableViewButtonsDelegate.h" documented="true" meta="plain" type="void" brief="刷新视图，触发重绘" signature="void update()"/>
+            <function name="~QCtmTableViewButtonsDelegate" fullname="QCtmTableViewButtonsDelegate::~QCtmTableViewButtonsDelegate" href="qctmtableviewbuttonsdelegate.html#dtor.QCtmTableViewButtonsDelegate" status="active" access="public" location="QCtmTableViewButtonsDelegate.h" documented="true" meta="destructor" virtual="virtual" noexcept="true" brief="析构函数" signature="~QCtmTableViewButtonsDelegate()"/>
         </class>
         <class name="QCtmTitleBar" href="qctmtitlebar.html" status="active" access="public" location="QCtmTitleBar.h" documented="true" groups="QCustomUi" bases="QWidget" module="QCustomUi" brief="QCtmWindow 和 QCtmDialog 的自定义标题栏">
             <function name="QCtmTitleBar" fullname="QCtmTitleBar::QCtmTitleBar" href="qctmtitlebar.html#QCtmTitleBar" status="active" access="public" location="QCtmTitleBar.h" documented="true" meta="constructor" explicit="true" brief="构造函数 parent" signature="QCtmTitleBar(QWidget *parent)">

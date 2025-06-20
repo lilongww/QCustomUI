@@ -31,7 +31,10 @@ class QCtmMultiComboBoxModel : public QStandardItemModel
 {
 public:
     using QStandardItemModel::QStandardItemModel;
-    Qt::ItemFlags flags([[maybe_unused]] const QModelIndex& index) const override { return Qt::ItemIsEnabled; }
+    Qt::ItemFlags flags([[maybe_unused]] const QModelIndex& index) const override
+    {
+        return Qt::ItemIsEnabled;
+    }
     QVariant data(const QModelIndex& index, int role /* = Qt::DisplayRole */) const override
     {
         const auto& d = QStandardItemModel::data(index, role);
@@ -64,6 +67,12 @@ struct QCtmMultiComboBox::Impl
 */
 
 /*!
+    \fn         void QCtmMultiComboBox::checkStateChanged(int index, bool checked);
+    \brief      当第 \a index 项的选中状态发生改变时发送该信号 \a checked.
+    \sa         setChecked(), isChecked(), checkedItems(), checkedDatas(), checkedIndexes()
+*/
+
+/*!
     \brief      构造函数 \a parent.
 */
 QCtmMultiComboBox::QCtmMultiComboBox(QWidget* parent) : QComboBox(parent), m_impl(std::make_unique<Impl>())
@@ -93,7 +102,9 @@ QCtmMultiComboBox::QCtmMultiComboBox(QWidget* parent) : QComboBox(parent), m_imp
 /*!
     \brief      析构函数.
 */
-QCtmMultiComboBox::~QCtmMultiComboBox() {}
+QCtmMultiComboBox::~QCtmMultiComboBox()
+{
+}
 
 /*!
     \overload
@@ -116,7 +127,10 @@ void QCtmMultiComboBox::setModel(QAbstractItemModel* model)
     \overload
     \brief      返回数据来源.
 */
-QAbstractItemModel* QCtmMultiComboBox::model() const { return QComboBox::model(); }
+QAbstractItemModel* QCtmMultiComboBox::model() const
+{
+    return QComboBox::model();
+}
 
 /*!
     \brief      返回被选中的项目.
@@ -151,13 +165,31 @@ QVariantList QCtmMultiComboBox::checkedDatas() const
 }
 
 /*!
+    \brief      返回被选中的项目索引列表.
+*/
+QList<int> QCtmMultiComboBox::checkedIndexes() const
+{
+    QList<int> indexes;
+    for (int row = 0; row < m_impl->model->rowCount(); row++)
+    {
+        auto index = m_impl->model->index(row, 0);
+        if (index.data(Qt::CheckStateRole).toInt() == Qt::Checked)
+            indexes.push_back(row);
+    }
+    return indexes;
+}
+
+/*!
     \brief      设置第 \a index 项是否选中 \a checked.
     \sa         isChecked
 */
 void QCtmMultiComboBox::setChecked(int index, bool checked)
 {
+    if (isChecked(index) == checked)
+        return;
     auto in = m_impl->model->index(index, 0);
     m_impl->model->setData(in, checked ? Qt::Checked : Qt::Unchecked, Qt::CheckStateRole);
+    emit checkStateChanged(index, checked);
 }
 
 /*!
@@ -189,8 +221,7 @@ bool QCtmMultiComboBox::eventFilter(QObject* watched, QEvent* event)
                 auto index       = this->view()->indexAt(evt->pos());
                 if (index.isValid())
                 {
-                    this->model()->setData(
-                        index, index.data(Qt::CheckStateRole).toInt() == Qt::Checked ? Qt::Unchecked : Qt::Checked, Qt::CheckStateRole);
+                    setChecked(index.row(), !isChecked(index.row()));
                 }
                 return false;
             }

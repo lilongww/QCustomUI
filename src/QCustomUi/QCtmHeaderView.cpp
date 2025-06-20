@@ -55,7 +55,9 @@ QCtmHeaderView::QCtmHeaderView(Qt::Orientation orientation, QWidget* parent)
 /*!
     \brief      析构函数.
 */
-QCtmHeaderView::~QCtmHeaderView() {}
+QCtmHeaderView::~QCtmHeaderView()
+{
+}
 
 /*!
     \reimp
@@ -99,7 +101,9 @@ void QCtmHeaderView::setReadOnly(int logicIndex, bool enable)
 void QCtmHeaderView::paintSection(QPainter* painter, const QRect& rect, int logicalIndex) const
 {
     auto [showCheckBox, state] = m_impl->state[logicalIndex];
-    auto boxRect               = doCheckBoxRect(logicalIndex);
+    if (orientation() == Qt::Vertical)
+        showCheckBox = false; // 竖直方向不显示 checkbox
+    auto boxRect = doCheckBoxRect(logicalIndex);
     if (!rect.isValid())
         return;
     if (alternatingRowColors() && orientation() == Qt::Vertical)
@@ -191,6 +195,8 @@ void QCtmHeaderView::mousePressEvent(QMouseEvent* e)
         }
 
         auto [checkable, state] = m_impl->state[logicalIndex];
+        if (orientation() == Qt::Vertical)
+            checkable = false; // 竖直方向不显示 checkbox
         if (!checkable)
         {
             QHeaderView::mousePressEvent(e);
