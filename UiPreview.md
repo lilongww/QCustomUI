@@ -179,6 +179,13 @@ IP地址输入框
 最近使用的文件/项目视图
 
 ![QQ录屏2023052616574620235261658311](UiPreview.assets/QQ录屏2023052616574620235261658311.gif)
+
+#### QCtmTableViewButtonsDelegate
+
+QCtmTableView的按钮委托
+
+![image-20250620163140158](UiPreview.assets\image-20250620163140158.png)
+
 ### 9. 滑动条
 
 #### QCtmRangeSlider
