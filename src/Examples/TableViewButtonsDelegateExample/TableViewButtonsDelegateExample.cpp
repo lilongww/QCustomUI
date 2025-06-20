@@ -1,5 +1,6 @@
 ﻿#include "TableViewButtonsDelegateExample.h"
 
+#include <QCustomUi/QCtmMessageBox.h>
 #include <QCustomUi/QCtmTableViewButtonsDelegate.h>
 
 #include <QStandardItemModel>
@@ -19,6 +20,11 @@ TableViewButtonsDelegateExample::TableViewButtonsDelegateExample(QWidget* parent
             model->setItem(i, j, item);
         }
     }
+    auto fn = [this](int btn, const QModelIndex& index)
+    {
+        QCtmMessageBox::information(
+            this, "Tips", QString("index(%1, %2) button %3 clicked").arg(index.row()).arg(index.column()).arg(btn + 1));
+    };
     auto d1 = new QCtmTableViewButtonsDelegate(ui.tableView);
     ui.tableView->setModel(model);
     ui.tableView->setItemDelegateForColumn(2, d1);
@@ -26,6 +32,7 @@ TableViewButtonsDelegateExample::TableViewButtonsDelegateExample(QWidget* parent
     d1->addButton(QLatin1String("Button 2"), QBrush(Qt::lightGray), QBrush(Qt::darkGray), QBrush(Qt::red), QColor(Qt::black));
     d1->addButton(QLatin1String("Button 3"), QBrush(Qt::lightGray), QBrush(Qt::darkGray), QBrush(Qt::red), QColor(Qt::black));
     d1->setAlignment(Qt::AlignLeft);
+    connect(d1, &QCtmTableViewButtonsDelegate::buttonClicked, this, fn);
 
     auto d2 = new QCtmTableViewButtonsDelegate(ui.tableView_2);
     ui.tableView_2->setModel(model);
@@ -34,6 +41,7 @@ TableViewButtonsDelegateExample::TableViewButtonsDelegateExample(QWidget* parent
     d2->addButton(QLatin1String("Button 2"), QBrush(Qt::lightGray), QBrush(Qt::darkGray), QBrush(Qt::red), QColor(Qt::black));
     d2->addButton(QLatin1String("Button 3"), QBrush(Qt::lightGray), QBrush(Qt::darkGray), QBrush(Qt::red), QColor(Qt::black));
     d2->setAlignment(Qt::AlignRight);
+    connect(d2, &QCtmTableViewButtonsDelegate::buttonClicked, this, fn);
 
     auto d3 = new QCtmTableViewButtonsDelegate(ui.tableView_3);
     ui.tableView_3->setModel(model);
@@ -42,6 +50,7 @@ TableViewButtonsDelegateExample::TableViewButtonsDelegateExample(QWidget* parent
     d3->addButton(QLatin1String("Button 2"), QBrush(Qt::lightGray), QBrush(Qt::darkGray), QBrush(Qt::red), QColor(Qt::black));
     d3->addButton(QLatin1String("Button 3"), QBrush(Qt::lightGray), QBrush(Qt::darkGray), QBrush(Qt::red), QColor(Qt::black));
     d3->setAlignment(Qt::AlignCenter);
+    connect(d3, &QCtmTableViewButtonsDelegate::buttonClicked, this, fn);
 }
 
 TableViewButtonsDelegateExample::~TableViewButtonsDelegateExample()
