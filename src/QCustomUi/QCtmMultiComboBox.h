@@ -33,6 +33,7 @@ public:
     QAbstractItemModel* model() const;
     QStringList checkedItems() const;
     QVariantList checkedDatas() const;
+    QList<int> checkedIndexes() const;
     void setChecked(int index, bool checked);
     bool isChecked(int index) const;
 

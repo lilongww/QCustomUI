@@ -31,7 +31,10 @@ class QCtmMultiComboBoxModel : public QStandardItemModel
 {
 public:
     using QStandardItemModel::QStandardItemModel;
-    Qt::ItemFlags flags([[maybe_unused]] const QModelIndex& index) const override { return Qt::ItemIsEnabled; }
+    Qt::ItemFlags flags([[maybe_unused]] const QModelIndex& index) const override
+    {
+        return Qt::ItemIsEnabled;
+    }
     QVariant data(const QModelIndex& index, int role /* = Qt::DisplayRole */) const override
     {
         const auto& d = QStandardItemModel::data(index, role);
@@ -93,7 +96,9 @@ QCtmMultiComboBox::QCtmMultiComboBox(QWidget* parent) : QComboBox(parent), m_imp
 /*!
     \brief      析构函数.
 */
-QCtmMultiComboBox::~QCtmMultiComboBox() {}
+QCtmMultiComboBox::~QCtmMultiComboBox()
+{
+}
 
 /*!
     \overload
@@ -116,7 +121,10 @@ void QCtmMultiComboBox::setModel(QAbstractItemModel* model)
     \overload
     \brief      返回数据来源.
 */
-QAbstractItemModel* QCtmMultiComboBox::model() const { return QComboBox::model(); }
+QAbstractItemModel* QCtmMultiComboBox::model() const
+{
+    return QComboBox::model();
+}
 
 /*!
     \brief      返回被选中的项目.
@@ -148,6 +156,21 @@ QVariantList QCtmMultiComboBox::checkedDatas() const
             datas.push_back(index.data(Qt::UserRole));
     }
     return datas;
+}
+
+/*!
+    \brief      返回被选中的项目索引列表.
+*/
+QList<int> QCtmMultiComboBox::checkedIndexes() const
+{
+    QList<int> indexes;
+    for (int row = 0; row < m_impl->model->rowCount(); row++)
+    {
+        auto index = m_impl->model->index(row, 0);
+        if (index.data(Qt::CheckStateRole).toInt() == Qt::Checked)
+            indexes.push_back(row);
+    }
+    return indexes;
 }
 
 /*!
