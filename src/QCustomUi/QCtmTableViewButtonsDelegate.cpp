@@ -387,11 +387,12 @@ bool QCtmTableViewButtonsDelegate::eventFilter(QObject* object, QEvent* event)
             {
                 if (!m_impl->pressedPoint)
                     break;
+                auto e     = dynamic_cast<QMouseEvent*>(event);
                 auto index = m_impl->view->indexAt(*m_impl->pressedPoint);
                 if (!index.isValid() || index.column() != m_impl->column)
                     break;
                 auto rects           = m_impl->calcRects(createOption(index));
-                auto btn             = m_impl->buttonAt(*m_impl->pressedPoint, rects);
+                auto btn             = m_impl->buttonAt(e->pos(), rects);
                 m_impl->pressedPoint = std::nullopt;
                 if (btn != -1)
                 {
