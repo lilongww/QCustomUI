@@ -184,7 +184,7 @@ IP地址输入框
 
 QCtmTableView的按钮委托
 
-![image-20250620163140158](UiPreview.assets\image-20250620163140158.png)
+![image-20250620163140158](UiPreview.assets/image-20250620163140158.png)
 
 ### 9. 滑动条
 
