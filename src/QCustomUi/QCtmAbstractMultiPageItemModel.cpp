@@ -71,7 +71,13 @@ QCtmAbstractMultiPageItemModel::QCtmAbstractMultiPageItemModel(QObject* parent /
                     setCurrentPage(std::max(count - 1, 0));
                 }
             });
-    connect(this, &QCtmAbstractMultiPageItemModel::modelAboutToBeReset, this, [=]() { m_impl->tempPageCount = pageCount(); });
+    connect(this,
+            &QCtmAbstractMultiPageItemModel::modelAboutToBeReset,
+            this,
+            [=]()
+            {
+                m_impl->tempPageCount = pageCount();
+            });
     connect(this,
             &QCtmAbstractMultiPageItemModel::modelReset,
             this,
@@ -85,24 +91,35 @@ QCtmAbstractMultiPageItemModel::QCtmAbstractMultiPageItemModel(QObject* parent /
 /*!
     \brief      析构函数.
 */
-QCtmAbstractMultiPageItemModel::~QCtmAbstractMultiPageItemModel() {}
+QCtmAbstractMultiPageItemModel::~QCtmAbstractMultiPageItemModel()
+{
+}
 
 /*!
     \brief      返回当前页面.
     \sa         setCurrentPage
 */
-int QCtmAbstractMultiPageItemModel::currentPage() const { return m_impl->currentPage; }
+int QCtmAbstractMultiPageItemModel::currentPage() const
+{
+    return m_impl->currentPage;
+}
 
 /*!
     \brief      返回每页的行数量.
     \sa         setPageRowCount
 */
-int QCtmAbstractMultiPageItemModel::pageRowCount() const { return m_impl->pageRowCount; }
+int QCtmAbstractMultiPageItemModel::pageRowCount() const
+{
+    return m_impl->pageRowCount;
+}
 
 /*!
     \brief      返回数据偏移量，即首行在所有数据中的位置.
 */
-int QCtmAbstractMultiPageItemModel::offset() const { return m_impl->currentPage * m_impl->pageRowCount; }
+int QCtmAbstractMultiPageItemModel::offset() const
+{
+    return m_impl->currentPage * m_impl->pageRowCount;
+}
 
 /*!
     \brief      设置当前页 \a page.
@@ -123,7 +140,7 @@ void QCtmAbstractMultiPageItemModel::setCurrentPage(int page)
     auto guard = qScopeGuard(
         [&]
         {
-            emit dataChanged(index(0, 0), index(columnCount() - 1, rowCount() - 1));
+            emit dataChanged(index(0, 0), index(rowCount() - 1, columnCount() - 1));
             emit currentPageChanged(page);
         });
 
