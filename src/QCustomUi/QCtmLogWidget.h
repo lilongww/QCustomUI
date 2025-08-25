@@ -56,6 +56,11 @@ public:
     const QIcon& errorIcon() const;
     void setMaximumCount(int count);
     int maximumCount() const;
+public slots:
+    void copy();
+    void search(const QString& keywords);
+    void clear();
+    void showLog(QtMsgType type, bool show);
 
 private:
     void init();

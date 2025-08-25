@@ -30,6 +30,7 @@
 #include <QHBoxLayout>
 #include <QHeaderView>
 #include <QLineEdit>
+#include <QMenu>
 #include <QTableView>
 #include <QWidgetAction>
 
@@ -174,6 +175,7 @@ void QCtmLogWidget::init()
     m_impl->logView->horizontalHeader()->setStretchLastSection(true);
     m_impl->logView->setSelectionBehavior(QTableView::SelectRows);
     m_impl->logView->setSelectionMode(QTableView::SingleSelection);
+    m_impl->logView->setContextMenuPolicy(Qt::CustomContextMenu);
 
     QHBoxLayout* layout = new QHBoxLayout(this);
     layout->setContentsMargins(0, 0, 0, 0);
@@ -232,14 +234,6 @@ void QCtmLogWidget::init()
                 m_impl->logView->horizontalHeader()->reset();
             });
 
-    connect(m_impl->clearAction,
-            &QAction::triggered,
-            this,
-            [=]()
-            {
-                m_impl->model->clear();
-            });
-
     m_impl->searchAction = new QWidgetAction(this);
     m_impl->searchButton = new QCtmToolButton(m_impl->searchEdit);
     m_impl->searchButton->setDefaultAction(m_impl->searchAction);
@@ -262,46 +256,26 @@ void QCtmLogWidget::init()
             [=](bool)
             {
                 const auto& text = m_impl->searchEdit->currentText();
-                m_impl->proxyModel->search(text);
-                m_impl->logView->horizontalHeader()->reset();
-
-                if (text.isEmpty())
-                    return;
-
-                for (int i = m_impl->searchEdit->count() - 1; i >= 0; i--)
-                {
-                    const auto& t = m_impl->searchEdit->itemText(i);
-                    if (t == text)
-                    {
-                        m_impl->searchEdit->removeItem(i);
-                    }
-                }
-                m_impl->searchEdit->insertItem(0, text);
-                m_impl->searchEdit->setCurrentIndex(0);
-                if (m_impl->searchEdit->count() > 10)
-                {
-                    m_impl->searchEdit->removeItem(m_impl->searchEdit->count() - 1);
-                }
+                search(text);
             });
-
-    connect(m_impl->copyAction,
-            &QAction::triggered,
-            this,
-            [=]()
-            {
-                const auto& index = m_impl->logView->currentIndex();
-                if (index.isValid())
-                {
-                    auto cb   = qApp->clipboard();
-                    auto text = m_impl->model->data(m_impl->model->index(index.row(), 1), QCtmLogModel::CopyMessageRole).toString() + " " +
-                                m_impl->model->data(m_impl->model->index(index.row(), 2), QCtmLogModel::CopyMessageRole).toString();
-                    cb->setText(text);
-                }
-            });
-
+    connect(m_impl->clearAction, &QAction::triggered, this, &QCtmLogWidget::clear);
+    connect(m_impl->copyAction, &QAction::triggered, this, &QCtmLogWidget::copy);
     connect(m_impl->model, &QAbstractItemModel::rowsInserted, this, &QCtmLogWidget::updateLogCount);
     connect(m_impl->model, &QAbstractItemModel::rowsRemoved, this, &QCtmLogWidget::updateLogCount);
     connect(m_impl->model, &QAbstractItemModel::modelReset, this, &QCtmLogWidget::updateLogCount);
+
+    connect(m_impl->logView,
+            &QCtmTableView::customContextMenuRequested,
+            this,
+            [this](const QPoint& pos)
+            {
+                auto index = m_impl->logView->indexAt(pos);
+                if (!index.isValid())
+                    return;
+                QMenu menu(m_impl->logView);
+                menu.addAction(tr("Copy"), m_impl->copyAction, &QAction::triggered);
+                menu.exec(QCursor::pos());
+            });
 }
 
 /*!
@@ -398,4 +372,64 @@ void QCtmLogWidget::setMaximumCount(int count)
 int QCtmLogWidget::maximumCount() const
 {
     return m_impl->model->maximumCount();
+}
+
+/*!
+    \brief      复制当前选中日志到剪贴板.
+*/
+void QCtmLogWidget::copy()
+{
+    const auto& index = m_impl->logView->currentIndex();
+    if (index.isValid())
+    {
+        auto cb   = qApp->clipboard();
+        auto text = m_impl->model->data(m_impl->model->index(index.row(), 1), QCtmLogModel::CopyMessageRole).toString() + " " +
+                    m_impl->model->data(m_impl->model->index(index.row(), 2), QCtmLogModel::CopyMessageRole).toString();
+        cb->setText(text);
+    }
+}
+
+/*!
+    \brief      查询日志关键字 \a keywords.
+*/
+void QCtmLogWidget::search(const QString& keywords)
+{
+    m_impl->proxyModel->search(keywords);
+    m_impl->logView->horizontalHeader()->reset();
+
+    if (keywords.isEmpty())
+        return;
+
+    for (int i = m_impl->searchEdit->count() - 1; i >= 0; i--)
+    {
+        const auto& t = m_impl->searchEdit->itemText(i);
+        if (t == keywords)
+        {
+            m_impl->searchEdit->removeItem(i);
+        }
+    }
+    m_impl->searchEdit->insertItem(0, keywords);
+    m_impl->searchEdit->setCurrentIndex(0);
+    if (m_impl->searchEdit->count() > 10)
+    {
+        m_impl->searchEdit->removeItem(m_impl->searchEdit->count() - 1);
+    }
+}
+
+/*!
+    \brief      清除所有日志.
+*/
+void QCtmLogWidget::clear()
+{
+    m_impl->model->clear();
+}
+
+/*!
+    \brief      显示或隐藏日志类型 \a type, \a show.
+*/
+void QCtmLogWidget::showLog(QtMsgType type, bool show)
+{
+    m_impl->proxyModel->showLog(type, show);
+    m_impl->proxyModel->invalidate();
+    m_impl->logView->horizontalHeader()->reset();
 }
