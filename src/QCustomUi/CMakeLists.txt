@@ -20,7 +20,7 @@ find_package(QT NAMES Qt6 Qt5 REQUIRED COMPONENTS Core)
 if(${QT_VERSION_MAJOR} EQUAL 5)
     find_package(Qt${QT_VERSION_MAJOR} COMPONENTS Widgets Network WinExtras SerialPort REQUIRED)
 else(${QT_VERSION_MAJOR} EQUAL 5)
-    find_package(Qt${QT_VERSION_MAJOR} COMPONENTS Widgets Network SerialPort REQUIRED)
+    find_package(Qt${QT_VERSION_MAJOR} COMPONENTS Widgets Network SerialPort LinguistTools REQUIRED)
 endif(${QT_VERSION_MAJOR} EQUAL 5)
 file(REAL_PATH "${QT_DIR}/../../.." QTDIR)
 message("-- Found Qt ${QT_VERSION}")
@@ -281,6 +281,42 @@ add_library(${TARGET_NAME} ${_QCUSTOMUI_OPTION}
  ${RESOURCES}
  ${DOCS}
 )
+
+if(${QT_VERSION_MAJOR} EQUAL 6 AND ${QT_VERSION_MINOR} GREATER_EQUAL 7)
+    qt_add_lupdate(SOURCE_TARGETS QCustomUi TS_FILES qcustomui_zh.ts SOURCES
+     ${HEADERS}
+     ${PRIVATRE_HEADERS}
+     ${LOG_HEADERS}
+     ${INPUT_HEADERS}
+     ${CONTAINERS_HEADERS}
+     ${MESSAGETIP_HEADERS}
+     ${DISPLAYWIDGETS_HEADERS}
+     ${VIEW_HEADERS}
+     ${TOOLS_HEADERS}
+     ${BUTTONS_HEADERS}
+    
+     ${SOURCES}
+     ${PRIVATRE_SOURCES}
+     ${LOG_SOURCES}
+     ${CONTAINERS_SOURCES}
+     ${INPUT_SOURCES}
+     ${MESSAGETIP_SOURCES}
+     ${DISPLAYWIDGETS_SOURCES}
+     ${VIEW_SOURCES}
+     ${TOOLS_SOURCES}
+     ${BUTTONS_SOURCES}
+    
+     ${UI}
+     ${UI_PRIVATE}
+     ${RESOURCES}
+     ${DOCS}
+    )
+
+    qt_add_lrelease(
+         TS_FILES qcustomui_zh.ts
+         QM_OUTPUT_DIRECTORY ${CMAKE_CURRENT_LIST_DIR}
+     )
+endif()
 
 if(WIN32)
     if(${QT_VERSION_MAJOR} EQUAL 5)
