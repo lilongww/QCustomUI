@@ -43,7 +43,8 @@ class QCUSTOMUI_EXPORT QCtmLogModel : public QCtmAbstractLogModel
 public:
     enum
     {
-        TypeRole = Qt::UserRole + 1
+        TypeRole = Qt::UserRole + 1,
+        CopyMessageRole
     };
 
     explicit QCtmLogModel(const QString& objectName, QObject* parent = nullptr);

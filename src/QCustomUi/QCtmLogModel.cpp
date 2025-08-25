@@ -84,6 +84,11 @@ void QCtmLogModel::clear()
     endResetModel();
 }
 
+inline QString msgLimit(const QString& msg)
+{
+    return msg.size() > 512 ? msg.left(512) + "..." : msg;
+}
+
 /*!
     \reimp
 */
@@ -92,12 +97,12 @@ QVariant QCtmLogModel::data(const QModelIndex& index, int role /* = Qt::DisplayR
     auto& msg = m_impl->datas[index.row()];
     if (role == Qt::DisplayRole)
     {
-        switch ((Column)index.column())
+        switch (static_cast<Column>(index.column()))
         {
         case Column::DateTime:
             return msg.dateTime.toString("yyyy-MM-dd hh:mm:ss");
         case Column::Message:
-            return msg.msg;
+            return msgLimit(msg.msg);
         default:
             break;
         }
@@ -127,7 +132,19 @@ QVariant QCtmLogModel::data(const QModelIndex& index, int role /* = Qt::DisplayR
     {
         if (index.column() == 2)
         {
+            return msgLimit(msg.msg);
+        }
+    }
+    else if (role == CopyMessageRole)
+    {
+        switch (static_cast<Column>(index.column()))
+        {
+        case Column::DateTime:
+            return msg.dateTime.toString("yyyy-MM-dd hh:mm:ss");
+        case Column::Message:
             return msg.msg;
+        default:
+            break;
         }
     }
     return QVariant();

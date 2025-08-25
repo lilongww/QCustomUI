@@ -96,19 +96,27 @@ QCtmLogWidget::QCtmLogWidget(const QString& objectName, QWidget* parent) : QWidg
 /*!
     \brief      析构函数.
 */
-QCtmLogWidget::~QCtmLogWidget() {}
+QCtmLogWidget::~QCtmLogWidget()
+{
+}
 
 /*!
     \brief      设置日志插入策略 \a policy.
     \sa         logInsertPolicy()
 */
-void QCtmLogWidget::setLogInsertPolicy(QCtmLogData::LogInsertPolicy policy) { m_impl->model->setLogInsertPolicy(policy); }
+void QCtmLogWidget::setLogInsertPolicy(QCtmLogData::LogInsertPolicy policy)
+{
+    m_impl->model->setLogInsertPolicy(policy);
+}
 
 /*!
     \brief      返回日志插入策略.
     \sa         setLogInsertPolicy
 */
-QCtmLogData::LogInsertPolicy QCtmLogWidget::logInsertPolicy() const { return m_impl->model->logInsertPolicy(); }
+QCtmLogData::LogInsertPolicy QCtmLogWidget::logInsertPolicy() const
+{
+    return m_impl->model->logInsertPolicy();
+}
 
 /*!
     \brief      设置 \a column 列是否可见 \a visible.
@@ -129,7 +137,10 @@ void QCtmLogWidget::setColumnVisible(QCtmLogColumn column, bool visible)
     \brief      返回 \a column 列是否可见.
     \sa         setColumnVisible
 */
-bool QCtmLogWidget::columnVisible(QCtmLogColumn column) const { return !m_impl->logView->isColumnHidden(int(column)); }
+bool QCtmLogWidget::columnVisible(QCtmLogColumn column) const
+{
+    return !m_impl->logView->isColumnHidden(int(column));
+}
 
 /*!
     \brief      初始化.
@@ -221,7 +232,13 @@ void QCtmLogWidget::init()
                 m_impl->logView->horizontalHeader()->reset();
             });
 
-    connect(m_impl->clearAction, &QAction::triggered, this, [=]() { m_impl->model->clear(); });
+    connect(m_impl->clearAction,
+            &QAction::triggered,
+            this,
+            [=]()
+            {
+                m_impl->model->clear();
+            });
 
     m_impl->searchAction = new QWidgetAction(this);
     m_impl->searchButton = new QCtmToolButton(m_impl->searchEdit);
@@ -231,7 +248,13 @@ void QCtmLogWidget::init()
     m_impl->searchEdit->lineEdit()->addAction(m_impl->searchAction, QLineEdit::ActionPosition::TrailingPosition);
     m_impl->searchAction->setObjectName("searchAction");
 
-    connect(m_impl->searchEdit->lineEdit(), &QLineEdit::returnPressed, this, [=]() { emit m_impl->searchAction->triggered(false); });
+    connect(m_impl->searchEdit->lineEdit(),
+            &QLineEdit::returnPressed,
+            this,
+            [=]()
+            {
+                emit m_impl->searchAction->triggered(false);
+            });
 
     connect(m_impl->searchAction,
             &QAction::triggered,
@@ -270,8 +293,8 @@ void QCtmLogWidget::init()
                 if (index.isValid())
                 {
                     auto cb   = qApp->clipboard();
-                    auto text = m_impl->model->data(m_impl->model->index(index.row(), 1), Qt::DisplayRole).toString() + " " +
-                                m_impl->model->data(m_impl->model->index(index.row(), 2), Qt::DisplayRole).toString();
+                    auto text = m_impl->model->data(m_impl->model->index(index.row(), 1), QCtmLogModel::CopyMessageRole).toString() + " " +
+                                m_impl->model->data(m_impl->model->index(index.row(), 2), QCtmLogModel::CopyMessageRole).toString();
                     cb->setText(text);
                 }
             });
@@ -316,7 +339,10 @@ void QCtmLogWidget::setInfoIcon(const QIcon& icon)
     \brief      返回 Info 等级日志图标.
     \sa         setInfoIcon
 */
-const QIcon& QCtmLogWidget::infoIcon() const { return m_impl->model->infoIcon(); }
+const QIcon& QCtmLogWidget::infoIcon() const
+{
+    return m_impl->model->infoIcon();
+}
 
 /*!
     \brief      设置 Warning 日志图标 \a icon.
@@ -332,7 +358,10 @@ void QCtmLogWidget::setWarningIcon(const QIcon& icon)
     \brief      返回 Warning 日志图标.
     \sa         setWarningIcon
 */
-const QIcon& QCtmLogWidget::warningIcon() const { return m_impl->model->warningIcon(); }
+const QIcon& QCtmLogWidget::warningIcon() const
+{
+    return m_impl->model->warningIcon();
+}
 
 /*!
     \brief      设置 Error 日志图标 \a icon.
@@ -348,16 +377,25 @@ void QCtmLogWidget::setErrorIcon(const QIcon& icon)
     \brief      返回 Error 日志图标.
     \sa         setErrorIcon
 */
-const QIcon& QCtmLogWidget::errorIcon() const { return m_impl->model->errorIcon(); }
+const QIcon& QCtmLogWidget::errorIcon() const
+{
+    return m_impl->model->errorIcon();
+}
 
 /*!
     \brief      设置最大日志数量 \a count.
     \sa         maximumCount()
 */
-void QCtmLogWidget::setMaximumCount(int count) { m_impl->model->setMaximumCount(count); }
+void QCtmLogWidget::setMaximumCount(int count)
+{
+    m_impl->model->setMaximumCount(count);
+}
 
 /*!
     \brief      返回最大日志数量.
     \sa         setMaximumCount
 */
-int QCtmLogWidget::maximumCount() const { return m_impl->model->maximumCount(); }
+int QCtmLogWidget::maximumCount() const
+{
+    return m_impl->model->maximumCount();
+}
