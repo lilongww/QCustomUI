@@ -20,7 +20,6 @@
 #include "QCtmLogManager.h"
 #include "QCtmAbstractLogModel.h"
 #include "QCtmLogData.h"
-#include "QCtmLogEvent.h"
 
 #include <QDateTime>
 #include <QDir>
@@ -46,10 +45,8 @@ struct QCtmLogManager::Impl
     QFile logFile;
     QMutex mutex;
 
-    static decltype(&qtMessageHandle) oldHandle;
+    inline static decltype(&qtMessageHandle) oldHandle;
 };
-
-decltype(&qtMessageHandle) QCtmLogManager::Impl::oldHandle;
 
 /*!
     \class      QCtmLogManager
@@ -71,7 +68,11 @@ decltype(&qtMessageHandle) QCtmLogManager::Impl::oldHandle;
 /*!
     \brief      在 qApp 初始化之前调用该函数重定向日志句柄，如果在初始化之后调用则无法获取日志.
 */
-void QCtmLogManager::initBeforeApp() { Impl::oldHandle = qInstallMessageHandler(&qtMessageHandle); }
+void QCtmLogManager::initBeforeApp()
+{
+    qRegisterMetaType<QCtmLogDataPtr>("QCtmLogDataPtr");
+    Impl::oldHandle = qInstallMessageHandler(&qtMessageHandle);
+}
 
 /*!
     \brief      返回单例.
@@ -86,49 +87,73 @@ QCtmLogManager& QCtmLogManager::instance()
     \brief      设置日志保存路径 \a path.
     \sa         logFilePath
 */
-void QCtmLogManager::setLogFilePath(const QString& path) { m_impl->logPath = path; }
+void QCtmLogManager::setLogFilePath(const QString& path)
+{
+    m_impl->logPath = path;
+}
 
 /*!
     \brief      返回日志保存路径.
     \sa         setLogFilePath
 */
-const QString& QCtmLogManager::logFilePath() const { return m_impl->logPath; }
+const QString& QCtmLogManager::logFilePath() const
+{
+    return m_impl->logPath;
+}
 
 /*!
     \brief      设置日志保存策略 \a policy.
     \sa         logSavePolicy
 */
-void QCtmLogManager::setLogSavePolicy(LogSavePolicy policy) { m_impl->policy = policy; }
+void QCtmLogManager::setLogSavePolicy(LogSavePolicy policy)
+{
+    m_impl->policy = policy;
+}
 
 /*!
     \brief      返回日志保存策略.
     \sa         setLogSavePolicy
 */
-QCtmLogManager::LogSavePolicy QCtmLogManager::logSavePolicy() const { return m_impl->policy; }
+QCtmLogManager::LogSavePolicy QCtmLogManager::logSavePolicy() const
+{
+    return m_impl->policy;
+}
 
 /*!
     \brief      设置日志类型 \a type 是否保存 \a save.
     \sa         logTypeEnable
 */
-void QCtmLogManager::setLogTypeEnable(QtMsgType type, bool save) { m_impl->saveLogs[type] = save; }
+void QCtmLogManager::setLogTypeEnable(QtMsgType type, bool save)
+{
+    m_impl->saveLogs[type] = save;
+}
 
 /*!
     \brief      返回日志类型 \a type 是否保存.
     \sa         setLogTypeEnable
 */
-bool QCtmLogManager::logTypeEnable(QtMsgType type) const { return m_impl->saveLogs[type]; }
+bool QCtmLogManager::logTypeEnable(QtMsgType type) const
+{
+    return m_impl->saveLogs[type];
+}
 
 /*!
     \brief      设置日志大小限制 \a size.
     \sa         logSizeLimit
 */
-void QCtmLogManager::setLogSizeLimit(qint64 size) { m_impl->logSize = size; }
+void QCtmLogManager::setLogSizeLimit(qint64 size)
+{
+    m_impl->logSize = size;
+}
 
 /*!
     \brief      返回日志大小限制.
     \sa         setLogSizeLimit
 */
-qint64 QCtmLogManager::logSizeLimit() const { return m_impl->logSize; }
+qint64 QCtmLogManager::logSizeLimit() const
+{
+    return m_impl->logSize;
+}
 
 void qtMessageHandle(QtMsgType type, const QMessageLogContext& context, const QString& msg)
 {
@@ -140,16 +165,7 @@ void qtMessageHandle(QtMsgType type, const QMessageLogContext& context, const QS
     {
         if (objList.contains(model->objectName()))
         {
-            if (QThread::currentThread() == qApp->thread())
-            {
-                auto evt = new QCtmLogEvent(data);
-                qApp->sendEvent(model, evt);
-            }
-            else
-            {
-                auto evt = new QCtmLogEvent(data);
-                qApp->postEvent(model, evt);
-            }
+            QMetaObject::invokeMethod(model, "onLog", Q_ARG(QCtmLogDataPtr, data));
         }
     }
 
@@ -187,7 +203,9 @@ QCtmLogManager::QCtmLogManager() : m_impl(std::make_unique<Impl>())
 /*!
     \brief      析构函数.
 */
-QCtmLogManager::~QCtmLogManager() {}
+QCtmLogManager::~QCtmLogManager()
+{
+}
 
 /*!
     \brief      写入日志 \a data.
@@ -234,13 +252,19 @@ void QCtmLogManager::writeLog(QCtmLogDataPtr data)
     \brief      设置日志 \a model.
     \sa         unRegisterModel
 */
-void QCtmLogManager::registerModel(QCtmAbstractLogModel* model) { m_impl->models.push_back(model); }
+void QCtmLogManager::registerModel(QCtmAbstractLogModel* model)
+{
+    m_impl->models.push_back(model);
+}
 
 /*!
     \brief      移除日志 \a model.
     \sa         registerModel
 */
-void QCtmLogManager::unRegisterModel(QCtmAbstractLogModel* model) { m_impl->models.removeOne(model); }
+void QCtmLogManager::unRegisterModel(QCtmAbstractLogModel* model)
+{
+    m_impl->models.removeOne(model);
+}
 
 /*!
     \brief      解析日志 \a msg.

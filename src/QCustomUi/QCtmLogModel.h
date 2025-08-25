@@ -20,7 +20,7 @@
 #pragma once
 
 #include "QCtmAbstractLogModel.h"
-#include "QCtmLogEvent.h"
+#include "QCtmLogData.h"
 
 #include <QDateTime>
 #include <QIcon>
@@ -68,9 +68,10 @@ public:
     int warningCount() const;
     int infoCount() const;
     int errorCount() const;
+public slots:
+    void onLog(QCtmLogDataPtr log) override;
 
 protected:
-    void logEvent(QCtmLogEvent* e) override;
     void retranslateUi() override;
 
 private:

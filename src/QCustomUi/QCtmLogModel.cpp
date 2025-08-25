@@ -19,7 +19,6 @@
 
 #include "QCtmLogModel.h"
 #include "QCtmLogData.h"
-#include "QCtmLogEvent.h"
 
 #include <QDebug>
 
@@ -68,7 +67,9 @@ QCtmLogModel::QCtmLogModel(const QString& objectName, QObject* parent)
 /*!
     \brief      析构函数.
 */
-QCtmLogModel::~QCtmLogModel() {}
+QCtmLogModel::~QCtmLogModel()
+{
+}
 
 /*!
     \brief      清除所有日志.
@@ -157,96 +158,141 @@ QVariant QCtmLogModel::headerData(int section, Qt::Orientation orientation, int 
 /*!
     \reimp
 */
-int QCtmLogModel::rowCount([[maybe_unused]] const QModelIndex& parent /*= QModelIndex()*/) const { return m_impl->datas.size(); }
+int QCtmLogModel::rowCount([[maybe_unused]] const QModelIndex& parent /*= QModelIndex()*/) const
+{
+    return m_impl->datas.size();
+}
 
 /*!
     \reimp
 */
-int QCtmLogModel::columnCount([[maybe_unused]] const QModelIndex& parent /*= QModelIndex()*/) const { return m_impl->headers.size(); }
+int QCtmLogModel::columnCount([[maybe_unused]] const QModelIndex& parent /*= QModelIndex()*/) const
+{
+    return m_impl->headers.size();
+}
 
 /*!
     \brief      设置日志最大数量 \a count.
     \sa         maximumCount()
 */
-void QCtmLogModel::setMaximumCount(int count) { m_impl->maxCount = count; }
+void QCtmLogModel::setMaximumCount(int count)
+{
+    m_impl->maxCount = count;
+}
 
 /*!
     \brief      返回日志最大数量.
     \sa         setMaximumCount
 */
-int QCtmLogModel::maximumCount() const { return m_impl->maxCount; }
+int QCtmLogModel::maximumCount() const
+{
+    return m_impl->maxCount;
+}
 
 /*!
     \brief      设置日志插入策略 \a policy.
     \sa         logInsertPolicy()
 */
-void QCtmLogModel::setLogInsertPolicy(QCtmLogData::LogInsertPolicy policy) { m_impl->logInsertPolicy = policy; }
+void QCtmLogModel::setLogInsertPolicy(QCtmLogData::LogInsertPolicy policy)
+{
+    m_impl->logInsertPolicy = policy;
+}
 
 /*!
     \brief      返回日志插入策略.
     \sa         setLogInsertPolicy
 */
-QCtmLogData::LogInsertPolicy QCtmLogModel::logInsertPolicy() const { return m_impl->logInsertPolicy; }
+QCtmLogData::LogInsertPolicy QCtmLogModel::logInsertPolicy() const
+{
+    return m_impl->logInsertPolicy;
+}
 
 /*!
     \brief      设置 Info 等级日志图标 \a icon.
     \sa         infoIcon()
 */
-void QCtmLogModel::setInfoIcon(const QIcon& icon) { m_impl->infoIcon = icon; }
+void QCtmLogModel::setInfoIcon(const QIcon& icon)
+{
+    m_impl->infoIcon = icon;
+}
 
 /*!
     \brief      返回 Info 等级日志图标.
     \sa         setInfoIcon
 */
-const QIcon& QCtmLogModel::infoIcon() const { return m_impl->infoIcon; }
+const QIcon& QCtmLogModel::infoIcon() const
+{
+    return m_impl->infoIcon;
+}
 
 /*!
     \brief      设置 Warning 等级日志图标 \a icon.
     \sa         warningIcon()
 */
-void QCtmLogModel::setWarningIcon(const QIcon& icon) { m_impl->warningIcon = icon; }
+void QCtmLogModel::setWarningIcon(const QIcon& icon)
+{
+    m_impl->warningIcon = icon;
+}
 
 /*!
     \brief      返回 Warning 等级日志图标.
     \sa         setWarningIcon
 */
-const QIcon& QCtmLogModel::warningIcon() const { return m_impl->warningIcon; }
+const QIcon& QCtmLogModel::warningIcon() const
+{
+    return m_impl->warningIcon;
+}
 
 /*!
     \brief      设置 Error 等级日志图标 \a icon.
     \sa         errorIcon()
 */
-void QCtmLogModel::setErrorIcon(const QIcon& icon) { m_impl->errorIcon = icon; }
+void QCtmLogModel::setErrorIcon(const QIcon& icon)
+{
+    m_impl->errorIcon = icon;
+}
 
 /*!
     \brief      返回 Error 等级日志图标.
     \sa         setErrorIcon
 */
-const QIcon& QCtmLogModel::errorIcon() const { return m_impl->errorIcon; }
+const QIcon& QCtmLogModel::errorIcon() const
+{
+    return m_impl->errorIcon;
+}
 
 /*!
     \brief      返回 Warning 等级日志数量.
 */
-int QCtmLogModel::warningCount() const { return m_impl->warningCount; }
+int QCtmLogModel::warningCount() const
+{
+    return m_impl->warningCount;
+}
 
 /*!
     \brief      返回 Info 等级日志数量.
 */
-int QCtmLogModel::infoCount() const { return m_impl->infoCount; }
+int QCtmLogModel::infoCount() const
+{
+    return m_impl->infoCount;
+}
 
 /*!
     \brief      返回 Error 等级日志数量.
 */
-int QCtmLogModel::errorCount() const { return m_impl->errorCount; }
+int QCtmLogModel::errorCount() const
+{
+    return m_impl->errorCount;
+}
 
 /*!
     \reimp
 */
-void QCtmLogModel::logEvent(QCtmLogEvent* e)
+void QCtmLogModel::onLog(QCtmLogDataPtr log)
 {
     while (m_impl->datas.size() >= m_impl->maxCount && !m_impl->datas.isEmpty())
     {
-        auto msg = m_impl->datas.front();
+        const auto& msg = m_impl->datas.front();
         switch (msg.type)
         {
         case QtMsgType::QtInfoMsg:
@@ -273,9 +319,9 @@ void QCtmLogModel::logEvent(QCtmLogEvent* e)
         return;
 
     QCtmLogMessage msg;
-    msg.dateTime = e->log()->dateTime();
-    msg.msg      = e->log()->msg();
-    msg.type     = e->log()->type();
+    msg.dateTime = log->dateTime();
+    msg.msg      = log->msg();
+    msg.type     = log->type();
     switch (msg.type)
     {
     case QtMsgType::QtInfoMsg:

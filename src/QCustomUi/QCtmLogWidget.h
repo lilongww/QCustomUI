@@ -19,7 +19,7 @@
 
 #pragma once
 
-#include "QCtmLogEvent.h"
+#include "QCtmLogData.h"
 #include "qcustomui_global.h"
 
 #include <QIcon>

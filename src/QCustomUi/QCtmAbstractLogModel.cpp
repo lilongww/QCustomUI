@@ -18,7 +18,6 @@
 **********************************************************************************/
 
 #include "QCtmAbstractLogModel.h"
-#include "QCtmLogEvent.h"
 #include "QCtmLogManager.h"
 
 /*!
@@ -42,7 +41,10 @@ QCtmAbstractLogModel::QCtmAbstractLogModel(const QString& objectName, QObject* p
 /*!
     \brief      析构函数.
 */
-QCtmAbstractLogModel::~QCtmAbstractLogModel() { QCtmLogManager::instance().unRegisterModel(this); }
+QCtmAbstractLogModel::~QCtmAbstractLogModel()
+{
+    QCtmLogManager::instance().unRegisterModel(this);
+}
 
 /*!
     \fn         void QCtmAbstractLogModel::clear()
@@ -90,29 +92,25 @@ bool QCtmAbstractLogModel::removeColumns(int column, int count, const QModelInde
 }
 
 /*!
-    \brief      日志事件 \a e.
-*/
-void QCtmAbstractLogModel::logEvent(QCtmLogEvent* e) { Q_UNUSED(e) }
-
-/*!
     \brief      重新翻译UI.
 */
-void QCtmAbstractLogModel::retranslateUi() {}
+void QCtmAbstractLogModel::retranslateUi()
+{
+}
+
+/*!
+    \brief      响应日志，子类重写该函数处理日志.
+*/
+void QCtmAbstractLogModel::onLog(QCtmLogDataPtr)
+{
+}
 
 /*!
     \reimp
 */
 bool QCtmAbstractLogModel::event(QEvent* e)
 {
-    if (e->type() == QCtmLogEvent::QCtmLog)
-    {
-        auto evt = dynamic_cast<QCtmLogEvent*>(e);
-        if (evt)
-        {
-            logEvent(evt);
-        }
-    }
-    else if (e->type() == QEvent::LanguageChange)
+    if (e->type() == QEvent::LanguageChange)
     {
         retranslateUi();
     }

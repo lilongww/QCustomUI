@@ -52,7 +52,6 @@ set(HEADERS
 set(SOURCES )
 
 set(LOG_HEADERS
- "QCtmLogEvent.h"
  "QCtmLogManager.h"
  "QCtmLogData.h"
  "QCtmLogModel.h"
@@ -62,7 +61,6 @@ set(LOG_HEADERS
 
 set(LOG_SOURCES
  "QCtmLogWidget.cpp"
- "QCtmLogEvent.cpp"
  "QCtmLogManager.cpp"
  "QCtmLogModel.cpp"
  "QCtmLogData.cpp"

@@ -26,8 +26,7 @@
 
 #include <memory>
 
-class QCtmLogEvent;
-
+using QCtmLogDataPtr = std::shared_ptr<class QCtmLogData>;
 class QCUSTOMUI_EXPORT QCtmAbstractLogModel : public QAbstractTableModel
 {
     Q_OBJECT
@@ -40,9 +39,10 @@ public:
     bool insertColumns(int column, int count, const QModelIndex& parent = QModelIndex()) override;
     bool removeRows(int row, int count, const QModelIndex& parent = QModelIndex()) override;
     bool removeColumns(int column, int count, const QModelIndex& parent = QModelIndex()) override;
+public slots:
+    virtual void onLog(QCtmLogDataPtr) = 0;
 
 protected:
     bool event(QEvent* e) override;
-    virtual void logEvent(QCtmLogEvent* e);
     virtual void retranslateUi();
 };
