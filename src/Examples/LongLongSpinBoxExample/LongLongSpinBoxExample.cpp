@@ -20,7 +20,8 @@ void LongLongSpinBoxExample::init()
     auto layout = new QHBoxLayout(this->centralWidget());
     layout->addStretch(1);
     auto box = new QCtmLongLongSpinBox(this);
-    box->setRange(std::numeric_limits<qlonglong>::min() + 1, std::numeric_limits<qlonglong>::max());
+    box->setRange(std::numeric_limits<qlonglong>::min() + 1,
+                  std::numeric_limits<qlonglong>::max()); // qAbs断言 std::numeric_limits<qlonglong>::min()
     connect(box,
             &QCtmLongLongSpinBox::valueChanged,
             this,
