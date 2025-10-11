@@ -6,16 +6,21 @@
 #include <QDebug>
 #include <QHBoxLayout>
 
-LongLongSpinBoxExample::LongLongSpinBoxExample(QWidget* parent) : QCtmWindow(parent) { init(); }
+LongLongSpinBoxExample::LongLongSpinBoxExample(QWidget* parent) : QCtmWindow(parent)
+{
+    init();
+}
 
-LongLongSpinBoxExample::~LongLongSpinBoxExample() {}
+LongLongSpinBoxExample::~LongLongSpinBoxExample()
+{
+}
 
 void LongLongSpinBoxExample::init()
 {
     auto layout = new QHBoxLayout(this->centralWidget());
     layout->addStretch(1);
     auto box = new QCtmLongLongSpinBox(this);
-    box->setRange(std::numeric_limits<qlonglong>::min(), std::numeric_limits<qlonglong>::max());
+    box->setRange(std::numeric_limits<qlonglong>::min() + 1, std::numeric_limits<qlonglong>::max());
     connect(box,
             &QCtmLongLongSpinBox::valueChanged,
             this,
