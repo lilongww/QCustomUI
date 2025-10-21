@@ -114,5 +114,5 @@ bool QCtmAbstractLogModel::event(QEvent* e)
     {
         retranslateUi();
     }
-    return false;
+    return QAbstractTableModel::event(e);
 }

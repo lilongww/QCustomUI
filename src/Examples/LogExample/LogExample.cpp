@@ -10,6 +10,8 @@
 #include <QToolButton>
 #include <QVBoxLayout>
 
+#include <thread>
+
 /* XPM */
 static const char* xpmImage[] = {
     /* columns rows colors chars-per-pixel */
@@ -38,9 +40,14 @@ static const char* xpmImage[] = {
     "                "
 };
 
-LogExample::LogExample(QWidget* parent) : QCtmWindow(parent) { init(); }
+LogExample::LogExample(QWidget* parent) : QCtmWindow(parent)
+{
+    init();
+}
 
-LogExample::~LogExample() {}
+LogExample::~LogExample()
+{
+}
 
 void LogExample::init()
 {
@@ -55,7 +62,13 @@ void LogExample::init()
     auto btn = new QToolButton(this);
     this->statusBar()->addPermanentWidget(btn);
     btn->setIcon(QPixmap::fromImage(QImage(xpmImage)));
-    connect(btn, &QToolButton::clicked, this, [=]() { tabWidget->setVisible(!tabWidget->isVisible()); });
+    connect(btn,
+            &QToolButton::clicked,
+            this,
+            [=]()
+            {
+                tabWidget->setVisible(!tabWidget->isVisible());
+            });
 
     // [5] show your logs
     // show on QCtmLogWidget and write to log file.
@@ -65,6 +78,14 @@ void LogExample::init()
                << "Warning message";
     qCritical() << "#MyLog"
                 << "Error message";
+
+    std::thread(
+        [=]()
+        {
+            qInfo() << "#MyLog"
+                    << "Info message thread";
+        })
+        .detach();
 
     // only write to log file.
     qDebug() << "Debug message";

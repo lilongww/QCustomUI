@@ -165,7 +165,7 @@ void qtMessageHandle(QtMsgType type, const QMessageLogContext& context, const QS
     {
         if (objList.contains(model->objectName()))
         {
-            QMetaObject::invokeMethod(model, "onLog", Q_ARG(QCtmLogDataPtr, data));
+            QMetaObject::invokeMethod(model, std::bind_front(&QCtmAbstractLogModel::onLog, model, data), Qt::QueuedConnection);
         }
     }
 
