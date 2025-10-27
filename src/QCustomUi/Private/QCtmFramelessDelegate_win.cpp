@@ -108,8 +108,14 @@ struct QCtmWinFramelessDelegate::Impl
         QMargins margins(xb, yb, xb, yb);
         parent->setContentsMargins(max ? margins : QMargins(0, 0, 0, 0));
     };
-    inline double dpiScale(double value) { return value / parent->devicePixelRatioF(); }
-    inline double unDpiScale(double value) { return value * parent->devicePixelRatioF(); }
+    inline double dpiScale(double value)
+    {
+        return value / parent->devicePixelRatioF();
+    }
+    inline double unDpiScale(double value)
+    {
+        return value * parent->devicePixelRatioF();
+    }
 };
 
 QCtmWinFramelessDelegate::QCtmWinFramelessDelegate(QWidget* parent, const QWidgetList& moveBars)
@@ -129,7 +135,9 @@ QCtmWinFramelessDelegate::QCtmWinFramelessDelegate(QWidget* parent, QWidget* tit
 {
 }
 
-QCtmWinFramelessDelegate::~QCtmWinFramelessDelegate() {}
+QCtmWinFramelessDelegate::~QCtmWinFramelessDelegate()
+{
+}
 
 void QCtmWinFramelessDelegate::addMoveBar(QWidget* w)
 {
@@ -141,7 +149,10 @@ void QCtmWinFramelessDelegate::addMoveBar(QWidget* w)
         m_impl->moveBars.append(w);
 }
 
-void QCtmWinFramelessDelegate::removeMoveBar(QWidget* w) { m_impl->moveBars.removeOne(w); }
+void QCtmWinFramelessDelegate::removeMoveBar(QWidget* w)
+{
+    m_impl->moveBars.removeOne(w);
+}
 
 inline void debugPos(unsigned i)
 {
@@ -445,7 +456,9 @@ void QCtmWinFramelessDelegate::showSystemMenu(const QPoint& pos)
             }
         }
 
-        auto devicePixelRatio = qApp->devicePixelRatio();
+        auto window = m_impl->parent->windowHandle();
+
+        auto devicePixelRatio = window ? window->devicePixelRatio() : qApp->devicePixelRatio();
         auto globalPos        = pos;
         globalPos.rx() *= devicePixelRatio;
         globalPos.ry() *= devicePixelRatio;
