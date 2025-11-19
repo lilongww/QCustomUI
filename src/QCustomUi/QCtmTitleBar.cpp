@@ -35,11 +35,10 @@ Q_CONSTEXPR int titleSpacing = 5;
 
 struct QCtmTitleBar::Impl
 {
-    QPixmap windowIcon;
     QPointer<QMenuBar> menuBar;
     bool showIcon { true };
     QList<QCtmWidgetItemPtr> items;
-    QSize iconSize { 16, 16 };
+    QSize iconSize { 24, 24 };
 };
 
 /*!
@@ -89,7 +88,10 @@ QCtmTitleBar::QCtmTitleBar(QWidget* parent) : QWidget(parent), ui(new Ui::QCtmTi
 /*!
     \brief      析构函数.
 */
-QCtmTitleBar::~QCtmTitleBar() { delete ui; }
+QCtmTitleBar::~QCtmTitleBar()
+{
+    delete ui;
+}
 
 /*!
     \brief      设置菜单栏 \a menu, 当 \a menu 为nullptr时删除菜单栏.
@@ -139,7 +141,7 @@ void QCtmTitleBar::setIconVisible(bool show)
 {
     m_impl->showIcon = show;
     if (show)
-        ui->horizontalLayout->setContentsMargins(leftMargin + titleSpacing + m_impl->windowIcon.width(), 0, 0, 0);
+        ui->horizontalLayout->setContentsMargins(leftMargin + titleSpacing + m_impl->iconSize.width(), 0, 0, 0);
     else
         ui->horizontalLayout->setContentsMargins(0, 0, 0, 0);
 }
@@ -148,25 +150,37 @@ void QCtmTitleBar::setIconVisible(bool show)
     \brief      返回是否显示图标.
     \sa         setIconVisible
 */
-bool QCtmTitleBar::iconIsVisible() const { return m_impl->showIcon; }
+bool QCtmTitleBar::iconIsVisible() const
+{
+    return m_impl->showIcon;
+}
 
 /*!
     \brief      设置Action图标大小 \a size.
     \sa         iconSize
 */
-void QCtmTitleBar::setIconSize(const QSize& size) { m_impl->iconSize = size; }
+void QCtmTitleBar::setIconSize(const QSize& size)
+{
+    m_impl->iconSize = size;
+}
 
 /*!
     \brief      返回Action图标大小.
     \sa         setIconSize
 */
-const QSize& QCtmTitleBar::iconSize() const { return m_impl->iconSize; }
+const QSize& QCtmTitleBar::iconSize() const
+{
+    return m_impl->iconSize;
+}
 
 /*!
     \brief      响应关闭按钮.
     \sa         onMaximumSizeBtn(), onMinimumSizeBtn()
 */
-void QCtmTitleBar::onCloseBtn() { this->window()->close(); }
+void QCtmTitleBar::onCloseBtn()
+{
+    this->window()->close();
+}
 
 /*!
     \brief      响应最大化按钮.
@@ -204,9 +218,9 @@ void QCtmTitleBar::paintEvent([[maybe_unused]] QPaintEvent* event)
     opt.initFrom(this);
     QPainter p(this);
     const auto& iconRect = doIconRect();
-    if (!m_impl->windowIcon.isNull() && m_impl->showIcon)
+    if (auto w = this->window(); w && m_impl->showIcon)
     {
-        p.drawPixmap(iconRect, m_impl->windowIcon);
+        w->windowIcon().paint(&p, iconRect);
     }
 
     if (parentWidget())
@@ -276,25 +290,6 @@ bool QCtmTitleBar::eventFilter(QObject* watched, QEvent* event)
                     ui->maximumSizeBtn->setMaximumSized(false);
             }
         }
-        else if (event->type() == QEvent::WindowIconChange)
-        {
-            auto sizes = w->windowIcon().availableSizes();
-            if (!sizes.isEmpty())
-            {
-                m_impl->windowIcon = w->windowIcon().pixmap(sizes.front());
-#if QT_VERSION <= QT_VERSION_CHECK(5, 8, 0)
-                int size = 16;
-#else
-                int size = this->style()->pixelMetric(QStyle::PM_TitleBarButtonIconSize);
-#endif
-                if (m_impl->windowIcon.height() > size)
-                {
-                    m_impl->windowIcon = m_impl->windowIcon.scaledToHeight(size, Qt::SmoothTransformation);
-                }
-                if (m_impl->showIcon)
-                    ui->horizontalLayout->setContentsMargins(leftMargin + titleSpacing + m_impl->windowIcon.width(), 0, 0, 0);
-            }
-        }
         else if (event->type() == QEvent::WindowTitleChange)
         {
             update();
@@ -338,5 +333,5 @@ void QCtmTitleBar::actionEvent(QActionEvent* event)
 */
 QRect QCtmTitleBar::doIconRect() const
 {
-    return { leftMargin, (this->height() - m_impl->windowIcon.height()) / 2, m_impl->windowIcon.width(), m_impl->windowIcon.height() };
+    return { leftMargin, (this->height() - m_impl->iconSize.height()) / 2, m_impl->iconSize.width(), m_impl->iconSize.height() };
 }
