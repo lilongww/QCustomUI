@@ -115,6 +115,11 @@ void QCtmTitleBar::setMenuBar(QMenuBar* menu)
     }
     m_impl->menuBar = menu;
     update();
+
+    if (m_impl->showIcon)
+        ui->horizontalLayout->setContentsMargins(leftMargin + titleSpacing + m_impl->iconSize.width(), 0, 0, 0);
+    else
+        ui->horizontalLayout->setContentsMargins(0, 0, 0, 0);
 }
 
 /*!
