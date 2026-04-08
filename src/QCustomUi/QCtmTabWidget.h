@@ -33,6 +33,7 @@ class QCUSTOMUI_EXPORT QCtmTabWidget : public QTabWidget
 {
     Q_OBJECT
     Q_PROPERTY(QSize iconSize READ iconSize WRITE setIconSize NOTIFY iconSizeChanged)
+    Q_PROPERTY(bool closeable READ isCloseable WRITE setCloseable)
 public:
     explicit QCtmTabWidget(QWidget* parent = nullptr);
     ~QCtmTabWidget();
@@ -44,6 +45,8 @@ public:
     QCtmTabPage* insertTab(int index, QWidget* widget, const QIcon& icon, const QString& label);
     void setIconSize(const QSize& size);
     const QSize& iconSize() const;
+    void setCloseable(bool closeable);
+    bool isCloseable() const;
 signals:
     void iconSizeChanged(const QSize& size);
 private slots:

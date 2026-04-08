@@ -55,6 +55,7 @@ void LogExample::init()
     layout->addWidget(new QWidget(this), 1);
 
     auto tabWidget = new QCtmTabWidget(this); // [2] add QCtmTabWidget
+    tabWidget->setCloseable(false);
     layout->addWidget(tabWidget);
     auto logWidget = new QCtmLogWidget("MyLog", this);
     auto page      = tabWidget->addTab(logWidget, "Log"); // [3] add QCtmLogWidget
