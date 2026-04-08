@@ -1,6 +1,6 @@
 ﻿/*********************************************************************************
 **                                                                              **
-**  Copyright (C) 2019-2025 LiLong                                              **
+**  Copyright (C) 2019-2026 LiLong                                              **
 **  This file is part of QCustomUi.                                             **
 **                                                                              **
 **  QCustomUi is free software: you can redistribute it and/or modify           **
@@ -18,29 +18,22 @@
 **********************************************************************************/
 #pragma once
 
-#include <QDesignerCustomWidgetInterface>
+#include <QObject>
+#include <QtDesigner/private/qdesigner_propertysheet_p.h>
 
-class SelectionButtonBox
-    : public QObject
-    , public QDesignerCustomWidgetInterface
+class SelectionButtonBoxPropertySheet : public QDesignerPropertySheet
 {
     Q_OBJECT
-    Q_INTERFACES(QDesignerCustomWidgetInterface)
+    Q_INTERFACES(QDesignerPropertySheetExtension)
 public:
-    explicit SelectionButtonBox(QObject* parent = nullptr);
-
-    bool isContainer() const override;
-    bool isInitialized() const override;
-    QIcon icon() const override;
-    QString domXml() const override;
-    QString group() const override;
-    QString includeFile() const override;
-    QString name() const override;
-    QString toolTip() const override;
-    QString whatsThis() const override;
-    QWidget* createWidget(QWidget* parent) override;
-    void initialize(QDesignerFormEditorInterface* core) override;
+    static constexpr auto CheckedIndexes = "checkedIndexesList";
+    SelectionButtonBoxPropertySheet(QObject* object, QObject* parent = nullptr);
+    ~SelectionButtonBoxPropertySheet();
+    QVariant property(int index) const override;
 
 private:
-    QDesignerFormEditorInterface* m_core { nullptr };
+    struct Impl;
+    std::unique_ptr<Impl> m_impl;
 };
+
+using SelectionButtonBoxPropertySheetFactory = QDesignerPropertySheetFactory<class QCtmSelectionButtonBox, SelectionButtonBoxPropertySheet>;

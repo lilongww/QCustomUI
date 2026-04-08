@@ -30,8 +30,9 @@ class QCUSTOMUI_EXPORT QCtmSelectionButtonBox : public QWidget
     Q_PROPERTY(ExclusionPolicy exclusionPolicy READ exclusionPolicy WRITE setExclusionPolicy)
     Q_PROPERTY(bool uniformSize READ uniformSize WRITE setUniformSize)
     Q_PROPERTY(Qt::Orientation orientation READ orientation WRITE setOrientation)
-    Q_PROPERTY(QStringList texts READ texts WRITE setTexts)
+    Q_PROPERTY(QStringList texts READ texts WRITE setTexts NOTIFY textsChanged)
     Q_PROPERTY(int count READ count)
+    Q_PROPERTY(QVector<int> checkedIndexes READ checkedIndexes WRITE setChecked DESIGNABLE false)
 
 public:
     enum ExclusionPolicy
@@ -56,13 +57,16 @@ public:
     void setOrientation(Qt::Orientation orientation);
     Qt::Orientation orientation() const;
     int count() const;
+    QVector<int> checkedIndexes() const;
 signals:
     void toggled(int index, bool checked);
+    void textsChanged();
 public slots:
     void setText(int index, const QString& text);
     void remove(int index);
     void setTexts(const QStringList& texts);
     void setChecked(int index, bool checked = true);
+    void setChecked(const QVector<int>& indexes);
 
 protected:
     void paintEvent(QPaintEvent* event) override;
@@ -72,11 +76,13 @@ protected:
     void resizeEvent(QResizeEvent* event) override;
     QSize minimumSizeHint() const override;
     QSize sizeHint() const override;
+    bool event(QEvent* event) override;
 
 private:
     std::vector<QRect> calcSizes() const;
     void initStyleOption(int index, QCtmStyleOptionSelectionButtonBox& opt) const;
     int calcWidth(const QString& text) const;
+    void resetLayout();
 
 private:
     struct Impl;

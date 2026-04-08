@@ -17,41 +17,84 @@
 **  along with QCustomUi.  If not, see <https://www.gnu.org/licenses/>.         **
 **********************************************************************************/
 #include "SelectionButtonBox.h"
+#include "PropertyExtension/SelectionButtonBoxPropertySheet.h"
 
 #include <QCustomUi/QCtmSelectionButtonBox.h>
 
-SelectionButtonBox::SelectionButtonBox(QObject* parent /*= nullptr*/) : QObject(parent) {}
+#include <QDesignerFormEditorInterface>
+#include <QDesignerFormWindowInterface>
 
-bool SelectionButtonBox::isContainer() const { return false; }
+SelectionButtonBox::SelectionButtonBox(QObject* parent /*= nullptr*/) : QObject(parent)
+{
+}
 
-bool SelectionButtonBox::isInitialized() const { return m_initialized; }
+bool SelectionButtonBox::isContainer() const
+{
+    return false;
+}
 
-QIcon SelectionButtonBox::icon() const { return {}; }
+bool SelectionButtonBox::isInitialized() const
+{
+    return m_core != nullptr;
+}
+
+QIcon SelectionButtonBox::icon() const
+{
+    return {};
+}
 
 QString SelectionButtonBox::domXml() const
 {
     return "<ui language=\"c++\">\n"
            " <widget class=\"QCtmSelectionButtonBox\" name=\"SelectionButtonBox\">\n"
+           "  <property name=\"texts\">\n"
+           "   <stringlist>\n"
+           "    <string>Option 1</string>\n"
+           "    <string>Option 2</string>\n"
+           "   </stringlist>\n"
+           "  </property>\n"
+           "  <property name=\"checkedIndexesList\">\n"
+           "   <string>0</string>\n"
+           "  </property>\n"
            " </widget>\n"
            "</ui>\n";
 }
 
-QString SelectionButtonBox::group() const { return "Buttons"; }
+QString SelectionButtonBox::group() const
+{
+    return "Buttons";
+}
 
-QString SelectionButtonBox::includeFile() const { return "QCustomUi/QCtmSelectionButtonBox.h"; }
+QString SelectionButtonBox::includeFile() const
+{
+    return "QCustomUi/QCtmSelectionButtonBox.h";
+}
 
-QString SelectionButtonBox::name() const { return "QCtmSelectionButtonBox"; }
+QString SelectionButtonBox::name() const
+{
+    return "QCtmSelectionButtonBox";
+}
 
-QString SelectionButtonBox::toolTip() const { return {}; }
+QString SelectionButtonBox::toolTip() const
+{
+    return {};
+}
 
-QString SelectionButtonBox::whatsThis() const { return {}; }
+QString SelectionButtonBox::whatsThis() const
+{
+    return {};
+}
 
-QWidget* SelectionButtonBox::createWidget(QWidget* parent) { return new QCtmSelectionButtonBox(Qt::Horizontal, parent); }
+QWidget* SelectionButtonBox::createWidget(QWidget* parent)
+{
+    return new QCtmSelectionButtonBox(Qt::Horizontal, parent);
+}
 
 void SelectionButtonBox::initialize(QDesignerFormEditorInterface* core)
 {
-    if (m_initialized)
+    if (m_core)
         return;
-
-    m_initialized = true;
+    m_core   = core;
+    auto mgr = core->extensionManager();
+    SelectionButtonBoxPropertySheetFactory::registerExtension(mgr);
 }

@@ -2,6 +2,7 @@
 
 #include <QCustomUi/QCtmSelectionButtonBox.h>
 
+#include <QPushButton>
 #include <QTimer>
 #include <QVBoxLayout>
 
@@ -32,4 +33,6 @@ SelectionButtonBoxExample::SelectionButtonBoxExample(QWidget* parent) : QCtmWind
     }
 }
 
-SelectionButtonBoxExample::~SelectionButtonBoxExample() {}
+SelectionButtonBoxExample::~SelectionButtonBoxExample()
+{
+}
