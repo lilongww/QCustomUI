@@ -1,6 +1,6 @@
 ﻿/*********************************************************************************
 **                                                                              **
-**  Copyright (C) 2019-2025 LiLong                                              **
+**  Copyright (C) 2019-2026 LiLong                                              **
 **  This file is part of QCustomUi.                                             **
 **                                                                              **
 **  QCustomUi is free software: you can redistribute it and/or modify           **
@@ -25,14 +25,14 @@
 #include "IPAddressEdit.h"
 #include "LongLongSpinBox.h"
 #include "MultiComboBox.h"
+#include "MultiPageButtonBox.h"
 #include "RecentView.h"
 #include "SelectionButtonBox.h"
+#include "SerialPortComboBox.h"
 #include "StageProgressBar.h"
 #include "SwitchButton.h"
 #include "TableView.h"
 #include "ULongLongSpinBox.h"
-#include "MultiPageButtonBox.h"
-#include "SerialPortComboBox.h"
 
 #include <QCustomUi/QCtmStyleSheet.h>
 
@@ -65,6 +65,11 @@ QCustomUiWidgets::QCustomUiWidgets(QObject* parent /*= 0*/) : QObject(parent), m
     qApp->setStyleSheet(QCtmStyleSheet::defaultStyleSheet());
 }
 
-QCustomUiWidgets::~QCustomUiWidgets() {}
+QCustomUiWidgets::~QCustomUiWidgets()
+{
+}
 
-QList<QDesignerCustomWidgetInterface*> QCustomUiWidgets::customWidgets() const { return m_impl->widgets; }
+QList<QDesignerCustomWidgetInterface*> QCustomUiWidgets::customWidgets() const
+{
+    return m_impl->widgets;
+}

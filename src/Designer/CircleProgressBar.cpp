@@ -1,6 +1,6 @@
 ﻿/*********************************************************************************
 **                                                                              **
-**  Copyright (C) 2019-2025 LiLong                                              **
+**  Copyright (C) 2019-2026 LiLong                                              **
 **  This file is part of QCustomUi.                                             **
 **                                                                              **
 **  QCustomUi is free software: you can redistribute it and/or modify           **
@@ -20,7 +20,9 @@
 
 #include <QCustomUi/QCtmCircleProgressBar.h>
 
-CircleProgressBar::CircleProgressBar(QObject* parent /*= nullptr*/) : QObject(parent = nullptr) {}
+CircleProgressBar::CircleProgressBar(QObject* parent /*= nullptr*/) : QObject(parent = nullptr)
+{
+}
 
 QString CircleProgressBar::domXml() const
 {
@@ -30,4 +32,7 @@ QString CircleProgressBar::domXml() const
            "</ui>\n";
 }
 
-QWidget* CircleProgressBar::createWidget(QWidget* parent) { return new QCtmCircleProgressBar(parent); }
+QWidget* CircleProgressBar::createWidget(QWidget* parent)
+{
+    return new QCtmCircleProgressBar(parent);
+}

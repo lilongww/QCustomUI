@@ -1,6 +1,6 @@
-/*********************************************************************************
+﻿/*********************************************************************************
 **                                                                              **
-**  Copyright (C) 2019-2025 LiLong                                              **
+**  Copyright (C) 2019-2026 LiLong                                              **
 **  This file is part of QCustomUi.                                             **
 **                                                                              **
 **  QCustomUi is free software: you can redistribute it and/or modify           **
@@ -20,9 +20,14 @@
 
 #include <QCustomUi/QCtmSerialPortComboBox.h>
 
-SerialPortComboBox::SerialPortComboBox(QObject* parent /*= nullptr*/) : QObject(parent) {}
+SerialPortComboBox::SerialPortComboBox(QObject* parent /*= nullptr*/) : QObject(parent)
+{
+}
 
-QIcon SerialPortComboBox::icon() const { return {}; }
+QIcon SerialPortComboBox::icon() const
+{
+    return {};
+}
 
 QString SerialPortComboBox::domXml() const
 {
@@ -32,7 +37,10 @@ QString SerialPortComboBox::domXml() const
            "</ui>\n";
 }
 
-QWidget* SerialPortComboBox::createWidget(QWidget* parent) { return new QCtmSerialPortComboBox(parent); }
+QWidget* SerialPortComboBox::createWidget(QWidget* parent)
+{
+    return new QCtmSerialPortComboBox(parent);
+}
 
 void SerialPortComboBox::initialize(QDesignerFormEditorInterface* core)
 {
