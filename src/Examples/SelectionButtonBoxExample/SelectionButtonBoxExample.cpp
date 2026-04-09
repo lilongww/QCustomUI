@@ -11,6 +11,7 @@ SelectionButtonBoxExample::SelectionButtonBoxExample(QWidget* parent) : QCtmWind
     auto layout = new QVBoxLayout(this->centralWidget());
     {
         auto box = new QCtmSelectionButtonBox({ "Test1", "Test2", "Test3" });
+        box->setEnabled(false);
         layout->addWidget(box);
     }
     {
