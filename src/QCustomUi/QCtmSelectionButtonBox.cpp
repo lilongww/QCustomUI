@@ -1,6 +1,6 @@
 ﻿/*********************************************************************************
 **                                                                              **
-**  Copyright (C) 2019-2025 LiLong                                              **
+**  Copyright (C) 2019-2026 LiLong                                              **
 **  This file is part of QCustomUi.                                             **
 **                                                                              **
 **  QCustomUi is free software: you can redistribute it and/or modify           **
@@ -28,6 +28,8 @@
 #include <algorithm>
 #include <map>
 #include <optional>
+
+constexpr auto DesignerCheckedIndexesProperty = "checkedIndexesList";
 
 struct QCtmSelectionButtonBoxState
 {
@@ -98,19 +100,28 @@ QCtmSelectionButtonBox::QCtmSelectionButtonBox(const QStringList& texts, Qt::Ori
 /*!
     \brief      析构函数.
 */
-QCtmSelectionButtonBox::~QCtmSelectionButtonBox() {}
+QCtmSelectionButtonBox::~QCtmSelectionButtonBox()
+{
+}
 
 /*!
     \brief      设置互斥策略 \a policy.
     \sa         exclusionPolicy
 */
-void QCtmSelectionButtonBox::setExclusionPolicy(ExclusionPolicy policy) { m_impl->policy = policy; }
+void QCtmSelectionButtonBox::setExclusionPolicy(ExclusionPolicy policy)
+{
+    m_impl->policy = policy;
+    update();
+}
 
 /*!
     \brief      返回互斥策略.
     \sa         setExclusionPolicy
 */
-QCtmSelectionButtonBox::ExclusionPolicy QCtmSelectionButtonBox::exclusionPolicy() const { return m_impl->policy; }
+QCtmSelectionButtonBox::ExclusionPolicy QCtmSelectionButtonBox::exclusionPolicy() const
+{
+    return m_impl->policy;
+}
 
 /*!
     \brief      设置 \a index 选项的文本 \a text.
@@ -118,12 +129,11 @@ QCtmSelectionButtonBox::ExclusionPolicy QCtmSelectionButtonBox::exclusionPolicy(
 */
 void QCtmSelectionButtonBox::setText(int index, const QString& text)
 {
-    if (index < 0)
+    if (index < 0 || index >= m_impl->datas.size())
         return;
-    if (m_impl->datas.size() <= index)
-        m_impl->datas.resize(index);
     m_impl->datas[index].text = text;
-    updateGeometry();
+    emit textsChanged();
+    resetLayout();
 }
 
 /*!
@@ -132,7 +142,8 @@ void QCtmSelectionButtonBox::setText(int index, const QString& text)
 void QCtmSelectionButtonBox::remove(int index)
 {
     m_impl->datas.removeAt(index);
-    updateGeometry();
+    emit textsChanged();
+    resetLayout();
 }
 
 /*!
@@ -146,7 +157,8 @@ void QCtmSelectionButtonBox::setTexts(const QStringList& texts)
     {
         m_impl->datas[i].text = texts[i];
     }
-    updateGeometry();
+    emit textsChanged();
+    resetLayout();
 }
 
 /*!
@@ -155,6 +167,8 @@ void QCtmSelectionButtonBox::setTexts(const QStringList& texts)
 */
 void QCtmSelectionButtonBox::setChecked(int index, bool checked /*= true*/)
 {
+    if (index < 0 || m_impl->datas.size() <= index)
+        return;
     auto& data = m_impl->datas[index];
     if (data.checked == checked)
         return;
@@ -179,6 +193,18 @@ void QCtmSelectionButtonBox::setChecked(int index, bool checked /*= true*/)
 }
 
 /*!
+    \brief      设置选中项 \a indexes.
+    \sa         checkedIndexes
+*/
+void QCtmSelectionButtonBox::setChecked(const QVector<int>& indexes)
+{
+    for (int i = 0; i < m_impl->datas.size(); ++i)
+    {
+        setChecked(i, indexes.contains(i));
+    }
+}
+
+/*!
     \brief      返回 \a index 选项的文本.
     \sa         setText
 */
@@ -196,7 +222,13 @@ QString QCtmSelectionButtonBox::text(int index) const
 QStringList QCtmSelectionButtonBox::texts() const
 {
     QStringList ret;
-    std::transform(m_impl->datas.begin(), m_impl->datas.end(), std::back_inserter(ret), [](const auto& data) { return data.text; });
+    std::transform(m_impl->datas.begin(),
+                   m_impl->datas.end(),
+                   std::back_inserter(ret),
+                   [](const auto& data)
+                   {
+                       return data.text;
+                   });
     return ret;
 }
 
@@ -209,20 +241,26 @@ void QCtmSelectionButtonBox::setUniformSize(bool u)
     if (m_impl->uniformSize == u)
         return;
     m_impl->uniformSize = u;
-    updateGeometry();
+    resetLayout();
 }
 
 /*!
     \brief      返回所有选项的文本是否一致.
     \sa         setUniformSize
 */
-bool QCtmSelectionButtonBox::uniformSize() const { return m_impl->uniformSize; }
+bool QCtmSelectionButtonBox::uniformSize() const
+{
+    return m_impl->uniformSize;
+}
 
 /*!
     \brief      返回 \a index 选项是否选中.
     \sa         setChecked
 */
-bool QCtmSelectionButtonBox::isChecked(int index) const { return m_impl->datas[index].checked; }
+bool QCtmSelectionButtonBox::isChecked(int index) const
+{
+    return m_impl->datas[index].checked;
+}
 
 /*!
     \brief      返回首个选中项，如果没有选中项则返回-1.
@@ -250,19 +288,39 @@ void QCtmSelectionButtonBox::setOrientation(Qt::Orientation orientation)
         setSizePolicy(QSizePolicy(QSizePolicy::Minimum, QSizePolicy::Fixed, QSizePolicy::PushButton));
     else
         setSizePolicy(QSizePolicy(QSizePolicy::Fixed, QSizePolicy::Minimum, QSizePolicy::PushButton));
-    updateGeometry();
+    resetLayout();
 }
 
 /*!
     \brief      返回排布方向.
     \sa         setOrientation
 */
-Qt::Orientation QCtmSelectionButtonBox::orientation() const { return m_impl->orientation; }
+Qt::Orientation QCtmSelectionButtonBox::orientation() const
+{
+    return m_impl->orientation;
+}
 
 /*!
     \brief      返回选项数量.
 */
-int QCtmSelectionButtonBox::count() const { return m_impl->datas.size(); }
+int QCtmSelectionButtonBox::count() const
+{
+    return m_impl->datas.size();
+}
+
+/*!
+    \brief      返回所有选中项的索引列表.
+*/
+QVector<int> QCtmSelectionButtonBox::checkedIndexes() const
+{
+    QVector<int> ret;
+    for (int i = 0; i < m_impl->datas.size(); ++i)
+    {
+        if (m_impl->datas.at(i).checked)
+            ret.append(i);
+    }
+    return ret;
+}
 
 /*!
     \reimp
@@ -377,8 +435,13 @@ QSize QCtmSelectionButtonBox::minimumSizeHint() const
         }
         else
         {
-            int width = std::accumulate(
-                m_impl->datas.begin(), m_impl->datas.end(), 0, [&](int w, const auto& data) { return w + calcWidth(data.text); });
+            int width = std::accumulate(m_impl->datas.begin(),
+                                        m_impl->datas.end(),
+                                        0,
+                                        [&](int w, const auto& data)
+                                        {
+                                            return w + calcWidth(data.text);
+                                        });
             return QSize(width, height);
         }
     }
@@ -397,7 +460,36 @@ QSize QCtmSelectionButtonBox::minimumSizeHint() const
 /*!
     \reimp
 */
-QSize QCtmSelectionButtonBox::sizeHint() const { return minimumSizeHint(); }
+QSize QCtmSelectionButtonBox::sizeHint() const
+{
+    return minimumSizeHint();
+}
+
+/*!
+    \reimp
+*/
+bool QCtmSelectionButtonBox::event(QEvent* event)
+{
+    if (event->type() == QEvent::DynamicPropertyChange)
+    {
+        auto* propEvent = static_cast<QDynamicPropertyChangeEvent*>(event);
+        if (propEvent->propertyName() == DesignerCheckedIndexesProperty)
+        {
+            auto strs = property(DesignerCheckedIndexesProperty).toString().split(",");
+            QVector<int> indexes;
+            for (const auto& str : strs)
+            {
+                bool ok;
+                int index = str.toInt(&ok);
+                if (ok)
+                    indexes.append(index);
+            }
+            if (indexes != checkedIndexes())
+                setChecked(indexes);
+        }
+    }
+    return QWidget::event(event);
+}
 
 std::vector<QRect> QCtmSelectionButtonBox::calcSizes() const
 {
@@ -428,9 +520,13 @@ std::vector<QRect> QCtmSelectionButtonBox::calcSizes() const
             }
         }
         if (ret.size() > 1)
-            ret.back().setWidth(
-                this->width() -
-                std::accumulate(ret.begin(), (ret.rbegin() + 1).base(), 0, [](int w, const auto& rect) { return w + rect.width(); }));
+            ret.back().setWidth(this->width() - std::accumulate(ret.begin(),
+                                                                (ret.rbegin() + 1).base(),
+                                                                0,
+                                                                [](int w, const auto& rect)
+                                                                {
+                                                                    return w + rect.width();
+                                                                }));
     }
     else
     {
@@ -440,9 +536,13 @@ std::vector<QRect> QCtmSelectionButtonBox::calcSizes() const
             offset += rect.height();
         }
         if (ret.size() > 1)
-            ret.back().setHeight(
-                this->height() -
-                std::accumulate(ret.begin(), (ret.rbegin() + 1).base(), 0, [](int w, const auto& rect) { return w + rect.height(); }));
+            ret.back().setHeight(this->height() - std::accumulate(ret.begin(),
+                                                                  (ret.rbegin() + 1).base(),
+                                                                  0,
+                                                                  [](int w, const auto& rect)
+                                                                  {
+                                                                      return w + rect.height();
+                                                                  }));
     }
     m_impl->sizesCache = ret;
     return ret;
@@ -483,4 +583,11 @@ int QCtmSelectionButtonBox::calcWidth(const QString& text) const
     opt.textAlignment = Qt::AlignCenter;
     auto w            = opt.fontMetrics.horizontalAdvance(text);
     return style()->sizeFromContents(QStyle::CT_HeaderSection, &opt, QSize(), this).width();
+}
+
+void QCtmSelectionButtonBox::resetLayout()
+{
+    m_impl->sizesCache = std::nullopt;
+    updateGeometry();
+    update();
 }

@@ -16,36 +16,39 @@
 **  You should have received a copy of the GNU Lesser General Public License    **
 **  along with QCustomUi.  If not, see <https://www.gnu.org/licenses/>.         **
 **********************************************************************************/
-#include "SerialPortComboBox.h"
+#include "SelectionButtonBoxPropertySheet.h"
 
-#include <QCustomUi/QCtmSerialPortComboBox.h>
+#include <QCustomUi/QCtmSelectionButtonBox.h>
+#include <QtDesigner/private/formwindowbase_p.h>
 
-SerialPortComboBox::SerialPortComboBox(QObject* parent /*= nullptr*/) : QObject(parent)
+struct SelectionButtonBoxPropertySheet::Impl
+{
+    QCtmSelectionButtonBox* box { nullptr };
+    QString m_propertyGroup { "QCtmSelectionButtonBox" };
+};
+
+SelectionButtonBoxPropertySheet::SelectionButtonBoxPropertySheet(QObject* object, QObject* parent)
+    : QDesignerPropertySheet(object, parent), m_impl(std::make_unique<Impl>(qobject_cast<QCtmSelectionButtonBox*>(object)))
+{
+    addDynamicProperty(CheckedIndexes, "0");                            // 添加动态属性checkedIndexesList
+    setPropertyGroup(indexOf(CheckedIndexes), m_impl->m_propertyGroup); // 将属性分组到QCtmSelectionButtonBox组中
+}
+
+SelectionButtonBoxPropertySheet::~SelectionButtonBoxPropertySheet()
 {
 }
 
-QIcon SerialPortComboBox::icon() const
+QVariant SelectionButtonBoxPropertySheet::property(int index) const
 {
-    return {};
-}
-
-QString SerialPortComboBox::domXml() const
-{
-    return "<ui language=\"c++\">\n"
-           " <widget class=\"QCtmSerialPortComboBox\" name=\"serialPortComboBox\">\n"
-           " </widget>\n"
-           "</ui>\n";
-}
-
-QWidget* SerialPortComboBox::createWidget(QWidget* parent)
-{
-    return new QCtmSerialPortComboBox(parent);
-}
-
-void SerialPortComboBox::initialize(QDesignerFormEditorInterface* core)
-{
-    if (m_initialized)
-        return;
-
-    m_initialized = true;
+    if (index < 0 || index >= count())
+        return QVariant();
+    if (propertyName(index) == CheckedIndexes)
+    {
+        auto checkedIndexes = m_impl->box->checkedIndexes();
+        QStringList checkedIndexesStrList;
+        for (int checkedIndex : checkedIndexes)
+            checkedIndexesStrList.append(QString::number(checkedIndex));
+        return checkedIndexesStrList.join(",");
+    }
+    return QDesignerPropertySheet::property(index);
 }

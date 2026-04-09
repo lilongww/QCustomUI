@@ -1,6 +1,6 @@
 ﻿/*********************************************************************************
 **                                                                              **
-**  Copyright (C) 2019-2025 LiLong                                              **
+**  Copyright (C) 2019-2026 LiLong                                              **
 **  This file is part of QCustomUi.                                             **
 **                                                                              **
 **  QCustomUi is free software: you can redistribute it and/or modify           **
@@ -86,14 +86,19 @@ QCtmTabWidget::QCtmTabWidget(QWidget* parent) : QTabWidget(parent), m_impl(std::
 /*!
     \brief      析构函数.
 */
-QCtmTabWidget::~QCtmTabWidget() {}
+QCtmTabWidget::~QCtmTabWidget()
+{
+}
 
 /*!
     \overload   addTab
                 添加标题为 \a label 的子页面 \a widget.
     \sa         QCtmTabWidget::addTab
 */
-QCtmTabPage* QCtmTabWidget::addTab(QWidget* widget, const QString& label) { return addTab(widget, QIcon(), label); }
+QCtmTabPage* QCtmTabWidget::addTab(QWidget* widget, const QString& label)
+{
+    return addTab(widget, QIcon(), label);
+}
 
 /*!
     \overload   addTab
@@ -110,7 +115,10 @@ QCtmTabPage* QCtmTabWidget::addTab(QWidget* widget, const QIcon& icon, const QSt
                 在 \a index 的位置插入标题为 \a label 的子页面 \a widget.
     \sa         QCtmTabWidget::insertTab
 */
-QCtmTabPage* QCtmTabWidget::insertTab(int index, QWidget* widget, const QString& label) { return insertTab(index, widget, QIcon(), label); }
+QCtmTabPage* QCtmTabWidget::insertTab(int index, QWidget* widget, const QString& label)
+{
+    return insertTab(index, widget, QIcon(), label);
+}
 
 /*!
     \overload   insertTab
@@ -141,7 +149,28 @@ void QCtmTabWidget::setIconSize(const QSize& size)
     \brief      返回Action的图标大小.
     \sa         setIconSize
 */
-const QSize& QCtmTabWidget::iconSize() const { return m_impl->iconSize; }
+const QSize& QCtmTabWidget::iconSize() const
+{
+    return m_impl->iconSize;
+}
+
+/*!
+    \brief      设置是否显示关闭按钮 \a closeable.
+    \sa         isCloseable
+*/
+void QCtmTabWidget::setCloseable(bool closeable)
+{
+    m_impl->closeBtn->setVisible(closeable);
+}
+
+/*!
+    \brief      返回是否显示关闭按钮.
+    \sa         setCloseable
+*/
+bool QCtmTabWidget::isCloseable() const
+{
+    return m_impl->closeBtn->isVisible();
+}
 
 /*!
     \brief      切换页面 \a index 时修改角落窗口的显示内容.

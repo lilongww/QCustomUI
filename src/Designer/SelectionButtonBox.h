@@ -1,6 +1,6 @@
 ﻿/*********************************************************************************
 **                                                                              **
-**  Copyright (C) 2019-2025 LiLong                                              **
+**  Copyright (C) 2019-2026 LiLong                                              **
 **  This file is part of QCustomUi.                                             **
 **                                                                              **
 **  QCustomUi is free software: you can redistribute it and/or modify           **
@@ -42,5 +42,5 @@ public:
     void initialize(QDesignerFormEditorInterface* core) override;
 
 private:
-    bool m_initialized { false };
+    QDesignerFormEditorInterface* m_core { nullptr };
 };

@@ -16,36 +16,24 @@
 **  You should have received a copy of the GNU Lesser General Public License    **
 **  along with QCustomUi.  If not, see <https://www.gnu.org/licenses/>.         **
 **********************************************************************************/
-#include "SerialPortComboBox.h"
+#pragma once
 
-#include <QCustomUi/QCtmSerialPortComboBox.h>
+#include <QObject>
+#include <QtDesigner/private/qdesigner_propertysheet_p.h>
 
-SerialPortComboBox::SerialPortComboBox(QObject* parent /*= nullptr*/) : QObject(parent)
+class SelectionButtonBoxPropertySheet : public QDesignerPropertySheet
 {
-}
+    Q_OBJECT
+    Q_INTERFACES(QDesignerPropertySheetExtension)
+public:
+    static constexpr auto CheckedIndexes = "checkedIndexesList";
+    SelectionButtonBoxPropertySheet(QObject* object, QObject* parent = nullptr);
+    ~SelectionButtonBoxPropertySheet();
+    QVariant property(int index) const override;
 
-QIcon SerialPortComboBox::icon() const
-{
-    return {};
-}
+private:
+    struct Impl;
+    std::unique_ptr<Impl> m_impl;
+};
 
-QString SerialPortComboBox::domXml() const
-{
-    return "<ui language=\"c++\">\n"
-           " <widget class=\"QCtmSerialPortComboBox\" name=\"serialPortComboBox\">\n"
-           " </widget>\n"
-           "</ui>\n";
-}
-
-QWidget* SerialPortComboBox::createWidget(QWidget* parent)
-{
-    return new QCtmSerialPortComboBox(parent);
-}
-
-void SerialPortComboBox::initialize(QDesignerFormEditorInterface* core)
-{
-    if (m_initialized)
-        return;
-
-    m_initialized = true;
-}
+using SelectionButtonBoxPropertySheetFactory = QDesignerPropertySheetFactory<class QCtmSelectionButtonBox, SelectionButtonBoxPropertySheet>;

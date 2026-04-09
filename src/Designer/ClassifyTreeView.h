@@ -1,6 +1,6 @@
 ﻿/*********************************************************************************
 **                                                                              **
-**  Copyright (C) 2019-2025 LiLong                                              **
+**  Copyright (C) 2019-2026 LiLong                                              **
 **  This file is part of QCustomUi.                                             **
 **                                                                              **
 **  QCustomUi is free software: you can redistribute it and/or modify           **
@@ -29,15 +29,39 @@ class ClassifyTreeView
 public:
     explicit ClassifyTreeView(QObject* parent = nullptr);
 
-    bool isContainer() const override { return false; }
-    bool isInitialized() const override { return m_initialized; }
-    QIcon icon() const override { return QIcon(); }
+    bool isContainer() const override
+    {
+        return false;
+    }
+    bool isInitialized() const override
+    {
+        return m_initialized;
+    }
+    QIcon icon() const override
+    {
+        return QIcon();
+    }
     QString domXml() const override;
-    QString group() const override { return "Item Views (Model-Based)"; }
-    QString includeFile() const override { return "QCustomUi/QCtmClassifyTreeView.h"; }
-    QString name() const override { return "QCtmClassifyTreeView"; }
-    QString toolTip() const override { return "QCtmClassifyTreeView"; }
-    QString whatsThis() const override { return "QCtmClassifyTreeView"; }
+    QString group() const override
+    {
+        return "Item Views (Model-Based)";
+    }
+    QString includeFile() const override
+    {
+        return "QCustomUi/QCtmClassifyTreeView.h";
+    }
+    QString name() const override
+    {
+        return "QCtmClassifyTreeView";
+    }
+    QString toolTip() const override
+    {
+        return "QCtmClassifyTreeView";
+    }
+    QString whatsThis() const override
+    {
+        return "QCtmClassifyTreeView";
+    }
     QWidget* createWidget(QWidget* parent) override;
     void initialize(QDesignerFormEditorInterface* core) override
     {

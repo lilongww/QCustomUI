@@ -1,6 +1,6 @@
 ﻿/*********************************************************************************
 **                                                                              **
-**  Copyright (C) 2019-2025 LiLong                                              **
+**  Copyright (C) 2019-2026 LiLong                                              **
 **  This file is part of QCustomUi.                                             **
 **                                                                              **
 **  QCustomUi is free software: you can redistribute it and/or modify           **
@@ -111,7 +111,9 @@ QCtmSwitchButton::QCtmSwitchButton(QWidget* parent) : QAbstractButton(parent), m
 /*!
     \brief      析构函数.
 */
-QCtmSwitchButton::~QCtmSwitchButton() {}
+QCtmSwitchButton::~QCtmSwitchButton()
+{
+}
 
 void QCtmSwitchButton::setUncheckedBackground(const QBrush& brush)
 {
@@ -119,7 +121,10 @@ void QCtmSwitchButton::setUncheckedBackground(const QBrush& brush)
     update();
 }
 
-const QBrush& QCtmSwitchButton::uncheckedBackground() const { return m_impl->uncheckedBackground; }
+const QBrush& QCtmSwitchButton::uncheckedBackground() const
+{
+    return m_impl->uncheckedBackground;
+}
 
 void QCtmSwitchButton::setUncheckedBackgroundBorderColor(const QColor& pen)
 {
@@ -127,7 +132,10 @@ void QCtmSwitchButton::setUncheckedBackgroundBorderColor(const QColor& pen)
     update();
 }
 
-const QColor& QCtmSwitchButton::uncheckedBackgroundBorderColor() const { return m_impl->uncheckedBackgroundBorder; }
+const QColor& QCtmSwitchButton::uncheckedBackgroundBorderColor() const
+{
+    return m_impl->uncheckedBackgroundBorder;
+}
 
 void QCtmSwitchButton::setUncheckedHandleBrush(const QBrush& brush)
 {
@@ -135,7 +143,10 @@ void QCtmSwitchButton::setUncheckedHandleBrush(const QBrush& brush)
     update();
 }
 
-const QBrush& QCtmSwitchButton::uncheckedHandleBrush() const { return m_impl->uncheckedHandle; }
+const QBrush& QCtmSwitchButton::uncheckedHandleBrush() const
+{
+    return m_impl->uncheckedHandle;
+}
 
 void QCtmSwitchButton::setUncheckedHandleBorderColor(const QColor& pen)
 {
@@ -143,7 +154,10 @@ void QCtmSwitchButton::setUncheckedHandleBorderColor(const QColor& pen)
     update();
 }
 
-const QColor& QCtmSwitchButton::uncheckedHandleBorderColor() const { return m_impl->uncheckedHandleBorder; }
+const QColor& QCtmSwitchButton::uncheckedHandleBorderColor() const
+{
+    return m_impl->uncheckedHandleBorder;
+}
 
 void QCtmSwitchButton::setCheckedBackground(const QBrush& brush)
 {
@@ -151,7 +165,10 @@ void QCtmSwitchButton::setCheckedBackground(const QBrush& brush)
     update();
 }
 
-const QBrush& QCtmSwitchButton::checkedBackground() const { return m_impl->checkedBackground; }
+const QBrush& QCtmSwitchButton::checkedBackground() const
+{
+    return m_impl->checkedBackground;
+}
 
 void QCtmSwitchButton::setCheckedBackgroundBorderColor(const QColor& pen)
 {
@@ -159,7 +176,10 @@ void QCtmSwitchButton::setCheckedBackgroundBorderColor(const QColor& pen)
     update();
 }
 
-const QColor& QCtmSwitchButton::checkedBackgroundBorderColor() const { return m_impl->checkedBackgroundBorder; }
+const QColor& QCtmSwitchButton::checkedBackgroundBorderColor() const
+{
+    return m_impl->checkedBackgroundBorder;
+}
 
 void QCtmSwitchButton::setCheckedHandleBrush(const QBrush& brush)
 {
@@ -167,7 +187,10 @@ void QCtmSwitchButton::setCheckedHandleBrush(const QBrush& brush)
     update();
 }
 
-const QBrush& QCtmSwitchButton::checkedHandleBrush() const { return m_impl->checkedHandle; }
+const QBrush& QCtmSwitchButton::checkedHandleBrush() const
+{
+    return m_impl->checkedHandle;
+}
 
 void QCtmSwitchButton::setCheckedHandleBorderColor(const QColor& pen)
 {
@@ -175,7 +198,10 @@ void QCtmSwitchButton::setCheckedHandleBorderColor(const QColor& pen)
     update();
 }
 
-const QColor& QCtmSwitchButton::checkedHandleBorderColor() const { return m_impl->checkedHandleBorder; }
+const QColor& QCtmSwitchButton::checkedHandleBorderColor() const
+{
+    return m_impl->checkedHandleBorder;
+}
 
 /*!
     \reimp
@@ -236,4 +262,7 @@ QSize QCtmSwitchButton::minimumSizeHint() const
 /*!
     \reimp
 */
-QSize QCtmSwitchButton::sizeHint() const { return minimumSizeHint(); }
+QSize QCtmSwitchButton::sizeHint() const
+{
+    return minimumSizeHint();
+}
