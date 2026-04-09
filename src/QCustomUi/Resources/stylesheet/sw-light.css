@@ -449,6 +449,7 @@ QCtmMessageTipButton:pressed
 
 .QCtmTabWidget QAbstractButton::checked
 {
+    color: #1E1E1E;
     background: white;
     border: 1px solid #2477CE;
 }
