@@ -488,6 +488,11 @@ bool QCtmSelectionButtonBox::event(QEvent* event)
                 setChecked(indexes);
         }
     }
+    else if (event->type() == QEvent::EnabledChange)
+    {
+        this->style()->unpolish(this);
+        this->style()->polish(this);
+    }
     return QWidget::event(event);
 }
 

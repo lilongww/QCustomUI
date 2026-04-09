@@ -608,6 +608,12 @@ QCtmSelectionButtonBox::section
     padding-right: 10px;
 }
 
+QCtmSelectionButtonBox[enabled = false]::section, QCtmSelectionButtonBox[enabled = false]::section:selected
+{
+    color: gray;
+}
+
+
 QCtmSelectionButtonBox::section:middle
 {
     border: 1px solid #DCDFE6;
