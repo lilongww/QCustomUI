@@ -4,7 +4,7 @@
   <meta charset="utf-8">
 <!-- QCtmLogWidget.cpp -->
   <meta name="description" content="标准日志窗口.">
-  <title>QCtmLogWidget Class | QCustomUi 1.19.0</title>
+  <title>QCtmLogWidget Class | QCustomUi 1.22.0</title>
   <link rel="stylesheet" type="text/css" href="style/offline-simple.css" />
   <script type="text/javascript">
     document.getElementsByTagName("link").item(0).setAttribute("href", "style/offline.css");
@@ -26,10 +26,10 @@
     <div class="main-rounded">
         <div class="navigationbar">
         <ul>
-<li><a href="index.html">QCustomUi 1.19.0</a></li>
+<li><a href="index.html">QCustomUi 1.22.0</a></li>
 <li><a href="qcustomui-module.html" translate="no">QCustomUi</a></li>
 <li>QCtmLogWidget</li>
-<li id="buildversion">QCustomUi 1.19.0 Reference Documentation</li>
+<li id="buildversion">QCustomUi 1.22.0 Reference Documentation</li>
     </ul>
     </div>
 </div>
@@ -43,6 +43,7 @@
 <li class="level1"><a href="#public-types">Public Types</a></li>
 <li class="level1"><a href="#properties">Properties</a></li>
 <li class="level1"><a href="#public-functions">Public Functions</a></li>
+<li class="level1"><a href="#public-slots">Public Slots</a></li>
 <li class="level1"><a href="#details">Detailed Description</a></li>
 </ul>
 </div>
@@ -84,6 +85,13 @@
 <tr><td class="memItemLeft rightAlign topAlign"> void </td><td class="memItemRight bottomAlign"><b><a href="qctmlogwidget.html#setMaximumCount" translate="no">setMaximumCount</a></b>(int <i>count</i>)</td></tr>
 <tr><td class="memItemLeft rightAlign topAlign"> void </td><td class="memItemRight bottomAlign"><b><a href="qctmlogwidget.html#setWarningIcon" translate="no">setWarningIcon</a></b>(const QIcon &amp;<i>icon</i>)</td></tr>
 <tr><td class="memItemLeft rightAlign topAlign"> const QIcon &amp;</td><td class="memItemRight bottomAlign"><b><a href="qctmlogwidget.html#warningIcon" translate="no">warningIcon</a></b>() const</td></tr>
+</table></div>
+<h2 id="public-slots">Public Slots</h2>
+<div class="table"><table class="alignedsummary" translate="no">
+<tr><td class="memItemLeft rightAlign topAlign"> void </td><td class="memItemRight bottomAlign"><b><a href="qctmlogwidget.html#clear" translate="no">clear</a></b>()</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> void </td><td class="memItemRight bottomAlign"><b><a href="qctmlogwidget.html#copy" translate="no">copy</a></b>()</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> void </td><td class="memItemRight bottomAlign"><b><a href="qctmlogwidget.html#search" translate="no">search</a></b>(const QString &amp;<i>keywords</i>)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> void </td><td class="memItemRight bottomAlign"><b><a href="qctmlogwidget.html#showLog" translate="no">showLog</a></b>(QtMsgType <i>type</i>, bool <i>show</i>)</td></tr>
 </table></div>
 <!-- $$$QCtmLogWidget-description -->
 <div class="descr">
@@ -135,18 +143,26 @@
 <div class="func">
 <h2>Member Function Documentation</h2>
 <!-- $$$QCtmLogWidget[overload1]$$$QCtmLogWidgetconstQString&QWidget* -->
-<h3 class="fn" translate="no" id="QCtmLogWidget"><code class="details extra" translate="no">[explicit]</code> QCtmLogWidget::<span class="name">QCtmLogWidget</span>(const <span class="type"><a href="https://doc.qt.io/qt/qstring.html" translate="no">QString</a></span> &amp;<i>objectName</i>, <span class="type"><a href="https://doc.qt.io/qt/qwidget.html#QWidget" translate="no">QWidget</a></span> *<i>parent</i> = nullptr)</h3>
+<h3 class="fn" translate="no" id="QCtmLogWidget"><code class="details extra" translate="no">[explicit]</code> QCtmLogWidget::<span class="name">QCtmLogWidget</span>(const <span class="type"><a href="https://doc.qt.io/qt/qstring.html" translate="no">QString</a></span> &amp;<i>objectName</i>, <span class="type"><a href="https://doc.qt.io/qt/qwidget.html" translate="no">QWidget</a></span> *<i>parent</i> = nullptr)</h3>
 <p>构造函数 <i translate="no">objectName</i>, <i translate="no">parent</i>.</p>
 <!-- @@@QCtmLogWidget -->
 <!-- $$$~QCtmLogWidget[overload1]$$$~QCtmLogWidget -->
 <h3 class="fn" translate="no" id="dtor.QCtmLogWidget"><code class="details extra" translate="no">[virtual noexcept]</code> QCtmLogWidget::<span class="name">~QCtmLogWidget</span>()</h3>
 <p>析构函数.</p>
 <!-- @@@~QCtmLogWidget -->
+<!-- $$$clear[overload1]$$$clear -->
+<h3 class="fn" translate="no" id="clear"><code class="details extra" translate="no">[slot]</code> <span class="type">void</span> QCtmLogWidget::<span class="name">clear</span>()</h3>
+<p>清除所有日志.</p>
+<!-- @@@clear -->
 <!-- $$$columnVisible[overload1]$$$columnVisibleQCtmLogWidget::QCtmLogColumn -->
 <h3 class="fn" translate="no" id="columnVisible"><span class="type">bool</span> QCtmLogWidget::<span class="name">columnVisible</span>(<span class="type"><a href="qctmlogwidget.html#QCtmLogColumn-enum" translate="no">QCtmLogWidget::QCtmLogColumn</a></span> <i>column</i>) const</h3>
 <p>返回 <i translate="no">column</i> 列是否可见.</p>
 <p><b>See also </b><a href="qctmlogwidget.html#setColumnVisible" translate="no">setColumnVisible</a>.</p>
 <!-- @@@columnVisible -->
+<!-- $$$copy[overload1]$$$copy -->
+<h3 class="fn" translate="no" id="copy"><code class="details extra" translate="no">[slot]</code> <span class="type">void</span> QCtmLogWidget::<span class="name">copy</span>()</h3>
+<p>复制当前选中日志到剪贴板.</p>
+<!-- @@@copy -->
 <!-- $$$errorIcon -->
 <h3 class="fn" translate="no" id="errorIcon">const <span class="type"><a href="https://doc.qt.io/qt/qicon.html" translate="no">QIcon</a></span> &amp;QCtmLogWidget::<span class="name">errorIcon</span>() const</h3>
 <p>返回 Error 日志图标.</p>
@@ -169,6 +185,10 @@
 <p>返回最大日志数量.</p>
 <p><b>See also </b><a href="qctmlogwidget.html#setMaximumCount" translate="no">setMaximumCount</a>.</p>
 <!-- @@@maximumCount -->
+<!-- $$$search[overload1]$$$searchconstQString& -->
+<h3 class="fn" translate="no" id="search"><code class="details extra" translate="no">[slot]</code> <span class="type">void</span> QCtmLogWidget::<span class="name">search</span>(const <span class="type"><a href="https://doc.qt.io/qt/qstring.html" translate="no">QString</a></span> &amp;<i>keywords</i>)</h3>
+<p>查询日志关键字 <i translate="no">keywords</i>.</p>
+<!-- @@@search -->
 <!-- $$$setColumnVisible[overload1]$$$setColumnVisibleQCtmLogWidget::QCtmLogColumnbool -->
 <h3 class="fn" translate="no" id="setColumnVisible"><span class="type">void</span> QCtmLogWidget::<span class="name">setColumnVisible</span>(<span class="type"><a href="qctmlogwidget.html#QCtmLogColumn-enum" translate="no">QCtmLogWidget::QCtmLogColumn</a></span> <i>column</i>, <span class="type">bool</span> <i>visible</i>)</h3>
 <p>设置 <i translate="no">column</i> 列是否可见 <i translate="no">visible</i>.</p>
@@ -202,6 +222,10 @@
 <div class="admonition note"><p><b>Note: </b>Setter function for property <a href="qctmlogwidget.html#warningIcon" translate="no">warningIcon</a>. </p>
 </div><p><b>See also </b><a href="qctmlogwidget.html#warningIcon" translate="no">warningIcon</a>().</p>
 <!-- @@@setWarningIcon -->
+<!-- $$$showLog[overload1]$$$showLogQtMsgTypebool -->
+<h3 class="fn" translate="no" id="showLog"><code class="details extra" translate="no">[slot]</code> <span class="type">void</span> QCtmLogWidget::<span class="name">showLog</span>(<span class="type"><a href="https://doc.qt.io/qt/qtlogging.html#QtMsgType-enum" translate="no">QtMsgType</a></span> <i>type</i>, <span class="type">bool</span> <i>show</i>)</h3>
+<p>显示或隐藏日志类型 <i translate="no">type</i>, <i translate="no">show</i>.</p>
+<!-- @@@showLog -->
 <!-- $$$warningIcon -->
 <h3 class="fn" translate="no" id="warningIcon">const <span class="type"><a href="https://doc.qt.io/qt/qicon.html" translate="no">QIcon</a></span> &amp;QCtmLogWidget::<span class="name">warningIcon</span>() const</h3>
 <p>返回 Warning 日志图标.</p>

@@ -51,6 +51,50 @@ struct QCtmStageProgressBar::Impl
 */
 
 /*!
+    \property   QCtmStageProgressBar::stageCount
+    \brief      获取或设置阶段数量, 阶段数量必须大于或等于2.
+*/
+
+/*!
+    \property   QCtmStageProgressBar::textVisible
+    \brief      获取或设置阶段文本是否可见.
+*/
+
+/*!
+    \property   QCtmStageProgressBar::stageIndexTextPen
+    \brief      获取或设置阶段文本的画笔.
+*/
+
+/*!
+    \property   QCtmStageProgressBar::rateBackground
+    \brief      获取或设置进度条的背景画刷.
+*/
+
+/*!
+    \property   QCtmStageProgressBar::maximum
+    \brief      获取或设置进度条的最大值.
+    \sa         minimum, setRange
+*/
+
+/*!
+    \property   QCtmStageProgressBar::minimum
+    \brief      获取或设置进度条的最小值.
+    \sa         maximum, setRange
+*/
+
+/*!
+    \property   QCtmStageProgressBar::value
+    \brief      获取或设置当前进度值, 该值必须在最小值和最大值之间.
+    \sa         minimum, maximum, setRange
+*/
+
+/*!
+    \property   QCtmStageProgressBar::orientation
+    \brief      获取或设置进度条的朝向.
+    \sa         setOrientation
+*/
+
+/*!
     \fn         void QCtmStageProgressBar::valueChanged(int value)
     \brief      当值 \a value 变化时发送该信号.
     \sa         setValue
@@ -68,7 +112,9 @@ QCtmStageProgressBar::QCtmStageProgressBar(QWidget* parent) : QWidget(parent), m
 /*!
     \brief      析构函数.
 */
-QCtmStageProgressBar::~QCtmStageProgressBar() {}
+QCtmStageProgressBar::~QCtmStageProgressBar()
+{
+}
 
 /*!
     \brief      设置进度条的朝向 \a orientation.
@@ -91,7 +137,10 @@ void QCtmStageProgressBar::setOrientation(Qt::Orientation orientation)
     \brief      返回进度条的朝向.
     \sa         setOrientation
 */
-Qt::Orientation QCtmStageProgressBar::orientation() const { return m_impl->orientation; }
+Qt::Orientation QCtmStageProgressBar::orientation() const
+{
+    return m_impl->orientation;
+}
 
 /*!
     \brief      设置阶段数量 \a count.
@@ -115,7 +164,10 @@ void QCtmStageProgressBar::setStageCount(int count)
     \brief      返回阶段数量.
     \sa         setStageCount
 */
-int QCtmStageProgressBar::stageCount() const { return m_impl->stageCount; }
+int QCtmStageProgressBar::stageCount() const
+{
+    return m_impl->stageCount;
+}
 
 /*!
     \brief      设置阶段节点圆形的半径像素 \a radius.
@@ -133,7 +185,10 @@ void QCtmStageProgressBar::setStageCircleRadius(int radius)
     \brief      返回阶段节点圆形的半径像素.
     \sa         setStageCircleRadius
 */
-int QCtmStageProgressBar::stageCircleRadius() const { return m_impl->stageCircleRadius; }
+int QCtmStageProgressBar::stageCircleRadius() const
+{
+    return m_impl->stageCircleRadius;
+}
 
 /*!
     \brief      设置阶段 \a stage 的文本 \a text.
@@ -180,7 +235,10 @@ void QCtmStageProgressBar::setTextVisible(bool flag)
     \brief      返回阶段文本是否可见.
     \sa         setTextVisible
 */
-bool QCtmStageProgressBar::textVisible() const { return m_impl->textVisible; }
+bool QCtmStageProgressBar::textVisible() const
+{
+    return m_impl->textVisible;
+}
 
 /*!
     \brief      设置当前进度值 \a value, \a value 为范围外则无效.
@@ -201,7 +259,10 @@ void QCtmStageProgressBar::setValue(int value)
     \brief      返回当前进度.
     \sa         setValue
 */
-int QCtmStageProgressBar::value() const { return m_impl->value; }
+int QCtmStageProgressBar::value() const
+{
+    return m_impl->value;
+}
 
 /*!
     \brief      设置进度条值范围 \a minimum, \a maximum.
@@ -222,25 +283,37 @@ void QCtmStageProgressBar::setRange(int minimum, int maximum)
     \brief      设置最大值 \a maximum.
     \sa         maximum
 */
-void QCtmStageProgressBar::setMaximum(int maximum) { setRange(std::min(m_impl->minimum, maximum), maximum); }
+void QCtmStageProgressBar::setMaximum(int maximum)
+{
+    setRange(std::min(m_impl->minimum, maximum), maximum);
+}
 
 /*!
     \brief      返回最大值.
     \sa         setMaximum
 */
-int QCtmStageProgressBar::maximum() const { return m_impl->maximum; }
+int QCtmStageProgressBar::maximum() const
+{
+    return m_impl->maximum;
+}
 
 /*!
     \brief      设置最小值 \a min.
     \sa         minimum
 */
-void QCtmStageProgressBar::setMinimum(int min) { setRange(min, std::max(min, m_impl->maximum)); }
+void QCtmStageProgressBar::setMinimum(int min)
+{
+    setRange(min, std::max(min, m_impl->maximum));
+}
 
 /*!
     \brief      返回最小值.
     \sa         setMinimum
 */
-int QCtmStageProgressBar::minimum() const { return m_impl->minimum; }
+int QCtmStageProgressBar::minimum() const
+{
+    return m_impl->minimum;
+}
 
 /*!
     \brief      设置阶段序号文本的画笔 \a pen.
@@ -256,7 +329,10 @@ void QCtmStageProgressBar::setStageIndexTextPen(const QPen& pen)
     \brief      返回阶段序号文本的画笔.
     \sa         setStageIndexTextPen
 */
-const QPen& QCtmStageProgressBar::stageIndexTextPen() const { return m_impl->stageTextIndexPen; }
+const QPen& QCtmStageProgressBar::stageIndexTextPen() const
+{
+    return m_impl->stageTextIndexPen;
+}
 
 /*!
     \brief      设置进度条背景色 \a brush.
@@ -272,7 +348,10 @@ void QCtmStageProgressBar::setRateBackground(const QBrush& brush)
     \brief      返回进度条背景色.
     \sa         setRateBackground
 */
-const QBrush& QCtmStageProgressBar::rateBackground() const { return m_impl->rateBrush; }
+const QBrush& QCtmStageProgressBar::rateBackground() const
+{
+    return m_impl->rateBrush;
+}
 
 /*!
     \reimp
@@ -368,7 +447,10 @@ void QCtmStageProgressBar::drawText(QPainter* p, [[maybe_unused]] int index, con
 /*!
     \reimp
 */
-QSize QCtmStageProgressBar::sizeHint() const { return minimumSizeHint(); }
+QSize QCtmStageProgressBar::sizeHint() const
+{
+    return minimumSizeHint();
+}
 
 /*!
     \reimp

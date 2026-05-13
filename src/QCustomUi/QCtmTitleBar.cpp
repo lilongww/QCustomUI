@@ -61,6 +61,11 @@ struct QCtmTitleBar::Impl
 */
 
 /*!
+    \property   QCtmTitleBar::iconSize
+    \brief      Action图标大小.
+*/
+
+/*!
     \brief      构造函数 \a parent.
 */
 QCtmTitleBar::QCtmTitleBar(QWidget* parent) : QCtmAbstractTitleBar(parent), ui(new Ui::QCtmTitleBar), m_impl(std::make_unique<Impl>())

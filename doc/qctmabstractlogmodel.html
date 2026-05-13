@@ -4,7 +4,7 @@
   <meta charset="utf-8">
 <!-- QCtmAbstractLogModel.cpp -->
   <meta name="description" content="日志 model 接口类.">
-  <title>QCtmAbstractLogModel Class | QCustomUi 1.19.0</title>
+  <title>QCtmAbstractLogModel Class | QCustomUi 1.22.0</title>
   <link rel="stylesheet" type="text/css" href="style/offline-simple.css" />
   <script type="text/javascript">
     document.getElementsByTagName("link").item(0).setAttribute("href", "style/offline.css");
@@ -26,10 +26,10 @@
     <div class="main-rounded">
         <div class="navigationbar">
         <ul>
-<li><a href="index.html">QCustomUi 1.19.0</a></li>
+<li><a href="index.html">QCustomUi 1.22.0</a></li>
 <li><a href="qcustomui-module.html" translate="no">QCustomUi</a></li>
 <li>QCtmAbstractLogModel</li>
-<li id="buildversion">QCustomUi 1.19.0 Reference Documentation</li>
+<li id="buildversion">QCustomUi 1.22.0 Reference Documentation</li>
     </ul>
     </div>
 </div>
@@ -42,6 +42,7 @@
 <ul>
 <li class="level1"><a href="#public-functions">Public Functions</a></li>
 <li class="level1"><a href="#reimplemented-public-functions">Reimplemented Public Functions</a></li>
+<li class="level1"><a href="#public-slots">Public Slots</a></li>
 <li class="level1"><a href="#protected-functions">Protected Functions</a></li>
 <li class="level1"><a href="#reimplemented-protected-functions">Reimplemented Protected Functions</a></li>
 <li class="level1"><a href="#details">Detailed Description</a></li>
@@ -74,9 +75,12 @@
 <tr><td class="memItemLeft rightAlign topAlign"> virtual bool </td><td class="memItemRight bottomAlign"><b><a href="qctmabstractlogmodel.html#removeColumns" translate="no">removeColumns</a></b>(int <i>column</i>, int <i>count</i>, const QModelIndex &amp;<i>parent</i> = QModelIndex()) override</td></tr>
 <tr><td class="memItemLeft rightAlign topAlign"> virtual bool </td><td class="memItemRight bottomAlign"><b><a href="qctmabstractlogmodel.html#removeRows" translate="no">removeRows</a></b>(int <i>row</i>, int <i>count</i>, const QModelIndex &amp;<i>parent</i> = QModelIndex()) override</td></tr>
 </table></div>
+<h2 id="public-slots">Public Slots</h2>
+<div class="table"><table class="alignedsummary" translate="no">
+<tr><td class="memItemLeft rightAlign topAlign"> virtual void </td><td class="memItemRight bottomAlign"><b><a href="qctmabstractlogmodel.html#onLog" translate="no">onLog</a></b>(QCtmLogDataPtr) = 0</td></tr>
+</table></div>
 <h2 id="protected-functions">Protected Functions</h2>
 <div class="table"><table class="alignedsummary" translate="no">
-<tr><td class="memItemLeft rightAlign topAlign"> virtual void </td><td class="memItemRight bottomAlign"><b><a href="qctmabstractlogmodel.html#logEvent" translate="no">logEvent</a></b>(QCtmLogEvent *<i>e</i>)</td></tr>
 <tr><td class="memItemLeft rightAlign topAlign"> virtual void </td><td class="memItemRight bottomAlign"><b><a href="qctmabstractlogmodel.html#retranslateUi" translate="no">retranslateUi</a></b>()</td></tr>
 </table></div>
 <h2 id="reimplemented-protected-functions">Reimplemented Protected Functions</h2>
@@ -91,7 +95,7 @@
 <div class="func">
 <h2>Member Function Documentation</h2>
 <!-- $$$QCtmAbstractLogModel[overload1]$$$QCtmAbstractLogModelconstQString&QObject* -->
-<h3 class="fn" translate="no" id="QCtmAbstractLogModel"><code class="details extra" translate="no">[explicit]</code> QCtmAbstractLogModel::<span class="name">QCtmAbstractLogModel</span>(const <span class="type"><a href="https://doc.qt.io/qt/qstring.html" translate="no">QString</a></span> &amp;<i>objectName</i>, <span class="type"><a href="https://doc.qt.io/qt/qobject.html#QObject" translate="no">QObject</a></span> *<i>parent</i> = nullptr)</h3>
+<h3 class="fn" translate="no" id="QCtmAbstractLogModel"><code class="details extra" translate="no">[explicit]</code> QCtmAbstractLogModel::<span class="name">QCtmAbstractLogModel</span>(const <span class="type"><a href="https://doc.qt.io/qt/qstring.html" translate="no">QString</a></span> &amp;<i>objectName</i>, <span class="type"><a href="https://doc.qt.io/qt/qobject.html" translate="no">QObject</a></span> *<i>parent</i> = nullptr)</h3>
 <p>构造一个日志 model 设置 <i translate="no">objectName</i> 和父对象 <i translate="no">parent</i>.</p>
 <!-- @@@QCtmAbstractLogModel -->
 <!-- $$$~QCtmAbstractLogModel[overload1]$$$~QCtmAbstractLogModel -->
@@ -114,10 +118,10 @@
 <h3 class="fn" translate="no" id="insertRows"><code class="details extra" translate="no">[override virtual]</code> <span class="type">bool</span> QCtmAbstractLogModel::<span class="name">insertRows</span>(<span class="type">int</span> <i>row</i>, <span class="type">int</span> <i>count</i>, const <span class="type"><a href="https://doc.qt.io/qt/qmodelindex.html" translate="no">QModelIndex</a></span> &amp;<i>parent</i> = QModelIndex())</h3>
 <p>Reimplements: <a href="https://doc.qt.io/qt/qabstractitemmodel.html#insertRows" translate="no">QAbstractItemModel::insertRows</a>(int row, int count, const QModelIndex &amp;parent).</p>
 <!-- @@@insertRows -->
-<!-- $$$logEvent[overload1]$$$logEventQCtmLogEvent* -->
-<h3 class="fn" translate="no" id="logEvent"><code class="details extra" translate="no">[virtual protected]</code> <span class="type">void</span> QCtmAbstractLogModel::<span class="name">logEvent</span>(<span class="type"><a href="qctmlogevent.html" translate="no">QCtmLogEvent</a></span> *<i>e</i>)</h3>
-<p>日志事件 <i translate="no">e</i>.</p>
-<!-- @@@logEvent -->
+<!-- $$$onLog[overload1]$$$onLogQCtmLogDataPtr -->
+<h3 class="fn" translate="no" id="onLog"><code class="details extra" translate="no">[pure virtual slot]</code> <span class="type">void</span> QCtmAbstractLogModel::<span class="name">onLog</span>(<span class="type">QCtmLogDataPtr</span>)</h3>
+<p>响应日志，子类重写该函数处理日志.</p>
+<!-- @@@onLog -->
 <!-- $$$removeColumns[overload1]$$$removeColumnsintintconstQModelIndex& -->
 <h3 class="fn" translate="no" id="removeColumns"><code class="details extra" translate="no">[override virtual]</code> <span class="type">bool</span> QCtmAbstractLogModel::<span class="name">removeColumns</span>(<span class="type">int</span> <i>column</i>, <span class="type">int</span> <i>count</i>, const <span class="type"><a href="https://doc.qt.io/qt/qmodelindex.html" translate="no">QModelIndex</a></span> &amp;<i>parent</i> = QModelIndex())</h3>
 <p>Reimplements: <a href="https://doc.qt.io/qt/qabstractitemmodel.html#removeColumns" translate="no">QAbstractItemModel::removeColumns</a>(int column, int count, const QModelIndex &amp;parent).</p>

@@ -4,7 +4,7 @@
   <meta charset="utf-8">
 <!-- QCtmMessageBox.cpp -->
   <meta name="description" content="自定义外观的消息框，用法参考 QMessageBox.">
-  <title>List of All Members for QCtmMessageBox | QCustomUi 1.19.0</title>
+  <title>List of All Members for QCtmMessageBox | QCustomUi 1.22.0</title>
   <link rel="stylesheet" type="text/css" href="style/offline-simple.css" />
   <script type="text/javascript">
     document.getElementsByTagName("link").item(0).setAttribute("href", "style/offline.css");
@@ -26,10 +26,10 @@
     <div class="main-rounded">
         <div class="navigationbar">
         <ul>
-<li><a href="index.html">QCustomUi 1.19.0</a></li>
+<li><a href="index.html">QCustomUi 1.22.0</a></li>
 <li><a href="qcustomui-module.html" translate="no">QCustomUi</a></li>
 <li>QCtmMessageBox</li>
-<li id="buildversion">QCustomUi 1.19.0 Reference Documentation</li>
+<li id="buildversion">QCustomUi 1.22.0 Reference Documentation</li>
     </ul>
     </div>
 </div>
@@ -45,7 +45,7 @@
 <li class="fn" translate="no">enum <span class="name"><b><a href="qctmmessagebox.html#Icon-enum" translate="no">Icon</a></b></span></li>
 <li class="fn" translate="no">enum <span class="name"><b><a href="https://doc.qt.io/qt/qpaintdevice.html#PaintDeviceMetric-enum" translate="no">PaintDeviceMetric</a></b></span></li>
 <li class="fn" translate="no">enum <span class="name"><b><a href="https://doc.qt.io/qt/qwidget.html#RenderFlag-enum" translate="no">RenderFlag</a></b></span></li>
-<li class="fn" translate="no"><span class="name"><b><a href="https://doc.qt.io/qt/qwidget.html#RenderFlag-enum" translate="no">RenderFlags</a></b></span></li>
+<li class="fn" translate="no">flags <span class="name"><b><a href="https://doc.qt.io/qt/qwidget.html#RenderFlag-enum" translate="no">RenderFlags</a></b></span></li>
 <li class="fn" translate="no">enum <span class="name"><b><a href="qctmmessagebox.html#StandardButton-enum" translate="no">StandardButton</a></b></span></li>
 <li class="fn" translate="no">flags <span class="name"><b><a href="qctmmessagebox.html#StandardButton-enum" translate="no">StandardButtons</a></b></span></li>
 <li class="fn" translate="no"><span class="name"><b><a href="qctmmessagebox.html#QCtmMessageBox" translate="no">QCtmMessageBox</a></b></span>(QWidget *)</li>
@@ -209,6 +209,7 @@
 <li class="fn" translate="no"><span class="name"><b><a href="https://doc.qt.io/qt/qwidget.html#maximized-prop" translate="no">isMaximized</a></b></span>() const : bool</li>
 <li class="fn" translate="no"><span class="name"><b><a href="https://doc.qt.io/qt/qwidget.html#minimized-prop" translate="no">isMinimized</a></b></span>() const : bool</li>
 <li class="fn" translate="no"><span class="name"><b><a href="https://doc.qt.io/qt/qwidget.html#modal-prop" translate="no">isModal</a></b></span>() const : bool</li>
+<li class="fn" translate="no"><span class="name"><b><a href="https://doc.qt.io/qt/qobject.html#isQmlExposed" translate="no">isQmlExposed</a></b></span>() const : bool</li>
 <li class="fn" translate="no"><span class="name"><b><a href="https://doc.qt.io/qt/qobject.html#isQuickItemType" translate="no">isQuickItemType</a></b></span>() const : bool</li>
 <li class="fn" translate="no"><span class="name"><b><a href="https://doc.qt.io/qt/qobject.html#isSignalConnected" translate="no">isSignalConnected</a></b></span>(const QMetaMethod &amp;) const : bool</li>
 <li class="fn" translate="no"><span class="name"><b><a href="https://doc.qt.io/qt/qwidget.html#visible-prop" translate="no">isVisible</a></b></span>() const : bool</li>
@@ -256,10 +257,10 @@
 <li class="fn" translate="no"><span class="name"><b><a href="https://doc.qt.io/qt/qwidget.html#mouseGrabber" translate="no">mouseGrabber</a></b></span>() : QWidget *</li>
 <li class="fn" translate="no"><span class="name"><b><a href="https://doc.qt.io/qt/qwidget.html#mouseMoveEvent" translate="no">mouseMoveEvent</a></b></span>(QMouseEvent *)</li>
 <li class="fn" translate="no"><span class="name"><b><a href="https://doc.qt.io/qt/qwidget.html#mousePressEvent" translate="no">mousePressEvent</a></b></span>(QMouseEvent *)</li>
+</ul></td><td class="topAlign"><ul>
 <li class="fn" translate="no"><span class="name"><b><a href="https://doc.qt.io/qt/qwidget.html#mouseReleaseEvent" translate="no">mouseReleaseEvent</a></b></span>(QMouseEvent *)</li>
 <li class="fn" translate="no"><span class="name"><b><a href="https://doc.qt.io/qt/qwidget.html#pos-prop" translate="no">move</a></b></span>(const QPoint &amp;)</li>
-</ul></td><td class="topAlign"><ul>
-<li class="fn" translate="no"><span class="name"><b><a href="https://doc.qt.io/qt/qwidget.html#move-1" translate="no">move</a></b></span>(int, int)</li>
+<li class="fn" translate="no"><span class="name"><b><a href="https://doc.qt.io/qt/qwidget.html#move" translate="no">move</a></b></span>(int, int)</li>
 <li class="fn" translate="no"><span class="name"><b><a href="https://doc.qt.io/qt/qwidget.html#moveEvent" translate="no">moveEvent</a></b></span>(QMoveEvent *)</li>
 <li class="fn" translate="no"><span class="name"><b><a href="https://doc.qt.io/qt/qobject.html#moveToThread" translate="no">moveToThread</a></b></span>(QThread *) : bool</li>
 <li class="fn" translate="no"><span class="name"><b><a href="qctmdialog.html#nativeEvent" translate="no">nativeEvent</a></b></span>(const QByteArray &amp;, void *, qintptr *) : bool</li>
@@ -301,7 +302,7 @@
 <li class="fn" translate="no"><span class="name"><b><a href="https://doc.qt.io/qt/qwidget.html#repaint-2" translate="no">repaint</a></b></span>(const QRegion &amp;)</li>
 <li class="fn" translate="no"><span class="name"><b><a href="https://doc.qt.io/qt/qwidget.html#repaint-3" translate="no">repaint</a></b></span>(int, int, int, int)</li>
 <li class="fn" translate="no"><span class="name"><b><a href="https://doc.qt.io/qt/qwidget.html#size-prop" translate="no">resize</a></b></span>(const QSize &amp;)</li>
-<li class="fn" translate="no"><span class="name"><b><a href="https://doc.qt.io/qt/qwidget.html#resize-1" translate="no">resize</a></b></span>(int, int)</li>
+<li class="fn" translate="no"><span class="name"><b><a href="https://doc.qt.io/qt/qwidget.html#resize" translate="no">resize</a></b></span>(int, int)</li>
 <li class="fn" translate="no"><span class="name"><b><a href="https://doc.qt.io/qt/qwidget.html#resizeEvent" translate="no">resizeEvent</a></b></span>(QResizeEvent *)</li>
 <li class="fn" translate="no"><span class="name"><b><a href="https://doc.qt.io/qt/qwidget.html#restoreGeometry" translate="no">restoreGeometry</a></b></span>(const QByteArray &amp;) : bool</li>
 <li class="fn" translate="no"><span class="name"><b><a href="https://doc.qt.io/qt/qwidget.html#saveGeometry" translate="no">saveGeometry</a></b></span>() const : QByteArray</li>
@@ -318,7 +319,7 @@
 <li class="fn" translate="no"><span class="name"><b><a href="https://doc.qt.io/qt/qwidget.html#autoFillBackground-prop" translate="no">setAutoFillBackground</a></b></span>(bool)</li>
 <li class="fn" translate="no"><span class="name"><b><a href="https://doc.qt.io/qt/qwidget.html#setBackgroundRole" translate="no">setBackgroundRole</a></b></span>(QPalette::ColorRole)</li>
 <li class="fn" translate="no"><span class="name"><b><a href="https://doc.qt.io/qt/qwidget.html#baseSize-prop" translate="no">setBaseSize</a></b></span>(const QSize &amp;)</li>
-<li class="fn" translate="no"><span class="name"><b><a href="https://doc.qt.io/qt/qwidget.html#setBaseSize-1" translate="no">setBaseSize</a></b></span>(int, int)</li>
+<li class="fn" translate="no"><span class="name"><b><a href="https://doc.qt.io/qt/qwidget.html#setBaseSize" translate="no">setBaseSize</a></b></span>(int, int)</li>
 <li class="fn" translate="no"><span class="name"><b><a href="qctmdialog.html#setCentralWidget" translate="no">setCentralWidget</a></b></span>(QWidget *)</li>
 <li class="fn" translate="no"><span class="name"><b><a href="https://doc.qt.io/qt/qwidget.html#setContentsMargins" translate="no">setContentsMargins</a></b></span>(int, int, int, int)</li>
 <li class="fn" translate="no"><span class="name"><b><a href="https://doc.qt.io/qt/qwidget.html#setContentsMargins-1" translate="no">setContentsMargins</a></b></span>(const QMargins &amp;)</li>
@@ -339,7 +340,7 @@
 <li class="fn" translate="no"><span class="name"><b><a href="https://doc.qt.io/qt/qwidget.html#font-prop" translate="no">setFont</a></b></span>(const QFont &amp;)</li>
 <li class="fn" translate="no"><span class="name"><b><a href="https://doc.qt.io/qt/qwidget.html#setForegroundRole" translate="no">setForegroundRole</a></b></span>(QPalette::ColorRole)</li>
 <li class="fn" translate="no"><span class="name"><b><a href="https://doc.qt.io/qt/qwidget.html#geometry-prop" translate="no">setGeometry</a></b></span>(const QRect &amp;)</li>
-<li class="fn" translate="no"><span class="name"><b><a href="https://doc.qt.io/qt/qwidget.html#setGeometry-1" translate="no">setGeometry</a></b></span>(int, int, int, int)</li>
+<li class="fn" translate="no"><span class="name"><b><a href="https://doc.qt.io/qt/qwidget.html#setGeometry" translate="no">setGeometry</a></b></span>(int, int, int, int)</li>
 <li class="fn" translate="no"><span class="name"><b><a href="https://doc.qt.io/qt/qwidget.html#setGraphicsEffect" translate="no">setGraphicsEffect</a></b></span>(QGraphicsEffect *)</li>
 <li class="fn" translate="no"><span class="name"><b><a href="https://doc.qt.io/qt/qwidget.html#setHidden" translate="no">setHidden</a></b></span>(bool)</li>
 <li class="fn" translate="no"><span class="name"><b><a href="qctmmessagebox.html#setIcon" translate="no">setIcon</a></b></span>(QCtmMessageBox::Icon)</li>
@@ -352,11 +353,11 @@
 <li class="fn" translate="no"><span class="name"><b><a href="https://doc.qt.io/qt/qwidget.html#setMask-1" translate="no">setMask</a></b></span>(const QRegion &amp;)</li>
 <li class="fn" translate="no"><span class="name"><b><a href="https://doc.qt.io/qt/qwidget.html#maximumHeight-prop" translate="no">setMaximumHeight</a></b></span>(int)</li>
 <li class="fn" translate="no"><span class="name"><b><a href="https://doc.qt.io/qt/qwidget.html#maximumSize-prop" translate="no">setMaximumSize</a></b></span>(const QSize &amp;)</li>
-<li class="fn" translate="no"><span class="name"><b><a href="https://doc.qt.io/qt/qwidget.html#setMaximumSize-1" translate="no">setMaximumSize</a></b></span>(int, int)</li>
+<li class="fn" translate="no"><span class="name"><b><a href="https://doc.qt.io/qt/qwidget.html#setMaximumSize" translate="no">setMaximumSize</a></b></span>(int, int)</li>
 <li class="fn" translate="no"><span class="name"><b><a href="https://doc.qt.io/qt/qwidget.html#maximumWidth-prop" translate="no">setMaximumWidth</a></b></span>(int)</li>
 <li class="fn" translate="no"><span class="name"><b><a href="https://doc.qt.io/qt/qwidget.html#minimumHeight-prop" translate="no">setMinimumHeight</a></b></span>(int)</li>
 <li class="fn" translate="no"><span class="name"><b><a href="https://doc.qt.io/qt/qwidget.html#minimumSize-prop" translate="no">setMinimumSize</a></b></span>(const QSize &amp;)</li>
-<li class="fn" translate="no"><span class="name"><b><a href="https://doc.qt.io/qt/qwidget.html#setMinimumSize-1" translate="no">setMinimumSize</a></b></span>(int, int)</li>
+<li class="fn" translate="no"><span class="name"><b><a href="https://doc.qt.io/qt/qwidget.html#setMinimumSize" translate="no">setMinimumSize</a></b></span>(int, int)</li>
 <li class="fn" translate="no"><span class="name"><b><a href="https://doc.qt.io/qt/qwidget.html#minimumWidth-prop" translate="no">setMinimumWidth</a></b></span>(int)</li>
 <li class="fn" translate="no"><span class="name"><b><a href="https://doc.qt.io/qt/qwidget.html#mouseTracking-prop" translate="no">setMouseTracking</a></b></span>(bool)</li>
 <li class="fn" translate="no"><span class="name"><b><a href="https://doc.qt.io/qt/qobject.html#setObjectName" translate="no">setObjectName</a></b></span>(const QString &amp;)</li>
@@ -371,9 +372,9 @@
 <li class="fn" translate="no"><span class="name"><b><a href="https://doc.qt.io/qt/qwidget.html#setShortcutAutoRepeat" translate="no">setShortcutAutoRepeat</a></b></span>(int, bool)</li>
 <li class="fn" translate="no"><span class="name"><b><a href="https://doc.qt.io/qt/qwidget.html#setShortcutEnabled" translate="no">setShortcutEnabled</a></b></span>(int, bool)</li>
 <li class="fn" translate="no"><span class="name"><b><a href="https://doc.qt.io/qt/qwidget.html#sizeIncrement-prop" translate="no">setSizeIncrement</a></b></span>(const QSize &amp;)</li>
-<li class="fn" translate="no"><span class="name"><b><a href="https://doc.qt.io/qt/qwidget.html#setSizeIncrement-1" translate="no">setSizeIncrement</a></b></span>(int, int)</li>
+<li class="fn" translate="no"><span class="name"><b><a href="https://doc.qt.io/qt/qwidget.html#setSizeIncrement" translate="no">setSizeIncrement</a></b></span>(int, int)</li>
 <li class="fn" translate="no"><span class="name"><b><a href="https://doc.qt.io/qt/qwidget.html#sizePolicy-prop" translate="no">setSizePolicy</a></b></span>(QSizePolicy)</li>
-<li class="fn" translate="no"><span class="name"><b><a href="https://doc.qt.io/qt/qwidget.html#setSizePolicy-1" translate="no">setSizePolicy</a></b></span>(QSizePolicy::Policy, QSizePolicy::Policy)</li>
+<li class="fn" translate="no"><span class="name"><b><a href="https://doc.qt.io/qt/qwidget.html#setSizePolicy" translate="no">setSizePolicy</a></b></span>(QSizePolicy::Policy, QSizePolicy::Policy)</li>
 <li class="fn" translate="no"><span class="name"><b><a href="qctmmessagebox.html#setStandardButtons" translate="no">setStandardButtons</a></b></span>(QCtmMessageBox::StandardButtons)</li>
 <li class="fn" translate="no"><span class="name"><b><a href="https://doc.qt.io/qt/qwidget.html#statusTip-prop" translate="no">setStatusTip</a></b></span>(const QString &amp;)</li>
 <li class="fn" translate="no"><span class="name"><b><a href="https://doc.qt.io/qt/qwidget.html#setStyle" translate="no">setStyle</a></b></span>(QStyle *)</li>
@@ -386,7 +387,7 @@
 <li class="fn" translate="no"><span class="name"><b><a href="qctmmessagebox.html#setTextInteractionFlags" translate="no">setTextInteractionFlags</a></b></span>(Qt::TextInteractionFlags)</li>
 <li class="fn" translate="no"><span class="name"><b><a href="qctmmessagebox.html#setTimeout" translate="no">setTimeout</a></b></span>(const std::chrono::seconds &amp;)</li>
 <li class="fn" translate="no"><span class="name"><b><a href="qctmmessagebox.html#setTimeoutVisible" translate="no">setTimeoutVisible</a></b></span>(bool)</li>
-<li class="fn" translate="no"><span class="name"><b><a href="qctmdialog.html#setTitleBar" translate="no">setTitleBar</a></b></span>(QCtmTitleBar *)</li>
+<li class="fn" translate="no"><span class="name"><b><a href="qctmdialog.html#setTitleBar" translate="no">setTitleBar</a></b></span>(QCtmAbstractTitleBar *)</li>
 <li class="fn" translate="no"><span class="name"><b><a href="https://doc.qt.io/qt/qwidget.html#toolTip-prop" translate="no">setToolTip</a></b></span>(const QString &amp;)</li>
 <li class="fn" translate="no"><span class="name"><b><a href="https://doc.qt.io/qt/qwidget.html#toolTipDuration-prop" translate="no">setToolTipDuration</a></b></span>(int)</li>
 <li class="fn" translate="no"><span class="name"><b><a href="https://doc.qt.io/qt/qwidget.html#updatesEnabled-prop" translate="no">setUpdatesEnabled</a></b></span>(bool)</li>
@@ -396,7 +397,6 @@
 <li class="fn" translate="no"><span class="name"><b><a href="https://doc.qt.io/qt/qwidget.html#setWindowFlag" translate="no">setWindowFlag</a></b></span>(Qt::WindowType, bool)</li>
 <li class="fn" translate="no"><span class="name"><b><a href="https://doc.qt.io/qt/qwidget.html#windowFlags-prop" translate="no">setWindowFlags</a></b></span>(Qt::WindowFlags)</li>
 <li class="fn" translate="no"><span class="name"><b><a href="https://doc.qt.io/qt/qwidget.html#windowIcon-prop" translate="no">setWindowIcon</a></b></span>(const QIcon &amp;)</li>
-<li class="fn" translate="no"><span class="name"><b><a href="https://doc.qt.io/qt/qwidget-obsolete.html#windowIconText-prop" translate="no">setWindowIconText</a></b></span>(const QString &amp;)</li>
 <li class="fn" translate="no"><span class="name"><b><a href="https://doc.qt.io/qt/qwidget.html#windowModality-prop" translate="no">setWindowModality</a></b></span>(Qt::WindowModality)</li>
 <li class="fn" translate="no"><span class="name"><b><a href="https://doc.qt.io/qt/qwidget.html#windowModified-prop" translate="no">setWindowModified</a></b></span>(bool)</li>
 <li class="fn" translate="no"><span class="name"><b><a href="https://doc.qt.io/qt/qwidget.html#windowOpacity-prop" translate="no">setWindowOpacity</a></b></span>(qreal)</li>
@@ -421,7 +421,7 @@
 <li class="fn" translate="no"><span class="name"><b><a href="qctmmessagebox.html#standardButtons" translate="no">standardButtons</a></b></span>() const : QCtmMessageBox::StandardButtons</li>
 <li class="fn" translate="no"><span class="name"><b><a href="https://doc.qt.io/qt/qobject.html#startTimer" translate="no">startTimer</a></b></span>(int, Qt::TimerType) : int</li>
 <li class="fn" translate="no"><span class="name"><b><a href="https://doc.qt.io/qt/qobject.html#startTimer-1" translate="no">startTimer</a></b></span>(std::chrono::nanoseconds, Qt::TimerType) : int</li>
-<li class="fn" translate="no"><span class="name"><b><a href="https://doc.qt.io/qt/qobject.html#staticMetaObject-var" translate="no">staticMetaObject</a></b></span> : </li>
+<li class="fn" translate="no"><span class="name"><b><a href="https://doc.qt.io/qt/qobject.html#staticMetaObject-var" translate="no">staticMetaObject</a></b></span> : const QMetaObject</li>
 <li class="fn" translate="no"><span class="name"><b><a href="https://doc.qt.io/qt/qwidget.html#statusTip-prop" translate="no">statusTip</a></b></span>() const : QString</li>
 <li class="fn" translate="no"><span class="name"><b><a href="https://doc.qt.io/qt/qwidget.html#style" translate="no">style</a></b></span>() const : QStyle *</li>
 <li class="fn" translate="no"><span class="name"><b><a href="https://doc.qt.io/qt/qwidget.html#styleSheet-prop" translate="no">styleSheet</a></b></span>() const : QString</li>
@@ -434,7 +434,7 @@
 <li class="fn" translate="no"><span class="name"><b><a href="qctmmessagebox.html#timeout" translate="no">timeout</a></b></span>() const : const std::chrono::seconds &amp;</li>
 <li class="fn" translate="no"><span class="name"><b><a href="qctmmessagebox.html#timeoutVisible" translate="no">timeoutVisible</a></b></span>() const : bool</li>
 <li class="fn" translate="no"><span class="name"><b><a href="https://doc.qt.io/qt/qobject.html#timerEvent" translate="no">timerEvent</a></b></span>(QTimerEvent *)</li>
-<li class="fn" translate="no"><span class="name"><b><a href="qctmdialog.html#titleBar" translate="no">titleBar</a></b></span>() const : QCtmTitleBar *</li>
+<li class="fn" translate="no"><span class="name"><b><a href="qctmdialog.html#titleBar" translate="no">titleBar</a></b></span>() const : QCtmAbstractTitleBar *</li>
 <li class="fn" translate="no"><span class="name"><b><a href="https://doc.qt.io/qt/qwidget.html#toolTip-prop" translate="no">toolTip</a></b></span>() const : QString</li>
 <li class="fn" translate="no"><span class="name"><b><a href="https://doc.qt.io/qt/qwidget.html#toolTipDuration-prop" translate="no">toolTipDuration</a></b></span>() const : int</li>
 <li class="fn" translate="no"><span class="name"><b><a href="https://doc.qt.io/qt/qobject.html#tr" translate="no">tr</a></b></span>(const char *, const char *, int) : QString</li>
@@ -465,7 +465,6 @@
 <li class="fn" translate="no"><span class="name"><b><a href="https://doc.qt.io/qt/qwidget.html#windowHandle" translate="no">windowHandle</a></b></span>() const : QWindow *</li>
 <li class="fn" translate="no"><span class="name"><b><a href="https://doc.qt.io/qt/qwidget.html#windowIcon-prop" translate="no">windowIcon</a></b></span>() const : QIcon</li>
 <li class="fn" translate="no"><span class="name"><b><a href="https://doc.qt.io/qt/qwidget.html#windowIconChanged" translate="no">windowIconChanged</a></b></span>(const QIcon &amp;)</li>
-<li class="fn" translate="no"><span class="name"><b><a href="https://doc.qt.io/qt/qwidget-obsolete.html#windowIconText-prop" translate="no">windowIconText</a></b></span>() const : QString</li>
 <li class="fn" translate="no"><span class="name"><b><a href="https://doc.qt.io/qt/qwidget.html#windowModality-prop" translate="no">windowModality</a></b></span>() const : Qt::WindowModality</li>
 <li class="fn" translate="no"><span class="name"><b><a href="https://doc.qt.io/qt/qwidget.html#windowOpacity-prop" translate="no">windowOpacity</a></b></span>() const : qreal</li>
 <li class="fn" translate="no"><span class="name"><b><a href="https://doc.qt.io/qt/qwidget.html#windowRole" translate="no">windowRole</a></b></span>() const : QString</li>

@@ -32,6 +32,61 @@
     \inheaderfile QCtmULongLongSpinBox.h
 */
 
+/*!
+    \property   QCtmULongLongSpinBox::suffix
+    \brief      输入框后缀字符串，显示在输入框内容的后面.
+*/
+
+/*!
+    \property   QCtmULongLongSpinBox::prefix
+    \brief      输入框前缀字符串，显示在输入框内容的前面.
+*/
+
+/*!
+    \property   QCtmULongLongSpinBox::cleanText
+    \brief      输入框内容的纯文本，不包含前缀和后缀字符串.
+*/
+
+/*!
+    \property   QCtmULongLongSpinBox::minimum
+    \brief      输入框可接受的最小值，默认为0.
+*/
+
+/*!
+    \property   QCtmULongLongSpinBox::maximum
+    \brief      输入框可接受的最大值，默认为99.
+*/
+
+/*!
+    \property   QCtmULongLongSpinBox::singleStep
+    \brief      每次单步增加或减少的值，默认为1.
+*/
+
+/*!
+    \property   QCtmULongLongSpinBox::stepType
+    \brief      输入框的步进类型.
+*/
+
+/*!
+    \property   QCtmULongLongSpinBox::value
+    \brief      输入框当前的值.
+*/
+
+/*!
+    \property   QCtmULongLongSpinBox::displayIntegerBase
+    \brief      输入框显示整数的进制，默认为10进制.
+*/
+
+/*!
+    \property   QCtmULongLongSpinBox::displayFieldWidth
+    \brief      输入框显示整数的字段宽度，默认为0，表示不限制字段宽度.
+*/
+
+/*!
+    \property   QCtmULongLongSpinBox::displayFillChar
+    \brief      输入框显示整数的填充字符，默认为空格字符' '.
+*/
+
 class QCtmULongLongSpinBoxPrivate : public QAbstractSpinBoxPrivate
 {
     Q_DECLARE_PUBLIC(QCtmULongLongSpinBox)
@@ -205,7 +260,9 @@ QCtmULongLongSpinBox::QCtmULongLongSpinBox(QWidget* parent /*= nullptr*/) : QAbs
 /*!
     \brief      析构函数.
 */
-QCtmULongLongSpinBox::~QCtmULongLongSpinBox() {}
+QCtmULongLongSpinBox::~QCtmULongLongSpinBox()
+{
+}
 
 /*!
     \brief      设置值 \a value.

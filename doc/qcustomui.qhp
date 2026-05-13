@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <QtHelpProject version="1.0">
-    <namespace>com.qcustomui.1.19.0</namespace>
+    <namespace>com.qcustomui.1.22.0</namespace>
     <virtualFolder>qcustomui</virtualFolder>
     <metaData name="version" value=""/>
     <customFilter name="QCustomUi">
@@ -28,6 +28,9 @@
                     </section>
                     <section ref="qctmabstractmultipagetablemodel.html" title="QCtmAbstractMultiPageTableModel Class Reference">
                         <section ref="qctmabstractmultipagetablemodel-members.html" title="List of all members"/>
+                    </section>
+                    <section ref="qctmabstracttitlebar.html" title="QCtmAbstractTitleBar Class Reference">
+                        <section ref="qctmabstracttitlebar-members.html" title="List of all members"/>
                     </section>
                     <section ref="qctmapplication.html" title="QCtmApplication Class Reference">
                         <section ref="qctmapplication-members.html" title="List of all members"/>
@@ -91,9 +94,6 @@
                     </section>
                     <section ref="qctmlogdata.html" title="QCtmLogData Class Reference">
                         <section ref="qctmlogdata-members.html" title="List of all members"/>
-                    </section>
-                    <section ref="qctmlogevent.html" title="QCtmLogEvent Class Reference">
-                        <section ref="qctmlogevent-members.html" title="List of all members"/>
                     </section>
                     <section ref="qctmlogfiltermodel.html" title="QCtmLogFilterModel Class Reference">
                         <section ref="qctmlogfiltermodel-members.html" title="List of all members"/>
@@ -214,6 +214,7 @@
             <keyword name="QCtmAbstractMessageTipView" id="QCtmAbstractMessageTipView" ref="qctmabstractmessagetipview.html"/>
             <keyword name="QCtmAbstractMultiPageItemModel" id="QCtmAbstractMultiPageItemModel" ref="qctmabstractmultipageitemmodel.html"/>
             <keyword name="QCtmAbstractMultiPageTableModel" id="QCtmAbstractMultiPageTableModel" ref="qctmabstractmultipagetablemodel.html"/>
+            <keyword name="QCtmAbstractTitleBar" id="QCtmAbstractTitleBar" ref="qctmabstracttitlebar.html"/>
             <keyword name="QCtmApplication" id="QCtmApplication" ref="qctmapplication.html"/>
             <keyword name="QCtmCircleProgressBar" id="QCtmCircleProgressBar" ref="qctmcircleprogressbar.html"/>
             <keyword name="QCtmClassifyTreeGroupItem" id="QCtmClassifyTreeGroupItem" ref="qctmclassifytreegroupitem.html"/>
@@ -265,13 +266,15 @@
             <keyword name="QCtmLogData::ASC" id="QCtmLogData::ASC" ref="qctmlogdata.html#LogInsertPolicy-enum"/>
             <keyword name="QCtmLogData::DESC" id="QCtmLogData::DESC" ref="qctmlogdata.html#LogInsertPolicy-enum"/>
             <keyword name="QCtmLogData::LogInsertPolicy" id="QCtmLogData::LogInsertPolicy" ref="qctmlogdata.html#LogInsertPolicy-enum"/>
-            <keyword name="QCtmLogEvent" id="QCtmLogEvent" ref="qctmlogevent.html"/>
             <keyword name="QCtmLogFilterModel" id="QCtmLogFilterModel" ref="qctmlogfiltermodel.html"/>
             <keyword name="QCtmLogManager" id="QCtmLogManager" ref="qctmlogmanager.html"/>
             <keyword name="QCtmLogManager::Date" id="QCtmLogManager::Date" ref="qctmlogmanager.html#LogSavePolicy-enum"/>
             <keyword name="QCtmLogManager::LogSavePolicy" id="QCtmLogManager::LogSavePolicy" ref="qctmlogmanager.html#LogSavePolicy-enum"/>
             <keyword name="QCtmLogManager::Size" id="QCtmLogManager::Size" ref="qctmlogmanager.html#LogSavePolicy-enum"/>
             <keyword name="QCtmLogModel" id="QCtmLogModel" ref="qctmlogmodel.html"/>
+            <keyword name="QCtmLogModel::CopyMessageRole" id="QCtmLogModel::CopyMessageRole" ref="qctmlogmodel.html#Role-enum"/>
+            <keyword name="QCtmLogModel::Role" id="QCtmLogModel::Role" ref="qctmlogmodel.html#Role-enum"/>
+            <keyword name="QCtmLogModel::TypeRole" id="QCtmLogModel::TypeRole" ref="qctmlogmodel.html#Role-enum"/>
             <keyword name="QCtmLogWidget" id="QCtmLogWidget" ref="qctmlogwidget.html"/>
             <keyword name="QCtmLogWidget::Description" id="QCtmLogWidget::Description" ref="qctmlogwidget.html#QCtmLogColumn-enum"/>
             <keyword name="QCtmLogWidget::Level" id="QCtmLogWidget::Level" ref="qctmlogwidget.html#QCtmLogColumn-enum"/>
@@ -399,7 +402,9 @@
             <keyword name="addWidget" id="QCtmDrawerWidget::addWidget" ref="qctmdrawerwidget.html#addWidget"/>
             <keyword name="addWidget" id="QCtmToolBox::addWidget" ref="qctmtoolbox.html#addWidget"/>
             <keyword name="alignment" id="QCtmIPAddressEdit::alignment" ref="qctmipaddressedit.html#alignment"/>
+            <keyword name="alignment" id="QCtmIPAddressEdit::alignment" ref="qctmipaddressedit.html#alignment-prop"/>
             <keyword name="alignment" id="QCtmTableViewButtonsDelegate::alignment" ref="qctmtableviewbuttonsdelegate.html#alignment"/>
+            <keyword name="alignment" id="QCtmTableViewButtonsDelegate::alignment" ref="qctmtableviewbuttonsdelegate.html#alignment-prop"/>
             <keyword name="backgroundBrush" id="QCtmCircleProgressBar::backgroundBrush" ref="qctmcircleprogressbar.html#backgroundBrush"/>
             <keyword name="backgroundBrush" id="QCtmCircleProgressBar::backgroundBrush" ref="qctmcircleprogressbar.html#backgroundBrush-prop"/>
             <keyword name="barBrush" id="QCtmCircleProgressBar::barBrush" ref="qctmcircleprogressbar.html#barBrush"/>
@@ -411,6 +416,7 @@
             <keyword name="cancel" id="QCtmLoadingDialog::cancel" ref="qctmloadingdialog.html#cancel"/>
             <keyword name="cancelEditor" id="QCtmPathBrowser::cancelEditor" ref="qctmpathbrowser.html#cancelEditor"/>
             <keyword name="cancelEnable" id="QCtmLoadingDialog::cancelEnable" ref="qctmloadingdialog.html#cancelEnable"/>
+            <keyword name="cancelEnable" id="QCtmLoadingDialog::cancelEnable" ref="qctmloadingdialog.html#cancelEnable-prop"/>
             <keyword name="centralWidget" id="QCtmDialog::centralWidget" ref="qctmdialog.html#centralWidget"/>
             <keyword name="centralWidget" id="QCtmTabPage::centralWidget" ref="qctmtabpage.html#centralWidget"/>
             <keyword name="centralWidget" id="QCtmWindow::centralWidget" ref="qctmwindow.html#centralWidget"/>
@@ -427,16 +433,22 @@
             <keyword name="checkedHandleBrush" id="QCtmSwitchButton::checkedHandleBrush" ref="qctmswitchbutton.html#checkedHandleBrush-prop"/>
             <keyword name="checkedHandleBrush" id="QCtmSwitchButton::checkedHandleBrush" ref="qctmswitchbutton.html#checkedHandleBrush-prop"/>
             <keyword name="checkedIndexes" id="QCtmMultiComboBox::checkedIndexes" ref="qctmmulticombobox.html#checkedIndexes"/>
+            <keyword name="checkedIndexes" id="QCtmSelectionButtonBox::checkedIndexes" ref="qctmselectionbuttonbox.html#checkedIndexes"/>
+            <keyword name="checkedIndexes" id="QCtmSelectionButtonBox::checkedIndexes" ref="qctmselectionbuttonbox.html#checkedIndexes-prop"/>
             <keyword name="checkedItems" id="QCtmMultiComboBox::checkedItems" ref="qctmmulticombobox.html#checkedItems"/>
             <keyword name="child" id="QCtmClassifyTreeGroupItem::child" ref="qctmclassifytreegroupitem.html#child"/>
             <keyword name="chunkVisible" id="QCtmRangeSlider::chunkVisible" ref="qctmrangeslider.html#chunkVisible"/>
+            <keyword name="chunkVisible" id="QCtmRangeSlider::chunkVisible" ref="qctmrangeslider.html#chunkVisible-prop"/>
             <keyword name="cleanText" id="QCtmLongLongSpinBox::cleanText" ref="qctmlonglongspinbox.html#cleanText"/>
+            <keyword name="cleanText" id="QCtmLongLongSpinBox::cleanText" ref="qctmlonglongspinbox.html#cleanText-prop"/>
             <keyword name="cleanText" id="QCtmULongLongSpinBox::cleanText" ref="qctmulonglongspinbox.html#cleanText"/>
+            <keyword name="cleanText" id="QCtmULongLongSpinBox::cleanText" ref="qctmulonglongspinbox.html#cleanText-prop"/>
             <keyword name="clear" id="QCtmAbstractLogModel::clear" ref="qctmabstractlogmodel.html#clear"/>
             <keyword name="clear" id="QCtmAbstractMessageTipModel::clear" ref="qctmabstractmessagetipmodel.html#clear"/>
             <keyword name="clear" id="QCtmClassifyTreeGroupItem::clear" ref="qctmclassifytreegroupitem.html#clear"/>
             <keyword name="clear" id="QCtmIPAddressEdit::clear" ref="qctmipaddressedit.html#clear"/>
             <keyword name="clear" id="QCtmLogModel::clear" ref="qctmlogmodel.html#clear"/>
+            <keyword name="clear" id="QCtmLogWidget::clear" ref="qctmlogwidget.html#clear"/>
             <keyword name="clearAll" id="QCtmMessageTipView::clearAll" ref="qctmmessagetipview.html#clearAll"/>
             <keyword name="clickedButton" id="QCtmMessageBox::clickedButton" ref="qctmmessagebox.html#clickedButton"/>
             <keyword name="closeButtonClicked" id="QCtmMessageTipView::closeButtonClicked" ref="qctmmessagetipview.html#closeButtonClicked"/>
@@ -444,6 +456,7 @@
             <keyword name="closeButtonIcon" id="QCtmMessageTipView::closeButtonIcon" ref="qctmmessagetipview.html#closeButtonIcon-prop"/>
             <keyword name="closeEvent" id="QCtmLoadingDialog::closeEvent" ref="qctmloadingdialog.html#closeEvent"/>
             <keyword name="closeEvent" id="QCtmNavigationSidePane::closeEvent" ref="qctmnavigationsidepane.html#closeEvent"/>
+            <keyword name="closeable" id="QCtmTabWidget::closeable" ref="qctmtabwidget.html#closeable-prop"/>
             <keyword name="collapse" id="QCtmClassifyTreeView::collapse" ref="qctmclassifytreeview.html#collapse"/>
             <keyword name="collapseAll" id="QCtmClassifyTreeView::collapseAll" ref="qctmclassifytreeview.html#collapseAll"/>
             <keyword name="collapseAll" id="QCtmDrawerWidget::collapseAll" ref="qctmdrawerwidget.html#collapseAll"/>
@@ -455,6 +468,7 @@
             <keyword name="columnVisible" id="QCtmLogWidget::columnVisible" ref="qctmlogwidget.html#columnVisible"/>
             <keyword name="content" id="QCtmMessageTipData::content" ref="qctmmessagetipdata.html#content"/>
             <keyword name="context" id="QCtmLogData::context" ref="qctmlogdata.html#context"/>
+            <keyword name="copy" id="QCtmLogWidget::copy" ref="qctmlogwidget.html#copy"/>
             <keyword name="cornerWidget" id="QCtmTabPage::cornerWidget" ref="qctmtabpage.html#cornerWidget"/>
             <keyword name="count" id="QCtmClassifyTreeGroupItem::count" ref="qctmclassifytreegroupitem.html#count"/>
             <keyword name="count" id="QCtmDrawerItemWidget::count" ref="qctmdraweritemwidget.html#count"/>
@@ -462,6 +476,7 @@
             <keyword name="count" id="QCtmNavigationBar::count" ref="qctmnavigationbar.html#count"/>
             <keyword name="count" id="QCtmNavigationSideBar::count" ref="qctmnavigationsidebar.html#count"/>
             <keyword name="count" id="QCtmSelectionButtonBox::count" ref="qctmselectionbuttonbox.html#count"/>
+            <keyword name="count" id="QCtmSelectionButtonBox::count" ref="qctmselectionbuttonbox.html#count-prop"/>
             <keyword name="count" id="QCtmTabPage::count" ref="qctmtabpage.html#count"/>
             <keyword name="critical" id="QCtmMessageBox::critical" ref="qctmmessagebox.html#critical"/>
             <keyword name="currentPage" id="QCtmAbstractMultiPageItemModel::currentPage" ref="qctmabstractmultipageitemmodel.html#currentPage"/>
@@ -476,16 +491,23 @@
             <keyword name="dateTime" id="QCtmLogData::dateTime" ref="qctmlogdata.html#dateTime"/>
             <keyword name="dateTime" id="QCtmMessageTipData::dateTime" ref="qctmmessagetipdata.html#dateTime"/>
             <keyword name="decimals" id="QCtmDigitKeyboard::decimals" ref="qctmdigitkeyboard.html#decimals"/>
+            <keyword name="decimals" id="QCtmDigitKeyboard::decimals" ref="qctmdigitkeyboard.html#decimals-prop"/>
             <keyword name="decoration" id="QCtmMessageTipView::decoration" ref="qctmmessagetipview.html#decoration"/>
             <keyword name="decoration" id="QCtmMessageTipView::decoration" ref="qctmmessagetipview.html#decoration-prop"/>
             <keyword name="defaultButton" id="QCtmMessageBox::defaultButton" ref="qctmmessagebox.html#defaultButton"/>
             <keyword name="defaultStyleSheet" id="QCtmStyleSheet::defaultStyleSheet" ref="qctmstylesheet.html#defaultStyleSheet"/>
             <keyword name="displayFieldWidth" id="QCtmLongLongSpinBox::displayFieldWidth" ref="qctmlonglongspinbox.html#displayFieldWidth"/>
+            <keyword name="displayFieldWidth" id="QCtmLongLongSpinBox::displayFieldWidth" ref="qctmlonglongspinbox.html#displayFieldWidth-prop"/>
             <keyword name="displayFieldWidth" id="QCtmULongLongSpinBox::displayFieldWidth" ref="qctmulonglongspinbox.html#displayFieldWidth"/>
+            <keyword name="displayFieldWidth" id="QCtmULongLongSpinBox::displayFieldWidth" ref="qctmulonglongspinbox.html#displayFieldWidth-prop"/>
             <keyword name="displayFillChar" id="QCtmLongLongSpinBox::displayFillChar" ref="qctmlonglongspinbox.html#displayFillChar"/>
+            <keyword name="displayFillChar" id="QCtmLongLongSpinBox::displayFillChar" ref="qctmlonglongspinbox.html#displayFillChar-prop"/>
             <keyword name="displayFillChar" id="QCtmULongLongSpinBox::displayFillChar" ref="qctmulonglongspinbox.html#displayFillChar"/>
+            <keyword name="displayFillChar" id="QCtmULongLongSpinBox::displayFillChar" ref="qctmulonglongspinbox.html#displayFillChar-prop"/>
             <keyword name="displayIntegerBase" id="QCtmLongLongSpinBox::displayIntegerBase" ref="qctmlonglongspinbox.html#displayIntegerBase"/>
+            <keyword name="displayIntegerBase" id="QCtmLongLongSpinBox::displayIntegerBase" ref="qctmlonglongspinbox.html#displayIntegerBase-prop"/>
             <keyword name="displayIntegerBase" id="QCtmULongLongSpinBox::displayIntegerBase" ref="qctmulonglongspinbox.html#displayIntegerBase"/>
+            <keyword name="displayIntegerBase" id="QCtmULongLongSpinBox::displayIntegerBase" ref="qctmulonglongspinbox.html#displayIntegerBase-prop"/>
             <keyword name="doCheckBoxRect" id="QCtmHeaderView::doCheckBoxRect" ref="qctmheaderview.html#doCheckBoxRect"/>
             <keyword name="doIconRect" id="QCtmRecentViewDelegate::doIconRect" ref="qctmrecentviewdelegate.html#doIconRect"/>
             <keyword name="doMinimumHeight" id="QCtmStageProgressBar::doMinimumHeight" ref="qctmstageprogressbar.html#doMinimumHeight"/>
@@ -516,6 +538,7 @@
             <keyword name="editingFinished" id="QCtmIPAddressEdit::editingFinished" ref="qctmipaddressedit.html#editingFinished"/>
             <keyword name="errorCount" id="QCtmLogModel::errorCount" ref="qctmlogmodel.html#errorCount"/>
             <keyword name="errorIcon" id="QCtmLogModel::errorIcon" ref="qctmlogmodel.html#errorIcon"/>
+            <keyword name="errorIcon" id="QCtmLogModel::errorIcon" ref="qctmlogmodel.html#errorIcon-prop"/>
             <keyword name="errorIcon" id="QCtmLogWidget::errorIcon" ref="qctmlogwidget.html#errorIcon"/>
             <keyword name="errorIcon" id="QCtmLogWidget::errorIcon" ref="qctmlogwidget.html#errorIcon-prop"/>
             <keyword name="event" id="QCtmAbstractLogModel::event" ref="qctmabstractlogmodel.html#event"/>
@@ -526,8 +549,10 @@
             <keyword name="event" id="QCtmLongLongSpinBox::event" ref="qctmlonglongspinbox.html#event"/>
             <keyword name="event" id="QCtmPathBrowser::event" ref="qctmpathbrowser.html#event"/>
             <keyword name="event" id="QCtmRangeSlider::event" ref="qctmrangeslider.html#event"/>
+            <keyword name="event" id="QCtmSelectionButtonBox::event" ref="qctmselectionbuttonbox.html#event"/>
             <keyword name="event" id="QCtmULongLongSpinBox::event" ref="qctmulonglongspinbox.html#event"/>
             <keyword name="event" id="QCtmWindow::event" ref="qctmwindow.html#event"/>
+            <keyword name="eventFilter" id="QCtmAbstractTitleBar::eventFilter" ref="qctmabstracttitlebar.html#eventFilter"/>
             <keyword name="eventFilter" id="QCtmDialog::eventFilter" ref="qctmdialog.html#eventFilter"/>
             <keyword name="eventFilter" id="QCtmDigitKeyboard::eventFilter" ref="qctmdigitkeyboard.html#eventFilter"/>
             <keyword name="eventFilter" id="QCtmLoadingDialog::eventFilter" ref="qctmloadingdialog.html#eventFilter"/>
@@ -536,9 +561,9 @@
             <keyword name="eventFilter" id="QCtmPathBrowser::eventFilter" ref="qctmpathbrowser.html#eventFilter"/>
             <keyword name="eventFilter" id="QCtmRecentViewDelegate::eventFilter" ref="qctmrecentviewdelegate.html#eventFilter"/>
             <keyword name="eventFilter" id="QCtmTableViewButtonsDelegate::eventFilter" ref="qctmtableviewbuttonsdelegate.html#eventFilter"/>
-            <keyword name="eventFilter" id="QCtmTitleBar::eventFilter" ref="qctmtitlebar.html#eventFilter"/>
             <keyword name="eventFilter" id="QCtmWindow::eventFilter" ref="qctmwindow.html#eventFilter"/>
             <keyword name="exclusionPolicy" id="QCtmSelectionButtonBox::exclusionPolicy" ref="qctmselectionbuttonbox.html#exclusionPolicy"/>
+            <keyword name="exclusionPolicy" id="QCtmSelectionButtonBox::exclusionPolicy" ref="qctmselectionbuttonbox.html#exclusionPolicy-prop"/>
             <keyword name="exclusive" id="QCtmDrawerWidget::exclusive" ref="qctmdrawerwidget.html#exclusive"/>
             <keyword name="exclusive" id="QCtmDrawerWidget::exclusive" ref="qctmdrawerwidget.html#exclusive-prop"/>
             <keyword name="exec" id="QCtmLoadingDialog::exec" ref="qctmloadingdialog.html#exec"/>
@@ -548,6 +573,7 @@
             <keyword name="expandChanged" id="QCtmDrawerItemWidget::expandChanged" ref="qctmdraweritemwidget.html#expandChanged"/>
             <keyword name="filterAcceptsRow" id="QCtmLogFilterModel::filterAcceptsRow" ref="qctmlogfiltermodel.html#filterAcceptsRow"/>
             <keyword name="finishButtonIcon" id="QCtmEditLabel::finishButtonIcon" ref="qctmeditlabel.html#finishButtonIcon"/>
+            <keyword name="finishButtonIcon" id="QCtmEditLabel::finishButtonIcon" ref="qctmeditlabel.html#finishButtonIcon-prop"/>
             <keyword name="firstChecked" id="QCtmSelectionButtonBox::firstChecked" ref="qctmselectionbuttonbox.html#firstChecked"/>
             <keyword name="fixup" id="QCtmLongLongSpinBox::fixup" ref="qctmlonglongspinbox.html#fixup"/>
             <keyword name="fixup" id="QCtmULongLongSpinBox::fixup" ref="qctmulonglongspinbox.html#fixup"/>
@@ -582,14 +608,21 @@
             <keyword name="iconPixmap" id="QCtmMessageBox::iconPixmap" ref="qctmmessagebox.html#iconPixmap"/>
             <keyword name="iconPixmap" id="QCtmMessageBox::iconPixmap" ref="qctmmessagebox.html#iconPixmap-prop"/>
             <keyword name="iconSize" id="QCtmDrawerItemWidget::iconSize" ref="qctmdraweritemwidget.html#iconSize"/>
+            <keyword name="iconSize" id="QCtmDrawerItemWidget::iconSize" ref="qctmdraweritemwidget.html#iconSize-prop"/>
             <keyword name="iconSize" id="QCtmDrawerWidget::iconSize" ref="qctmdrawerwidget.html#iconSize"/>
+            <keyword name="iconSize" id="QCtmDrawerWidget::iconSize" ref="qctmdrawerwidget.html#iconSize-prop"/>
             <keyword name="iconSize" id="QCtmNavigationBar::iconSize" ref="qctmnavigationbar.html#iconSize"/>
+            <keyword name="iconSize" id="QCtmNavigationBar::iconSize" ref="qctmnavigationbar.html#iconSize-prop"/>
             <keyword name="iconSize" id="QCtmNavigationSideBar::iconSize" ref="qctmnavigationsidebar.html#iconSize"/>
             <keyword name="iconSize" id="QCtmNavigationSideBar::iconSize" ref="qctmnavigationsidebar.html#iconSize-prop"/>
             <keyword name="iconSize" id="QCtmTabPage::iconSize" ref="qctmtabpage.html#iconSize"/>
+            <keyword name="iconSize" id="QCtmTabPage::iconSize" ref="qctmtabpage.html#iconSize-prop"/>
             <keyword name="iconSize" id="QCtmTabWidget::iconSize" ref="qctmtabwidget.html#iconSize"/>
+            <keyword name="iconSize" id="QCtmTabWidget::iconSize" ref="qctmtabwidget.html#iconSize-prop"/>
             <keyword name="iconSize" id="QCtmTitleBar::iconSize" ref="qctmtitlebar.html#iconSize"/>
+            <keyword name="iconSize" id="QCtmTitleBar::iconSize" ref="qctmtitlebar.html#iconSize-prop"/>
             <keyword name="iconSize" id="QCtmToolBox::iconSize" ref="qctmtoolbox.html#iconSize"/>
+            <keyword name="iconSize" id="QCtmToolBox::iconSize" ref="qctmtoolbox.html#iconSize-prop"/>
             <keyword name="iconSizeChanged" id="QCtmDrawerItemWidget::iconSizeChanged" ref="qctmdraweritemwidget.html#iconSizeChanged"/>
             <keyword name="iconSizeChanged" id="QCtmDrawerWidget::iconSizeChanged" ref="qctmdrawerwidget.html#iconSizeChanged"/>
             <keyword name="iconSizeChanged" id="QCtmNavigationBar::iconSizeChanged" ref="qctmnavigationbar.html#iconSizeChanged"/>
@@ -612,6 +645,7 @@
             <keyword name="indexOf" id="QCtmToolBox::indexOf" ref="qctmtoolbox.html#indexOf"/>
             <keyword name="infoCount" id="QCtmLogModel::infoCount" ref="qctmlogmodel.html#infoCount"/>
             <keyword name="infoIcon" id="QCtmLogModel::infoIcon" ref="qctmlogmodel.html#infoIcon"/>
+            <keyword name="infoIcon" id="QCtmLogModel::infoIcon" ref="qctmlogmodel.html#infoIcon-prop"/>
             <keyword name="infoIcon" id="QCtmLogWidget::infoIcon" ref="qctmlogwidget.html#infoIcon"/>
             <keyword name="infoIcon" id="QCtmLogWidget::infoIcon" ref="qctmlogwidget.html#infoIcon-prop"/>
             <keyword name="information" id="QCtmMessageBox::information" ref="qctmmessagebox.html#information"/>
@@ -642,9 +676,11 @@
             <keyword name="insertWidget" id="QCtmToolBox::insertWidget" ref="qctmtoolbox.html#insertWidget"/>
             <keyword name="instance" id="QCtmLogManager::instance" ref="qctmlogmanager.html#instance"/>
             <keyword name="ipAddress" id="QCtmIPAddressEdit::ipAddress" ref="qctmipaddressedit.html#ipAddress"/>
+            <keyword name="ipAddress" id="QCtmIPAddressEdit::ipAddress" ref="qctmipaddressedit.html#ipAddress-prop"/>
             <keyword name="isAllCollapsed" id="QCtmDrawerWidget::isAllCollapsed" ref="qctmdrawerwidget.html#isAllCollapsed"/>
             <keyword name="isChecked" id="QCtmMultiComboBox::isChecked" ref="qctmmulticombobox.html#isChecked"/>
             <keyword name="isChecked" id="QCtmSelectionButtonBox::isChecked" ref="qctmselectionbuttonbox.html#isChecked"/>
+            <keyword name="isCloseable" id="QCtmTabWidget::isCloseable" ref="qctmtabwidget.html#isCloseable"/>
             <keyword name="isExpand" id="QCtmDrawerItemWidget::isExpand" ref="qctmdraweritemwidget.html#isExpand"/>
             <keyword name="isIndexHidden" id="QCtmClassifyTreeView::isIndexHidden" ref="qctmclassifytreeview.html#isIndexHidden"/>
             <keyword name="isReadOnly" id="QCtmEditLabel::isReadOnly" ref="qctmeditlabel.html#isReadOnly"/>
@@ -663,9 +699,6 @@
             <keyword name="leaveEvent" id="QCtmSelectionButtonBox::leaveEvent" ref="qctmselectionbuttonbox.html#leaveEvent"/>
             <keyword name="lineEdit" id="QCtmPathBrowser::lineEdit" ref="qctmpathbrowser.html#lineEdit"/>
             <keyword name="load" id="QCtmFile::load" ref="qctmfile.html#load"/>
-            <keyword name="log" id="QCtmLogEvent::log" ref="qctmlogevent.html#log"/>
-            <keyword name="logEvent" id="QCtmAbstractLogModel::logEvent" ref="qctmabstractlogmodel.html#logEvent"/>
-            <keyword name="logEvent" id="QCtmLogModel::logEvent" ref="qctmlogmodel.html#logEvent"/>
             <keyword name="logFilePath" id="QCtmLogManager::logFilePath" ref="qctmlogmanager.html#logFilePath"/>
             <keyword name="logInsertPolicy" id="QCtmLogModel::logInsertPolicy" ref="qctmlogmodel.html#logInsertPolicy"/>
             <keyword name="logInsertPolicy" id="QCtmLogWidget::logInsertPolicy" ref="qctmlogwidget.html#logInsertPolicy"/>
@@ -673,14 +706,20 @@
             <keyword name="logSizeLimit" id="QCtmLogManager::logSizeLimit" ref="qctmlogmanager.html#logSizeLimit"/>
             <keyword name="logTypeEnable" id="QCtmLogManager::logTypeEnable" ref="qctmlogmanager.html#logTypeEnable"/>
             <keyword name="lower" id="QCtmRangeSlider::lower" ref="qctmrangeslider.html#lower"/>
+            <keyword name="lower" id="QCtmRangeSlider::lower" ref="qctmrangeslider.html#lower-prop"/>
             <keyword name="lowerSliderPosition" id="QCtmRangeSlider::lowerSliderPosition" ref="qctmrangeslider.html#lowerSliderPosition"/>
             <keyword name="maximum" id="QCtmCircleProgressBar::maximum" ref="qctmcircleprogressbar.html#maximum"/>
             <keyword name="maximum" id="QCtmCircleProgressBar::maximum" ref="qctmcircleprogressbar.html#maximum-prop"/>
             <keyword name="maximum" id="QCtmDigitKeyboard::maximum" ref="qctmdigitkeyboard.html#maximum"/>
+            <keyword name="maximum" id="QCtmDigitKeyboard::maximum" ref="qctmdigitkeyboard.html#maximum-prop"/>
             <keyword name="maximum" id="QCtmLongLongSpinBox::maximum" ref="qctmlonglongspinbox.html#maximum"/>
+            <keyword name="maximum" id="QCtmLongLongSpinBox::maximum" ref="qctmlonglongspinbox.html#maximum-prop"/>
             <keyword name="maximum" id="QCtmRangeSlider::maximum" ref="qctmrangeslider.html#maximum"/>
+            <keyword name="maximum" id="QCtmRangeSlider::maximum" ref="qctmrangeslider.html#maximum-prop"/>
             <keyword name="maximum" id="QCtmStageProgressBar::maximum" ref="qctmstageprogressbar.html#maximum"/>
+            <keyword name="maximum" id="QCtmStageProgressBar::maximum" ref="qctmstageprogressbar.html#maximum-prop"/>
             <keyword name="maximum" id="QCtmULongLongSpinBox::maximum" ref="qctmulonglongspinbox.html#maximum"/>
+            <keyword name="maximum" id="QCtmULongLongSpinBox::maximum" ref="qctmulonglongspinbox.html#maximum-prop"/>
             <keyword name="maximumCount" id="QCtmAbstractMessageTipModel::maximumCount" ref="qctmabstractmessagetipmodel.html#maximumCount"/>
             <keyword name="maximumCount" id="QCtmLogModel::maximumCount" ref="qctmlogmodel.html#maximumCount"/>
             <keyword name="maximumCount" id="QCtmLogWidget::maximumCount" ref="qctmlogwidget.html#maximumCount"/>
@@ -691,10 +730,15 @@
             <keyword name="minimum" id="QCtmCircleProgressBar::minimum" ref="qctmcircleprogressbar.html#minimum"/>
             <keyword name="minimum" id="QCtmCircleProgressBar::minimum" ref="qctmcircleprogressbar.html#minimum-prop"/>
             <keyword name="minimum" id="QCtmDigitKeyboard::minimum" ref="qctmdigitkeyboard.html#minimum"/>
+            <keyword name="minimum" id="QCtmDigitKeyboard::minimum" ref="qctmdigitkeyboard.html#minimum-prop"/>
             <keyword name="minimum" id="QCtmLongLongSpinBox::minimum" ref="qctmlonglongspinbox.html#minimum"/>
+            <keyword name="minimum" id="QCtmLongLongSpinBox::minimum" ref="qctmlonglongspinbox.html#minimum-prop"/>
             <keyword name="minimum" id="QCtmRangeSlider::minimum" ref="qctmrangeslider.html#minimum"/>
+            <keyword name="minimum" id="QCtmRangeSlider::minimum" ref="qctmrangeslider.html#minimum-prop"/>
             <keyword name="minimum" id="QCtmStageProgressBar::minimum" ref="qctmstageprogressbar.html#minimum"/>
+            <keyword name="minimum" id="QCtmStageProgressBar::minimum" ref="qctmstageprogressbar.html#minimum-prop"/>
             <keyword name="minimum" id="QCtmULongLongSpinBox::minimum" ref="qctmulonglongspinbox.html#minimum"/>
+            <keyword name="minimum" id="QCtmULongLongSpinBox::minimum" ref="qctmulonglongspinbox.html#minimum-prop"/>
             <keyword name="minimumSizeHint" id="QCtmCircleProgressBar::minimumSizeHint" ref="qctmcircleprogressbar.html#minimumSizeHint"/>
             <keyword name="minimumSizeHint" id="QCtmDigitKeyboard::minimumSizeHint" ref="qctmdigitkeyboard.html#minimumSizeHint"/>
             <keyword name="minimumSizeHint" id="QCtmEditLabel::minimumSizeHint" ref="qctmeditlabel.html#minimumSizeHint"/>
@@ -709,7 +753,9 @@
             <keyword name="model" id="QCtmClassifyTreeItem::model" ref="qctmclassifytreeitem.html#model"/>
             <keyword name="model" id="QCtmMessageTipButton::model" ref="qctmmessagetipbutton.html#model"/>
             <keyword name="model" id="QCtmMessageTipView::model" ref="qctmmessagetipview.html#model"/>
+            <keyword name="model" id="QCtmMultiComboBox::model" ref="qctmmulticombobox.html#model"/>
             <keyword name="model" id="QCtmMultiPageButtonBox::model" ref="qctmmultipagebuttonbox.html#model"/>
+            <keyword name="model" id="QCtmRecentView::model" ref="qctmrecentview.html#model"/>
             <keyword name="mouseDoubleClickEvent" id="QCtmIPAddressEdit::mouseDoubleClickEvent" ref="qctmipaddressedit.html#mouseDoubleClickEvent"/>
             <keyword name="mouseMoveEvent" id="QCtmClassifyTreeView::mouseMoveEvent" ref="qctmclassifytreeview.html#mouseMoveEvent"/>
             <keyword name="mouseMoveEvent" id="QCtmIPAddressEdit::mouseMoveEvent" ref="qctmipaddressedit.html#mouseMoveEvent"/>
@@ -742,11 +788,29 @@
             <keyword name="nextButton" id="QCtmMultiPageButtonBox::nextButton" ref="qctmmultipagebuttonbox.html#nextButton"/>
             <keyword name="offset" id="QCtmAbstractMultiPageItemModel::offset" ref="qctmabstractmultipageitemmodel.html#offset"/>
             <keyword name="onAboutToShowPopup" id="QCtmSerialPortComboBox::onAboutToShowPopup" ref="qctmserialportcombobox.html#onAboutToShowPopup"/>
+            <keyword name="onCloseButtonClicked" id="QCtmAbstractTitleBar::onCloseButtonClicked" ref="qctmabstracttitlebar.html#onCloseButtonClicked"/>
+            <keyword name="onLog" id="QCtmAbstractLogModel::onLog" ref="qctmabstractlogmodel.html#onLog"/>
+            <keyword name="onLog" id="QCtmLogModel::onLog" ref="qctmlogmodel.html#onLog"/>
+            <keyword name="onMaximizeButtonClicked" id="QCtmAbstractTitleBar::onMaximizeButtonClicked" ref="qctmabstracttitlebar.html#onMaximizeButtonClicked"/>
+            <keyword name="onMinimizeButtonClicked" id="QCtmAbstractTitleBar::onMinimizeButtonClicked" ref="qctmabstracttitlebar.html#onMinimizeButtonClicked"/>
             <keyword name="onTopButtonClicked" id="QCtmRecentView::onTopButtonClicked" ref="qctmrecentview.html#onTopButtonClicked"/>
+            <keyword name="onWindowCloseButtonHint" id="QCtmAbstractTitleBar::onWindowCloseButtonHint" ref="qctmabstracttitlebar.html#onWindowCloseButtonHint"/>
+            <keyword name="onWindowCloseButtonHint" id="QCtmTitleBar::onWindowCloseButtonHint" ref="qctmtitlebar.html#onWindowCloseButtonHint"/>
+            <keyword name="onWindowMaximizeButtonHint" id="QCtmAbstractTitleBar::onWindowMaximizeButtonHint" ref="qctmabstracttitlebar.html#onWindowMaximizeButtonHint"/>
+            <keyword name="onWindowMaximizeButtonHint" id="QCtmTitleBar::onWindowMaximizeButtonHint" ref="qctmtitlebar.html#onWindowMaximizeButtonHint"/>
+            <keyword name="onWindowMaximized" id="QCtmAbstractTitleBar::onWindowMaximized" ref="qctmabstracttitlebar.html#onWindowMaximized"/>
+            <keyword name="onWindowMaximized" id="QCtmTitleBar::onWindowMaximized" ref="qctmtitlebar.html#onWindowMaximized"/>
+            <keyword name="onWindowMinimizeButtonHint" id="QCtmAbstractTitleBar::onWindowMinimizeButtonHint" ref="qctmabstracttitlebar.html#onWindowMinimizeButtonHint"/>
+            <keyword name="onWindowMinimizeButtonHint" id="QCtmTitleBar::onWindowMinimizeButtonHint" ref="qctmtitlebar.html#onWindowMinimizeButtonHint"/>
+            <keyword name="onWindowTitleChanged" id="QCtmAbstractTitleBar::onWindowTitleChanged" ref="qctmabstracttitlebar.html#onWindowTitleChanged"/>
+            <keyword name="onWindowTitleChanged" id="QCtmTitleBar::onWindowTitleChanged" ref="qctmtitlebar.html#onWindowTitleChanged"/>
             <keyword name="operator=" id="QCtmSignalBlocker::operator=" ref="qctmsignalblocker.html#operator-eq"/>
             <keyword name="orientation" id="QCtmRangeSlider::orientation" ref="qctmrangeslider.html#orientation"/>
+            <keyword name="orientation" id="QCtmRangeSlider::orientation" ref="qctmrangeslider.html#orientation-prop"/>
             <keyword name="orientation" id="QCtmSelectionButtonBox::orientation" ref="qctmselectionbuttonbox.html#orientation"/>
+            <keyword name="orientation" id="QCtmSelectionButtonBox::orientation" ref="qctmselectionbuttonbox.html#orientation-prop"/>
             <keyword name="orientation" id="QCtmStageProgressBar::orientation" ref="qctmstageprogressbar.html#orientation"/>
+            <keyword name="orientation" id="QCtmStageProgressBar::orientation" ref="qctmstageprogressbar.html#orientation-prop"/>
             <keyword name="pageButtonCount" id="QCtmMultiPageButtonBox::pageButtonCount" ref="qctmmultipagebuttonbox.html#pageButtonCount"/>
             <keyword name="pageCount" id="QCtmAbstractMultiPageItemModel::pageCount" ref="qctmabstractmultipageitemmodel.html#pageCount"/>
             <keyword name="pageCount" id="QCtmMultiPageStringListModel::pageCount" ref="qctmmultipagestringlistmodel.html#pageCount"/>
@@ -773,20 +837,25 @@
             <keyword name="parent" id="QCtmRecentModel::parent" ref="qctmrecentmodel.html#parent"/>
             <keyword name="parseObjectNames" id="QCtmLogManager::parseObjectNames" ref="qctmlogmanager.html#parseObjectNames"/>
             <keyword name="path" id="QCtmPathBrowser::path" ref="qctmpathbrowser.html#path"/>
+            <keyword name="path" id="QCtmPathBrowser::path" ref="qctmpathbrowser.html#path-prop"/>
             <keyword name="path" id="QCtmRecentData::path" ref="qctmrecentdata.html#path-var"/>
             <keyword name="penCapStyle" id="QCtmCircleProgressBar::penCapStyle" ref="qctmcircleprogressbar.html#penCapStyle"/>
             <keyword name="penCapStyle" id="QCtmCircleProgressBar::penCapStyle" ref="qctmcircleprogressbar.html#penCapStyle-prop"/>
             <keyword name="popup" id="QCtmNavigationSidePane::popup" ref="qctmnavigationsidepane.html#popup"/>
             <keyword name="prefix" id="QCtmLongLongSpinBox::prefix" ref="qctmlonglongspinbox.html#prefix"/>
+            <keyword name="prefix" id="QCtmLongLongSpinBox::prefix" ref="qctmlonglongspinbox.html#prefix-prop"/>
             <keyword name="prefix" id="QCtmULongLongSpinBox::prefix" ref="qctmulonglongspinbox.html#prefix"/>
+            <keyword name="prefix" id="QCtmULongLongSpinBox::prefix" ref="qctmulonglongspinbox.html#prefix-prop"/>
             <keyword name="prev" id="QCtmAbstractMultiPageItemModel::prev" ref="qctmabstractmultipageitemmodel.html#prev"/>
             <keyword name="prevButton" id="QCtmMultiPageButtonBox::prevButton" ref="qctmmultipagebuttonbox.html#prevButton"/>
             <keyword name="question" id="QCtmMessageBox::question" ref="qctmmessagebox.html#question"/>
             <keyword name="rangeChanged" id="QCtmRangeSlider::rangeChanged" ref="qctmrangeslider.html#rangeChanged"/>
             <keyword name="rateBackground" id="QCtmStageProgressBar::rateBackground" ref="qctmstageprogressbar.html#rateBackground"/>
+            <keyword name="rateBackground" id="QCtmStageProgressBar::rateBackground" ref="qctmstageprogressbar.html#rateBackground-prop"/>
             <keyword name="readOnly" id="QCtmEditLabel::readOnly" ref="qctmeditlabel.html#readOnly-prop"/>
             <keyword name="readOnly" id="QCtmIPAddressEdit::readOnly" ref="qctmipaddressedit.html#readOnly-prop"/>
             <keyword name="readOnly" id="QCtmPathBrowser::readOnly" ref="qctmpathbrowser.html#readOnly"/>
+            <keyword name="readOnly" id="QCtmPathBrowser::readOnly" ref="qctmpathbrowser.html#readOnly-prop"/>
             <keyword name="reblock" id="QCtmSignalBlocker::reblock" ref="qctmsignalblocker.html#reblock"/>
             <keyword name="recentClicked" id="QCtmRecentView::recentClicked" ref="qctmrecentview.html#recentClicked"/>
             <keyword name="recentDatas" id="QCtmRecentModel::recentDatas" ref="qctmrecentmodel.html#recentDatas"/>
@@ -820,6 +889,7 @@
             <keyword name="reversedOrder" id="QCtmAbstractMessageTipModel::reversedOrder" ref="qctmabstractmessagetipmodel.html#reversedOrder"/>
             <keyword name="reversedOrder" id="QCtmAbstractMessageTipModel::reversedOrder" ref="qctmabstractmessagetipmodel.html#reversedOrder-prop"/>
             <keyword name="revertButtonIcon" id="QCtmEditLabel::revertButtonIcon" ref="qctmeditlabel.html#revertButtonIcon"/>
+            <keyword name="revertButtonIcon" id="QCtmEditLabel::revertButtonIcon" ref="qctmeditlabel.html#revertButtonIcon-prop"/>
             <keyword name="rowCount" id="QCtmAbstractMessageTipModel::rowCount" ref="qctmabstractmessagetipmodel.html#rowCount"/>
             <keyword name="rowCount" id="QCtmClassifyTreeModel::rowCount" ref="qctmclassifytreemodel.html#rowCount"/>
             <keyword name="rowCount" id="QCtmLogModel::rowCount" ref="qctmlogmodel.html#rowCount"/>
@@ -829,6 +899,7 @@
             <keyword name="save" id="QCtmFile::save" ref="qctmfile.html#save"/>
             <keyword name="scrollTo" id="QCtmClassifyTreeView::scrollTo" ref="qctmclassifytreeview.html#scrollTo"/>
             <keyword name="search" id="QCtmLogFilterModel::search" ref="qctmlogfiltermodel.html#search"/>
+            <keyword name="search" id="QCtmLogWidget::search" ref="qctmlogwidget.html#search"/>
             <keyword name="search" id="QCtmRecentModel::search" ref="qctmrecentmodel.html#search"/>
             <keyword name="sectionSizeFromContents" id="QCtmHeaderView::sectionSizeFromContents" ref="qctmheaderview.html#sectionSizeFromContents"/>
             <keyword name="setAlignment" id="QCtmIPAddressEdit::setAlignment" ref="qctmipaddressedit.html#setAlignment"/>
@@ -849,6 +920,7 @@
             <keyword name="setCheckedHandleBrush" id="QCtmSwitchButton::setCheckedHandleBrush" ref="qctmswitchbutton.html#checkedHandleBrush-prop"/>
             <keyword name="setChunkVisible" id="QCtmRangeSlider::setChunkVisible" ref="qctmrangeslider.html#setChunkVisible"/>
             <keyword name="setCloseButtonIcon" id="QCtmMessageTipView::setCloseButtonIcon" ref="qctmmessagetipview.html#setCloseButtonIcon"/>
+            <keyword name="setCloseable" id="QCtmTabWidget::setCloseable" ref="qctmtabwidget.html#setCloseable"/>
             <keyword name="setColumnVisible" id="QCtmLogWidget::setColumnVisible" ref="qctmlogwidget.html#setColumnVisible"/>
             <keyword name="setContent" id="QCtmMessageTipData::setContent" ref="qctmmessagetipdata.html#setContent"/>
             <keyword name="setCurrentPage" id="QCtmAbstractMultiPageItemModel::setCurrentPage" ref="qctmabstractmultipageitemmodel.html#setCurrentPage"/>
@@ -928,7 +1000,9 @@
             <keyword name="setModel" id="QCtmHeaderView::setModel" ref="qctmheaderview.html#setModel"/>
             <keyword name="setModel" id="QCtmMessageTipButton::setModel" ref="qctmmessagetipbutton.html#setModel"/>
             <keyword name="setModel" id="QCtmMessageTipView::setModel" ref="qctmmessagetipview.html#setModel"/>
+            <keyword name="setModel" id="QCtmMultiComboBox::setModel" ref="qctmmulticombobox.html#setModel"/>
             <keyword name="setModel" id="QCtmMultiPageButtonBox::setModel" ref="qctmmultipagebuttonbox.html#setModel"/>
+            <keyword name="setModel" id="QCtmRecentView::setModel" ref="qctmrecentview.html#setModel"/>
             <keyword name="setMovie" id="QCtmLoadingDialog::setMovie" ref="qctmloadingdialog.html#setMovie"/>
             <keyword name="setNavigationBar" id="QCtmNavigationSidePane::setNavigationBar" ref="qctmnavigationsidepane.html#setNavigationBar"/>
             <keyword name="setNavigationBar" id="QCtmWindow::setNavigationBar" ref="qctmwindow.html#setNavigationBar"/>
@@ -1027,6 +1101,7 @@
             <keyword name="setWarningIcon" id="QCtmLogWidget::setWarningIcon" ref="qctmlogwidget.html#setWarningIcon"/>
             <keyword name="setWidget" id="QCtmDrawerItemWidget::setWidget" ref="qctmdraweritemwidget.html#setWidget"/>
             <keyword name="setWidget" id="QCtmNavigationSidePane::setWidget" ref="qctmnavigationsidepane.html#setWidget"/>
+            <keyword name="showEvent" id="QCtmAbstractTitleBar::showEvent" ref="qctmabstracttitlebar.html#showEvent"/>
             <keyword name="showEvent" id="QCtmDigitKeyboard::showEvent" ref="qctmdigitkeyboard.html#showEvent"/>
             <keyword name="showEvent" id="QCtmDrawerWidget::showEvent" ref="qctmdrawerwidget.html#showEvent"/>
             <keyword name="showEvent" id="QCtmInputDialog::showEvent" ref="qctminputdialog.html#showEvent"/>
@@ -1034,15 +1109,20 @@
             <keyword name="showEvent" id="QCtmMessageBox::showEvent" ref="qctmmessagebox.html#showEvent"/>
             <keyword name="showEvent" id="QCtmMessageTipView::showEvent" ref="qctmmessagetipview.html#showEvent"/>
             <keyword name="showEvent" id="QCtmNavigationSidePane::showEvent" ref="qctmnavigationsidepane.html#showEvent"/>
-            <keyword name="showEvent" id="QCtmTitleBar::showEvent" ref="qctmtitlebar.html#showEvent"/>
             <keyword name="showEvent" id="QCtmToolBox::showEvent" ref="qctmtoolbox.html#showEvent"/>
+            <keyword name="showIconSystemMenu" id="QCtmAbstractTitleBar::showIconSystemMenu" ref="qctmabstracttitlebar.html#showIconSystemMenu"/>
+            <keyword name="showIconSystemMenu" id="QCtmTitleBar::showIconSystemMenu" ref="qctmtitlebar.html#showIconSystemMenu"/>
             <keyword name="showLog" id="QCtmLogFilterModel::showLog" ref="qctmlogfiltermodel.html#showLog"/>
+            <keyword name="showLog" id="QCtmLogWidget::showLog" ref="qctmlogwidget.html#showLog"/>
             <keyword name="showPopup" id="QCtmComboBox::showPopup" ref="qctmcombobox.html#showPopup"/>
             <keyword name="sibling" id="QCtmAbstractMultiPageTableModel::sibling" ref="qctmabstractmultipagetablemodel.html#sibling"/>
             <keyword name="simpleBindBox" id="QCtmDigitKeyboard::simpleBindBox" ref="qctmdigitkeyboard.html#simpleBindBox"/>
             <keyword name="singleStep" id="QCtmDigitKeyboard::singleStep" ref="qctmdigitkeyboard.html#singleStep"/>
+            <keyword name="singleStep" id="QCtmDigitKeyboard::singleStep" ref="qctmdigitkeyboard.html#singleStep-prop"/>
             <keyword name="singleStep" id="QCtmLongLongSpinBox::singleStep" ref="qctmlonglongspinbox.html#singleStep"/>
+            <keyword name="singleStep" id="QCtmLongLongSpinBox::singleStep" ref="qctmlonglongspinbox.html#singleStep-prop"/>
             <keyword name="singleStep" id="QCtmULongLongSpinBox::singleStep" ref="qctmulonglongspinbox.html#singleStep"/>
+            <keyword name="singleStep" id="QCtmULongLongSpinBox::singleStep" ref="qctmulonglongspinbox.html#singleStep-prop"/>
             <keyword name="sizeHint" id="QCtmCircleProgressBar::sizeHint" ref="qctmcircleprogressbar.html#sizeHint"/>
             <keyword name="sizeHint" id="QCtmDigitKeyboard::sizeHint" ref="qctmdigitkeyboard.html#sizeHint"/>
             <keyword name="sizeHint" id="QCtmIPAddressEdit::sizeHint" ref="qctmipaddressedit.html#sizeHint"/>
@@ -1060,9 +1140,12 @@
             <keyword name="smartPosition" id="QCtmNavigationSidePane::smartPosition" ref="qctmnavigationsidepane.html#smartPosition"/>
             <keyword name="smartSize" id="QCtmNavigationSidePane::smartSize" ref="qctmnavigationsidepane.html#smartSize"/>
             <keyword name="space" id="QCtmTableViewButtonsDelegate::space" ref="qctmtableviewbuttonsdelegate.html#space"/>
+            <keyword name="space" id="QCtmTableViewButtonsDelegate::space" ref="qctmtableviewbuttonsdelegate.html#space-prop"/>
             <keyword name="stageCircleRadius" id="QCtmStageProgressBar::stageCircleRadius" ref="qctmstageprogressbar.html#stageCircleRadius"/>
             <keyword name="stageCount" id="QCtmStageProgressBar::stageCount" ref="qctmstageprogressbar.html#stageCount"/>
+            <keyword name="stageCount" id="QCtmStageProgressBar::stageCount" ref="qctmstageprogressbar.html#stageCount-prop"/>
             <keyword name="stageIndexTextPen" id="QCtmStageProgressBar::stageIndexTextPen" ref="qctmstageprogressbar.html#stageIndexTextPen"/>
+            <keyword name="stageIndexTextPen" id="QCtmStageProgressBar::stageIndexTextPen" ref="qctmstageprogressbar.html#stageIndexTextPen-prop"/>
             <keyword name="standardButton" id="QCtmMessageBox::standardButton" ref="qctmmessagebox.html#standardButton"/>
             <keyword name="standardButtons" id="QCtmMessageBox::standardButtons" ref="qctmmessagebox.html#standardButtons"/>
             <keyword name="standardButtons" id="QCtmMessageBox::standardButtons" ref="qctmmessagebox.html#standardButtons-prop"/>
@@ -1072,10 +1155,14 @@
             <keyword name="stepEnabled" id="QCtmLongLongSpinBox::stepEnabled" ref="qctmlonglongspinbox.html#stepEnabled"/>
             <keyword name="stepEnabled" id="QCtmULongLongSpinBox::stepEnabled" ref="qctmulonglongspinbox.html#stepEnabled"/>
             <keyword name="stepType" id="QCtmLongLongSpinBox::stepType" ref="qctmlonglongspinbox.html#stepType"/>
+            <keyword name="stepType" id="QCtmLongLongSpinBox::stepType" ref="qctmlonglongspinbox.html#stepType-prop"/>
             <keyword name="stepType" id="QCtmULongLongSpinBox::stepType" ref="qctmulonglongspinbox.html#stepType"/>
+            <keyword name="stepType" id="QCtmULongLongSpinBox::stepType" ref="qctmulonglongspinbox.html#stepType-prop"/>
             <keyword name="stringList" id="QCtmMultiPageStringListModel::stringList" ref="qctmmultipagestringlistmodel.html#stringList"/>
             <keyword name="suffix" id="QCtmLongLongSpinBox::suffix" ref="qctmlonglongspinbox.html#suffix"/>
+            <keyword name="suffix" id="QCtmLongLongSpinBox::suffix" ref="qctmlonglongspinbox.html#suffix-prop"/>
             <keyword name="suffix" id="QCtmULongLongSpinBox::suffix" ref="qctmulonglongspinbox.html#suffix"/>
+            <keyword name="suffix" id="QCtmULongLongSpinBox::suffix" ref="qctmulonglongspinbox.html#suffix-prop"/>
             <keyword name="takeCentralWidget" id="QCtmTabPage::takeCentralWidget" ref="qctmtabpage.html#takeCentralWidget"/>
             <keyword name="text" id="QCtmCircleProgressBar::text" ref="qctmcircleprogressbar.html#text"/>
             <keyword name="text" id="QCtmCircleProgressBar::text" ref="qctmcircleprogressbar.html#text-prop"/>
@@ -1084,6 +1171,7 @@
             <keyword name="text" id="QCtmMessageBox::text" ref="qctmmessagebox.html#text-prop"/>
             <keyword name="text" id="QCtmSelectionButtonBox::text" ref="qctmselectionbuttonbox.html#text"/>
             <keyword name="text" id="QCtmStageProgressBar::text" ref="qctmstageprogressbar.html#text"/>
+            <keyword name="textChanged" id="QCtmLongLongSpinBox::textChanged" ref="qctmlonglongspinbox.html#textChanged"/>
             <keyword name="textFormat" id="QCtmMessageBox::textFormat" ref="qctmmessagebox.html#textFormat"/>
             <keyword name="textFormat" id="QCtmMessageBox::textFormat" ref="qctmmessagebox.html#textFormat-prop"/>
             <keyword name="textFromValue" id="QCtmLongLongSpinBox::textFromValue" ref="qctmlonglongspinbox.html#textFromValue"/>
@@ -1092,7 +1180,10 @@
             <keyword name="textInteractionFlags" id="QCtmMessageBox::textInteractionFlags" ref="qctmmessagebox.html#textInteractionFlags-prop"/>
             <keyword name="textVisible" id="QCtmCircleProgressBar::textVisible" ref="qctmcircleprogressbar.html#textVisible-prop"/>
             <keyword name="textVisible" id="QCtmStageProgressBar::textVisible" ref="qctmstageprogressbar.html#textVisible"/>
+            <keyword name="textVisible" id="QCtmStageProgressBar::textVisible" ref="qctmstageprogressbar.html#textVisible-prop"/>
             <keyword name="texts" id="QCtmSelectionButtonBox::texts" ref="qctmselectionbuttonbox.html#texts"/>
+            <keyword name="texts" id="QCtmSelectionButtonBox::texts" ref="qctmselectionbuttonbox.html#texts-prop"/>
+            <keyword name="textsChanged" id="QCtmSelectionButtonBox::textsChanged" ref="qctmselectionbuttonbox.html#textsChanged"/>
             <keyword name="tickPosition" id="QCtmRangeSlider::tickPosition" ref="qctmrangeslider.html#tickPosition"/>
             <keyword name="time" id="QCtmRecentData::time" ref="qctmrecentdata.html#time-var"/>
             <keyword name="timeColor" id="QCtmMessageTipModel::timeColor" ref="qctmmessagetipmodel.html#timeColor"/>
@@ -1101,6 +1192,7 @@
             <keyword name="timeColor" id="QCtmMessageTipView::timeColor" ref="qctmmessagetipview.html#timeColor-prop"/>
             <keyword name="timeout" id="QCtmMessageBox::timeout" ref="qctmmessagebox.html#timeout"/>
             <keyword name="timeoutVisible" id="QCtmMessageBox::timeoutVisible" ref="qctmmessagebox.html#timeoutVisible"/>
+            <keyword name="timeoutVisible" id="QCtmMessageBox::timeoutVisible" ref="qctmmessagebox.html#timeoutVisible-prop"/>
             <keyword name="tipColor" id="QCtmMessageTipButton::tipColor" ref="qctmmessagetipbutton.html#tipColor"/>
             <keyword name="tipColor" id="QCtmMessageTipButton::tipColor" ref="qctmmessagetipbutton.html#tipColor-prop"/>
             <keyword name="title" id="QCtmDrawerItemWidget::title" ref="qctmdraweritemwidget.html#title"/>
@@ -1120,11 +1212,16 @@
             <keyword name="topButtonClicked" id="QCtmRecentView::topButtonClicked" ref="qctmrecentview.html#topButtonClicked"/>
             <keyword name="topButtonClicked" id="QCtmRecentViewDelegate::topButtonClicked" ref="qctmrecentviewdelegate.html#topButtonClicked"/>
             <keyword name="topButtonIcon" id="QCtmRecentView::topButtonIcon" ref="qctmrecentview.html#topButtonIcon"/>
+            <keyword name="topButtonIcon" id="QCtmRecentView::topButtonIcon" ref="qctmrecentview.html#topButtonIcon-prop"/>
             <keyword name="topButtonIcon" id="QCtmRecentViewDelegate::topButtonIcon" ref="qctmrecentviewdelegate.html#topButtonIcon"/>
+            <keyword name="topButtonIcon" id="QCtmRecentViewDelegate::topButtonIcon" ref="qctmrecentviewdelegate.html#topButtonIcon-prop"/>
             <keyword name="topButtonVisible" id="QCtmRecentView::topButtonVisible" ref="qctmrecentview.html#topButtonVisible"/>
+            <keyword name="topButtonVisible" id="QCtmRecentView::topButtonVisible" ref="qctmrecentview.html#topButtonVisible-prop"/>
             <keyword name="topButtonVisible" id="QCtmRecentViewDelegate::topButtonVisible" ref="qctmrecentviewdelegate.html#topButtonVisible"/>
+            <keyword name="topButtonVisible" id="QCtmRecentViewDelegate::topButtonVisible" ref="qctmrecentviewdelegate.html#topButtonVisible-prop"/>
             <keyword name="totalSize" id="QCtmDrawerWidget::totalSize" ref="qctmdrawerwidget.html#totalSize"/>
             <keyword name="touchControlStyle" id="QCtmMessageTipView::touchControlStyle" ref="qctmmessagetipview.html#touchControlStyle"/>
+            <keyword name="touchControlStyle" id="QCtmMessageTipView::touchControlStyle" ref="qctmmessagetipview.html#touchControlStyle-prop"/>
             <keyword name="tracking" id="QCtmRangeSlider::tracking" ref="qctmrangeslider.html#tracking-prop"/>
             <keyword name="type" id="QCtmLogData::type" ref="qctmlogdata.html#type"/>
             <keyword name="unRegisterModel" id="QCtmLogManager::unRegisterModel" ref="qctmlogmanager.html#unRegisterModel"/>
@@ -1138,23 +1235,30 @@
             <keyword name="uncheckedHandleBrush" id="QCtmSwitchButton::uncheckedHandleBrush" ref="qctmswitchbutton.html#uncheckedHandleBrush-prop"/>
             <keyword name="uncheckedHandleBrush" id="QCtmSwitchButton::uncheckedHandleBrush" ref="qctmswitchbutton.html#uncheckedHandleBrush-prop"/>
             <keyword name="uniformButtonSize" id="QCtmTableViewButtonsDelegate::uniformButtonSize" ref="qctmtableviewbuttonsdelegate.html#uniformButtonSize"/>
+            <keyword name="uniformButtonSize" id="QCtmTableViewButtonsDelegate::uniformButtonSize" ref="qctmtableviewbuttonsdelegate.html#uniformButtonSize-prop"/>
             <keyword name="uniformSize" id="QCtmSelectionButtonBox::uniformSize" ref="qctmselectionbuttonbox.html#uniformSize"/>
+            <keyword name="uniformSize" id="QCtmSelectionButtonBox::uniformSize" ref="qctmselectionbuttonbox.html#uniformSize-prop"/>
             <keyword name="units" id="QCtmDigitKeyboard::units" ref="qctmdigitkeyboard.html#units"/>
             <keyword name="update" id="QCtmTableViewButtonsDelegate::update" ref="qctmtableviewbuttonsdelegate.html#update"/>
             <keyword name="updateGeometries" id="QCtmClassifyTreeView::updateGeometries" ref="qctmclassifytreeview.html#updateGeometries"/>
             <keyword name="upper" id="QCtmRangeSlider::upper" ref="qctmrangeslider.html#upper"/>
+            <keyword name="upper" id="QCtmRangeSlider::upper" ref="qctmrangeslider.html#upper-prop"/>
             <keyword name="upperSliderPosition" id="QCtmRangeSlider::upperSliderPosition" ref="qctmrangeslider.html#upperSliderPosition"/>
             <keyword name="validate" id="QCtmLongLongSpinBox::validate" ref="qctmlonglongspinbox.html#validate"/>
             <keyword name="validate" id="QCtmULongLongSpinBox::validate" ref="qctmulonglongspinbox.html#validate"/>
             <keyword name="value" id="QCtmCircleProgressBar::value" ref="qctmcircleprogressbar.html#value"/>
             <keyword name="value" id="QCtmCircleProgressBar::value" ref="qctmcircleprogressbar.html#value-prop"/>
             <keyword name="value" id="QCtmDigitKeyboard::value" ref="qctmdigitkeyboard.html#value"/>
+            <keyword name="value" id="QCtmDigitKeyboard::value" ref="qctmdigitkeyboard.html#value-prop"/>
             <keyword name="value" id="QCtmLongLongSpinBox::value" ref="qctmlonglongspinbox.html#value"/>
+            <keyword name="value" id="QCtmLongLongSpinBox::value" ref="qctmlonglongspinbox.html#value-prop"/>
             <keyword name="value" id="QCtmStageProgressBar::value" ref="qctmstageprogressbar.html#value"/>
+            <keyword name="value" id="QCtmStageProgressBar::value" ref="qctmstageprogressbar.html#value-prop"/>
             <keyword name="value" id="QCtmULongLongSpinBox::value" ref="qctmulonglongspinbox.html#value"/>
+            <keyword name="value" id="QCtmULongLongSpinBox::value" ref="qctmulonglongspinbox.html#value-prop"/>
             <keyword name="valueChanged" id="QCtmCircleProgressBar::valueChanged" ref="qctmcircleprogressbar.html#value-prop"/>
             <keyword name="valueChanged" id="QCtmDigitKeyboard::valueChanged" ref="qctmdigitkeyboard.html#value-prop"/>
-            <keyword name="valueChanged" id="QCtmLongLongSpinBox::valueChanged" ref="qctmlonglongspinbox.html#value-prop"/>
+            <keyword name="valueChanged" id="QCtmLongLongSpinBox::valueChanged" ref="qctmlonglongspinbox.html#valueChanged"/>
             <keyword name="valueChanged" id="QCtmRangeSlider::valueChanged" ref="qctmrangeslider.html#valueChanged"/>
             <keyword name="valueChanged" id="QCtmStageProgressBar::valueChanged" ref="qctmstageprogressbar.html#valueChanged"/>
             <keyword name="valueChanged" id="QCtmULongLongSpinBox::valueChanged" ref="qctmulonglongspinbox.html#value-prop"/>
@@ -1170,6 +1274,7 @@
             <keyword name="warning" id="QCtmMessageBox::warning" ref="qctmmessagebox.html#warning"/>
             <keyword name="warningCount" id="QCtmLogModel::warningCount" ref="qctmlogmodel.html#warningCount"/>
             <keyword name="warningIcon" id="QCtmLogModel::warningIcon" ref="qctmlogmodel.html#warningIcon"/>
+            <keyword name="warningIcon" id="QCtmLogModel::warningIcon" ref="qctmlogmodel.html#warningIcon-prop"/>
             <keyword name="warningIcon" id="QCtmLogWidget::warningIcon" ref="qctmlogwidget.html#warningIcon"/>
             <keyword name="warningIcon" id="QCtmLogWidget::warningIcon" ref="qctmlogwidget.html#warningIcon-prop"/>
             <keyword name="widget" id="QCtmDrawerItemWidget::widget" ref="qctmdraweritemwidget.html#widget"/>
@@ -1181,6 +1286,7 @@
             <keyword name="~QCtmAbstractMessageTipModel" id="QCtmAbstractMessageTipModel::~QCtmAbstractMessageTipModel" ref="qctmabstractmessagetipmodel.html#dtor.QCtmAbstractMessageTipModel"/>
             <keyword name="~QCtmAbstractMessageTipView" id="QCtmAbstractMessageTipView::~QCtmAbstractMessageTipView" ref="qctmabstractmessagetipview.html#dtor.QCtmAbstractMessageTipView"/>
             <keyword name="~QCtmAbstractMultiPageItemModel" id="QCtmAbstractMultiPageItemModel::~QCtmAbstractMultiPageItemModel" ref="qctmabstractmultipageitemmodel.html#dtor.QCtmAbstractMultiPageItemModel"/>
+            <keyword name="~QCtmAbstractTitleBar" id="QCtmAbstractTitleBar::~QCtmAbstractTitleBar" ref="qctmabstracttitlebar.html#dtor.QCtmAbstractTitleBar"/>
             <keyword name="~QCtmApplication" id="QCtmApplication::~QCtmApplication" ref="qctmapplication.html#dtor.QCtmApplication"/>
             <keyword name="~QCtmCircleProgressBar" id="QCtmCircleProgressBar::~QCtmCircleProgressBar" ref="qctmcircleprogressbar.html#dtor.QCtmCircleProgressBar"/>
             <keyword name="~QCtmClassifyTreeGroupItem" id="QCtmClassifyTreeGroupItem::~QCtmClassifyTreeGroupItem" ref="qctmclassifytreegroupitem.html#dtor.QCtmClassifyTreeGroupItem"/>
@@ -1199,7 +1305,6 @@
             <keyword name="~QCtmInputDialog" id="QCtmInputDialog::~QCtmInputDialog" ref="qctminputdialog.html#dtor.QCtmInputDialog"/>
             <keyword name="~QCtmLoadingDialog" id="QCtmLoadingDialog::~QCtmLoadingDialog" ref="qctmloadingdialog.html#dtor.QCtmLoadingDialog"/>
             <keyword name="~QCtmLogData" id="QCtmLogData::~QCtmLogData" ref="qctmlogdata.html#dtor.QCtmLogData"/>
-            <keyword name="~QCtmLogEvent" id="QCtmLogEvent::~QCtmLogEvent" ref="qctmlogevent.html#dtor.QCtmLogEvent"/>
             <keyword name="~QCtmLogFilterModel" id="QCtmLogFilterModel::~QCtmLogFilterModel" ref="qctmlogfiltermodel.html#dtor.QCtmLogFilterModel"/>
             <keyword name="~QCtmLogManager" id="QCtmLogManager::~QCtmLogManager" ref="qctmlogmanager.html#dtor.QCtmLogManager"/>
             <keyword name="~QCtmLogModel" id="QCtmLogModel::~QCtmLogModel" ref="qctmlogmodel.html#dtor.QCtmLogModel"/>
@@ -1237,6 +1342,9 @@
             <keyword name="~QCtmWindow" id="QCtmWindow::~QCtmWindow" ref="qctmwindow.html#dtor.QCtmWindow"/>
         </keywords>
         <files>
+            <file>images/&lt;examplename-class-hierarchy&gt;</file>
+            <file>images/&lt;examplename-screenshot&gt;</file>
+            <file>images/&lt;examplename-workflow-diagram&gt;</file>
             <file>images/QCtmClassifyTreeViewDetail.png</file>
             <file>images/QCtmDrawerWidgetDetail.png</file>
             <file>images/QCtmEditLabelDetail.png</file>
@@ -1275,6 +1383,8 @@
             <file>qctmabstractmultipageitemmodel.html</file>
             <file>qctmabstractmultipagetablemodel-members.html</file>
             <file>qctmabstractmultipagetablemodel.html</file>
+            <file>qctmabstracttitlebar-members.html</file>
+            <file>qctmabstracttitlebar.html</file>
             <file>qctmapplication-members.html</file>
             <file>qctmapplication.html</file>
             <file>qctmcircleprogressbar-members.html</file>
@@ -1317,8 +1427,6 @@
             <file>qctmloadingdialog.html</file>
             <file>qctmlogdata-members.html</file>
             <file>qctmlogdata.html</file>
-            <file>qctmlogevent-members.html</file>
-            <file>qctmlogevent.html</file>
             <file>qctmlogfiltermodel-members.html</file>
             <file>qctmlogfiltermodel.html</file>
             <file>qctmlogmanager-members.html</file>
@@ -1394,6 +1502,7 @@
             <file>qctmwindow-members.html</file>
             <file>qctmwindow.html</file>
             <file>qcustomui-module.html</file>
+            <file>qcustomui-path-to-example-dir-example.html</file>
             <file>search-results.html</file>
             <file>style/offline-dark.css</file>
             <file>style/offline-simple.css</file>

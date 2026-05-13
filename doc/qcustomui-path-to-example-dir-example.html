@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+<!-- app-examples-template.qdoc -->
+  <meta name="description" content="&lt;Description of the example's objective in one sentence.&gt; category {Application Examples}">
+  <title>&lt;Application Example Name&gt; | QCustomUi 1.22.0</title>
+  <link rel="stylesheet" type="text/css" href="style/offline-simple.css" />
+  <script type="text/javascript">
+    document.getElementsByTagName("link").item(0).setAttribute("href", "style/offline.css");
+    // loading style sheet breaks anchors that were jumped to before
+    // so force jumping to anchor again
+    setTimeout(function() {
+        var anchor = location.hash;
+        // need to jump to different anchor first (e.g. none)
+        location.hash = "#";
+        setTimeout(function() {
+            location.hash = anchor;
+        }, 0);
+    }, 0);
+  </script>
+</head>
+<body>
+<div class="header" id="qtdocheader">
+    <div class="main">
+    <div class="main-rounded">
+        <div class="navigationbar">
+        <ul>
+<li><a href="index.html">QCustomUi 1.22.0</a></li>
+<li>&lt;Application Example Name&gt;</li>
+<li id="buildversion">QCustomUi 1.22.0 Reference Documentation</li>
+    </ul>
+    </div>
+</div>
+<div class="content">
+<div class="line">
+<div class="content mainContent">
+<div class="sidebar">
+<div class="toc">
+<h3 id="toc">Contents</h3>
+<ul>
+<li class="level1"><a href="#running-the-example">Running the Example</a></li>
+<li class="level1"><a href="#platform-notes">Platform notes</a></li>
+<li class="level1"><a href="#ui-walkthrough">UI walkthrough</a></li>
+<li class="level2"><a href="#class-hierarchy">Class Hierarchy</a></li>
+<li class="level1"><a href="#feature-a">&lt;Feature A&gt;</a></li>
+<li class="level1"><a href="#feature-b">&lt;Feature B&gt;</a></li>
+<li class="level1"><a href="#best-practices">Best practices</a></li>
+<li class="level1"><a href="#squish-gui-testing">Squish GUI testing</a></li>
+<li class="level1"><a href="#source-files">Source files</a></li>
+</ul>
+</div>
+<div class="sidebar-content" id="sidebar-content"></div></div>
+<h1 class="title">&lt;Application Example Name&gt;</h1>
+<!-- $$$<path/to/example/dir>-brief -->
+<p>&lt;Description of the example's objective in one sentence.&gt; category {Application Examples}.</p>
+<!-- @@@<path/to/example/dir> -->
+<!-- $$$<path/to/example/dir>-description -->
+<div class="descr" id="details">
+<p class="centerAlign"><font color="red">[Missing image &lt;examplename-screenshot&gt;]</font></p><p>&lt;Explain the objective of the example: Explain which Qt technologies are used, Explain what Qt features are shown.&gt;</p>
+<p>&lt;Optional - Use this section for more complicated examples.&gt;</p>
+<p class="centerAlign"><font color="red">[Missing image &lt;examplename-workflow-diagram&gt;]</font></p><h4 id="running-the-example">Running the Example</h4>
+<p>To run the example from <a href="https://doc.qt.io/qtcreator/index.html">Qt Creator</a>, open the <b translate="no">Welcome</b> mode and select the example from <b translate="no">Examples</b>. For more information, see <a href="https://doc.qt.io/qtcreator/creator-build-example-application.html">Qt Creator: Tutorial: Build and run</a>. &lt;Describe the expected application behavior after running the example.&gt;</p>
+<h4 id="platform-notes">Platform notes</h4>
+<p>&lt;Optional - Mention limitations of target platforms, if any.&gt;</p>
+<h4 id="ui-walkthrough">UI walkthrough</h4>
+<p>&lt;Optional - Use this section for more complicated examples.&gt;</p>
+<p>&lt;Describe how to navigate and access different parts of the example/UI.&gt;</p>
+<p><b class="redFont"><code translate=\"no\">\setion1</code></b>Relevant modules and classes &lt;Optional - Use this section for more complicated examples.&gt;</p>
+<p>This example introduces the following Qt &lt;modules/classes&gt;: &lt;Link the relevant modules/classes&gt;</p>
+<h5 id="class-hierarchy">Class Hierarchy</h5>
+<p>&lt;Optional - Use this section for more complicated examples.&gt;</p>
+<p class="centerAlign"><font color="red">[Missing image &lt;examplename-class-hierarchy&gt;]</font></p><h4 id="feature-a">&lt;Feature A&gt;</h4>
+<p>&lt;Explain the implementation of Feature A in the code. Add the relevant code snippet.&gt;</p>
+<h4 id="feature-b">&lt;Feature B&gt;</h4>
+<p>&lt;Explain the implementation of Feature B in the code. Add the relevant code snippet.&gt;</p>
+<h4 id="best-practices">Best practices</h4>
+<p>&lt;Optional&gt;</p>
+<p>&lt;Include best practices related to the example if applicable.&gt;</p>
+<p>&lt;Optional - use this section if the example was tested with Squish&gt;</p>
+<h4 id="squish-gui-testing">Squish GUI testing</h4>
+<p>This application comes with <a href="https://doc.qt.io/squish/index.html">Squish GUI tests</a> targeted for Qt for Android. The tests are made with <a href="https://doc.qt.io/squish/installing-squish-for-qt.html#ins-squish-for-qt">Squish for Qt</a> and are written in Python and can be found under the application test directory.</p>
+<p>When using Squish for Qt for Android, make sure to use the <a href="https://doc.qt.io/squish/squish-s-c-api.html#using-the-qt-built-in-hook">Qt built-in hook</a> and <a href="https://doc.qt.io/squish/installing-squish-for-qt-for-android-testing.html">forward Squish port</a> with adb. If you are getting the error &quot;Cannot load library&quot; with <code translate="no">dlopen</code> failing, disable <code translate="no">QT_USE_TARGET_ANDROID_BUILD_DIR</code> from CMake configuration, or clear it from <b translate="no">Projects-&gt;Build Settings-&gt;CMake-&gt;Current Configuration</b> in Qt Creator.</p>
+<p>If you don't have a Squish license, you can get a <a href="https://www.qt.io/quality-assurance/squish-free-trial">free trial</a>.</p>
+<h4 id="source-files">Source files</h4>
+</div>
+<p><b>See also </b>All Qt Examples, &lt;Link, to, <a href="https://doc.qt.io/qt/qjniobject.html#other" translate="no">other</a>, relevant, and docs.&gt;.</p>
+<!-- @@@<path/to/example/dir> -->
+        </div>
+       </div>
+   </div>
+   </div>
+</div>
+<div class="footer">
+   <p>
+   <acronym title="Copyright">&copy;</acronym> QCustomUi
+   Documentation contributions included herein are the copyrights of
+   their respective owners.<br/>    The documentation provided herein is licensed under the terms of the    <a href="http://www.gnu.org/licenses/fdl.html">GNU Free Documentation    License version 1.3</a> as published by the Free Software Foundation.<br/> </div>
+</body>
+</html>

@@ -71,6 +71,11 @@ struct QCtmMessageTipView::Impl
 */
 
 /*!
+    \property   QCtmMessageTipView::touchControlStyle
+    \brief      是否使用触控风格的界面，默认为 false. 该属性会影响消息项中关闭按钮的大小和间距.
+*/
+
+/*!
     \fn         void QCtmMessageTipView::closeButtonClicked(const QModelIndex& index)
     \brief      当  \a index 位置的消息的关闭按钮被点击时，发送该信号.
     \sa         messageClicked
@@ -133,8 +138,20 @@ QCtmMessageTipView::QCtmMessageTipView(QCtmNavigationBar* parent) : QCtmAbstract
     connect(m_impl->delegate, &QCtmMessageViewDelegate::closeButtonClicked, this, &QCtmMessageTipView::onCloseButtonClicked);
     connect(m_impl->delegate, &QCtmMessageViewDelegate::titleClicked, this, &QCtmMessageTipView::onTitleClicked);
     connect(m_impl->clearAll, &QToolButton::clicked, this, &QCtmMessageTipView::clearAll);
-    connect(this, &QCtmMessageTipView::aboutToCloseMessage, this, [] { return true; });
-    connect(this, &QCtmMessageTipView::aboutToClearAllMessages, this, [] { return true; });
+    connect(this,
+            &QCtmMessageTipView::aboutToCloseMessage,
+            this,
+            []
+            {
+                return true;
+            });
+    connect(this,
+            &QCtmMessageTipView::aboutToClearAllMessages,
+            this,
+            []
+            {
+                return true;
+            });
     m_impl->view->verticalScrollBar()->installEventFilter(this);
 
     qRegisterMetaType<QCtmAbstractMessageTipDataPtr>("QCtmAbstractMessagePtr");
@@ -147,7 +164,9 @@ QCtmMessageTipView::QCtmMessageTipView(QCtmNavigationBar* parent) : QCtmAbstract
 /*!
     \brief      销毁该消息列表.
 */
-QCtmMessageTipView::~QCtmMessageTipView() {}
+QCtmMessageTipView::~QCtmMessageTipView()
+{
+}
 
 /*!
     \brief      设置消息 \a model.
@@ -165,19 +184,28 @@ void QCtmMessageTipView::setModel(QCtmAbstractMessageTipModel* model)
     \brief      返回消息 model.
     \sa         setModel
 */
-QCtmAbstractMessageTipModel* QCtmMessageTipView::model() const { return m_impl->model; }
+QCtmAbstractMessageTipModel* QCtmMessageTipView::model() const
+{
+    return m_impl->model;
+}
 
 /*!
     \brief      设置装饰颜色 \a color.
     \sa         decoration()
 */
-void QCtmMessageTipView::setDecoration(const QColor& color) { m_impl->delegate->setDecoration(color); }
+void QCtmMessageTipView::setDecoration(const QColor& color)
+{
+    m_impl->delegate->setDecoration(color);
+}
 
 /*!
     \brief      返回装饰颜色.
     \sa         setDecoration
 */
-const QColor& QCtmMessageTipView::decoration() const { return m_impl->delegate->decoration(); }
+const QColor& QCtmMessageTipView::decoration() const
+{
+    return m_impl->delegate->decoration();
+}
 
 /*!
     \brief      设置标题栏颜色 \a color.
@@ -194,7 +222,10 @@ void QCtmMessageTipView::setTitleColor(const QColor& color)
     \brief      返回标题栏颜色.
     \sa         setTitleColor
 */
-const QColor& QCtmMessageTipView::titleColor() const { return m_impl->titleColor; }
+const QColor& QCtmMessageTipView::titleColor() const
+{
+    return m_impl->titleColor;
+}
 
 /*!
     \brief      设置时间颜色 \a color.
@@ -211,19 +242,28 @@ void QCtmMessageTipView::setTimeColor(const QColor& color)
     \brief      返回时间颜色.
     \sa         setTimeColor
 */
-const QColor& QCtmMessageTipView::timeColor() const { return m_impl->timeColor; }
+const QColor& QCtmMessageTipView::timeColor() const
+{
+    return m_impl->timeColor;
+}
 
 /*!
     \brief      设置关闭按钮图标 \a icon.
     \sa         closeButtonIcon()
 */
-void QCtmMessageTipView::setCloseButtonIcon(const QPixmap& icon) { m_impl->delegate->setCloseButtonIcon(icon); }
+void QCtmMessageTipView::setCloseButtonIcon(const QPixmap& icon)
+{
+    m_impl->delegate->setCloseButtonIcon(icon);
+}
 
 /*!
     \brief      返回关闭按钮图标.
     \sa         setCloseButtonIcon
 */
-const QPixmap& QCtmMessageTipView::closeButtonIcon() const { return m_impl->delegate->closeButtonIcon(); }
+const QPixmap& QCtmMessageTipView::closeButtonIcon() const
+{
+    return m_impl->delegate->closeButtonIcon();
+}
 
 /*!
     \brief      设置为触控外观，即一直显示标题超链接样式和关闭按钮，默认为 false \a flag.
@@ -239,7 +279,10 @@ void QCtmMessageTipView::setTouchControlStyle(bool flag)
     \brief      返回是否为触控外观.
     \sa         setTouchControlStyle
 */
-bool QCtmMessageTipView::touchControlStyle() const { return m_impl->delegate->touchControlStyle(); }
+bool QCtmMessageTipView::touchControlStyle() const
+{
+    return m_impl->delegate->touchControlStyle();
+}
 
 /*!
     \brief      清空所有消息.
@@ -263,7 +306,10 @@ void QCtmMessageTipView::resizeEvent(QResizeEvent* e)
 /*!
     \reimp
 */
-void QCtmMessageTipView::showEvent(QShowEvent* e) { QCtmAbstractMessageTipView::showEvent(e); }
+void QCtmMessageTipView::showEvent(QShowEvent* e)
+{
+    QCtmAbstractMessageTipView::showEvent(e);
+}
 
 /*!
     \reimp

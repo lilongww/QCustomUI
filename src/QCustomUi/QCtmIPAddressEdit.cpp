@@ -105,6 +105,16 @@ struct QCtmIPAddressEdit::Impl
 */
 
 /*!
+    \property   QCtmIPAddressEdit::ipAddress
+    \brief      输入框的IP地址文本.
+*/
+
+/*!
+    \property   QCtmIPAddressEdit::alignment
+    \brief      输入框文本的对齐方式.
+*/
+
+/*!
     \fn         void QCtmIPAddressEdit::editChanged()
     \brief      当文本变化时发送该信号.
 */

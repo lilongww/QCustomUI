@@ -4,7 +4,7 @@
   <meta charset="utf-8">
 <!-- QCtmSelectionButtonBox.cpp -->
   <meta name="description" content="选择按钮组合部件.">
-  <title>QCtmSelectionButtonBox Class | QCustomUi 1.19.0</title>
+  <title>QCtmSelectionButtonBox Class | QCustomUi 1.22.0</title>
   <link rel="stylesheet" type="text/css" href="style/offline-simple.css" />
   <script type="text/javascript">
     document.getElementsByTagName("link").item(0).setAttribute("href", "style/offline.css");
@@ -26,10 +26,10 @@
     <div class="main-rounded">
         <div class="navigationbar">
         <ul>
-<li><a href="index.html">QCustomUi 1.19.0</a></li>
+<li><a href="index.html">QCustomUi 1.22.0</a></li>
 <li><a href="qcustomui-module.html" translate="no">QCustomUi</a></li>
 <li>QCtmSelectionButtonBox</li>
-<li id="buildversion">QCustomUi 1.19.0 Reference Documentation</li>
+<li id="buildversion">QCustomUi 1.22.0 Reference Documentation</li>
     </ul>
     </div>
 </div>
@@ -41,6 +41,7 @@
 <h3 id="toc">Contents</h3>
 <ul>
 <li class="level1"><a href="#public-types">Public Types</a></li>
+<li class="level1"><a href="#properties">Properties</a></li>
 <li class="level1"><a href="#public-functions">Public Functions</a></li>
 <li class="level1"><a href="#public-slots">Public Slots</a></li>
 <li class="level1"><a href="#signals">Signals</a></li>
@@ -64,12 +65,26 @@
 <div class="table"><table class="alignedsummary" translate="no">
 <tr><td class="memItemLeft rightAlign topAlign"> enum </td><td class="memItemRight bottomAlign"><b><a href="qctmselectionbuttonbox.html#ExclusionPolicy-enum" translate="no">ExclusionPolicy</a></b> { None, Exclusive, ExclusiveOptional }</td></tr>
 </table></div>
+<h2 id="properties">Properties</h2>
+<div class="table"><table class="propsummary" translate="no">
+<tr><td class="topAlign"><ul>
+<li class="fn" translate="no"><b><a href="qctmselectionbuttonbox.html#checkedIndexes-prop" translate="no">checkedIndexes</a></b> : QVector&lt;int&gt;</li>
+<li class="fn" translate="no"><b><a href="qctmselectionbuttonbox.html#count-prop" translate="no">count</a></b> : int</li>
+<li class="fn" translate="no"><b><a href="qctmselectionbuttonbox.html#exclusionPolicy-prop" translate="no">exclusionPolicy</a></b> : ExclusionPolicy</li>
+</ul></td><td class="topAlign"><ul>
+<li class="fn" translate="no"><b><a href="qctmselectionbuttonbox.html#orientation-prop" translate="no">orientation</a></b> : Qt::Orientation</li>
+<li class="fn" translate="no"><b><a href="qctmselectionbuttonbox.html#texts-prop" translate="no">texts</a></b> : QStringList</li>
+<li class="fn" translate="no"><b><a href="qctmselectionbuttonbox.html#uniformSize-prop" translate="no">uniformSize</a></b> : bool</li>
+</ul>
+</td></tr>
+</table></div>
 <h2 id="public-functions">Public Functions</h2>
 <div class="table"><table class="alignedsummary" translate="no">
 <tr><td class="memItemLeft rightAlign topAlign"> </td><td class="memItemRight bottomAlign"><b><a href="qctmselectionbuttonbox.html#QCtmSelectionButtonBox" translate="no">QCtmSelectionButtonBox</a></b>(QWidget *<i>parent</i> = nullptr)</td></tr>
 <tr><td class="memItemLeft rightAlign topAlign"> </td><td class="memItemRight bottomAlign"><b><a href="qctmselectionbuttonbox.html#QCtmSelectionButtonBox-1" translate="no">QCtmSelectionButtonBox</a></b>(Qt::Orientation <i>orientation</i>, QWidget *<i>parent</i> = nullptr)</td></tr>
 <tr><td class="memItemLeft rightAlign topAlign"> </td><td class="memItemRight bottomAlign"><b><a href="qctmselectionbuttonbox.html#QCtmSelectionButtonBox-2" translate="no">QCtmSelectionButtonBox</a></b>(const QStringList &amp;<i>texts</i>, Qt::Orientation <i>orientation</i> = Qt::Horizontal, QWidget *<i>parent</i> = nullptr)</td></tr>
 <tr><td class="memItemLeft rightAlign topAlign"> virtual </td><td class="memItemRight bottomAlign"><b><a href="qctmselectionbuttonbox.html#dtor.QCtmSelectionButtonBox" translate="no">~QCtmSelectionButtonBox</a></b>()</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> QVector&lt;int&gt; </td><td class="memItemRight bottomAlign"><b><a href="qctmselectionbuttonbox.html#checkedIndexes" translate="no">checkedIndexes</a></b>() const</td></tr>
 <tr><td class="memItemLeft rightAlign topAlign"> int </td><td class="memItemRight bottomAlign"><b><a href="qctmselectionbuttonbox.html#count" translate="no">count</a></b>() const</td></tr>
 <tr><td class="memItemLeft rightAlign topAlign"> QCtmSelectionButtonBox::ExclusionPolicy </td><td class="memItemRight bottomAlign"><b><a href="qctmselectionbuttonbox.html#exclusionPolicy" translate="no">exclusionPolicy</a></b>() const</td></tr>
 <tr><td class="memItemLeft rightAlign topAlign"> int </td><td class="memItemRight bottomAlign"><b><a href="qctmselectionbuttonbox.html#firstChecked" translate="no">firstChecked</a></b>() const</td></tr>
@@ -85,16 +100,19 @@
 <h2 id="public-slots">Public Slots</h2>
 <div class="table"><table class="alignedsummary" translate="no">
 <tr><td class="memItemLeft rightAlign topAlign"> void </td><td class="memItemRight bottomAlign"><b><a href="qctmselectionbuttonbox.html#remove" translate="no">remove</a></b>(int <i>index</i>)</td></tr>
-<tr><td class="memItemLeft rightAlign topAlign"> void </td><td class="memItemRight bottomAlign"><b><a href="qctmselectionbuttonbox.html#setChecked" translate="no">setChecked</a></b>(int <i>index</i>, bool <i>checked</i> = true)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> void </td><td class="memItemRight bottomAlign"><b><a href="qctmselectionbuttonbox.html#setChecked" translate="no">setChecked</a></b>(const QVector&lt;int&gt; &amp;<i>indexes</i>)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> void </td><td class="memItemRight bottomAlign"><b><a href="qctmselectionbuttonbox.html#setChecked-1" translate="no">setChecked</a></b>(int <i>index</i>, bool <i>checked</i> = true)</td></tr>
 <tr><td class="memItemLeft rightAlign topAlign"> void </td><td class="memItemRight bottomAlign"><b><a href="qctmselectionbuttonbox.html#setText" translate="no">setText</a></b>(int <i>index</i>, const QString &amp;<i>text</i>)</td></tr>
 <tr><td class="memItemLeft rightAlign topAlign"> void </td><td class="memItemRight bottomAlign"><b><a href="qctmselectionbuttonbox.html#setTexts" translate="no">setTexts</a></b>(const QStringList &amp;<i>texts</i>)</td></tr>
 </table></div>
 <h2 id="signals">Signals</h2>
 <div class="table"><table class="alignedsummary" translate="no">
+<tr><td class="memItemLeft rightAlign topAlign"> void </td><td class="memItemRight bottomAlign"><b><a href="qctmselectionbuttonbox.html#textsChanged" translate="no">textsChanged</a></b>()</td></tr>
 <tr><td class="memItemLeft rightAlign topAlign"> void </td><td class="memItemRight bottomAlign"><b><a href="qctmselectionbuttonbox.html#toggled" translate="no">toggled</a></b>(int <i>index</i>, bool <i>checked</i>)</td></tr>
 </table></div>
 <h2 id="reimplemented-protected-functions">Reimplemented Protected Functions</h2>
 <div class="table"><table class="alignedsummary" translate="no">
+<tr><td class="memItemLeft rightAlign topAlign"> virtual bool </td><td class="memItemRight bottomAlign"><b><a href="qctmselectionbuttonbox.html#event" translate="no">event</a></b>(QEvent *<i>event</i>) override</td></tr>
 <tr><td class="memItemLeft rightAlign topAlign"> virtual void </td><td class="memItemRight bottomAlign"><b><a href="qctmselectionbuttonbox.html#leaveEvent" translate="no">leaveEvent</a></b>(QEvent *<i>event</i>) override</td></tr>
 <tr><td class="memItemLeft rightAlign topAlign"> virtual QSize </td><td class="memItemRight bottomAlign"><b><a href="qctmselectionbuttonbox.html#minimumSizeHint" translate="no">minimumSizeHint</a></b>() const override</td></tr>
 <tr><td class="memItemLeft rightAlign topAlign"> virtual void </td><td class="memItemRight bottomAlign"><b><a href="qctmselectionbuttonbox.html#mouseMoveEvent" translate="no">mouseMoveEvent</a></b>(QMouseEvent *<i>event</i>) override</td></tr>
@@ -120,29 +138,104 @@
 </table></div>
 <!-- @@@ExclusionPolicy -->
 </div>
+<div class="prop">
+<h2>Property Documentation</h2>
+<!-- $$$checkedIndexes-prop$$$checkedIndexes$$$setCheckedintbool$$$setCheckedconstQVector<int>& -->
+<h3 class="fn" translate="no" id="checkedIndexes-prop"><span class="name">checkedIndexes</span> : <span class="type"><a href="https://doc.qt.io/qt/qvector.html" translate="no">QVector</a></span>&lt;<span class="type">int</span>&gt;</h3>
+<p>获取或设置选中项索引列表.</p>
+<p><b>Access functions:</b></p>
+<div class="table"><table class="alignedsummary" translate="no">
+<tr><td class="memItemLeft topAlign rightAlign"> QVector&lt;int&gt; </td><td class="memItemRight bottomAlign"><span class="name"><b><a href="qctmselectionbuttonbox.html#checkedIndexes" translate="no">checkedIndexes</a></b></span>() const</td></tr>
+<tr><td class="memItemLeft topAlign rightAlign"> void </td><td class="memItemRight bottomAlign"><span class="name"><b><a href="qctmselectionbuttonbox.html#setChecked-1" translate="no">setChecked</a></b></span>(int <i>index</i>, bool <i>checked</i> = true)</td></tr>
+<tr><td class="memItemLeft topAlign rightAlign"> void </td><td class="memItemRight bottomAlign"><span class="name"><b><a href="qctmselectionbuttonbox.html#setChecked" translate="no">setChecked</a></b></span>(const QVector&lt;int&gt; &amp;<i>indexes</i>)</td></tr>
+</table></div>
+<p><b>See also </b><a href="qctmselectionbuttonbox.html#setChecked" translate="no">setChecked</a>.</p>
+<!-- @@@checkedIndexes -->
+<!-- $$$count-prop$$$count -->
+<h3 class="fn" translate="no" id="count-prop"><code class="details extra" translate="no">[read-only]</code> <span class="name">count</span> : <span class="type">int</span></h3>
+<p>获取选项数量.</p>
+<p><b>Access functions:</b></p>
+<div class="table"><table class="alignedsummary" translate="no">
+<tr><td class="memItemLeft topAlign rightAlign"> int </td><td class="memItemRight bottomAlign"><span class="name"><b><a href="qctmselectionbuttonbox.html#count" translate="no">count</a></b></span>() const</td></tr>
+</table></div>
+<!-- @@@count -->
+<!-- $$$exclusionPolicy-prop$$$exclusionPolicy$$$setExclusionPolicyQCtmSelectionButtonBox::ExclusionPolicy -->
+<h3 class="fn" translate="no" id="exclusionPolicy-prop"><span class="name">exclusionPolicy</span> : <span class="type"><a href="qctmselectionbuttonbox.html#ExclusionPolicy-enum" translate="no">ExclusionPolicy</a></span></h3>
+<p>获取或设置互斥策略，默认为None.</p>
+<p><b>Access functions:</b></p>
+<div class="table"><table class="alignedsummary" translate="no">
+<tr><td class="memItemLeft topAlign rightAlign"> QCtmSelectionButtonBox::ExclusionPolicy </td><td class="memItemRight bottomAlign"><span class="name"><b><a href="qctmselectionbuttonbox.html#exclusionPolicy" translate="no">exclusionPolicy</a></b></span>() const</td></tr>
+<tr><td class="memItemLeft topAlign rightAlign"> void </td><td class="memItemRight bottomAlign"><span class="name"><b><a href="qctmselectionbuttonbox.html#setExclusionPolicy" translate="no">setExclusionPolicy</a></b></span>(QCtmSelectionButtonBox::ExclusionPolicy <i>policy</i>)</td></tr>
+</table></div>
+<p><b>See also </b><a href="qctmselectionbuttonbox.html#setExclusionPolicy" translate="no">setExclusionPolicy</a>.</p>
+<!-- @@@exclusionPolicy -->
+<!-- $$$orientation-prop$$$orientation$$$setOrientationQt::Orientation -->
+<h3 class="fn" translate="no" id="orientation-prop"><span class="name">orientation</span> : <span class="type"><a href="https://doc.qt.io/qt/qt.html#Orientation-enum" translate="no">Qt::Orientation</a></span></h3>
+<p>获取或设置选项布局方向，默认为<a href="https://doc.qt.io/qt/qt.html#Orientation-enum" translate="no">Qt::Horizontal</a>.</p>
+<p><b>Access functions:</b></p>
+<div class="table"><table class="alignedsummary" translate="no">
+<tr><td class="memItemLeft topAlign rightAlign"> Qt::Orientation </td><td class="memItemRight bottomAlign"><span class="name"><b><a href="qctmselectionbuttonbox.html#orientation" translate="no">orientation</a></b></span>() const</td></tr>
+<tr><td class="memItemLeft topAlign rightAlign"> void </td><td class="memItemRight bottomAlign"><span class="name"><b><a href="qctmselectionbuttonbox.html#setOrientation" translate="no">setOrientation</a></b></span>(Qt::Orientation <i>orientation</i>)</td></tr>
+</table></div>
+<p><b>See also </b><a href="qctmselectionbuttonbox.html#setOrientation" translate="no">setOrientation</a>.</p>
+<!-- @@@orientation -->
+<!-- $$$texts-prop$$$texts$$$setTextsconstQStringList&$$$textsChanged -->
+<h3 class="fn" translate="no" id="texts-prop"><span class="name">texts</span> : <span class="type"><a href="https://doc.qt.io/qt/qstringlist.html" translate="no">QStringList</a></span></h3>
+<p>获取或设置选项文本列表.</p>
+<p><b>Access functions:</b></p>
+<div class="table"><table class="alignedsummary" translate="no">
+<tr><td class="memItemLeft topAlign rightAlign"> QStringList </td><td class="memItemRight bottomAlign"><span class="name"><b><a href="qctmselectionbuttonbox.html#texts" translate="no">texts</a></b></span>() const</td></tr>
+<tr><td class="memItemLeft topAlign rightAlign"> void </td><td class="memItemRight bottomAlign"><span class="name"><b><a href="qctmselectionbuttonbox.html#setTexts" translate="no">setTexts</a></b></span>(const QStringList &amp;<i>texts</i>)</td></tr>
+</table></div>
+<p><b>Notifier signal:</b></p>
+<div class="table"><table class="alignedsummary" translate="no">
+<tr><td class="memItemLeft topAlign rightAlign"> void </td><td class="memItemRight bottomAlign"><span class="name"><b><a href="qctmselectionbuttonbox.html#textsChanged" translate="no">textsChanged</a></b></span>()</td></tr>
+</table></div>
+<p><b>See also </b><a href="qctmselectionbuttonbox.html#setTexts" translate="no">setTexts</a>.</p>
+<!-- @@@texts -->
+<!-- $$$uniformSize-prop$$$uniformSize$$$setUniformSizebool -->
+<h3 class="fn" translate="no" id="uniformSize-prop"><span class="name">uniformSize</span> : <span class="type">bool</span></h3>
+<p>获取或设置选项大小是否一致，默认为true.</p>
+<p><b>Access functions:</b></p>
+<div class="table"><table class="alignedsummary" translate="no">
+<tr><td class="memItemLeft topAlign rightAlign"> bool </td><td class="memItemRight bottomAlign"><span class="name"><b><a href="qctmselectionbuttonbox.html#uniformSize" translate="no">uniformSize</a></b></span>() const</td></tr>
+<tr><td class="memItemLeft topAlign rightAlign"> void </td><td class="memItemRight bottomAlign"><span class="name"><b><a href="qctmselectionbuttonbox.html#setUniformSize" translate="no">setUniformSize</a></b></span>(bool <i>u</i>)</td></tr>
+</table></div>
+<p><b>See also </b><a href="qctmselectionbuttonbox.html#setUniformSize" translate="no">setUniformSize</a>.</p>
+<!-- @@@uniformSize -->
+</div>
 <div class="func">
 <h2>Member Function Documentation</h2>
 <!-- $$$QCtmSelectionButtonBox[overload1]$$$QCtmSelectionButtonBoxQWidget* -->
-<h3 class="fn" translate="no" id="QCtmSelectionButtonBox"><code class="details extra" translate="no">[explicit]</code> QCtmSelectionButtonBox::<span class="name">QCtmSelectionButtonBox</span>(<span class="type"><a href="https://doc.qt.io/qt/qwidget.html#QWidget" translate="no">QWidget</a></span> *<i>parent</i> = nullptr)</h3>
+<h3 class="fn" translate="no" id="QCtmSelectionButtonBox"><code class="details extra" translate="no">[explicit]</code> QCtmSelectionButtonBox::<span class="name">QCtmSelectionButtonBox</span>(<span class="type"><a href="https://doc.qt.io/qt/qwidget.html" translate="no">QWidget</a></span> *<i>parent</i> = nullptr)</h3>
 <p>构造函数 <i translate="no">parent</i>.</p>
 <!-- @@@QCtmSelectionButtonBox -->
 <!-- $$$QCtmSelectionButtonBox$$$QCtmSelectionButtonBoxQt::OrientationQWidget* -->
-<h3 class="fn" translate="no" id="QCtmSelectionButtonBox-1"><code class="details extra" translate="no">[explicit]</code> QCtmSelectionButtonBox::<span class="name">QCtmSelectionButtonBox</span>(<span class="type"><a href="https://doc.qt.io/qt/qt.html#Orientation-enum" translate="no">Qt::Orientation</a></span> <i>orientation</i>, <span class="type"><a href="https://doc.qt.io/qt/qwidget.html#QWidget" translate="no">QWidget</a></span> *<i>parent</i> = nullptr)</h3>
+<h3 class="fn" translate="no" id="QCtmSelectionButtonBox-1"><code class="details extra" translate="no">[explicit]</code> QCtmSelectionButtonBox::<span class="name">QCtmSelectionButtonBox</span>(<span class="type"><a href="https://doc.qt.io/qt/qt.html#Orientation-enum" translate="no">Qt::Orientation</a></span> <i>orientation</i>, <span class="type"><a href="https://doc.qt.io/qt/qwidget.html" translate="no">QWidget</a></span> *<i>parent</i> = nullptr)</h3>
 <p>构造函数重载 <i translate="no">orientation</i>, <i translate="no">parent</i>.</p>
 <!-- @@@QCtmSelectionButtonBox -->
 <!-- $$$QCtmSelectionButtonBox$$$QCtmSelectionButtonBoxconstQStringList&Qt::OrientationQWidget* -->
-<h3 class="fn" translate="no" id="QCtmSelectionButtonBox-2"><code class="details extra" translate="no">[explicit]</code> QCtmSelectionButtonBox::<span class="name">QCtmSelectionButtonBox</span>(const <span class="type"><a href="https://doc.qt.io/qt/qstringlist.html" translate="no">QStringList</a></span> &amp;<i>texts</i>, <span class="type"><a href="https://doc.qt.io/qt/qt.html#Orientation-enum" translate="no">Qt::Orientation</a></span> <i>orientation</i> = Qt::Horizontal, <span class="type"><a href="https://doc.qt.io/qt/qwidget.html#QWidget" translate="no">QWidget</a></span> *<i>parent</i> = nullptr)</h3>
+<h3 class="fn" translate="no" id="QCtmSelectionButtonBox-2"><code class="details extra" translate="no">[explicit]</code> QCtmSelectionButtonBox::<span class="name">QCtmSelectionButtonBox</span>(const <span class="type"><a href="https://doc.qt.io/qt/qstringlist.html" translate="no">QStringList</a></span> &amp;<i>texts</i>, <span class="type"><a href="https://doc.qt.io/qt/qt.html#Orientation-enum" translate="no">Qt::Orientation</a></span> <i>orientation</i> = Qt::Horizontal, <span class="type"><a href="https://doc.qt.io/qt/qwidget.html" translate="no">QWidget</a></span> *<i>parent</i> = nullptr)</h3>
 <p>构造函数重载 <i translate="no">texts</i>, <i translate="no">orientation</i>, <i translate="no">parent</i>.</p>
 <!-- @@@QCtmSelectionButtonBox -->
 <!-- $$$~QCtmSelectionButtonBox[overload1]$$$~QCtmSelectionButtonBox -->
 <h3 class="fn" translate="no" id="dtor.QCtmSelectionButtonBox"><code class="details extra" translate="no">[virtual noexcept]</code> QCtmSelectionButtonBox::<span class="name">~QCtmSelectionButtonBox</span>()</h3>
 <p>析构函数.</p>
 <!-- @@@~QCtmSelectionButtonBox -->
+<!-- $$$checkedIndexes -->
+<h3 class="fn" translate="no" id="checkedIndexes"><span class="type"><a href="https://doc.qt.io/qt/qvector.html" translate="no">QVector</a></span>&lt;<span class="type">int</span>&gt; QCtmSelectionButtonBox::<span class="name">checkedIndexes</span>() const</h3>
+<p>返回所有选中项的索引列表.</p>
+<div class="admonition note"><p><b>Note: </b>Getter function for property checkedIndexes. </p>
+</div><!-- @@@checkedIndexes -->
 <!-- $$$count -->
 <h3 class="fn" translate="no" id="count"><span class="type">int</span> QCtmSelectionButtonBox::<span class="name">count</span>() const</h3>
 <p>返回选项数量.</p>
 <div class="admonition note"><p><b>Note: </b>Getter function for property count. </p>
 </div><!-- @@@count -->
+<!-- $$$event[overload1]$$$eventQEvent* -->
+<h3 class="fn" translate="no" id="event"><code class="details extra" translate="no">[override virtual protected]</code> <span class="type">bool</span> QCtmSelectionButtonBox::<span class="name">event</span>(<span class="type"><a href="https://doc.qt.io/qt/qevent.html" translate="no">QEvent</a></span> *<i>event</i>)</h3>
+<p>Reimplements: <a href="https://doc.qt.io/qt/qwidget.html#event" translate="no">QWidget::event</a>(QEvent *event).</p>
+<!-- @@@event -->
 <!-- $$$exclusionPolicy -->
 <h3 class="fn" translate="no" id="exclusionPolicy"><span class="type"><a href="qctmselectionbuttonbox.html#ExclusionPolicy-enum" translate="no">QCtmSelectionButtonBox::ExclusionPolicy</a></span> QCtmSelectionButtonBox::<span class="name">exclusionPolicy</span>() const</h3>
 <p>返回互斥策略.</p>
@@ -192,10 +285,43 @@
 <h3 class="fn" translate="no" id="resizeEvent"><code class="details extra" translate="no">[override virtual protected]</code> <span class="type">void</span> QCtmSelectionButtonBox::<span class="name">resizeEvent</span>(<span class="type"><a href="https://doc.qt.io/qt/qresizeevent.html" translate="no">QResizeEvent</a></span> *<i>event</i>)</h3>
 <p>Reimplements: <a href="https://doc.qt.io/qt/qwidget.html#resizeEvent" translate="no">QWidget::resizeEvent</a>(QResizeEvent *event).</p>
 <!-- @@@resizeEvent -->
-<!-- $$$setChecked[overload1]$$$setCheckedintbool -->
-<h3 class="fn" translate="no" id="setChecked"><code class="details extra" translate="no">[slot]</code> <span class="type">void</span> QCtmSelectionButtonBox::<span class="name">setChecked</span>(<span class="type">int</span> <i>index</i>, <span class="type">bool</span> <i>checked</i> = true)</h3>
+<!-- $$$setChecked -->
+<h3 class="fn" translate="no" id="setChecked"><code class="details extra" translate="no">[slot]</code> <span class="type">void</span> QCtmSelectionButtonBox::<span class="name">setChecked</span>(const <span class="type"><a href="https://doc.qt.io/qt/qvector.html" translate="no">QVector</a></span>&lt;<span class="type">int</span>&gt; &amp;<i>indexes</i>)</h3>
+<p>设置选中项 <i translate="no">indexes</i>.</p>
+<div class="admonition note"><p><b>Note: </b>Setter function for property <a href="qctmselectionbuttonbox.html#checkedIndexes" translate="no">checkedIndexes</a>. </p>
+</div><div class="admonition note"><p><b>Note: </b>This slot is overloaded. To connect to this slot:
+
+<pre class="cpp" translate="no">
+ // Connect using qOverload:
+ connect(sender, &SenderClass::signal,
+         ctmSelectionButtonBox, qOverload<const QVector<int> &>(&QCtmSelectionButtonBox::setChecked));
+
+ // Or using a lambda as wrapper:
+ connect(sender, &SenderClass::signal,
+         ctmSelectionButtonBox, [receiver = ctmSelectionButtonBox](const QVector<int> &indexes) { receiver->setChecked(indexes); });
+</pre>
+
+For more examples and approaches, see <a href="https://doc.qt.io/qt/signalsandslots.html#connecting-overloaded-slots">connecting to overloaded slots</a>.</p>
+</div><p><b>See also </b><a href="qctmselectionbuttonbox.html#isChecked" translate="no">isChecked</a>() and <a href="qctmselectionbuttonbox.html#checkedIndexes" translate="no">checkedIndexes</a>.</p>
+<!-- @@@setChecked -->
+<!-- $$$setChecked -->
+<h3 class="fn" translate="no" id="setChecked-1"><code class="details extra" translate="no">[slot]</code> <span class="type">void</span> QCtmSelectionButtonBox::<span class="name">setChecked</span>(<span class="type">int</span> <i>index</i>, <span class="type">bool</span> <i>checked</i> = true)</h3>
 <p>设置 <i translate="no">index</i> 选项选中状态 <i translate="no">checked</i>.</p>
-<p><b>See also </b><a href="qctmselectionbuttonbox.html#isChecked" translate="no">isChecked</a>.</p>
+<div class="admonition note"><p><b>Note: </b>Setter function for property <a href="qctmselectionbuttonbox.html#checkedIndexes" translate="no">checkedIndexes</a>. </p>
+</div><div class="admonition note"><p><b>Note: </b>This slot is overloaded. To connect to this slot:
+
+<pre class="cpp" translate="no">
+ // Connect using qOverload:
+ connect(sender, &SenderClass::signal,
+         ctmSelectionButtonBox, qOverload<int, bool>(&QCtmSelectionButtonBox::setChecked));
+
+ // Or using a lambda as wrapper:
+ connect(sender, &SenderClass::signal,
+         ctmSelectionButtonBox, [receiver = ctmSelectionButtonBox](int index, bool checked) { receiver->setChecked(index, checked); });
+</pre>
+
+For more examples and approaches, see <a href="https://doc.qt.io/qt/signalsandslots.html#connecting-overloaded-slots">connecting to overloaded slots</a>.</p>
+</div><p><b>See also </b><a href="qctmselectionbuttonbox.html#isChecked" translate="no">isChecked</a>.</p>
 <!-- @@@setChecked -->
 <!-- $$$setExclusionPolicy -->
 <h3 class="fn" translate="no" id="setExclusionPolicy"><span class="type">void</span> QCtmSelectionButtonBox::<span class="name">setExclusionPolicy</span>(<span class="type"><a href="qctmselectionbuttonbox.html#ExclusionPolicy-enum" translate="no">QCtmSelectionButtonBox::ExclusionPolicy</a></span> <i>policy</i>)</h3>
@@ -241,6 +367,12 @@
 <div class="admonition note"><p><b>Note: </b>Getter function for property texts. </p>
 </div><p><b>See also </b><a href="qctmselectionbuttonbox.html#setTexts" translate="no">setTexts</a>.</p>
 <!-- @@@texts -->
+<!-- $$$textsChanged -->
+<h3 class="fn" translate="no" id="textsChanged"><code class="details extra" translate="no">[signal]</code> <span class="type">void</span> QCtmSelectionButtonBox::<span class="name">textsChanged</span>()</h3>
+<p>选项文本发生改变时发送该信号.</p>
+<div class="admonition note"><p><b>Note: </b>Notifier signal for property <a href="qctmselectionbuttonbox.html#texts" translate="no">texts</a>. </p>
+</div><p><b>See also </b><a href="qctmselectionbuttonbox.html#setText" translate="no">setText</a> and <a href="qctmselectionbuttonbox.html#setTexts" translate="no">setTexts</a>.</p>
+<!-- @@@textsChanged -->
 <!-- $$$toggled[overload1]$$$toggledintbool -->
 <h3 class="fn" translate="no" id="toggled"><code class="details extra" translate="no">[signal]</code> <span class="type">void</span> QCtmSelectionButtonBox::<span class="name">toggled</span>(<span class="type">int</span> <i>index</i>, <span class="type">bool</span> <i>checked</i>)</h3>
 <p>选项状态切换时发送该信号 <i translate="no">index</i> <i translate="no">checked</i>.</p>

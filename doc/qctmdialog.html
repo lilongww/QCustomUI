@@ -4,7 +4,7 @@
   <meta charset="utf-8">
 <!-- QCtmDialog.cpp -->
   <meta name="description" content="这是一个模态窗口，类似于QDialog，去掉了系统的边框和标题栏，用自定义的标题栏替代.">
-  <title>QCtmDialog Class | QCustomUi 1.19.0</title>
+  <title>QCtmDialog Class | QCustomUi 1.22.0</title>
   <link rel="stylesheet" type="text/css" href="style/offline-simple.css" />
   <script type="text/javascript">
     document.getElementsByTagName("link").item(0).setAttribute("href", "style/offline.css");
@@ -26,10 +26,10 @@
     <div class="main-rounded">
         <div class="navigationbar">
         <ul>
-<li><a href="index.html">QCustomUi 1.19.0</a></li>
+<li><a href="index.html">QCustomUi 1.22.0</a></li>
 <li><a href="qcustomui-module.html" translate="no">QCustomUi</a></li>
 <li>QCtmDialog</li>
-<li id="buildversion">QCustomUi 1.19.0 Reference Documentation</li>
+<li id="buildversion">QCustomUi 1.22.0 Reference Documentation</li>
     </ul>
     </div>
 </div>
@@ -67,8 +67,8 @@
 <tr><td class="memItemLeft rightAlign topAlign"> QWidget *</td><td class="memItemRight bottomAlign"><b><a href="qctmdialog.html#centralWidget" translate="no">centralWidget</a></b>() const</td></tr>
 <tr><td class="memItemLeft rightAlign topAlign"> void </td><td class="memItemRight bottomAlign"><b><a href="qctmdialog.html#removeMoveBar" translate="no">removeMoveBar</a></b>(QWidget *<i>moveBar</i>)</td></tr>
 <tr><td class="memItemLeft rightAlign topAlign"> void </td><td class="memItemRight bottomAlign"><b><a href="qctmdialog.html#setCentralWidget" translate="no">setCentralWidget</a></b>(QWidget *<i>widget</i>)</td></tr>
-<tr><td class="memItemLeft rightAlign topAlign"> void </td><td class="memItemRight bottomAlign"><b><a href="qctmdialog.html#setTitleBar" translate="no">setTitleBar</a></b>(QCtmTitleBar *<i>titleBar</i>)</td></tr>
-<tr><td class="memItemLeft rightAlign topAlign"> QCtmTitleBar *</td><td class="memItemRight bottomAlign"><b><a href="qctmdialog.html#titleBar" translate="no">titleBar</a></b>() const</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> void </td><td class="memItemRight bottomAlign"><b><a href="qctmdialog.html#setTitleBar" translate="no">setTitleBar</a></b>(QCtmAbstractTitleBar *<i>titleBar</i>)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> QCtmAbstractTitleBar *</td><td class="memItemRight bottomAlign"><b><a href="qctmdialog.html#titleBar" translate="no">titleBar</a></b>() const</td></tr>
 </table></div>
 <h2 id="reimplemented-protected-functions">Reimplemented Protected Functions</h2>
 <div class="table"><table class="alignedsummary" translate="no">
@@ -85,7 +85,7 @@
 <div class="func">
 <h2>Member Function Documentation</h2>
 <!-- $$$QCtmDialog[overload1]$$$QCtmDialogQWidget* -->
-<h3 class="fn" translate="no" id="QCtmDialog"><code class="details extra" translate="no">[explicit]</code> QCtmDialog::<span class="name">QCtmDialog</span>(<span class="type"><a href="https://doc.qt.io/qt/qwidget.html#QWidget" translate="no">QWidget</a></span> *<i>parent</i> = nullptr)</h3>
+<h3 class="fn" translate="no" id="QCtmDialog"><code class="details extra" translate="no">[explicit]</code> QCtmDialog::<span class="name">QCtmDialog</span>(<span class="type"><a href="https://doc.qt.io/qt/qwidget.html" translate="no">QWidget</a></span> *<i>parent</i> = nullptr)</h3>
 <p>构造一个父窗口为 <i translate="no">parent</i> 的窗口对象.</p>
 <!-- @@@QCtmDialog -->
 <!-- $$$~QCtmDialog[overload1]$$$~QCtmDialog -->
@@ -93,12 +93,12 @@
 <p>销毁该窗口对象.</p>
 <!-- @@@~QCtmDialog -->
 <!-- $$$addMoveBar[overload1]$$$addMoveBarQWidget* -->
-<h3 class="fn" translate="no" id="addMoveBar"><span class="type">void</span> QCtmDialog::<span class="name">addMoveBar</span>(<span class="type"><a href="https://doc.qt.io/qt/qwidget.html#QWidget" translate="no">QWidget</a></span> *<i>moveBar</i>)</h3>
+<h3 class="fn" translate="no" id="addMoveBar"><span class="type">void</span> QCtmDialog::<span class="name">addMoveBar</span>(<span class="type"><a href="https://doc.qt.io/qt/qwidget.html" translate="no">QWidget</a></span> *<i>moveBar</i>)</h3>
 <p>添加鼠标可拖拽区域 <i translate="no">moveBar</i>, moveBar必须为该窗口的子控件之一.</p>
 <p><b>See also </b><a href="qctmdialog.html#removeMoveBar" translate="no">removeMoveBar</a>.</p>
 <!-- @@@addMoveBar -->
 <!-- $$$centralWidget[overload1]$$$centralWidget -->
-<h3 class="fn" translate="no" id="centralWidget"><span class="type"><a href="https://doc.qt.io/qt/qwidget.html#QWidget" translate="no">QWidget</a></span> *QCtmDialog::<span class="name">centralWidget</span>() const</h3>
+<h3 class="fn" translate="no" id="centralWidget"><span class="type"><a href="https://doc.qt.io/qt/qwidget.html" translate="no">QWidget</a></span> *QCtmDialog::<span class="name">centralWidget</span>() const</h3>
 <p>返回中央窗口地址, 如果中央窗口不存在则返回nullptr.</p>
 <p><b>See also </b><a href="qctmdialog.html#setCentralWidget" translate="no">setCentralWidget</a>.</p>
 <!-- @@@centralWidget -->
@@ -107,7 +107,7 @@
 <p>Reimplements: <a href="https://doc.qt.io/qt/qwidget.html#event" translate="no">QWidget::event</a>(QEvent *event).</p>
 <!-- @@@event -->
 <!-- $$$eventFilter[overload1]$$$eventFilterQObject*QEvent* -->
-<h3 class="fn" translate="no" id="eventFilter"><code class="details extra" translate="no">[override virtual protected]</code> <span class="type">bool</span> QCtmDialog::<span class="name">eventFilter</span>(<span class="type"><a href="https://doc.qt.io/qt/qobject.html#QObject" translate="no">QObject</a></span> *<i>o</i>, <span class="type"><a href="https://doc.qt.io/qt/qevent.html" translate="no">QEvent</a></span> *<i>e</i>)</h3>
+<h3 class="fn" translate="no" id="eventFilter"><code class="details extra" translate="no">[override virtual protected]</code> <span class="type">bool</span> QCtmDialog::<span class="name">eventFilter</span>(<span class="type"><a href="https://doc.qt.io/qt/qobject.html" translate="no">QObject</a></span> *<i>o</i>, <span class="type"><a href="https://doc.qt.io/qt/qevent.html" translate="no">QEvent</a></span> *<i>e</i>)</h3>
 <p>Reimplements: <a href="https://doc.qt.io/qt/qobject.html#eventFilter" translate="no">QObject::eventFilter</a>(QObject *watched, QEvent *event).</p>
 <!-- @@@eventFilter -->
 <!-- $$$hideEvent[overload1]$$$hideEventQHideEvent* -->
@@ -115,26 +115,26 @@
 <p>Reimplements: <a href="https://doc.qt.io/qt/qwidget.html#hideEvent" translate="no">QWidget::hideEvent</a>(QHideEvent *event).</p>
 <!-- @@@hideEvent -->
 <!-- $$$nativeEvent[overload1]$$$nativeEventconstQByteArray&void*qintptr* -->
-<h3 class="fn" translate="no" id="nativeEvent"><code class="details extra" translate="no">[override virtual protected]</code> <span class="type">bool</span> QCtmDialog::<span class="name">nativeEvent</span>(const <span class="type">QByteArray</span> &amp;<i>eventType</i>, <span class="type">void</span> *<i>message</i>, <span class="type"><a href="https://doc.qt.io/qt/qttypes.html#qintptr-typedef" translate="no">qintptr</a></span> *<i>result</i>)</h3>
+<h3 class="fn" translate="no" id="nativeEvent"><code class="details extra" translate="no">[override virtual protected]</code> <span class="type">bool</span> QCtmDialog::<span class="name">nativeEvent</span>(const <span class="type"><a href="https://doc.qt.io/qt/qbytearray.html" translate="no">QByteArray</a></span> &amp;<i>eventType</i>, <span class="type">void</span> *<i>message</i>, <span class="type"><a href="https://doc.qt.io/qt/qttypes.html#qintptr-typedef" translate="no">qintptr</a></span> *<i>result</i>)</h3>
 <p>Reimplements: <a href="https://doc.qt.io/qt/qwidget.html#nativeEvent" translate="no">QWidget::nativeEvent</a>(const QByteArray &amp;eventType, void *message, qintptr *result).</p>
 <!-- @@@nativeEvent -->
 <!-- $$$removeMoveBar[overload1]$$$removeMoveBarQWidget* -->
-<h3 class="fn" translate="no" id="removeMoveBar"><span class="type">void</span> QCtmDialog::<span class="name">removeMoveBar</span>(<span class="type"><a href="https://doc.qt.io/qt/qwidget.html#QWidget" translate="no">QWidget</a></span> *<i>moveBar</i>)</h3>
+<h3 class="fn" translate="no" id="removeMoveBar"><span class="type">void</span> QCtmDialog::<span class="name">removeMoveBar</span>(<span class="type"><a href="https://doc.qt.io/qt/qwidget.html" translate="no">QWidget</a></span> *<i>moveBar</i>)</h3>
 <p>移除鼠标拖拽区域 <i translate="no">moveBar</i>.</p>
 <p><b>See also </b><a href="qctmdialog.html#addMoveBar" translate="no">addMoveBar</a>.</p>
 <!-- @@@removeMoveBar -->
 <!-- $$$setCentralWidget[overload1]$$$setCentralWidgetQWidget* -->
-<h3 class="fn" translate="no" id="setCentralWidget"><span class="type">void</span> QCtmDialog::<span class="name">setCentralWidget</span>(<span class="type"><a href="https://doc.qt.io/qt/qwidget.html#QWidget" translate="no">QWidget</a></span> *<i>widget</i>)</h3>
+<h3 class="fn" translate="no" id="setCentralWidget"><span class="type">void</span> QCtmDialog::<span class="name">setCentralWidget</span>(<span class="type"><a href="https://doc.qt.io/qt/qwidget.html" translate="no">QWidget</a></span> *<i>widget</i>)</h3>
 <p>设置 <i translate="no">widget</i> 为窗口的中央窗口, 当 <i translate="no">widget</i> 为nullptr时删除中央窗口.</p>
 <p><b>See also </b><a href="qctmdialog.html#centralWidget" translate="no">centralWidget</a>.</p>
 <!-- @@@setCentralWidget -->
-<!-- $$$setTitleBar[overload1]$$$setTitleBarQCtmTitleBar* -->
-<h3 class="fn" translate="no" id="setTitleBar"><span class="type">void</span> QCtmDialog::<span class="name">setTitleBar</span>(<span class="type"><a href="qctmtitlebar.html" translate="no">QCtmTitleBar</a></span> *<i>titleBar</i>)</h3>
+<!-- $$$setTitleBar[overload1]$$$setTitleBarQCtmAbstractTitleBar* -->
+<h3 class="fn" translate="no" id="setTitleBar"><span class="type">void</span> QCtmDialog::<span class="name">setTitleBar</span>(<span class="type"><a href="qctmabstracttitlebar.html" translate="no">QCtmAbstractTitleBar</a></span> *<i>titleBar</i>)</h3>
 <p>设置标题栏 <i translate="no">titleBar</i>, 当 <i translate="no">titleBar</i> 为 nullptr 时删除标题栏.</p>
 <p><b>See also </b><a href="qctmdialog.html#titleBar" translate="no">titleBar</a>.</p>
 <!-- @@@setTitleBar -->
 <!-- $$$titleBar[overload1]$$$titleBar -->
-<h3 class="fn" translate="no" id="titleBar"><span class="type"><a href="qctmtitlebar.html" translate="no">QCtmTitleBar</a></span> *QCtmDialog::<span class="name">titleBar</span>() const</h3>
+<h3 class="fn" translate="no" id="titleBar"><span class="type"><a href="qctmabstracttitlebar.html" translate="no">QCtmAbstractTitleBar</a></span> *QCtmDialog::<span class="name">titleBar</span>() const</h3>
 <p>返回窗口的标题栏，如果标题栏不存在，自动创建并返回一个新的标题栏.</p>
 <p><b>See also </b><a href="qctmdialog.html#setTitleBar" translate="no">setTitleBar</a>.</p>
 <!-- @@@titleBar -->

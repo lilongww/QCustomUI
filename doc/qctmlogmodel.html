@@ -4,7 +4,7 @@
   <meta charset="utf-8">
 <!-- QCtmLogModel.cpp -->
   <meta name="description" content="标准日志 model.">
-  <title>QCtmLogModel Class | QCustomUi 1.19.0</title>
+  <title>QCtmLogModel Class | QCustomUi 1.22.0</title>
   <link rel="stylesheet" type="text/css" href="style/offline-simple.css" />
   <script type="text/javascript">
     document.getElementsByTagName("link").item(0).setAttribute("href", "style/offline.css");
@@ -26,10 +26,10 @@
     <div class="main-rounded">
         <div class="navigationbar">
         <ul>
-<li><a href="index.html">QCustomUi 1.19.0</a></li>
+<li><a href="index.html">QCustomUi 1.22.0</a></li>
 <li><a href="qcustomui-module.html" translate="no">QCustomUi</a></li>
 <li>QCtmLogModel</li>
-<li id="buildversion">QCustomUi 1.19.0 Reference Documentation</li>
+<li id="buildversion">QCustomUi 1.22.0 Reference Documentation</li>
     </ul>
     </div>
 </div>
@@ -40,8 +40,11 @@
 <div class="toc">
 <h3 id="toc">Contents</h3>
 <ul>
+<li class="level1"><a href="#public-types">Public Types</a></li>
+<li class="level1"><a href="#properties">Properties</a></li>
 <li class="level1"><a href="#public-functions">Public Functions</a></li>
 <li class="level1"><a href="#reimplemented-public-functions">Reimplemented Public Functions</a></li>
+<li class="level1"><a href="#public-slots">Public Slots</a></li>
 <li class="level1"><a href="#reimplemented-protected-functions">Reimplemented Protected Functions</a></li>
 <li class="level1"><a href="#details">Detailed Description</a></li>
 </ul>
@@ -57,6 +60,16 @@
 </table></div>
 <ul>
 <li><a href="qctmlogmodel-members.html">List of all members, including inherited members</a></li>
+</ul>
+<h2 id="public-types">Public Types</h2>
+<div class="table"><table class="alignedsummary" translate="no">
+<tr><td class="memItemLeft rightAlign topAlign"> enum </td><td class="memItemRight bottomAlign"><b><a href="qctmlogmodel.html#Role-enum" translate="no">Role</a></b> { TypeRole, CopyMessageRole }</td></tr>
+</table></div>
+<h2 id="properties">Properties</h2>
+<ul>
+<li class="fn" translate="no"><b><a href="qctmlogmodel.html#errorIcon-prop" translate="no">errorIcon</a></b> : QIcon</li>
+<li class="fn" translate="no"><b><a href="qctmlogmodel.html#infoIcon-prop" translate="no">infoIcon</a></b> : QIcon</li>
+<li class="fn" translate="no"><b><a href="qctmlogmodel.html#warningIcon-prop" translate="no">warningIcon</a></b> : QIcon</li>
 </ul>
 <h2 id="public-functions">Public Functions</h2>
 <div class="table"><table class="alignedsummary" translate="no">
@@ -85,9 +98,12 @@
 <tr><td class="memItemLeft rightAlign topAlign"> virtual int </td><td class="memItemRight bottomAlign"><b><a href="qctmlogmodel.html#rowCount" translate="no">rowCount</a></b>(const QModelIndex &amp;<i>parent</i> = QModelIndex()) const override</td></tr>
 <tr><td class="memItemLeft rightAlign topAlign"> virtual bool </td><td class="memItemRight bottomAlign"><b><a href="qctmlogmodel.html#setData" translate="no">setData</a></b>(const QModelIndex &amp;<i>index</i>, const QVariant &amp;<i>value</i>, int <i>role</i>) override</td></tr>
 </table></div>
+<h2 id="public-slots">Public Slots</h2>
+<div class="table"><table class="alignedsummary" translate="no">
+<tr><td class="memItemLeft rightAlign topAlign"> virtual void </td><td class="memItemRight bottomAlign"><b><a href="qctmlogmodel.html#onLog" translate="no">onLog</a></b>(QCtmLogDataPtr <i>log</i>) override</td></tr>
+</table></div>
 <h2 id="reimplemented-protected-functions">Reimplemented Protected Functions</h2>
 <div class="table"><table class="alignedsummary" translate="no">
-<tr><td class="memItemLeft rightAlign topAlign"> virtual void </td><td class="memItemRight bottomAlign"><b><a href="qctmlogmodel.html#logEvent" translate="no">logEvent</a></b>(QCtmLogEvent *<i>e</i>) override</td></tr>
 <tr><td class="memItemLeft rightAlign topAlign"> virtual void </td><td class="memItemRight bottomAlign"><b><a href="qctmlogmodel.html#retranslateUi" translate="no">retranslateUi</a></b>() override</td></tr>
 </table></div>
 <!-- $$$QCtmLogModel-description -->
@@ -95,10 +111,54 @@
 <h2 id="details">Detailed Description</h2>
 </div>
 <!-- @@@QCtmLogModel -->
+<div class="types">
+<h2>Member Type Documentation</h2>
+<!-- $$$Role$$$TypeRole$$$CopyMessageRole -->
+<h3 class="fn" translate="no" id="Role-enum">enum QCtmLogModel::<span class="name">Role</span></h3>
+<p>日志类型数据角色.</p>
+<div class="table"><table class="valuelist"><tr valign="top" class="odd"><th class="tblConst">Constant</th><th class="tblval">Value</th><th class="tbldscr">Description</th></tr>
+<tr><td class="topAlign"><code translate="no">QCtmLogModel::TypeRole</code></td><td class="topAlign tblval"><code translate="no">Qt::UserRole + 1</code></td><td class="topAlign">返回日志类型 <a href="https://doc.qt.io/qt/qtlogging.html#QtMsgType-enum" translate="no">QtMsgType</a>.</td></tr>
+<tr><td class="topAlign"><code translate="no">QCtmLogModel::CopyMessageRole</code></td><td class="topAlign tblval"><code translate="no">258</code></td><td class="topAlign">返回完整日志消息字符串, 适合复制到剪贴板.</td></tr>
+</table></div>
+<!-- @@@Role -->
+</div>
+<div class="prop">
+<h2>Property Documentation</h2>
+<!-- $$$errorIcon-prop$$$errorIcon$$$setErrorIconconstQIcon& -->
+<h3 class="fn" translate="no" id="errorIcon-prop"><span class="name">errorIcon</span> : <span class="type"><a href="https://doc.qt.io/qt/qicon.html" translate="no">QIcon</a></span></h3>
+<p>Error 等级日志图标.</p>
+<p><b>Access functions:</b></p>
+<div class="table"><table class="alignedsummary" translate="no">
+<tr><td class="memItemLeft topAlign rightAlign"> const QIcon &amp;</td><td class="memItemRight bottomAlign"><span class="name"><b><a href="qctmlogmodel.html#errorIcon" translate="no">errorIcon</a></b></span>() const</td></tr>
+<tr><td class="memItemLeft topAlign rightAlign"> void </td><td class="memItemRight bottomAlign"><span class="name"><b><a href="qctmlogmodel.html#setErrorIcon" translate="no">setErrorIcon</a></b></span>(const QIcon &amp;<i>icon</i>)</td></tr>
+</table></div>
+<p><b>See also </b><a href="qctmlogmodel.html#setErrorIcon" translate="no">setErrorIcon</a>.</p>
+<!-- @@@errorIcon -->
+<!-- $$$infoIcon-prop$$$infoIcon$$$setInfoIconconstQIcon& -->
+<h3 class="fn" translate="no" id="infoIcon-prop"><span class="name">infoIcon</span> : <span class="type"><a href="https://doc.qt.io/qt/qicon.html" translate="no">QIcon</a></span></h3>
+<p>Info 等级日志图标.</p>
+<p><b>Access functions:</b></p>
+<div class="table"><table class="alignedsummary" translate="no">
+<tr><td class="memItemLeft topAlign rightAlign"> const QIcon &amp;</td><td class="memItemRight bottomAlign"><span class="name"><b><a href="qctmlogmodel.html#infoIcon" translate="no">infoIcon</a></b></span>() const</td></tr>
+<tr><td class="memItemLeft topAlign rightAlign"> void </td><td class="memItemRight bottomAlign"><span class="name"><b><a href="qctmlogmodel.html#setInfoIcon" translate="no">setInfoIcon</a></b></span>(const QIcon &amp;<i>icon</i>)</td></tr>
+</table></div>
+<p><b>See also </b><a href="qctmlogmodel.html#setInfoIcon" translate="no">setInfoIcon</a>.</p>
+<!-- @@@infoIcon -->
+<!-- $$$warningIcon-prop$$$warningIcon$$$setWarningIconconstQIcon& -->
+<h3 class="fn" translate="no" id="warningIcon-prop"><span class="name">warningIcon</span> : <span class="type"><a href="https://doc.qt.io/qt/qicon.html" translate="no">QIcon</a></span></h3>
+<p>Warning 等级日志图标.</p>
+<p><b>Access functions:</b></p>
+<div class="table"><table class="alignedsummary" translate="no">
+<tr><td class="memItemLeft topAlign rightAlign"> const QIcon &amp;</td><td class="memItemRight bottomAlign"><span class="name"><b><a href="qctmlogmodel.html#warningIcon" translate="no">warningIcon</a></b></span>() const</td></tr>
+<tr><td class="memItemLeft topAlign rightAlign"> void </td><td class="memItemRight bottomAlign"><span class="name"><b><a href="qctmlogmodel.html#setWarningIcon" translate="no">setWarningIcon</a></b></span>(const QIcon &amp;<i>icon</i>)</td></tr>
+</table></div>
+<p><b>See also </b><a href="qctmlogmodel.html#setWarningIcon" translate="no">setWarningIcon</a>.</p>
+<!-- @@@warningIcon -->
+</div>
 <div class="func">
 <h2>Member Function Documentation</h2>
 <!-- $$$QCtmLogModel[overload1]$$$QCtmLogModelconstQString&QObject* -->
-<h3 class="fn" translate="no" id="QCtmLogModel"><code class="details extra" translate="no">[explicit]</code> QCtmLogModel::<span class="name">QCtmLogModel</span>(const <span class="type"><a href="https://doc.qt.io/qt/qstring.html" translate="no">QString</a></span> &amp;<i>objectName</i>, <span class="type"><a href="https://doc.qt.io/qt/qobject.html#QObject" translate="no">QObject</a></span> *<i>parent</i> = nullptr)</h3>
+<h3 class="fn" translate="no" id="QCtmLogModel"><code class="details extra" translate="no">[explicit]</code> QCtmLogModel::<span class="name">QCtmLogModel</span>(const <span class="type"><a href="https://doc.qt.io/qt/qstring.html" translate="no">QString</a></span> &amp;<i>objectName</i>, <span class="type"><a href="https://doc.qt.io/qt/qobject.html" translate="no">QObject</a></span> *<i>parent</i> = nullptr)</h3>
 <p>构造函数 <i translate="no">objectName</i>, <i translate="no">parent</i>.</p>
 <p><b>See also </b><a href="https://doc.qt.io/qt/qobject.html#setObjectName" translate="no">QObject::setObjectName</a>.</p>
 <!-- @@@QCtmLogModel -->
@@ -144,10 +204,6 @@
 <div class="admonition note"><p><b>Note: </b>Getter function for property infoIcon. </p>
 </div><p><b>See also </b><a href="qctmlogmodel.html#setInfoIcon" translate="no">setInfoIcon</a>.</p>
 <!-- @@@infoIcon -->
-<!-- $$$logEvent[overload1]$$$logEventQCtmLogEvent* -->
-<h3 class="fn" translate="no" id="logEvent"><code class="details extra" translate="no">[override virtual protected]</code> <span class="type">void</span> QCtmLogModel::<span class="name">logEvent</span>(<span class="type"><a href="qctmlogevent.html" translate="no">QCtmLogEvent</a></span> *<i>e</i>)</h3>
-<p>Reimplements: <a href="qctmabstractlogmodel.html#logEvent" translate="no">QCtmAbstractLogModel::logEvent</a>(QCtmLogEvent *e).</p>
-<!-- @@@logEvent -->
 <!-- $$$logInsertPolicy[overload1]$$$logInsertPolicy -->
 <h3 class="fn" translate="no" id="logInsertPolicy"><span class="type"><a href="qctmlogdata.html#LogInsertPolicy-enum" translate="no">QCtmLogData::LogInsertPolicy</a></span> QCtmLogModel::<span class="name">logInsertPolicy</span>() const</h3>
 <p>返回日志插入策略.</p>
@@ -158,6 +214,10 @@
 <p>返回日志最大数量.</p>
 <p><b>See also </b><a href="qctmlogmodel.html#setMaximumCount" translate="no">setMaximumCount</a>.</p>
 <!-- @@@maximumCount -->
+<!-- $$$onLog[overload1]$$$onLogQCtmLogDataPtr -->
+<h3 class="fn" translate="no" id="onLog"><code class="details extra" translate="no">[override virtual slot]</code> <span class="type">void</span> QCtmLogModel::<span class="name">onLog</span>(<span class="type">QCtmLogDataPtr</span> <i>log</i>)</h3>
+<p>Reimplements: <a href="qctmabstractlogmodel.html#onLog" translate="no">QCtmAbstractLogModel::onLog</a>(QCtmLogDataPtr).</p>
+<!-- @@@onLog -->
 <!-- $$$retranslateUi[overload1]$$$retranslateUi -->
 <h3 class="fn" translate="no" id="retranslateUi"><code class="details extra" translate="no">[override virtual protected]</code> <span class="type">void</span> QCtmLogModel::<span class="name">retranslateUi</span>()</h3>
 <p>Reimplements: <a href="qctmabstractlogmodel.html#retranslateUi" translate="no">QCtmAbstractLogModel::retranslateUi</a>().</p>

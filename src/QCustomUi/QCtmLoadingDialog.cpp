@@ -28,7 +28,10 @@
 struct QCtmLoadingDialog::Impl
 {
     Ui::QCtmLoadingDialog* ui { new Ui::QCtmLoadingDialog };
-    ~Impl() { delete ui; }
+    ~Impl()
+    {
+        delete ui;
+    }
     QEventLoop loop;
     Result result { Result::Cancel };
     bool cancelEnable { false };
@@ -53,6 +56,12 @@ struct QCtmLoadingDialog::Impl
 */
 
 /*!
+    \property   QCtmLoadingDialog::cancelEnable
+    \brief      是否可以按ESC键取消显示loading窗口.
+    \sa         setCancelEnable
+*/
+
+/*!
     \brief      构造函数，在 \a parent 的顶层窗口上覆盖加载窗口.
     \note       \a parent 不能为空.
 */
@@ -70,19 +79,27 @@ QCtmLoadingDialog::QCtmLoadingDialog(QWidget* parent) : QWidget(parent->topLevel
 /*!
     \brief      析构该窗口对象.
 */
-QCtmLoadingDialog::~QCtmLoadingDialog() {}
+QCtmLoadingDialog::~QCtmLoadingDialog()
+{
+}
 
 /*!
     \brief      设置是否可以按ESC键取消 \a flag.
     \sa         cancelEnable
 */
-void QCtmLoadingDialog::setCancelEnable(bool flag) { m_impl->cancelEnable = flag; }
+void QCtmLoadingDialog::setCancelEnable(bool flag)
+{
+    m_impl->cancelEnable = flag;
+}
 
 /*!
     \brief      是否可以按ESC键取消显示loading窗口.
     \sa         setCancelEnable
 */
-bool QCtmLoadingDialog::cancelEnable() const { return m_impl->cancelEnable; }
+bool QCtmLoadingDialog::cancelEnable() const
+{
+    return m_impl->cancelEnable;
+}
 
 /*!
     \brief      设置动画 \a movie.
@@ -101,7 +118,10 @@ void QCtmLoadingDialog::setMovie(QMovie* movie)
     \brief      返回动画指针.
     \sa         setMovie
 */
-QMovie* QCtmLoadingDialog::movie() const { return m_impl->ui->label->movie(); }
+QMovie* QCtmLoadingDialog::movie() const
+{
+    return m_impl->ui->label->movie();
+}
 
 /*!
     \brief      Loading 窗口加载完成时调用该函数，测试exec返回Done.

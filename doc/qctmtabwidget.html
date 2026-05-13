@@ -4,7 +4,7 @@
   <meta charset="utf-8">
 <!-- QCtmTabWidget.cpp -->
   <meta name="description" content="与QTableWidget相似，扩展了角落窗口的功能.">
-  <title>QCtmTabWidget Class | QCustomUi 1.19.0</title>
+  <title>QCtmTabWidget Class | QCustomUi 1.22.0</title>
   <link rel="stylesheet" type="text/css" href="style/offline-simple.css" />
   <script type="text/javascript">
     document.getElementsByTagName("link").item(0).setAttribute("href", "style/offline.css");
@@ -26,10 +26,10 @@
     <div class="main-rounded">
         <div class="navigationbar">
         <ul>
-<li><a href="index.html">QCustomUi 1.19.0</a></li>
+<li><a href="index.html">QCustomUi 1.22.0</a></li>
 <li><a href="qcustomui-module.html" translate="no">QCustomUi</a></li>
 <li>QCtmTabWidget</li>
-<li id="buildversion">QCustomUi 1.19.0 Reference Documentation</li>
+<li id="buildversion">QCustomUi 1.22.0 Reference Documentation</li>
     </ul>
     </div>
 </div>
@@ -40,6 +40,7 @@
 <div class="toc">
 <h3 id="toc">Contents</h3>
 <ul>
+<li class="level1"><a href="#properties">Properties</a></li>
 <li class="level1"><a href="#public-functions">Public Functions</a></li>
 <li class="level1"><a href="#signals">Signals</a></li>
 <li class="level1"><a href="#details">Detailed Description</a></li>
@@ -57,6 +58,11 @@
 <ul>
 <li><a href="qctmtabwidget-members.html">List of all members, including inherited members</a></li>
 </ul>
+<h2 id="properties">Properties</h2>
+<ul>
+<li class="fn" translate="no"><b><a href="qctmtabwidget.html#closeable-prop" translate="no">closeable</a></b> : bool</li>
+<li class="fn" translate="no"><b><a href="qctmtabwidget.html#iconSize-prop" translate="no">iconSize</a></b> : QSize</li>
+</ul>
 <h2 id="public-functions">Public Functions</h2>
 <div class="table"><table class="alignedsummary" translate="no">
 <tr><td class="memItemLeft rightAlign topAlign"> </td><td class="memItemRight bottomAlign"><b><a href="qctmtabwidget.html#QCtmTabWidget" translate="no">QCtmTabWidget</a></b>(QWidget *<i>parent</i> = nullptr)</td></tr>
@@ -66,6 +72,8 @@
 <tr><td class="memItemLeft rightAlign topAlign"> const QSize &amp;</td><td class="memItemRight bottomAlign"><b><a href="qctmtabwidget.html#iconSize" translate="no">iconSize</a></b>() const</td></tr>
 <tr><td class="memItemLeft rightAlign topAlign"> QCtmTabPage *</td><td class="memItemRight bottomAlign"><b><a href="qctmtabwidget.html#insertTab" translate="no">insertTab</a></b>(int <i>index</i>, QWidget *<i>widget</i>, const QString &amp;<i>label</i>)</td></tr>
 <tr><td class="memItemLeft rightAlign topAlign"> QCtmTabPage *</td><td class="memItemRight bottomAlign"><b><a href="qctmtabwidget.html#insertTab-1" translate="no">insertTab</a></b>(int <i>index</i>, QWidget *<i>widget</i>, const QIcon &amp;<i>icon</i>, const QString &amp;<i>label</i>)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> bool </td><td class="memItemRight bottomAlign"><b><a href="qctmtabwidget.html#isCloseable" translate="no">isCloseable</a></b>() const</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> void </td><td class="memItemRight bottomAlign"><b><a href="qctmtabwidget.html#setCloseable" translate="no">setCloseable</a></b>(bool <i>closeable</i>)</td></tr>
 <tr><td class="memItemLeft rightAlign topAlign"> void </td><td class="memItemRight bottomAlign"><b><a href="qctmtabwidget.html#setIconSize" translate="no">setIconSize</a></b>(const QSize &amp;<i>size</i>)</td></tr>
 </table></div>
 <h2 id="signals">Signals</h2>
@@ -77,10 +85,37 @@
 <h2 id="details">Detailed Description</h2>
 </div>
 <!-- @@@QCtmTabWidget -->
+<div class="prop">
+<h2>Property Documentation</h2>
+<!-- $$$closeable-prop$$$isCloseable$$$setCloseablebool -->
+<h3 class="fn" translate="no" id="closeable-prop"><span class="name">closeable</span> : <span class="type">bool</span></h3>
+<p>是否显示关闭按钮.</p>
+<p><b>Access functions:</b></p>
+<div class="table"><table class="alignedsummary" translate="no">
+<tr><td class="memItemLeft topAlign rightAlign"> bool </td><td class="memItemRight bottomAlign"><span class="name"><b><a href="qctmtabwidget.html#isCloseable" translate="no">isCloseable</a></b></span>() const</td></tr>
+<tr><td class="memItemLeft topAlign rightAlign"> void </td><td class="memItemRight bottomAlign"><span class="name"><b><a href="qctmtabwidget.html#setCloseable" translate="no">setCloseable</a></b></span>(bool <i>closeable</i>)</td></tr>
+</table></div>
+<p><b>See also </b><a href="qctmtabwidget.html#setCloseable" translate="no">setCloseable</a>.</p>
+<!-- @@@closeable -->
+<!-- $$$iconSize-prop$$$iconSize$$$setIconSizeconstQSize&$$$iconSizeChangedconstQSize& -->
+<h3 class="fn" translate="no" id="iconSize-prop"><span class="name">iconSize</span> : <span class="type"><a href="https://doc.qt.io/qt/qsize.html" translate="no">QSize</a></span></h3>
+<p>Action的图标大小.</p>
+<p><b>Access functions:</b></p>
+<div class="table"><table class="alignedsummary" translate="no">
+<tr><td class="memItemLeft topAlign rightAlign"> const QSize &amp;</td><td class="memItemRight bottomAlign"><span class="name"><b><a href="qctmtabwidget.html#iconSize" translate="no">iconSize</a></b></span>() const</td></tr>
+<tr><td class="memItemLeft topAlign rightAlign"> void </td><td class="memItemRight bottomAlign"><span class="name"><b><a href="qctmtabwidget.html#setIconSize" translate="no">setIconSize</a></b></span>(const QSize &amp;<i>size</i>)</td></tr>
+</table></div>
+<p><b>Notifier signal:</b></p>
+<div class="table"><table class="alignedsummary" translate="no">
+<tr><td class="memItemLeft topAlign rightAlign"> void </td><td class="memItemRight bottomAlign"><span class="name"><b><a href="qctmtabwidget.html#iconSizeChanged" translate="no">iconSizeChanged</a></b></span>(const QSize &amp;<i>size</i>)</td></tr>
+</table></div>
+<p><b>See also </b><a href="qctmtabwidget.html#setIconSize" translate="no">setIconSize</a>.</p>
+<!-- @@@iconSize -->
+</div>
 <div class="func">
 <h2>Member Function Documentation</h2>
 <!-- $$$QCtmTabWidget[overload1]$$$QCtmTabWidgetQWidget* -->
-<h3 class="fn" translate="no" id="QCtmTabWidget"><code class="details extra" translate="no">[explicit]</code> QCtmTabWidget::<span class="name">QCtmTabWidget</span>(<span class="type"><a href="https://doc.qt.io/qt/qwidget.html#QWidget" translate="no">QWidget</a></span> *<i>parent</i> = nullptr)</h3>
+<h3 class="fn" translate="no" id="QCtmTabWidget"><code class="details extra" translate="no">[explicit]</code> QCtmTabWidget::<span class="name">QCtmTabWidget</span>(<span class="type"><a href="https://doc.qt.io/qt/qwidget.html" translate="no">QWidget</a></span> *<i>parent</i> = nullptr)</h3>
 <p>构造函数 <i translate="no">parent</i>.</p>
 <!-- @@@QCtmTabWidget -->
 <!-- $$$~QCtmTabWidget[overload1]$$$~QCtmTabWidget -->
@@ -88,17 +123,15 @@
 <p>析构函数.</p>
 <!-- @@@~QCtmTabWidget -->
 <!-- $$$addTab[overload1]$$$addTabQWidget*constQString& -->
-<h3 class="fn" translate="no" id="addTab"><span class="type"><a href="qctmtabpage.html" translate="no">QCtmTabPage</a></span> *QCtmTabWidget::<span class="name">addTab</span>(<span class="type"><a href="https://doc.qt.io/qt/qwidget.html#QWidget" translate="no">QWidget</a></span> *<i>widget</i>, const <span class="type"><a href="https://doc.qt.io/qt/qstring.html" translate="no">QString</a></span> &amp;<i>label</i>)</h3>
-<p>This function overloads addTab.</p>
+<h3 class="fn" translate="no" id="addTab"><span class="type"><a href="qctmtabpage.html" translate="no">QCtmTabPage</a></span> *QCtmTabWidget::<span class="name">addTab</span>(<span class="type"><a href="https://doc.qt.io/qt/qwidget.html" translate="no">QWidget</a></span> *<i>widget</i>, const <span class="type"><a href="https://doc.qt.io/qt/qstring.html" translate="no">QString</a></span> &amp;<i>label</i>)</h3>
 <p>添加标题为 <i translate="no">label</i> 的子页面 <i translate="no">widget</i>.</p>
-<p><b>See also </b>QCtmTabWidget::addTab.</p>
-<!-- @@@addTab -->
+<div class="admonition auto"><p>This function overloads QCtmTabWidget::addTab.</p>
+</div><!-- @@@addTab -->
 <!-- $$$addTab$$$addTabQWidget*constQIcon&constQString& -->
-<h3 class="fn" translate="no" id="addTab-1"><span class="type"><a href="qctmtabpage.html" translate="no">QCtmTabPage</a></span> *QCtmTabWidget::<span class="name">addTab</span>(<span class="type"><a href="https://doc.qt.io/qt/qwidget.html#QWidget" translate="no">QWidget</a></span> *<i>widget</i>, const <span class="type"><a href="https://doc.qt.io/qt/qicon.html" translate="no">QIcon</a></span> &amp;<i>icon</i>, const <span class="type"><a href="https://doc.qt.io/qt/qstring.html" translate="no">QString</a></span> &amp;<i>label</i>)</h3>
-<p>This function overloads addTab.</p>
+<h3 class="fn" translate="no" id="addTab-1"><span class="type"><a href="qctmtabpage.html" translate="no">QCtmTabPage</a></span> *QCtmTabWidget::<span class="name">addTab</span>(<span class="type"><a href="https://doc.qt.io/qt/qwidget.html" translate="no">QWidget</a></span> *<i>widget</i>, const <span class="type"><a href="https://doc.qt.io/qt/qicon.html" translate="no">QIcon</a></span> &amp;<i>icon</i>, const <span class="type"><a href="https://doc.qt.io/qt/qstring.html" translate="no">QString</a></span> &amp;<i>label</i>)</h3>
 <p>添加图标为 <i translate="no">icon</i> 标题为 <i translate="no">label</i> 的子页面 <i translate="no">widget</i>.</p>
-<p><b>See also </b><a href="qctmtabwidget.html#insertTab" translate="no">QCtmTabWidget::insertTab</a>.</p>
-<!-- @@@addTab -->
+<div class="admonition auto"><p>This function overloads <a href="qctmtabwidget.html#addTab" translate="no">QCtmTabWidget::addTab</a>.</p>
+</div><!-- @@@addTab -->
 <!-- $$$iconSize -->
 <h3 class="fn" translate="no" id="iconSize">const <span class="type"><a href="https://doc.qt.io/qt/qsize.html" translate="no">QSize</a></span> &amp;QCtmTabWidget::<span class="name">iconSize</span>() const</h3>
 <p>返回Action的图标大小.</p>
@@ -112,17 +145,27 @@
 </div><p><b>See also </b><a href="qctmtabwidget.html#setIconSize" translate="no">setIconSize</a>.</p>
 <!-- @@@iconSizeChanged -->
 <!-- $$$insertTab[overload1]$$$insertTabintQWidget*constQString& -->
-<h3 class="fn" translate="no" id="insertTab"><span class="type"><a href="qctmtabpage.html" translate="no">QCtmTabPage</a></span> *QCtmTabWidget::<span class="name">insertTab</span>(<span class="type">int</span> <i>index</i>, <span class="type"><a href="https://doc.qt.io/qt/qwidget.html#QWidget" translate="no">QWidget</a></span> *<i>widget</i>, const <span class="type"><a href="https://doc.qt.io/qt/qstring.html" translate="no">QString</a></span> &amp;<i>label</i>)</h3>
-<p>This function overloads insertTab.</p>
+<h3 class="fn" translate="no" id="insertTab"><span class="type"><a href="qctmtabpage.html" translate="no">QCtmTabPage</a></span> *QCtmTabWidget::<span class="name">insertTab</span>(<span class="type">int</span> <i>index</i>, <span class="type"><a href="https://doc.qt.io/qt/qwidget.html" translate="no">QWidget</a></span> *<i>widget</i>, const <span class="type"><a href="https://doc.qt.io/qt/qstring.html" translate="no">QString</a></span> &amp;<i>label</i>)</h3>
 <p>在 <i translate="no">index</i> 的位置插入标题为 <i translate="no">label</i> 的子页面 <i translate="no">widget</i>.</p>
-<p><b>See also </b>QCtmTabWidget::insertTab.</p>
-<!-- @@@insertTab -->
+<div class="admonition auto"><p>This function overloads QCtmTabWidget::insertTab.</p>
+</div><!-- @@@insertTab -->
 <!-- $$$insertTab$$$insertTabintQWidget*constQIcon&constQString& -->
-<h3 class="fn" translate="no" id="insertTab-1"><span class="type"><a href="qctmtabpage.html" translate="no">QCtmTabPage</a></span> *QCtmTabWidget::<span class="name">insertTab</span>(<span class="type">int</span> <i>index</i>, <span class="type"><a href="https://doc.qt.io/qt/qwidget.html#QWidget" translate="no">QWidget</a></span> *<i>widget</i>, const <span class="type"><a href="https://doc.qt.io/qt/qicon.html" translate="no">QIcon</a></span> &amp;<i>icon</i>, const <span class="type"><a href="https://doc.qt.io/qt/qstring.html" translate="no">QString</a></span> &amp;<i>label</i>)</h3>
-<p>This function overloads insertTab.</p>
+<h3 class="fn" translate="no" id="insertTab-1"><span class="type"><a href="qctmtabpage.html" translate="no">QCtmTabPage</a></span> *QCtmTabWidget::<span class="name">insertTab</span>(<span class="type">int</span> <i>index</i>, <span class="type"><a href="https://doc.qt.io/qt/qwidget.html" translate="no">QWidget</a></span> *<i>widget</i>, const <span class="type"><a href="https://doc.qt.io/qt/qicon.html" translate="no">QIcon</a></span> &amp;<i>icon</i>, const <span class="type"><a href="https://doc.qt.io/qt/qstring.html" translate="no">QString</a></span> &amp;<i>label</i>)</h3>
 <p>在 <i translate="no">index</i> 的位置插入图标为 <i translate="no">icon</i> 标题为 <i translate="no">label</i> 的子页面 <i translate="no">widget</i>.</p>
-<p><b>See also </b><a href="https://doc.qt.io/qt/qtabwidget.html#insertTab" translate="no">QTabWidget::insertTab</a>.</p>
-<!-- @@@insertTab -->
+<div class="admonition auto"><p>This function overloads <a href="qctmtabwidget.html#insertTab" translate="no">QCtmTabWidget::insertTab</a>.</p>
+</div><!-- @@@insertTab -->
+<!-- $$$isCloseable -->
+<h3 class="fn" translate="no" id="isCloseable"><span class="type">bool</span> QCtmTabWidget::<span class="name">isCloseable</span>() const</h3>
+<p>返回是否显示关闭按钮.</p>
+<div class="admonition note"><p><b>Note: </b>Getter function for property <a href="qctmtabwidget.html#closeable-prop" translate="no">closeable</a>. </p>
+</div><p><b>See also </b><a href="qctmtabwidget.html#setCloseable" translate="no">setCloseable</a>.</p>
+<!-- @@@isCloseable -->
+<!-- $$$setCloseable -->
+<h3 class="fn" translate="no" id="setCloseable"><span class="type">void</span> QCtmTabWidget::<span class="name">setCloseable</span>(<span class="type">bool</span> <i>closeable</i>)</h3>
+<p>设置是否显示关闭按钮 <i translate="no">closeable</i>.</p>
+<div class="admonition note"><p><b>Note: </b>Setter function for property <a href="qctmtabwidget.html#closeable-prop" translate="no">closeable</a>. </p>
+</div><p><b>See also </b><a href="qctmtabwidget.html#isCloseable" translate="no">isCloseable</a>.</p>
+<!-- @@@setCloseable -->
 <!-- $$$setIconSize -->
 <h3 class="fn" translate="no" id="setIconSize"><span class="type">void</span> QCtmTabWidget::<span class="name">setIconSize</span>(const <span class="type"><a href="https://doc.qt.io/qt/qsize.html" translate="no">QSize</a></span> &amp;<i>size</i>)</h3>
 <p>设置Action的图标大小 <i translate="no">size</i>.</p>

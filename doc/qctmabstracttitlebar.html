@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+<!-- QCtmAbstractTitleBar.cpp -->
+  <meta name="description" content="QCtmWindow 和 QCtmDialog 的抽象标题栏.">
+  <title>QCtmAbstractTitleBar Class | QCustomUi 1.22.0</title>
+  <link rel="stylesheet" type="text/css" href="style/offline-simple.css" />
+  <script type="text/javascript">
+    document.getElementsByTagName("link").item(0).setAttribute("href", "style/offline.css");
+    // loading style sheet breaks anchors that were jumped to before
+    // so force jumping to anchor again
+    setTimeout(function() {
+        var anchor = location.hash;
+        // need to jump to different anchor first (e.g. none)
+        location.hash = "#";
+        setTimeout(function() {
+            location.hash = anchor;
+        }, 0);
+    }, 0);
+  </script>
+</head>
+<body>
+<div class="header" id="qtdocheader">
+    <div class="main">
+    <div class="main-rounded">
+        <div class="navigationbar">
+        <ul>
+<li><a href="index.html">QCustomUi 1.22.0</a></li>
+<li><a href="qcustomui-module.html" translate="no">QCustomUi</a></li>
+<li>QCtmAbstractTitleBar</li>
+<li id="buildversion">QCustomUi 1.22.0 Reference Documentation</li>
+    </ul>
+    </div>
+</div>
+<div class="content">
+<div class="line">
+<div class="content mainContent">
+<div class="sidebar">
+<div class="toc">
+<h3 id="toc">Contents</h3>
+<ul>
+<li class="level1"><a href="#public-functions">Public Functions</a></li>
+<li class="level1"><a href="#protected-functions">Protected Functions</a></li>
+<li class="level1"><a href="#reimplemented-protected-functions">Reimplemented Protected Functions</a></li>
+<li class="level1"><a href="#protected-slots">Protected Slots</a></li>
+<li class="level1"><a href="#details">Detailed Description</a></li>
+</ul>
+</div>
+<div class="sidebar-content" id="sidebar-content"></div></div>
+<h1 class="title" translate="no">QCtmAbstractTitleBar Class</h1>
+<!-- $$$QCtmAbstractTitleBar-brief -->
+<p><a href="qctmwindow.html" translate="no">QCtmWindow</a> 和 <a href="qctmdialog.html" translate="no">QCtmDialog</a> 的抽象标题栏. <a href="#details">More...</a></p>
+<!-- @@@QCtmAbstractTitleBar -->
+<div class="table"><table class="alignedsummary requisites" translate="no">
+<tr><td class="memItemLeft rightAlign topAlign"> Header:</td><td class="memItemRight bottomAlign"> <code translate="no">#include &lt;QCtmAbstractTitleBar.h&gt;</code></td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> Inherits:</td><td class="memItemRight bottomAlign"> <a href="https://doc.qt.io/qt/qwidget.html" translate="no">QWidget</a></td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> Inherited By:</td><td class="memItemRight bottomAlign"> <p><a href="qctmtitlebar.html" translate="no">QCtmTitleBar</a></p>
+</td></tr>
+</table></div>
+<ul>
+<li><a href="qctmabstracttitlebar-members.html">List of all members, including inherited members</a></li>
+</ul>
+<h2 id="public-functions">Public Functions</h2>
+<div class="table"><table class="alignedsummary" translate="no">
+<tr><td class="memItemLeft rightAlign topAlign"> </td><td class="memItemRight bottomAlign"><b><a href="qctmabstracttitlebar.html#QCtmAbstractTitleBar" translate="no">QCtmAbstractTitleBar</a></b>(QWidget *<i>parent</i> = nullptr)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> virtual </td><td class="memItemRight bottomAlign"><b><a href="qctmabstracttitlebar.html#dtor.QCtmAbstractTitleBar" translate="no">~QCtmAbstractTitleBar</a></b>() override</td></tr>
+</table></div>
+<h2 id="protected-functions">Protected Functions</h2>
+<div class="table"><table class="alignedsummary" translate="no">
+<tr><td class="memItemLeft rightAlign topAlign"> virtual void </td><td class="memItemRight bottomAlign"><b><a href="qctmabstracttitlebar.html#onWindowCloseButtonHint" translate="no">onWindowCloseButtonHint</a></b>(bool <i>showCloseButton</i>) = 0</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> virtual void </td><td class="memItemRight bottomAlign"><b><a href="qctmabstracttitlebar.html#onWindowMaximizeButtonHint" translate="no">onWindowMaximizeButtonHint</a></b>(bool <i>showMaximizeButton</i>) = 0</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> virtual void </td><td class="memItemRight bottomAlign"><b><a href="qctmabstracttitlebar.html#onWindowMaximized" translate="no">onWindowMaximized</a></b>(bool <i>isMaximumSized</i>) = 0</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> virtual void </td><td class="memItemRight bottomAlign"><b><a href="qctmabstracttitlebar.html#onWindowMinimizeButtonHint" translate="no">onWindowMinimizeButtonHint</a></b>(bool <i>showMinimizeButton</i>) = 0</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> virtual void </td><td class="memItemRight bottomAlign"><b><a href="qctmabstracttitlebar.html#onWindowTitleChanged" translate="no">onWindowTitleChanged</a></b>(const QString &amp;<i>title</i>) = 0</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> virtual bool </td><td class="memItemRight bottomAlign"><b><a href="qctmabstracttitlebar.html#showIconSystemMenu" translate="no">showIconSystemMenu</a></b>(const QPoint &amp;<i>pos</i>) const = 0</td></tr>
+</table></div>
+<h2 id="reimplemented-protected-functions">Reimplemented Protected Functions</h2>
+<div class="table"><table class="alignedsummary" translate="no">
+<tr><td class="memItemLeft rightAlign topAlign"> virtual bool </td><td class="memItemRight bottomAlign"><b><a href="qctmabstracttitlebar.html#eventFilter" translate="no">eventFilter</a></b>(QObject *<i>watched</i>, QEvent *<i>event</i>) override</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> virtual void </td><td class="memItemRight bottomAlign"><b><a href="qctmabstracttitlebar.html#showEvent" translate="no">showEvent</a></b>(QShowEvent *<i>event</i>) override</td></tr>
+</table></div>
+<h2 id="protected-slots">Protected Slots</h2>
+<div class="table"><table class="alignedsummary" translate="no">
+<tr><td class="memItemLeft rightAlign topAlign"> void </td><td class="memItemRight bottomAlign"><b><a href="qctmabstracttitlebar.html#onCloseButtonClicked" translate="no">onCloseButtonClicked</a></b>()</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> void </td><td class="memItemRight bottomAlign"><b><a href="qctmabstracttitlebar.html#onMaximizeButtonClicked" translate="no">onMaximizeButtonClicked</a></b>()</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> void </td><td class="memItemRight bottomAlign"><b><a href="qctmabstracttitlebar.html#onMinimizeButtonClicked" translate="no">onMinimizeButtonClicked</a></b>()</td></tr>
+</table></div>
+<!-- $$$QCtmAbstractTitleBar-description -->
+<div class="descr">
+<h2 id="details">Detailed Description</h2>
+<div class="admonition note">
+<p><b>Note: </b>最大化，最小化，关闭按钮等显示控制由 <a href="https://doc.qt.io/qt/qwidget.html#windowFlags-prop" translate="no">QWidget::windowFlags</a> 决定, 标题栏文字由centralWidget的<a href="https://doc.qt.io/qt/qwidget.html#windowTitle-prop" translate="no">QWidget::windowTitle</a>决定.</p>
+</div>
+</div>
+<!-- @@@QCtmAbstractTitleBar -->
+<div class="func">
+<h2>Member Function Documentation</h2>
+<!-- $$$QCtmAbstractTitleBar[overload1]$$$QCtmAbstractTitleBarQWidget* -->
+<h3 class="fn" translate="no" id="QCtmAbstractTitleBar"><code class="details extra" translate="no">[explicit]</code> QCtmAbstractTitleBar::<span class="name">QCtmAbstractTitleBar</span>(<span class="type"><a href="https://doc.qt.io/qt/qwidget.html" translate="no">QWidget</a></span> *<i>parent</i> = nullptr)</h3>
+<p>构造函数 <i translate="no">parent</i>.</p>
+<!-- @@@QCtmAbstractTitleBar -->
+<!-- $$$~QCtmAbstractTitleBar[overload1]$$$~QCtmAbstractTitleBar -->
+<h3 class="fn" translate="no" id="dtor.QCtmAbstractTitleBar"><code class="details extra" translate="no">[override virtual noexcept]</code> QCtmAbstractTitleBar::<span class="name">~QCtmAbstractTitleBar</span>()</h3>
+<p>析构函数.</p>
+<!-- @@@~QCtmAbstractTitleBar -->
+<!-- $$$eventFilter[overload1]$$$eventFilterQObject*QEvent* -->
+<h3 class="fn" translate="no" id="eventFilter"><code class="details extra" translate="no">[override virtual protected]</code> <span class="type">bool</span> QCtmAbstractTitleBar::<span class="name">eventFilter</span>(<span class="type"><a href="https://doc.qt.io/qt/qobject.html" translate="no">QObject</a></span> *<i>watched</i>, <span class="type"><a href="https://doc.qt.io/qt/qevent.html" translate="no">QEvent</a></span> *<i>event</i>)</h3>
+<p>Reimplements: <a href="https://doc.qt.io/qt/qobject.html#eventFilter" translate="no">QObject::eventFilter</a>(QObject *watched, QEvent *event).</p>
+<!-- @@@eventFilter -->
+<!-- $$$onCloseButtonClicked[overload1]$$$onCloseButtonClicked -->
+<h3 class="fn" translate="no" id="onCloseButtonClicked"><code class="details extra" translate="no">[protected slot]</code> <span class="type">void</span> QCtmAbstractTitleBar::<span class="name">onCloseButtonClicked</span>()</h3>
+<p>关闭按钮被点击时的槽函数.</p>
+<!-- @@@onCloseButtonClicked -->
+<!-- $$$onMaximizeButtonClicked[overload1]$$$onMaximizeButtonClicked -->
+<h3 class="fn" translate="no" id="onMaximizeButtonClicked"><code class="details extra" translate="no">[protected slot]</code> <span class="type">void</span> QCtmAbstractTitleBar::<span class="name">onMaximizeButtonClicked</span>()</h3>
+<p>最大化按钮被点击时的槽函数.</p>
+<!-- @@@onMaximizeButtonClicked -->
+<!-- $$$onMinimizeButtonClicked[overload1]$$$onMinimizeButtonClicked -->
+<h3 class="fn" translate="no" id="onMinimizeButtonClicked"><code class="details extra" translate="no">[protected slot]</code> <span class="type">void</span> QCtmAbstractTitleBar::<span class="name">onMinimizeButtonClicked</span>()</h3>
+<p>最小化按钮被点击时的槽函数.</p>
+<!-- @@@onMinimizeButtonClicked -->
+<!-- $$$onWindowCloseButtonHint[overload1]$$$onWindowCloseButtonHintbool -->
+<h3 class="fn" translate="no" id="onWindowCloseButtonHint"><code class="details extra" translate="no">[pure virtual protected]</code> <span class="type">void</span> QCtmAbstractTitleBar::<span class="name">onWindowCloseButtonHint</span>(<span class="type">bool</span> <i>showCloseButton</i>)</h3>
+<p>在关闭按钮显示状态发生变化时调用. <i translate="no">showCloseButton</i> 为 <code translate="no">true</code> 表示应显示关闭按钮，否则表示不显示.</p>
+<p>该函数为纯虚函数，需要子类根据窗口标志更新关闭按钮的可见状态。</p>
+<!-- @@@onWindowCloseButtonHint -->
+<!-- $$$onWindowMaximizeButtonHint[overload1]$$$onWindowMaximizeButtonHintbool -->
+<h3 class="fn" translate="no" id="onWindowMaximizeButtonHint"><code class="details extra" translate="no">[pure virtual protected]</code> <span class="type">void</span> QCtmAbstractTitleBar::<span class="name">onWindowMaximizeButtonHint</span>(<span class="type">bool</span> <i>showMaximizeButton</i>)</h3>
+<p>在最大化按钮显示状态发生变化时调用, <i translate="no">showMaximizeButton</i> 为 <code translate="no">true</code> 表示应显示最大化按钮，否则表示不显示.</p>
+<p>该函数为纯虚函数，需要子类根据窗口标志更新最大化按钮的可见状态。</p>
+<!-- @@@onWindowMaximizeButtonHint -->
+<!-- $$$onWindowMaximized[overload1]$$$onWindowMaximizedbool -->
+<h3 class="fn" translate="no" id="onWindowMaximized"><code class="details extra" translate="no">[pure virtual protected]</code> <span class="type">void</span> QCtmAbstractTitleBar::<span class="name">onWindowMaximized</span>(<span class="type">bool</span> <i>isMaximumSized</i>)</h3>
+<p>在窗口最大化状态发生变化时调用, <i translate="no">isMaximumSized</i> 为 <code translate="no">true</code> 表示当前窗口已最大化，否则表示未最大化.</p>
+<p>该函数为纯虚函数，需要子类根据窗口是否处于最大化状态更新标题栏界面。</p>
+<!-- @@@onWindowMaximized -->
+<!-- $$$onWindowMinimizeButtonHint[overload1]$$$onWindowMinimizeButtonHintbool -->
+<h3 class="fn" translate="no" id="onWindowMinimizeButtonHint"><code class="details extra" translate="no">[pure virtual protected]</code> <span class="type">void</span> QCtmAbstractTitleBar::<span class="name">onWindowMinimizeButtonHint</span>(<span class="type">bool</span> <i>showMinimizeButton</i>)</h3>
+<p>在最小化按钮显示状态发生变化时调用. <i translate="no">showMinimizeButton</i> 为 <code translate="no">true</code> 表示应显示最小化按钮，否则表示不显示.</p>
+<p>该函数为纯虚函数，需要子类根据窗口标志更新最小化按钮的可见状态。</p>
+<!-- @@@onWindowMinimizeButtonHint -->
+<!-- $$$onWindowTitleChanged[overload1]$$$onWindowTitleChangedconstQString& -->
+<h3 class="fn" translate="no" id="onWindowTitleChanged"><code class="details extra" translate="no">[pure virtual protected]</code> <span class="type">void</span> QCtmAbstractTitleBar::<span class="name">onWindowTitleChanged</span>(const <span class="type"><a href="https://doc.qt.io/qt/qstring.html" translate="no">QString</a></span> &amp;<i>title</i>)</h3>
+<p>在窗口标题发生变化时调用. <i translate="no">title</i> 当前窗口标题文本.</p>
+<p>该函数为纯虚函数，需要子类将窗口标题同步到标题栏显示区域。</p>
+<!-- @@@onWindowTitleChanged -->
+<!-- $$$showEvent[overload1]$$$showEventQShowEvent* -->
+<h3 class="fn" translate="no" id="showEvent"><code class="details extra" translate="no">[override virtual protected]</code> <span class="type">void</span> QCtmAbstractTitleBar::<span class="name">showEvent</span>(<span class="type"><a href="https://doc.qt.io/qt/qshowevent.html" translate="no">QShowEvent</a></span> *<i>event</i>)</h3>
+<p>Reimplements: <a href="https://doc.qt.io/qt/qwidget.html#showEvent" translate="no">QWidget::showEvent</a>(QShowEvent *event).</p>
+<!-- @@@showEvent -->
+<!-- $$$showIconSystemMenu[overload1]$$$showIconSystemMenuconstQPoint& -->
+<h3 class="fn" translate="no" id="showIconSystemMenu"><code class="details extra" translate="no">[pure virtual protected]</code> <span class="type">bool</span> QCtmAbstractTitleBar::<span class="name">showIconSystemMenu</span>(const <span class="type"><a href="https://doc.qt.io/qt/qpoint.html" translate="no">QPoint</a></span> &amp;<i>pos</i>) const</h3>
+<p>显示系统图标菜单. <i translate="no">pos</i> 系统菜单弹出位置. 如果成功显示系统菜单则返回 <code translate="no">true，否则返回</code> <code translate="no">false</code>.</p>
+<p>该函数为纯虚函数，需要子类在指定位置显示系统菜单。</p>
+<!-- @@@showIconSystemMenu -->
+</div>
+        </div>
+       </div>
+   </div>
+   </div>
+</div>
+<div class="footer">
+   <p>
+   <acronym title="Copyright">&copy;</acronym> QCustomUi
+   Documentation contributions included herein are the copyrights of
+   their respective owners.<br/>    The documentation provided herein is licensed under the terms of the    <a href="http://www.gnu.org/licenses/fdl.html">GNU Free Documentation    License version 1.3</a> as published by the Free Software Foundation.<br/> </div>
+</body>
+</html>

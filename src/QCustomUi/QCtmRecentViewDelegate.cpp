@@ -40,6 +40,18 @@ constexpr static int SpacePixel = 15;
 */
 
 /*!
+    \property   QCtmRecentViewDelegate::topButtonIcon
+    \brief      获取或设置置顶按钮图标.
+    \sa         setTopButtonIcon
+*/
+
+/*!
+    \property   QCtmRecentViewDelegate::topButtonVisible
+    \brief      获取或设置置顶按钮是否可见.
+    \sa         setTopButtonVisible
+*/
+
+/*!
     \fn         void QCtmRecentViewDelegate::topButtonClicked(const QModelIndex& index);
     \brief      置顶按钮点击信号 \a index, 此信号连接 QCtmRecentView::topButtonClicked.
 */
@@ -76,31 +88,45 @@ QCtmRecentViewDelegate::QCtmRecentViewDelegate(QCtmRecentView* parent /*= nullpt
 /*!
     \brief      析构函数.
 */
-QCtmRecentViewDelegate::~QCtmRecentViewDelegate() {}
+QCtmRecentViewDelegate::~QCtmRecentViewDelegate()
+{
+}
 
 /*!
     \brief      设置指定按钮图标 \a icon.
     \sa         topButtonIcon
 */
-void QCtmRecentViewDelegate::setTopButtonIcon(const QIcon& icon) { m_impl->topButton->setIcon(icon); }
+void QCtmRecentViewDelegate::setTopButtonIcon(const QIcon& icon)
+{
+    m_impl->topButton->setIcon(icon);
+}
 
 /*!
     \brief      返回置顶按钮图标.
     \sa         setTopButtonIcon
 */
-QIcon QCtmRecentViewDelegate::topButtonIcon() const { return m_impl->topButton->icon(); }
+QIcon QCtmRecentViewDelegate::topButtonIcon() const
+{
+    return m_impl->topButton->icon();
+}
 
 /*!
     \brief      设置置顶按钮是否可见 \a v.
     \sa         topButtonVisible
 */
-void QCtmRecentViewDelegate::setTopButtonVisible(bool v) { m_impl->topButtonVisible = v; }
+void QCtmRecentViewDelegate::setTopButtonVisible(bool v)
+{
+    m_impl->topButtonVisible = v;
+}
 
 /*!
     \brief      返回置顶按钮是否可见.
     \sa         setTopButtonVisible
 */
-bool QCtmRecentViewDelegate::topButtonVisible() const { return m_impl->topButtonVisible; }
+bool QCtmRecentViewDelegate::topButtonVisible() const
+{
+    return m_impl->topButtonVisible;
+}
 
 /*!
     \reimp

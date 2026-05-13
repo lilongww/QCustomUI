@@ -66,7 +66,7 @@
 /*!
     \fn         void QCtmClassifyTreeGroupItem::removeChild(QCtmClassifyTreeItem* item);
     \brief      移除给予的子项 \a item.
-    \sa         addChild, removeChild
+    \sa         addChild, insertChild
 */
 
 /*!

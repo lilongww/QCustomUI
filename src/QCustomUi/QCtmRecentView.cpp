@@ -38,6 +38,16 @@ struct QCtmRecentView::Impl
 */
 
 /*!
+    \property   QCtmRecentView::topButtonIcon
+    \brief      获取或设置置顶按钮图标.
+*/
+
+/*!
+    \property   QCtmRecentView::topButtonVisible
+    \brief      获取或设置置顶按钮是否可见.
+*/
+
+/*!
     \fn         void QCtmRecentView::topButtonClicked(const QModelIndex& index)
     \brief      置顶按钮被点击时发送该消息 \a index.
 */
@@ -92,7 +102,9 @@ QCtmRecentView::QCtmRecentView(QWidget* parent) : QTreeView(parent), m_impl(std:
 /*!
     \brief      析构函数.
 */
-QCtmRecentView::~QCtmRecentView() {}
+QCtmRecentView::~QCtmRecentView()
+{
+}
 
 /*!
     \overload
@@ -114,7 +126,10 @@ void QCtmRecentView::setModel(QCtmRecentModel* model)
                 返回数据model.
     \sa         setModel
 */
-QCtmRecentModel* QCtmRecentView::model() const { return qobject_cast<QCtmRecentModel*>(QTreeView::model()); }
+QCtmRecentModel* QCtmRecentView::model() const
+{
+    return qobject_cast<QCtmRecentModel*>(QTreeView::model());
+}
 
 /*!
     \brief      设置置顶按钮图标 \a icon.
@@ -130,7 +145,10 @@ void QCtmRecentView::setTopButtonIcon(const QIcon& icon)
     \brief      返回置顶按钮图标.
     \sa         setTopButtonIcon
 */
-QIcon QCtmRecentView::topButtonIcon() const { return itemDelegate()->property("topButtonIcon").value<QIcon>(); }
+QIcon QCtmRecentView::topButtonIcon() const
+{
+    return itemDelegate()->property("topButtonIcon").value<QIcon>();
+}
 
 /*!
     \brief      设置置顶按钮是否可见 \a v.
@@ -146,7 +164,10 @@ void QCtmRecentView::setTopButtonVisible(bool v)
     \brief      返回指定按钮是否可见.
     \sa         setTopButtonVisible
 */
-bool QCtmRecentView::topButtonVisible() const { return itemDelegate()->property("topButtonVisible").toBool(); }
+bool QCtmRecentView::topButtonVisible() const
+{
+    return itemDelegate()->property("topButtonVisible").toBool();
+}
 
 /*!
     \reimp

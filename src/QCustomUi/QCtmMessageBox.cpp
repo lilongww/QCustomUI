@@ -163,13 +163,21 @@ struct QCtmMessageBox::Impl
 
 /*!
     \property   QCtmMessageBox::textInteractionFlags
-                指定消息框的标签应如何与用户交互输入。
+    \brief      指定消息框的标签应如何与用户交互输入。
+*/
+
+/*!
+    \property   QCtmMessageBox::timeoutVisible
+    \brief      是否显示倒计时提示文本，默认为 true.
 */
 
 /*!
     \brief      构造函数 \a parent.
 */
-QCtmMessageBox::QCtmMessageBox(QWidget* parent) : QCtmDialog(parent), m_impl(std::make_unique<Impl>()) { init(); }
+QCtmMessageBox::QCtmMessageBox(QWidget* parent) : QCtmDialog(parent), m_impl(std::make_unique<Impl>())
+{
+    init();
+}
 
 /*!
     \brief      构造函数，并指定显示图标 \a icon, 标题文本 \a title, 显示文本 \a text, 按钮集合 \a buttons, 父窗口 \a parent, 窗口风格 \a f.
@@ -194,7 +202,9 @@ QCtmMessageBox::QCtmMessageBox(Icon icon,
 /*!
     \brief      析构函数.
 */
-QCtmMessageBox::~QCtmMessageBox() {}
+QCtmMessageBox::~QCtmMessageBox()
+{
+}
 
 /*!
     \brief      设置按钮集合 \a buttons.
@@ -247,7 +257,10 @@ QCtmMessageBox::StandardButton QCtmMessageBox::defaultButton()
 /*!
     \brief      返回点击的按钮.
 */
-QAbstractButton* QCtmMessageBox::clickedButton() const { return m_impl->clickedButton; }
+QAbstractButton* QCtmMessageBox::clickedButton() const
+{
+    return m_impl->clickedButton;
+}
 
 /*!
     \brief      返回按钮对应的标准按钮 \a button.
@@ -312,19 +325,28 @@ void QCtmMessageBox::removeButton(QAbstractButton* button)
     \brief      设置显示文本 \a text.
     \sa         text()
 */
-void QCtmMessageBox::setText(const QString& text) { m_impl->label->setText(text); }
+void QCtmMessageBox::setText(const QString& text)
+{
+    m_impl->label->setText(text);
+}
 
 /*!
     \brief      返回显示文本.
     \sa         setText
 */
-QString QCtmMessageBox::text() const { return m_impl->label->text(); }
+QString QCtmMessageBox::text() const
+{
+    return m_impl->label->text();
+}
 
 /*!
     \brief      返回显示图标.
     \sa         setIcon
 */
-QCtmMessageBox::Icon QCtmMessageBox::icon() const { return m_impl->icon; }
+QCtmMessageBox::Icon QCtmMessageBox::icon() const
+{
+    return m_impl->icon;
+}
 
 /*!
     \brief      设置显示图标 \a icon.
@@ -356,7 +378,10 @@ void QCtmMessageBox::setIcon(Icon icon)
     \brief      返回图标.
     \sa         setIconPixmap
 */
-QPixmap QCtmMessageBox::iconPixmap() const { return m_impl->iconLabel->pixmap(Qt::ReturnByValue); }
+QPixmap QCtmMessageBox::iconPixmap() const
+{
+    return m_impl->iconLabel->pixmap(Qt::ReturnByValue);
+}
 
 /*!
     \brief      设置自定义的图标 \a pixmap, 并且 \l icon 将被设置为 Icon::NoIcon.
@@ -372,49 +397,73 @@ void QCtmMessageBox::setIconPixmap(const QPixmap& pixmap)
     \brief      返回文本格式.
     \sa         setTextFormat
 */
-Qt::TextFormat QCtmMessageBox::textFormat() const { return m_impl->label->textFormat(); }
+Qt::TextFormat QCtmMessageBox::textFormat() const
+{
+    return m_impl->label->textFormat();
+}
 
 /*!
     \brief      设置文本格式 \a format.
     \sa         textFormat()
 */
-void QCtmMessageBox::setTextFormat(Qt::TextFormat format) { m_impl->label->setTextFormat(format); }
+void QCtmMessageBox::setTextFormat(Qt::TextFormat format)
+{
+    m_impl->label->setTextFormat(format);
+}
 
 /*!
     \brief      设置文本交互方式 \a flags.
     \sa         textInteractionFlags()
 */
-void QCtmMessageBox::setTextInteractionFlags(Qt::TextInteractionFlags flags) { m_impl->label->setTextInteractionFlags(flags); }
+void QCtmMessageBox::setTextInteractionFlags(Qt::TextInteractionFlags flags)
+{
+    m_impl->label->setTextInteractionFlags(flags);
+}
 
 /*!
     \brief      返回文本交互方式.
     \sa         setTextInteractionFlags
 */
-Qt::TextInteractionFlags QCtmMessageBox::textInteractionFlags() const { return m_impl->label->textInteractionFlags(); }
+Qt::TextInteractionFlags QCtmMessageBox::textInteractionFlags() const
+{
+    return m_impl->label->textInteractionFlags();
+}
 
 /*!
     \brief      设置显示超时时间 \a timeout.
     \sa         timeout
 */
-void QCtmMessageBox::setTimeout(const std::chrono::seconds& timeout) { m_impl->timeout = timeout; }
+void QCtmMessageBox::setTimeout(const std::chrono::seconds& timeout)
+{
+    m_impl->timeout = timeout;
+}
 
 /*!
     \brief      返回显示超时时间.
     \sa         setTimeout
 */
-const std::chrono::seconds& QCtmMessageBox::timeout() const { return m_impl->timeout; }
+const std::chrono::seconds& QCtmMessageBox::timeout() const
+{
+    return m_impl->timeout;
+}
 
 /*!
     \brief      设置倒计时文本是否可见 \a visible.
     \sa         timeoutVisible
 */
-void QCtmMessageBox::setTimeoutVisible(bool visible) { m_impl->timeoutVisible = visible; }
+void QCtmMessageBox::setTimeoutVisible(bool visible)
+{
+    m_impl->timeoutVisible = visible;
+}
 
 /*!
     \brief      返回倒计时文本是否可见.
     \sa         setTimeoutVisible
 */
-bool QCtmMessageBox::timeoutVisible() const { return m_impl->timeoutVisible; }
+bool QCtmMessageBox::timeoutVisible() const
+{
+    return m_impl->timeoutVisible;
+}
 
 /*!
     \brief      构造一个错误消息弹窗，并指定标题文本 \a title, 显示文本 \a text, 按钮集合 \a buttons, 默认按钮 \a defaultButton, 父窗口 \a
@@ -652,7 +701,13 @@ void QCtmMessageBox::init()
     layout->addLayout(msgLayout);
     layout->addWidget(m_impl->buttonBox);
 
-    connect(m_impl->buttonBox, &QDialogButtonBox::clicked, this, [=](QAbstractButton* button) { m_impl->clickedButton = button; });
+    connect(m_impl->buttonBox,
+            &QDialogButtonBox::clicked,
+            this,
+            [=](QAbstractButton* button)
+            {
+                m_impl->clickedButton = button;
+            });
     connect(m_impl->buttonBox, &QDialogButtonBox::accepted, this, &QDialog::accept);
     connect(m_impl->buttonBox, &QDialogButtonBox::rejected, this, &QDialog::reject);
 }

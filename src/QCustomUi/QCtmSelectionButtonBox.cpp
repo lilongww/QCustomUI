@@ -66,6 +66,47 @@ struct QCtmSelectionButtonBox::Impl
 */
 
 /*!
+    \property   QCtmSelectionButtonBox::exclusionPolicy
+    \brief      获取或设置互斥策略，默认为None.
+    \sa         setExclusionPolicy
+*/
+
+/*!
+    \property   QCtmSelectionButtonBox::uniformSize
+    \brief      获取或设置选项大小是否一致，默认为true.
+    \sa         setUniformSize
+*/
+
+/*!
+    \property   QCtmSelectionButtonBox::orientation
+    \brief      获取或设置选项布局方向，默认为Qt::Horizontal.
+    \sa         setOrientation
+*/
+
+/*!
+    \property   QCtmSelectionButtonBox::texts
+    \brief      获取或设置选项文本列表.
+    \sa         setTexts
+*/
+
+/*!
+    \property   QCtmSelectionButtonBox::count
+    \brief      获取选项数量.
+*/
+
+/*!
+    \property   QCtmSelectionButtonBox::checkedIndexes
+    \brief      获取或设置选中项索引列表.
+    \sa         setChecked
+*/
+
+/*!
+    \fn         void QCtmSelectionButtonBox::textsChanged()
+    \brief      选项文本发生改变时发送该信号.
+    \sa         setText, setTexts
+*/
+
+/*!
     \fn         void QCtmSelectionButtonBox::toggled(int index, bool checked)
     \brief      选项状态切换时发送该信号 \a index \a checked.
     \sa         setChecked, isChecked

@@ -50,6 +50,11 @@ struct QCtmTabPage::Impl
 */
 
 /*!
+    \property     QCtmTabPage::iconSize
+    \brief        获取或设置Action的图标大小.
+*/
+
+/*!
     \fn         void QCtmTabPage::iconSizeChanged(const QSize& size);
     \brief      当Action的图标大小发生改变时发送该信号 \a size.
     \sa         setIconSize
@@ -59,14 +64,20 @@ struct QCtmTabPage::Impl
     \brief      添加图标为 \a icon 文本为 \a text 的Action到角落窗口上.
     \sa         insertAction
 */
-QAction* QCtmTabPage::addAction(const QIcon& icon, const QString& text) { return insertAction(count(), icon, text); }
+QAction* QCtmTabPage::addAction(const QIcon& icon, const QString& text)
+{
+    return insertAction(count(), icon, text);
+}
 
 /*!
     \overload   addAction
                 添加文本为 \a text 的Action到角落窗口上.
     \sa         QCtmTabPage::addAction
 */
-QAction* QCtmTabPage::addAction(const QString& text) { return addAction(QIcon(), text); }
+QAction* QCtmTabPage::addAction(const QString& text)
+{
+    return addAction(QIcon(), text);
+}
 
 /*!
     \overload   insertAction
@@ -94,7 +105,10 @@ void QCtmTabPage::insertAction(int index, QAction* action)
 /*!
     \brief      添加文本为 \a text 的Action，并插入到角落窗口的 \a index 位置.
 */
-QAction* QCtmTabPage::insertAction(int index, const QString& text) { return insertAction(index, QIcon(), text); }
+QAction* QCtmTabPage::insertAction(int index, const QString& text)
+{
+    return insertAction(index, QIcon(), text);
+}
 
 /*!
     \brief      返回序号为 \a index 的Action.
@@ -134,7 +148,10 @@ QWidget* QCtmTabPage::takeCentralWidget() const
     \brief      返回中央窗口.
     \sa         setCentralWidget
 */
-QWidget* QCtmTabPage::centralWidget() const { return m_impl->centralWidget; }
+QWidget* QCtmTabPage::centralWidget() const
+{
+    return m_impl->centralWidget;
+}
 
 /*!
     \brief      设置Action图标大小 \a size.
@@ -150,12 +167,18 @@ void QCtmTabPage::setIconSize(const QSize& size)
     \brief      返回Action的图标大小.
     \sa         setIconSize
 */
-const QSize& QCtmTabPage::iconSize() const { return m_impl->iconSize; }
+const QSize& QCtmTabPage::iconSize() const
+{
+    return m_impl->iconSize;
+}
 /*!
     \brief      返回Action的数量.
     \sa         addAction, insertAction
 */
-int QCtmTabPage::count() const { return m_impl->actions.size(); }
+int QCtmTabPage::count() const
+{
+    return m_impl->actions.size();
+}
 
 /*!
     \reimp
@@ -188,7 +211,10 @@ void QCtmTabPage::actionEvent(QActionEvent* event)
 /*!
     \brief      返回角落窗口.
 */
-QWidget* QCtmTabPage::cornerWidget() const { return m_impl->cornerWidget; }
+QWidget* QCtmTabPage::cornerWidget() const
+{
+    return m_impl->cornerWidget;
+}
 
 /*!
     \brief      设置中央窗口 \a widget.
