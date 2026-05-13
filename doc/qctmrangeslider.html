@@ -4,7 +4,7 @@
   <meta charset="utf-8">
 <!-- QCtmRangeSlider.cpp -->
   <meta name="description" content="范围选择器.">
-  <title>QCtmRangeSlider Class | QCustomUi 1.19.0</title>
+  <title>QCtmRangeSlider Class | QCustomUi 1.22.0</title>
   <link rel="stylesheet" type="text/css" href="style/offline-simple.css" />
   <script type="text/javascript">
     document.getElementsByTagName("link").item(0).setAttribute("href", "style/offline.css");
@@ -26,10 +26,10 @@
     <div class="main-rounded">
         <div class="navigationbar">
         <ul>
-<li><a href="index.html">QCustomUi 1.19.0</a></li>
+<li><a href="index.html">QCustomUi 1.22.0</a></li>
 <li><a href="qcustomui-module.html" translate="no">QCustomUi</a></li>
 <li>QCtmRangeSlider</li>
-<li id="buildversion">QCustomUi 1.19.0 Reference Documentation</li>
+<li id="buildversion">QCustomUi 1.22.0 Reference Documentation</li>
     </ul>
     </div>
 </div>
@@ -63,9 +63,19 @@
 <li><a href="qctmrangeslider-members.html">List of all members, including inherited members</a></li>
 </ul>
 <h2 id="properties">Properties</h2>
-<ul>
+<div class="table"><table class="propsummary" translate="no">
+<tr><td class="topAlign"><ul>
+<li class="fn" translate="no"><b><a href="qctmrangeslider.html#chunkVisible-prop" translate="no">chunkVisible</a></b> : bool</li>
+<li class="fn" translate="no"><b><a href="qctmrangeslider.html#lower-prop" translate="no">lower</a></b> : int</li>
+<li class="fn" translate="no"><b><a href="qctmrangeslider.html#maximum-prop" translate="no">maximum</a></b> : int</li>
+<li class="fn" translate="no"><b><a href="qctmrangeslider.html#minimum-prop" translate="no">minimum</a></b> : int</li>
+</ul></td><td class="topAlign"><ul>
+<li class="fn" translate="no"><b><a href="qctmrangeslider.html#orientation-prop" translate="no">orientation</a></b> : Qt::Orientation</li>
 <li class="fn" translate="no"><b><a href="qctmrangeslider.html#tracking-prop" translate="no">tracking</a></b> : bool</li>
+<li class="fn" translate="no"><b><a href="qctmrangeslider.html#upper-prop" translate="no">upper</a></b> : int</li>
 </ul>
+</td></tr>
+</table></div>
 <h2 id="public-functions">Public Functions</h2>
 <div class="table"><table class="alignedsummary" translate="no">
 <tr><td class="memItemLeft rightAlign topAlign"> </td><td class="memItemRight bottomAlign"><b><a href="qctmrangeslider.html#QCtmRangeSlider" translate="no">QCtmRangeSlider</a></b>(QWidget *<i>parent</i> = nullptr)</td></tr>
@@ -127,6 +137,56 @@
 <!-- @@@QCtmRangeSlider -->
 <div class="prop">
 <h2>Property Documentation</h2>
+<!-- $$$chunkVisible-prop$$$chunkVisible$$$setChunkVisiblebool -->
+<h3 class="fn" translate="no" id="chunkVisible-prop"><span class="name">chunkVisible</span> : <span class="type">bool</span></h3>
+<p>表示范围块是否可见。</p>
+<p><b>Access functions:</b></p>
+<div class="table"><table class="alignedsummary" translate="no">
+<tr><td class="memItemLeft topAlign rightAlign"> bool </td><td class="memItemRight bottomAlign"><span class="name"><b><a href="qctmrangeslider.html#chunkVisible" translate="no">chunkVisible</a></b></span>() const</td></tr>
+<tr><td class="memItemLeft topAlign rightAlign"> void </td><td class="memItemRight bottomAlign"><span class="name"><b><a href="qctmrangeslider.html#setChunkVisible" translate="no">setChunkVisible</a></b></span>(bool <i>visible</i>)</td></tr>
+</table></div>
+<p><b>See also </b><a href="qctmrangeslider.html#setChunkVisible" translate="no">setChunkVisible</a> and <a href="qctmrangeslider.html#chunkVisible" translate="no">chunkVisible</a>.</p>
+<!-- @@@chunkVisible -->
+<!-- $$$lower-prop$$$lower$$$setLowerint -->
+<h3 class="fn" translate="no" id="lower-prop"><span class="name">lower</span> : <span class="type">int</span></h3>
+<p>表示部件的范围下限。</p>
+<p><b>Access functions:</b></p>
+<div class="table"><table class="alignedsummary" translate="no">
+<tr><td class="memItemLeft topAlign rightAlign"> int </td><td class="memItemRight bottomAlign"><span class="name"><b><a href="qctmrangeslider.html#lower" translate="no">lower</a></b></span>() const</td></tr>
+<tr><td class="memItemLeft topAlign rightAlign"> void </td><td class="memItemRight bottomAlign"><span class="name"><b><a href="qctmrangeslider.html#setLower" translate="no">setLower</a></b></span>(int <i>value</i>)</td></tr>
+</table></div>
+<p><b>See also </b><a href="qctmrangeslider.html#setLower" translate="no">setLower</a> and <a href="qctmrangeslider.html#lower" translate="no">lower</a>.</p>
+<!-- @@@lower -->
+<!-- $$$maximum-prop$$$maximum$$$setMaximumint -->
+<h3 class="fn" translate="no" id="maximum-prop"><span class="name">maximum</span> : <span class="type">int</span></h3>
+<p>表示部件的最大值。</p>
+<p><b>Access functions:</b></p>
+<div class="table"><table class="alignedsummary" translate="no">
+<tr><td class="memItemLeft topAlign rightAlign"> int </td><td class="memItemRight bottomAlign"><span class="name"><b><a href="qctmrangeslider.html#maximum" translate="no">maximum</a></b></span>() const</td></tr>
+<tr><td class="memItemLeft topAlign rightAlign"> void </td><td class="memItemRight bottomAlign"><span class="name"><b><a href="qctmrangeslider.html#setMaximum" translate="no">setMaximum</a></b></span>(int <i>maximum</i>)</td></tr>
+</table></div>
+<p><b>See also </b><a href="qctmrangeslider.html#setMaximum" translate="no">setMaximum</a> and <a href="qctmrangeslider.html#maximum" translate="no">maximum</a>.</p>
+<!-- @@@maximum -->
+<!-- $$$minimum-prop$$$minimum$$$setMinimumint -->
+<h3 class="fn" translate="no" id="minimum-prop"><span class="name">minimum</span> : <span class="type">int</span></h3>
+<p>表示部件的最小值。</p>
+<p><b>Access functions:</b></p>
+<div class="table"><table class="alignedsummary" translate="no">
+<tr><td class="memItemLeft topAlign rightAlign"> int </td><td class="memItemRight bottomAlign"><span class="name"><b><a href="qctmrangeslider.html#minimum" translate="no">minimum</a></b></span>() const</td></tr>
+<tr><td class="memItemLeft topAlign rightAlign"> void </td><td class="memItemRight bottomAlign"><span class="name"><b><a href="qctmrangeslider.html#setMinimum" translate="no">setMinimum</a></b></span>(int <i>minimum</i>)</td></tr>
+</table></div>
+<p><b>See also </b><a href="qctmrangeslider.html#setMinimum" translate="no">setMinimum</a> and <a href="qctmrangeslider.html#minimum" translate="no">minimum</a>.</p>
+<!-- @@@minimum -->
+<!-- $$$orientation-prop$$$orientation$$$setOrientationQt::Orientation -->
+<h3 class="fn" translate="no" id="orientation-prop"><span class="name">orientation</span> : <span class="type"><a href="https://doc.qt.io/qt/qt.html#Orientation-enum" translate="no">Qt::Orientation</a></span></h3>
+<p>表示部件的朝向。</p>
+<p><b>Access functions:</b></p>
+<div class="table"><table class="alignedsummary" translate="no">
+<tr><td class="memItemLeft topAlign rightAlign"> Qt::Orientation </td><td class="memItemRight bottomAlign"><span class="name"><b><a href="qctmrangeslider.html#orientation" translate="no">orientation</a></b></span>() const</td></tr>
+<tr><td class="memItemLeft topAlign rightAlign"> void </td><td class="memItemRight bottomAlign"><span class="name"><b><a href="qctmrangeslider.html#setOrientation" translate="no">setOrientation</a></b></span>(Qt::Orientation <i>orientation</i>)</td></tr>
+</table></div>
+<p><b>See also </b><a href="qctmrangeslider.html#setOrientation" translate="no">setOrientation</a> and <a href="qctmrangeslider.html#orientation" translate="no">orientation</a>.</p>
+<!-- @@@orientation -->
 <!-- $$$tracking-prop$$$hasTracking$$$setTrackingbool -->
 <h3 class="fn" translate="no" id="tracking-prop"><span class="name">tracking</span> : <span class="type">bool</span></h3>
 <p>表示valueChange 信号是否跟踪拖拽发送。</p>
@@ -137,15 +197,25 @@
 </table></div>
 <p><b>See also </b><a href="qctmrangeslider.html#setTracking" translate="no">setTracking</a> and <a href="qctmrangeslider.html#hasTracking" translate="no">hasTracking</a>.</p>
 <!-- @@@tracking -->
+<!-- $$$upper-prop$$$upper$$$setUpperint -->
+<h3 class="fn" translate="no" id="upper-prop"><span class="name">upper</span> : <span class="type">int</span></h3>
+<p>表示部件的范围上限。</p>
+<p><b>Access functions:</b></p>
+<div class="table"><table class="alignedsummary" translate="no">
+<tr><td class="memItemLeft topAlign rightAlign"> int </td><td class="memItemRight bottomAlign"><span class="name"><b><a href="qctmrangeslider.html#upper" translate="no">upper</a></b></span>() const</td></tr>
+<tr><td class="memItemLeft topAlign rightAlign"> void </td><td class="memItemRight bottomAlign"><span class="name"><b><a href="qctmrangeslider.html#setUpper" translate="no">setUpper</a></b></span>(int <i>value</i>)</td></tr>
+</table></div>
+<p><b>See also </b><a href="qctmrangeslider.html#setUpper" translate="no">setUpper</a> and <a href="qctmrangeslider.html#upper" translate="no">upper</a>.</p>
+<!-- @@@upper -->
 </div>
 <div class="func">
 <h2>Member Function Documentation</h2>
 <!-- $$$QCtmRangeSlider[overload1]$$$QCtmRangeSliderQWidget* -->
-<h3 class="fn" translate="no" id="QCtmRangeSlider"><code class="details extra" translate="no">[explicit]</code> QCtmRangeSlider::<span class="name">QCtmRangeSlider</span>(<span class="type"><a href="https://doc.qt.io/qt/qwidget.html#QWidget" translate="no">QWidget</a></span> *<i>parent</i> = nullptr)</h3>
+<h3 class="fn" translate="no" id="QCtmRangeSlider"><code class="details extra" translate="no">[explicit]</code> QCtmRangeSlider::<span class="name">QCtmRangeSlider</span>(<span class="type"><a href="https://doc.qt.io/qt/qwidget.html" translate="no">QWidget</a></span> *<i>parent</i> = nullptr)</h3>
 <p>构造函数 <i translate="no">parent</i>.</p>
 <!-- @@@QCtmRangeSlider -->
 <!-- $$$QCtmRangeSlider$$$QCtmRangeSliderQt::OrientationQWidget* -->
-<h3 class="fn" translate="no" id="QCtmRangeSlider-1"><code class="details extra" translate="no">[explicit]</code> QCtmRangeSlider::<span class="name">QCtmRangeSlider</span>(<span class="type"><a href="https://doc.qt.io/qt/qt.html#Orientation-enum" translate="no">Qt::Orientation</a></span> <i>orientation</i>, <span class="type"><a href="https://doc.qt.io/qt/qwidget.html#QWidget" translate="no">QWidget</a></span> *<i>parent</i> = nullptr)</h3>
+<h3 class="fn" translate="no" id="QCtmRangeSlider-1"><code class="details extra" translate="no">[explicit]</code> QCtmRangeSlider::<span class="name">QCtmRangeSlider</span>(<span class="type"><a href="https://doc.qt.io/qt/qt.html#Orientation-enum" translate="no">Qt::Orientation</a></span> <i>orientation</i>, <span class="type"><a href="https://doc.qt.io/qt/qwidget.html" translate="no">QWidget</a></span> *<i>parent</i> = nullptr)</h3>
 <p>构造函数 <i translate="no">orientation</i>, <i translate="no">parent</i>.</p>
 <!-- @@@QCtmRangeSlider -->
 <!-- $$$~QCtmRangeSlider[overload1]$$$~QCtmRangeSlider -->

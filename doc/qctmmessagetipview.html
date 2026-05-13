@@ -4,7 +4,7 @@
   <meta charset="utf-8">
 <!-- QCtmMessageTipView.cpp -->
   <meta name="description" content="QCtmMessageTipView 是显示具体消息的列表.">
-  <title>QCtmMessageTipView Class | QCustomUi 1.19.0</title>
+  <title>QCtmMessageTipView Class | QCustomUi 1.22.0</title>
   <link rel="stylesheet" type="text/css" href="style/offline-simple.css" />
   <script type="text/javascript">
     document.getElementsByTagName("link").item(0).setAttribute("href", "style/offline.css");
@@ -26,10 +26,10 @@
     <div class="main-rounded">
         <div class="navigationbar">
         <ul>
-<li><a href="index.html">QCustomUi 1.19.0</a></li>
+<li><a href="index.html">QCustomUi 1.22.0</a></li>
 <li><a href="qcustomui-module.html" translate="no">QCustomUi</a></li>
 <li>QCtmMessageTipView</li>
-<li id="buildversion">QCustomUi 1.19.0 Reference Documentation</li>
+<li id="buildversion">QCustomUi 1.22.0 Reference Documentation</li>
     </ul>
     </div>
 </div>
@@ -62,12 +62,17 @@
 <li><a href="qctmmessagetipview-members.html">List of all members, including inherited members</a></li>
 </ul>
 <h2 id="properties">Properties</h2>
-<ul>
+<div class="table"><table class="propsummary" translate="no">
+<tr><td class="topAlign"><ul>
 <li class="fn" translate="no"><b><a href="qctmmessagetipview.html#closeButtonIcon-prop" translate="no">closeButtonIcon</a></b> : QPixmap</li>
 <li class="fn" translate="no"><b><a href="qctmmessagetipview.html#decoration-prop" translate="no">decoration</a></b> : QColor</li>
 <li class="fn" translate="no"><b><a href="qctmmessagetipview.html#timeColor-prop" translate="no">timeColor</a></b> : QColor</li>
+</ul></td><td class="topAlign"><ul>
 <li class="fn" translate="no"><b><a href="qctmmessagetipview.html#titleColor-prop" translate="no">titleColor</a></b> : QColor</li>
+<li class="fn" translate="no"><b><a href="qctmmessagetipview.html#touchControlStyle-prop" translate="no">touchControlStyle</a></b> : bool</li>
 </ul>
+</td></tr>
+</table></div>
 <h2 id="public-functions">Public Functions</h2>
 <div class="table"><table class="alignedsummary" translate="no">
 <tr><td class="memItemLeft rightAlign topAlign"> </td><td class="memItemRight bottomAlign"><b><a href="qctmmessagetipview.html#QCtmMessageTipView" translate="no">QCtmMessageTipView</a></b>(QCtmNavigationBar *<i>parent</i>)</td></tr>
@@ -148,6 +153,15 @@
 <tr><td class="memItemLeft topAlign rightAlign"> void </td><td class="memItemRight bottomAlign"><span class="name"><b><a href="qctmmessagetipview.html#setTitleColor" translate="no">setTitleColor</a></b></span>(const QColor &amp;<i>color</i>)</td></tr>
 </table></div>
 <!-- @@@titleColor -->
+<!-- $$$touchControlStyle-prop$$$touchControlStyle$$$setTouchControlStylebool -->
+<h3 class="fn" translate="no" id="touchControlStyle-prop"><span class="name">touchControlStyle</span> : <span class="type">bool</span></h3>
+<p>是否使用触控风格的界面，默认为 false. 该属性会影响消息项中关闭按钮的大小和间距.</p>
+<p><b>Access functions:</b></p>
+<div class="table"><table class="alignedsummary" translate="no">
+<tr><td class="memItemLeft topAlign rightAlign"> bool </td><td class="memItemRight bottomAlign"><span class="name"><b><a href="qctmmessagetipview.html#touchControlStyle" translate="no">touchControlStyle</a></b></span>() const</td></tr>
+<tr><td class="memItemLeft topAlign rightAlign"> void </td><td class="memItemRight bottomAlign"><span class="name"><b><a href="qctmmessagetipview.html#setTouchControlStyle" translate="no">setTouchControlStyle</a></b></span>(bool <i>flag</i>)</td></tr>
+</table></div>
+<!-- @@@touchControlStyle -->
 </div>
 <div class="func">
 <h2>Member Function Documentation</h2>
@@ -189,7 +203,7 @@
 </div><p><b>See also </b><a href="qctmmessagetipview.html#setDecoration" translate="no">setDecoration</a>.</p>
 <!-- @@@decoration -->
 <!-- $$$eventFilter[overload1]$$$eventFilterQObject*QEvent* -->
-<h3 class="fn" translate="no" id="eventFilter"><code class="details extra" translate="no">[override virtual protected]</code> <span class="type">bool</span> QCtmMessageTipView::<span class="name">eventFilter</span>(<span class="type"><a href="https://doc.qt.io/qt/qobject.html#QObject" translate="no">QObject</a></span> *<i>o</i>, <span class="type"><a href="https://doc.qt.io/qt/qevent.html" translate="no">QEvent</a></span> *<i>e</i>)</h3>
+<h3 class="fn" translate="no" id="eventFilter"><code class="details extra" translate="no">[override virtual protected]</code> <span class="type">bool</span> QCtmMessageTipView::<span class="name">eventFilter</span>(<span class="type"><a href="https://doc.qt.io/qt/qobject.html" translate="no">QObject</a></span> *<i>o</i>, <span class="type"><a href="https://doc.qt.io/qt/qevent.html" translate="no">QEvent</a></span> *<i>e</i>)</h3>
 <p>Reimplements: <a href="qctmnavigationsidepane.html#eventFilter" translate="no">QCtmNavigationSidePane::eventFilter</a>(QObject *o, QEvent *e).</p>
 <!-- @@@eventFilter -->
 <!-- $$$messageClicked[overload1]$$$messageClickedQCtmMessageTipDataPtr -->

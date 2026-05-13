@@ -41,7 +41,7 @@ class QCUSTOMUI_EXPORT QCtmLogModel : public QCtmAbstractLogModel
     Q_PROPERTY(QIcon warningIcon READ warningIcon WRITE setWarningIcon)
     Q_PROPERTY(QIcon errorIcon READ errorIcon WRITE setErrorIcon)
 public:
-    enum
+    enum Role
     {
         TypeRole = Qt::UserRole + 1,
         CopyMessageRole

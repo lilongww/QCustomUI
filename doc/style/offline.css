@@ -393,6 +393,10 @@ h3.fn:target {
     color: #808080
 }
 
+.template-block {
+    white-space: pre-wrap
+}
+
 @media print {
     .title {
         color: #0066CB;
@@ -477,6 +481,10 @@ table, pre, .LegaleseLeft {
 
  table p {
      margin: 0px
+ }
+
+ table.qmlname {
+     width: 75%;
  }
 
 .LegaleseLeft {

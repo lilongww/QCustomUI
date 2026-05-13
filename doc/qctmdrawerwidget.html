@@ -4,7 +4,7 @@
   <meta charset="utf-8">
 <!-- QCtmDrawerWidget.cpp -->
   <meta name="description" content="抽屉窗口类.">
-  <title>QCtmDrawerWidget Class | QCustomUi 1.19.0</title>
+  <title>QCtmDrawerWidget Class | QCustomUi 1.22.0</title>
   <link rel="stylesheet" type="text/css" href="style/offline-simple.css" />
   <script type="text/javascript">
     document.getElementsByTagName("link").item(0).setAttribute("href", "style/offline.css");
@@ -26,10 +26,10 @@
     <div class="main-rounded">
         <div class="navigationbar">
         <ul>
-<li><a href="index.html">QCustomUi 1.19.0</a></li>
+<li><a href="index.html">QCustomUi 1.22.0</a></li>
 <li><a href="qcustomui-module.html" translate="no">QCustomUi</a></li>
 <li>QCtmDrawerWidget</li>
-<li id="buildversion">QCustomUi 1.19.0 Reference Documentation</li>
+<li id="buildversion">QCustomUi 1.22.0 Reference Documentation</li>
     </ul>
     </div>
 </div>
@@ -64,6 +64,7 @@
 <h2 id="properties">Properties</h2>
 <ul>
 <li class="fn" translate="no"><b><a href="qctmdrawerwidget.html#exclusive-prop" translate="no">exclusive</a></b> : bool</li>
+<li class="fn" translate="no"><b><a href="qctmdrawerwidget.html#iconSize-prop" translate="no">iconSize</a></b> : QSize</li>
 </ul>
 <h2 id="public-functions">Public Functions</h2>
 <div class="table"><table class="alignedsummary" translate="no">
@@ -118,11 +119,25 @@
 <tr><td class="memItemLeft topAlign rightAlign"> void </td><td class="memItemRight bottomAlign"><span class="name"><b><a href="qctmdrawerwidget.html#setExclusive" translate="no">setExclusive</a></b></span>(bool <i>exclusive</i>)</td></tr>
 </table></div>
 <!-- @@@exclusive -->
+<!-- $$$iconSize-prop$$$iconSize$$$setIconSizeconstQSize&$$$iconSizeChangedconstQSize& -->
+<h3 class="fn" translate="no" id="iconSize-prop"><span class="name">iconSize</span> : <span class="type"><a href="https://doc.qt.io/qt/qsize.html" translate="no">QSize</a></span></h3>
+<p>获取或设置抽屉项中Action的图标大小.</p>
+<p><b>Access functions:</b></p>
+<div class="table"><table class="alignedsummary" translate="no">
+<tr><td class="memItemLeft topAlign rightAlign"> const QSize &amp;</td><td class="memItemRight bottomAlign"><span class="name"><b><a href="qctmdrawerwidget.html#iconSize" translate="no">iconSize</a></b></span>() const</td></tr>
+<tr><td class="memItemLeft topAlign rightAlign"> void </td><td class="memItemRight bottomAlign"><span class="name"><b><a href="qctmdrawerwidget.html#setIconSize" translate="no">setIconSize</a></b></span>(const QSize &amp;<i>size</i>)</td></tr>
+</table></div>
+<p><b>Notifier signal:</b></p>
+<div class="table"><table class="alignedsummary" translate="no">
+<tr><td class="memItemLeft topAlign rightAlign"> void </td><td class="memItemRight bottomAlign"><span class="name"><b><a href="qctmdrawerwidget.html#iconSizeChanged" translate="no">iconSizeChanged</a></b></span>(const QSize &amp;<i>size</i>)</td></tr>
+</table></div>
+<p><b>See also </b><a href="qctmdrawerwidget.html#setIconSize" translate="no">setIconSize</a> and <a href="qctmdrawerwidget.html#iconSizeChanged" translate="no">iconSizeChanged</a>.</p>
+<!-- @@@iconSize -->
 </div>
 <div class="func">
 <h2>Member Function Documentation</h2>
 <!-- $$$QCtmDrawerWidget[overload1]$$$QCtmDrawerWidgetQWidget* -->
-<h3 class="fn" translate="no" id="QCtmDrawerWidget"><code class="details extra" translate="no">[explicit]</code> QCtmDrawerWidget::<span class="name">QCtmDrawerWidget</span>(<span class="type"><a href="https://doc.qt.io/qt/qwidget.html#QWidget" translate="no">QWidget</a></span> *<i>parent</i> = nullptr)</h3>
+<h3 class="fn" translate="no" id="QCtmDrawerWidget"><code class="details extra" translate="no">[explicit]</code> QCtmDrawerWidget::<span class="name">QCtmDrawerWidget</span>(<span class="type"><a href="https://doc.qt.io/qt/qwidget.html" translate="no">QWidget</a></span> *<i>parent</i> = nullptr)</h3>
 <p>构造一个父窗口为 <i translate="no">parent</i> 的抽屉窗口对象.</p>
 <!-- @@@QCtmDrawerWidget -->
 <!-- $$$~QCtmDrawerWidget[overload1]$$$~QCtmDrawerWidget -->
@@ -130,7 +145,7 @@
 <p>销毁该抽屉窗口对象.</p>
 <!-- @@@~QCtmDrawerWidget -->
 <!-- $$$addWidget[overload1]$$$addWidgetconstQString&QWidget* -->
-<h3 class="fn" translate="no" id="addWidget"><span class="type"><a href="qctmdraweritemwidget.html" translate="no">QCtmDrawerItemWidget</a></span> *QCtmDrawerWidget::<span class="name">addWidget</span>(const <span class="type"><a href="https://doc.qt.io/qt/qstring.html" translate="no">QString</a></span> &amp;<i>title</i>, <span class="type"><a href="https://doc.qt.io/qt/qwidget.html#QWidget" translate="no">QWidget</a></span> *<i>widget</i>)</h3>
+<h3 class="fn" translate="no" id="addWidget"><span class="type"><a href="qctmdraweritemwidget.html" translate="no">QCtmDrawerItemWidget</a></span> *QCtmDrawerWidget::<span class="name">addWidget</span>(const <span class="type"><a href="https://doc.qt.io/qt/qstring.html" translate="no">QString</a></span> &amp;<i>title</i>, <span class="type"><a href="https://doc.qt.io/qt/qwidget.html" translate="no">QWidget</a></span> *<i>widget</i>)</h3>
 <p>添加并返回一个标题为 <i translate="no">title</i> 容纳窗口为 <i translate="no">widget</i> 的抽屉项.</p>
 <p><b>See also </b><a href="qctmdrawerwidget.html#insertWidget" translate="no">insertWidget</a> and <a href="qctmdrawerwidget.html#removeItem" translate="no">removeItem</a>.</p>
 <!-- @@@addWidget -->
@@ -172,7 +187,7 @@
 <p><b>See also </b><a href="qctmdrawerwidget.html#item" translate="no">item</a>.</p>
 <!-- @@@indexOf -->
 <!-- $$$insertWidget[overload1]$$$insertWidgetintconstQString&QWidget* -->
-<h3 class="fn" translate="no" id="insertWidget"><span class="type"><a href="qctmdraweritemwidget.html" translate="no">QCtmDrawerItemWidget</a></span> *QCtmDrawerWidget::<span class="name">insertWidget</span>(<span class="type">int</span> <i>index</i>, const <span class="type"><a href="https://doc.qt.io/qt/qstring.html" translate="no">QString</a></span> &amp;<i>title</i>, <span class="type"><a href="https://doc.qt.io/qt/qwidget.html#QWidget" translate="no">QWidget</a></span> *<i>widget</i>)</h3>
+<h3 class="fn" translate="no" id="insertWidget"><span class="type"><a href="qctmdraweritemwidget.html" translate="no">QCtmDrawerItemWidget</a></span> *QCtmDrawerWidget::<span class="name">insertWidget</span>(<span class="type">int</span> <i>index</i>, const <span class="type"><a href="https://doc.qt.io/qt/qstring.html" translate="no">QString</a></span> &amp;<i>title</i>, <span class="type"><a href="https://doc.qt.io/qt/qwidget.html" translate="no">QWidget</a></span> *<i>widget</i>)</h3>
 <p>在 <i translate="no">index</i> 位置插入并返回一个标题为 <i translate="no">title</i> 容纳窗口为 <i translate="no">widget</i> 的抽屉项.</p>
 <p><b>See also </b><a href="qctmdrawerwidget.html#addWidget" translate="no">addWidget</a> and <a href="qctmdrawerwidget.html#removeItem" translate="no">removeItem</a>.</p>
 <!-- @@@insertWidget -->

@@ -4,7 +4,7 @@
   <meta charset="utf-8">
 <!-- QCtmDigitKeyboard.cpp -->
   <meta name="description" content="数字输入键盘.">
-  <title>QCtmDigitKeyboard Class | QCustomUi 1.19.0</title>
+  <title>QCtmDigitKeyboard Class | QCustomUi 1.22.0</title>
   <link rel="stylesheet" type="text/css" href="style/offline-simple.css" />
   <script type="text/javascript">
     document.getElementsByTagName("link").item(0).setAttribute("href", "style/offline.css");
@@ -26,10 +26,10 @@
     <div class="main-rounded">
         <div class="navigationbar">
         <ul>
-<li><a href="index.html">QCustomUi 1.19.0</a></li>
+<li><a href="index.html">QCustomUi 1.22.0</a></li>
 <li><a href="qcustomui-module.html" translate="no">QCustomUi</a></li>
 <li>QCtmDigitKeyboard</li>
-<li id="buildversion">QCustomUi 1.19.0 Reference Documentation</li>
+<li id="buildversion">QCustomUi 1.22.0 Reference Documentation</li>
     </ul>
     </div>
 </div>
@@ -40,6 +40,7 @@
 <div class="toc">
 <h3 id="toc">Contents</h3>
 <ul>
+<li class="level1"><a href="#properties">Properties</a></li>
 <li class="level1"><a href="#public-functions">Public Functions</a></li>
 <li class="level1"><a href="#signals">Signals</a></li>
 <li class="level1"><a href="#static-public-members">Static Public Members</a></li>
@@ -59,6 +60,18 @@
 <ul>
 <li><a href="qctmdigitkeyboard-members.html">List of all members, including inherited members</a></li>
 </ul>
+<h2 id="properties">Properties</h2>
+<div class="table"><table class="propsummary" translate="no">
+<tr><td class="topAlign"><ul>
+<li class="fn" translate="no"><b><a href="qctmdigitkeyboard.html#decimals-prop" translate="no">decimals</a></b> : int</li>
+<li class="fn" translate="no"><b><a href="qctmdigitkeyboard.html#maximum-prop" translate="no">maximum</a></b> : QVariant</li>
+<li class="fn" translate="no"><b><a href="qctmdigitkeyboard.html#minimum-prop" translate="no">minimum</a></b> : QVariant</li>
+</ul></td><td class="topAlign"><ul>
+<li class="fn" translate="no"><b><a href="qctmdigitkeyboard.html#singleStep-prop" translate="no">singleStep</a></b> : QVariant</li>
+<li class="fn" translate="no"><b><a href="qctmdigitkeyboard.html#value-prop" translate="no">value</a></b> : QVariant</li>
+</ul>
+</td></tr>
+</table></div>
 <h2 id="public-functions">Public Functions</h2>
 <div class="table"><table class="alignedsummary" translate="no">
 <tr><td class="memItemLeft rightAlign topAlign"> </td><td class="memItemRight bottomAlign"><b><a href="qctmdigitkeyboard.html#QCtmDigitKeyboard" translate="no">QCtmDigitKeyboard</a></b>(QWidget *<i>parent</i> = nullptr)</td></tr>
@@ -102,10 +115,67 @@
 <h2 id="details">Detailed Description</h2>
 </div>
 <!-- @@@QCtmDigitKeyboard -->
+<div class="prop">
+<h2>Property Documentation</h2>
+<!-- $$$decimals-prop$$$decimals$$$setDecimalsint -->
+<h3 class="fn" translate="no" id="decimals-prop"><span class="name">decimals</span> : <span class="type">int</span></h3>
+<p>小数位数，仅对浮点数有效.</p>
+<p><b>Access functions:</b></p>
+<div class="table"><table class="alignedsummary" translate="no">
+<tr><td class="memItemLeft topAlign rightAlign"> int </td><td class="memItemRight bottomAlign"><span class="name"><b><a href="qctmdigitkeyboard.html#decimals" translate="no">decimals</a></b></span>() const</td></tr>
+<tr><td class="memItemLeft topAlign rightAlign"> void </td><td class="memItemRight bottomAlign"><span class="name"><b><a href="qctmdigitkeyboard.html#setDecimals" translate="no">setDecimals</a></b></span>(int <i>decimals</i>)</td></tr>
+</table></div>
+<p><b>See also </b><a href="qctmdigitkeyboard.html#setDecimals" translate="no">setDecimals</a>.</p>
+<!-- @@@decimals -->
+<!-- $$$maximum-prop$$$maximum$$$setMaximumconstQVariant& -->
+<h3 class="fn" translate="no" id="maximum-prop"><span class="name">maximum</span> : <span class="type"><a href="https://doc.qt.io/qt/qvariant.html" translate="no">QVariant</a></span></h3>
+<p>最大值.</p>
+<p><b>Access functions:</b></p>
+<div class="table"><table class="alignedsummary" translate="no">
+<tr><td class="memItemLeft topAlign rightAlign"> QVariant </td><td class="memItemRight bottomAlign"><span class="name"><b><a href="qctmdigitkeyboard.html#maximum" translate="no">maximum</a></b></span>() const</td></tr>
+<tr><td class="memItemLeft topAlign rightAlign"> void </td><td class="memItemRight bottomAlign"><span class="name"><b><a href="qctmdigitkeyboard.html#setMaximum" translate="no">setMaximum</a></b></span>(const QVariant &amp;<i>max</i>)</td></tr>
+</table></div>
+<p><b>See also </b><a href="qctmdigitkeyboard.html#setMaximum" translate="no">setMaximum</a> and <a href="qctmdigitkeyboard.html#setRange" translate="no">setRange</a>.</p>
+<!-- @@@maximum -->
+<!-- $$$minimum-prop$$$minimum$$$setMinimumconstQVariant& -->
+<h3 class="fn" translate="no" id="minimum-prop"><span class="name">minimum</span> : <span class="type"><a href="https://doc.qt.io/qt/qvariant.html" translate="no">QVariant</a></span></h3>
+<p>最小值.</p>
+<p><b>Access functions:</b></p>
+<div class="table"><table class="alignedsummary" translate="no">
+<tr><td class="memItemLeft topAlign rightAlign"> QVariant </td><td class="memItemRight bottomAlign"><span class="name"><b><a href="qctmdigitkeyboard.html#minimum" translate="no">minimum</a></b></span>() const</td></tr>
+<tr><td class="memItemLeft topAlign rightAlign"> void </td><td class="memItemRight bottomAlign"><span class="name"><b><a href="qctmdigitkeyboard.html#setMinimum" translate="no">setMinimum</a></b></span>(const QVariant &amp;<i>min</i>)</td></tr>
+</table></div>
+<p><b>See also </b><a href="qctmdigitkeyboard.html#setMinimum" translate="no">setMinimum</a> and <a href="qctmdigitkeyboard.html#setRange" translate="no">setRange</a>.</p>
+<!-- @@@minimum -->
+<!-- $$$singleStep-prop$$$singleStep$$$setSingleStepconstQVariant& -->
+<h3 class="fn" translate="no" id="singleStep-prop"><span class="name">singleStep</span> : <span class="type"><a href="https://doc.qt.io/qt/qvariant.html" translate="no">QVariant</a></span></h3>
+<p>步进值.</p>
+<p><b>Access functions:</b></p>
+<div class="table"><table class="alignedsummary" translate="no">
+<tr><td class="memItemLeft topAlign rightAlign"> QVariant </td><td class="memItemRight bottomAlign"><span class="name"><b><a href="qctmdigitkeyboard.html#singleStep" translate="no">singleStep</a></b></span>() const</td></tr>
+<tr><td class="memItemLeft topAlign rightAlign"> void </td><td class="memItemRight bottomAlign"><span class="name"><b><a href="qctmdigitkeyboard.html#setSingleStep" translate="no">setSingleStep</a></b></span>(const QVariant &amp;<i>step</i>)</td></tr>
+</table></div>
+<p><b>See also </b><a href="qctmdigitkeyboard.html#setSingleStep" translate="no">setSingleStep</a>.</p>
+<!-- @@@singleStep -->
+<!-- $$$value-prop$$$value$$$setValueconstQVariant&$$$valueChangedconstQVariant& -->
+<h3 class="fn" translate="no" id="value-prop"><span class="name">value</span> : <span class="type"><a href="https://doc.qt.io/qt/qvariant.html" translate="no">QVariant</a></span></h3>
+<p>输入的值.</p>
+<p><b>Access functions:</b></p>
+<div class="table"><table class="alignedsummary" translate="no">
+<tr><td class="memItemLeft topAlign rightAlign"> QVariant </td><td class="memItemRight bottomAlign"><span class="name"><b><a href="qctmdigitkeyboard.html#value" translate="no">value</a></b></span>() const</td></tr>
+<tr><td class="memItemLeft topAlign rightAlign"> void </td><td class="memItemRight bottomAlign"><span class="name"><b><a href="qctmdigitkeyboard.html#setValue" translate="no">setValue</a></b></span>(const QVariant &amp;<i>value</i>)</td></tr>
+</table></div>
+<p><b>Notifier signal:</b></p>
+<div class="table"><table class="alignedsummary" translate="no">
+<tr><td class="memItemLeft topAlign rightAlign"> void </td><td class="memItemRight bottomAlign"><span class="name"><b>valueChanged</b></span>(const QVariant &amp;<i>value</i>)</td></tr>
+</table></div>
+<p><b>See also </b><a href="qctmdigitkeyboard.html#setValue" translate="no">setValue</a>.</p>
+<!-- @@@value -->
+</div>
 <div class="func">
 <h2>Member Function Documentation</h2>
 <!-- $$$QCtmDigitKeyboard[overload1]$$$QCtmDigitKeyboardQWidget* -->
-<h3 class="fn" translate="no" id="QCtmDigitKeyboard">QCtmDigitKeyboard::<span class="name">QCtmDigitKeyboard</span>(<span class="type"><a href="https://doc.qt.io/qt/qwidget.html#QWidget" translate="no">QWidget</a></span> *<i>parent</i> = nullptr)</h3>
+<h3 class="fn" translate="no" id="QCtmDigitKeyboard">QCtmDigitKeyboard::<span class="name">QCtmDigitKeyboard</span>(<span class="type"><a href="https://doc.qt.io/qt/qwidget.html" translate="no">QWidget</a></span> *<i>parent</i> = nullptr)</h3>
 <p>构造函数 <i translate="no">parent</i>.</p>
 <!-- @@@QCtmDigitKeyboard -->
 <!-- $$$~QCtmDigitKeyboard[overload1]$$$~QCtmDigitKeyboard -->
@@ -128,7 +198,7 @@
 </div><p><b>See also </b><a href="qctmdigitkeyboard.html#setDecimals" translate="no">setDecimals</a>.</p>
 <!-- @@@decimals -->
 <!-- $$$eventFilter[overload1]$$$eventFilterQObject*QEvent* -->
-<h3 class="fn" translate="no" id="eventFilter"><code class="details extra" translate="no">[override virtual protected]</code> <span class="type">bool</span> QCtmDigitKeyboard::<span class="name">eventFilter</span>(<span class="type"><a href="https://doc.qt.io/qt/qobject.html#QObject" translate="no">QObject</a></span> *<i>obj</i>, <span class="type"><a href="https://doc.qt.io/qt/qevent.html" translate="no">QEvent</a></span> *<i>event</i>)</h3>
+<h3 class="fn" translate="no" id="eventFilter"><code class="details extra" translate="no">[override virtual protected]</code> <span class="type">bool</span> QCtmDigitKeyboard::<span class="name">eventFilter</span>(<span class="type"><a href="https://doc.qt.io/qt/qobject.html" translate="no">QObject</a></span> *<i>obj</i>, <span class="type"><a href="https://doc.qt.io/qt/qevent.html" translate="no">QEvent</a></span> *<i>event</i>)</h3>
 <p>Reimplements: <a href="qctmdialog.html#eventFilter" translate="no">QCtmDialog::eventFilter</a>(QObject *o, QEvent *e).</p>
 <!-- @@@eventFilter -->
 <!-- $$$inputMode[overload1]$$$inputMode -->

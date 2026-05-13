@@ -59,6 +59,18 @@ struct QCtmTabWidget::Impl
 */
 
 /*!
+    \property     QCtmTabWidget::iconSize
+    \brief        Action的图标大小.
+    \sa           setIconSize
+*/
+
+/*!
+    \property     QCtmTabWidget::closeable
+    \brief        是否显示关闭按钮.
+    \sa           setCloseable
+*/
+
+/*!
     \fn         void QCtmTabWidget::iconSizeChanged(const QSize& size);
     \brief      当Action的图标大小发生变化时发送该信号 \a size.
     \sa         setIconSize
@@ -93,7 +105,6 @@ QCtmTabWidget::~QCtmTabWidget()
 /*!
     \overload   addTab
                 添加标题为 \a label 的子页面 \a widget.
-    \sa         QCtmTabWidget::addTab
 */
 QCtmTabPage* QCtmTabWidget::addTab(QWidget* widget, const QString& label)
 {
@@ -103,7 +114,6 @@ QCtmTabPage* QCtmTabWidget::addTab(QWidget* widget, const QString& label)
 /*!
     \overload   addTab
     \brief      添加图标为 \a icon 标题为 \a label 的子页面 \a widget.
-    \sa         QCtmTabWidget::insertTab
 */
 QCtmTabPage* QCtmTabWidget::addTab(QWidget* widget, const QIcon& icon, const QString& label)
 {
@@ -113,7 +123,6 @@ QCtmTabPage* QCtmTabWidget::addTab(QWidget* widget, const QIcon& icon, const QSt
 /*!
     \overload   insertTab
                 在 \a index 的位置插入标题为 \a label 的子页面 \a widget.
-    \sa         QCtmTabWidget::insertTab
 */
 QCtmTabPage* QCtmTabWidget::insertTab(int index, QWidget* widget, const QString& label)
 {
@@ -123,7 +132,6 @@ QCtmTabPage* QCtmTabWidget::insertTab(int index, QWidget* widget, const QString&
 /*!
     \overload   insertTab
                 在 \a index 的位置插入图标为 \a icon 标题为 \a label 的子页面 \a widget.
-    \sa         QTabWidget::insertTab
 */
 QCtmTabPage* QCtmTabWidget::insertTab(int index, QWidget* widget, const QIcon& icon, const QString& label)
 {

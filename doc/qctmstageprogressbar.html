@@ -4,7 +4,7 @@
   <meta charset="utf-8">
 <!-- QCtmStageProgressBar.cpp -->
   <meta name="description" content="阶段进度条.">
-  <title>QCtmStageProgressBar Class | QCustomUi 1.19.0</title>
+  <title>QCtmStageProgressBar Class | QCustomUi 1.22.0</title>
   <link rel="stylesheet" type="text/css" href="style/offline-simple.css" />
   <script type="text/javascript">
     document.getElementsByTagName("link").item(0).setAttribute("href", "style/offline.css");
@@ -26,10 +26,10 @@
     <div class="main-rounded">
         <div class="navigationbar">
         <ul>
-<li><a href="index.html">QCustomUi 1.19.0</a></li>
+<li><a href="index.html">QCustomUi 1.22.0</a></li>
 <li><a href="qcustomui-module.html" translate="no">QCustomUi</a></li>
 <li>QCtmStageProgressBar</li>
-<li id="buildversion">QCustomUi 1.19.0 Reference Documentation</li>
+<li id="buildversion">QCustomUi 1.22.0 Reference Documentation</li>
     </ul>
     </div>
 </div>
@@ -40,6 +40,7 @@
 <div class="toc">
 <h3 id="toc">Contents</h3>
 <ul>
+<li class="level1"><a href="#properties">Properties</a></li>
 <li class="level1"><a href="#public-functions">Public Functions</a></li>
 <li class="level1"><a href="#public-slots">Public Slots</a></li>
 <li class="level1"><a href="#signals">Signals</a></li>
@@ -60,6 +61,21 @@
 <ul>
 <li><a href="qctmstageprogressbar-members.html">List of all members, including inherited members</a></li>
 </ul>
+<h2 id="properties">Properties</h2>
+<div class="table"><table class="propsummary" translate="no">
+<tr><td class="topAlign"><ul>
+<li class="fn" translate="no"><b><a href="qctmstageprogressbar.html#maximum-prop" translate="no">maximum</a></b> : int</li>
+<li class="fn" translate="no"><b><a href="qctmstageprogressbar.html#minimum-prop" translate="no">minimum</a></b> : int</li>
+<li class="fn" translate="no"><b><a href="qctmstageprogressbar.html#orientation-prop" translate="no">orientation</a></b> : Qt::Orientation</li>
+<li class="fn" translate="no"><b><a href="qctmstageprogressbar.html#rateBackground-prop" translate="no">rateBackground</a></b> : QBrush</li>
+</ul></td><td class="topAlign"><ul>
+<li class="fn" translate="no"><b><a href="qctmstageprogressbar.html#stageCount-prop" translate="no">stageCount</a></b> : int</li>
+<li class="fn" translate="no"><b><a href="qctmstageprogressbar.html#stageIndexTextPen-prop" translate="no">stageIndexTextPen</a></b> : QPen</li>
+<li class="fn" translate="no"><b><a href="qctmstageprogressbar.html#textVisible-prop" translate="no">textVisible</a></b> : bool</li>
+<li class="fn" translate="no"><b><a href="qctmstageprogressbar.html#value-prop" translate="no">value</a></b> : int</li>
+</ul>
+</td></tr>
+</table></div>
 <h2 id="public-functions">Public Functions</h2>
 <div class="table"><table class="alignedsummary" translate="no">
 <tr><td class="memItemLeft rightAlign topAlign"> </td><td class="memItemRight bottomAlign"><b><a href="qctmstageprogressbar.html#QCtmStageProgressBar" translate="no">QCtmStageProgressBar</a></b>(QWidget *<i>parent</i> = nullptr)</td></tr>
@@ -115,10 +131,93 @@
 <p><b>截图:</b></p>
 <p class="centerAlign"><img src="images/QCtmStageProgressBarDetail.png" alt="" /></p></div>
 <!-- @@@QCtmStageProgressBar -->
+<div class="prop">
+<h2>Property Documentation</h2>
+<!-- $$$maximum-prop$$$maximum$$$setMaximumint -->
+<h3 class="fn" translate="no" id="maximum-prop"><span class="name">maximum</span> : <span class="type">int</span></h3>
+<p>获取或设置进度条的最大值.</p>
+<p><b>Access functions:</b></p>
+<div class="table"><table class="alignedsummary" translate="no">
+<tr><td class="memItemLeft topAlign rightAlign"> int </td><td class="memItemRight bottomAlign"><span class="name"><b><a href="qctmstageprogressbar.html#maximum" translate="no">maximum</a></b></span>() const</td></tr>
+<tr><td class="memItemLeft topAlign rightAlign"> void </td><td class="memItemRight bottomAlign"><span class="name"><b><a href="qctmstageprogressbar.html#setMaximum" translate="no">setMaximum</a></b></span>(int <i>maximum</i>)</td></tr>
+</table></div>
+<p><b>See also </b><a href="qctmstageprogressbar.html#minimum" translate="no">minimum</a> and <a href="qctmstageprogressbar.html#setRange" translate="no">setRange</a>.</p>
+<!-- @@@maximum -->
+<!-- $$$minimum-prop$$$minimum$$$setMinimumint -->
+<h3 class="fn" translate="no" id="minimum-prop"><span class="name">minimum</span> : <span class="type">int</span></h3>
+<p>获取或设置进度条的最小值.</p>
+<p><b>Access functions:</b></p>
+<div class="table"><table class="alignedsummary" translate="no">
+<tr><td class="memItemLeft topAlign rightAlign"> int </td><td class="memItemRight bottomAlign"><span class="name"><b><a href="qctmstageprogressbar.html#minimum" translate="no">minimum</a></b></span>() const</td></tr>
+<tr><td class="memItemLeft topAlign rightAlign"> void </td><td class="memItemRight bottomAlign"><span class="name"><b><a href="qctmstageprogressbar.html#setMinimum" translate="no">setMinimum</a></b></span>(int <i>min</i>)</td></tr>
+</table></div>
+<p><b>See also </b><a href="qctmstageprogressbar.html#maximum" translate="no">maximum</a> and <a href="qctmstageprogressbar.html#setRange" translate="no">setRange</a>.</p>
+<!-- @@@minimum -->
+<!-- $$$orientation-prop$$$orientation$$$setOrientationQt::Orientation -->
+<h3 class="fn" translate="no" id="orientation-prop"><span class="name">orientation</span> : <span class="type"><a href="https://doc.qt.io/qt/qt.html#Orientation-enum" translate="no">Qt::Orientation</a></span></h3>
+<p>获取或设置进度条的朝向.</p>
+<p><b>Access functions:</b></p>
+<div class="table"><table class="alignedsummary" translate="no">
+<tr><td class="memItemLeft topAlign rightAlign"> Qt::Orientation </td><td class="memItemRight bottomAlign"><span class="name"><b><a href="qctmstageprogressbar.html#orientation" translate="no">orientation</a></b></span>() const</td></tr>
+<tr><td class="memItemLeft topAlign rightAlign"> void </td><td class="memItemRight bottomAlign"><span class="name"><b><a href="qctmstageprogressbar.html#setOrientation" translate="no">setOrientation</a></b></span>(Qt::Orientation <i>orientation</i>)</td></tr>
+</table></div>
+<p><b>See also </b><a href="qctmstageprogressbar.html#setOrientation" translate="no">setOrientation</a>.</p>
+<!-- @@@orientation -->
+<!-- $$$rateBackground-prop$$$rateBackground$$$setRateBackgroundconstQBrush& -->
+<h3 class="fn" translate="no" id="rateBackground-prop"><span class="name">rateBackground</span> : <span class="type"><a href="https://doc.qt.io/qt/qbrush.html" translate="no">QBrush</a></span></h3>
+<p>获取或设置进度条的背景画刷.</p>
+<p><b>Access functions:</b></p>
+<div class="table"><table class="alignedsummary" translate="no">
+<tr><td class="memItemLeft topAlign rightAlign"> const QBrush &amp;</td><td class="memItemRight bottomAlign"><span class="name"><b><a href="qctmstageprogressbar.html#rateBackground" translate="no">rateBackground</a></b></span>() const</td></tr>
+<tr><td class="memItemLeft topAlign rightAlign"> void </td><td class="memItemRight bottomAlign"><span class="name"><b><a href="qctmstageprogressbar.html#setRateBackground" translate="no">setRateBackground</a></b></span>(const QBrush &amp;<i>brush</i>)</td></tr>
+</table></div>
+<!-- @@@rateBackground -->
+<!-- $$$stageCount-prop$$$stageCount$$$setStageCountint -->
+<h3 class="fn" translate="no" id="stageCount-prop"><span class="name">stageCount</span> : <span class="type">int</span></h3>
+<p>获取或设置阶段数量, 阶段数量必须大于或等于2.</p>
+<p><b>Access functions:</b></p>
+<div class="table"><table class="alignedsummary" translate="no">
+<tr><td class="memItemLeft topAlign rightAlign"> int </td><td class="memItemRight bottomAlign"><span class="name"><b><a href="qctmstageprogressbar.html#stageCount" translate="no">stageCount</a></b></span>() const</td></tr>
+<tr><td class="memItemLeft topAlign rightAlign"> void </td><td class="memItemRight bottomAlign"><span class="name"><b><a href="qctmstageprogressbar.html#setStageCount" translate="no">setStageCount</a></b></span>(int <i>count</i>)</td></tr>
+</table></div>
+<!-- @@@stageCount -->
+<!-- $$$stageIndexTextPen-prop$$$stageIndexTextPen$$$setStageIndexTextPenconstQPen& -->
+<h3 class="fn" translate="no" id="stageIndexTextPen-prop"><span class="name">stageIndexTextPen</span> : <span class="type"><a href="https://doc.qt.io/qt/qpen.html" translate="no">QPen</a></span></h3>
+<p>获取或设置阶段文本的画笔.</p>
+<p><b>Access functions:</b></p>
+<div class="table"><table class="alignedsummary" translate="no">
+<tr><td class="memItemLeft topAlign rightAlign"> const QPen &amp;</td><td class="memItemRight bottomAlign"><span class="name"><b><a href="qctmstageprogressbar.html#stageIndexTextPen" translate="no">stageIndexTextPen</a></b></span>() const</td></tr>
+<tr><td class="memItemLeft topAlign rightAlign"> void </td><td class="memItemRight bottomAlign"><span class="name"><b><a href="qctmstageprogressbar.html#setStageIndexTextPen" translate="no">setStageIndexTextPen</a></b></span>(const QPen &amp;<i>pen</i>)</td></tr>
+</table></div>
+<!-- @@@stageIndexTextPen -->
+<!-- $$$textVisible-prop$$$textVisible$$$setTextVisiblebool -->
+<h3 class="fn" translate="no" id="textVisible-prop"><span class="name">textVisible</span> : <span class="type">bool</span></h3>
+<p>获取或设置阶段文本是否可见.</p>
+<p><b>Access functions:</b></p>
+<div class="table"><table class="alignedsummary" translate="no">
+<tr><td class="memItemLeft topAlign rightAlign"> bool </td><td class="memItemRight bottomAlign"><span class="name"><b><a href="qctmstageprogressbar.html#textVisible" translate="no">textVisible</a></b></span>() const</td></tr>
+<tr><td class="memItemLeft topAlign rightAlign"> void </td><td class="memItemRight bottomAlign"><span class="name"><b><a href="qctmstageprogressbar.html#setTextVisible" translate="no">setTextVisible</a></b></span>(bool <i>flag</i>)</td></tr>
+</table></div>
+<!-- @@@textVisible -->
+<!-- $$$value-prop$$$value$$$setValueint$$$valueChangedint -->
+<h3 class="fn" translate="no" id="value-prop"><span class="name">value</span> : <span class="type">int</span></h3>
+<p>获取或设置当前进度值, 该值必须在最小值和最大值之间.</p>
+<p><b>Access functions:</b></p>
+<div class="table"><table class="alignedsummary" translate="no">
+<tr><td class="memItemLeft topAlign rightAlign"> int </td><td class="memItemRight bottomAlign"><span class="name"><b><a href="qctmstageprogressbar.html#value" translate="no">value</a></b></span>() const</td></tr>
+<tr><td class="memItemLeft topAlign rightAlign"> void </td><td class="memItemRight bottomAlign"><span class="name"><b><a href="qctmstageprogressbar.html#setValue" translate="no">setValue</a></b></span>(int <i>value</i>)</td></tr>
+</table></div>
+<p><b>Notifier signal:</b></p>
+<div class="table"><table class="alignedsummary" translate="no">
+<tr><td class="memItemLeft topAlign rightAlign"> void </td><td class="memItemRight bottomAlign"><span class="name"><b><a href="qctmstageprogressbar.html#valueChanged" translate="no">valueChanged</a></b></span>(int <i>value</i>)</td></tr>
+</table></div>
+<p><b>See also </b><a href="qctmstageprogressbar.html#minimum" translate="no">minimum</a>, <a href="qctmstageprogressbar.html#maximum" translate="no">maximum</a>, and <a href="qctmstageprogressbar.html#setRange" translate="no">setRange</a>.</p>
+<!-- @@@value -->
+</div>
 <div class="func">
 <h2>Member Function Documentation</h2>
 <!-- $$$QCtmStageProgressBar[overload1]$$$QCtmStageProgressBarQWidget* -->
-<h3 class="fn" translate="no" id="QCtmStageProgressBar"><code class="details extra" translate="no">[explicit]</code> QCtmStageProgressBar::<span class="name">QCtmStageProgressBar</span>(<span class="type"><a href="https://doc.qt.io/qt/qwidget.html#QWidget" translate="no">QWidget</a></span> *<i>parent</i> = nullptr)</h3>
+<h3 class="fn" translate="no" id="QCtmStageProgressBar"><code class="details extra" translate="no">[explicit]</code> QCtmStageProgressBar::<span class="name">QCtmStageProgressBar</span>(<span class="type"><a href="https://doc.qt.io/qt/qwidget.html" translate="no">QWidget</a></span> *<i>parent</i> = nullptr)</h3>
 <p>构造函数 <i translate="no">parent</i>.</p>
 <!-- @@@QCtmStageProgressBar -->
 <!-- $$$~QCtmStageProgressBar[overload1]$$$~QCtmStageProgressBar -->

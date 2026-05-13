@@ -4,7 +4,7 @@
   <meta charset="utf-8">
 <!-- QCtmToolBox.cpp -->
   <meta name="description" content="类似QToolBox的容器窗口，可分割多个页面区域.">
-  <title>QCtmToolBox Class | QCustomUi 1.19.0</title>
+  <title>QCtmToolBox Class | QCustomUi 1.22.0</title>
   <link rel="stylesheet" type="text/css" href="style/offline-simple.css" />
   <script type="text/javascript">
     document.getElementsByTagName("link").item(0).setAttribute("href", "style/offline.css");
@@ -26,10 +26,10 @@
     <div class="main-rounded">
         <div class="navigationbar">
         <ul>
-<li><a href="index.html">QCustomUi 1.19.0</a></li>
+<li><a href="index.html">QCustomUi 1.22.0</a></li>
 <li><a href="qcustomui-module.html" translate="no">QCustomUi</a></li>
 <li>QCtmToolBox</li>
-<li id="buildversion">QCustomUi 1.19.0 Reference Documentation</li>
+<li id="buildversion">QCustomUi 1.22.0 Reference Documentation</li>
     </ul>
     </div>
 </div>
@@ -40,6 +40,7 @@
 <div class="toc">
 <h3 id="toc">Contents</h3>
 <ul>
+<li class="level1"><a href="#properties">Properties</a></li>
 <li class="level1"><a href="#public-functions">Public Functions</a></li>
 <li class="level1"><a href="#signals">Signals</a></li>
 <li class="level1"><a href="#reimplemented-protected-functions">Reimplemented Protected Functions</a></li>
@@ -57,6 +58,10 @@
 </table></div>
 <ul>
 <li><a href="qctmtoolbox-members.html">List of all members, including inherited members</a></li>
+</ul>
+<h2 id="properties">Properties</h2>
+<ul>
+<li class="fn" translate="no"><b><a href="qctmtoolbox.html#iconSize-prop" translate="no">iconSize</a></b> : QSize</li>
 </ul>
 <h2 id="public-functions">Public Functions</h2>
 <div class="table"><table class="alignedsummary" translate="no">
@@ -87,10 +92,27 @@
 <h2 id="details">Detailed Description</h2>
 </div>
 <!-- @@@QCtmToolBox -->
+<div class="prop">
+<h2>Property Documentation</h2>
+<!-- $$$iconSize-prop$$$iconSize$$$setIconSizeconstQSize&$$$iconSizeChangedconstQSize& -->
+<h3 class="fn" translate="no" id="iconSize-prop"><span class="name">iconSize</span> : <span class="type"><a href="https://doc.qt.io/qt/qsize.html" translate="no">QSize</a></span></h3>
+<p>Action的图标大小.</p>
+<p><b>Access functions:</b></p>
+<div class="table"><table class="alignedsummary" translate="no">
+<tr><td class="memItemLeft topAlign rightAlign"> const QSize &amp;</td><td class="memItemRight bottomAlign"><span class="name"><b><a href="qctmtoolbox.html#iconSize" translate="no">iconSize</a></b></span>() const</td></tr>
+<tr><td class="memItemLeft topAlign rightAlign"> void </td><td class="memItemRight bottomAlign"><span class="name"><b><a href="qctmtoolbox.html#setIconSize" translate="no">setIconSize</a></b></span>(const QSize &amp;<i>size</i>)</td></tr>
+</table></div>
+<p><b>Notifier signal:</b></p>
+<div class="table"><table class="alignedsummary" translate="no">
+<tr><td class="memItemLeft topAlign rightAlign"> void </td><td class="memItemRight bottomAlign"><span class="name"><b><a href="qctmtoolbox.html#iconSizeChanged" translate="no">iconSizeChanged</a></b></span>(const QSize &amp;<i>size</i>)</td></tr>
+</table></div>
+<p><b>See also </b><a href="qctmtoolbox.html#setIconSize" translate="no">setIconSize</a>.</p>
+<!-- @@@iconSize -->
+</div>
 <div class="func">
 <h2>Member Function Documentation</h2>
 <!-- $$$QCtmToolBox[overload1]$$$QCtmToolBoxQWidget* -->
-<h3 class="fn" translate="no" id="QCtmToolBox"><code class="details extra" translate="no">[explicit]</code> QCtmToolBox::<span class="name">QCtmToolBox</span>(<span class="type"><a href="https://doc.qt.io/qt/qwidget.html#QWidget" translate="no">QWidget</a></span> *<i>parent</i> = nullptr)</h3>
+<h3 class="fn" translate="no" id="QCtmToolBox"><code class="details extra" translate="no">[explicit]</code> QCtmToolBox::<span class="name">QCtmToolBox</span>(<span class="type"><a href="https://doc.qt.io/qt/qwidget.html" translate="no">QWidget</a></span> *<i>parent</i> = nullptr)</h3>
 <p>构造一个父窗口为 <i translate="no">parent</i> 的toolbox.</p>
 <!-- @@@QCtmToolBox -->
 <!-- $$$~QCtmToolBox[overload1]$$$~QCtmToolBox -->
@@ -98,7 +120,7 @@
 <p>析构当前toolbox对象.</p>
 <!-- @@@~QCtmToolBox -->
 <!-- $$$addWidget[overload1]$$$addWidgetconstQString&QWidget* -->
-<h3 class="fn" translate="no" id="addWidget"><span class="type">void</span> QCtmToolBox::<span class="name">addWidget</span>(const <span class="type"><a href="https://doc.qt.io/qt/qstring.html" translate="no">QString</a></span> &amp;<i>title</i>, <span class="type"><a href="https://doc.qt.io/qt/qwidget.html#QWidget" translate="no">QWidget</a></span> *<i>widget</i>)</h3>
+<h3 class="fn" translate="no" id="addWidget"><span class="type">void</span> QCtmToolBox::<span class="name">addWidget</span>(const <span class="type"><a href="https://doc.qt.io/qt/qstring.html" translate="no">QString</a></span> &amp;<i>title</i>, <span class="type"><a href="https://doc.qt.io/qt/qwidget.html" translate="no">QWidget</a></span> *<i>widget</i>)</h3>
 <p>添加一个标题为 <i translate="no">title</i> 显示内容为 <i translate="no">widget</i> 的子窗口.</p>
 <p><b>See also </b><a href="qctmtoolbox.html#insertWidget" translate="no">insertWidget</a> and <a href="qctmtoolbox.html#removeWidget" translate="no">removeWidget</a>.</p>
 <!-- @@@addWidget -->
@@ -115,17 +137,17 @@
 </div><p><b>See also </b><a href="qctmtoolbox.html#setIconSize" translate="no">setIconSize</a>.</p>
 <!-- @@@iconSizeChanged -->
 <!-- $$$indexOf[overload1]$$$indexOfQWidget* -->
-<h3 class="fn" translate="no" id="indexOf"><span class="type">int</span> QCtmToolBox::<span class="name">indexOf</span>(<span class="type"><a href="https://doc.qt.io/qt/qwidget.html#QWidget" translate="no">QWidget</a></span> *<i>widget</i>) const</h3>
+<h3 class="fn" translate="no" id="indexOf"><span class="type">int</span> QCtmToolBox::<span class="name">indexOf</span>(<span class="type"><a href="https://doc.qt.io/qt/qwidget.html" translate="no">QWidget</a></span> *<i>widget</i>) const</h3>
 <p>返回 <i translate="no">widget</i> 的序号.</p>
 <p><b>See also </b><a href="qctmtoolbox.html#widget" translate="no">widget</a>.</p>
 <!-- @@@indexOf -->
 <!-- $$$insertWidget[overload1]$$$insertWidgetintconstQString&QWidget* -->
-<h3 class="fn" translate="no" id="insertWidget"><span class="type">void</span> QCtmToolBox::<span class="name">insertWidget</span>(<span class="type">int</span> <i>index</i>, const <span class="type"><a href="https://doc.qt.io/qt/qstring.html" translate="no">QString</a></span> &amp;<i>title</i>, <span class="type"><a href="https://doc.qt.io/qt/qwidget.html#QWidget" translate="no">QWidget</a></span> *<i>widget</i>)</h3>
+<h3 class="fn" translate="no" id="insertWidget"><span class="type">void</span> QCtmToolBox::<span class="name">insertWidget</span>(<span class="type">int</span> <i>index</i>, const <span class="type"><a href="https://doc.qt.io/qt/qstring.html" translate="no">QString</a></span> &amp;<i>title</i>, <span class="type"><a href="https://doc.qt.io/qt/qwidget.html" translate="no">QWidget</a></span> *<i>widget</i>)</h3>
 <p>在 <i translate="no">index</i> 的位置插入一个标题为 <i translate="no">title</i> 显示内容为 <i translate="no">widget</i> 的子窗口.</p>
 <p><b>See also </b><a href="qctmtoolbox.html#addWidget" translate="no">addWidget</a> and <a href="qctmtoolbox.html#removeWidget" translate="no">removeWidget</a>.</p>
 <!-- @@@insertWidget -->
 <!-- $$$removeWidget[overload1]$$$removeWidgetQWidget* -->
-<h3 class="fn" translate="no" id="removeWidget"><span class="type">void</span> QCtmToolBox::<span class="name">removeWidget</span>(<span class="type"><a href="https://doc.qt.io/qt/qwidget.html#QWidget" translate="no">QWidget</a></span> *<i>widget</i>)</h3>
+<h3 class="fn" translate="no" id="removeWidget"><span class="type">void</span> QCtmToolBox::<span class="name">removeWidget</span>(<span class="type"><a href="https://doc.qt.io/qt/qwidget.html" translate="no">QWidget</a></span> *<i>widget</i>)</h3>
 <p>移除子窗口 <i translate="no">widget</i>.</p>
 <p><b>See also </b><a href="qctmtoolbox.html#addWidget" translate="no">addWidget</a> and <a href="qctmtoolbox.html#insertWidget" translate="no">insertWidget</a>.</p>
 <!-- @@@removeWidget -->
@@ -158,7 +180,7 @@
 <p><b>See also </b><a href="qctmtoolbox.html#setSizes" translate="no">setSizes</a>.</p>
 <!-- @@@sizes -->
 <!-- $$$widget[overload1]$$$widgetint -->
-<h3 class="fn" translate="no" id="widget"><span class="type"><a href="https://doc.qt.io/qt/qwidget.html#QWidget" translate="no">QWidget</a></span> *QCtmToolBox::<span class="name">widget</span>(<span class="type">int</span> <i>index</i>) const</h3>
+<h3 class="fn" translate="no" id="widget"><span class="type"><a href="https://doc.qt.io/qt/qwidget.html" translate="no">QWidget</a></span> *QCtmToolBox::<span class="name">widget</span>(<span class="type">int</span> <i>index</i>) const</h3>
 <p>返回第 <i translate="no">index</i> 位置的子窗口.</p>
 <p><b>See also </b><a href="qctmtoolbox.html#indexOf" translate="no">indexOf</a>.</p>
 <!-- @@@widget -->

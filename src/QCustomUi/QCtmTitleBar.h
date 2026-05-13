@@ -19,7 +19,7 @@
 
 #pragma once
 
-#include "qcustomui_global.h"
+#include "QCtmAbstractTitleBar.h"
 
 #include <QMenu>
 #include <QWidget>
@@ -33,7 +33,7 @@ class QCtmTitleBar;
 
 class QMenuBar;
 
-class QCUSTOMUI_EXPORT QCtmTitleBar : public QWidget
+class QCUSTOMUI_EXPORT QCtmTitleBar : public QCtmAbstractTitleBar
 {
     Q_OBJECT
     Q_PROPERTY(bool iconIsVisible READ iconIsVisible WRITE setIconVisible)
@@ -50,16 +50,16 @@ public:
     const QSize& iconSize() const;
 signals:
     void iconSizeChanged(const QSize& size);
-private slots:
-    void onCloseBtn();
-    void onMaximumSizeBtn();
-    void onMinimumSizeBtn();
 
 protected:
     void paintEvent(QPaintEvent* event) override;
-    void showEvent(QShowEvent* event) override;
-    bool eventFilter(QObject* watched, QEvent* event) override;
     void actionEvent(QActionEvent* event) override;
+    void onWindowMaximized(bool isMaximumSized) override;
+    void onWindowMaximizeButtonHint(bool showMaximizeButton) override;
+    void onWindowCloseButtonHint(bool showCloseButton) override;
+    void onWindowMinimizeButtonHint(bool showMinimizeButton) override;
+    void onWindowTitleChanged(const QString& title) override;
+    bool showIconSystemMenu(const QPoint& pos) const override;
 
 private:
     QRect doIconRect() const;
@@ -69,7 +69,4 @@ private:
 
     struct Impl;
     std::unique_ptr<Impl> m_impl;
-#ifdef Q_OS_WIN
-    friend class QCtmWinFramelessDelegate;
-#endif
 };

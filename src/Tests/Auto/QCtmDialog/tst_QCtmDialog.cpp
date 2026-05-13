@@ -16,7 +16,7 @@ private slots:
 void tst_QCtmDialog::taskTitleBar()
 {
     QCtmDialog w;
-    QPointer<QCtmTitleBar> oldbar = w.titleBar();
+    QPointer<QCtmAbstractTitleBar> oldbar = w.titleBar();
     delete oldbar;
     auto bar = w.titleBar();
     QVERIFY(bar != oldbar);

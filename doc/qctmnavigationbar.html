@@ -4,7 +4,7 @@
   <meta charset="utf-8">
 <!-- QCtmNavigationBar.cpp -->
   <meta name="description" content="QCtmNavigationBar类似于QToolBar，它可以配合QCtmWindow和QCtmNavigationPane使用.">
-  <title>QCtmNavigationBar Class | QCustomUi 1.19.0</title>
+  <title>QCtmNavigationBar Class | QCustomUi 1.22.0</title>
   <link rel="stylesheet" type="text/css" href="style/offline-simple.css" />
   <script type="text/javascript">
     document.getElementsByTagName("link").item(0).setAttribute("href", "style/offline.css");
@@ -26,10 +26,10 @@
     <div class="main-rounded">
         <div class="navigationbar">
         <ul>
-<li><a href="index.html">QCustomUi 1.19.0</a></li>
+<li><a href="index.html">QCustomUi 1.22.0</a></li>
 <li><a href="qcustomui-module.html" translate="no">QCustomUi</a></li>
 <li>QCtmNavigationBar</li>
-<li id="buildversion">QCustomUi 1.19.0 Reference Documentation</li>
+<li id="buildversion">QCustomUi 1.22.0 Reference Documentation</li>
     </ul>
     </div>
 </div>
@@ -41,6 +41,7 @@
 <h3 id="toc">Contents</h3>
 <ul>
 <li class="level1"><a href="#public-types">Public Types</a></li>
+<li class="level1"><a href="#properties">Properties</a></li>
 <li class="level1"><a href="#public-functions">Public Functions</a></li>
 <li class="level1"><a href="#reimplemented-public-functions">Reimplemented Public Functions</a></li>
 <li class="level1"><a href="#signals">Signals</a></li>
@@ -64,6 +65,10 @@
 <div class="table"><table class="alignedsummary" translate="no">
 <tr><td class="memItemLeft rightAlign topAlign"> enum </td><td class="memItemRight bottomAlign"><b><a href="qctmnavigationbar.html#ActionPosition-enum" translate="no">ActionPosition</a></b> { Left, Center, Right }</td></tr>
 </table></div>
+<h2 id="properties">Properties</h2>
+<ul>
+<li class="fn" translate="no"><b><a href="qctmnavigationbar.html#iconSize-prop" translate="no">iconSize</a></b> : QSize</li>
+</ul>
 <h2 id="public-functions">Public Functions</h2>
 <div class="table"><table class="alignedsummary" translate="no">
 <tr><td class="memItemLeft rightAlign topAlign"> </td><td class="memItemRight bottomAlign"><b><a href="qctmnavigationbar.html#QCtmNavigationBar" translate="no">QCtmNavigationBar</a></b>(QWidget *<i>parent</i>)</td></tr>
@@ -128,10 +133,26 @@
 </table></div>
 <!-- @@@ActionPosition -->
 </div>
+<div class="prop">
+<h2>Property Documentation</h2>
+<!-- $$$iconSize-prop$$$iconSize$$$setIconSizeconstQSize&$$$iconSizeChangedconstQSize& -->
+<h3 class="fn" translate="no" id="iconSize-prop"><span class="name">iconSize</span> : <span class="type"><a href="https://doc.qt.io/qt/qsize.html" translate="no">QSize</a></span></h3>
+<p>获取或设置Action的图标大小.</p>
+<p><b>Access functions:</b></p>
+<div class="table"><table class="alignedsummary" translate="no">
+<tr><td class="memItemLeft topAlign rightAlign"> const QSize &amp;</td><td class="memItemRight bottomAlign"><span class="name"><b><a href="qctmnavigationbar.html#iconSize" translate="no">iconSize</a></b></span>() const</td></tr>
+<tr><td class="memItemLeft topAlign rightAlign"> void </td><td class="memItemRight bottomAlign"><span class="name"><b><a href="qctmnavigationbar.html#setIconSize" translate="no">setIconSize</a></b></span>(const QSize &amp;<i>size</i>)</td></tr>
+</table></div>
+<p><b>Notifier signal:</b></p>
+<div class="table"><table class="alignedsummary" translate="no">
+<tr><td class="memItemLeft topAlign rightAlign"> void </td><td class="memItemRight bottomAlign"><span class="name"><b><a href="qctmnavigationbar.html#iconSizeChanged" translate="no">iconSizeChanged</a></b></span>(const QSize &amp;<i>size</i>)</td></tr>
+</table></div>
+<!-- @@@iconSize -->
+</div>
 <div class="func">
 <h2>Member Function Documentation</h2>
 <!-- $$$QCtmNavigationBar[overload1]$$$QCtmNavigationBarQWidget* -->
-<h3 class="fn" translate="no" id="QCtmNavigationBar"><code class="details extra" translate="no">[explicit]</code> QCtmNavigationBar::<span class="name">QCtmNavigationBar</span>(<span class="type"><a href="https://doc.qt.io/qt/qwidget.html#QWidget" translate="no">QWidget</a></span> *<i>parent</i>)</h3>
+<h3 class="fn" translate="no" id="QCtmNavigationBar"><code class="details extra" translate="no">[explicit]</code> QCtmNavigationBar::<span class="name">QCtmNavigationBar</span>(<span class="type"><a href="https://doc.qt.io/qt/qwidget.html" translate="no">QWidget</a></span> *<i>parent</i>)</h3>
 <p>构造一个父对象为 <i translate="no">parent</i> 的QCtmNavigationBar.</p>
 <!-- @@@QCtmNavigationBar -->
 <!-- $$$~QCtmNavigationBar[overload1]$$$~QCtmNavigationBar -->
@@ -153,21 +174,21 @@
 <!-- @@@actionRect -->
 <!-- $$$addAction[overload1]$$$addActionQAction*QCtmNavigationBar::ActionPosition -->
 <h3 class="fn" translate="no" id="addAction"><span class="type">void</span> QCtmNavigationBar::<span class="name">addAction</span>(<span class="type"><a href="https://doc.qt.io/qt/qaction.html" translate="no">QAction</a></span> *<i>action</i>, <span class="type"><a href="qctmnavigationbar.html#ActionPosition-enum" translate="no">QCtmNavigationBar::ActionPosition</a></span> <i>pos</i>)</h3>
-<p>This function overloads addAction.</p>
 <p>将 <i translate="no">action</i> 添加到 <i translate="no">pos</i> 位置.</p>
-<p><b>See also </b><a href="https://doc.qt.io/qt/qwidget.html#addAction" translate="no">QWidget::addAction</a>.</p>
+<div class="admonition auto"><p>This function overloads QCtmNavigationBar::addAction.</p>
+</div><p><b>See also </b><a href="https://doc.qt.io/qt/qwidget.html#addAction" translate="no">QWidget::addAction</a>.</p>
 <!-- @@@addAction -->
 <!-- $$$addAction$$$addActionconstQString&QCtmNavigationBar::ActionPosition -->
 <h3 class="fn" translate="no" id="addAction-1"><span class="type"><a href="https://doc.qt.io/qt/qaction.html" translate="no">QAction</a></span> *QCtmNavigationBar::<span class="name">addAction</span>(const <span class="type"><a href="https://doc.qt.io/qt/qstring.html" translate="no">QString</a></span> &amp;<i>text</i>, <span class="type"><a href="qctmnavigationbar.html#ActionPosition-enum" translate="no">QCtmNavigationBar::ActionPosition</a></span> <i>pos</i>)</h3>
-<p>This function overloads addAction.</p>
 <p>该重载函数创建并返回一个文本为 <i translate="no">text</i> 的action，并显示到 <i translate="no">pos</i> 位置.</p>
-<p><b>See also </b><a href="qctmnavigationbar.html#addAction" translate="no">QCtmNavigationBar::addAction</a>.</p>
+<div class="admonition auto"><p>This function overloads <a href="qctmnavigationbar.html#addAction" translate="no">QCtmNavigationBar::addAction</a>.</p>
+</div><p><b>See also </b><a href="qctmnavigationbar.html#addAction" translate="no">QCtmNavigationBar::addAction</a>.</p>
 <!-- @@@addAction -->
 <!-- $$$addAction$$$addActionconstQIcon&constQString&QCtmNavigationBar::ActionPosition -->
 <h3 class="fn" translate="no" id="addAction-2"><span class="type"><a href="https://doc.qt.io/qt/qaction.html" translate="no">QAction</a></span> *QCtmNavigationBar::<span class="name">addAction</span>(const <span class="type"><a href="https://doc.qt.io/qt/qicon.html" translate="no">QIcon</a></span> &amp;<i>icon</i>, const <span class="type"><a href="https://doc.qt.io/qt/qstring.html" translate="no">QString</a></span> &amp;<i>text</i>, <span class="type"><a href="qctmnavigationbar.html#ActionPosition-enum" translate="no">QCtmNavigationBar::ActionPosition</a></span> <i>pos</i>)</h3>
-<p>This function overloads addAction.</p>
 <p>该重载函数创建并返回一个图标为 <i translate="no">icon</i>, 文本为 <i translate="no">text</i> 的action，并显示到 <i translate="no">pos</i> 位置.</p>
-<p><b>See also </b><a href="qctmnavigationbar.html#addAction" translate="no">QCtmNavigationBar::addAction</a>.</p>
+<div class="admonition auto"><p>This function overloads <a href="qctmnavigationbar.html#addAction" translate="no">QCtmNavigationBar::addAction</a>.</p>
+</div><p><b>See also </b><a href="qctmnavigationbar.html#addAction" translate="no">QCtmNavigationBar::addAction</a>.</p>
 <!-- @@@addAction -->
 <!-- $$$addHelp[overload1]$$$addHelpconstQUrl&constQIcon&QCtmNavigationBar::ActionPosition -->
 <h3 class="fn" translate="no" id="addHelp"><span class="type"><a href="https://doc.qt.io/qt/qaction.html" translate="no">QAction</a></span> *QCtmNavigationBar::<span class="name">addHelp</span>(const <span class="type"><a href="https://doc.qt.io/qt/qurl.html" translate="no">QUrl</a></span> &amp;<i>filePath</i>, const <span class="type"><a href="https://doc.qt.io/qt/qicon.html" translate="no">QIcon</a></span> &amp;<i>icon</i>, <span class="type"><a href="qctmnavigationbar.html#ActionPosition-enum" translate="no">QCtmNavigationBar::ActionPosition</a></span> <i>pos</i> = Right)</h3>
@@ -186,15 +207,15 @@
 <!-- @@@addPane -->
 <!-- $$$addPane$$$addPaneconstQString&QCtmNavigationBar::ActionPositionQCtmNavigationSidePane* -->
 <h3 class="fn" translate="no" id="addPane-1"><span class="type"><a href="https://doc.qt.io/qt/qaction.html" translate="no">QAction</a></span> *QCtmNavigationBar::<span class="name">addPane</span>(const <span class="type"><a href="https://doc.qt.io/qt/qstring.html" translate="no">QString</a></span> &amp;<i>text</i>, <span class="type"><a href="qctmnavigationbar.html#ActionPosition-enum" translate="no">QCtmNavigationBar::ActionPosition</a></span> <i>pos</i>, <span class="type"><a href="qctmnavigationsidepane.html" translate="no">QCtmNavigationSidePane</a></span> *<i>pane</i>)</h3>
-<p>This function overloads addPane.</p>
 <p>添加并返回一个文本为 <i translate="no">text</i> 的action，显示到 <i translate="no">pos</i> 位置，并且与 <i translate="no">pane</i> 绑定.</p>
-<p><b>See also </b><a href="qctmnavigationbar.html#addPane" translate="no">QCtmNavigationBar::addPane</a>.</p>
+<div class="admonition auto"><p>This function overloads <a href="qctmnavigationbar.html#addPane" translate="no">QCtmNavigationBar::addPane</a>.</p>
+</div><p><b>See also </b><a href="qctmnavigationbar.html#addPane" translate="no">QCtmNavigationBar::addPane</a>.</p>
 <!-- @@@addPane -->
 <!-- $$$addPane$$$addPaneconstQIcon&constQString&QCtmNavigationBar::ActionPositionQCtmNavigationSidePane* -->
 <h3 class="fn" translate="no" id="addPane-2"><span class="type"><a href="https://doc.qt.io/qt/qaction.html" translate="no">QAction</a></span> *QCtmNavigationBar::<span class="name">addPane</span>(const <span class="type"><a href="https://doc.qt.io/qt/qicon.html" translate="no">QIcon</a></span> &amp;<i>icon</i>, const <span class="type"><a href="https://doc.qt.io/qt/qstring.html" translate="no">QString</a></span> &amp;<i>text</i>, <span class="type"><a href="qctmnavigationbar.html#ActionPosition-enum" translate="no">QCtmNavigationBar::ActionPosition</a></span> <i>pos</i>, <span class="type"><a href="qctmnavigationsidepane.html" translate="no">QCtmNavigationSidePane</a></span> *<i>pane</i>)</h3>
-<p>This function overloads addPane.</p>
 <p>添加并返回一个图标为 <i translate="no">icon</i>, 文本为 <i translate="no">text</i> 的action，显示到 <i translate="no">pos</i> 位置，并且与 <i translate="no">pane</i> 绑定.</p>
-<p><b>See also </b><a href="qctmnavigationbar.html#addPane" translate="no">QCtmNavigationBar::addPane</a>.</p>
+<div class="admonition auto"><p>This function overloads <a href="qctmnavigationbar.html#addPane" translate="no">QCtmNavigationBar::addPane</a>.</p>
+</div><p><b>See also </b><a href="qctmnavigationbar.html#addPane" translate="no">QCtmNavigationBar::addPane</a>.</p>
 <!-- @@@addPane -->
 <!-- $$$addSeparator[overload1]$$$addSeparatorQCtmNavigationBar::ActionPosition -->
 <h3 class="fn" translate="no" id="addSeparator"><span class="type"><a href="https://doc.qt.io/qt/qaction.html" translate="no">QAction</a></span> *QCtmNavigationBar::<span class="name">addSeparator</span>(<span class="type"><a href="qctmnavigationbar.html#ActionPosition-enum" translate="no">QCtmNavigationBar::ActionPosition</a></span> <i>pos</i>)</h3>
@@ -228,21 +249,21 @@
 <!-- @@@indexOf -->
 <!-- $$$insertAction[overload1]$$$insertActionintQAction*QCtmNavigationBar::ActionPosition -->
 <h3 class="fn" translate="no" id="insertAction"><span class="type">void</span> QCtmNavigationBar::<span class="name">insertAction</span>(<span class="type">int</span> <i>index</i>, <span class="type"><a href="https://doc.qt.io/qt/qaction.html" translate="no">QAction</a></span> *<i>action</i>, <span class="type"><a href="qctmnavigationbar.html#ActionPosition-enum" translate="no">QCtmNavigationBar::ActionPosition</a></span> <i>pos</i>)</h3>
-<p>This function overloads insertAction.</p>
 <p>该重载函数将 <i translate="no">action</i> 插入到 <i translate="no">index</i> 的位置，并显示到 <i translate="no">pos</i> 位置.</p>
-<p><b>See also </b><a href="https://doc.qt.io/qt/qwidget.html#insertAction" translate="no">QWidget::insertAction</a>.</p>
+<div class="admonition auto"><p>This function overloads QCtmNavigationBar::insertAction.</p>
+</div><p><b>See also </b><a href="https://doc.qt.io/qt/qwidget.html#insertAction" translate="no">QWidget::insertAction</a>.</p>
 <!-- @@@insertAction -->
 <!-- $$$insertAction$$$insertActionintconstQString&QCtmNavigationBar::ActionPosition -->
 <h3 class="fn" translate="no" id="insertAction-1"><span class="type"><a href="https://doc.qt.io/qt/qaction.html" translate="no">QAction</a></span> *QCtmNavigationBar::<span class="name">insertAction</span>(<span class="type">int</span> <i>index</i>, const <span class="type"><a href="https://doc.qt.io/qt/qstring.html" translate="no">QString</a></span> &amp;<i>text</i>, <span class="type"><a href="qctmnavigationbar.html#ActionPosition-enum" translate="no">QCtmNavigationBar::ActionPosition</a></span> <i>pos</i>)</h3>
-<p>This function overloads insertAction.</p>
 <p>该重载函数创建并返回一个文本为 <i translate="no">text</i> 的action，并插入到 <i translate="no">index</i> 位置，显示到 <i translate="no">pos</i> 位置.</p>
-<p><b>See also </b><a href="qctmnavigationbar.html#insertAction" translate="no">QCtmNavigationBar::insertAction</a>.</p>
+<div class="admonition auto"><p>This function overloads <a href="qctmnavigationbar.html#insertAction" translate="no">QCtmNavigationBar::insertAction</a>.</p>
+</div><p><b>See also </b><a href="qctmnavigationbar.html#insertAction" translate="no">QCtmNavigationBar::insertAction</a>.</p>
 <!-- @@@insertAction -->
 <!-- $$$insertAction$$$insertActionintconstQIcon&constQString&QCtmNavigationBar::ActionPosition -->
 <h3 class="fn" translate="no" id="insertAction-2"><span class="type"><a href="https://doc.qt.io/qt/qaction.html" translate="no">QAction</a></span> *QCtmNavigationBar::<span class="name">insertAction</span>(<span class="type">int</span> <i>index</i>, const <span class="type"><a href="https://doc.qt.io/qt/qicon.html" translate="no">QIcon</a></span> &amp;<i>icon</i>, const <span class="type"><a href="https://doc.qt.io/qt/qstring.html" translate="no">QString</a></span> &amp;<i>text</i>, <span class="type"><a href="qctmnavigationbar.html#ActionPosition-enum" translate="no">QCtmNavigationBar::ActionPosition</a></span> <i>pos</i>)</h3>
-<p>This function overloads insertAction.</p>
 <p>该重载函数创建并返回一个图标为 <i translate="no">icon</i>, 文本为 <i translate="no">text</i> 的action，并插入到 <i translate="no">index</i> 位置，显示到 <i translate="no">pos</i> 位置.</p>
-<p><b>See also </b><a href="qctmnavigationbar.html#insertAction" translate="no">QCtmNavigationBar::insertAction</a>.</p>
+<div class="admonition auto"><p>This function overloads <a href="qctmnavigationbar.html#insertAction" translate="no">QCtmNavigationBar::insertAction</a>.</p>
+</div><p><b>See also </b><a href="qctmnavigationbar.html#insertAction" translate="no">QCtmNavigationBar::insertAction</a>.</p>
 <!-- @@@insertAction -->
 <!-- $$$insertHelp[overload1]$$$insertHelpintconstQUrl&constQIcon&QCtmNavigationBar::ActionPosition -->
 <h3 class="fn" translate="no" id="insertHelp"><span class="type"><a href="https://doc.qt.io/qt/qaction.html" translate="no">QAction</a></span> *QCtmNavigationBar::<span class="name">insertHelp</span>(<span class="type">int</span> <i>index</i>, const <span class="type"><a href="https://doc.qt.io/qt/qurl.html" translate="no">QUrl</a></span> &amp;<i>filePath</i>, const <span class="type"><a href="https://doc.qt.io/qt/qicon.html" translate="no">QIcon</a></span> &amp;<i>icon</i>, <span class="type"><a href="qctmnavigationbar.html#ActionPosition-enum" translate="no">QCtmNavigationBar::ActionPosition</a></span> <i>pos</i> = Right)</h3>
@@ -261,15 +282,15 @@
 <!-- @@@insertPane -->
 <!-- $$$insertPane$$$insertPaneintconstQString&QCtmNavigationBar::ActionPositionQCtmNavigationSidePane* -->
 <h3 class="fn" translate="no" id="insertPane-1"><span class="type"><a href="https://doc.qt.io/qt/qaction.html" translate="no">QAction</a></span> *QCtmNavigationBar::<span class="name">insertPane</span>(<span class="type">int</span> <i>index</i>, const <span class="type"><a href="https://doc.qt.io/qt/qstring.html" translate="no">QString</a></span> &amp;<i>text</i>, <span class="type"><a href="qctmnavigationbar.html#ActionPosition-enum" translate="no">QCtmNavigationBar::ActionPosition</a></span> <i>pos</i>, <span class="type"><a href="qctmnavigationsidepane.html" translate="no">QCtmNavigationSidePane</a></span> *<i>pane</i>)</h3>
-<p>This function overloads insertPane.</p>
 <p>插入并返回一个文本为 <i translate="no">text</i> 的action，并插入到 <i translate="no">index</i> 位置，显示到 <i translate="no">pos</i> 位置，并且与 <i translate="no">pane</i> 绑定.</p>
-<p><b>See also </b><a href="qctmnavigationbar.html#insertPane" translate="no">QCtmNavigationBar::insertPane</a>.</p>
+<div class="admonition auto"><p>This function overloads <a href="qctmnavigationbar.html#insertPane" translate="no">QCtmNavigationBar::insertPane</a>.</p>
+</div><p><b>See also </b><a href="qctmnavigationbar.html#insertPane" translate="no">QCtmNavigationBar::insertPane</a>.</p>
 <!-- @@@insertPane -->
 <!-- $$$insertPane$$$insertPaneintconstQIcon&constQString&QCtmNavigationBar::ActionPositionQCtmNavigationSidePane* -->
 <h3 class="fn" translate="no" id="insertPane-2"><span class="type"><a href="https://doc.qt.io/qt/qaction.html" translate="no">QAction</a></span> *QCtmNavigationBar::<span class="name">insertPane</span>(<span class="type">int</span> <i>index</i>, const <span class="type"><a href="https://doc.qt.io/qt/qicon.html" translate="no">QIcon</a></span> &amp;<i>icon</i>, const <span class="type"><a href="https://doc.qt.io/qt/qstring.html" translate="no">QString</a></span> &amp;<i>text</i>, <span class="type"><a href="qctmnavigationbar.html#ActionPosition-enum" translate="no">QCtmNavigationBar::ActionPosition</a></span> <i>pos</i>, <span class="type"><a href="qctmnavigationsidepane.html" translate="no">QCtmNavigationSidePane</a></span> *<i>pane</i>)</h3>
-<p>This function overloads insertPane.</p>
 <p>插入并返回一个图标为 <i translate="no">icon</i>, 文本为 <i translate="no">text</i> 的action，并插入到 <i translate="no">index</i> 位置，显示到 <i translate="no">pos</i> 位置，并且与 <i translate="no">pane</i> 绑定.</p>
-<p><b>See also </b><a href="qctmnavigationbar.html#insertPane" translate="no">QCtmNavigationBar::insertPane</a>.</p>
+<div class="admonition auto"><p>This function overloads <a href="qctmnavigationbar.html#insertPane" translate="no">QCtmNavigationBar::insertPane</a>.</p>
+</div><p><b>See also </b><a href="qctmnavigationbar.html#insertPane" translate="no">QCtmNavigationBar::insertPane</a>.</p>
 <!-- @@@insertPane -->
 <!-- $$$insertSeparator[overload1]$$$insertSeparatorintQCtmNavigationBar::ActionPosition -->
 <h3 class="fn" translate="no" id="insertSeparator"><span class="type"><a href="https://doc.qt.io/qt/qaction.html" translate="no">QAction</a></span> *QCtmNavigationBar::<span class="name">insertSeparator</span>(<span class="type">int</span> <i>index</i>, <span class="type"><a href="qctmnavigationbar.html#ActionPosition-enum" translate="no">QCtmNavigationBar::ActionPosition</a></span> <i>pos</i>)</h3>

@@ -4,7 +4,7 @@
   <meta charset="utf-8">
 <!-- QCtmTabPage.cpp -->
   <meta name="description" content="QCtmTabWidget 的子页面.">
-  <title>QCtmTabPage Class | QCustomUi 1.19.0</title>
+  <title>QCtmTabPage Class | QCustomUi 1.22.0</title>
   <link rel="stylesheet" type="text/css" href="style/offline-simple.css" />
   <script type="text/javascript">
     document.getElementsByTagName("link").item(0).setAttribute("href", "style/offline.css");
@@ -26,10 +26,10 @@
     <div class="main-rounded">
         <div class="navigationbar">
         <ul>
-<li><a href="index.html">QCustomUi 1.19.0</a></li>
+<li><a href="index.html">QCustomUi 1.22.0</a></li>
 <li><a href="qcustomui-module.html" translate="no">QCustomUi</a></li>
 <li>QCtmTabPage</li>
-<li id="buildversion">QCustomUi 1.19.0 Reference Documentation</li>
+<li id="buildversion">QCustomUi 1.22.0 Reference Documentation</li>
     </ul>
     </div>
 </div>
@@ -40,6 +40,7 @@
 <div class="toc">
 <h3 id="toc">Contents</h3>
 <ul>
+<li class="level1"><a href="#properties">Properties</a></li>
 <li class="level1"><a href="#public-functions">Public Functions</a></li>
 <li class="level1"><a href="#signals">Signals</a></li>
 <li class="level1"><a href="#protected-functions">Protected Functions</a></li>
@@ -58,6 +59,10 @@
 </table></div>
 <ul>
 <li><a href="qctmtabpage-members.html">List of all members, including inherited members</a></li>
+</ul>
+<h2 id="properties">Properties</h2>
+<ul>
+<li class="fn" translate="no"><b><a href="qctmtabpage.html#iconSize-prop" translate="no">iconSize</a></b> : QSize</li>
 </ul>
 <h2 id="public-functions">Public Functions</h2>
 <div class="table"><table class="alignedsummary" translate="no">
@@ -94,6 +99,22 @@
 <h2 id="details">Detailed Description</h2>
 </div>
 <!-- @@@QCtmTabPage -->
+<div class="prop">
+<h2>Property Documentation</h2>
+<!-- $$$iconSize-prop$$$iconSize$$$setIconSizeconstQSize&$$$iconSizeChangedconstQSize& -->
+<h3 class="fn" translate="no" id="iconSize-prop"><span class="name">iconSize</span> : <span class="type"><a href="https://doc.qt.io/qt/qsize.html" translate="no">QSize</a></span></h3>
+<p>获取或设置Action的图标大小.</p>
+<p><b>Access functions:</b></p>
+<div class="table"><table class="alignedsummary" translate="no">
+<tr><td class="memItemLeft topAlign rightAlign"> const QSize &amp;</td><td class="memItemRight bottomAlign"><span class="name"><b><a href="qctmtabpage.html#iconSize" translate="no">iconSize</a></b></span>() const</td></tr>
+<tr><td class="memItemLeft topAlign rightAlign"> void </td><td class="memItemRight bottomAlign"><span class="name"><b><a href="qctmtabpage.html#setIconSize" translate="no">setIconSize</a></b></span>(const QSize &amp;<i>size</i>)</td></tr>
+</table></div>
+<p><b>Notifier signal:</b></p>
+<div class="table"><table class="alignedsummary" translate="no">
+<tr><td class="memItemLeft topAlign rightAlign"> void </td><td class="memItemRight bottomAlign"><span class="name"><b><a href="qctmtabpage.html#iconSizeChanged" translate="no">iconSizeChanged</a></b></span>(const QSize &amp;<i>size</i>)</td></tr>
+</table></div>
+<!-- @@@iconSize -->
+</div>
 <div class="func">
 <h2>Member Function Documentation</h2>
 <!-- $$$QCtmTabPage[overload1]$$$QCtmTabPageQCtmTabWidget* -->
@@ -120,17 +141,17 @@
 <!-- @@@addAction -->
 <!-- $$$addAction$$$addActionconstQString& -->
 <h3 class="fn" translate="no" id="addAction-1"><span class="type"><a href="https://doc.qt.io/qt/qaction.html" translate="no">QAction</a></span> *QCtmTabPage::<span class="name">addAction</span>(const <span class="type"><a href="https://doc.qt.io/qt/qstring.html" translate="no">QString</a></span> &amp;<i>text</i>)</h3>
-<p>This function overloads addAction.</p>
 <p>添加文本为 <i translate="no">text</i> 的Action到角落窗口上.</p>
-<p><b>See also </b><a href="qctmtabpage.html#addAction" translate="no">QCtmTabPage::addAction</a>.</p>
+<div class="admonition auto"><p>This function overloads <a href="qctmtabpage.html#addAction" translate="no">QCtmTabPage::addAction</a>.</p>
+</div><p><b>See also </b><a href="qctmtabpage.html#addAction" translate="no">QCtmTabPage::addAction</a>.</p>
 <!-- @@@addAction -->
 <!-- $$$centralWidget[overload1]$$$centralWidget -->
-<h3 class="fn" translate="no" id="centralWidget"><span class="type"><a href="https://doc.qt.io/qt/qwidget.html#QWidget" translate="no">QWidget</a></span> *QCtmTabPage::<span class="name">centralWidget</span>() const</h3>
+<h3 class="fn" translate="no" id="centralWidget"><span class="type"><a href="https://doc.qt.io/qt/qwidget.html" translate="no">QWidget</a></span> *QCtmTabPage::<span class="name">centralWidget</span>() const</h3>
 <p>返回中央窗口.</p>
 <p><b>See also </b><a href="qctmtabpage.html#setCentralWidget" translate="no">setCentralWidget</a>.</p>
 <!-- @@@centralWidget -->
 <!-- $$$cornerWidget[overload1]$$$cornerWidget -->
-<h3 class="fn" translate="no" id="cornerWidget"><code class="details extra" translate="no">[protected]</code> <span class="type"><a href="https://doc.qt.io/qt/qwidget.html#QWidget" translate="no">QWidget</a></span> *QCtmTabPage::<span class="name">cornerWidget</span>() const</h3>
+<h3 class="fn" translate="no" id="cornerWidget"><code class="details extra" translate="no">[protected]</code> <span class="type"><a href="https://doc.qt.io/qt/qwidget.html" translate="no">QWidget</a></span> *QCtmTabPage::<span class="name">cornerWidget</span>() const</h3>
 <p>返回角落窗口.</p>
 <!-- @@@cornerWidget -->
 <!-- $$$count[overload1]$$$count -->
@@ -156,22 +177,22 @@
 <!-- @@@insertAction -->
 <!-- $$$insertAction$$$insertActionintQAction* -->
 <h3 class="fn" translate="no" id="insertAction-1"><span class="type">void</span> QCtmTabPage::<span class="name">insertAction</span>(<span class="type">int</span> <i>index</i>, <span class="type"><a href="https://doc.qt.io/qt/qaction.html" translate="no">QAction</a></span> *<i>action</i>)</h3>
-<p>This function overloads insertAction.</p>
 <p>插入 <i translate="no">action</i> 到角落窗口的 <i translate="no">index</i> 位置.</p>
-<p><b>See also </b><a href="https://doc.qt.io/qt/qwidget.html#insertAction" translate="no">QWidget::insertAction</a>.</p>
+<div class="admonition auto"><p>This function overloads <a href="qctmtabpage.html#insertAction" translate="no">QCtmTabPage::insertAction</a>.</p>
+</div><p><b>See also </b><a href="https://doc.qt.io/qt/qwidget.html#insertAction" translate="no">QWidget::insertAction</a>.</p>
 <!-- @@@insertAction -->
 <!-- $$$insertAction$$$insertActionintconstQIcon&constQString& -->
 <h3 class="fn" translate="no" id="insertAction-2"><span class="type"><a href="https://doc.qt.io/qt/qaction.html" translate="no">QAction</a></span> *QCtmTabPage::<span class="name">insertAction</span>(<span class="type">int</span> <i>index</i>, const <span class="type"><a href="https://doc.qt.io/qt/qicon.html" translate="no">QIcon</a></span> &amp;<i>icon</i>, const <span class="type"><a href="https://doc.qt.io/qt/qstring.html" translate="no">QString</a></span> &amp;<i>text</i>)</h3>
-<p>This function overloads insertAction.</p>
 <p>添加图标为 <i translate="no">icon</i> 文本为 <i translate="no">text</i> 的Action，并插入到角落窗口的 <i translate="no">index</i> 位置.</p>
-<p><b>See also </b><a href="qctmtabpage.html#insertAction" translate="no">QCtmTabPage::insertAction</a>.</p>
+<div class="admonition auto"><p>This function overloads <a href="qctmtabpage.html#insertAction" translate="no">QCtmTabPage::insertAction</a>.</p>
+</div><p><b>See also </b><a href="qctmtabpage.html#insertAction" translate="no">QCtmTabPage::insertAction</a>.</p>
 <!-- @@@insertAction -->
 <!-- $$$paintEvent[overload1]$$$paintEventQPaintEvent* -->
 <h3 class="fn" translate="no" id="paintEvent"><code class="details extra" translate="no">[override virtual protected]</code> <span class="type">void</span> QCtmTabPage::<span class="name">paintEvent</span>(<span class="type"><a href="https://doc.qt.io/qt/qpaintevent.html" translate="no">QPaintEvent</a></span> *<i>event</i>)</h3>
 <p>Reimplements: <a href="https://doc.qt.io/qt/qwidget.html#paintEvent" translate="no">QWidget::paintEvent</a>(QPaintEvent *event).</p>
 <!-- @@@paintEvent -->
 <!-- $$$setCentralWidget[overload1]$$$setCentralWidgetQWidget* -->
-<h3 class="fn" translate="no" id="setCentralWidget"><code class="details extra" translate="no">[protected]</code> <span class="type">void</span> QCtmTabPage::<span class="name">setCentralWidget</span>(<span class="type"><a href="https://doc.qt.io/qt/qwidget.html#QWidget" translate="no">QWidget</a></span> *<i>widget</i>)</h3>
+<h3 class="fn" translate="no" id="setCentralWidget"><code class="details extra" translate="no">[protected]</code> <span class="type">void</span> QCtmTabPage::<span class="name">setCentralWidget</span>(<span class="type"><a href="https://doc.qt.io/qt/qwidget.html" translate="no">QWidget</a></span> *<i>widget</i>)</h3>
 <p>设置中央窗口 <i translate="no">widget</i>.</p>
 <p><b>See also </b><a href="qctmtabpage.html#centralWidget" translate="no">centralWidget</a>.</p>
 <!-- @@@setCentralWidget -->
@@ -182,7 +203,7 @@
 </div><p><b>See also </b><a href="qctmtabpage.html#iconSize" translate="no">iconSize</a>.</p>
 <!-- @@@setIconSize -->
 <!-- $$$takeCentralWidget[overload1]$$$takeCentralWidget -->
-<h3 class="fn" translate="no" id="takeCentralWidget"><span class="type"><a href="https://doc.qt.io/qt/qwidget.html#QWidget" translate="no">QWidget</a></span> *QCtmTabPage::<span class="name">takeCentralWidget</span>() const</h3>
+<h3 class="fn" translate="no" id="takeCentralWidget"><span class="type"><a href="https://doc.qt.io/qt/qwidget.html" translate="no">QWidget</a></span> *QCtmTabPage::<span class="name">takeCentralWidget</span>() const</h3>
 <p>取出中央窗口，不再控制其生命周期.</p>
 <p><b>See also </b><a href="qctmtabpage.html#setCentralWidget" translate="no">setCentralWidget</a> and <a href="qctmtabpage.html#centralWidget" translate="no">centralWidget</a>().</p>
 <!-- @@@takeCentralWidget -->

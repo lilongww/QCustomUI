@@ -33,6 +33,72 @@
     \inheaderfile QCtmLongLongSpinBox.h
 */
 
+/*!
+    \fn         QCtmLongLongSpinBox::textChanged(const QString& text)
+    \brief      当输入框的文本发生改变时发出该信号，参数 \a text 为当前输入框的文本内容.
+*/
+
+/*!
+    \fn         QCtmLongLongSpinBox::valueChanged(qint64 value)
+    \brief      当输入框的值发生改变时发出该信号，参数 \a value 为当前输入框的值.
+*/
+
+/*!
+    \property   QCtmLongLongSpinBox::prefix
+    \brief      获取或设置输入框的前缀文本，默认为空字符串.
+*/
+
+/*!
+    \property   QCtmLongLongSpinBox::suffix
+    \brief      获取或设置输入框的后缀文本，默认为空字符串.
+*/
+
+/*!
+    \property   QCtmLongLongSpinBox::cleanText
+    \brief      获取输入框的纯文本内容，即去除前缀和后缀后的文本.
+*/
+
+/*!
+    \property   QCtmLongLongSpinBox::value
+    \brief      获取或设置输入框的值，默认为0.
+*/
+
+/*!
+    \property   QCtmLongLongSpinBox::singleStep
+    \brief      获取或设置输入框的单步增量，默认为1.
+*/
+
+/*!
+    \property   QCtmLongLongSpinBox::minimum
+    \brief      获取或设置输入框的最小值，默认为0.
+*/
+
+/*!
+    \property   QCtmLongLongSpinBox::maximum
+    \brief      获取或设置输入框的最大值，默认为99.
+*/
+
+/*!
+    \property   QCtmLongLongSpinBox::stepType
+    \brief
+   获取或设置输入框的步进类型，默认为DefaultStepType，表示使用固定单步增量；当设置为AdaptiveDecimalStepType时，单步增量会根据当前值的大小自动调整，以提供更合适的步进效果.
+*/
+
+/*!
+    \property   QCtmLongLongSpinBox::displayIntegerBase
+    \brief      获取或设置输入框显示的整数进制，默认为10进制.
+*/
+
+/*!
+    \property   QCtmLongLongSpinBox::displayFieldWidth
+    \brief      获取或设置输入框显示的整数宽度，默认为0，表示根据输入内容自动调整宽度.
+*/
+
+/*!
+    \property   QCtmLongLongSpinBox::displayFillChar
+    \brief      获取或设置输入框显示的整数填充字符，默认为' '，当displayFieldWidth大于输入内容宽度时，使用该字符填充空白部分.
+*/
+
 class QCtmLongLongSpinBoxPrivate : public QAbstractSpinBoxPrivate
 {
     Q_DECLARE_PUBLIC(QCtmLongLongSpinBox)
@@ -206,7 +272,9 @@ QCtmLongLongSpinBox::QCtmLongLongSpinBox(QWidget* parent /*= nullptr*/) : QAbstr
 /*!
     \brief      析构函数.
 */
-QCtmLongLongSpinBox::~QCtmLongLongSpinBox() {}
+QCtmLongLongSpinBox::~QCtmLongLongSpinBox()
+{
+}
 
 /*!
     \brief      设置值 \a value.

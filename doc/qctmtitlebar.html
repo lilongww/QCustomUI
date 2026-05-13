@@ -4,7 +4,7 @@
   <meta charset="utf-8">
 <!-- QCtmTitleBar.cpp -->
   <meta name="description" content="QCtmWindow 和 QCtmDialog 的自定义标题栏.">
-  <title>QCtmTitleBar Class | QCustomUi 1.19.0</title>
+  <title>QCtmTitleBar Class | QCustomUi 1.22.0</title>
   <link rel="stylesheet" type="text/css" href="style/offline-simple.css" />
   <script type="text/javascript">
     document.getElementsByTagName("link").item(0).setAttribute("href", "style/offline.css");
@@ -26,10 +26,10 @@
     <div class="main-rounded">
         <div class="navigationbar">
         <ul>
-<li><a href="index.html">QCustomUi 1.19.0</a></li>
+<li><a href="index.html">QCustomUi 1.22.0</a></li>
 <li><a href="qcustomui-module.html" translate="no">QCustomUi</a></li>
 <li>QCtmTitleBar</li>
-<li id="buildversion">QCustomUi 1.19.0 Reference Documentation</li>
+<li id="buildversion">QCustomUi 1.22.0 Reference Documentation</li>
     </ul>
     </div>
 </div>
@@ -54,7 +54,7 @@
 <!-- @@@QCtmTitleBar -->
 <div class="table"><table class="alignedsummary requisites" translate="no">
 <tr><td class="memItemLeft rightAlign topAlign"> Header:</td><td class="memItemRight bottomAlign"> <code translate="no">#include &lt;QCtmTitleBar.h&gt;</code></td></tr>
-<tr><td class="memItemLeft rightAlign topAlign"> Inherits:</td><td class="memItemRight bottomAlign"> <a href="https://doc.qt.io/qt/qwidget.html" translate="no">QWidget</a></td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> Inherits:</td><td class="memItemRight bottomAlign"> <a href="qctmabstracttitlebar.html" translate="no">QCtmAbstractTitleBar</a></td></tr>
 </table></div>
 <ul>
 <li><a href="qctmtitlebar-members.html">List of all members, including inherited members</a></li>
@@ -62,6 +62,7 @@
 <h2 id="properties">Properties</h2>
 <ul>
 <li class="fn" translate="no"><b><a href="qctmtitlebar.html#iconIsVisible-prop" translate="no">iconIsVisible</a></b> : bool</li>
+<li class="fn" translate="no"><b><a href="qctmtitlebar.html#iconSize-prop" translate="no">iconSize</a></b> : QSize</li>
 </ul>
 <h2 id="public-functions">Public Functions</h2>
 <div class="table"><table class="alignedsummary" translate="no">
@@ -81,9 +82,13 @@
 <h2 id="reimplemented-protected-functions">Reimplemented Protected Functions</h2>
 <div class="table"><table class="alignedsummary" translate="no">
 <tr><td class="memItemLeft rightAlign topAlign"> virtual void </td><td class="memItemRight bottomAlign"><b><a href="qctmtitlebar.html#actionEvent" translate="no">actionEvent</a></b>(QActionEvent *<i>event</i>) override</td></tr>
-<tr><td class="memItemLeft rightAlign topAlign"> virtual bool </td><td class="memItemRight bottomAlign"><b><a href="qctmtitlebar.html#eventFilter" translate="no">eventFilter</a></b>(QObject *<i>watched</i>, QEvent *<i>event</i>) override</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> virtual void </td><td class="memItemRight bottomAlign"><b><a href="qctmtitlebar.html#onWindowCloseButtonHint" translate="no">onWindowCloseButtonHint</a></b>(bool <i>showCloseButton</i>) override</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> virtual void </td><td class="memItemRight bottomAlign"><b><a href="qctmtitlebar.html#onWindowMaximizeButtonHint" translate="no">onWindowMaximizeButtonHint</a></b>(bool <i>showMaximizeButton</i>) override</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> virtual void </td><td class="memItemRight bottomAlign"><b><a href="qctmtitlebar.html#onWindowMaximized" translate="no">onWindowMaximized</a></b>(bool <i>isMaximumSized</i>) override</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> virtual void </td><td class="memItemRight bottomAlign"><b><a href="qctmtitlebar.html#onWindowMinimizeButtonHint" translate="no">onWindowMinimizeButtonHint</a></b>(bool <i>showMinimizeButton</i>) override</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> virtual void </td><td class="memItemRight bottomAlign"><b><a href="qctmtitlebar.html#onWindowTitleChanged" translate="no">onWindowTitleChanged</a></b>(const QString &amp;<i>title</i>) override</td></tr>
 <tr><td class="memItemLeft rightAlign topAlign"> virtual void </td><td class="memItemRight bottomAlign"><b><a href="qctmtitlebar.html#paintEvent" translate="no">paintEvent</a></b>(QPaintEvent *<i>event</i>) override</td></tr>
-<tr><td class="memItemLeft rightAlign topAlign"> virtual void </td><td class="memItemRight bottomAlign"><b><a href="qctmtitlebar.html#showEvent" translate="no">showEvent</a></b>(QShowEvent *<i>event</i>) override</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> virtual bool </td><td class="memItemRight bottomAlign"><b><a href="qctmtitlebar.html#showIconSystemMenu" translate="no">showIconSystemMenu</a></b>(const QPoint &amp;<i>pos</i>) const override</td></tr>
 </table></div>
 <!-- $$$QCtmTitleBar-description -->
 <div class="descr">
@@ -105,11 +110,24 @@
 <tr><td class="memItemLeft topAlign rightAlign"> void </td><td class="memItemRight bottomAlign"><span class="name"><b><a href="qctmtitlebar.html#setIconVisible" translate="no">setIconVisible</a></b></span>(bool <i>show</i>)</td></tr>
 </table></div>
 <!-- @@@iconIsVisible -->
+<!-- $$$iconSize-prop$$$iconSize$$$setIconSizeconstQSize&$$$iconSizeChangedconstQSize& -->
+<h3 class="fn" translate="no" id="iconSize-prop"><span class="name">iconSize</span> : <span class="type"><a href="https://doc.qt.io/qt/qsize.html" translate="no">QSize</a></span></h3>
+<p>Action图标大小.</p>
+<p><b>Access functions:</b></p>
+<div class="table"><table class="alignedsummary" translate="no">
+<tr><td class="memItemLeft topAlign rightAlign"> const QSize &amp;</td><td class="memItemRight bottomAlign"><span class="name"><b><a href="qctmtitlebar.html#iconSize" translate="no">iconSize</a></b></span>() const</td></tr>
+<tr><td class="memItemLeft topAlign rightAlign"> void </td><td class="memItemRight bottomAlign"><span class="name"><b><a href="qctmtitlebar.html#setIconSize" translate="no">setIconSize</a></b></span>(const QSize &amp;<i>size</i>)</td></tr>
+</table></div>
+<p><b>Notifier signal:</b></p>
+<div class="table"><table class="alignedsummary" translate="no">
+<tr><td class="memItemLeft topAlign rightAlign"> void </td><td class="memItemRight bottomAlign"><span class="name"><b>iconSizeChanged</b></span>(const QSize &amp;<i>size</i>)</td></tr>
+</table></div>
+<!-- @@@iconSize -->
 </div>
 <div class="func">
 <h2>Member Function Documentation</h2>
 <!-- $$$QCtmTitleBar[overload1]$$$QCtmTitleBarQWidget* -->
-<h3 class="fn" translate="no" id="QCtmTitleBar"><code class="details extra" translate="no">[explicit]</code> QCtmTitleBar::<span class="name">QCtmTitleBar</span>(<span class="type"><a href="https://doc.qt.io/qt/qwidget.html#QWidget" translate="no">QWidget</a></span> *<i>parent</i> = nullptr)</h3>
+<h3 class="fn" translate="no" id="QCtmTitleBar"><code class="details extra" translate="no">[explicit]</code> QCtmTitleBar::<span class="name">QCtmTitleBar</span>(<span class="type"><a href="https://doc.qt.io/qt/qwidget.html" translate="no">QWidget</a></span> *<i>parent</i> = nullptr)</h3>
 <p>构造函数 <i translate="no">parent</i>.</p>
 <!-- @@@QCtmTitleBar -->
 <!-- $$$~QCtmTitleBar[overload1]$$$~QCtmTitleBar -->
@@ -120,10 +138,6 @@
 <h3 class="fn" translate="no" id="actionEvent"><code class="details extra" translate="no">[override virtual protected]</code> <span class="type">void</span> QCtmTitleBar::<span class="name">actionEvent</span>(<span class="type"><a href="https://doc.qt.io/qt/qactionevent.html" translate="no">QActionEvent</a></span> *<i>event</i>)</h3>
 <p>Reimplements: <a href="https://doc.qt.io/qt/qwidget.html#actionEvent" translate="no">QWidget::actionEvent</a>(QActionEvent *event).</p>
 <!-- @@@actionEvent -->
-<!-- $$$eventFilter[overload1]$$$eventFilterQObject*QEvent* -->
-<h3 class="fn" translate="no" id="eventFilter"><code class="details extra" translate="no">[override virtual protected]</code> <span class="type">bool</span> QCtmTitleBar::<span class="name">eventFilter</span>(<span class="type"><a href="https://doc.qt.io/qt/qobject.html#QObject" translate="no">QObject</a></span> *<i>watched</i>, <span class="type"><a href="https://doc.qt.io/qt/qevent.html" translate="no">QEvent</a></span> *<i>event</i>)</h3>
-<p>Reimplements: <a href="https://doc.qt.io/qt/qobject.html#eventFilter" translate="no">QObject::eventFilter</a>(QObject *watched, QEvent *event).</p>
-<!-- @@@eventFilter -->
 <!-- $$$iconIsVisible -->
 <h3 class="fn" translate="no" id="iconIsVisible"><span class="type">bool</span> QCtmTitleBar::<span class="name">iconIsVisible</span>() const</h3>
 <p>返回是否显示图标.</p>
@@ -141,6 +155,26 @@
 <p>返回菜单栏, 当菜单栏对象不存在时，自动创建并返回一个新的菜单栏.</p>
 <p><b>See also </b><a href="qctmtitlebar.html#setMenuBar" translate="no">setMenuBar</a>.</p>
 <!-- @@@menuBar -->
+<!-- $$$onWindowCloseButtonHint[overload1]$$$onWindowCloseButtonHintbool -->
+<h3 class="fn" translate="no" id="onWindowCloseButtonHint"><code class="details extra" translate="no">[override virtual protected]</code> <span class="type">void</span> QCtmTitleBar::<span class="name">onWindowCloseButtonHint</span>(<span class="type">bool</span> <i>showCloseButton</i>)</h3>
+<p>Reimplements: <a href="qctmabstracttitlebar.html#onWindowCloseButtonHint" translate="no">QCtmAbstractTitleBar::onWindowCloseButtonHint</a>(bool showCloseButton).</p>
+<!-- @@@onWindowCloseButtonHint -->
+<!-- $$$onWindowMaximizeButtonHint[overload1]$$$onWindowMaximizeButtonHintbool -->
+<h3 class="fn" translate="no" id="onWindowMaximizeButtonHint"><code class="details extra" translate="no">[override virtual protected]</code> <span class="type">void</span> QCtmTitleBar::<span class="name">onWindowMaximizeButtonHint</span>(<span class="type">bool</span> <i>showMaximizeButton</i>)</h3>
+<p>Reimplements: <a href="qctmabstracttitlebar.html#onWindowMaximizeButtonHint" translate="no">QCtmAbstractTitleBar::onWindowMaximizeButtonHint</a>(bool showMaximizeButton).</p>
+<!-- @@@onWindowMaximizeButtonHint -->
+<!-- $$$onWindowMaximized[overload1]$$$onWindowMaximizedbool -->
+<h3 class="fn" translate="no" id="onWindowMaximized"><code class="details extra" translate="no">[override virtual protected]</code> <span class="type">void</span> QCtmTitleBar::<span class="name">onWindowMaximized</span>(<span class="type">bool</span> <i>isMaximumSized</i>)</h3>
+<p>Reimplements: <a href="qctmabstracttitlebar.html#onWindowMaximized" translate="no">QCtmAbstractTitleBar::onWindowMaximized</a>(bool isMaximumSized).</p>
+<!-- @@@onWindowMaximized -->
+<!-- $$$onWindowMinimizeButtonHint[overload1]$$$onWindowMinimizeButtonHintbool -->
+<h3 class="fn" translate="no" id="onWindowMinimizeButtonHint"><code class="details extra" translate="no">[override virtual protected]</code> <span class="type">void</span> QCtmTitleBar::<span class="name">onWindowMinimizeButtonHint</span>(<span class="type">bool</span> <i>showMinimizeButton</i>)</h3>
+<p>Reimplements: <a href="qctmabstracttitlebar.html#onWindowMinimizeButtonHint" translate="no">QCtmAbstractTitleBar::onWindowMinimizeButtonHint</a>(bool showMinimizeButton).</p>
+<!-- @@@onWindowMinimizeButtonHint -->
+<!-- $$$onWindowTitleChanged[overload1]$$$onWindowTitleChangedconstQString& -->
+<h3 class="fn" translate="no" id="onWindowTitleChanged"><code class="details extra" translate="no">[override virtual protected]</code> <span class="type">void</span> QCtmTitleBar::<span class="name">onWindowTitleChanged</span>(const <span class="type"><a href="https://doc.qt.io/qt/qstring.html" translate="no">QString</a></span> &amp;<i>title</i>)</h3>
+<p>Reimplements: <a href="qctmabstracttitlebar.html#onWindowTitleChanged" translate="no">QCtmAbstractTitleBar::onWindowTitleChanged</a>(const QString &amp;title).</p>
+<!-- @@@onWindowTitleChanged -->
 <!-- $$$paintEvent[overload1]$$$paintEventQPaintEvent* -->
 <h3 class="fn" translate="no" id="paintEvent"><code class="details extra" translate="no">[override virtual protected]</code> <span class="type">void</span> QCtmTitleBar::<span class="name">paintEvent</span>(<span class="type"><a href="https://doc.qt.io/qt/qpaintevent.html" translate="no">QPaintEvent</a></span> *<i>event</i>)</h3>
 <p>Reimplements: <a href="https://doc.qt.io/qt/qwidget.html#paintEvent" translate="no">QWidget::paintEvent</a>(QPaintEvent *event).</p>
@@ -162,10 +196,10 @@
 <p>设置菜单栏 <i translate="no">menu</i>, 当 <i translate="no">menu</i> 为nullptr时删除菜单栏.</p>
 <p><b>See also </b><a href="qctmtitlebar.html#menuBar" translate="no">menuBar</a>.</p>
 <!-- @@@setMenuBar -->
-<!-- $$$showEvent[overload1]$$$showEventQShowEvent* -->
-<h3 class="fn" translate="no" id="showEvent"><code class="details extra" translate="no">[override virtual protected]</code> <span class="type">void</span> QCtmTitleBar::<span class="name">showEvent</span>(<span class="type"><a href="https://doc.qt.io/qt/qshowevent.html" translate="no">QShowEvent</a></span> *<i>event</i>)</h3>
-<p>Reimplements: <a href="https://doc.qt.io/qt/qwidget.html#showEvent" translate="no">QWidget::showEvent</a>(QShowEvent *event).</p>
-<!-- @@@showEvent -->
+<!-- $$$showIconSystemMenu[overload1]$$$showIconSystemMenuconstQPoint& -->
+<h3 class="fn" translate="no" id="showIconSystemMenu"><code class="details extra" translate="no">[override virtual protected]</code> <span class="type">bool</span> QCtmTitleBar::<span class="name">showIconSystemMenu</span>(const <span class="type"><a href="https://doc.qt.io/qt/qpoint.html" translate="no">QPoint</a></span> &amp;<i>pos</i>) const</h3>
+<p>Reimplements: <a href="qctmabstracttitlebar.html#showIconSystemMenu" translate="no">QCtmAbstractTitleBar::showIconSystemMenu</a>(const QPoint &amp;pos) const.</p>
+<!-- @@@showIconSystemMenu -->
 </div>
         </div>
        </div>

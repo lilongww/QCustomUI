@@ -74,6 +74,10 @@ table td {
   padding: 6px 10px 6px 10px;
 }
 
+table.qmlname {
+  width: 75%;
+}
+
 table.qmlname td {
   padding: 0px;
   margin-left: 6px;
@@ -96,6 +100,10 @@ h3.fn .name, h3.fn .type {
 code {
   font-family: Courier, monospace;
   font-weight: 400;
+}
+
+.template-block {
+  white-space: pre-wrap;
 }
 
 p.naviNextPrevious {

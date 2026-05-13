@@ -52,6 +52,16 @@ struct QCtmPathBrowser::Impl
 */
 
 /*!
+    \property   QCtmPathBrowser::path
+    \brief      获取或设置显示路径.
+*/
+
+/*!
+    \property   QCtmPathBrowser::readOnly
+    \brief      获取或设置是否只读.
+*/
+
+/*!
     \brief      构造函数 \a parent.
 */
 QCtmPathBrowser::QCtmPathBrowser(QWidget* parent /*= nullptr*/) : QWidget(parent), m_impl(std::make_unique<Impl>())
@@ -65,7 +75,9 @@ QCtmPathBrowser::QCtmPathBrowser(QWidget* parent /*= nullptr*/) : QWidget(parent
 /*!
     \brief      析构函数.
 */
-QCtmPathBrowser::~QCtmPathBrowser() {}
+QCtmPathBrowser::~QCtmPathBrowser()
+{
+}
 
 /*!
     \brief      设置显示路径 \a path.
@@ -85,19 +97,28 @@ void QCtmPathBrowser::setPath(QString path)
     \brief      返回显示路径.
     \sa         setPath
 */
-QString QCtmPathBrowser::path() const { return m_impl->path; }
+QString QCtmPathBrowser::path() const
+{
+    return m_impl->path;
+}
 
 /*!
     \brief      设置是否只读 \a flag.
     \sa         readOnly
 */
-void QCtmPathBrowser::setReadOnly(bool flag) { m_impl->readOnly = flag; }
+void QCtmPathBrowser::setReadOnly(bool flag)
+{
+    m_impl->readOnly = flag;
+}
 
 /*!
     \brief      返回是否只读.
     \sa         setReadOnly
 */
-bool QCtmPathBrowser::readOnly() const { return m_impl->readOnly; }
+bool QCtmPathBrowser::readOnly() const
+{
+    return m_impl->readOnly;
+}
 
 /*!
     \brief      设置自定义的文本编辑器 \a editor.
@@ -125,7 +146,10 @@ void QCtmPathBrowser::setLineEdit(QLineEdit* editor)
     \brief      返回文本编辑器.
     \sa         setLineEdit
 */
-QLineEdit* QCtmPathBrowser::lineEdit() const { return m_impl->editor; }
+QLineEdit* QCtmPathBrowser::lineEdit() const
+{
+    return m_impl->editor;
+}
 
 /*!
     \reimp
@@ -162,7 +186,10 @@ void QCtmPathBrowser::paintEvent(QPaintEvent* event)
 /*!
     \reimp
 */
-QSize QCtmPathBrowser::sizeHint() const { return minimumSizeHint(); }
+QSize QCtmPathBrowser::sizeHint() const
+{
+    return minimumSizeHint();
+}
 
 /*!
     \reimp
@@ -262,8 +289,12 @@ bool QCtmPathBrowser::event(QEvent* e)
 #else
             auto pos = evt->pos();
 #endif
-            if (auto it =
-                    std::find_if(m_impl->nodes.begin(), m_impl->nodes.end(), [pos](const auto& node) { return node.rect.contains(pos); });
+            if (auto it = std::find_if(m_impl->nodes.begin(),
+                                       m_impl->nodes.end(),
+                                       [pos](const auto& node)
+                                       {
+                                           return node.rect.contains(pos);
+                                       });
                 it != m_impl->nodes.end())
             {
                 hoverNode = std::distance(m_impl->nodes.begin(), it);

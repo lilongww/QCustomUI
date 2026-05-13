@@ -32,7 +32,7 @@ namespace Ui
 class QCtmWindow;
 }
 class QCtmNavigationBar;
-class QCtmTitleBar;
+class QCtmAbstractTitleBar;
 
 class QCUSTOMUI_EXPORT QCtmWindow : public QWidget
 {
@@ -44,12 +44,12 @@ public:
 
     void setStatusBar(QStatusBar* statusBar);
     QStatusBar* statusBar() const;
-    void setMenuBar(QMenuBar* menuBar);
-    QMenuBar* menuBar() const;
+    virtual void setMenuBar(QMenuBar* menuBar);
+    virtual QMenuBar* menuBar() const;
     void setNavigationBar(QCtmNavigationBar* menuBar);
     QCtmNavigationBar* navigationBar() const;
-    void setTitleBar(QCtmTitleBar* titleBar);
-    QCtmTitleBar* titleBar() const;
+    void setTitleBar(QCtmAbstractTitleBar* titleBar);
+    QCtmAbstractTitleBar* titleBar() const;
     void setCentralWidget(QWidget* widget);
     QWidget* centralWidget() const;
     void addMoveBar(QWidget* moveBar);

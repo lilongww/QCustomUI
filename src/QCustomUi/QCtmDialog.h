@@ -25,7 +25,7 @@
 
 #include <memory>
 
-class QCtmTitleBar;
+class QCtmAbstractTitleBar;
 
 class QCUSTOMUI_EXPORT QCtmDialog : public QDialog
 {
@@ -37,8 +37,8 @@ public:
 
     void setCentralWidget(QWidget* widget);
     QWidget* centralWidget() const;
-    void setTitleBar(QCtmTitleBar* titleBar);
-    QCtmTitleBar* titleBar() const;
+    void setTitleBar(QCtmAbstractTitleBar* titleBar);
+    QCtmAbstractTitleBar* titleBar() const;
     void addMoveBar(QWidget* moveBar);
     void removeMoveBar(QWidget* moveBar);
 #ifdef QCUSTOMUI_FRAMELESS_USE_PURE_QT

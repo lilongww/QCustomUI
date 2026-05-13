@@ -68,55 +68,81 @@ QCtmClassifyTreeView::QCtmClassifyTreeView(QWidget* parent) : QAbstractItemView(
 /*!
     \brief      析构函数.
 */
-QCtmClassifyTreeView::~QCtmClassifyTreeView() {}
+QCtmClassifyTreeView::~QCtmClassifyTreeView()
+{
+}
 
 /*!
     \brief      设置水平间隔像素 \a space.
     \sa         horizontalSpace
 */
-void QCtmClassifyTreeView::setHorizontalSpace(int space) { m_impl->horizontalSpace = space; }
+void QCtmClassifyTreeView::setHorizontalSpace(int space)
+{
+    m_impl->horizontalSpace = space;
+}
 
 /*!
     \brief      返回水平间隔像素.
     \sa         setHorizontalSpace
 */
-int QCtmClassifyTreeView::horizontalSpace() const { return m_impl->horizontalSpace; }
+int QCtmClassifyTreeView::horizontalSpace() const
+{
+    return m_impl->horizontalSpace;
+}
 
 /*!
     \brief      设置垂直间隔像素 \a space.
     \sa         verticalSpace
 */
-void QCtmClassifyTreeView::setVerticalSpace(int space) { m_impl->verticalSpace = space; }
+void QCtmClassifyTreeView::setVerticalSpace(int space)
+{
+    m_impl->verticalSpace = space;
+}
 
 /*!
     \brief      返回垂直间隔像素.
     \sa         setVerticalSpace
 */
-int QCtmClassifyTreeView::verticalSpace() const { return m_impl->verticalSpace; }
+int QCtmClassifyTreeView::verticalSpace() const
+{
+    return m_impl->verticalSpace;
+}
 
 /*!
     \brief      设置图标项目的大小 \a size.
     \sa         iconItemSize
 */
-void QCtmClassifyTreeView::setIconItemSize(const QSize& size) { m_impl->iconNodeSize = size; }
+void QCtmClassifyTreeView::setIconItemSize(const QSize& size)
+{
+    m_impl->iconNodeSize = size;
+}
 
 /*!
     \brief      返回图标项目的大小.
     \sa         setIconItemSize
 */
-QSize QCtmClassifyTreeView::iconItemSize() const { return m_impl->iconNodeSize; }
+QSize QCtmClassifyTreeView::iconItemSize() const
+{
+    return m_impl->iconNodeSize;
+}
 
 /*!
     \brief      设置缩进像素 \a i.
     \sa         indentation
 */
-void QCtmClassifyTreeView::setIndentation(int i) { m_impl->indentation = i; }
+void QCtmClassifyTreeView::setIndentation(int i)
+{
+    m_impl->indentation = i;
+}
 
 /*!
     \brief      返回缩进像素.
     \sa         setIndentation
 */
-int QCtmClassifyTreeView::indentation() const { return m_impl->indentation; }
+int QCtmClassifyTreeView::indentation() const
+{
+    return m_impl->indentation;
+}
 
 /*!
     \reimp
@@ -235,7 +261,7 @@ void QCtmClassifyTreeView::expand(const QModelIndex& index)
 
 /*!
     \brief      收缩所有项目.
-    \sa         collapse, collapseAll
+    \sa         collapse
 */
 void QCtmClassifyTreeView::collapseAll()
 {
@@ -282,12 +308,18 @@ void QCtmClassifyTreeView::collapse(const QModelIndex& index)
 /*!
     \reimp
 */
-int QCtmClassifyTreeView::horizontalOffset() const { return 0; }
+int QCtmClassifyTreeView::horizontalOffset() const
+{
+    return 0;
+}
 
 /*!
     \reimp
 */
-bool QCtmClassifyTreeView::isIndexHidden([[maybe_unused]] const QModelIndex& index) const { return false; }
+bool QCtmClassifyTreeView::isIndexHidden([[maybe_unused]] const QModelIndex& index) const
+{
+    return false;
+}
 
 /*!
     \reimp
@@ -301,17 +333,25 @@ QModelIndex QCtmClassifyTreeView::moveCursor([[maybe_unused]] QAbstractItemView:
 /*!
     \reimp
 */
-void QCtmClassifyTreeView::setSelection([[maybe_unused]] const QRect& rect, [[maybe_unused]] QItemSelectionModel::SelectionFlags flags) {}
+void QCtmClassifyTreeView::setSelection([[maybe_unused]] const QRect& rect, [[maybe_unused]] QItemSelectionModel::SelectionFlags flags)
+{
+}
 
 /*!
     \reimp
 */
-int QCtmClassifyTreeView::verticalOffset() const { return verticalScrollBar()->value(); }
+int QCtmClassifyTreeView::verticalOffset() const
+{
+    return verticalScrollBar()->value();
+}
 
 /*!
     \reimp
 */
-QRegion QCtmClassifyTreeView::visualRegionForSelection([[maybe_unused]] const QItemSelection& selection) const { return {}; }
+QRegion QCtmClassifyTreeView::visualRegionForSelection([[maybe_unused]] const QItemSelection& selection) const
+{
+    return {};
+}
 
 /*!
     \reimp

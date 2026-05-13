@@ -4,7 +4,7 @@
   <meta charset="utf-8">
 <!-- QCtmEditLabel.cpp -->
   <meta name="description" content="QLabel的扩展，可进行编辑.">
-  <title>QCtmEditLabel Class | QCustomUi 1.19.0</title>
+  <title>QCtmEditLabel Class | QCustomUi 1.22.0</title>
   <link rel="stylesheet" type="text/css" href="style/offline-simple.css" />
   <script type="text/javascript">
     document.getElementsByTagName("link").item(0).setAttribute("href", "style/offline.css");
@@ -26,10 +26,10 @@
     <div class="main-rounded">
         <div class="navigationbar">
         <ul>
-<li><a href="index.html">QCustomUi 1.19.0</a></li>
+<li><a href="index.html">QCustomUi 1.22.0</a></li>
 <li><a href="qcustomui-module.html" translate="no">QCustomUi</a></li>
 <li>QCtmEditLabel</li>
-<li id="buildversion">QCustomUi 1.19.0 Reference Documentation</li>
+<li id="buildversion">QCustomUi 1.22.0 Reference Documentation</li>
     </ul>
     </div>
 </div>
@@ -62,7 +62,9 @@
 <h2 id="properties">Properties</h2>
 <ul>
 <li class="fn" translate="no"><b><a href="qctmeditlabel.html#editButtonIcon-prop" translate="no">editButtonIcon</a></b> : QIcon</li>
+<li class="fn" translate="no"><b><a href="qctmeditlabel.html#finishButtonIcon-prop" translate="no">finishButtonIcon</a></b> : QIcon</li>
 <li class="fn" translate="no"><b><a href="qctmeditlabel.html#readOnly-prop" translate="no">readOnly</a></b> : bool</li>
+<li class="fn" translate="no"><b><a href="qctmeditlabel.html#revertButtonIcon-prop" translate="no">revertButtonIcon</a></b> : QIcon</li>
 </ul>
 <h2 id="public-functions">Public Functions</h2>
 <div class="table"><table class="alignedsummary" translate="no">
@@ -104,6 +106,15 @@
 <tr><td class="memItemLeft topAlign rightAlign"> void </td><td class="memItemRight bottomAlign"><span class="name"><b><a href="qctmeditlabel.html#setEditButtonIcon" translate="no">setEditButtonIcon</a></b></span>(const QIcon &amp;<i>icon</i>)</td></tr>
 </table></div>
 <!-- @@@editButtonIcon -->
+<!-- $$$finishButtonIcon-prop$$$finishButtonIcon$$$setFinishButtonIconconstQIcon& -->
+<h3 class="fn" translate="no" id="finishButtonIcon-prop"><span class="name">finishButtonIcon</span> : <span class="type"><a href="https://doc.qt.io/qt/qicon.html" translate="no">QIcon</a></span></h3>
+<p>编辑完成按钮的图标.</p>
+<p><b>Access functions:</b></p>
+<div class="table"><table class="alignedsummary" translate="no">
+<tr><td class="memItemLeft topAlign rightAlign"> QIcon </td><td class="memItemRight bottomAlign"><span class="name"><b><a href="qctmeditlabel.html#finishButtonIcon" translate="no">finishButtonIcon</a></b></span>() const</td></tr>
+<tr><td class="memItemLeft topAlign rightAlign"> void </td><td class="memItemRight bottomAlign"><span class="name"><b><a href="qctmeditlabel.html#setFinishButtonIcon" translate="no">setFinishButtonIcon</a></b></span>(const QIcon &amp;<i>icon</i>)</td></tr>
+</table></div>
+<!-- @@@finishButtonIcon -->
 <!-- $$$readOnly-prop$$$isReadOnly$$$setReadOnlybool -->
 <h3 class="fn" translate="no" id="readOnly-prop"><span class="name">readOnly</span> : <span class="type">bool</span></h3>
 <p>是否只读.</p>
@@ -113,15 +124,24 @@
 <tr><td class="memItemLeft topAlign rightAlign"> void </td><td class="memItemRight bottomAlign"><span class="name"><b><a href="qctmeditlabel.html#setReadOnly" translate="no">setReadOnly</a></b></span>(bool <i>flag</i>)</td></tr>
 </table></div>
 <!-- @@@readOnly -->
+<!-- $$$revertButtonIcon-prop$$$revertButtonIcon$$$setRevertButtonIconconstQIcon& -->
+<h3 class="fn" translate="no" id="revertButtonIcon-prop"><span class="name">revertButtonIcon</span> : <span class="type"><a href="https://doc.qt.io/qt/qicon.html" translate="no">QIcon</a></span></h3>
+<p>回退按钮的图标.</p>
+<p><b>Access functions:</b></p>
+<div class="table"><table class="alignedsummary" translate="no">
+<tr><td class="memItemLeft topAlign rightAlign"> QIcon </td><td class="memItemRight bottomAlign"><span class="name"><b><a href="qctmeditlabel.html#revertButtonIcon" translate="no">revertButtonIcon</a></b></span>() const</td></tr>
+<tr><td class="memItemLeft topAlign rightAlign"> void </td><td class="memItemRight bottomAlign"><span class="name"><b><a href="qctmeditlabel.html#setRevertButtonIcon" translate="no">setRevertButtonIcon</a></b></span>(const QIcon &amp;<i>icon</i>)</td></tr>
+</table></div>
+<!-- @@@revertButtonIcon -->
 </div>
 <div class="func">
 <h2>Member Function Documentation</h2>
 <!-- $$$QCtmEditLabel[overload1]$$$QCtmEditLabelQWidget*Qt::WindowFlags -->
-<h3 class="fn" translate="no" id="QCtmEditLabel"><code class="details extra" translate="no">[explicit]</code> QCtmEditLabel::<span class="name">QCtmEditLabel</span>(<span class="type"><a href="https://doc.qt.io/qt/qwidget.html#QWidget" translate="no">QWidget</a></span> *<i>parent</i> = nullptr, <span class="type"><a href="https://doc.qt.io/qt/qt.html#WindowType-enum" translate="no">Qt::WindowFlags</a></span> <i>f</i> = Qt::WindowFlags())</h3>
+<h3 class="fn" translate="no" id="QCtmEditLabel"><code class="details extra" translate="no">[explicit]</code> QCtmEditLabel::<span class="name">QCtmEditLabel</span>(<span class="type"><a href="https://doc.qt.io/qt/qwidget.html" translate="no">QWidget</a></span> *<i>parent</i> = nullptr, <span class="type"><a href="https://doc.qt.io/qt/qt.html#WindowType-enum" translate="no">Qt::WindowFlags</a></span> <i>f</i> = Qt::WindowFlags())</h3>
 <p>构造函数 <i translate="no">parent</i>, <i translate="no">f</i>.</p>
 <!-- @@@QCtmEditLabel -->
 <!-- $$$QCtmEditLabel$$$QCtmEditLabelconstQString&QWidget*Qt::WindowFlags -->
-<h3 class="fn" translate="no" id="QCtmEditLabel-1"><code class="details extra" translate="no">[explicit]</code> QCtmEditLabel::<span class="name">QCtmEditLabel</span>(const <span class="type"><a href="https://doc.qt.io/qt/qstring.html" translate="no">QString</a></span> &amp;<i>text</i>, <span class="type"><a href="https://doc.qt.io/qt/qwidget.html#QWidget" translate="no">QWidget</a></span> *<i>parent</i> = nullptr, <span class="type"><a href="https://doc.qt.io/qt/qt.html#WindowType-enum" translate="no">Qt::WindowFlags</a></span> <i>f</i> = Qt::WindowFlags())</h3>
+<h3 class="fn" translate="no" id="QCtmEditLabel-1"><code class="details extra" translate="no">[explicit]</code> QCtmEditLabel::<span class="name">QCtmEditLabel</span>(const <span class="type"><a href="https://doc.qt.io/qt/qstring.html" translate="no">QString</a></span> &amp;<i>text</i>, <span class="type"><a href="https://doc.qt.io/qt/qwidget.html" translate="no">QWidget</a></span> *<i>parent</i> = nullptr, <span class="type"><a href="https://doc.qt.io/qt/qt.html#WindowType-enum" translate="no">Qt::WindowFlags</a></span> <i>f</i> = Qt::WindowFlags())</h3>
 <p>构造函数，并设置显示文字 <i translate="no">text</i>, <i translate="no">parent</i>, <i translate="no">f</i>.</p>
 <!-- @@@QCtmEditLabel -->
 <!-- $$$~QCtmEditLabel[overload1]$$$~QCtmEditLabel -->

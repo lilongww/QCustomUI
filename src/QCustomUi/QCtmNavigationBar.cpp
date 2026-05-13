@@ -136,6 +136,11 @@ struct QCtmNavigationBar::Impl
 */
 
 /*!
+    \property   QCtmNavigationBar::iconSize
+    \brief      获取或设置Action的图标大小.
+*/
+
+/*!
     \fn         void QCtmNavigationBar::iconSizeChanged(const QSize& size);
     \brief      当图标大小发生改变时发送该信号 \a size.
     \sa         setIconSize
@@ -174,7 +179,9 @@ QCtmNavigationBar::QCtmNavigationBar(QWidget* parent) : QWidget(parent), m_impl(
 /*!
     \brief      销毁当前QCtmNavigationBar对象.
 */
-QCtmNavigationBar::~QCtmNavigationBar() {}
+QCtmNavigationBar::~QCtmNavigationBar()
+{
+}
 
 /*!
     \overload   addAction
@@ -206,7 +213,10 @@ QAction* QCtmNavigationBar::addAction(const QIcon& icon, const QString& text, Ac
                 该重载函数创建并返回一个文本为 \a text 的action，并显示到 \a pos 位置.
     \sa         QCtmNavigationBar::addAction
 */
-QAction* QCtmNavigationBar::addAction(const QString& text, ActionPosition pos) { return addAction(QIcon(), text, pos); }
+QAction* QCtmNavigationBar::addAction(const QString& text, ActionPosition pos)
+{
+    return addAction(QIcon(), text, pos);
+}
 
 /*!
     \overload   insertAction
@@ -246,7 +256,10 @@ QAction* QCtmNavigationBar::insertAction(int index, const QString& text, ActionP
     \brief      在 \a pos 位置添加一个分隔符.
     \sa         insertSeparator
 */
-QAction* QCtmNavigationBar::addSeparator(ActionPosition pos) { return insertSeparator(count(pos), pos); }
+QAction* QCtmNavigationBar::addSeparator(ActionPosition pos)
+{
+    return insertSeparator(count(pos), pos);
+}
 
 /*!
     \brief      在 \a index, \a pos 位置插入一个分隔符.
@@ -318,7 +331,15 @@ void QCtmNavigationBar::insertPane(int index, QAction* action, ActionPosition po
                     pane->hide();
             });
 
-    connect(pane, &QCtmNavigationSidePane::paneClosed, this, [=]() { action->setChecked(false); }, Qt::QueuedConnection);
+    connect(
+        pane,
+        &QCtmNavigationSidePane::paneClosed,
+        this,
+        [=]()
+        {
+            action->setChecked(false);
+        },
+        Qt::QueuedConnection);
 }
 
 /*!
@@ -360,7 +381,13 @@ QAction* QCtmNavigationBar::addHelp(const QUrl& filePath, const QIcon& icon, Act
 QAction* QCtmNavigationBar::insertHelp(int index, const QUrl& filePath, const QIcon& icon, ActionPosition pos /*= Right*/)
 {
     auto help = new QAction(icon, "", this);
-    connect(help, &QAction::triggered, this, [=]() { QDesktopServices::openUrl(filePath); });
+    connect(help,
+            &QAction::triggered,
+            this,
+            [=]()
+            {
+                QDesktopServices::openUrl(filePath);
+            });
     insertAction(index, help, pos);
     return help;
 }
@@ -514,7 +541,10 @@ void QCtmNavigationBar::setIconSize(const QSize& size)
     \brief      返回Action图标的大小.
     \sa         setIconSize
 */
-const QSize& QCtmNavigationBar::iconSize() const { return m_impl->iconSize; }
+const QSize& QCtmNavigationBar::iconSize() const
+{
+    return m_impl->iconSize;
+}
 
 /*!
     \brief      设置 ToolButtonStyle \a style.
@@ -536,17 +566,26 @@ void QCtmNavigationBar::setToolButtonStyle(Qt::ToolButtonStyle style)
     \brief      返回 ToolButtonStyle.
     \sa         setToolButtonStyle
 */
-Qt::ToolButtonStyle QCtmNavigationBar::toolButtonStyle() const { return m_impl->toolButtonStyle; }
+Qt::ToolButtonStyle QCtmNavigationBar::toolButtonStyle() const
+{
+    return m_impl->toolButtonStyle;
+}
 
 /*!
     \reimp
 */
-QSize QCtmNavigationBar::sizeHint() const { return minimumSizeHint(); }
+QSize QCtmNavigationBar::sizeHint() const
+{
+    return minimumSizeHint();
+}
 
 /*!
     \reimp
 */
-QSize QCtmNavigationBar::minimumSizeHint() const { return QSize(50, 50); }
+QSize QCtmNavigationBar::minimumSizeHint() const
+{
+    return QSize(50, 50);
+}
 
 /*!
     \reimp

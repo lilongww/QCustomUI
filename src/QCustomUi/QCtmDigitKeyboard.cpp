@@ -97,7 +97,12 @@ struct QCtmDigitKeyboard::Impl
             return;
         if (auto suffix = bindedBox->property("suffix").toString(); !suffix.isEmpty())
         {
-            auto it = std::find_if(units.begin(), units.end(), [&](const auto& u) { return u.unit == suffix; });
+            auto it = std::find_if(units.begin(),
+                                   units.end(),
+                                   [&](const auto& u)
+                                   {
+                                       return u.unit == suffix;
+                                   });
             if (it != units.end())
             {
                 bindedBox->setProperty("maximum", it->maximum);
@@ -120,6 +125,36 @@ struct QCtmDigitKeyboard::Impl
 */
 
 /*!
+    \property   QCtmDigitKeyboard::value
+    \brief      输入的值.
+    \sa         setValue
+*/
+
+/*!
+    \property   QCtmDigitKeyboard::maximum
+    \brief      最大值.
+    \sa         setMaximum, setRange
+*/
+
+/*!
+    \property   QCtmDigitKeyboard::minimum
+    \brief      最小值.
+    \sa         setMinimum, setRange
+*/
+
+/*!
+    \property   QCtmDigitKeyboard::singleStep
+    \brief      步进值.
+    \sa         setSingleStep
+*/
+
+/*!
+    \property   QCtmDigitKeyboard::decimals
+    \brief      小数位数，仅对浮点数有效.
+    \sa         setDecimals
+*/
+
+/*!
     \brief      构造函数 \a parent.
 */
 QCtmDigitKeyboard::QCtmDigitKeyboard(QWidget* parent /*= nullptr*/) : QCtmDialog(parent), m_impl(std::make_unique<Impl>())
@@ -131,7 +166,9 @@ QCtmDigitKeyboard::QCtmDigitKeyboard(QWidget* parent /*= nullptr*/) : QCtmDialog
 /*!
     \brief      析构函数.
 */
-QCtmDigitKeyboard::~QCtmDigitKeyboard() {}
+QCtmDigitKeyboard::~QCtmDigitKeyboard()
+{
+}
 
 /*!
     \brief      设置输入模式 \a mode.
@@ -148,7 +185,10 @@ void QCtmDigitKeyboard::setInputMode(InputMode mode)
     \brief      返回输入模式.
     \sa         setInputMode
 */
-QCtmDigitKeyboard::InputMode QCtmDigitKeyboard::inputMode() const { return m_impl->mode; }
+QCtmDigitKeyboard::InputMode QCtmDigitKeyboard::inputMode() const
+{
+    return m_impl->mode;
+}
 
 /*!
     \brief      设置输入窗口中的值 \a value.
@@ -184,7 +224,10 @@ void QCtmDigitKeyboard::setValue(const QVariant& value)
     \brief      返回输入的值.
     \sa         setValue
 */
-QVariant QCtmDigitKeyboard::value() const { return m_impl->box ? m_impl->box->property("value") : m_impl->value; }
+QVariant QCtmDigitKeyboard::value() const
+{
+    return m_impl->box ? m_impl->box->property("value") : m_impl->value;
+}
 
 /*!
     \brief      设置输入最大值 \a max.
@@ -201,7 +244,10 @@ void QCtmDigitKeyboard::setMaximum(const QVariant& max)
     \brief      返回输入最大值.
     \sa         setMaximum
 */
-QVariant QCtmDigitKeyboard::maximum() const { return m_impl->box ? m_impl->box->property("maximum") : m_impl->maximum; }
+QVariant QCtmDigitKeyboard::maximum() const
+{
+    return m_impl->box ? m_impl->box->property("maximum") : m_impl->maximum;
+}
 
 /*!
     \brief      设置输入最小值 \a min.
@@ -218,7 +264,10 @@ void QCtmDigitKeyboard::setMinimum(const QVariant& min)
     \brief      返回输入最小值.
     \sa         setMinimum
 */
-QVariant QCtmDigitKeyboard::minimum() const { return m_impl->box ? m_impl->box->property("minimum") : m_impl->minimum; }
+QVariant QCtmDigitKeyboard::minimum() const
+{
+    return m_impl->box ? m_impl->box->property("minimum") : m_impl->minimum;
+}
 
 /*!
     \brief      设置输入范围 \a min, \a max.
@@ -245,7 +294,10 @@ void QCtmDigitKeyboard::setSingleStep(const QVariant& step)
     \brief      返回步进值.
     \sa         setSingleStep
 */
-QVariant QCtmDigitKeyboard::singleStep() const { return m_impl->box ? m_impl->box->property("singleStep") : m_impl->step; }
+QVariant QCtmDigitKeyboard::singleStep() const
+{
+    return m_impl->box ? m_impl->box->property("singleStep") : m_impl->step;
+}
 
 /*!
     \brief      设置可选单位列表 \a units.
@@ -266,7 +318,10 @@ void QCtmDigitKeyboard::setUnits(const Units& units)
     \brief      返回可选单位列表.
     \sa         setUnits
 */
-const QCtmDigitKeyboard::Units& QCtmDigitKeyboard::units() const { return m_impl->units; }
+const QCtmDigitKeyboard::Units& QCtmDigitKeyboard::units() const
+{
+    return m_impl->units;
+}
 
 /*!
     \brief      设置当前选中的单位序号 \a index.
@@ -286,7 +341,10 @@ void QCtmDigitKeyboard::setCurrentUnitIndex(int index)
     \brief      返回当前选中的单位序号.
     \sa         setCurrentUnitIndex
 */
-int QCtmDigitKeyboard::currentUnitIndex() const { return m_impl->currentUnitIndex; }
+int QCtmDigitKeyboard::currentUnitIndex() const
+{
+    return m_impl->currentUnitIndex;
+}
 
 /*!
     \brief      设置小数点后保留位数 \a decimals.
@@ -306,7 +364,10 @@ void QCtmDigitKeyboard::setDecimals(int decimals)
     \brief      返回小数点后保留位数.
     \sa         setDecimals
 */
-int QCtmDigitKeyboard::decimals() const { return m_impl->decimals; }
+int QCtmDigitKeyboard::decimals() const
+{
+    return m_impl->decimals;
+}
 
 /*!
     \brief      绑定到 QSpinBox/QDoubleSpinBox \a box.
@@ -340,7 +401,13 @@ void QCtmDigitKeyboard::bindBox(QAbstractSpinBox* box)
     if (m_impl->bindedBox)
         m_impl->bindedBox->findChild<QLineEdit*>()->removeEventFilter(this);
     m_impl->bindedBox = box;
-    connect(box, &QObject::destroyed, this, [=]() { m_impl->bindedBox = nullptr; });
+    connect(box,
+            &QObject::destroyed,
+            this,
+            [=]()
+            {
+                m_impl->bindedBox = nullptr;
+            });
     switch (m_impl->mode)
     {
     case InputMode::IntInput:
@@ -449,7 +516,13 @@ void QCtmDigitKeyboard::ensureConnect()
         }
         m_impl->box = box;
         setValue(box->value());
-        connect(box, qOverload<int>(&QSpinBox::valueChanged), this, [this](auto val) { emit valueChanged(val); });
+        connect(box,
+                qOverload<int>(&QSpinBox::valueChanged),
+                this,
+                [this](auto val)
+                {
+                    emit valueChanged(val);
+                });
     }
     else if (m_impl->mode == InputMode::DoubleInput)
     {
@@ -464,7 +537,13 @@ void QCtmDigitKeyboard::ensureConnect()
         }
         m_impl->box = box;
         setValue(box->value());
-        connect(box, qOverload<double>(&QDoubleSpinBox::valueChanged), this, [this](auto val) { emit valueChanged(val); });
+        connect(box,
+                qOverload<double>(&QDoubleSpinBox::valueChanged),
+                this,
+                [this](auto val)
+                {
+                    emit valueChanged(val);
+                });
     }
 #ifndef BUILD_STATIC
     else if (m_impl->mode == InputMode::LongLongInput)
@@ -479,7 +558,13 @@ void QCtmDigitKeyboard::ensureConnect()
         }
         m_impl->box = box;
         setValue(box->value());
-        connect(box, &QCtmLongLongSpinBox::valueChanged, this, [this](auto val) { emit valueChanged(val); });
+        connect(box,
+                &QCtmLongLongSpinBox::valueChanged,
+                this,
+                [this](auto val)
+                {
+                    emit valueChanged(val);
+                });
     }
     else if (m_impl->mode == InputMode::ULongLongInput)
     {
@@ -493,7 +578,13 @@ void QCtmDigitKeyboard::ensureConnect()
         }
         m_impl->box = box;
         setValue(box->value());
-        connect(box, &QCtmULongLongSpinBox::valueChanged, this, [this](auto val) { emit valueChanged(val); });
+        connect(box,
+                &QCtmULongLongSpinBox::valueChanged,
+                this,
+                [this](auto val)
+                {
+                    emit valueChanged(val);
+                });
     }
 #endif
     m_impl->ui.inputLayout->addWidget(m_impl->box);
@@ -535,7 +626,10 @@ void QCtmDigitKeyboard::ensureConnect()
     syncBindBox();
 }
 
-void QCtmDigitKeyboard::ensureConnect() const { const_cast<QCtmDigitKeyboard*>(this)->ensureConnect(); }
+void QCtmDigitKeyboard::ensureConnect() const
+{
+    const_cast<QCtmDigitKeyboard*>(this)->ensureConnect();
+}
 
 void QCtmDigitKeyboard::init()
 {
@@ -619,7 +713,10 @@ void QCtmDigitKeyboard::createUnits()
 
 void QCtmDigitKeyboard::syncBindBox()
 {
-    auto pv = [=](const char* str) { return m_impl->bindedBox->property(str); };
+    auto pv = [=](const char* str)
+    {
+        return m_impl->bindedBox->property(str);
+    };
 
     if (m_impl->bindedBox)
     {
@@ -636,7 +733,12 @@ void QCtmDigitKeyboard::syncBindBox()
         else
         {
             auto unit = pv("suffix").toString();
-            auto it   = std::find_if(m_impl->units.begin(), m_impl->units.end(), [&](const auto& u) { return u.unit == unit; });
+            auto it   = std::find_if(m_impl->units.begin(),
+                                   m_impl->units.end(),
+                                   [&](const auto& u)
+                                   {
+                                       return u.unit == unit;
+                                   });
             if (it != m_impl->units.end())
             {
                 setCurrentUnitIndex(static_cast<int>(std::distance(m_impl->units.begin(), it)));

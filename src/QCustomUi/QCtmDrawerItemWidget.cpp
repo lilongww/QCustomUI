@@ -46,6 +46,12 @@ struct QCtmDrawerItemWidget::Impl
 */
 
 /*!
+    \property     QCtmDrawerItemWidget::iconSize
+    \brief        获取或设置抽屉项中Action的图标大小.
+    \sa           setIconSize, iconSizeChanged
+*/
+
+/*!
     \fn         void QCtmDrawerItemWidget::expandChanged(bool expand)
     \brief      当抽屉项的扩展状态发生变化时，发送该信号 \a expand.
     \sa         QCtmDrawerItemWidget::titleClicked
@@ -96,7 +102,9 @@ QCtmDrawerItemWidget::QCtmDrawerItemWidget(const QString& title, QCtmDrawerWidge
 /*!
     \brief      销毁该抽屉项对象.
 */
-QCtmDrawerItemWidget::~QCtmDrawerItemWidget() {}
+QCtmDrawerItemWidget::~QCtmDrawerItemWidget()
+{
+}
 
 /*!
     \brief      设置抽屉项容纳的部件 \a widget.
@@ -117,25 +125,37 @@ void QCtmDrawerItemWidget::setWidget(QWidget* widget)
     \brief      返回该抽屉项容纳的部件.
     \sa         setWidget
 */
-QWidget* QCtmDrawerItemWidget::widget() const { return m_impl->widget; }
+QWidget* QCtmDrawerItemWidget::widget() const
+{
+    return m_impl->widget;
+}
 
 /*!
     \brief      设置抽屉项的标题 \a title.
     \sa         title()
 */
-void QCtmDrawerItemWidget::setTitle(const QString& title) { m_impl->title->setText(title); }
+void QCtmDrawerItemWidget::setTitle(const QString& title)
+{
+    m_impl->title->setText(title);
+}
 
 /*!
     \brief      返回抽屉项的标题.
     \sa         setTitle
 */
-QString QCtmDrawerItemWidget::title() const { return m_impl->title->text(); }
+QString QCtmDrawerItemWidget::title() const
+{
+    return m_impl->title->text();
+}
 
 /*!
     \brief      返回该抽屉项的展开状态.
     \sa         setExpand
 */
-bool QCtmDrawerItemWidget::isExpand() const { return m_impl->title->isExpand(); }
+bool QCtmDrawerItemWidget::isExpand() const
+{
+    return m_impl->title->isExpand();
+}
 
 /*!
     \brief      设置该抽屉项的展开状态 \a expand.
@@ -196,40 +216,58 @@ int QCtmDrawerItemWidget::suggestSize() const
     \brief      设置抽屉项的建议大小 \a size.
     \sa         suggestSize()
 */
-void QCtmDrawerItemWidget::setSuggestSize(int size) { m_impl->size = size; }
+void QCtmDrawerItemWidget::setSuggestSize(int size)
+{
+    m_impl->size = size;
+}
 
 /*!
     \overload   addAction
                 在标题栏上添加一个文本为 \a text 的Action.
-    \sa         QCtmDrawerItemWidget::addAction, removeAction
+    \sa         removeAction
 */
-QAction* QCtmDrawerItemWidget::addAction(const QString& text) { return insertAction(count(), text); }
+QAction* QCtmDrawerItemWidget::addAction(const QString& text)
+{
+    return insertAction(count(), text);
+}
 
 /*!
     \brief      在标题栏上添加一个图标为 \a icon 文本为 \a text 的Action.
     \sa         insertAction, removeAction
 */
-QAction* QCtmDrawerItemWidget::addAction(const QIcon& icon, const QString& text) { return insertAction(count(), icon, text); }
+QAction* QCtmDrawerItemWidget::addAction(const QIcon& icon, const QString& text)
+{
+    return insertAction(count(), icon, text);
+}
 
 /*!
     \overload   addAction
                 在标题栏上添加一个图标为 \a icon 的Action.
     \sa         insertAction, removeAction
 */
-QAction* QCtmDrawerItemWidget::addAction(const QIcon& icon) { return addAction(icon, QString()); }
+QAction* QCtmDrawerItemWidget::addAction(const QIcon& icon)
+{
+    return addAction(icon, QString());
+}
 
 /*!
     \brief      在标题栏上的 \a index 位置插入一个 \a action.
     \sa         addAction, removeAction
 */
-void QCtmDrawerItemWidget::insertAction(int index, QAction* action) { m_impl->title->insertAction(index, action); }
+void QCtmDrawerItemWidget::insertAction(int index, QAction* action)
+{
+    m_impl->title->insertAction(index, action);
+}
 
 /*!
     \overload   insertAction
                 在标题栏上的 \a index 位置插入一个文本为 \a text 的Action.
-    \sa         QCtmDrawerItemWidget::insertAction, removeAction
+    \sa         removeAction
 */
-QAction* QCtmDrawerItemWidget::insertAction(int index, const QString& text) { return insertAction(index, QIcon(), text); }
+QAction* QCtmDrawerItemWidget::insertAction(int index, const QString& text)
+{
+    return insertAction(index, QIcon(), text);
+}
 
 /*!
     \overload   insertAction
@@ -247,24 +285,36 @@ QAction* QCtmDrawerItemWidget::insertAction(int index, const QIcon& icon, const 
     \brief      移除给予的 \a action.
     \sa         addAction, insertAction
 */
-void QCtmDrawerItemWidget::removeAction(QAction* action) { m_impl->title->removeAction(action); }
+void QCtmDrawerItemWidget::removeAction(QAction* action)
+{
+    m_impl->title->removeAction(action);
+}
 
 /*!
     \brief      返回Action的数量.
 */
-int QCtmDrawerItemWidget::count() const { return m_impl->title->actions().size(); }
+int QCtmDrawerItemWidget::count() const
+{
+    return m_impl->title->actions().size();
+}
 
 /*!
     \brief      返回 \a action 的位置.
     \sa         actionAt
 */
-int QCtmDrawerItemWidget::indexOf(QAction* action) { return m_impl->title->indexOf(action); }
+int QCtmDrawerItemWidget::indexOf(QAction* action)
+{
+    return m_impl->title->indexOf(action);
+}
 
 /*!
     \brief      返回 \a index 位置的Action.
     \sa         indexOf
 */
-QAction* QCtmDrawerItemWidget::actionAt(int index) { return m_impl->title->actionAt(index); }
+QAction* QCtmDrawerItemWidget::actionAt(int index)
+{
+    return m_impl->title->actionAt(index);
+}
 
 /*!
     \brief      设置Action的大小 \a size.
@@ -280,4 +330,7 @@ void QCtmDrawerItemWidget::setIconSize(const QSize& size)
     \brief      返回Action的大小.
     \sa         setIconSize
 */
-const QSize& QCtmDrawerItemWidget::iconSize() const { return m_impl->title->iconSize(); }
+const QSize& QCtmDrawerItemWidget::iconSize() const
+{
+    return m_impl->title->iconSize();
+}

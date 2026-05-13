@@ -56,6 +56,12 @@ struct QCtmDrawerWidget::Impl
 */
 
 /*!
+    \property   QCtmDrawerWidget::iconSize
+    \brief      获取或设置抽屉项中Action的图标大小.
+    \sa         setIconSize, iconSizeChanged
+*/
+
+/*!
     \fn         void QCtmDrawerWidget::itemExpandChanged(QCtmDrawerItemWidget* item, bool expand)
     \brief      抽屉项 \a item 的展开状态 \a expand 发生变化时发送该信号.
     \sa         itemTitleClicked
@@ -93,13 +99,18 @@ QCtmDrawerWidget::QCtmDrawerWidget(QWidget* parent) : QWidget(parent), m_impl(st
 /*!
     \brief      销毁该抽屉窗口对象.
 */
-QCtmDrawerWidget::~QCtmDrawerWidget() {}
+QCtmDrawerWidget::~QCtmDrawerWidget()
+{
+}
 
 /*!
     \brief      添加并返回一个标题为 \a title 容纳窗口为 \a widget 的抽屉项.
     \sa         insertWidget, removeItem
 */
-QCtmDrawerItemWidget* QCtmDrawerWidget::addWidget(const QString& title, QWidget* widget) { return insertWidget(count(), title, widget); }
+QCtmDrawerItemWidget* QCtmDrawerWidget::addWidget(const QString& title, QWidget* widget)
+{
+    return insertWidget(count(), title, widget);
+}
 
 /*!
     \brief      在 \a index 位置插入并返回一个标题为 \a title 容纳窗口为 \a widget 的抽屉项.
@@ -124,13 +135,19 @@ QCtmDrawerItemWidget* QCtmDrawerWidget::insertWidget(int index, const QString& t
     \brief      移除给予的抽屉项 \a item.
     \sa         addWidget, insertWidget
 */
-void QCtmDrawerWidget::removeItem(QCtmDrawerItemWidget* item) { delete item; }
+void QCtmDrawerWidget::removeItem(QCtmDrawerItemWidget* item)
+{
+    delete item;
+}
 
 /*!
     \brief      返回抽屉项 \a item 所在的位置.
     \sa         item
 */
-int QCtmDrawerWidget::indexOf(QCtmDrawerItemWidget* item) const { return m_impl->splitter->indexOf(item); }
+int QCtmDrawerWidget::indexOf(QCtmDrawerItemWidget* item) const
+{
+    return m_impl->splitter->indexOf(item);
+}
 
 /*!
     \brief      返回 \a index 位置的抽屉项.
@@ -144,19 +161,28 @@ QCtmDrawerItemWidget* QCtmDrawerWidget::item(int index) const
 /*!
     \brief      返回抽屉项数量.
 */
-int QCtmDrawerWidget::count() const { return m_impl->splitter->count(); }
+int QCtmDrawerWidget::count() const
+{
+    return m_impl->splitter->count();
+}
 
 /*!
     \brief      设置抽屉项的展开状态是否互斥 \a exclusive.
     \sa         exclusive()
 */
-void QCtmDrawerWidget::setExclusive(bool exclusive) { m_impl->exclusive = exclusive; }
+void QCtmDrawerWidget::setExclusive(bool exclusive)
+{
+    m_impl->exclusive = exclusive;
+}
 
 /*!
     \brief      返回抽屉项的展开状态是否互斥.
     \sa         setExclusive
 */
-bool QCtmDrawerWidget::exclusive() const { return m_impl->exclusive; }
+bool QCtmDrawerWidget::exclusive() const
+{
+    return m_impl->exclusive;
+}
 
 /*!
     \brief      设置各抽屉项的大小 \a sizes.
@@ -192,7 +218,10 @@ void QCtmDrawerWidget::setIconSize(const QSize& size)
     \brief      返回Action的图标大小.
     \sa         setIconSize
 */
-const QSize& QCtmDrawerWidget::iconSize() const { return m_impl->iconSize; }
+const QSize& QCtmDrawerWidget::iconSize() const
+{
+    return m_impl->iconSize;
+}
 /*!
     \brief      计算各抽屉项的大小.
 */
@@ -319,7 +348,10 @@ bool QCtmDrawerWidget::isAllCollapsed() const
 /*!
     \brief      返回 \a sizes 的总和.
 */
-int QCtmDrawerWidget::totalSize(const QList<int>& sizes) const { return std::accumulate(sizes.begin(), sizes.end(), 0); }
+int QCtmDrawerWidget::totalSize(const QList<int>& sizes) const
+{
+    return std::accumulate(sizes.begin(), sizes.end(), 0);
+}
 
 /*!
     \reimp

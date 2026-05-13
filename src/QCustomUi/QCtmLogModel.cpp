@@ -55,6 +55,33 @@ struct QCtmLogModel::Impl
 */
 
 /*!
+    \enum       QCtmLogModel::Role
+                日志类型数据角色.
+    \value      TypeRole
+                返回日志类型 QtMsgType.
+    \value      CopyMessageRole
+                返回完整日志消息字符串, 适合复制到剪贴板.
+*/
+
+/*!
+    \property   QCtmLogModel::infoIcon
+    \brief      Info 等级日志图标.
+    \sa         setInfoIcon
+*/
+
+/*!
+    \property   QCtmLogModel::warningIcon
+    \brief      Warning 等级日志图标.
+    \sa         setWarningIcon
+*/
+
+/*!
+    \property   QCtmLogModel::errorIcon
+    \brief      Error 等级日志图标.
+    \sa         setErrorIcon
+*/
+
+/*!
     \brief      构造函数 \a objectName, \a parent.
     \sa         QObject::setObjectName
 */

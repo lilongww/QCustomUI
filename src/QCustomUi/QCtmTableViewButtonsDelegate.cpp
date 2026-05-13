@@ -165,6 +165,24 @@ struct QCtmTableViewButtonsDelegate::Impl
 */
 
 /*!
+    \property     QCtmTableViewButtonsDelegate::uniformButtonSize
+    \brief        按钮的大小是否统一，默认为 true.
+    \sa           setUniformButtonSize
+*/
+
+/*!
+    \property     QCtmTableViewButtonsDelegate::space
+    \brief        按钮之间的间距，默认为 5.
+    \sa           setSpace
+*/
+
+/*!
+    \property     QCtmTableViewButtonsDelegate::alignment
+    \brief        水平对齐方式，默认为 Qt::AlignCenter.
+    \sa           setAlignment
+*/
+
+/*!
     \brief      构造函数 \a parent.
 */
 QCtmTableViewButtonsDelegate::QCtmTableViewButtonsDelegate(QCtmTableView* parent)

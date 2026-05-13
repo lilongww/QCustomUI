@@ -84,7 +84,10 @@ public:
         return QStyle::sliderValueFromPosition(minimum, maximum, pos - sliderMin, sliderMax - sliderMin, opt.upsideDown);
     }
 
-    inline int pick(const QPoint& pt) const { return orientation == Qt::Horizontal ? pt.x() : pt.y(); }
+    inline int pick(const QPoint& pt) const
+    {
+        return orientation == Qt::Horizontal ? pt.x() : pt.y();
+    }
 
     bool updateHoverControl(const QPoint& pos)
     {
@@ -246,6 +249,42 @@ void QCtmRangeSliderPrivate::init()
 */
 
 /*!
+    \property   QCtmRangeSlider::orientation
+    \brief      表示部件的朝向。
+    \sa         setOrientation, orientation
+*/
+
+/*!
+    \property   QCtmRangeSlider::minimum
+    \brief      表示部件的最小值。
+    \sa         setMinimum, minimum
+*/
+
+/*!
+    \property   QCtmRangeSlider::maximum
+    \brief      表示部件的最大值。
+    \sa         setMaximum, maximum
+*/
+
+/*!
+    \property   QCtmRangeSlider::lower
+    \brief      表示部件的范围下限。
+    \sa         setLower, lower
+*/
+
+/*!
+    \property   QCtmRangeSlider::upper
+    \brief      表示部件的范围上限。
+    \sa         setUpper, upper
+*/
+
+/*!
+    \property   QCtmRangeSlider::chunkVisible
+    \brief      表示范围块是否可见。
+    \sa         setChunkVisible, chunkVisible
+*/
+
+/*!
     \brief      构造函数 \a parent.
 */
 QCtmRangeSlider::QCtmRangeSlider(QWidget* parent /*= nullptr*/) : QWidget(*new QCtmRangeSliderPrivate, parent, {})
@@ -266,7 +305,9 @@ QCtmRangeSlider::QCtmRangeSlider(Qt::Orientation orientation, QWidget* parent /*
 /*!
     \brief      析构函数.
 */
-QCtmRangeSlider::~QCtmRangeSlider() {}
+QCtmRangeSlider::~QCtmRangeSlider()
+{
+}
 
 /*!
     \brief      返回该部件的朝向.

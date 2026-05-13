@@ -4,7 +4,7 @@
   <meta charset="utf-8">
 <!-- QCtmLogModel.cpp -->
   <meta name="description" content="标准日志 model.">
-  <title>List of All Members for QCtmLogModel | QCustomUi 1.19.0</title>
+  <title>List of All Members for QCtmLogModel | QCustomUi 1.22.0</title>
   <link rel="stylesheet" type="text/css" href="style/offline-simple.css" />
   <script type="text/javascript">
     document.getElementsByTagName("link").item(0).setAttribute("href", "style/offline.css");
@@ -26,10 +26,10 @@
     <div class="main-rounded">
         <div class="navigationbar">
         <ul>
-<li><a href="index.html">QCustomUi 1.19.0</a></li>
+<li><a href="index.html">QCustomUi 1.22.0</a></li>
 <li><a href="qcustomui-module.html" translate="no">QCustomUi</a></li>
 <li>QCtmLogModel</li>
-<li id="buildversion">QCustomUi 1.19.0 Reference Documentation</li>
+<li id="buildversion">QCustomUi 1.22.0 Reference Documentation</li>
     </ul>
     </div>
 </div>
@@ -42,8 +42,9 @@
 <div class="table"><table class="propsummary" translate="no">
 <tr><td class="topAlign"><ul>
 <li class="fn" translate="no">enum class <span class="name"><b><a href="https://doc.qt.io/qt/qabstractitemmodel.html#CheckIndexOption-enum" translate="no">CheckIndexOption</a></b></span></li>
-<li class="fn" translate="no"><span class="name"><b><a href="https://doc.qt.io/qt/qabstractitemmodel.html#CheckIndexOption-enum" translate="no">CheckIndexOptions</a></b></span></li>
+<li class="fn" translate="no">flags <span class="name"><b><a href="https://doc.qt.io/qt/qabstractitemmodel.html#CheckIndexOption-enum" translate="no">CheckIndexOptions</a></b></span></li>
 <li class="fn" translate="no">enum <span class="name"><b><a href="https://doc.qt.io/qt/qabstractitemmodel.html#LayoutChangeHint-enum" translate="no">LayoutChangeHint</a></b></span></li>
+<li class="fn" translate="no">enum <span class="name"><b><a href="qctmlogmodel.html#Role-enum" translate="no">Role</a></b></span></li>
 <li class="fn" translate="no"><span class="name"><b><a href="qctmlogmodel.html#QCtmLogModel" translate="no">QCtmLogModel</a></b></span>(const QString &amp;, QObject *)</li>
 <li class="fn" translate="no"><span class="name"><b><a href="qctmlogmodel.html#dtor.QCtmLogModel" translate="no">~QCtmLogModel</a></b></span>()</li>
 <li class="fn" translate="no"><span class="name"><b><a href="https://doc.qt.io/qt/qabstractitemmodel.html#beginInsertColumns" translate="no">beginInsertColumns</a></b></span>(const QModelIndex &amp;, int, int)</li>
@@ -139,6 +140,7 @@
 <li class="fn" translate="no"><span class="name"><b><a href="qctmabstractlogmodel.html#insertRows" translate="no">insertRows</a></b></span>(int, int, const QModelIndex &amp;) : bool</li>
 <li class="fn" translate="no"><span class="name"><b><a href="https://doc.qt.io/qt/qabstractitemmodel.html#insertRows" translate="no">insertRows</a></b></span>(int, int, const QModelIndex &amp;) : bool</li>
 <li class="fn" translate="no"><span class="name"><b><a href="https://doc.qt.io/qt/qobject.html#installEventFilter" translate="no">installEventFilter</a></b></span>(QObject *)</li>
+<li class="fn" translate="no"><span class="name"><b><a href="https://doc.qt.io/qt/qobject.html#isQmlExposed" translate="no">isQmlExposed</a></b></span>() const : bool</li>
 <li class="fn" translate="no"><span class="name"><b><a href="https://doc.qt.io/qt/qobject.html#isQuickItemType" translate="no">isQuickItemType</a></b></span>() const : bool</li>
 <li class="fn" translate="no"><span class="name"><b><a href="https://doc.qt.io/qt/qobject.html#isSignalConnected" translate="no">isSignalConnected</a></b></span>(const QMetaMethod &amp;) const : bool</li>
 <li class="fn" translate="no"><span class="name"><b><a href="https://doc.qt.io/qt/qobject.html#isWidgetType" translate="no">isWidgetType</a></b></span>() const : bool</li>
@@ -148,8 +150,6 @@
 <li class="fn" translate="no"><span class="name"><b><a href="https://doc.qt.io/qt/qobject.html#killTimer-1" translate="no">killTimer</a></b></span>(Qt::TimerId)</li>
 <li class="fn" translate="no"><span class="name"><b><a href="https://doc.qt.io/qt/qabstractitemmodel.html#layoutAboutToBeChanged" translate="no">layoutAboutToBeChanged</a></b></span>(const QList&lt;QPersistentModelIndex&gt; &amp;, QAbstractItemModel::LayoutChangeHint)</li>
 <li class="fn" translate="no"><span class="name"><b><a href="https://doc.qt.io/qt/qabstractitemmodel.html#layoutChanged" translate="no">layoutChanged</a></b></span>(const QList&lt;QPersistentModelIndex&gt; &amp;, QAbstractItemModel::LayoutChangeHint)</li>
-<li class="fn" translate="no"><span class="name"><b><a href="qctmlogmodel.html#logEvent" translate="no">logEvent</a></b></span>(QCtmLogEvent *)</li>
-<li class="fn" translate="no"><span class="name"><b><a href="qctmabstractlogmodel.html#logEvent" translate="no">logEvent</a></b></span>(QCtmLogEvent *)</li>
 <li class="fn" translate="no"><span class="name"><b><a href="qctmlogmodel.html#logInsertPolicy" translate="no">logInsertPolicy</a></b></span>() const : QCtmLogData::LogInsertPolicy</li>
 <li class="fn" translate="no"><span class="name"><b><a href="https://doc.qt.io/qt/qabstractitemmodel.html#match" translate="no">match</a></b></span>(const QModelIndex &amp;, int, const QVariant &amp;, int, Qt::MatchFlags) const : QModelIndexList</li>
 <li class="fn" translate="no"><span class="name"><b><a href="qctmlogmodel.html#maximumCount" translate="no">maximumCount</a></b></span>() const : int</li>
@@ -166,6 +166,8 @@
 <li class="fn" translate="no"><span class="name"><b><a href="https://doc.qt.io/qt/qabstractitemmodel.html#multiData" translate="no">multiData</a></b></span>(const QModelIndex &amp;, QModelRoleDataSpan) const</li>
 <li class="fn" translate="no"><span class="name"><b><a href="https://doc.qt.io/qt/qobject.html#objectName-prop" translate="no">objectName</a></b></span>() const : QString</li>
 <li class="fn" translate="no"><span class="name"><b><a href="https://doc.qt.io/qt/qobject.html#objectNameChanged" translate="no">objectNameChanged</a></b></span>(const QString &amp;)</li>
+<li class="fn" translate="no"><span class="name"><b><a href="qctmlogmodel.html#onLog" translate="no">onLog</a></b></span>(QCtmLogDataPtr)</li>
+<li class="fn" translate="no"><span class="name"><b><a href="qctmabstractlogmodel.html#onLog" translate="no">onLog</a></b></span>(QCtmLogDataPtr)</li>
 <li class="fn" translate="no"><span class="name"><b><a href="https://doc.qt.io/qt/qabstractitemmodel.html#parent" translate="no">parent</a></b></span>(const QModelIndex &amp;) const : QModelIndex</li>
 <li class="fn" translate="no"><span class="name"><b><a href="https://doc.qt.io/qt/qobject.html#parent" translate="no">parent</a></b></span>() const : QObject *</li>
 <li class="fn" translate="no"><span class="name"><b><a href="https://doc.qt.io/qt/qabstractitemmodel.html#persistentIndexList" translate="no">persistentIndexList</a></b></span>() const : QModelIndexList</li>
@@ -214,7 +216,7 @@
 <li class="fn" translate="no"><span class="name"><b><a href="https://doc.qt.io/qt/qabstractitemmodel.html#span" translate="no">span</a></b></span>(const QModelIndex &amp;) const : QSize</li>
 <li class="fn" translate="no"><span class="name"><b><a href="https://doc.qt.io/qt/qobject.html#startTimer" translate="no">startTimer</a></b></span>(int, Qt::TimerType) : int</li>
 <li class="fn" translate="no"><span class="name"><b><a href="https://doc.qt.io/qt/qobject.html#startTimer-1" translate="no">startTimer</a></b></span>(std::chrono::nanoseconds, Qt::TimerType) : int</li>
-<li class="fn" translate="no"><span class="name"><b><a href="https://doc.qt.io/qt/qobject.html#staticMetaObject-var" translate="no">staticMetaObject</a></b></span> : </li>
+<li class="fn" translate="no"><span class="name"><b><a href="https://doc.qt.io/qt/qobject.html#staticMetaObject-var" translate="no">staticMetaObject</a></b></span> : const QMetaObject</li>
 <li class="fn" translate="no"><span class="name"><b><a href="https://doc.qt.io/qt/qabstractitemmodel.html#submit" translate="no">submit</a></b></span>() : bool</li>
 <li class="fn" translate="no"><span class="name"><b><a href="https://doc.qt.io/qt/qabstractitemmodel.html#supportedDragActions" translate="no">supportedDragActions</a></b></span>() const : Qt::DropActions</li>
 <li class="fn" translate="no"><span class="name"><b><a href="https://doc.qt.io/qt/qabstractitemmodel.html#supportedDropActions" translate="no">supportedDropActions</a></b></span>() const : Qt::DropActions</li>
