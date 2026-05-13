@@ -141,7 +141,7 @@ QCtmWinFramelessDelegate::~QCtmWinFramelessDelegate()
 
 void QCtmWinFramelessDelegate::addMoveBar(QWidget* w)
 {
-    if (!isCompositionEnabled() && qobject_cast<QCtmTitleBar*>(w)) // for win7 解决出现默认关闭按钮等问题.
+    if (!isCompositionEnabled() && qobject_cast<QCtmAbstractTitleBar*>(w)) // for win7 解决出现默认关闭按钮等问题.
     {
         w->winId();
     }
@@ -567,10 +567,11 @@ bool QCtmWinFramelessDelegate::onNCTitTest(MSG* msg, qintptr* result)
         if (child == w)
         {
             auto pos   = w->mapFrom(m_impl->parent, localPos);
-            auto title = qobject_cast<QCtmTitleBar*>(w);
+            auto title = qobject_cast<QCtmAbstractTitleBar*>(w);
             if (title)
             {
-                if (title->iconIsVisible() && title->doIconRect().contains(pos))
+
+                if (title->showIconSystemMenu(pos))
                 {
                     *result = HTSYSMENU;
                     return true;

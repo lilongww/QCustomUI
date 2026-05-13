@@ -45,7 +45,7 @@
 
 struct QCtmWindow::Impl
 {
-    QPointer<QCtmTitleBar> title;
+    QPointer<QCtmAbstractTitleBar> title;
     QPointer<QCtmNavigationBar> navigationMenuBar;
     QPointer<QStatusBar> statusBar;
     QPointer<QWidget> content;
@@ -81,7 +81,10 @@ QCtmWindow::QCtmWindow(QWidget* parent) : QWidget(parent), m_impl(std::make_uniq
 /*!
     \brief      析构函数.
 */
-QCtmWindow::~QCtmWindow() { delete ui; }
+QCtmWindow::~QCtmWindow()
+{
+    delete ui;
+}
 
 /*!
     \brief      设置状态栏 \a statusBar, 当设置 statusBar 为 nullptr 时将删除状态栏.
@@ -124,9 +127,9 @@ QStatusBar* QCtmWindow::statusBar() const
 */
 void QCtmWindow::setMenuBar(QMenuBar* menuBar)
 {
-    if (m_impl->title)
+    if (auto title = qobject_cast<QCtmTitleBar*>(m_impl->title))
     {
-        m_impl->title->setMenuBar(menuBar);
+        title->setMenuBar(menuBar);
     }
 }
 
@@ -136,8 +139,8 @@ void QCtmWindow::setMenuBar(QMenuBar* menuBar)
 */
 QMenuBar* QCtmWindow::menuBar() const
 {
-    if (m_impl->title)
-        return m_impl->title->menuBar();
+    if (auto title = qobject_cast<QCtmTitleBar*>(m_impl->title))
+        return title->menuBar();
     return nullptr;
 }
 
@@ -185,7 +188,7 @@ QCtmNavigationBar* QCtmWindow::navigationBar() const
                 时删除标题栏，如果删除标题栏后导航栏存在，则导航栏替代标题栏响应鼠标拖拽功能.
     \sa         titleBar
 */
-void QCtmWindow::setTitleBar(QCtmTitleBar* titleBar)
+void QCtmWindow::setTitleBar(QCtmAbstractTitleBar* titleBar)
 {
     if (titleBar == m_impl->title)
         return;
@@ -215,7 +218,7 @@ void QCtmWindow::setTitleBar(QCtmTitleBar* titleBar)
     \brief      返回标题栏，当标题栏不存在时自动创建并返回标题栏.
     \sa         setTitleBar
 */
-QCtmTitleBar* QCtmWindow::titleBar() const
+QCtmAbstractTitleBar* QCtmWindow::titleBar() const
 {
     auto title = m_impl->title;
     if (!title)
@@ -253,20 +256,29 @@ void QCtmWindow::setCentralWidget(QWidget* widget)
     \brief      返回中央窗口, 中央窗口默认存在，当中央窗口不存在时返回nullptr.
     \sa         setCentralWidget
 */
-QWidget* QCtmWindow::centralWidget() const { return m_impl->content; }
+QWidget* QCtmWindow::centralWidget() const
+{
+    return m_impl->content;
+}
 
 /*!
     \brief      添加移动窗口 \a moveBar, 移动窗口可通过鼠标拖动来拖动窗口.
     \note       移动窗口必须本身就是本窗口的子窗口.
     \sa         removeMoveBar
 */
-void QCtmWindow::addMoveBar(QWidget* moveBar) { m_impl->delegate->addMoveBar(moveBar); }
+void QCtmWindow::addMoveBar(QWidget* moveBar)
+{
+    m_impl->delegate->addMoveBar(moveBar);
+}
 
 /*!
     \brief      移除移动窗口 \a moveBar.
     \sa         addMoveBar
 */
-void QCtmWindow::removeMoveBar(QWidget* moveBar) { m_impl->delegate->removeMoveBar(moveBar); }
+void QCtmWindow::removeMoveBar(QWidget* moveBar)
+{
+    m_impl->delegate->removeMoveBar(moveBar);
+}
 
 #ifdef QCUSTOMUI_FRAMELESS_USE_PURE_QT
 
@@ -279,7 +291,10 @@ void QCtmWindow::removeMoveBar(QWidget* moveBar) { m_impl->delegate->removeMoveB
     \internal
     \endif
 */
-void QCtmWindow::setShadowless(bool flag) { m_impl->delegate->setShadowless(flag); }
+void QCtmWindow::setShadowless(bool flag)
+{
+    m_impl->delegate->setShadowless(flag);
+}
 
 /*!
     \if         !defined(Q_OS_WIN)
@@ -290,7 +305,10 @@ void QCtmWindow::setShadowless(bool flag) { m_impl->delegate->setShadowless(flag
     \internal
     \endif
 */
-bool QCtmWindow::shadowless() const { return m_impl->delegate->shadowless(); }
+bool QCtmWindow::shadowless() const
+{
+    return m_impl->delegate->shadowless();
+}
 #endif
 
 /*!

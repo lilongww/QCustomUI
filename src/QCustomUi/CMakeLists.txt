@@ -147,6 +147,7 @@ set(DISPLAYWIDGETS_HEADERS
  "QCtmStageProgressBar.h"
  "QCtmLoadingDialog.h"
  "QCtmNavigationBar.h"
+ "QCtmAbstractTitleBar.h"
  "QCtmTitleBar.h"
  "QCtmCircleProgressBar.h"
 )
@@ -156,6 +157,7 @@ set(DISPLAYWIDGETS_SOURCES
  "QCtmStageProgressBar.cpp"
  "QCtmLoadingDialog.cpp"
  "QCtmNavigationBar.cpp"
+ "QCtmAbstractTitleBar.cpp"
  "QCtmTitleBar.cpp"
  "QCtmCircleProgressBar.cpp"
 )

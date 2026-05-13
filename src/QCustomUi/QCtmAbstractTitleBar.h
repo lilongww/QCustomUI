@@ -16,57 +16,31 @@
 **  You should have received a copy of the GNU Lesser General Public License    **
 **  along with QCustomUi.  If not, see <https://www.gnu.org/licenses/>.         **
 **********************************************************************************/
-
 #pragma once
 
-#include "QCtmAbstractTitleBar.h"
+#include "qcustomui_global.h"
 
-#include <QMenu>
 #include <QWidget>
 
-#include <memory>
-
-namespace Ui
-{
-class QCtmTitleBar;
-}
-
-class QMenuBar;
-
-class QCUSTOMUI_EXPORT QCtmTitleBar : public QCtmAbstractTitleBar
+class QCUSTOMUI_EXPORT QCtmAbstractTitleBar : public QWidget
 {
     Q_OBJECT
-    Q_PROPERTY(bool iconIsVisible READ iconIsVisible WRITE setIconVisible)
-    Q_PROPERTY(QSize iconSize READ iconSize WRITE setIconSize NOTIFY iconSizeChanged)
 public:
-    explicit QCtmTitleBar(QWidget* parent = nullptr);
-    ~QCtmTitleBar();
-
-    void setMenuBar(QMenuBar* menu);
-    QMenuBar* menuBar() const;
-    void setIconVisible(bool show);
-    bool iconIsVisible() const;
-    void setIconSize(const QSize& size);
-    const QSize& iconSize() const;
-signals:
-    void iconSizeChanged(const QSize& size);
+    explicit QCtmAbstractTitleBar(QWidget* parent = nullptr);
+    ~QCtmAbstractTitleBar() override;
 
 protected:
-    void paintEvent(QPaintEvent* event) override;
-    void actionEvent(QActionEvent* event) override;
-    void onWindowMaximized(bool isMaximumSized) override;
-    void onWindowMaximizeButtonHint(bool showMaximizeButton) override;
-    void onWindowCloseButtonHint(bool showCloseButton) override;
-    void onWindowMinimizeButtonHint(bool showMinimizeButton) override;
-    void onWindowTitleChanged(const QString& title) override;
-    bool showIconSystemMenu(const QPoint& pos) const override;
-
-private:
-    QRect doIconRect() const;
-
-private:
-    Ui::QCtmTitleBar* ui;
-
-    struct Impl;
-    std::unique_ptr<Impl> m_impl;
+    virtual void onWindowMaximized(bool isMaximumSized)              = 0;
+    virtual void onWindowMaximizeButtonHint(bool showMaximizeButton) = 0;
+    virtual void onWindowCloseButtonHint(bool showCloseButton)       = 0;
+    virtual void onWindowMinimizeButtonHint(bool showMinimizeButton) = 0;
+    virtual void onWindowTitleChanged(const QString& title)          = 0;
+    virtual bool showIconSystemMenu(const QPoint& pos) const         = 0;
+    void showEvent(QShowEvent* event) override;
+    bool eventFilter(QObject* watched, QEvent* event) override;
+    friend class QCtmWinFramelessDelegate;
+protected slots:
+    void onCloseButtonClicked();
+    void onMaximizeButtonClicked();
+    void onMinimizeButtonClicked();
 };

@@ -46,7 +46,7 @@ struct QCtmTitleBar::Impl
     \brief      QCtmWindow 和 QCtmDialog 的自定义标题栏.
     \note       最大化，最小化，关闭按钮等显示控制由 QWidget::windowFlags 决定，图标显示由 QWidget::windowIcon
                 控制，标题栏文字由centralWidget的QWidget::windowTitle决定.
-    \inherits   QWidget
+    \inherits   QCtmAbstractTitleBar
     \ingroup    QCustomUi
     \inmodule   QCustomUi
     \inheaderfile QCtmTitleBar.h
@@ -63,14 +63,14 @@ struct QCtmTitleBar::Impl
 /*!
     \brief      构造函数 \a parent.
 */
-QCtmTitleBar::QCtmTitleBar(QWidget* parent) : QWidget(parent), ui(new Ui::QCtmTitleBar), m_impl(std::make_unique<Impl>())
+QCtmTitleBar::QCtmTitleBar(QWidget* parent) : QCtmAbstractTitleBar(parent), ui(new Ui::QCtmTitleBar), m_impl(std::make_unique<Impl>())
 {
     ui->setupUi(this);
     QCtmPaletteFactor::init(this);
     setFocusPolicy(Qt::StrongFocus);
-    connect(ui->closeBtn, &QAbstractButton::clicked, this, &QCtmTitleBar::onCloseBtn);
-    connect(ui->minimumSizeBtn, &QAbstractButton::clicked, this, &QCtmTitleBar::onMinimumSizeBtn);
-    connect(ui->maximumSizeBtn, &QAbstractButton::clicked, this, &QCtmTitleBar::onMaximumSizeBtn);
+    connect(ui->closeBtn, &QAbstractButton::clicked, this, &QCtmTitleBar::onCloseButtonClicked);
+    connect(ui->minimumSizeBtn, &QAbstractButton::clicked, this, &QCtmTitleBar::onMinimizeButtonClicked);
+    connect(ui->maximumSizeBtn, &QAbstractButton::clicked, this, &QCtmTitleBar::onMaximizeButtonClicked);
     ui->maximumSizeBtn->setProperty("qcustomui_maximumSizeButton", true);
 
     parent->installEventFilter(this);
@@ -179,42 +179,6 @@ const QSize& QCtmTitleBar::iconSize() const
 }
 
 /*!
-    \brief      响应关闭按钮.
-    \sa         onMaximumSizeBtn(), onMinimumSizeBtn()
-*/
-void QCtmTitleBar::onCloseBtn()
-{
-    this->window()->close();
-}
-
-/*!
-    \brief      响应最大化按钮.
-    \sa         onCloseBtn(), onMinimumSizeBtn()
-*/
-void QCtmTitleBar::onMaximumSizeBtn()
-{
-    auto delegate = this->window()->findChild<QObject*>("qcustomui_frameless_delegate");
-    if (!delegate)
-        return;
-    if (this->window()->isMaximized() || this->window()->isFullScreen())
-        QMetaObject::invokeMethod(delegate, "showNormal");
-    else
-        QMetaObject::invokeMethod(delegate, "showMaximized");
-}
-
-/*!
-    \brief      响应最小化按钮.
-    \sa         onCloseBtn(), onMaximumSizeBtn()
-*/
-void QCtmTitleBar::onMinimumSizeBtn()
-{
-    auto delegate = this->window()->findChild<QObject*>("qcustomui_frameless_delegate");
-    if (!delegate)
-        return;
-    QMetaObject::invokeMethod(delegate, "showMinimized");
-}
-
-/*!
     \reimp
 */
 void QCtmTitleBar::paintEvent([[maybe_unused]] QPaintEvent* event)
@@ -256,66 +220,6 @@ void QCtmTitleBar::paintEvent([[maybe_unused]] QPaintEvent* event)
 /*!
     \reimp
 */
-void QCtmTitleBar::showEvent([[maybe_unused]] QShowEvent* event)
-{
-    auto w = qobject_cast<QWidget*>(this->parent());
-    if (w)
-    {
-        if (!w->windowFlags().testFlag(Qt::WindowType::WindowCloseButtonHint))
-            ui->closeBtn->hide();
-        if (!w->windowFlags().testFlag(Qt::WindowType::WindowMinimizeButtonHint))
-            ui->minimumSizeBtn->hide();
-        if (!w->windowFlags().testFlag(Qt::WindowType::WindowMaximizeButtonHint))
-            ui->maximumSizeBtn->hide();
-        if (w->windowState().testFlag(Qt::WindowState::WindowMaximized))
-            ui->maximumSizeBtn->setMaximumSized(true);
-        else
-            ui->maximumSizeBtn->setMaximumSized(false);
-    }
-}
-
-/*!
-    \reimp
-*/
-bool QCtmTitleBar::eventFilter(QObject* watched, QEvent* event)
-{
-    if (watched == parent())
-    {
-        auto w = qobject_cast<QWidget*>(this->parent());
-        if (!w)
-            return false;
-        if (event->type() == QEvent::WindowStateChange)
-        {
-            auto w = qobject_cast<QWidget*>(this->parent());
-            if (w)
-            {
-                if (w->windowState().testFlag(Qt::WindowState::WindowMaximized))
-                    ui->maximumSizeBtn->setMaximumSized(true);
-                else
-                    ui->maximumSizeBtn->setMaximumSized(false);
-            }
-        }
-        else if (event->type() == QEvent::WindowTitleChange)
-        {
-            update();
-        }
-        else if (event->type() == QEvent::Resize)
-        {
-            if (w->windowFlags().testFlag(Qt::WindowMaximizeButtonHint))
-            {
-                if (w->maximumSize() == w->minimumSize())
-                    ui->maximumSizeBtn->hide();
-                else
-                    ui->maximumSizeBtn->show();
-            }
-        }
-    }
-    return false;
-}
-
-/*!
-    \reimp
-*/
 void QCtmTitleBar::actionEvent(QActionEvent* event)
 {
     switch (event->type())
@@ -339,4 +243,53 @@ void QCtmTitleBar::actionEvent(QActionEvent* event)
 QRect QCtmTitleBar::doIconRect() const
 {
     return { leftMargin, (this->height() - m_impl->iconSize.height()) / 2, m_impl->iconSize.width(), m_impl->iconSize.height() };
+}
+
+/*!
+    \reimp
+*/
+void QCtmTitleBar::onWindowMaximized(bool isMaximumSized)
+{
+    ui->maximumSizeBtn->setMaximumSized(isMaximumSized);
+}
+
+/*!
+    \reimp
+*/
+void QCtmTitleBar::onWindowMaximizeButtonHint(bool showMaximizeButton)
+{
+    ui->maximumSizeBtn->setVisible(showMaximizeButton);
+}
+
+/*!
+    \reimp
+*/
+void QCtmTitleBar::onWindowCloseButtonHint(bool showCloseButton)
+{
+    ui->closeBtn->setVisible(showCloseButton);
+}
+
+/*!
+    \reimp
+*/
+void QCtmTitleBar::onWindowMinimizeButtonHint(bool showMinimizeButton)
+{
+    ui->minimumSizeBtn->setVisible(showMinimizeButton);
+}
+
+/*!
+    \reimp
+*/
+void QCtmTitleBar::onWindowTitleChanged(const QString& title)
+{
+    Q_UNUSED(title);
+    update();
+}
+
+/*!
+    \reimp
+*/
+bool QCtmTitleBar::showIconSystemMenu(const QPoint& pos) const
+{
+    return this->iconIsVisible() && this->doIconRect().contains(pos);
 }

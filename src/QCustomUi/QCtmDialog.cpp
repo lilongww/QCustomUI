@@ -31,7 +31,7 @@
 
 struct QCtmDialog::Impl
 {
-    QPointer<QCtmTitleBar> title;
+    QPointer<QCtmAbstractTitleBar> title;
     QWidget* content { nullptr };
     QVBoxLayout* layout { nullptr };
 #ifdef QCUSTOMUI_FRAMELESS_USE_PURE_QT
@@ -77,7 +77,9 @@ QCtmDialog::QCtmDialog(QWidget* parent) : QDialog(parent), m_impl(std::make_uniq
 /*!
     \brief      销毁该窗口对象.
 */
-QCtmDialog::~QCtmDialog() {}
+QCtmDialog::~QCtmDialog()
+{
+}
 
 /*!
     \brief      设置 \a widget 为窗口的中央窗口, 当 \a widget 为nullptr时删除中央窗口.
@@ -106,13 +108,16 @@ void QCtmDialog::setCentralWidget(QWidget* widget)
     \brief      返回中央窗口地址, 如果中央窗口不存在则返回nullptr.
     \sa         setCentralWidget
 */
-QWidget* QCtmDialog::centralWidget() const { return m_impl->content; }
+QWidget* QCtmDialog::centralWidget() const
+{
+    return m_impl->content;
+}
 
 /*!
     \brief      设置标题栏 \a titleBar, 当 \a titleBar 为 nullptr 时删除标题栏.
     \sa         titleBar
 */
-void QCtmDialog::setTitleBar(QCtmTitleBar* titleBar)
+void QCtmDialog::setTitleBar(QCtmAbstractTitleBar* titleBar)
 {
     if (m_impl->title == titleBar)
         return;
@@ -135,7 +140,7 @@ void QCtmDialog::setTitleBar(QCtmTitleBar* titleBar)
     \brief      返回窗口的标题栏，如果标题栏不存在，自动创建并返回一个新的标题栏.
     \sa         setTitleBar
 */
-QCtmTitleBar* QCtmDialog::titleBar() const
+QCtmAbstractTitleBar* QCtmDialog::titleBar() const
 {
     auto title = m_impl->title;
     if (!title)
@@ -151,13 +156,19 @@ QCtmTitleBar* QCtmDialog::titleBar() const
     \brief      添加鼠标可拖拽区域 \a moveBar, moveBar必须为该窗口的子控件之一.
     \sa         removeMoveBar
 */
-void QCtmDialog::addMoveBar(QWidget* moveBar) { m_impl->delegate->addMoveBar(moveBar); }
+void QCtmDialog::addMoveBar(QWidget* moveBar)
+{
+    m_impl->delegate->addMoveBar(moveBar);
+}
 
 /*!
     \brief      移除鼠标拖拽区域 \a moveBar.
     \sa         addMoveBar
 */
-void QCtmDialog::removeMoveBar(QWidget* moveBar) { m_impl->delegate->removeMoveBar(moveBar); }
+void QCtmDialog::removeMoveBar(QWidget* moveBar)
+{
+    m_impl->delegate->removeMoveBar(moveBar);
+}
 
 #ifdef QCUSTOMUI_FRAMELESS_USE_PURE_QT
 /*!
@@ -168,7 +179,10 @@ void QCtmDialog::removeMoveBar(QWidget* moveBar) { m_impl->delegate->removeMoveB
     \internal
     \endif
 */
-void QCtmDialog::setShadowless(bool flag) { m_impl->delegate->setShadowless(flag); }
+void QCtmDialog::setShadowless(bool flag)
+{
+    m_impl->delegate->setShadowless(flag);
+}
 
 /*!
     \if         !defined(Q_OS_WIN)
@@ -178,7 +192,10 @@ void QCtmDialog::setShadowless(bool flag) { m_impl->delegate->setShadowless(flag
     \internal
     \endif
 */
-bool QCtmDialog::shadowless() const { return m_impl->delegate->shadowless(); }
+bool QCtmDialog::shadowless() const
+{
+    return m_impl->delegate->shadowless();
+}
 #endif
 
 /*!

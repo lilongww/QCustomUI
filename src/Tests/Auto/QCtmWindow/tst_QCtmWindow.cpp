@@ -74,7 +74,7 @@ void tst_QCtmWindow::taskNavigationBar()
 void tst_QCtmWindow::taskTitleBar()
 {
     QCtmWindow w;
-    QPointer<QCtmTitleBar> oldbar = w.titleBar();
+    QPointer<QCtmAbstractTitleBar> oldbar = w.titleBar();
     delete oldbar;
     auto bar = w.titleBar();
     QVERIFY(bar != oldbar);
