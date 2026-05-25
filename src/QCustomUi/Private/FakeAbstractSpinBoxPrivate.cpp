@@ -89,7 +89,9 @@ QAbstractSpinBoxPrivate::QAbstractSpinBoxPrivate()
    \internal
    Called when the QAbstractSpinBoxPrivate is destroyed
 */
-QAbstractSpinBoxPrivate::~QAbstractSpinBoxPrivate() {}
+QAbstractSpinBoxPrivate::~QAbstractSpinBoxPrivate()
+{
+}
 
 /*!
     \internal
@@ -176,14 +178,19 @@ void QAbstractSpinBoxPrivate::updateEditFieldGeometry()
     Returns \c true if a specialValueText has been set and the current value is minimum.
 */
 
-bool QAbstractSpinBoxPrivate::specialValue() const { return (value == minimum && !specialValueText.isEmpty()); }
+bool QAbstractSpinBoxPrivate::specialValue() const
+{
+    return (value == minimum && !specialValueText.isEmpty());
+}
 
 /*!
     \internal Virtual function that emits signals when the value
     changes. Reimplemented in the different subclasses.
 */
 
-void QAbstractSpinBoxPrivate::emitSignals(EmitPolicy, const QVariant&) {}
+void QAbstractSpinBoxPrivate::emitSignals(EmitPolicy, const QVariant&)
+{
+}
 
 /*!
     \internal
@@ -461,6 +468,13 @@ void QAbstractSpinBoxPrivate::setValue(const QVariant& val, EmitPolicy ep, bool 
     }
 }
 
+#if QT_VERSION >= QT_VERSION_CHECK(6, 11, 1)
+QVariant QAbstractSpinBoxPrivate::roundValue(const QVariant& val) const
+{
+    return val;
+}
+#endif
+
 /*!
     \internal
 
@@ -567,7 +581,10 @@ QVariant QAbstractSpinBoxPrivate::getZeroVariant() const
     This method is reimeplemented in the various subclasses.
 */
 
-QString QAbstractSpinBoxPrivate::textFromValue(const QVariant&) const { return QString(); }
+QString QAbstractSpinBoxPrivate::textFromValue(const QVariant&) const
+{
+    return QString();
+}
 
 /*!
     \internal
@@ -580,7 +597,10 @@ QString QAbstractSpinBoxPrivate::textFromValue(const QVariant&) const { return Q
     This method is reimeplemented in the various subclasses.
 */
 
-QVariant QAbstractSpinBoxPrivate::valueFromText(const QString&) const { return QVariant(); }
+QVariant QAbstractSpinBoxPrivate::valueFromText(const QString&) const
+{
+    return QVariant();
+}
 /*!
     \internal
 
@@ -677,7 +697,10 @@ QValidator::State QSpinBoxValidator::validate(QString& input, int& pos) const
     Calls the virtual QAbstractSpinBox::fixup function.
 */
 
-void QSpinBoxValidator::fixup(QString& input) const { qptr->fixup(input); }
+void QSpinBoxValidator::fixup(QString& input) const
+{
+    qptr->fixup(input);
+}
 
 // --- global ---
 
