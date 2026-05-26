@@ -169,7 +169,62 @@ void QAbstractSpinBoxPrivate::updateEditFieldGeometry()
 {
     Q_Q(QAbstractSpinBox);
     QStyleOptionSpinBox opt;
-    q->initStyleOption(&opt);
+    if (q->metaObject()->className() == QAbstractSpinBox::staticMetaObject.className())
+    {
+        opt.initFrom(q);
+        opt.activeSubControls = QStyle::SC_None;
+        opt.buttonSymbols     = buttonSymbols;
+        opt.subControls       = QStyle::SC_SpinBoxEditField;
+        if (q->style()->styleHint(QStyle::SH_SpinBox_ButtonsInsideFrame, nullptr, q))
+            opt.subControls |= QStyle::SC_SpinBoxFrame;
+        if (buttonSymbols != QAbstractSpinBox::NoButtons)
+        {
+            opt.subControls |= QStyle::SC_SpinBoxUp | QStyle::SC_SpinBoxDown;
+            if (buttonState & Up)
+            {
+                opt.activeSubControls = QStyle::SC_SpinBoxUp;
+            }
+            else if (buttonState & Down)
+            {
+                opt.activeSubControls = QStyle::SC_SpinBoxDown;
+            }
+        }
+
+        if (buttonState)
+        {
+            opt.state |= QStyle::State_Sunken;
+        }
+        else
+        {
+            opt.activeSubControls = hoverControl;
+        }
+
+        opt.stepEnabled =
+            q->style()->styleHint(QStyle::SH_SpinControls_DisableOnBounds, nullptr, q)
+                ? std::invoke(
+                      [this]() -> QAbstractSpinBox::StepEnabled
+                      {
+                          if (readOnly || type == QMetaType::UnknownType)
+                              return QAbstractSpinBox::StepNone;
+                          if (wrapping)
+                              return QAbstractSpinBox::StepEnabled(QAbstractSpinBox::StepUpEnabled | QAbstractSpinBox::StepDownEnabled);
+                          QAbstractSpinBox::StepEnabled ret = QAbstractSpinBox::StepNone;
+                          if (QAbstractSpinBoxPrivate::variantCompare(value, maximum) < 0)
+                          {
+                              ret |= QAbstractSpinBox::StepUpEnabled;
+                          }
+                          if (QAbstractSpinBoxPrivate::variantCompare(value, minimum) > 0)
+                          {
+                              ret |= QAbstractSpinBox::StepDownEnabled;
+                          }
+                          return ret;
+                      })
+                : (QAbstractSpinBox::StepDownEnabled | QAbstractSpinBox::StepUpEnabled);
+
+        opt.frame = frame;
+    }
+    else
+        q->initStyleOption(&opt);
     opt.subControls = QStyle::SC_SpinBoxEditField;
     edit->setGeometry(q->style()->subControlRect(QStyle::CC_SpinBox, &opt, QStyle::SC_SpinBoxEditField, q));
 }

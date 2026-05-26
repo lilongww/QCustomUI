@@ -85,5 +85,6 @@ protected:
 private:
     Q_DISABLE_COPY(QCtmLongLongSpinBox)
     Q_DECLARE_PRIVATE(QCtmLongLongSpinBox)
+    volatile QCtmLongLongSpinBoxPrivate* m_d;
 };
 #endif

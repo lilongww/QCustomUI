@@ -101,6 +101,12 @@ public:
         Q_Q(QCtmULongLongSpinBox);
         q->setInputMethodHints(Qt::ImhDigitsOnly);
         setLayoutItemMargins(QStyle::SE_SpinBoxLayoutItem);
+
+        // 子类已构造完成，使用正确的类型初始化成员变量
+        minimum    = 0ULL;
+        maximum    = 99ULL;
+        value      = minimum;
+        singleStep = 1ULL;
     }
     QVariant calculateAdaptiveDecimalStep(int steps) const override;
 
@@ -111,11 +117,12 @@ public:
 
 QCtmULongLongSpinBoxPrivate::QCtmULongLongSpinBoxPrivate()
 {
-    minimum            = 0ULL;
-    maximum            = 99ULL;
+    // 使用int类型欺骗基类构造函数，避免QVariant在构造时进行类型推断导致崩溃
+    minimum            = 0;
+    maximum            = 99;
     value              = minimum;
     displayIntegerBase = 10;
-    singleStep         = 1ULL;
+    singleStep         = 1;
     type               = QMetaType::ULongLong;
 }
 
