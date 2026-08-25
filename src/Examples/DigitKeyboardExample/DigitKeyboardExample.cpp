@@ -37,7 +37,8 @@ DigitKeyboardExample::DigitKeyboardExample(QWidget* parent) : QCtmWindow(parent)
     keyboard1->setUnits({ { "Hz", -10, std::giga::num }, { "KHz", 0, std::mega::num }, { "MHz", 0, std::kilo::num }, { "GHz", 0, 1 } });
     auto keyboard2 = new QCtmDigitKeyboard(this);
     keyboard2->bindBox(doubleSpinBox);
-    keyboard2->setUnits({ { "Hz", 0, std::giga::num }, { "KHz", 0, std::mega::num }, { "MHz", 0, std::kilo::num }, { "GHz", 0, 1 } });
+    keyboard2->setUnits(
+        { { "Hz", 0, std::giga::num, 0 }, { "KHz", 0, std::mega::num, 3 }, { "MHz", 0, std::kilo::num, 6 }, { "GHz", 0, 1 } });
     auto keyboard3 = new QCtmDigitKeyboard(this);
     keyboard3->bindBox(longlongSp);
     keyboard3->setUnits({ { "Hz", 0, std::exa::num },
@@ -53,8 +54,32 @@ DigitKeyboardExample::DigitKeyboardExample(QWidget* parent) : QCtmWindow(parent)
                           { "MHz", 0, std::exa::num / 1000'000 },
                           { "GHz", 0, std::exa::num / 1000'000'000 } });
     ulonglongSp->setValue(10000);
-    connect(spinbox, &QSpinBox::textChanged, this, [=](auto text) { qDebug() << text; });
-    connect(doubleSpinBox, &QDoubleSpinBox::textChanged, this, [=](auto text) { qDebug() << text; });
-    connect(longlongSp, &QCtmLongLongSpinBox::textChanged, this, [=](auto text) { qDebug() << text; });
-    connect(ulonglongSp, &QCtmULongLongSpinBox::textChanged, this, [=](auto text) { qDebug() << text; });
+    connect(spinbox,
+            &QSpinBox::textChanged,
+            this,
+            [=](auto text)
+            {
+                qDebug() << text;
+            });
+    connect(doubleSpinBox,
+            &QDoubleSpinBox::textChanged,
+            this,
+            [=](auto text)
+            {
+                qDebug() << text;
+            });
+    connect(longlongSp,
+            &QCtmLongLongSpinBox::textChanged,
+            this,
+            [=](auto text)
+            {
+                qDebug() << text;
+            });
+    connect(ulonglongSp,
+            &QCtmULongLongSpinBox::textChanged,
+            this,
+            [=](auto text)
+            {
+                qDebug() << text;
+            });
 }

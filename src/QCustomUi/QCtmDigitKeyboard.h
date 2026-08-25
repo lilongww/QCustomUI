@@ -22,6 +22,8 @@
 
 #include <QVariant>
 
+#include <optional>
+
 class QAbstractSpinBox;
 
 class QCUSTOMUI_EXPORT QCtmDigitKeyboard : public QCtmDialog
@@ -46,12 +48,12 @@ public:
         QString unit;
         QVariant minimum { 0 };
         QVariant maximum { 99 };
+        std::optional<int> decimals { std::nullopt };
     };
     using Units = std::vector<Unit>;
 
     QCtmDigitKeyboard(QWidget* parent = nullptr);
     ~QCtmDigitKeyboard();
-
     void setInputMode(InputMode mode);
     InputMode inputMode() const;
     void setValue(const QVariant& value);
@@ -69,8 +71,14 @@ public:
     int currentUnitIndex() const;
     void setDecimals(int decimals);
     int decimals() const;
+    void setDefaultDecimals(int decimals);
+    int defaultDecimals() const;
     void bindBox(QAbstractSpinBox* box);
-    static void simpleBindBox(QAbstractSpinBox* box, const Units& units = {}, const QVariant& step = {}, const QString& title = {});
+    static void simpleBindBox(QAbstractSpinBox* box,
+                              const Units& units   = {},
+                              const QVariant& step = {},
+                              const QString& title = {},
+                              int decimals         = 2);
 signals:
     void valueChanged(const QVariant& value);
 

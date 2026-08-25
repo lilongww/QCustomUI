@@ -34,8 +34,12 @@
 class QCtmDigitKeyboardInputHelper : public QObject
 {
 public:
-    QCtmDigitKeyboardInputHelper(QAbstractSpinBox* box, const QCtmDigitKeyboard::Units& units, const QVariant& step, const QString& title)
-        : QObject(box), m_bindedBox(box), m_units(units), m_step(step), m_title(title)
+    QCtmDigitKeyboardInputHelper(QAbstractSpinBox* box,
+                                 const QCtmDigitKeyboard::Units& units,
+                                 const QVariant& step,
+                                 const QString& title,
+                                 int decimals)
+        : QObject(box), m_bindedBox(box), m_units(units), m_step(step), m_title(title), m_decimals(decimals)
     {
     }
 
@@ -52,6 +56,7 @@ protected:
                 m_keyboard->setWindowTitle(m_title);
                 m_keyboard->setUnits(m_units);
                 m_keyboard->setSingleStep(m_step);
+                m_keyboard->setDecimals(m_decimals);
                 m_keyboard->bindBox(m_bindedBox);
                 auto evt = dynamic_cast<QMouseEvent*>(event);
                 if (evt && evt->button() == Qt::LeftButton)
@@ -75,6 +80,7 @@ private:
     QVariant m_step;
     QCtmDigitKeyboard* m_keyboard { nullptr };
     QString m_title;
+    int m_decimals { 2 };
 };
 
 struct QCtmDigitKeyboard::Impl
@@ -89,6 +95,7 @@ struct QCtmDigitKeyboard::Impl
     Ui::QCtmDigitKeyboard ui;
     QAbstractSpinBox* box { nullptr };
     int decimals { 2 };
+    int defaultDecimals { 2 };
     QAbstractSpinBox* bindedBox { nullptr };
     QPushButton* plusOrMinusBtn { nullptr };
     inline void updateBindedBoxRange()
@@ -334,6 +341,10 @@ void QCtmDigitKeyboard::setCurrentUnitIndex(int index)
     {
         const auto& unit = m_impl->units[m_impl->currentUnitIndex];
         m_impl->box->setProperty("suffix", unit.unit);
+        if (m_impl->mode == InputMode::DoubleInput)
+        {
+            setDecimals(unit.decimals.has_value() ? unit.decimals.value() : m_impl->defaultDecimals);
+        }
     }
 }
 
@@ -367,6 +378,24 @@ void QCtmDigitKeyboard::setDecimals(int decimals)
 int QCtmDigitKeyboard::decimals() const
 {
     return m_impl->decimals;
+}
+
+/*!
+    \brief      设置默认的小数点后保留位数 \a decimals.
+    \sa         setDecimals
+*/
+void QCtmDigitKeyboard::setDefaultDecimals(int decimals)
+{
+    m_impl->defaultDecimals = decimals;
+}
+
+/*!
+    \brief      返回默认的小数点后保留位数.
+    \sa         setDefaultDecimals
+*/
+int QCtmDigitKeyboard::defaultDecimals() const
+{
+    return m_impl->defaultDecimals;
 }
 
 /*!
@@ -437,9 +466,10 @@ void QCtmDigitKeyboard::bindBox(QAbstractSpinBox* box)
 void QCtmDigitKeyboard::simpleBindBox(QAbstractSpinBox* box,
                                       const Units& units /*= {}*/,
                                       const QVariant& step /*= {}*/,
-                                      const QString& title /*= {}*/)
+                                      const QString& title /*= {}*/,
+                                      int decimals /*= 2*/)
 {
-    box->findChild<QLineEdit*>()->installEventFilter(new QCtmDigitKeyboardInputHelper(box, units, step, title));
+    box->findChild<QLineEdit*>()->installEventFilter(new QCtmDigitKeyboardInputHelper(box, units, step, title, decimals));
 }
 
 /*!
@@ -734,11 +764,11 @@ void QCtmDigitKeyboard::syncBindBox()
         {
             auto unit = pv("suffix").toString();
             auto it   = std::find_if(m_impl->units.begin(),
-                                   m_impl->units.end(),
-                                   [&](const auto& u)
-                                   {
+                                     m_impl->units.end(),
+                                     [&](const auto& u)
+                                     {
                                        return u.unit == unit;
-                                   });
+                                     });
             if (it != m_impl->units.end())
             {
                 setCurrentUnitIndex(static_cast<int>(std::distance(m_impl->units.begin(), it)));
@@ -828,6 +858,8 @@ void QCtmDigitKeyboard::showAfter(const QVariant& beforeValue, const QString& be
     }
     m_impl->bindedBox->setProperty("suffix", unit);
     m_impl->bindedBox->setProperty("value", val);
+    if (m_impl->mode == InputMode::DoubleInput)
+        m_impl->bindedBox->setProperty("decimals", m_impl->box->property("decimals"));
     m_impl->bindedBox->blockSignals(false);
     if (beforeValue != val)
     {
