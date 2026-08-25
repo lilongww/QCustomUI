@@ -8,9 +8,14 @@
 #include <QUrl>
 #include <QWidgetAction>
 
-NavigationBarExample::NavigationBarExample(QWidget* parent) : QCtmWindow(parent) { init(); }
+NavigationBarExample::NavigationBarExample(QWidget* parent) : QCtmWindow(parent)
+{
+    init();
+}
 
-NavigationBarExample::~NavigationBarExample() {}
+NavigationBarExample::~NavigationBarExample()
+{
+}
 
 void NavigationBarExample::init()
 {
@@ -29,6 +34,7 @@ void NavigationBarExample::init()
         opt.setAlignment(Qt::AlignCenter);
         p.drawText(image.rect(), "QCustomUi", opt);
     }
+    setWindowIcon(QIcon(image));
     nvBar->addLogo(image, QCtmNavigationBar::Left);
     nvBar->addAction(tr("Action 1"), QCtmNavigationBar::ActionPosition::Left);
 
@@ -39,7 +45,11 @@ void NavigationBarExample::init()
     action->setVisible(false);
     nvBar->addAction(action, QCtmNavigationBar::Right);
     nvBar->addHelp(QUrl("http://llongww.gitee.io/qcustomuidocument"), QIcon(":/QCustomUi/Resources/help-light.png"));
-    QTimer::singleShot(2000, [=]() { action->setVisible(true); });
+    QTimer::singleShot(2000,
+                       [=]()
+                       {
+                           action->setVisible(true);
+                       });
     nvBar->addUser(QIcon(":/QCustomUi/Resources/people-light.png"), "ABC")->setVisible(false);
     nvBar->addAction(tr("Center Action"), QCtmNavigationBar::Center);
 }

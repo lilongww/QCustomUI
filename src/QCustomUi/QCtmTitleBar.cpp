@@ -247,7 +247,16 @@ void QCtmTitleBar::actionEvent(QActionEvent* event)
 */
 QRect QCtmTitleBar::doIconRect() const
 {
-    return { leftMargin, (this->height() - m_impl->iconSize.height()) / 2, m_impl->iconSize.width(), m_impl->iconSize.height() };
+    QStyleOption opt;
+    opt.initFrom(this);
+    auto rect = this->style()->subElementRect(QStyle::SE_FrameContents, &opt, this);
+    if (!m_impl->showIcon)
+        return QRect();
+    else if (!rect.isValid())
+        rect = this->rect();
+    auto icon = this->windowIcon();
+    auto size = icon.actualSize(rect.size());
+    return { leftMargin, (this->height() - size.height()) / 2, size.width(), size.height() };
 }
 
 /*!
