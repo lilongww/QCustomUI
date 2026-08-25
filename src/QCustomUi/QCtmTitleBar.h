@@ -38,6 +38,7 @@ class QCUSTOMUI_EXPORT QCtmTitleBar : public QCtmAbstractTitleBar
     Q_OBJECT
     Q_PROPERTY(bool iconIsVisible READ iconIsVisible WRITE setIconVisible)
     Q_PROPERTY(QSize iconSize READ iconSize WRITE setIconSize NOTIFY iconSizeChanged)
+    Q_PROPERTY(Qt::Alignment windowTitleAlignment READ windowTitleAlignment WRITE setWindowTitleAlignment)
 public:
     explicit QCtmTitleBar(QWidget* parent = nullptr);
     ~QCtmTitleBar();
@@ -48,6 +49,8 @@ public:
     bool iconIsVisible() const;
     void setIconSize(const QSize& size);
     const QSize& iconSize() const;
+    void setWindowTitleAlignment(Qt::Alignment alignment);
+    Qt::Alignment windowTitleAlignment() const;
 signals:
     void iconSizeChanged(const QSize& size);
 

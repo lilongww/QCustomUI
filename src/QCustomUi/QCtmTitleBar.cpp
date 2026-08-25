@@ -39,6 +39,7 @@ struct QCtmTitleBar::Impl
     bool showIcon { true };
     QList<QCtmWidgetItemPtr> items;
     QSize iconSize { 24, 24 };
+    Qt::Alignment titleAlignment { Qt::AlignLeft | Qt::AlignVCenter };
 };
 
 /*!
@@ -184,6 +185,25 @@ const QSize& QCtmTitleBar::iconSize() const
 }
 
 /*!
+    \brief      设置窗口标题对齐方式 \a alignment.
+    \sa         windowTitleAlignment
+*/
+void QCtmTitleBar::setWindowTitleAlignment(Qt::Alignment alignment)
+{
+    m_impl->titleAlignment = alignment;
+    update();
+}
+
+/*!
+    \brief      返回窗口标题对齐方式.
+    \sa         setWindowTitleAlignment
+*/
+Qt::Alignment QCtmTitleBar::windowTitleAlignment() const
+{
+    return m_impl->titleAlignment;
+}
+
+/*!
     \reimp
 */
 void QCtmTitleBar::paintEvent([[maybe_unused]] QPaintEvent* event)
@@ -200,22 +220,25 @@ void QCtmTitleBar::paintEvent([[maybe_unused]] QPaintEvent* event)
     if (parentWidget())
     {
         auto text = parentWidget()->windowTitle();
-        QRect rect(QPoint { 0, 0 }, opt.fontMetrics.size(Qt::TextSingleLine, text));
+        int left  = iconRect.right() + titleSpacing;
         if (m_impl->menuBar)
         {
-            if (m_impl->menuBar->geometry().right() >= (this->width() - rect.width()) / 2)
-            {
-                rect.moveTo((this->width() - m_impl->menuBar->geometry().right() - rect.width()) / 2, 0);
-            }
-            else
-                rect.moveTo((width() - rect.width()) / 2, 0);
+            left = m_impl->menuBar->geometry().right() + titleSpacing;
         }
-        else
-            rect.moveTo(leftMargin + iconRect.width() + titleSpacing, 0);
-        rect.setHeight(this->height());
+        int right = ui->actionLayout->geometry().left() - titleSpacing;
+        QRect rect(left, 0, right - left, this->height());
+
+        if (m_impl->titleAlignment & Qt::AlignHCenter)
+        {
+            auto textRect = this->fontMetrics().boundingRect(text);
+            rect.setLeft((this->width() - textRect.width()) / 2);
+            rect.setRight(rect.left() + textRect.width());
+            if (rect.left() < left)
+                rect.setLeft(left);
+        }
         QTextOption to;
         to.setWrapMode(QTextOption::NoWrap);
-        to.setAlignment(Qt::AlignCenter);
+        to.setAlignment(m_impl->titleAlignment);
         p.setFont(this->font());
         p.setPen(this->palette().windowText().color());
         p.drawText(rect, text, to);

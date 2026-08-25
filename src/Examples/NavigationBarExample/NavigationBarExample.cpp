@@ -1,6 +1,7 @@
 ﻿#include "NavigationBarExample.h"
 
 #include <QCustomUi/QCtmNavigationBar.h>
+#include <QCustomUi/QCtmTitleBar.h>
 
 #include <QLineEdit>
 #include <QPainter>
@@ -34,7 +35,8 @@ void NavigationBarExample::init()
         opt.setAlignment(Qt::AlignCenter);
         p.drawText(image.rect(), "QCustomUi", opt);
     }
-    setWindowIcon(QIcon(image));
+    //setWindowIcon(QIcon(image));
+    //qobject_cast<QCtmTitleBar*>(this->titleBar())->setWindowTitleAlignment(Qt::AlignRight | Qt::AlignVCenter);
     nvBar->addLogo(image, QCtmNavigationBar::Left);
     nvBar->addAction(tr("Action 1"), QCtmNavigationBar::ActionPosition::Left);
 
