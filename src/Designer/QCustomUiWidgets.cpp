@@ -29,6 +29,7 @@
 #include "RecentView.h"
 #include "SelectionButtonBox.h"
 #include "SerialPortComboBox.h"
+#include "ShadowWidget.h"
 #include "StageProgressBar.h"
 #include "SwitchButton.h"
 #include "TableView.h"
@@ -61,6 +62,7 @@ QCustomUiWidgets::QCustomUiWidgets(QObject* parent /*= 0*/) : QObject(parent), m
     m_impl->widgets.push_back(new HexLineEdit(this));
     m_impl->widgets.push_back(new SerialPortComboBox(this));
     m_impl->widgets.push_back(new MultiPageButtonBox(this));
+    m_impl->widgets.push_back(new ShadowWidget(this));
 
     qApp->setStyleSheet(QCtmStyleSheet::defaultStyleSheet());
 }

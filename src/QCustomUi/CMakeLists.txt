@@ -109,6 +109,7 @@ set(CONTAINERS_HEADERS
  "QCtmTabWidget.h"
  "QCtmNavigationSidePane.h"
  "QCtmNavigationSideBar.h"
+ "QCtmShadowWidget.h"
 )
 
 set(CONTAINERS_SOURCES
@@ -121,6 +122,7 @@ set(CONTAINERS_SOURCES
  "QCtmTabWidget.cpp"
  "QCtmNavigationSidePane.cpp"
  "QCtmNavigationSideBar.cpp"
+ "QCtmShadowWidget.cpp"
 )
 
 set(MESSAGETIP_HEADERS
