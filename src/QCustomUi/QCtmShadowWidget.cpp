@@ -50,8 +50,48 @@ struct QCtmShadowWidget::Impl
 */
 
 /*!
+    \property   QCtmShadowWidget::shadowOffsetX
+    \brief      阴影水平方向偏移量.
+*/
+
+/*!
+    \property   QCtmShadowWidget::shadowOffsetY
+    \brief      阴影垂直方向偏移量.
+*/
+
+/*!
     \property   QCtmShadowWidget::shadowEnabled
     \brief      阴影是否启用.
+*/
+
+/*!
+    \fn         void QCtmShadowWidget::shadowColorChanged(const QColor& color)
+    \brief      阴影颜色改变时发送该信号 \a color.
+*/
+
+/*!
+    \fn         void QCtmShadowWidget::shadowRadiusChanged(qreal radius)
+    \brief      阴影模糊半径改变时发送该信号 \a radius.
+*/
+
+/*!
+    \fn         void QCtmShadowWidget::shadowOffsetChanged(const QPointF& offset)
+    \brief      阴影偏移量改变时发送该信号 \a offset.
+*/
+
+/*!
+    \fn         void QCtmShadowWidget::shadowOffsetXChanged(qreal offset)
+    \brief      阴影水平方向偏移量改变时发送该信号 \a offset.
+*/
+
+/*!
+    \fn         void QCtmShadowWidget::shadowOffsetYChanged(qreal offset)
+    \brief      阴影垂直方向偏移量改变时发送该信号 \a offset.
+*/
+
+/*!
+    \fn         void QCtmShadowWidget::shadowEnabledChanged(bool enabled)
+    \brief      阴影启用状态改变时发送该信号 \a enabled.
 */
 
 /*!
@@ -71,6 +111,10 @@ QCtmShadowWidget::QCtmShadowWidget(QWidget* parent, Qt::WindowFlags f) : QWidget
     connect(m_impl->shadowEffect, &QGraphicsDropShadowEffect::colorChanged, this, &QCtmShadowWidget::shadowColorChanged);
     connect(m_impl->shadowEffect, &QGraphicsDropShadowEffect::blurRadiusChanged, this, &QCtmShadowWidget::shadowRadiusChanged);
     connect(m_impl->shadowEffect, &QGraphicsDropShadowEffect::offsetChanged, this, &QCtmShadowWidget::shadowOffsetChanged);
+    connect(m_impl->shadowEffect, &QGraphicsDropShadowEffect::offsetChanged, this, [this](const QPointF& offset) {
+        emit shadowOffsetXChanged(offset.x());
+        emit shadowOffsetYChanged(offset.y());
+    });
     connect(m_impl->shadowEffect, &QGraphicsEffect::enabledChanged, this, &QCtmShadowWidget::shadowEnabledChanged);
 }
 
@@ -131,6 +175,42 @@ void QCtmShadowWidget::setShadowOffset(const QPointF& offset)
 QPointF QCtmShadowWidget::shadowOffset() const
 {
     return m_impl->shadowEffect->offset();
+}
+
+/*!
+    \brief      设置阴影水平方向偏移量 \a offset.
+    \sa         shadowOffsetX
+*/
+void QCtmShadowWidget::setShadowOffsetX(qreal offset)
+{
+    m_impl->shadowEffect->setXOffset(offset);
+}
+
+/*!
+    \brief      返回阴影水平方向偏移量.
+    \sa         setShadowOffsetX
+*/
+qreal QCtmShadowWidget::shadowOffsetX() const
+{
+    return m_impl->shadowEffect->xOffset();
+}
+
+/*!
+    \brief      设置阴影垂直方向偏移量 \a offset.
+    \sa         shadowOffsetY
+*/
+void QCtmShadowWidget::setShadowOffsetY(qreal offset)
+{
+    m_impl->shadowEffect->setYOffset(offset);
+}
+
+/*!
+    \brief      返回阴影垂直方向偏移量.
+    \sa         setShadowOffsetY
+*/
+qreal QCtmShadowWidget::shadowOffsetY() const
+{
+    return m_impl->shadowEffect->yOffset();
 }
 
 /*!

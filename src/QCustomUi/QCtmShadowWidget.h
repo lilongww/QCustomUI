@@ -32,6 +32,8 @@ class QCUSTOMUI_EXPORT QCtmShadowWidget : public QWidget
     Q_PROPERTY(QColor shadowColor READ shadowColor WRITE setShadowColor NOTIFY shadowColorChanged)
     Q_PROPERTY(qreal shadowRadius READ shadowRadius WRITE setShadowRadius NOTIFY shadowRadiusChanged)
     Q_PROPERTY(QPointF shadowOffset READ shadowOffset WRITE setShadowOffset NOTIFY shadowOffsetChanged)
+    Q_PROPERTY(qreal shadowOffsetX READ shadowOffsetX WRITE setShadowOffsetX NOTIFY shadowOffsetXChanged)
+    Q_PROPERTY(qreal shadowOffsetY READ shadowOffsetY WRITE setShadowOffsetY NOTIFY shadowOffsetYChanged)
     Q_PROPERTY(bool shadowEnabled READ isShadowEnabled WRITE setShadowEnabled NOTIFY shadowEnabledChanged)
 public:
     explicit QCtmShadowWidget(QWidget* parent = nullptr, Qt::WindowFlags f = Qt::WindowFlags());
@@ -42,12 +44,18 @@ public:
     qreal shadowRadius() const;
     void setShadowOffset(const QPointF& offset);
     QPointF shadowOffset() const;
+    void setShadowOffsetX(qreal offset);
+    qreal shadowOffsetX() const;
+    void setShadowOffsetY(qreal offset);
+    qreal shadowOffsetY() const;
     void setShadowEnabled(bool enabled);
     bool isShadowEnabled() const;
  signals:
     void shadowRadiusChanged(qreal radius);
     void shadowColorChanged(const QColor& color);
     void shadowOffsetChanged(const QPointF& offset);
+    void shadowOffsetXChanged(qreal offset);
+    void shadowOffsetYChanged(qreal offset);
     void shadowEnabledChanged(bool enabled);
 
 private:
