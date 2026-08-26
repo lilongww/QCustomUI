@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <QtHelpProject version="1.0">
-    <namespace>com.qcustomui.1.22.0</namespace>
+    <namespace>com.qcustomui.1.24.0</namespace>
     <virtualFolder>qcustomui</virtualFolder>
     <metaData name="version" value=""/>
     <customFilter name="QCustomUi">
@@ -163,6 +163,9 @@
                     </section>
                     <section ref="qctmserialportcombobox.html" title="QCtmSerialPortComboBox Class Reference">
                         <section ref="qctmserialportcombobox-members.html" title="List of all members"/>
+                    </section>
+                    <section ref="qctmshadowwidget.html" title="QCtmShadowWidget Class Reference">
+                        <section ref="qctmshadowwidget-members.html" title="List of all members"/>
                     </section>
                     <section ref="qctmsignalblocker.html" title="QCtmSignalBlocker Class Reference">
                         <section ref="qctmsignalblocker-members.html" title="List of all members"/>
@@ -354,6 +357,7 @@
             <keyword name="QCtmSelectionButtonBox::ExclusiveOptional" id="QCtmSelectionButtonBox::ExclusiveOptional" ref="qctmselectionbuttonbox.html#ExclusionPolicy-enum"/>
             <keyword name="QCtmSelectionButtonBox::None" id="QCtmSelectionButtonBox::None" ref="qctmselectionbuttonbox.html#ExclusionPolicy-enum"/>
             <keyword name="QCtmSerialPortComboBox" id="QCtmSerialPortComboBox" ref="qctmserialportcombobox.html"/>
+            <keyword name="QCtmShadowWidget" id="QCtmShadowWidget" ref="qctmshadowwidget.html"/>
             <keyword name="QCtmSignalBlocker" id="QCtmSignalBlocker" ref="qctmsignalblocker.html"/>
             <keyword name="QCtmStageProgressBar" id="QCtmStageProgressBar" ref="qctmstageprogressbar.html"/>
             <keyword name="QCtmStyleSheet" id="QCtmStyleSheet" ref="qctmstylesheet.html"/>
@@ -495,6 +499,7 @@
             <keyword name="decoration" id="QCtmMessageTipView::decoration" ref="qctmmessagetipview.html#decoration"/>
             <keyword name="decoration" id="QCtmMessageTipView::decoration" ref="qctmmessagetipview.html#decoration-prop"/>
             <keyword name="defaultButton" id="QCtmMessageBox::defaultButton" ref="qctmmessagebox.html#defaultButton"/>
+            <keyword name="defaultDecimals" id="QCtmDigitKeyboard::defaultDecimals" ref="qctmdigitkeyboard.html#defaultDecimals"/>
             <keyword name="defaultStyleSheet" id="QCtmStyleSheet::defaultStyleSheet" ref="qctmstylesheet.html#defaultStyleSheet"/>
             <keyword name="displayFieldWidth" id="QCtmLongLongSpinBox::displayFieldWidth" ref="qctmlonglongspinbox.html#displayFieldWidth"/>
             <keyword name="displayFieldWidth" id="QCtmLongLongSpinBox::displayFieldWidth" ref="qctmlonglongspinbox.html#displayFieldWidth-prop"/>
@@ -685,6 +690,7 @@
             <keyword name="isIndexHidden" id="QCtmClassifyTreeView::isIndexHidden" ref="qctmclassifytreeview.html#isIndexHidden"/>
             <keyword name="isReadOnly" id="QCtmEditLabel::isReadOnly" ref="qctmeditlabel.html#isReadOnly"/>
             <keyword name="isReadOnly" id="QCtmIPAddressEdit::isReadOnly" ref="qctmipaddressedit.html#isReadOnly"/>
+            <keyword name="isShadowEnabled" id="QCtmShadowWidget::isShadowEnabled" ref="qctmshadowwidget.html#isShadowEnabled"/>
             <keyword name="isTextVisible" id="QCtmCircleProgressBar::isTextVisible" ref="qctmcircleprogressbar.html#isTextVisible"/>
             <keyword name="isTop" id="QCtmRecentData::isTop" ref="qctmrecentdata.html#isTop-var"/>
             <keyword name="item" id="QCtmDrawerWidget::item" ref="qctmdrawerwidget.html#item"/>
@@ -932,6 +938,7 @@
             <keyword name="setDecimals" id="QCtmDigitKeyboard::setDecimals" ref="qctmdigitkeyboard.html#setDecimals"/>
             <keyword name="setDecoration" id="QCtmMessageTipView::setDecoration" ref="qctmmessagetipview.html#setDecoration"/>
             <keyword name="setDefaultButton" id="QCtmMessageBox::setDefaultButton" ref="qctmmessagebox.html#setDefaultButton"/>
+            <keyword name="setDefaultDecimals" id="QCtmDigitKeyboard::setDefaultDecimals" ref="qctmdigitkeyboard.html#setDefaultDecimals"/>
             <keyword name="setDefaultStretch" id="QCtmToolBox::setDefaultStretch" ref="qctmtoolbox.html#setDefaultStretch"/>
             <keyword name="setDisplayFieldWidth" id="QCtmLongLongSpinBox::setDisplayFieldWidth" ref="qctmlonglongspinbox.html#setDisplayFieldWidth"/>
             <keyword name="setDisplayFieldWidth" id="QCtmULongLongSpinBox::setDisplayFieldWidth" ref="qctmulonglongspinbox.html#setDisplayFieldWidth"/>
@@ -1032,6 +1039,12 @@
             <keyword name="setReversedOrder" id="QCtmAbstractMessageTipModel::setReversedOrder" ref="qctmabstractmessagetipmodel.html#setReversedOrder"/>
             <keyword name="setRevertButtonIcon" id="QCtmEditLabel::setRevertButtonIcon" ref="qctmeditlabel.html#setRevertButtonIcon"/>
             <keyword name="setSelection" id="QCtmClassifyTreeView::setSelection" ref="qctmclassifytreeview.html#setSelection"/>
+            <keyword name="setShadowColor" id="QCtmShadowWidget::setShadowColor" ref="qctmshadowwidget.html#setShadowColor"/>
+            <keyword name="setShadowEnabled" id="QCtmShadowWidget::setShadowEnabled" ref="qctmshadowwidget.html#setShadowEnabled"/>
+            <keyword name="setShadowOffset" id="QCtmShadowWidget::setShadowOffset" ref="qctmshadowwidget.html#setShadowOffset"/>
+            <keyword name="setShadowOffsetX" id="QCtmShadowWidget::setShadowOffsetX" ref="qctmshadowwidget.html#setShadowOffsetX"/>
+            <keyword name="setShadowOffsetY" id="QCtmShadowWidget::setShadowOffsetY" ref="qctmshadowwidget.html#setShadowOffsetY"/>
+            <keyword name="setShadowRadius" id="QCtmShadowWidget::setShadowRadius" ref="qctmshadowwidget.html#setShadowRadius"/>
             <keyword name="setSingleStep" id="QCtmDigitKeyboard::setSingleStep" ref="qctmdigitkeyboard.html#setSingleStep"/>
             <keyword name="setSingleStep" id="QCtmLongLongSpinBox::setSingleStep" ref="qctmlonglongspinbox.html#setSingleStep"/>
             <keyword name="setSingleStep" id="QCtmULongLongSpinBox::setSingleStep" ref="qctmulonglongspinbox.html#setSingleStep"/>
@@ -1101,6 +1114,24 @@
             <keyword name="setWarningIcon" id="QCtmLogWidget::setWarningIcon" ref="qctmlogwidget.html#setWarningIcon"/>
             <keyword name="setWidget" id="QCtmDrawerItemWidget::setWidget" ref="qctmdraweritemwidget.html#setWidget"/>
             <keyword name="setWidget" id="QCtmNavigationSidePane::setWidget" ref="qctmnavigationsidepane.html#setWidget"/>
+            <keyword name="setWindowTitleAlignment" id="QCtmTitleBar::setWindowTitleAlignment" ref="qctmtitlebar.html#setWindowTitleAlignment"/>
+            <keyword name="shadowColor" id="QCtmShadowWidget::shadowColor" ref="qctmshadowwidget.html#shadowColor"/>
+            <keyword name="shadowColor" id="QCtmShadowWidget::shadowColor" ref="qctmshadowwidget.html#shadowColor-prop"/>
+            <keyword name="shadowColorChanged" id="QCtmShadowWidget::shadowColorChanged" ref="qctmshadowwidget.html#shadowColorChanged"/>
+            <keyword name="shadowEnabled" id="QCtmShadowWidget::shadowEnabled" ref="qctmshadowwidget.html#shadowEnabled-prop"/>
+            <keyword name="shadowEnabledChanged" id="QCtmShadowWidget::shadowEnabledChanged" ref="qctmshadowwidget.html#shadowEnabledChanged"/>
+            <keyword name="shadowOffset" id="QCtmShadowWidget::shadowOffset" ref="qctmshadowwidget.html#shadowOffset"/>
+            <keyword name="shadowOffset" id="QCtmShadowWidget::shadowOffset" ref="qctmshadowwidget.html#shadowOffset-prop"/>
+            <keyword name="shadowOffsetChanged" id="QCtmShadowWidget::shadowOffsetChanged" ref="qctmshadowwidget.html#shadowOffsetChanged"/>
+            <keyword name="shadowOffsetX" id="QCtmShadowWidget::shadowOffsetX" ref="qctmshadowwidget.html#shadowOffsetX"/>
+            <keyword name="shadowOffsetX" id="QCtmShadowWidget::shadowOffsetX" ref="qctmshadowwidget.html#shadowOffsetX-prop"/>
+            <keyword name="shadowOffsetXChanged" id="QCtmShadowWidget::shadowOffsetXChanged" ref="qctmshadowwidget.html#shadowOffsetXChanged"/>
+            <keyword name="shadowOffsetY" id="QCtmShadowWidget::shadowOffsetY" ref="qctmshadowwidget.html#shadowOffsetY"/>
+            <keyword name="shadowOffsetY" id="QCtmShadowWidget::shadowOffsetY" ref="qctmshadowwidget.html#shadowOffsetY-prop"/>
+            <keyword name="shadowOffsetYChanged" id="QCtmShadowWidget::shadowOffsetYChanged" ref="qctmshadowwidget.html#shadowOffsetYChanged"/>
+            <keyword name="shadowRadius" id="QCtmShadowWidget::shadowRadius" ref="qctmshadowwidget.html#shadowRadius"/>
+            <keyword name="shadowRadius" id="QCtmShadowWidget::shadowRadius" ref="qctmshadowwidget.html#shadowRadius-prop"/>
+            <keyword name="shadowRadiusChanged" id="QCtmShadowWidget::shadowRadiusChanged" ref="qctmshadowwidget.html#shadowRadiusChanged"/>
             <keyword name="showEvent" id="QCtmAbstractTitleBar::showEvent" ref="qctmabstracttitlebar.html#showEvent"/>
             <keyword name="showEvent" id="QCtmDigitKeyboard::showEvent" ref="qctmdigitkeyboard.html#showEvent"/>
             <keyword name="showEvent" id="QCtmDrawerWidget::showEvent" ref="qctmdrawerwidget.html#showEvent"/>
@@ -1280,6 +1311,8 @@
             <keyword name="widget" id="QCtmDrawerItemWidget::widget" ref="qctmdraweritemwidget.html#widget"/>
             <keyword name="widget" id="QCtmNavigationSidePane::widget" ref="qctmnavigationsidepane.html#widget"/>
             <keyword name="widget" id="QCtmToolBox::widget" ref="qctmtoolbox.html#widget"/>
+            <keyword name="windowTitleAlignment" id="QCtmTitleBar::windowTitleAlignment" ref="qctmtitlebar.html#windowTitleAlignment"/>
+            <keyword name="windowTitleAlignment" id="QCtmTitleBar::windowTitleAlignment" ref="qctmtitlebar.html#windowTitleAlignment-prop"/>
             <keyword name="writeLog" id="QCtmLogManager::writeLog" ref="qctmlogmanager.html#writeLog"/>
             <keyword name="~QCtmAbstractLogModel" id="QCtmAbstractLogModel::~QCtmAbstractLogModel" ref="qctmabstractlogmodel.html#dtor.QCtmAbstractLogModel"/>
             <keyword name="~QCtmAbstractMessageTipData" id="QCtmAbstractMessageTipData::~QCtmAbstractMessageTipData" ref="qctmabstractmessagetipdata.html#dtor.QCtmAbstractMessageTipData"/>
@@ -1328,6 +1361,7 @@
             <keyword name="~QCtmRecentViewDelegate" id="QCtmRecentViewDelegate::~QCtmRecentViewDelegate" ref="qctmrecentviewdelegate.html#dtor.QCtmRecentViewDelegate"/>
             <keyword name="~QCtmSelectionButtonBox" id="QCtmSelectionButtonBox::~QCtmSelectionButtonBox" ref="qctmselectionbuttonbox.html#dtor.QCtmSelectionButtonBox"/>
             <keyword name="~QCtmSerialPortComboBox" id="QCtmSerialPortComboBox::~QCtmSerialPortComboBox" ref="qctmserialportcombobox.html#dtor.QCtmSerialPortComboBox"/>
+            <keyword name="~QCtmShadowWidget" id="QCtmShadowWidget::~QCtmShadowWidget" ref="qctmshadowwidget.html#dtor.QCtmShadowWidget"/>
             <keyword name="~QCtmSignalBlocker" id="QCtmSignalBlocker::~QCtmSignalBlocker" ref="qctmsignalblocker.html#dtor.QCtmSignalBlocker"/>
             <keyword name="~QCtmStageProgressBar" id="QCtmStageProgressBar::~QCtmStageProgressBar" ref="qctmstageprogressbar.html#dtor.QCtmStageProgressBar"/>
             <keyword name="~QCtmSwitchButton" id="QCtmSwitchButton::~QCtmSwitchButton" ref="qctmswitchbutton.html#dtor.QCtmSwitchButton"/>
@@ -1475,6 +1509,8 @@
             <file>qctmselectionbuttonbox.html</file>
             <file>qctmserialportcombobox-members.html</file>
             <file>qctmserialportcombobox.html</file>
+            <file>qctmshadowwidget-members.html</file>
+            <file>qctmshadowwidget.html</file>
             <file>qctmsignalblocker-members.html</file>
             <file>qctmsignalblocker.html</file>
             <file>qctmstageprogressbar-members.html</file>

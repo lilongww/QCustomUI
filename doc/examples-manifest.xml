@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <instructionals module="QCustomUi">
     <examples>
-        <example docUrl="qthelp://com.qcustomui.1.22.0/qcustomui/qcustomui-path-to-example-dir-example.html" name="&lt;Application Example Name&gt;">
+        <example docUrl="qthelp://com.qcustomui.1.24.0/qcustomui/qcustomui-path-to-example-dir-example.html" name="&lt;Application Example Name&gt;">
             <description><![CDATA[<Description of the example's objective in one sentence.> category {Application Examples}]]></description>
             <tags>qcustomui</tags>
             <meta>

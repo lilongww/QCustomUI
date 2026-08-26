@@ -561,6 +561,7 @@
             </function>
             <function name="currentUnitIndex" fullname="QCtmDigitKeyboard::currentUnitIndex" href="qctmdigitkeyboard.html#currentUnitIndex" status="active" access="public" location="QCtmDigitKeyboard.h" documented="true" meta="plain" const="true" type="int" brief="返回当前选中的单位序号" signature="int currentUnitIndex() const"/>
             <function name="decimals" fullname="QCtmDigitKeyboard::decimals" href="qctmdigitkeyboard.html#decimals" status="active" access="public" location="QCtmDigitKeyboard.h" documented="true" meta="plain" const="true" associated-property="decimals" type="int" brief="返回小数点后保留位数" signature="int decimals() const"/>
+            <function name="defaultDecimals" fullname="QCtmDigitKeyboard::defaultDecimals" href="qctmdigitkeyboard.html#defaultDecimals" status="active" access="public" location="QCtmDigitKeyboard.h" documented="true" meta="plain" const="true" type="int" brief="返回默认的小数点后保留位数" signature="int defaultDecimals() const"/>
             <function name="eventFilter" fullname="QCtmDigitKeyboard::eventFilter" href="qctmdigitkeyboard.html#eventFilter" status="active" access="protected" location="QCtmDigitKeyboard.h" documented="true" meta="plain" virtual="virtual" override="true" type="bool" signature="bool eventFilter(QObject *obj, QEvent *event) override">
                 <parameter type="QObject *" name="obj" default=""/>
                 <parameter type="QEvent *" name="event" default=""/>
@@ -573,6 +574,9 @@
                 <parameter type="int" name="index" default=""/>
             </function>
             <function name="setDecimals" fullname="QCtmDigitKeyboard::setDecimals" href="qctmdigitkeyboard.html#setDecimals" status="active" access="public" location="QCtmDigitKeyboard.h" documented="true" meta="plain" associated-property="decimals" type="void" brief="设置小数点后保留位数 decimals" signature="void setDecimals(int decimals)">
+                <parameter type="int" name="decimals" default=""/>
+            </function>
+            <function name="setDefaultDecimals" fullname="QCtmDigitKeyboard::setDefaultDecimals" href="qctmdigitkeyboard.html#setDefaultDecimals" status="active" access="public" location="QCtmDigitKeyboard.h" documented="true" meta="plain" type="void" brief="设置默认的小数点后保留位数 decimals" signature="void setDefaultDecimals(int decimals)">
                 <parameter type="int" name="decimals" default=""/>
             </function>
             <function name="setInputMode" fullname="QCtmDigitKeyboard::setInputMode" href="qctmdigitkeyboard.html#setInputMode" status="active" access="public" location="QCtmDigitKeyboard.h" documented="true" meta="plain" type="void" brief="设置输入模式 mode" signature="void setInputMode(QCtmDigitKeyboard::InputMode mode)">
@@ -600,11 +604,12 @@
             <function name="showEvent" fullname="QCtmDigitKeyboard::showEvent" href="qctmdigitkeyboard.html#showEvent" status="active" access="protected" location="QCtmDigitKeyboard.h" documented="true" meta="plain" virtual="virtual" override="true" type="void" signature="void showEvent(QShowEvent *event) override">
                 <parameter type="QShowEvent *" name="event" default=""/>
             </function>
-            <function name="simpleBindBox" fullname="QCtmDigitKeyboard::simpleBindBox" href="qctmdigitkeyboard.html#simpleBindBox" status="active" access="public" location="QCtmDigitKeyboard.h" documented="true" meta="plain" static="true" type="void" brief="绑定 box 的数字键盘，单位列表为 units, 步进为 step, 标题为 title ,此行为并不会立即生成数字键盘，在第一次触发数字键盘弹出操作时才会生成数字键盘对象" signature="void simpleBindBox(QAbstractSpinBox *box, const QCtmDigitKeyboard::Units &amp;units, const QVariant &amp;step, const QString &amp;title)">
+            <function name="simpleBindBox" fullname="QCtmDigitKeyboard::simpleBindBox" href="qctmdigitkeyboard.html#simpleBindBox" status="active" access="public" location="QCtmDigitKeyboard.h" documented="true" meta="plain" static="true" type="void" brief="绑定 box 的数字键盘，单位列表为 units, 步进为 step, 标题为 title, 小数点保留位数 decimals , 此行为并不会立即生成数字键盘，在第一次触发数字键盘弹出操作时才会生成数字键盘对象" signature="void simpleBindBox(QAbstractSpinBox *box, const QCtmDigitKeyboard::Units &amp;units, const QVariant &amp;step, const QString &amp;title, int decimals)">
                 <parameter type="QAbstractSpinBox *" name="box" default=""/>
                 <parameter type="const QCtmDigitKeyboard::Units &amp;" name="units" default="{}"/>
                 <parameter type="const QVariant &amp;" name="step" default="{}"/>
                 <parameter type="const QString &amp;" name="title" default="{}"/>
+                <parameter type="int" name="decimals" default="2"/>
             </function>
             <function name="singleStep" fullname="QCtmDigitKeyboard::singleStep" href="qctmdigitkeyboard.html#singleStep" status="active" access="public" location="QCtmDigitKeyboard.h" documented="true" meta="plain" const="true" associated-property="singleStep" type="QVariant" brief="返回步进值" signature="QVariant singleStep() const"/>
             <function name="sizeHint" fullname="QCtmDigitKeyboard::sizeHint" href="qctmdigitkeyboard.html#sizeHint" status="active" access="protected" location="QCtmDigitKeyboard.h" documented="true" meta="plain" virtual="virtual" const="true" override="true" type="QSize" signature="QSize sizeHint() const override"/>
@@ -2629,6 +2634,85 @@
             <function name="onAboutToShowPopup" fullname="QCtmSerialPortComboBox::onAboutToShowPopup" href="qctmserialportcombobox.html#onAboutToShowPopup" status="active" access="protected" location="QCtmSerialPortComboBox.h" documented="true" meta="slot" virtual="virtual" type="void" brief="响应弹出框消息，刷新串口列表" signature="void onAboutToShowPopup()"/>
             <function name="~QCtmSerialPortComboBox" fullname="QCtmSerialPortComboBox::~QCtmSerialPortComboBox" href="qctmserialportcombobox.html#dtor.QCtmSerialPortComboBox" status="active" access="public" location="QCtmSerialPortComboBox.h" documented="true" meta="destructor" virtual="virtual" noexcept="true" brief="析构函数" signature="~QCtmSerialPortComboBox()"/>
         </class>
+        <class name="QCtmShadowWidget" href="qctmshadowwidget.html" status="active" access="public" location="QCtmShadowWidget.h" documented="true" groups="QCustomUi" bases="QWidget" module="QCustomUi" brief="提供阴影效果的 QWidget 扩展">
+            <function name="QCtmShadowWidget" fullname="QCtmShadowWidget::QCtmShadowWidget" href="qctmshadowwidget.html#QCtmShadowWidget" status="active" access="public" location="QCtmShadowWidget.h" documented="true" meta="constructor" explicit="true" brief="构造函数 parent, f" signature="QCtmShadowWidget(QWidget *parent, Qt::WindowFlags f)">
+                <parameter type="QWidget *" name="parent" default="nullptr"/>
+                <parameter type="Qt::WindowFlags" name="f" default="Qt::WindowFlags()"/>
+            </function>
+            <function name="isShadowEnabled" fullname="QCtmShadowWidget::isShadowEnabled" href="qctmshadowwidget.html#isShadowEnabled" status="active" access="public" location="QCtmShadowWidget.h" documented="true" meta="plain" const="true" associated-property="shadowEnabled" type="bool" brief="返回阴影是否启用" signature="bool isShadowEnabled() const"/>
+            <function name="setShadowColor" fullname="QCtmShadowWidget::setShadowColor" href="qctmshadowwidget.html#setShadowColor" status="active" access="public" location="QCtmShadowWidget.h" documented="true" meta="plain" associated-property="shadowColor" type="void" brief="设置阴影颜色 color" signature="void setShadowColor(const QColor &amp;color)">
+                <parameter type="const QColor &amp;" name="color" default=""/>
+            </function>
+            <function name="setShadowEnabled" fullname="QCtmShadowWidget::setShadowEnabled" href="qctmshadowwidget.html#setShadowEnabled" status="active" access="public" location="QCtmShadowWidget.h" documented="true" meta="plain" associated-property="shadowEnabled" type="void" brief="设置阴影是否启用为 enabled" signature="void setShadowEnabled(bool enabled)">
+                <parameter type="bool" name="enabled" default=""/>
+            </function>
+            <function name="setShadowOffset" fullname="QCtmShadowWidget::setShadowOffset" href="qctmshadowwidget.html#setShadowOffset" status="active" access="public" location="QCtmShadowWidget.h" documented="true" meta="plain" associated-property="shadowOffset" type="void" brief="设置阴影偏移量 offset" signature="void setShadowOffset(const QPointF &amp;offset)">
+                <parameter type="const QPointF &amp;" name="offset" default=""/>
+            </function>
+            <function name="setShadowOffsetX" fullname="QCtmShadowWidget::setShadowOffsetX" href="qctmshadowwidget.html#setShadowOffsetX" status="active" access="public" location="QCtmShadowWidget.h" documented="true" meta="plain" associated-property="shadowOffsetX" type="void" brief="设置阴影水平方向偏移量 offset" signature="void setShadowOffsetX(qreal offset)">
+                <parameter type="qreal" name="offset" default=""/>
+            </function>
+            <function name="setShadowOffsetY" fullname="QCtmShadowWidget::setShadowOffsetY" href="qctmshadowwidget.html#setShadowOffsetY" status="active" access="public" location="QCtmShadowWidget.h" documented="true" meta="plain" associated-property="shadowOffsetY" type="void" brief="设置阴影垂直方向偏移量 offset" signature="void setShadowOffsetY(qreal offset)">
+                <parameter type="qreal" name="offset" default=""/>
+            </function>
+            <function name="setShadowRadius" fullname="QCtmShadowWidget::setShadowRadius" href="qctmshadowwidget.html#setShadowRadius" status="active" access="public" location="QCtmShadowWidget.h" documented="true" meta="plain" associated-property="shadowRadius" type="void" brief="设置阴影模糊半径 radius" signature="void setShadowRadius(qreal radius)">
+                <parameter type="qreal" name="radius" default=""/>
+            </function>
+            <function name="shadowColor" fullname="QCtmShadowWidget::shadowColor" href="qctmshadowwidget.html#shadowColor" status="active" access="public" location="QCtmShadowWidget.h" documented="true" meta="plain" const="true" associated-property="shadowColor" type="QColor" brief="返回阴影颜色" signature="QColor shadowColor() const"/>
+            <function name="shadowColorChanged" fullname="QCtmShadowWidget::shadowColorChanged" href="qctmshadowwidget.html#shadowColorChanged" status="active" access="public" location="QCtmShadowWidget.h" documented="true" meta="signal" associated-property="shadowColor" type="void" brief="阴影颜色改变时发送该信号 color" signature="void shadowColorChanged(const QColor &amp;color)">
+                <parameter type="const QColor &amp;" name="color" default=""/>
+            </function>
+            <function name="shadowEnabledChanged" fullname="QCtmShadowWidget::shadowEnabledChanged" href="qctmshadowwidget.html#shadowEnabledChanged" status="active" access="public" location="QCtmShadowWidget.h" documented="true" meta="signal" associated-property="shadowEnabled" type="void" brief="阴影启用状态改变时发送该信号 enabled" signature="void shadowEnabledChanged(bool enabled)">
+                <parameter type="bool" name="enabled" default=""/>
+            </function>
+            <function name="shadowOffset" fullname="QCtmShadowWidget::shadowOffset" href="qctmshadowwidget.html#shadowOffset" status="active" access="public" location="QCtmShadowWidget.h" documented="true" meta="plain" const="true" associated-property="shadowOffset" type="QPointF" brief="返回阴影偏移量" signature="QPointF shadowOffset() const"/>
+            <function name="shadowOffsetChanged" fullname="QCtmShadowWidget::shadowOffsetChanged" href="qctmshadowwidget.html#shadowOffsetChanged" status="active" access="public" location="QCtmShadowWidget.h" documented="true" meta="signal" associated-property="shadowOffset" type="void" brief="阴影偏移量改变时发送该信号 offset" signature="void shadowOffsetChanged(const QPointF &amp;offset)">
+                <parameter type="const QPointF &amp;" name="offset" default=""/>
+            </function>
+            <function name="shadowOffsetX" fullname="QCtmShadowWidget::shadowOffsetX" href="qctmshadowwidget.html#shadowOffsetX" status="active" access="public" location="QCtmShadowWidget.h" documented="true" meta="plain" const="true" associated-property="shadowOffsetX" type="qreal" brief="返回阴影水平方向偏移量" signature="qreal shadowOffsetX() const"/>
+            <function name="shadowOffsetXChanged" fullname="QCtmShadowWidget::shadowOffsetXChanged" href="qctmshadowwidget.html#shadowOffsetXChanged" status="active" access="public" location="QCtmShadowWidget.h" documented="true" meta="signal" associated-property="shadowOffsetX" type="void" brief="阴影水平方向偏移量改变时发送该信号 offset" signature="void shadowOffsetXChanged(qreal offset)">
+                <parameter type="qreal" name="offset" default=""/>
+            </function>
+            <function name="shadowOffsetY" fullname="QCtmShadowWidget::shadowOffsetY" href="qctmshadowwidget.html#shadowOffsetY" status="active" access="public" location="QCtmShadowWidget.h" documented="true" meta="plain" const="true" associated-property="shadowOffsetY" type="qreal" brief="返回阴影垂直方向偏移量" signature="qreal shadowOffsetY() const"/>
+            <function name="shadowOffsetYChanged" fullname="QCtmShadowWidget::shadowOffsetYChanged" href="qctmshadowwidget.html#shadowOffsetYChanged" status="active" access="public" location="QCtmShadowWidget.h" documented="true" meta="signal" associated-property="shadowOffsetY" type="void" brief="阴影垂直方向偏移量改变时发送该信号 offset" signature="void shadowOffsetYChanged(qreal offset)">
+                <parameter type="qreal" name="offset" default=""/>
+            </function>
+            <function name="shadowRadius" fullname="QCtmShadowWidget::shadowRadius" href="qctmshadowwidget.html#shadowRadius" status="active" access="public" location="QCtmShadowWidget.h" documented="true" meta="plain" const="true" associated-property="shadowRadius" type="qreal" brief="返回阴影模糊半径" signature="qreal shadowRadius() const"/>
+            <function name="shadowRadiusChanged" fullname="QCtmShadowWidget::shadowRadiusChanged" href="qctmshadowwidget.html#shadowRadiusChanged" status="active" access="public" location="QCtmShadowWidget.h" documented="true" meta="signal" associated-property="shadowRadius" type="void" brief="阴影模糊半径改变时发送该信号 radius" signature="void shadowRadiusChanged(qreal radius)">
+                <parameter type="qreal" name="radius" default=""/>
+            </function>
+            <function name="~QCtmShadowWidget" fullname="QCtmShadowWidget::~QCtmShadowWidget" href="qctmshadowwidget.html#dtor.QCtmShadowWidget" status="active" access="public" location="QCtmShadowWidget.h" documented="true" meta="destructor" virtual="virtual" noexcept="true" brief="析构函数" signature="~QCtmShadowWidget()"/>
+            <property name="shadowColor" fullname="QCtmShadowWidget::shadowColor" href="qctmshadowwidget.html#shadowColor-prop" status="active" access="public" location="QCtmShadowWidget.h" documented="true" dataType="QColor" brief="阴影颜色">
+                <getter name="shadowColor"/>
+                <setter name="setShadowColor"/>
+                <notifier name="shadowColorChanged"/>
+            </property>
+            <property name="shadowEnabled" fullname="QCtmShadowWidget::shadowEnabled" href="qctmshadowwidget.html#shadowEnabled-prop" status="active" access="public" location="QCtmShadowWidget.h" documented="true" dataType="bool" brief="阴影是否启用">
+                <getter name="isShadowEnabled"/>
+                <setter name="setShadowEnabled"/>
+                <notifier name="shadowEnabledChanged"/>
+            </property>
+            <property name="shadowOffset" fullname="QCtmShadowWidget::shadowOffset" href="qctmshadowwidget.html#shadowOffset-prop" status="active" access="public" location="QCtmShadowWidget.h" documented="true" dataType="QPointF" brief="阴影偏移量">
+                <getter name="shadowOffset"/>
+                <setter name="setShadowOffset"/>
+                <notifier name="shadowOffsetChanged"/>
+            </property>
+            <property name="shadowOffsetX" fullname="QCtmShadowWidget::shadowOffsetX" href="qctmshadowwidget.html#shadowOffsetX-prop" status="active" access="public" location="QCtmShadowWidget.h" documented="true" dataType="qreal" brief="阴影水平方向偏移量">
+                <getter name="shadowOffsetX"/>
+                <setter name="setShadowOffsetX"/>
+                <notifier name="shadowOffsetXChanged"/>
+            </property>
+            <property name="shadowOffsetY" fullname="QCtmShadowWidget::shadowOffsetY" href="qctmshadowwidget.html#shadowOffsetY-prop" status="active" access="public" location="QCtmShadowWidget.h" documented="true" dataType="qreal" brief="阴影垂直方向偏移量">
+                <getter name="shadowOffsetY"/>
+                <setter name="setShadowOffsetY"/>
+                <notifier name="shadowOffsetYChanged"/>
+            </property>
+            <property name="shadowRadius" fullname="QCtmShadowWidget::shadowRadius" href="qctmshadowwidget.html#shadowRadius-prop" status="active" access="public" location="QCtmShadowWidget.h" documented="true" dataType="qreal" brief="阴影模糊半径">
+                <getter name="shadowRadius"/>
+                <setter name="setShadowRadius"/>
+                <notifier name="shadowRadiusChanged"/>
+            </property>
+        </class>
         <class name="QCtmSignalBlocker" href="qctmsignalblocker.html" status="active" access="public" location="QCtmSignalBlocker.h" documented="true" groups="QCustomUi" module="QCustomUi" brief="QSignalBlocker的增强版本，支持多个QObject对象的信号阻断，而QSignalBlocker仅支持一个QObject对象的信号的阻断">
             <function name="QCtmSignalBlocker" fullname="QCtmSignalBlocker::QCtmSignalBlocker" href="qctmsignalblocker.html#QCtmSignalBlocker" status="active" access="public" location="QCtmSignalBlocker.h" documented="true" meta="constructor" brief="构造函数，支持一次传入多个QObject对象 objs" signature="QCtmSignalBlocker(Args &amp;&amp;... objs)">
                 <parameter type="Args &amp;&amp;..." name="objs" default=""/>
@@ -3090,9 +3174,13 @@
             <function name="setMenuBar" fullname="QCtmTitleBar::setMenuBar" href="qctmtitlebar.html#setMenuBar" status="active" access="public" location="QCtmTitleBar.h" documented="true" meta="plain" type="void" brief="设置菜单栏 menu, 当 menu 为nullptr时删除菜单栏" signature="void setMenuBar(QMenuBar *menu)">
                 <parameter type="QMenuBar *" name="menu" default=""/>
             </function>
+            <function name="setWindowTitleAlignment" fullname="QCtmTitleBar::setWindowTitleAlignment" href="qctmtitlebar.html#setWindowTitleAlignment" status="active" access="public" location="QCtmTitleBar.h" documented="true" meta="plain" associated-property="windowTitleAlignment" type="void" brief="设置窗口标题对齐方式 alignment" signature="void setWindowTitleAlignment(Qt::Alignment alignment)">
+                <parameter type="Qt::Alignment" name="alignment" default=""/>
+            </function>
             <function name="showIconSystemMenu" fullname="QCtmTitleBar::showIconSystemMenu" href="qctmtitlebar.html#showIconSystemMenu" status="active" access="protected" location="QCtmTitleBar.h" documented="true" meta="plain" virtual="virtual" const="true" override="true" type="bool" signature="bool showIconSystemMenu(const QPoint &amp;pos) const override">
                 <parameter type="const QPoint &amp;" name="pos" default=""/>
             </function>
+            <function name="windowTitleAlignment" fullname="QCtmTitleBar::windowTitleAlignment" href="qctmtitlebar.html#windowTitleAlignment" status="active" access="public" location="QCtmTitleBar.h" documented="true" meta="plain" const="true" associated-property="windowTitleAlignment" type="Qt::Alignment" brief="返回窗口标题对齐方式" signature="Qt::Alignment windowTitleAlignment() const"/>
             <function name="~QCtmTitleBar" fullname="QCtmTitleBar::~QCtmTitleBar" href="qctmtitlebar.html#dtor.QCtmTitleBar" status="active" access="public" location="QCtmTitleBar.h" documented="true" meta="destructor" virtual="virtual" noexcept="true" brief="析构函数" signature="~QCtmTitleBar()"/>
             <property name="iconIsVisible" fullname="QCtmTitleBar::iconIsVisible" href="qctmtitlebar.html#iconIsVisible-prop" status="active" access="public" location="QCtmTitleBar.h" documented="true" dataType="bool" brief="是否显示图标">
                 <getter name="iconIsVisible"/>
@@ -3102,6 +3190,10 @@
                 <getter name="iconSize"/>
                 <setter name="setIconSize"/>
                 <notifier name="iconSizeChanged"/>
+            </property>
+            <property name="windowTitleAlignment" fullname="QCtmTitleBar::windowTitleAlignment" href="qctmtitlebar.html#windowTitleAlignment-prop" status="active" access="public" location="QCtmTitleBar.h" documented="true" dataType="Qt::Alignment" brief="窗口标题对齐方式">
+                <getter name="windowTitleAlignment"/>
+                <setter name="setWindowTitleAlignment"/>
             </property>
         </class>
         <class name="QCtmToolBox" href="qctmtoolbox.html" status="active" access="public" location="QCtmToolBox.h" documented="true" groups="QCustomUi" bases="QWidget" module="QCustomUi" brief="类似QToolBox的容器窗口，可分割多个页面区域">
@@ -3340,11 +3432,7 @@
             <contents name="squish-gui-testing" title="Squish GUI testing" level="1"/>
             <contents name="source-files" title="Source files" level="1"/>
         </page>
-        <page name="http://bugreports.qt.io" href="http://bugreports.qt.io" status="active" location="qt-webpages.qdoc" documented="true" subtype="externalpage" title="Qt Bug Tracker" fulltitle="Qt Bug Tracker" subtitle=""/>
-        <page name="http://qt.io/" href="http://qt.io/" status="active" location="qt-webpages.qdoc" documented="true" subtype="externalpage" title="Qt Homepage" fulltitle="Qt Homepage" subtitle=""/>
-        <page name="http://qt.io/download" href="http://qt.io/download" status="active" location="qt-webpages.qdoc" documented="true" subtype="externalpage" title="Downloads" fulltitle="Downloads" subtitle=""/>
         <page name="http://wiki.qt.io/Qt_Localization" href="http://wiki.qt.io/Qt_Localization" status="active" location="qt-webpages.qdoc" documented="true" subtype="externalpage" title="external: Translating Qt Into Other Languages" fulltitle="external: Translating Qt Into Other Languages" subtitle=""/>
-        <page name="http://www.qt.io/about-us/" href="http://www.qt.io/about-us/" status="active" location="qt-webpages.qdoc" documented="true" subtype="externalpage" title="The Qt Company" fulltitle="The Qt Company" subtitle=""/>
         <page name="https://accessibility.linuxfoundation.org/a11yspecs/ia2/docs/html/_accessible_event_i_d_8idl.html" href="https://accessibility.linuxfoundation.org/a11yspecs/ia2/docs/html/_accessible_event_i_d_8idl.html" status="active" location="external-resources.qdoc" documented="true" subtype="externalpage" title="AccessibleEventID.idl File Reference" fulltitle="AccessibleEventID.idl File Reference" subtitle=""/>
         <page name="https://chromium.googlesource.com/angle/angle/+/master/README.md" href="https://chromium.googlesource.com/angle/angle/+/master/README.md" status="active" location="external-resources.qdoc" documented="true" subtype="externalpage" title="ANGLE" fulltitle="ANGLE" subtitle=""/>
         <page name="https://cmake.org/cmake/help/latest/" href="https://cmake.org/cmake/help/latest/" status="active" location="external-resources.qdoc" documented="true" subtype="externalpage" title="CMake Documentation" fulltitle="CMake Documentation" subtitle=""/>
@@ -4007,6 +4095,9 @@
         <page name="https://learn.microsoft.com/en-us/windows/win32/winsock/socket-handles-2" href="https://learn.microsoft.com/en-us/windows/win32/winsock/socket-handles-2" status="active" location="external-resources.qdoc" documented="true" subtype="externalpage" title="Winsock 2 Socket Handle" fulltitle="Winsock 2 Socket Handle" subtitle=""/>
         <page name="https://marketplace.qt.io" href="https://marketplace.qt.io" status="active" location="qt-webpages.qdoc" documented="true" subtype="externalpage" title="Qt Marketplace" fulltitle="Qt Marketplace" subtitle=""/>
         <page name="https://publicsuffix.org/" href="https://publicsuffix.org/" status="active" location="external-resources.qdoc" documented="true" subtype="externalpage" title="publicsuffix.org" fulltitle="publicsuffix.org" subtitle=""/>
+        <page name="https://qt-project.atlassian.net/jira/" href="https://qt-project.atlassian.net/jira/" status="active" location="qt-webpages.qdoc" documented="true" subtype="externalpage" title="Qt Bug Tracker" fulltitle="Qt Bug Tracker" subtitle=""/>
+        <page name="https://qt.io/" href="https://qt.io/" status="active" location="qt-webpages.qdoc" documented="true" subtype="externalpage" title="Qt Homepage" fulltitle="Qt Homepage" subtitle=""/>
+        <page name="https://qt.io/download" href="https://qt.io/download" status="active" location="qt-webpages.qdoc" documented="true" subtype="externalpage" title="Downloads" fulltitle="Downloads" subtitle=""/>
         <page name="https://source.android.com/docs/security/test/tagged-pointers" href="https://source.android.com/docs/security/test/tagged-pointers" status="active" location="external-resources.qdoc" documented="true" subtype="externalpage" title="Android: Tagged Pointers" fulltitle="Android: Tagged Pointers" subtitle=""/>
         <page name="https://source.android.com/docs/setup/reference/build-numbers" href="https://source.android.com/docs/setup/reference/build-numbers" status="active" location="external-resources.qdoc" documented="true" subtype="externalpage" title="Android: Build Numbers" fulltitle="Android: Build Numbers" subtitle=""/>
         <page name="https://specifications.freedesktop.org/trash/1.0/" href="https://specifications.freedesktop.org/trash/1.0/" status="active" location="external-resources.qdoc" documented="true" subtype="externalpage" title="FreeDesktop.org Trash specification version 1.0" fulltitle="FreeDesktop.org Trash specification version 1.0" subtitle=""/>
@@ -4025,6 +4116,8 @@
         <page name="https://www.openssl.org/" href="https://www.openssl.org/" status="active" location="external-resources.qdoc" documented="true" subtype="externalpage" title="OpenSSL Toolkit" fulltitle="OpenSSL Toolkit" subtitle=""/>
         <page name="https://www.postgresql.org" href="https://www.postgresql.org" status="active" location="external-resources.qdoc" documented="true" subtype="externalpage" title="https://www.postgresql.org" fulltitle="https://www.postgresql.org" subtitle=""/>
         <page name="https://www.python.org/" href="https://www.python.org/" status="active" location="external-resources.qdoc" documented="true" subtype="externalpage" title="Python" fulltitle="Python" subtitle=""/>
+        <page name="https://www.qt.io/about-us/" href="https://www.qt.io/about-us/" status="active" location="qt-webpages.qdoc" documented="true" subtype="externalpage" title="The Qt Company" fulltitle="The Qt Company" subtitle=""/>
+        <page name="https://www.qt.io/about-us/" href="https://www.qt.io/about-us/" status="active" location="qt-webpages.qdoc" documented="true" subtype="externalpage" title="The Qt Group" fulltitle="The Qt Group" subtitle=""/>
         <page name="https://www.qt.io/product/quality-assurance/test-center" href="https://www.qt.io/product/quality-assurance/test-center" status="active" location="external-resources.qdoc" documented="true" subtype="externalpage" title="Test Center" fulltitle="Test Center" subtitle=""/>
         <page name="https://www.sqlite.org" href="https://www.sqlite.org" status="active" location="external-resources.qdoc" documented="true" subtype="externalpage" title="https://www.sqlite.org" fulltitle="https://www.sqlite.org" subtitle=""/>
         <page name="https://www.unicode.org/" href="https://www.unicode.org/" status="active" location="external-resources.qdoc" documented="true" subtype="externalpage" title="Unicode standard" fulltitle="Unicode standard" subtitle=""/>

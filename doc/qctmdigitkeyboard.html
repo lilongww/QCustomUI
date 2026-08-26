@@ -4,7 +4,7 @@
   <meta charset="utf-8">
 <!-- QCtmDigitKeyboard.cpp -->
   <meta name="description" content="数字输入键盘.">
-  <title>QCtmDigitKeyboard Class | QCustomUi 1.22.0</title>
+  <title>QCtmDigitKeyboard Class | QCustomUi 1.24.0</title>
   <link rel="stylesheet" type="text/css" href="style/offline-simple.css" />
   <script type="text/javascript">
     document.getElementsByTagName("link").item(0).setAttribute("href", "style/offline.css");
@@ -26,10 +26,10 @@
     <div class="main-rounded">
         <div class="navigationbar">
         <ul>
-<li><a href="index.html">QCustomUi 1.22.0</a></li>
+<li><a href="index.html">QCustomUi 1.24.0</a></li>
 <li><a href="qcustomui-module.html" translate="no">QCustomUi</a></li>
 <li>QCtmDigitKeyboard</li>
-<li id="buildversion">QCustomUi 1.22.0 Reference Documentation</li>
+<li id="buildversion">QCustomUi 1.24.0 Reference Documentation</li>
     </ul>
     </div>
 </div>
@@ -79,11 +79,13 @@
 <tr><td class="memItemLeft rightAlign topAlign"> void </td><td class="memItemRight bottomAlign"><b><a href="qctmdigitkeyboard.html#bindBox" translate="no">bindBox</a></b>(QAbstractSpinBox *<i>box</i>)</td></tr>
 <tr><td class="memItemLeft rightAlign topAlign"> int </td><td class="memItemRight bottomAlign"><b><a href="qctmdigitkeyboard.html#currentUnitIndex" translate="no">currentUnitIndex</a></b>() const</td></tr>
 <tr><td class="memItemLeft rightAlign topAlign"> int </td><td class="memItemRight bottomAlign"><b><a href="qctmdigitkeyboard.html#decimals" translate="no">decimals</a></b>() const</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> int </td><td class="memItemRight bottomAlign"><b><a href="qctmdigitkeyboard.html#defaultDecimals" translate="no">defaultDecimals</a></b>() const</td></tr>
 <tr><td class="memItemLeft rightAlign topAlign"> QCtmDigitKeyboard::InputMode </td><td class="memItemRight bottomAlign"><b><a href="qctmdigitkeyboard.html#inputMode" translate="no">inputMode</a></b>() const</td></tr>
 <tr><td class="memItemLeft rightAlign topAlign"> QVariant </td><td class="memItemRight bottomAlign"><b><a href="qctmdigitkeyboard.html#maximum" translate="no">maximum</a></b>() const</td></tr>
 <tr><td class="memItemLeft rightAlign topAlign"> QVariant </td><td class="memItemRight bottomAlign"><b><a href="qctmdigitkeyboard.html#minimum" translate="no">minimum</a></b>() const</td></tr>
 <tr><td class="memItemLeft rightAlign topAlign"> void </td><td class="memItemRight bottomAlign"><b><a href="qctmdigitkeyboard.html#setCurrentUnitIndex" translate="no">setCurrentUnitIndex</a></b>(int <i>index</i>)</td></tr>
 <tr><td class="memItemLeft rightAlign topAlign"> void </td><td class="memItemRight bottomAlign"><b><a href="qctmdigitkeyboard.html#setDecimals" translate="no">setDecimals</a></b>(int <i>decimals</i>)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> void </td><td class="memItemRight bottomAlign"><b><a href="qctmdigitkeyboard.html#setDefaultDecimals" translate="no">setDefaultDecimals</a></b>(int <i>decimals</i>)</td></tr>
 <tr><td class="memItemLeft rightAlign topAlign"> void </td><td class="memItemRight bottomAlign"><b><a href="qctmdigitkeyboard.html#setInputMode" translate="no">setInputMode</a></b>(QCtmDigitKeyboard::InputMode <i>mode</i>)</td></tr>
 <tr><td class="memItemLeft rightAlign topAlign"> void </td><td class="memItemRight bottomAlign"><b><a href="qctmdigitkeyboard.html#setMaximum" translate="no">setMaximum</a></b>(const QVariant &amp;<i>max</i>)</td></tr>
 <tr><td class="memItemLeft rightAlign topAlign"> void </td><td class="memItemRight bottomAlign"><b><a href="qctmdigitkeyboard.html#setMinimum" translate="no">setMinimum</a></b>(const QVariant &amp;<i>min</i>)</td></tr>
@@ -101,7 +103,7 @@
 </table></div>
 <h2 id="static-public-members">Static Public Members</h2>
 <div class="table"><table class="alignedsummary" translate="no">
-<tr><td class="memItemLeft rightAlign topAlign"> void </td><td class="memItemRight bottomAlign"><b><a href="qctmdigitkeyboard.html#simpleBindBox" translate="no">simpleBindBox</a></b>(QAbstractSpinBox *<i>box</i>, const QCtmDigitKeyboard::Units &amp;<i>units</i> = {}, const QVariant &amp;<i>step</i> = {}, const QString &amp;<i>title</i> = {})</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> void </td><td class="memItemRight bottomAlign"><b><a href="qctmdigitkeyboard.html#simpleBindBox" translate="no">simpleBindBox</a></b>(QAbstractSpinBox *<i>box</i>, const QCtmDigitKeyboard::Units &amp;<i>units</i> = {}, const QVariant &amp;<i>step</i> = {}, const QString &amp;<i>title</i> = {}, int <i>decimals</i> = 2)</td></tr>
 </table></div>
 <h2 id="reimplemented-protected-functions">Reimplemented Protected Functions</h2>
 <div class="table"><table class="alignedsummary" translate="no">
@@ -197,6 +199,11 @@
 <div class="admonition note"><p><b>Note: </b>Getter function for property decimals. </p>
 </div><p><b>See also </b><a href="qctmdigitkeyboard.html#setDecimals" translate="no">setDecimals</a>.</p>
 <!-- @@@decimals -->
+<!-- $$$defaultDecimals[overload1]$$$defaultDecimals -->
+<h3 class="fn" translate="no" id="defaultDecimals"><span class="type">int</span> QCtmDigitKeyboard::<span class="name">defaultDecimals</span>() const</h3>
+<p>返回默认的小数点后保留位数.</p>
+<p><b>See also </b><a href="qctmdigitkeyboard.html#setDefaultDecimals" translate="no">setDefaultDecimals</a>.</p>
+<!-- @@@defaultDecimals -->
 <!-- $$$eventFilter[overload1]$$$eventFilterQObject*QEvent* -->
 <h3 class="fn" translate="no" id="eventFilter"><code class="details extra" translate="no">[override virtual protected]</code> <span class="type">bool</span> QCtmDigitKeyboard::<span class="name">eventFilter</span>(<span class="type"><a href="https://doc.qt.io/qt/qobject.html" translate="no">QObject</a></span> *<i>obj</i>, <span class="type"><a href="https://doc.qt.io/qt/qevent.html" translate="no">QEvent</a></span> *<i>event</i>)</h3>
 <p>Reimplements: <a href="qctmdialog.html#eventFilter" translate="no">QCtmDialog::eventFilter</a>(QObject *o, QEvent *e).</p>
@@ -236,6 +243,11 @@
 <div class="admonition note"><p><b>Note: </b>Setter function for property <a href="qctmdigitkeyboard.html#decimals" translate="no">decimals</a>. </p>
 </div><p><b>See also </b><a href="qctmdigitkeyboard.html#decimals" translate="no">decimals</a>.</p>
 <!-- @@@setDecimals -->
+<!-- $$$setDefaultDecimals[overload1]$$$setDefaultDecimalsint -->
+<h3 class="fn" translate="no" id="setDefaultDecimals"><span class="type">void</span> QCtmDigitKeyboard::<span class="name">setDefaultDecimals</span>(<span class="type">int</span> <i>decimals</i>)</h3>
+<p>设置默认的小数点后保留位数 <i translate="no">decimals</i>.</p>
+<p><b>See also </b><a href="qctmdigitkeyboard.html#defaultDecimals" translate="no">defaultDecimals</a>() and <a href="qctmdigitkeyboard.html#setDecimals" translate="no">setDecimals</a>.</p>
+<!-- @@@setDefaultDecimals -->
 <!-- $$$setInputMode[overload1]$$$setInputModeQCtmDigitKeyboard::InputMode -->
 <h3 class="fn" translate="no" id="setInputMode"><span class="type">void</span> QCtmDigitKeyboard::<span class="name">setInputMode</span>(<span class="type">QCtmDigitKeyboard::InputMode</span> <i>mode</i>)</h3>
 <p>设置输入模式 <i translate="no">mode</i>.</p>
@@ -282,9 +294,9 @@
 <h3 class="fn" translate="no" id="showEvent"><code class="details extra" translate="no">[override virtual protected]</code> <span class="type">void</span> QCtmDigitKeyboard::<span class="name">showEvent</span>(<span class="type"><a href="https://doc.qt.io/qt/qshowevent.html" translate="no">QShowEvent</a></span> *<i>event</i>)</h3>
 <p>Reimplements: <a href="https://doc.qt.io/qt/qwidget.html#showEvent" translate="no">QWidget::showEvent</a>(QShowEvent *event).</p>
 <!-- @@@showEvent -->
-<!-- $$$simpleBindBox[overload1]$$$simpleBindBoxQAbstractSpinBox*constQCtmDigitKeyboard::Units&constQVariant&constQString& -->
-<h3 class="fn" translate="no" id="simpleBindBox"><code class="details extra" translate="no">[static]</code> <span class="type">void</span> QCtmDigitKeyboard::<span class="name">simpleBindBox</span>(<span class="type"><a href="https://doc.qt.io/qt/qabstractspinbox.html" translate="no">QAbstractSpinBox</a></span> *<i>box</i>, const <span class="type">QCtmDigitKeyboard::Units</span> &amp;<i>units</i> = {}, const <span class="type"><a href="https://doc.qt.io/qt/qvariant.html" translate="no">QVariant</a></span> &amp;<i>step</i> = {}, const <span class="type"><a href="https://doc.qt.io/qt/qstring.html" translate="no">QString</a></span> &amp;<i>title</i> = {})</h3>
-<p>绑定 <i translate="no">box</i> 的数字键盘，单位列表为 <i translate="no">units</i>, 步进为 <i translate="no">step</i>, 标题为 <i translate="no">title</i> ,此行为并不会立即生成数字键盘，在第一次触发数字键盘弹出操作时才会生成数字键盘对象.</p>
+<!-- $$$simpleBindBox[overload1]$$$simpleBindBoxQAbstractSpinBox*constQCtmDigitKeyboard::Units&constQVariant&constQString&int -->
+<h3 class="fn" translate="no" id="simpleBindBox"><code class="details extra" translate="no">[static]</code> <span class="type">void</span> QCtmDigitKeyboard::<span class="name">simpleBindBox</span>(<span class="type"><a href="https://doc.qt.io/qt/qabstractspinbox.html" translate="no">QAbstractSpinBox</a></span> *<i>box</i>, const <span class="type">QCtmDigitKeyboard::Units</span> &amp;<i>units</i> = {}, const <span class="type"><a href="https://doc.qt.io/qt/qvariant.html" translate="no">QVariant</a></span> &amp;<i>step</i> = {}, const <span class="type"><a href="https://doc.qt.io/qt/qstring.html" translate="no">QString</a></span> &amp;<i>title</i> = {}, <span class="type">int</span> <i>decimals</i> = 2)</h3>
+<p>绑定 <i translate="no">box</i> 的数字键盘，单位列表为 <i translate="no">units</i>, 步进为 <i translate="no">step</i>, 标题为 <i translate="no">title</i>, 小数点保留位数 <i translate="no">decimals</i> , 此行为并不会立即生成数字键盘，在第一次触发数字键盘弹出操作时才会生成数字键盘对象.</p>
 <!-- @@@simpleBindBox -->
 <!-- $$$singleStep -->
 <h3 class="fn" translate="no" id="singleStep"><span class="type"><a href="https://doc.qt.io/qt/qvariant.html" translate="no">QVariant</a></span> QCtmDigitKeyboard::<span class="name">singleStep</span>() const</h3>

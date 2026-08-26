@@ -4,7 +4,7 @@
   <meta charset="utf-8">
 <!-- QCtmTitleBar.cpp -->
   <meta name="description" content="QCtmWindow 和 QCtmDialog 的自定义标题栏.">
-  <title>QCtmTitleBar Class | QCustomUi 1.22.0</title>
+  <title>QCtmTitleBar Class | QCustomUi 1.24.0</title>
   <link rel="stylesheet" type="text/css" href="style/offline-simple.css" />
   <script type="text/javascript">
     document.getElementsByTagName("link").item(0).setAttribute("href", "style/offline.css");
@@ -26,10 +26,10 @@
     <div class="main-rounded">
         <div class="navigationbar">
         <ul>
-<li><a href="index.html">QCustomUi 1.22.0</a></li>
+<li><a href="index.html">QCustomUi 1.24.0</a></li>
 <li><a href="qcustomui-module.html" translate="no">QCustomUi</a></li>
 <li>QCtmTitleBar</li>
-<li id="buildversion">QCustomUi 1.22.0 Reference Documentation</li>
+<li id="buildversion">QCustomUi 1.24.0 Reference Documentation</li>
     </ul>
     </div>
 </div>
@@ -63,6 +63,7 @@
 <ul>
 <li class="fn" translate="no"><b><a href="qctmtitlebar.html#iconIsVisible-prop" translate="no">iconIsVisible</a></b> : bool</li>
 <li class="fn" translate="no"><b><a href="qctmtitlebar.html#iconSize-prop" translate="no">iconSize</a></b> : QSize</li>
+<li class="fn" translate="no"><b><a href="qctmtitlebar.html#windowTitleAlignment-prop" translate="no">windowTitleAlignment</a></b> : Qt::Alignment</li>
 </ul>
 <h2 id="public-functions">Public Functions</h2>
 <div class="table"><table class="alignedsummary" translate="no">
@@ -74,6 +75,8 @@
 <tr><td class="memItemLeft rightAlign topAlign"> void </td><td class="memItemRight bottomAlign"><b><a href="qctmtitlebar.html#setIconSize" translate="no">setIconSize</a></b>(const QSize &amp;<i>size</i>)</td></tr>
 <tr><td class="memItemLeft rightAlign topAlign"> void </td><td class="memItemRight bottomAlign"><b><a href="qctmtitlebar.html#setIconVisible" translate="no">setIconVisible</a></b>(bool <i>show</i>)</td></tr>
 <tr><td class="memItemLeft rightAlign topAlign"> void </td><td class="memItemRight bottomAlign"><b><a href="qctmtitlebar.html#setMenuBar" translate="no">setMenuBar</a></b>(QMenuBar *<i>menu</i>)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> void </td><td class="memItemRight bottomAlign"><b><a href="qctmtitlebar.html#setWindowTitleAlignment" translate="no">setWindowTitleAlignment</a></b>(Qt::Alignment <i>alignment</i>)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> Qt::Alignment </td><td class="memItemRight bottomAlign"><b><a href="qctmtitlebar.html#windowTitleAlignment" translate="no">windowTitleAlignment</a></b>() const</td></tr>
 </table></div>
 <h2 id="signals">Signals</h2>
 <div class="table"><table class="alignedsummary" translate="no">
@@ -123,6 +126,15 @@
 <tr><td class="memItemLeft topAlign rightAlign"> void </td><td class="memItemRight bottomAlign"><span class="name"><b>iconSizeChanged</b></span>(const QSize &amp;<i>size</i>)</td></tr>
 </table></div>
 <!-- @@@iconSize -->
+<!-- $$$windowTitleAlignment-prop$$$windowTitleAlignment$$$setWindowTitleAlignmentQt::Alignment -->
+<h3 class="fn" translate="no" id="windowTitleAlignment-prop"><span class="name">windowTitleAlignment</span> : <span class="type"><a href="https://doc.qt.io/qt/qt.html#AlignmentFlag-enum" translate="no">Qt::Alignment</a></span></h3>
+<p>窗口标题对齐方式.</p>
+<p><b>Access functions:</b></p>
+<div class="table"><table class="alignedsummary" translate="no">
+<tr><td class="memItemLeft topAlign rightAlign"> Qt::Alignment </td><td class="memItemRight bottomAlign"><span class="name"><b><a href="qctmtitlebar.html#windowTitleAlignment" translate="no">windowTitleAlignment</a></b></span>() const</td></tr>
+<tr><td class="memItemLeft topAlign rightAlign"> void </td><td class="memItemRight bottomAlign"><span class="name"><b><a href="qctmtitlebar.html#setWindowTitleAlignment" translate="no">setWindowTitleAlignment</a></b></span>(Qt::Alignment <i>alignment</i>)</td></tr>
+</table></div>
+<!-- @@@windowTitleAlignment -->
 </div>
 <div class="func">
 <h2>Member Function Documentation</h2>
@@ -196,10 +208,22 @@
 <p>设置菜单栏 <i translate="no">menu</i>, 当 <i translate="no">menu</i> 为nullptr时删除菜单栏.</p>
 <p><b>See also </b><a href="qctmtitlebar.html#menuBar" translate="no">menuBar</a>.</p>
 <!-- @@@setMenuBar -->
+<!-- $$$setWindowTitleAlignment -->
+<h3 class="fn" translate="no" id="setWindowTitleAlignment"><span class="type">void</span> QCtmTitleBar::<span class="name">setWindowTitleAlignment</span>(<span class="type"><a href="https://doc.qt.io/qt/qt.html#AlignmentFlag-enum" translate="no">Qt::Alignment</a></span> <i>alignment</i>)</h3>
+<p>设置窗口标题对齐方式 <i translate="no">alignment</i>.</p>
+<div class="admonition note"><p><b>Note: </b>Setter function for property <a href="qctmtitlebar.html#windowTitleAlignment" translate="no">windowTitleAlignment</a>. </p>
+</div><p><b>See also </b><a href="qctmtitlebar.html#windowTitleAlignment" translate="no">windowTitleAlignment</a>.</p>
+<!-- @@@setWindowTitleAlignment -->
 <!-- $$$showIconSystemMenu[overload1]$$$showIconSystemMenuconstQPoint& -->
 <h3 class="fn" translate="no" id="showIconSystemMenu"><code class="details extra" translate="no">[override virtual protected]</code> <span class="type">bool</span> QCtmTitleBar::<span class="name">showIconSystemMenu</span>(const <span class="type"><a href="https://doc.qt.io/qt/qpoint.html" translate="no">QPoint</a></span> &amp;<i>pos</i>) const</h3>
 <p>Reimplements: <a href="qctmabstracttitlebar.html#showIconSystemMenu" translate="no">QCtmAbstractTitleBar::showIconSystemMenu</a>(const QPoint &amp;pos) const.</p>
 <!-- @@@showIconSystemMenu -->
+<!-- $$$windowTitleAlignment -->
+<h3 class="fn" translate="no" id="windowTitleAlignment"><span class="type"><a href="https://doc.qt.io/qt/qt.html#AlignmentFlag-enum" translate="no">Qt::Alignment</a></span> QCtmTitleBar::<span class="name">windowTitleAlignment</span>() const</h3>
+<p>返回窗口标题对齐方式.</p>
+<div class="admonition note"><p><b>Note: </b>Getter function for property windowTitleAlignment. </p>
+</div><p><b>See also </b><a href="qctmtitlebar.html#setWindowTitleAlignment" translate="no">setWindowTitleAlignment</a>.</p>
+<!-- @@@windowTitleAlignment -->
 </div>
         </div>
        </div>

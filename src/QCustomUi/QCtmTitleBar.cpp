@@ -67,6 +67,11 @@ struct QCtmTitleBar::Impl
 */
 
 /*!
+    \property   QCtmTitleBar::windowTitleAlignment
+    \brief      窗口标题对齐方式.
+*/
+
+/*!
     \brief      构造函数 \a parent.
 */
 QCtmTitleBar::QCtmTitleBar(QWidget* parent) : QCtmAbstractTitleBar(parent), ui(new Ui::QCtmTitleBar), m_impl(std::make_unique<Impl>())

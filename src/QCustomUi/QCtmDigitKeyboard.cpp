@@ -460,8 +460,8 @@ void QCtmDigitKeyboard::bindBox(QAbstractSpinBox* box)
 }
 
 /*!
-    \brief      绑定 \a box 的数字键盘，单位列表为 \a units, 步进为 \a step, 标题为 \a title
-                ,此行为并不会立即生成数字键盘，在第一次触发数字键盘弹出操作时才会生成数字键盘对象.
+    \brief      绑定 \a box 的数字键盘，单位列表为 \a units, 步进为 \a step, 标题为 \a title, 小数点保留位数 \a decimals
+                , 此行为并不会立即生成数字键盘，在第一次触发数字键盘弹出操作时才会生成数字键盘对象.
 */
 void QCtmDigitKeyboard::simpleBindBox(QAbstractSpinBox* box,
                                       const Units& units /*= {}*/,
