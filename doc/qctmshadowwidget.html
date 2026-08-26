@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+<!-- QCtmShadowWidget.cpp -->
+  <meta name="description" content="提供阴影效果的 QWidget 扩展.">
+  <title>QCtmShadowWidget Class | QCustomUi 1.24.0</title>
+  <link rel="stylesheet" type="text/css" href="style/offline-simple.css" />
+  <script type="text/javascript">
+    document.getElementsByTagName("link").item(0).setAttribute("href", "style/offline.css");
+    // loading style sheet breaks anchors that were jumped to before
+    // so force jumping to anchor again
+    setTimeout(function() {
+        var anchor = location.hash;
+        // need to jump to different anchor first (e.g. none)
+        location.hash = "#";
+        setTimeout(function() {
+            location.hash = anchor;
+        }, 0);
+    }, 0);
+  </script>
+</head>
+<body>
+<div class="header" id="qtdocheader">
+    <div class="main">
+    <div class="main-rounded">
+        <div class="navigationbar">
+        <ul>
+<li><a href="index.html">QCustomUi 1.24.0</a></li>
+<li><a href="qcustomui-module.html" translate="no">QCustomUi</a></li>
+<li>QCtmShadowWidget</li>
+<li id="buildversion">QCustomUi 1.24.0 Reference Documentation</li>
+    </ul>
+    </div>
+</div>
+<div class="content">
+<div class="line">
+<div class="content mainContent">
+<div class="sidebar">
+<div class="toc">
+<h3 id="toc">Contents</h3>
+<ul>
+<li class="level1"><a href="#properties">Properties</a></li>
+<li class="level1"><a href="#public-functions">Public Functions</a></li>
+<li class="level1"><a href="#signals">Signals</a></li>
+<li class="level1"><a href="#details">Detailed Description</a></li>
+</ul>
+</div>
+<div class="sidebar-content" id="sidebar-content"></div></div>
+<h1 class="title" translate="no">QCtmShadowWidget Class</h1>
+<!-- $$$QCtmShadowWidget-brief -->
+<p>提供阴影效果的 <a href="https://doc.qt.io/qt/qwidget.html" translate="no">QWidget</a> 扩展. <a href="#details">More...</a></p>
+<!-- @@@QCtmShadowWidget -->
+<div class="table"><table class="alignedsummary requisites" translate="no">
+<tr><td class="memItemLeft rightAlign topAlign"> Header:</td><td class="memItemRight bottomAlign"> <code translate="no">#include &lt;QCtmShadowWidget.h&gt;</code></td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> Inherits:</td><td class="memItemRight bottomAlign"> <a href="https://doc.qt.io/qt/qwidget.html" translate="no">QWidget</a></td></tr>
+</table></div>
+<ul>
+<li><a href="qctmshadowwidget-members.html">List of all members, including inherited members</a></li>
+</ul>
+<h2 id="properties">Properties</h2>
+<div class="table"><table class="propsummary" translate="no">
+<tr><td class="topAlign"><ul>
+<li class="fn" translate="no"><b><a href="qctmshadowwidget.html#shadowColor-prop" translate="no">shadowColor</a></b> : QColor</li>
+<li class="fn" translate="no"><b><a href="qctmshadowwidget.html#shadowEnabled-prop" translate="no">shadowEnabled</a></b> : bool</li>
+<li class="fn" translate="no"><b><a href="qctmshadowwidget.html#shadowOffset-prop" translate="no">shadowOffset</a></b> : QPointF</li>
+</ul></td><td class="topAlign"><ul>
+<li class="fn" translate="no"><b><a href="qctmshadowwidget.html#shadowOffsetX-prop" translate="no">shadowOffsetX</a></b> : qreal</li>
+<li class="fn" translate="no"><b><a href="qctmshadowwidget.html#shadowOffsetY-prop" translate="no">shadowOffsetY</a></b> : qreal</li>
+<li class="fn" translate="no"><b><a href="qctmshadowwidget.html#shadowRadius-prop" translate="no">shadowRadius</a></b> : qreal</li>
+</ul>
+</td></tr>
+</table></div>
+<h2 id="public-functions">Public Functions</h2>
+<div class="table"><table class="alignedsummary" translate="no">
+<tr><td class="memItemLeft rightAlign topAlign"> </td><td class="memItemRight bottomAlign"><b><a href="qctmshadowwidget.html#QCtmShadowWidget" translate="no">QCtmShadowWidget</a></b>(QWidget *<i>parent</i> = nullptr, Qt::WindowFlags <i>f</i> = Qt::WindowFlags())</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> virtual </td><td class="memItemRight bottomAlign"><b><a href="qctmshadowwidget.html#dtor.QCtmShadowWidget" translate="no">~QCtmShadowWidget</a></b>()</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> bool </td><td class="memItemRight bottomAlign"><b><a href="qctmshadowwidget.html#isShadowEnabled" translate="no">isShadowEnabled</a></b>() const</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> void </td><td class="memItemRight bottomAlign"><b><a href="qctmshadowwidget.html#setShadowColor" translate="no">setShadowColor</a></b>(const QColor &amp;<i>color</i>)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> void </td><td class="memItemRight bottomAlign"><b><a href="qctmshadowwidget.html#setShadowEnabled" translate="no">setShadowEnabled</a></b>(bool <i>enabled</i>)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> void </td><td class="memItemRight bottomAlign"><b><a href="qctmshadowwidget.html#setShadowOffset" translate="no">setShadowOffset</a></b>(const QPointF &amp;<i>offset</i>)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> void </td><td class="memItemRight bottomAlign"><b><a href="qctmshadowwidget.html#setShadowOffsetX" translate="no">setShadowOffsetX</a></b>(qreal <i>offset</i>)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> void </td><td class="memItemRight bottomAlign"><b><a href="qctmshadowwidget.html#setShadowOffsetY" translate="no">setShadowOffsetY</a></b>(qreal <i>offset</i>)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> void </td><td class="memItemRight bottomAlign"><b><a href="qctmshadowwidget.html#setShadowRadius" translate="no">setShadowRadius</a></b>(qreal <i>radius</i>)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> QColor </td><td class="memItemRight bottomAlign"><b><a href="qctmshadowwidget.html#shadowColor" translate="no">shadowColor</a></b>() const</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> QPointF </td><td class="memItemRight bottomAlign"><b><a href="qctmshadowwidget.html#shadowOffset" translate="no">shadowOffset</a></b>() const</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> qreal </td><td class="memItemRight bottomAlign"><b><a href="qctmshadowwidget.html#shadowOffsetX" translate="no">shadowOffsetX</a></b>() const</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> qreal </td><td class="memItemRight bottomAlign"><b><a href="qctmshadowwidget.html#shadowOffsetY" translate="no">shadowOffsetY</a></b>() const</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> qreal </td><td class="memItemRight bottomAlign"><b><a href="qctmshadowwidget.html#shadowRadius" translate="no">shadowRadius</a></b>() const</td></tr>
+</table></div>
+<h2 id="signals">Signals</h2>
+<div class="table"><table class="alignedsummary" translate="no">
+<tr><td class="memItemLeft rightAlign topAlign"> void </td><td class="memItemRight bottomAlign"><b><a href="qctmshadowwidget.html#shadowColorChanged" translate="no">shadowColorChanged</a></b>(const QColor &amp;<i>color</i>)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> void </td><td class="memItemRight bottomAlign"><b><a href="qctmshadowwidget.html#shadowEnabledChanged" translate="no">shadowEnabledChanged</a></b>(bool <i>enabled</i>)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> void </td><td class="memItemRight bottomAlign"><b><a href="qctmshadowwidget.html#shadowOffsetChanged" translate="no">shadowOffsetChanged</a></b>(const QPointF &amp;<i>offset</i>)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> void </td><td class="memItemRight bottomAlign"><b><a href="qctmshadowwidget.html#shadowOffsetXChanged" translate="no">shadowOffsetXChanged</a></b>(qreal <i>offset</i>)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> void </td><td class="memItemRight bottomAlign"><b><a href="qctmshadowwidget.html#shadowOffsetYChanged" translate="no">shadowOffsetYChanged</a></b>(qreal <i>offset</i>)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> void </td><td class="memItemRight bottomAlign"><b><a href="qctmshadowwidget.html#shadowRadiusChanged" translate="no">shadowRadiusChanged</a></b>(qreal <i>radius</i>)</td></tr>
+</table></div>
+<!-- $$$QCtmShadowWidget-description -->
+<div class="descr">
+<h2 id="details">Detailed Description</h2>
+</div>
+<!-- @@@QCtmShadowWidget -->
+<div class="prop">
+<h2>Property Documentation</h2>
+<!-- $$$shadowColor-prop$$$shadowColor$$$setShadowColorconstQColor&$$$shadowColorChangedconstQColor& -->
+<h3 class="fn" translate="no" id="shadowColor-prop"><span class="name">shadowColor</span> : <span class="type"><a href="https://doc.qt.io/qt/qcolor.html" translate="no">QColor</a></span></h3>
+<p>阴影颜色.</p>
+<p><b>Access functions:</b></p>
+<div class="table"><table class="alignedsummary" translate="no">
+<tr><td class="memItemLeft topAlign rightAlign"> QColor </td><td class="memItemRight bottomAlign"><span class="name"><b><a href="qctmshadowwidget.html#shadowColor" translate="no">shadowColor</a></b></span>() const</td></tr>
+<tr><td class="memItemLeft topAlign rightAlign"> void </td><td class="memItemRight bottomAlign"><span class="name"><b><a href="qctmshadowwidget.html#setShadowColor" translate="no">setShadowColor</a></b></span>(const QColor &amp;<i>color</i>)</td></tr>
+</table></div>
+<p><b>Notifier signal:</b></p>
+<div class="table"><table class="alignedsummary" translate="no">
+<tr><td class="memItemLeft topAlign rightAlign"> void </td><td class="memItemRight bottomAlign"><span class="name"><b><a href="qctmshadowwidget.html#shadowColorChanged" translate="no">shadowColorChanged</a></b></span>(const QColor &amp;<i>color</i>)</td></tr>
+</table></div>
+<!-- @@@shadowColor -->
+<!-- $$$shadowEnabled-prop$$$isShadowEnabled$$$setShadowEnabledbool$$$shadowEnabledChangedbool -->
+<h3 class="fn" translate="no" id="shadowEnabled-prop"><span class="name">shadowEnabled</span> : <span class="type">bool</span></h3>
+<p>阴影是否启用.</p>
+<p><b>Access functions:</b></p>
+<div class="table"><table class="alignedsummary" translate="no">
+<tr><td class="memItemLeft topAlign rightAlign"> bool </td><td class="memItemRight bottomAlign"><span class="name"><b><a href="qctmshadowwidget.html#isShadowEnabled" translate="no">isShadowEnabled</a></b></span>() const</td></tr>
+<tr><td class="memItemLeft topAlign rightAlign"> void </td><td class="memItemRight bottomAlign"><span class="name"><b><a href="qctmshadowwidget.html#setShadowEnabled" translate="no">setShadowEnabled</a></b></span>(bool <i>enabled</i>)</td></tr>
+</table></div>
+<p><b>Notifier signal:</b></p>
+<div class="table"><table class="alignedsummary" translate="no">
+<tr><td class="memItemLeft topAlign rightAlign"> void </td><td class="memItemRight bottomAlign"><span class="name"><b><a href="qctmshadowwidget.html#shadowEnabledChanged" translate="no">shadowEnabledChanged</a></b></span>(bool <i>enabled</i>)</td></tr>
+</table></div>
+<!-- @@@shadowEnabled -->
+<!-- $$$shadowOffset-prop$$$shadowOffset$$$setShadowOffsetconstQPointF&$$$shadowOffsetChangedconstQPointF& -->
+<h3 class="fn" translate="no" id="shadowOffset-prop"><span class="name">shadowOffset</span> : <span class="type"><a href="https://doc.qt.io/qt/qpointf.html" translate="no">QPointF</a></span></h3>
+<p>阴影偏移量.</p>
+<p><b>Access functions:</b></p>
+<div class="table"><table class="alignedsummary" translate="no">
+<tr><td class="memItemLeft topAlign rightAlign"> QPointF </td><td class="memItemRight bottomAlign"><span class="name"><b><a href="qctmshadowwidget.html#shadowOffset" translate="no">shadowOffset</a></b></span>() const</td></tr>
+<tr><td class="memItemLeft topAlign rightAlign"> void </td><td class="memItemRight bottomAlign"><span class="name"><b><a href="qctmshadowwidget.html#setShadowOffset" translate="no">setShadowOffset</a></b></span>(const QPointF &amp;<i>offset</i>)</td></tr>
+</table></div>
+<p><b>Notifier signal:</b></p>
+<div class="table"><table class="alignedsummary" translate="no">
+<tr><td class="memItemLeft topAlign rightAlign"> void </td><td class="memItemRight bottomAlign"><span class="name"><b><a href="qctmshadowwidget.html#shadowOffsetChanged" translate="no">shadowOffsetChanged</a></b></span>(const QPointF &amp;<i>offset</i>)</td></tr>
+</table></div>
+<!-- @@@shadowOffset -->
+<!-- $$$shadowOffsetX-prop$$$shadowOffsetX$$$setShadowOffsetXqreal$$$shadowOffsetXChangedqreal -->
+<h3 class="fn" translate="no" id="shadowOffsetX-prop"><span class="name">shadowOffsetX</span> : <span class="type"><a href="https://doc.qt.io/qt/qttypes.html#qreal-typedef" translate="no">qreal</a></span></h3>
+<p>阴影水平方向偏移量.</p>
+<p><b>Access functions:</b></p>
+<div class="table"><table class="alignedsummary" translate="no">
+<tr><td class="memItemLeft topAlign rightAlign"> qreal </td><td class="memItemRight bottomAlign"><span class="name"><b><a href="qctmshadowwidget.html#shadowOffsetX" translate="no">shadowOffsetX</a></b></span>() const</td></tr>
+<tr><td class="memItemLeft topAlign rightAlign"> void </td><td class="memItemRight bottomAlign"><span class="name"><b><a href="qctmshadowwidget.html#setShadowOffsetX" translate="no">setShadowOffsetX</a></b></span>(qreal <i>offset</i>)</td></tr>
+</table></div>
+<p><b>Notifier signal:</b></p>
+<div class="table"><table class="alignedsummary" translate="no">
+<tr><td class="memItemLeft topAlign rightAlign"> void </td><td class="memItemRight bottomAlign"><span class="name"><b><a href="qctmshadowwidget.html#shadowOffsetXChanged" translate="no">shadowOffsetXChanged</a></b></span>(qreal <i>offset</i>)</td></tr>
+</table></div>
+<!-- @@@shadowOffsetX -->
+<!-- $$$shadowOffsetY-prop$$$shadowOffsetY$$$setShadowOffsetYqreal$$$shadowOffsetYChangedqreal -->
+<h3 class="fn" translate="no" id="shadowOffsetY-prop"><span class="name">shadowOffsetY</span> : <span class="type"><a href="https://doc.qt.io/qt/qttypes.html#qreal-typedef" translate="no">qreal</a></span></h3>
+<p>阴影垂直方向偏移量.</p>
+<p><b>Access functions:</b></p>
+<div class="table"><table class="alignedsummary" translate="no">
+<tr><td class="memItemLeft topAlign rightAlign"> qreal </td><td class="memItemRight bottomAlign"><span class="name"><b><a href="qctmshadowwidget.html#shadowOffsetY" translate="no">shadowOffsetY</a></b></span>() const</td></tr>
+<tr><td class="memItemLeft topAlign rightAlign"> void </td><td class="memItemRight bottomAlign"><span class="name"><b><a href="qctmshadowwidget.html#setShadowOffsetY" translate="no">setShadowOffsetY</a></b></span>(qreal <i>offset</i>)</td></tr>
+</table></div>
+<p><b>Notifier signal:</b></p>
+<div class="table"><table class="alignedsummary" translate="no">
+<tr><td class="memItemLeft topAlign rightAlign"> void </td><td class="memItemRight bottomAlign"><span class="name"><b><a href="qctmshadowwidget.html#shadowOffsetYChanged" translate="no">shadowOffsetYChanged</a></b></span>(qreal <i>offset</i>)</td></tr>
+</table></div>
+<!-- @@@shadowOffsetY -->
+<!-- $$$shadowRadius-prop$$$shadowRadius$$$setShadowRadiusqreal$$$shadowRadiusChangedqreal -->
+<h3 class="fn" translate="no" id="shadowRadius-prop"><span class="name">shadowRadius</span> : <span class="type"><a href="https://doc.qt.io/qt/qttypes.html#qreal-typedef" translate="no">qreal</a></span></h3>
+<p>阴影模糊半径.</p>
+<p><b>Access functions:</b></p>
+<div class="table"><table class="alignedsummary" translate="no">
+<tr><td class="memItemLeft topAlign rightAlign"> qreal </td><td class="memItemRight bottomAlign"><span class="name"><b><a href="qctmshadowwidget.html#shadowRadius" translate="no">shadowRadius</a></b></span>() const</td></tr>
+<tr><td class="memItemLeft topAlign rightAlign"> void </td><td class="memItemRight bottomAlign"><span class="name"><b><a href="qctmshadowwidget.html#setShadowRadius" translate="no">setShadowRadius</a></b></span>(qreal <i>radius</i>)</td></tr>
+</table></div>
+<p><b>Notifier signal:</b></p>
+<div class="table"><table class="alignedsummary" translate="no">
+<tr><td class="memItemLeft topAlign rightAlign"> void </td><td class="memItemRight bottomAlign"><span class="name"><b><a href="qctmshadowwidget.html#shadowRadiusChanged" translate="no">shadowRadiusChanged</a></b></span>(qreal <i>radius</i>)</td></tr>
+</table></div>
+<!-- @@@shadowRadius -->
+</div>
+<div class="func">
+<h2>Member Function Documentation</h2>
+<!-- $$$QCtmShadowWidget[overload1]$$$QCtmShadowWidgetQWidget*Qt::WindowFlags -->
+<h3 class="fn" translate="no" id="QCtmShadowWidget"><code class="details extra" translate="no">[explicit]</code> QCtmShadowWidget::<span class="name">QCtmShadowWidget</span>(<span class="type"><a href="https://doc.qt.io/qt/qwidget.html" translate="no">QWidget</a></span> *<i>parent</i> = nullptr, <span class="type"><a href="https://doc.qt.io/qt/qt.html#WindowType-enum" translate="no">Qt::WindowFlags</a></span> <i>f</i> = Qt::WindowFlags())</h3>
+<p>构造函数 <i translate="no">parent</i>, <i translate="no">f</i>.</p>
+<!-- @@@QCtmShadowWidget -->
+<!-- $$$~QCtmShadowWidget[overload1]$$$~QCtmShadowWidget -->
+<h3 class="fn" translate="no" id="dtor.QCtmShadowWidget"><code class="details extra" translate="no">[virtual noexcept]</code> QCtmShadowWidget::<span class="name">~QCtmShadowWidget</span>()</h3>
+<p>析构函数.</p>
+<!-- @@@~QCtmShadowWidget -->
+<!-- $$$isShadowEnabled -->
+<h3 class="fn" translate="no" id="isShadowEnabled"><span class="type">bool</span> QCtmShadowWidget::<span class="name">isShadowEnabled</span>() const</h3>
+<p>返回阴影是否启用.</p>
+<div class="admonition note"><p><b>Note: </b>Getter function for property <a href="qctmshadowwidget.html#shadowEnabled-prop" translate="no">shadowEnabled</a>. </p>
+</div><p><b>See also </b><a href="qctmshadowwidget.html#setShadowEnabled" translate="no">setShadowEnabled</a>.</p>
+<!-- @@@isShadowEnabled -->
+<!-- $$$setShadowColor -->
+<h3 class="fn" translate="no" id="setShadowColor"><span class="type">void</span> QCtmShadowWidget::<span class="name">setShadowColor</span>(const <span class="type"><a href="https://doc.qt.io/qt/qcolor.html" translate="no">QColor</a></span> &amp;<i>color</i>)</h3>
+<p>设置阴影颜色 <i translate="no">color</i>.</p>
+<div class="admonition note"><p><b>Note: </b>Setter function for property <a href="qctmshadowwidget.html#shadowColor" translate="no">shadowColor</a>. </p>
+</div><p><b>See also </b><a href="qctmshadowwidget.html#shadowColor" translate="no">shadowColor</a>.</p>
+<!-- @@@setShadowColor -->
+<!-- $$$setShadowEnabled -->
+<h3 class="fn" translate="no" id="setShadowEnabled"><span class="type">void</span> QCtmShadowWidget::<span class="name">setShadowEnabled</span>(<span class="type">bool</span> <i>enabled</i>)</h3>
+<p>设置阴影是否启用为 <i translate="no">enabled</i>.</p>
+<div class="admonition note"><p><b>Note: </b>Setter function for property <a href="qctmshadowwidget.html#shadowEnabled-prop" translate="no">shadowEnabled</a>. </p>
+</div><p><b>See also </b><a href="qctmshadowwidget.html#isShadowEnabled" translate="no">isShadowEnabled</a>.</p>
+<!-- @@@setShadowEnabled -->
+<!-- $$$setShadowOffset -->
+<h3 class="fn" translate="no" id="setShadowOffset"><span class="type">void</span> QCtmShadowWidget::<span class="name">setShadowOffset</span>(const <span class="type"><a href="https://doc.qt.io/qt/qpointf.html" translate="no">QPointF</a></span> &amp;<i>offset</i>)</h3>
+<p>设置阴影偏移量 <i translate="no">offset</i>.</p>
+<div class="admonition note"><p><b>Note: </b>Setter function for property <a href="qctmshadowwidget.html#shadowOffset" translate="no">shadowOffset</a>. </p>
+</div><p><b>See also </b><a href="qctmshadowwidget.html#shadowOffset" translate="no">shadowOffset</a>.</p>
+<!-- @@@setShadowOffset -->
+<!-- $$$setShadowOffsetX -->
+<h3 class="fn" translate="no" id="setShadowOffsetX"><span class="type">void</span> QCtmShadowWidget::<span class="name">setShadowOffsetX</span>(<span class="type"><a href="https://doc.qt.io/qt/qttypes.html#qreal-typedef" translate="no">qreal</a></span> <i>offset</i>)</h3>
+<p>设置阴影水平方向偏移量 <i translate="no">offset</i>.</p>
+<div class="admonition note"><p><b>Note: </b>Setter function for property <a href="qctmshadowwidget.html#shadowOffsetX" translate="no">shadowOffsetX</a>. </p>
+</div><p><b>See also </b><a href="qctmshadowwidget.html#shadowOffsetX" translate="no">shadowOffsetX</a>.</p>
+<!-- @@@setShadowOffsetX -->
+<!-- $$$setShadowOffsetY -->
+<h3 class="fn" translate="no" id="setShadowOffsetY"><span class="type">void</span> QCtmShadowWidget::<span class="name">setShadowOffsetY</span>(<span class="type"><a href="https://doc.qt.io/qt/qttypes.html#qreal-typedef" translate="no">qreal</a></span> <i>offset</i>)</h3>
+<p>设置阴影垂直方向偏移量 <i translate="no">offset</i>.</p>
+<div class="admonition note"><p><b>Note: </b>Setter function for property <a href="qctmshadowwidget.html#shadowOffsetY" translate="no">shadowOffsetY</a>. </p>
+</div><p><b>See also </b><a href="qctmshadowwidget.html#shadowOffsetY" translate="no">shadowOffsetY</a>.</p>
+<!-- @@@setShadowOffsetY -->
+<!-- $$$setShadowRadius -->
+<h3 class="fn" translate="no" id="setShadowRadius"><span class="type">void</span> QCtmShadowWidget::<span class="name">setShadowRadius</span>(<span class="type"><a href="https://doc.qt.io/qt/qttypes.html#qreal-typedef" translate="no">qreal</a></span> <i>radius</i>)</h3>
+<p>设置阴影模糊半径 <i translate="no">radius</i>.</p>
+<div class="admonition note"><p><b>Note: </b>Setter function for property <a href="qctmshadowwidget.html#shadowRadius" translate="no">shadowRadius</a>. </p>
+</div><p><b>See also </b><a href="qctmshadowwidget.html#shadowRadius" translate="no">shadowRadius</a>.</p>
+<!-- @@@setShadowRadius -->
+<!-- $$$shadowColor -->
+<h3 class="fn" translate="no" id="shadowColor"><span class="type"><a href="https://doc.qt.io/qt/qcolor.html" translate="no">QColor</a></span> QCtmShadowWidget::<span class="name">shadowColor</span>() const</h3>
+<p>返回阴影颜色.</p>
+<div class="admonition note"><p><b>Note: </b>Getter function for property shadowColor. </p>
+</div><p><b>See also </b><a href="qctmshadowwidget.html#setShadowColor" translate="no">setShadowColor</a>.</p>
+<!-- @@@shadowColor -->
+<!-- $$$shadowColorChanged -->
+<h3 class="fn" translate="no" id="shadowColorChanged"><code class="details extra" translate="no">[signal]</code> <span class="type">void</span> QCtmShadowWidget::<span class="name">shadowColorChanged</span>(const <span class="type"><a href="https://doc.qt.io/qt/qcolor.html" translate="no">QColor</a></span> &amp;<i>color</i>)</h3>
+<p>阴影颜色改变时发送该信号 <i translate="no">color</i>.</p>
+<div class="admonition note"><p><b>Note: </b>Notifier signal for property <a href="qctmshadowwidget.html#shadowColor" translate="no">shadowColor</a>. </p>
+</div><!-- @@@shadowColorChanged -->
+<!-- $$$shadowEnabledChanged -->
+<h3 class="fn" translate="no" id="shadowEnabledChanged"><code class="details extra" translate="no">[signal]</code> <span class="type">void</span> QCtmShadowWidget::<span class="name">shadowEnabledChanged</span>(<span class="type">bool</span> <i>enabled</i>)</h3>
+<p>阴影启用状态改变时发送该信号 <i translate="no">enabled</i>.</p>
+<div class="admonition note"><p><b>Note: </b>Notifier signal for property <a href="qctmshadowwidget.html#shadowEnabled-prop" translate="no">shadowEnabled</a>. </p>
+</div><!-- @@@shadowEnabledChanged -->
+<!-- $$$shadowOffset -->
+<h3 class="fn" translate="no" id="shadowOffset"><span class="type"><a href="https://doc.qt.io/qt/qpointf.html" translate="no">QPointF</a></span> QCtmShadowWidget::<span class="name">shadowOffset</span>() const</h3>
+<p>返回阴影偏移量.</p>
+<div class="admonition note"><p><b>Note: </b>Getter function for property shadowOffset. </p>
+</div><p><b>See also </b><a href="qctmshadowwidget.html#setShadowOffset" translate="no">setShadowOffset</a>.</p>
+<!-- @@@shadowOffset -->
+<!-- $$$shadowOffsetChanged -->
+<h3 class="fn" translate="no" id="shadowOffsetChanged"><code class="details extra" translate="no">[signal]</code> <span class="type">void</span> QCtmShadowWidget::<span class="name">shadowOffsetChanged</span>(const <span class="type"><a href="https://doc.qt.io/qt/qpointf.html" translate="no">QPointF</a></span> &amp;<i>offset</i>)</h3>
+<p>阴影偏移量改变时发送该信号 <i translate="no">offset</i>.</p>
+<div class="admonition note"><p><b>Note: </b>Notifier signal for property <a href="qctmshadowwidget.html#shadowOffset" translate="no">shadowOffset</a>. </p>
+</div><!-- @@@shadowOffsetChanged -->
+<!-- $$$shadowOffsetX -->
+<h3 class="fn" translate="no" id="shadowOffsetX"><span class="type"><a href="https://doc.qt.io/qt/qttypes.html#qreal-typedef" translate="no">qreal</a></span> QCtmShadowWidget::<span class="name">shadowOffsetX</span>() const</h3>
+<p>返回阴影水平方向偏移量.</p>
+<div class="admonition note"><p><b>Note: </b>Getter function for property shadowOffsetX. </p>
+</div><p><b>See also </b><a href="qctmshadowwidget.html#setShadowOffsetX" translate="no">setShadowOffsetX</a>.</p>
+<!-- @@@shadowOffsetX -->
+<!-- $$$shadowOffsetXChanged -->
+<h3 class="fn" translate="no" id="shadowOffsetXChanged"><code class="details extra" translate="no">[signal]</code> <span class="type">void</span> QCtmShadowWidget::<span class="name">shadowOffsetXChanged</span>(<span class="type"><a href="https://doc.qt.io/qt/qttypes.html#qreal-typedef" translate="no">qreal</a></span> <i>offset</i>)</h3>
+<p>阴影水平方向偏移量改变时发送该信号 <i translate="no">offset</i>.</p>
+<div class="admonition note"><p><b>Note: </b>Notifier signal for property <a href="qctmshadowwidget.html#shadowOffsetX" translate="no">shadowOffsetX</a>. </p>
+</div><!-- @@@shadowOffsetXChanged -->
+<!-- $$$shadowOffsetY -->
+<h3 class="fn" translate="no" id="shadowOffsetY"><span class="type"><a href="https://doc.qt.io/qt/qttypes.html#qreal-typedef" translate="no">qreal</a></span> QCtmShadowWidget::<span class="name">shadowOffsetY</span>() const</h3>
+<p>返回阴影垂直方向偏移量.</p>
+<div class="admonition note"><p><b>Note: </b>Getter function for property shadowOffsetY. </p>
+</div><p><b>See also </b><a href="qctmshadowwidget.html#setShadowOffsetY" translate="no">setShadowOffsetY</a>.</p>
+<!-- @@@shadowOffsetY -->
+<!-- $$$shadowOffsetYChanged -->
+<h3 class="fn" translate="no" id="shadowOffsetYChanged"><code class="details extra" translate="no">[signal]</code> <span class="type">void</span> QCtmShadowWidget::<span class="name">shadowOffsetYChanged</span>(<span class="type"><a href="https://doc.qt.io/qt/qttypes.html#qreal-typedef" translate="no">qreal</a></span> <i>offset</i>)</h3>
+<p>阴影垂直方向偏移量改变时发送该信号 <i translate="no">offset</i>.</p>
+<div class="admonition note"><p><b>Note: </b>Notifier signal for property <a href="qctmshadowwidget.html#shadowOffsetY" translate="no">shadowOffsetY</a>. </p>
+</div><!-- @@@shadowOffsetYChanged -->
+<!-- $$$shadowRadius -->
+<h3 class="fn" translate="no" id="shadowRadius"><span class="type"><a href="https://doc.qt.io/qt/qttypes.html#qreal-typedef" translate="no">qreal</a></span> QCtmShadowWidget::<span class="name">shadowRadius</span>() const</h3>
+<p>返回阴影模糊半径.</p>
+<div class="admonition note"><p><b>Note: </b>Getter function for property shadowRadius. </p>
+</div><p><b>See also </b><a href="qctmshadowwidget.html#setShadowRadius" translate="no">setShadowRadius</a>.</p>
+<!-- @@@shadowRadius -->
+<!-- $$$shadowRadiusChanged -->
+<h3 class="fn" translate="no" id="shadowRadiusChanged"><code class="details extra" translate="no">[signal]</code> <span class="type">void</span> QCtmShadowWidget::<span class="name">shadowRadiusChanged</span>(<span class="type"><a href="https://doc.qt.io/qt/qttypes.html#qreal-typedef" translate="no">qreal</a></span> <i>radius</i>)</h3>
+<p>阴影模糊半径改变时发送该信号 <i translate="no">radius</i>.</p>
+<div class="admonition note"><p><b>Note: </b>Notifier signal for property <a href="qctmshadowwidget.html#shadowRadius" translate="no">shadowRadius</a>. </p>
+</div><!-- @@@shadowRadiusChanged -->
+</div>
+        </div>
+       </div>
+   </div>
+   </div>
+</div>
+<div class="footer">
+   <p>
+   <acronym title="Copyright">&copy;</acronym> QCustomUi
+   Documentation contributions included herein are the copyrights of
+   their respective owners.<br/>    The documentation provided herein is licensed under the terms of the    <a href="http://www.gnu.org/licenses/fdl.html">GNU Free Documentation    License version 1.3</a> as published by the Free Software Foundation.<br/> </div>
+</body>
+</html>
