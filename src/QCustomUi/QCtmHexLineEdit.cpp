@@ -91,7 +91,11 @@ QValidator::State QCtmHexValidator::validate(QString& input, int& pos) const
 {
     PEG::Context ctx;
     auto str = input.toStdString();
+#if TAO_PEGTL_VERSION_MAJOR < 4
     tao::pegtl::parse<PEG::Expression, PEG::Action>(tao::pegtl::string_input(str, ""), ctx);
+#else
+    tao::pegtl::parse<PEG::Expression, PEG::Action>(tao::pegtl::text_view_input(str, ""), ctx);
+#endif
     auto ret = ctx.format();
     input    = QString::fromStdString(ctx.output);
     pos      = input.size();
@@ -101,7 +105,11 @@ QValidator::State QCtmHexValidator::validate(QString& input, int& pos) const
 void QCtmHexValidator::fixup(QString& input) const
 {
     PEG::Context ctx;
+#if TAO_PEGTL_VERSION_MAJOR < 4
     tao::pegtl::parse<PEG::Expression, PEG::Action>(tao::pegtl::string_input(input.toStdString(), ""), ctx);
+#else 
+    tao::pegtl::parse<PEG::Expression, PEG::Action>(tao::pegtl::text_view_input(input.toStdString(), ""), ctx);
+#endif
     ctx.fixup();
     input = QString::fromStdString(ctx.output);
 }
