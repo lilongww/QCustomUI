@@ -430,30 +430,6 @@ QCtmMessageTipButton:pressed
     qproperty-errorIcon: url(:/QCustomUi/Resources/Error.png);
 }
 
-.QCtmTabWidget QAbstractButton
-{
-    background: white;
-}
-
-.QCtmTabWidget QAbstractButton::hover
-{
-    background: #CBE5FF;
-    border: 1px solid #2477CE;
-}
-
-.QCtmTabWidget QAbstractButton::pressed
-{
-    background: #2477CE;
-    border: 1px solid #2477CE;
-}
-
-.QCtmTabWidget QAbstractButton::checked
-{
-    color: #1E1E1E;
-    background: white;
-    border: 1px solid #2477CE;
-}
-
 .QCtmTabWidget #clearAction
 {
     border: none;
